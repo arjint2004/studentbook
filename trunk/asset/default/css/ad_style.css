@@ -1,0 +1,698 @@
+	div.rightasb{
+		position: relative;
+		right: 76px;
+	}
+	.readmoreasb{
+	float: left;
+	margin: 0px 10px 10px 0;
+	cursor:pointer;
+	}
+	
+.readmorenoplus:hover{
+	background:#4e4e4e; border:1px solid #303030; color:#ffffff; text-shadow:#000000 0px 1px 0px;
+}
+
+.readmorenoplus{
+	-moz-border-radius:5px; 
+	-webkit-border-radius:5px; 
+	border-radius:5px;
+	-webkit-box-shadow: 0 1px 0 0 #FFFFFF inset;
+	-moz-box-shadow: 0 1px 0 0 #FFFFFF inset;
+	-ms-box-shadow: 0 1px 0 0 #FFFFFF inset;
+	-o-box-shadow: 0 1px 0 0 #FFFFFF inset;
+	box-shadow: 0 1px 0 0 #FFFFFF inset;
+	float: left;
+	text-align:center;
+	cursor:pointer;
+	font-size: 13px;
+	padding: 7px 30px 7px 13px;
+	position: relative;
+	z-index: 1;
+	border:1px solid #D7D7D7;
+	color:#929292;
+	margin: 0px 10px 10px 0;
+	background:none repeat scroll 0 0 #EBEBEB;
+}
+	.contentsek {
+	  background: none;
+	  width:85px;
+	}
+	.contentsek:hover {
+	  background: #4e4e4e;
+	}
+	.simpanright{
+	float:right !important; 
+	margin:0;
+	}
+	
+	/* FILE STYLING*/
+	/*
+		background: url("../images/file_browse_normal.png") no-repeat scroll 0 0 transparent;
+		border: medium none;
+		float: right;
+		height: 28px;
+		margin: 5px 5px 0 3px;
+		overflow: hidden;
+		width: 93px;
+	}*/
+	#file_browse_wrapper {
+	border: 1px solid #CCCCCC;
+	cursor: pointer;
+	float: right;
+	font-size: 11px;
+	height: 21px;
+	margin: 1px 5px 0 3px;
+	overflow: hidden;
+	padding-left: 4px;
+	padding-right: 5px;
+	padding-top: 9px;
+	width: 42px;
+	}
+	#file_browse_wrapper:hover {
+		/*background: url('../images/file_browse_hover.png') 0 0 no-repeat;*/
+	}
+	#file_browse_wrapper:active {
+		/*background: url('../images/file_browse_pressed.png') 0 0 no-repeat;*/
+	}
+
+	/*#file_browse{
+		bottom: 20px;
+		margin-left: -145px;
+		opacity: 0;
+		position: relative;
+		opacity:0.0;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+		filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+	}*/
+	#file_browse{
+	bottom: 20px;
+	float: right;
+	opacity: 1;
+	position: relative;
+	right: 5px;
+	top: 4px;
+	width: 176px;
+	}
+	.button.light-grey{
+	float:right;
+	margin:0px
+	}
+	div.nilai .button.light-grey{
+		float: none;
+		margin: 10px 0 0;
+		text-align: center;
+		width: 291px;
+	}
+	div#filenamexls{
+	border: 1px solid #CCCCCC;
+	float: right;
+	font-size: 11px;
+	font-weight: normal;
+	height: 15px;
+	left: 3px;
+	padding: 9px 6px 6px;
+	position: relative;
+	top: 1px;
+	min-width: 100px;
+	color:green;
+	}
+	div#importguru{
+	
+	}
+	.addaccount .button.grey{
+
+	margin-right: 4px;
+	margin-top: 0;
+
+	}
+	.addaccount div.headadd{
+		border-bottom: 1px solid #CCCCCC;
+		margin: 0 0 15px 20px;
+		height: 86px;
+	}
+	.addaccount h3{
+		margin-bottom:10px;
+	}
+	.addaccountclose{
+		background: url("../images/close_pop.png") no-repeat scroll 0 0 transparent;
+		bottom: 25px;
+		cursor: pointer;
+		float: right;
+		height: 32px;
+		left: 24px;
+		position: relative;
+		width: 32px;
+	}
+	.addaccount{
+		border: 1px solid #CCCCCC;
+		float: left;
+		margin: 10px 10px 10px 0;
+		padding: 10px 8px 10px 10px;
+		width: 97%;	
+	}
+	.importkelas{				
+		float: right;
+		margin: 0 6px 0 0;
+		padding: 6px;
+		top: 0;
+	}
+	.filterkelas{	
+		margin: 0;
+		padding: 4px;
+	}
+.frmimport{
+	bottom: 10px;
+	float: right;
+	margin: 0;
+	position: relative;
+	width: 219px;
+}	
+div.fullotoritas{
+	width:100%;
+	margin:0;
+}
+ul.setotoritas{
+	list-style:none;
+}
+input.left{float:left !important;}
+ul.setotoritas li ul li{
+	float: left;
+	list-style: none outside none;
+	width: 275px;
+}
+.main-content ul.left li input[type="text"] , table.adddata  input[type="text"], table.adddata textarea{
+	border-radius: 0 0 0 0 !important;
+	font-size: 14px;
+	height: 25px;
+	float:left;
+	margin: 0;
+	padding: 0 0 0 5px;
+	width: 33px;
+}
+table.adddata td{
+	text-align:left;
+}
+table.adddata select{
+	width:auto;
+}
+table.adddata  input[type="text"], table.adddata textarea{
+	width:auto;
+	height:auto;
+}
+table.adddata  input[type="text"]{
+	height:25px;
+}
+.main-content ul.left{
+	list-style:none;
+	margin:0 0 0 20px;
+}
+.main-content ul.left li ul {
+	padding-left:0;
+}
+.main-content ul.left li div.addkelas{
+background: url("../images/plus-ico.png") no-repeat scroll 61px center transparent;
+cursor: pointer;
+height: 17px;
+opacity: 0.6;
+width: 100px;
+}
+.main-content ul.left li ul li{
+border: medium none;
+cursor: pointer;
+margin-bottom: 5px;
+margin-right: 0;
+padding: 0;
+width: 64px;
+}
+.main-content ul.left li ul li div.remove{
+background: url("../images/fbclose.png") no-repeat scroll  center #EBEBEB;
+border: medium none;
+cursor: pointer;
+float: left;
+height: 27px;
+margin-right: 5px;
+padding: 0;
+width: 19px;
+}
+
+.main-content ul.left li{
+	border-bottom: 1px solid #CCCCCC;
+	float: left;
+	list-style: none outside none;
+	padding-top: 5px;
+	width: 100%;
+}
+table.tabelfilter{
+	margin:0;
+	border:1px solid #ccc;
+	margin-bottom:10px;
+}
+table.tabelfilter tr td{
+	border:none;
+	padding:5px;
+	text-align:left;
+}
+table.tabelkelas ul {
+	margin: 0;
+	padding: 0;
+	text-align: left;
+}
+table.tabelkelas ul  li div.value{
+	float: left;
+	margin-left: 10px;
+}
+table.tabelkelas ul  li div.remove{
+background: url("../images/fbclose.png") no-repeat scroll center center #EBEBEB;
+border: 1px solid #CCCCCC;
+bottom: 6px;
+cursor: pointer;
+float: right;
+height: 26px;
+left: 44px;
+margin-right: 5px;
+padding: 0;
+position: relative;
+width: 32px;
+}
+table.tabelkelas ul li:hover{
+	background-color:#eee;
+}
+table.tabelkelas ul li{
+background: url("../images/edit_icon.gif") no-repeat scroll right center #EBEBEB;
+border: 1px solid #CCCCCC;
+cursor: pointer;
+float: left;
+height: 16px;
+list-style: none outside none;
+margin: 0 42px 5px 0;
+min-width: 67px;
+padding: 5px;
+text-align: left;
+}
+h6.subtitle {
+  border-bottom: 1px solid #CCCCCC;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+}
+td.title{
+text-align:left;
+}
+
+a.simpankelas{
+	float: left !important;
+	left: 0px;
+	position: relative;
+	top: 9px;
+}
+input.editintd[type='text']{
+		-webkit-border-radius: 0px;
+		-moz-border-radius: 0px;
+		border-radius: 0 0 0 0;
+		bottom: -2px;
+		height: 22px;
+		margin: 0;
+		padding: 0;
+		position: relative;
+		right: 1px;
+		width: 100%;
+}
+input.editkelas[type='text']{
+		-webkit-border-radius: 0px;
+		-moz-border-radius: 0px;
+		border-radius: 0px;
+	bottom: 4px;
+	height: 22px;
+	margin: 0;
+	padding: 0 5px;
+	position: relative;
+	right: 4px;
+	width: 95%;
+}
+select.selectfilter{
+	float: none;
+	margin: 0 6px 0 0;
+	padding: 6px;
+	top: 0;
+	text-align:left;
+}
+select.selectadddata{
+	color: #777777;
+	color: #777777;
+	min-width: 145px !important;
+	padding:3px 0 0 5px !important;
+	margin:0;
+	border-radius:0 0 0 0 !important;
+}
+select.jurusanaddkelas{
+color: #777777;
+left: 93px;
+padding: 5px;
+position: relative;
+top: -2px;
+}
+.headadd input.editkelas[type='text']{
+	float: right;
+	margin: 0;
+	padding: 3px;
+	position: relative;
+	right: 72%;
+	top: 10px;
+	width: 50px;
+}
+table.adddata tr td.title{
+text-align: left;
+text-transform: uppercase;
+vertical-align: middle;
+}
+div.contentjadwal{
+	margin:0 20px;
+}
+
+/*front akademik guru*/
+
+/*end front akademik guru*/
+
+
+/* notification */
+/* notification */
+.message
+{
+                z-index: 999999999;
+		-webkit-background-size: 40px 40px;
+		-moz-background-size: 40px 40px;
+		background-size: 40px 40px;			
+		background-image: -webkit-gradient(linear, left top, right bottom,
+								color-stop(.25, rgba(255, 255, 255, .05)), color-stop(.25, transparent),
+								color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, .05)),
+								color-stop(.75, rgba(255, 255, 255, .05)), color-stop(.75, transparent),
+								to(transparent));
+		background-image: -webkit-linear-gradient(135deg, rgba(255, 255, 255, .05) 25%, transparent 25%,
+							transparent 50%, rgba(255, 255, 255, .05) 50%, rgba(255, 255, 255, .05) 75%,
+							transparent 75%, transparent);
+		background-image: -moz-linear-gradient(135deg, rgba(255, 255, 255, .05) 25%, transparent 25%,
+							transparent 50%, rgba(255, 255, 255, .05) 50%, rgba(255, 255, 255, .05) 75%,
+							transparent 75%, transparent);
+		background-image: -ms-linear-gradient(135deg, rgba(255, 255, 255, .05) 25%, transparent 25%,
+							transparent 50%, rgba(255, 255, 255, .05) 50%, rgba(255, 255, 255, .05) 75%,
+							transparent 75%, transparent);
+		background-image: -o-linear-gradient(135deg, rgba(255, 255, 255, .05) 25%, transparent 25%,
+							transparent 50%, rgba(255, 255, 255, .05) 50%, rgba(255, 255, 255, .05) 75%,
+							transparent 75%, transparent);
+		background-image: linear-gradient(135deg, rgba(255, 255, 255, .05) 25%, transparent 25%,
+							transparent 50%, rgba(255, 255, 255, .05) 50%, rgba(255, 255, 255, .05) 75%,
+							transparent 75%, transparent);
+								
+		 -moz-box-shadow: inset 0 -1px 0 rgba(255,255,255,.4);
+		 -webkit-box-shadow: inset 0 -1px 0 rgba(255,255,255,.4);		
+		 box-shadow: inset 0 -1px 0 rgba(255,255,255,.4);
+		 width: 100%;
+		 border: 1px solid;
+		 color: #fff;
+                 text-align: center;
+		 padding: 15px;
+		 position: fixed;
+		 _position: absolute;
+		 text-shadow: 0 1px 0 rgba(0,0,0,.5);
+		 -webkit-animation: animate-bg 5s linear infinite;
+		 -moz-animation: animate-bg 5s linear infinite;
+}
+
+.info
+{
+		 background-color: #4ea5cd;
+		 border-color: #3b8eb5;
+}
+
+.error
+{
+		/* background-color: #de4343;*/
+		 border-color: #c43d3d;
+}
+		 
+.warning
+{
+		 background-color: #eaaf51;
+		 border-color: #d99a36;
+}
+
+.success
+{
+		 background-color: #61b832;
+		 border-color: #55a12c;
+}
+
+.message h3
+{
+		 margin: 0 0 5px 0;													 
+}
+
+.message p
+{
+		 margin: 0;													 
+}
+
+@-webkit-keyframes animate-bg
+{
+    from {
+        background-position: 0 0;
+    }
+    to {
+       background-position: -80px 0;
+    }
+}
+
+
+@-moz-keyframes animate-bg 
+{
+    from {
+        background-position: 0 0;
+    }
+    to {
+       background-position: -80px 0;
+    }
+}
+
+
+#trigger-list
+{
+		 text-align: center;
+		 margin: 100px 0;
+		 padding: 0;
+}
+
+#trigger-list li
+{
+		 display: inline-block;
+		 *display: inline;
+		 zoom: 1;
+}
+
+#trigger-list .trigger
+{
+		 display: inline-block;
+		 background: #ddd;
+		 border: 1px solid #777;
+		 padding: 10px 20px;
+		 margin: 0 5px;
+		 font: bold 12px Arial, Helvetica;
+		 text-decoration: none;
+		 color: #333;
+		 -moz-border-radius: 3px;
+		 -webkit-border-radius: 3px;
+		 border-radius: 3px;
+}
+
+#trigger-list .trigger:hover
+{
+		background: #f5f5f5;
+}
+
+/*--------------------------------------*/
+
+.centered
+{
+		 text-align: center;
+}
+
+.twitter-follow-button
+{
+		 position: relative;
+		 top: 7px;
+}
+
+/* form pencarian sekolah */
+.search_sekolah a {
+	color: #1e7ad3;
+	text-decoration: none;
+}
+
+.search_sekolah a:hover { text-decoration: underline }
+
+.search_sekolah {
+	position: relative;
+	margin: 0 auto;
+	width: 300px;
+}
+
+.search_sekolah input {
+	width: 100%;
+	border: 0px;
+	/*-webkit-box-shadow: inset 0 1px #e5e7ed, 0 1px 0 #fcfcfc;
+	-moz-box-shadow: inset 0 1px #e5e7ed, 0 1px 0 #fcfcfc;
+	-ms-box-shadow: inset 0 1px #e5e7ed, 0 1px 0 #fcfcfc;
+	-o-box-shadow: inset 0 1px #e5e7ed, 0 1px 0 #fcfcfc;
+	box-shadow: inset 0 1px #e5e7ed, 0 1px 0 #fcfcfc;*/
+}
+
+.search_sekolah input:focus {
+	outline: none;
+	border-color: #66b1ee;
+	-webkit-box-shadow: 0 0 2px rgba(85, 168, 236, 0.9);
+	-moz-box-shadow: 0 0 2px rgba(85, 168, 236, 0.9);
+	-ms-box-shadow: 0 0 2px rgba(85, 168, 236, 0.9);
+	-o-box-shadow: 0 0 2px rgba(85, 168, 236, 0.9);
+	box-shadow: 0 0 2px rgba(85, 168, 236, 0.9);
+}
+
+.search_sekolah input:focus + .results { display: block }
+
+.search_sekolah .results {
+	position: absolute;
+	top: 35px;
+	left: 0;
+	right: 0;
+	z-index: 9999999999;
+	padding: 0;
+	margin: 0;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #cbcfe2 #c8cee7 #c4c7d7;
+	border-radius: 3px;
+	background-color: #fdfdfd;
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fdfdfd), color-stop(100%, #eceef4));
+	background-image: -webkit-linear-gradient(top, #fdfdfd, #eceef4);
+	background-image: -moz-linear-gradient(top, #fdfdfd, #eceef4);
+	background-image: -ms-linear-gradient(top, #fdfdfd, #eceef4);
+	background-image: -o-linear-gradient(top, #fdfdfd, #eceef4);
+	background-image: linear-gradient(top, #fdfdfd, #eceef4);
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+	-ms-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+	-o-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.search_sekolah .results li { display: block;margin: 0px; }
+
+.search_sekolah .results li:first-child { margin-top: -1px }
+
+.search_sekolah .results li:first-child:before, .search .results li:first-child:after {
+	display: block;
+	content: '';
+	width: 0;
+	height: 0;
+	position: absolute;
+	left: 50%;
+	margin-left: -5px;
+	border: 5px outset transparent;
+}
+
+.search_sekolah .results li:first-child:before {
+	border-bottom: 5px solid #c4c7d7;
+	top: -11px;
+}
+
+.search_sekolah .results li:first-child:after {
+	border-bottom: 5px solid #fdfdfd;
+	top: -10px;
+}
+
+.search_sekolah .results li:first-child:hover:before, .search .results li:first-child:hover:after { display: none }
+
+.search_sekolah .results li:last-child { margin-bottom: -1px }
+
+.search_sekolah .results a {
+	display: block;
+	position: relative;
+	margin: 0 -1px;
+	padding: 6px 40px 6px 10px;
+	color: #808394;
+	font-weight: 500;
+	text-shadow: 0 1px #fff;
+	border: 1px solid transparent;
+	border-radius: 3px;
+}
+
+.search_sekolah .results a span { font-weight: 200 }
+
+.search_sekolah .results a:before {
+	content: '';
+	width: 18px;
+	height: 18px;
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	margin-top: -9px;
+	background: url("http://cssdeck.com/uploads/media/items/7/7BNkBjd.png") 0 0 no-repeat;
+}
+
+.search_sekolah .results a:hover {
+	text-decoration: none;
+	color: #fff;
+	text-shadow: 0 -1px rgba(0, 0, 0, 0.3);
+	border-color: #2380dd #2179d5 #1a60aa;
+	background-color: #338cdf;
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #59aaf4), color-stop(100%, #338cdf));
+	background-image: -webkit-linear-gradient(top, #59aaf4, #338cdf);
+	background-image: -moz-linear-gradient(top, #59aaf4, #338cdf);
+	background-image: -ms-linear-gradient(top, #59aaf4, #338cdf);
+	background-image: -o-linear-gradient(top, #59aaf4, #338cdf);
+	background-image: linear-gradient(top, #59aaf4, #338cdf);
+	-webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.2), 0 1px rgba(0, 0, 0, 0.08);
+	-moz-box-shadow: inset 0 1px rgba(255, 255, 255, 0.2), 0 1px rgba(0, 0, 0, 0.08);
+	-ms-box-shadow: inset 0 1px rgba(255, 255, 255, 0.2), 0 1px rgba(0, 0, 0, 0.08);
+	-o-box-shadow: inset 0 1px rgba(255, 255, 255, 0.2), 0 1px rgba(0, 0, 0, 0.08);
+	box-shadow: inset 0 1px rgba(255, 255, 255, 0.2), 0 1px rgba(0, 0, 0, 0.08);
+}
+
+:-moz-placeholder {
+	color: #a7aabc;
+	font-weight: 200;
+}
+
+::-webkit-input-placeholder {
+	color: #a7aabc;
+	font-weight: 200;
+}
+
+.lt-ie9 .search input { line-height: 26px }
+
+
+/* pendaftaran sekolah */
+.daftar{	
+		margin: 5px;
+		text-decoration: none;
+		font-weight: bold;
+		color: white;
+	}
+	
+table.tableprofil tr td input, table.tableprofil tr td select{
+	margin:0;
+}
+table.hm tr td{
+	border-bottom: 1px solid #D7D7D7;
+	cursor: pointer;
+	vertical-align: top;
+}
+table.hm tr td div.no{
+	font-size: 20px;
+	font-weight: bold;
+	opacity: 0.2;
+	position: relative;
+	text-align: right;
+}
+table.hm tr td div.cnt{
+}
+table.hm tr td:hover{
+	background:#dddddd;
+}

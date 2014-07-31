@@ -1,0 +1,53 @@
+<? //pr($siswakegiatan);?>
+<script>
+var trnext='';
+<? 
+					$maxr=max($datakegiatan);
+					foreach($datakegiatan as $idm=>$dtex){?>
+						trnext +='<tr style="border-bottom:1px solid #000000;">'; 
+							trnext +='<td style="text-align:left;" <? if($maxr["id"]==$idm){?> class="nilaiextrain" <? } ?>> <?=$dtex["nama"];?> </td>';
+							trnext +='<td  <? if($maxr["id"]==$idm){?> class="nilaiextrain" <? } ?>> <textarea nilai style="height:50px; width:200px; margin:0;"  name="keterangan[idsiswaextra][<?=$dtex["id"]?>]"></textarea> </td> </tr> ';
+					<? } ?>
+</script>
+	<table>
+        <thead>
+            
+			<tr>
+				<th colspan="6" style="text-align:right;">
+					<a title="" class="button small light-grey absenbutton" id="simpannilaiekstra" onclick="$('#nilaiextraform').submit();"> Simpan </a>
+				</th>
+			</tr>
+            <tr> 
+                <th>No</th>
+                <th>NIS</th>
+                <th >Nama</th>  
+                <th > Kegiatan Sekolah </th>
+                <th > Nilai </th>
+            </tr>                            
+        </thead>
+        <tbody>
+			<? 
+			//pr($nilai);
+			//pr($siswakegiatan);
+			$no=1; 
+			foreach($siswakegiatan as $siswa=>$siswaextra){
+			?>
+					<script>
+					$(document).ready(function(){
+						var n<?=$siswaextra['id']?>=trnext.replace("idsiswaextra","<?=$siswaextra['id']?>"); 
+						var n<?=$siswaextra['id']?>2=n<?=$siswaextra['id']?>.replace("nilai","id='nil<?=$siswaextra['id']?>'"); 
+						$('table tr#trin<?=$siswaextra['id']?>').after(n<?=$siswaextra['id']?>2);
+						$('textarea#nil<?=$siswaextra['id']?>').val('yyyy<?//=@$nilai[$siswaextra["id"]][$dtex["id"]]["keterangan"]?>');
+						//alert(trnext);
+					});
+					</script>
+		 			<tr id="trin<?=$siswaextra['id']?>">
+					  <td class="nilaiextra" rowspan="<?=count($datakegiatan)+1;?>"> <?=$no++;?> </td>
+					  <td class="nilaiextra" rowspan="<?=count($datakegiatan)+1;?>" class="title"> <?=$siswaextra['nis']?> </td>
+					  <td class="nilaiextra" rowspan="<?=count($datakegiatan)+1;?>"> <?=$siswaextra['nama']?> </td>
+		  			</tr>
+			<? } ?>
+        </tbody>
+    </table>
+
+	

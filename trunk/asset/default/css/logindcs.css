@@ -1,0 +1,91 @@
+body{
+	background-image:url("../images/dcs3.jpg");
+	background-repeat:no-repeat;
+	background-attachment:fixed;
+	background-position:center; 
+}
+.loginfront{
+	margin: 15% 0 0 !important;
+	padding: 30px 0 !important;
+}
+.loginright form input[type="text"],.loginright form input[type="password"]{
+	height:20px;
+	margin:10px 0;
+	float:right;
+	background: #ffffff;
+	width:95%;
+}
+.loginright form input[type="password"]{
+
+}
+.loginright div.forgot{
+	color:#24668d;
+	float:left;
+	margin:10px 0 0 0;
+	padding:6px 0 0 0;
+	cursor:pointer;
+}
+.loginright div.daftarsekolah{
+	background: none repeat scroll 0 0 #777777;
+	border-radius: 5px;
+	color: #FFFFFF;
+	float: right;
+	height: 29px;
+	margin: 20px 0 0;
+	padding: 22px 10px 10px;
+	text-align: center;
+	vertical-align: middle;
+	width: 92%;
+	cursor:pointer;
+}
+.loginright form   input[type="submit"]{
+	background: none repeat scroll 0 0 #777777;
+	border: 1px solid rgba(0, 0, 0, 0);
+	color: #FFFFFF;
+	float: right;
+	text-shadow: none;
+}
+.loginright form{
+	padding:20px;
+}
+.loginfront  h1{
+text-align:right;
+text-shadow:none;
+}
+h1,h2,h3,h4,h5,h6,p,a,.loginright div.forgot{text-shadow:none;color:#222222;}
+.loginfront  h1 img{
+	position: relative;
+top: 2px;
+
+}
+.loginfront  div.divdesc{
+	font-size: 14px;
+	margin: 0px 0 0;
+	padding: 10px 0;
+text-align:right;
+}
+.loginfront  p{
+text-align:right;
+color:#222222;
+}
+.loginright{
+	background: url("../images/60fff.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+	border-radius: 3px;
+	box-shadow: 0 40px 25px #666666;
+	height: 300px;
+}
+#expand-toggle .expand {
+  font-size: 12px;
+  
+}
+#expand-toggle  img{
+	height:90px;
+	float:right;
+}
+#expand-toggle  {
+background: none; 
+border-bottom: none;
+border-top: none;
+margin:0;
+padding:0;
+}

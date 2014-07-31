@@ -1,0 +1,1041 @@
+Command: Commit  
+Modified: D:\webdevel\studentbookrepo\application\controllers\akademik\kirimpr.php  
+Modified: D:\webdevel\studentbookrepo\application\controllers\siswa\kirimpr.php  
+Modified: D:\webdevel\studentbookrepo\application\helpers\akademik_helper.php  
+Modified: D:\webdevel\studentbookrepo\application\helpers\global_helper.php  
+Modified: D:\webdevel\studentbookrepo\application\views\akademik\kirimpr\daftarprlist.php  
+Modified: D:\webdevel\studentbookrepo\application\views\akademik\materi\addmateri.php  
+Modified: D:\webdevel\studentbookrepo\application\views\akademik\materi\editmateri.php  
+Modified: D:\webdevel\studentbookrepo\application\views\siswa\kirimharian\daftarharianlist.php  
+Modified: D:\webdevel\studentbookrepo\application\views\siswa\kirimpr\daftarprlist.php  
+Modified: D:\webdevel\studentbookrepo\application\views\siswa\kirimtugas\daftartugaslist.php  
+Modified: D:\webdevel\studentbookrepo\application\views\siswa\kirimuas\daftaruaslist.php  
+Modified: D:\webdevel\studentbookrepo\application\views\siswa\kirimuts\daftarutslist.php  
+Modified: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_samples\asp\index.html  
+Modified: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_samples\index.html  
+Modified: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\help\en\index.html  
+Modified: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\help\es\index.html  
+Modified: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\help\es-mx\index.html  
+Modified: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\help\pl\index.html  
+Modified: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\plugins\fileeditor\codemirror\contrib\php\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\help\en\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_samples\asp\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\akademik\kirimpr\daftarprlist.php  
+Sending content: D:\webdevel\studentbookrepo\application\views\siswa\kirimuts\daftarutslist.php  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\help\es\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\help\pl\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\plugins\fileeditor\codemirror\contrib\php\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\controllers\akademik\kirimpr.php  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_samples\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\siswa\kirimpr\daftarprlist.php  
+Sending content: D:\webdevel\studentbookrepo\application\views\siswa\kirimharian\daftarharianlist.php  
+Sending content: D:\webdevel\studentbookrepo\application\helpers\global_helper.php  
+Sending content: D:\webdevel\studentbookrepo\application\views\siswa\kirimtugas\daftartugaslist.php  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\help\es-mx\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\helpers\akademik_helper.php  
+Sending content: D:\webdevel\studentbookrepo\application\controllers\siswa\kirimpr.php  
+Sending content: D:\webdevel\studentbookrepo\application\views\akademik\materi\editmateri.php  
+Sending content: D:\webdevel\studentbookrepo\application\views\siswa\kirimuas\daftaruaslist.php  
+Sending content: D:\webdevel\studentbookrepo\application\views\akademik\materi\addmateri.php  
+Completed: At revision: 247  
+
+
+
+Command: Commit  
+Adding: D:\webdevel\studentbookrepo\additional\database\index.html  
+Adding: D:\webdevel\studentbookrepo\additional\index.html  
+Adding: D:\webdevel\studentbookrepo\additional\jQuery-Timepicker-Addon-master.zip  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\application\controllers\admin\index.html  
+Adding: D:\webdevel\studentbookrepo\application\controllers\akademik\index.html  
+Adding: D:\webdevel\studentbookrepo\application\controllers\index.html  
+Adding: D:\webdevel\studentbookrepo\application\controllers\siswa\index.html  
+Adding: D:\webdevel\studentbookrepo\application\controllers\siswa\pengumpulan.php  
+Adding: D:\webdevel\studentbookrepo\application\controllers\sos\index.html  
+Adding: D:\webdevel\studentbookrepo\application\language\index.html  
+Adding: D:\webdevel\studentbookrepo\application\models\ad_pengumpulan.php  
+Adding: D:\webdevel\studentbookrepo\application\views\akademik\absensi\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\akademik\catatanguru\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\akademik\comment\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\akademik\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\akademik\jurnalwali\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\akademik\kepribadian\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\akademik\kirimharian\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\akademik\kirimpr\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\akademik\kirimtugas\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\akademik\kirimuas\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\akademik\kirimuts\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\akademik\mainakademik\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\akademik\materi\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\akademik\nilai\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\akademik\nilaiekstrakurikuler\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\akademik\nilaikegiatansekolah\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\akademik\nilaipr\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\akademik\pengumpulan  
+Adding: D:\webdevel\studentbookrepo\application\views\akademik\pengumpulan\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\akademik\pengumpulan\pr.php  
+Adding: D:\webdevel\studentbookrepo\application\views\akademik\perencanaan\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\akademik\prestasi\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\akademik\raport\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\akademik\rekapnilai\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\akademik\ticker\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\homepage\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\layout\homepage\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\layout\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\schooladmin\calender\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\schooladmin\content\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\schooladmin\extrakurikuler\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\schooladmin\formulasinilai\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\schooladmin\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\schooladmin\jadwal\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\schooladmin\jurusan\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\schooladmin\kegiatan\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\schooladmin\kelas\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\schooladmin\nilai\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\schooladmin\nilaikkm\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\schooladmin\otoritas\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\schooladmin\pelajaran\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\schooladmin\pengajaran\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\schooladmin\raport\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\schooladmin\sekolah\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\schooladmin\setting\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\schooladmin\sms\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\siswa\catatanguru\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\siswa\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\siswa\jurnalwalikelas\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\siswa\kirimharian\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\siswa\kirimpr\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\siswa\kirimtugas\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\siswa\kirimuas\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\siswa\kirimuts\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\siswa\materi\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\siswa\raport\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\siswa\rekapabsensi\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\siswa\rekapnilai\index.html  
+Adding: D:\webdevel\studentbookrepo\application\views\sosial\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\css\stylus\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\fancybox\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\fonts\Bree_Serif\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\fonts\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\fmslideshow\cursors\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\fmslideshow\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\icons\bb\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\icons\bs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\icons\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\icons\wb\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\icons\ws\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\layer-gallery\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\layer-skins\borderlessdark\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\layer-skins\borderlesslight\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\layer-skins\darkskin\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\layer-skins\defaultskin\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\layer-skins\fullwidth\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\layer-skins\glass\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\layer-skins\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\layer-skins\lightskin\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\layer-skins\minimal\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\layer-skins\noskin\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\layer-skins\preview\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\patterns\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\post-images\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\prettyPhoto\default\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\prettyPhoto\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\prettyPhoto\light_square\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\styles\dark\backgrounds\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\styles\dark\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\styles\default\backgrounds\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\styles\default\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\styles\green\backgrounds\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\styles\green\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\styles\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\styles\lime\backgrounds\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\styles\lime\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\styles\marble\backgrounds\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\styles\marble\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\styles\purple\backgrounds\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\styles\purple\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\styles\red\backgrounds\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\styles\red\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\styles\silver\backgrounds\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\images\styles\silver\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\_samples\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\_samples\php\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_samples\api_dialog\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_samples\assets\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_samples\php\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\adapters\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\core\dom\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\core\htmlparser\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\core\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\lang\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\a11yhelp\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\a11yhelp\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\a11yhelp\lang\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\about\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\about\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\autogrow\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\basicstyles\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\bidi\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\blockquote\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\button\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\clipboard\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\clipboard\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\colorbutton\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\colordialog\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\colordialog\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\contextmenu\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\dialog\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\dialogadvtab\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\dialogui\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\div\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\div\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\domiterator\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\editingblock\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\elementspath\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\enterkey\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\entities\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\fakeobjects\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\filebrowser\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\find\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\find\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\flash\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\flash\images\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\flash\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\floatpanel\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\font\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\format\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\forms\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\forms\images\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\forms\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\horizontalrule\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\htmldataprocessor\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\htmlwriter\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\iframedialog\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\image\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\image\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\indent\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\justify\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\keystrokes\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\link\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\link\images\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\link\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\list\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\listblock\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\liststyle\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\liststyle\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\maximize\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\menu\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\menubutton\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\newpage\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\pagebreak\images\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\pagebreak\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\panel\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\panelbutton\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\pastefromword\filter\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\pastefromword\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\pastetext\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\pastetext\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\popup\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\preview\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\print\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\removeformat\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\resize\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\richcombo\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\save\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\scayt\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\scayt\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\selection\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\showblocks\images\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\showblocks\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\showborders\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\smiley\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\smiley\images\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\smiley\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\sourcearea\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\specialchar\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\specialchar\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\styles\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\styles\styles\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\stylescombo\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\tab\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\table\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\table\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\tableresize\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\tabletools\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\tabletools\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\templates\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\templates\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\templates\templates\images\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\templates\templates\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\toolbar\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\uicolor\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\uicolor\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\uicolor\lang\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\uicolor\yui\assets\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\uicolor\yui\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\undo\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\wsc\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\wsc\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\wysiwygarea\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\skins\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\skins\kama\images\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\skins\kama\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\skins\office2003\images\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\skins\office2003\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\skins\v2\images\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\skins\v2\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\themes\default\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\themes\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\adapters\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\images\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\lang\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\a11yhelp\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\a11yhelp\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\a11yhelp\lang\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\about\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\about\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\autogrow\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\clipboard\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\clipboard\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\colordialog\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\colordialog\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\dialog\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\div\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\div\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\find\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\find\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\flash\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\flash\images\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\flash\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\forms\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\forms\images\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\forms\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\iframedialog\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\image\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\image\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\link\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\link\images\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\link\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\liststyle\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\liststyle\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\pagebreak\images\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\pagebreak\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\pastefromword\filter\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\pastefromword\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\pastetext\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\pastetext\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\scayt\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\scayt\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\showblocks\images\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\showblocks\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\smiley\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\smiley\images\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\smiley\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\specialchar\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\specialchar\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\styles\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\styles\styles\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\table\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\table\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\tableresize\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\tabletools\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\tabletools\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\templates\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\templates\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\templates\templates\images\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\templates\templates\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\uicolor\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\uicolor\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\uicolor\lang\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\uicolor\yui\assets\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\uicolor\yui\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\wsc\dialogs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\wsc\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\skins\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\skins\kama\images\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\skins\kama\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\skins\office2003\images\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\skins\office2003\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\skins\v2\images\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\skins\v2\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\themes\default\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\themes\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\core\connector\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\core\connector\php\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\core\connector\php\lang\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\core\connector\php\php4\CommandHandler\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\core\connector\php\php4\Core\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\core\connector\php\php4\ErrorHandler\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\core\connector\php\php4\Utils\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\core\connector\php\php4\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\core\connector\php\php5\CommandHandler\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\core\connector\php\php5\Core\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\core\connector\php\php5\ErrorHandler\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\core\connector\php\php5\Utils\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\core\connector\php\php5\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\core\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\help\en\files\images\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\help\en\files\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\help\en\files\other\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\help\es\files\images\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\help\es\files\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\help\es\files\other\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\help\es-mx\files\images\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\help\es-mx\files\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\help\es-mx\files\other\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\help\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\help\pl\files\images\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\help\pl\files\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\help\pl\files\other\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\lang\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\plugins\dummy\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\plugins\dummy\lang\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\plugins\fileeditor\codemirror\contrib\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\plugins\fileeditor\codemirror\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\plugins\fileeditor\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\plugins\imageresize\images\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\plugins\imageresize\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\plugins\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\plugins\watermark\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\skins\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\skins\kama\images\icons\16\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\skins\kama\images\icons\32\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\skins\kama\images\icons\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\skins\kama\images\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\skins\kama\images\loaders\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\skins\kama\images\toolbar\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\skins\kama\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\skins\v1\images\icons\16\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\skins\v1\images\icons\32\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\skins\v1\images\icons\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\skins\v1\images\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\skins\v1\images\loaders\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\skins\v1\images\toolbar\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\skins\v1\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\userfiles\_thumbs\Images\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\userfiles\_thumbs\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\userfiles\files\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\userfiles\flash\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\userfiles\images\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\userfiles\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\php\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\default\skins\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\index.html  
+Adding: D:\webdevel\studentbookrepo\asset\profile\index.html  
+Adding: D:\webdevel\studentbookrepo\calender\css\images\alert\index.html  
+Adding: D:\webdevel\studentbookrepo\calender\css\images\bgs\index.html  
+Adding: D:\webdevel\studentbookrepo\calender\css\images\calendar\index.html  
+Adding: D:\webdevel\studentbookrepo\calender\css\images\dailog\index.html  
+Adding: D:\webdevel\studentbookrepo\calender\css\images\dp\index.html  
+Adding: D:\webdevel\studentbookrepo\calender\css\images\dropdown\index.html  
+Adding: D:\webdevel\studentbookrepo\calender\css\images\home\index.html  
+Adding: D:\webdevel\studentbookrepo\calender\css\images\icons\index.html  
+Adding: D:\webdevel\studentbookrepo\calender\css\images\index.html  
+Adding: D:\webdevel\studentbookrepo\calender\css\images\share\index.html  
+Adding: D:\webdevel\studentbookrepo\calender\css\images\validation\index.html  
+Adding: D:\webdevel\studentbookrepo\calender\index.html  
+Adding: D:\webdevel\studentbookrepo\calender\php\index.html  
+Adding: D:\webdevel\studentbookrepo\calender\src\Plugins\index.html  
+Adding: D:\webdevel\studentbookrepo\calender\src\index.html  
+Adding: D:\webdevel\studentbookrepo\ckfinder.zip  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\copy.php  
+Adding: D:\webdevel\studentbookrepo\highlighter\index.html  
+Adding: D:\webdevel\studentbookrepo\highlighter\scripts\index.html  
+Adding: D:\webdevel\studentbookrepo\highlighter\src\index.html  
+Adding: D:\webdevel\studentbookrepo\highlighter\styles\index.html  
+Adding: D:\webdevel\studentbookrepo\install  
+Adding: D:\webdevel\studentbookrepo\install\index.html  
+Adding: D:\webdevel\studentbookrepo\jadwal\css\images\alert\index.html  
+Adding: D:\webdevel\studentbookrepo\jadwal\css\images\bgs\index.html  
+Adding: D:\webdevel\studentbookrepo\jadwal\css\images\calendar\index.html  
+Adding: D:\webdevel\studentbookrepo\jadwal\css\images\dailog\index.html  
+Adding: D:\webdevel\studentbookrepo\jadwal\css\images\dp\index.html  
+Adding: D:\webdevel\studentbookrepo\jadwal\css\images\dropdown\index.html  
+Adding: D:\webdevel\studentbookrepo\jadwal\css\images\home\index.html  
+Adding: D:\webdevel\studentbookrepo\jadwal\css\images\icons\index.html  
+Adding: D:\webdevel\studentbookrepo\jadwal\css\images\index.html  
+Adding: D:\webdevel\studentbookrepo\jadwal\css\images\share\index.html  
+Adding: D:\webdevel\studentbookrepo\jadwal\css\images\validation\index.html  
+Adding: D:\webdevel\studentbookrepo\jadwal\index.html  
+Adding: D:\webdevel\studentbookrepo\jadwal\php\index.html  
+Adding: D:\webdevel\studentbookrepo\jadwal\sample-css\index.html  
+Adding: D:\webdevel\studentbookrepo\jadwal\src\Plugins\index.html  
+Adding: D:\webdevel\studentbookrepo\jadwal\src\index.html  
+Adding: D:\webdevel\studentbookrepo\system\libraries\Cache\drivers\index.html  
+Adding: D:\webdevel\studentbookrepo\system\libraries\Cache\index.html  
+Adding: D:\webdevel\studentbookrepo\system\libraries\javascript\index.html  
+Adding: D:\webdevel\studentbookrepo\upload\akademik\harian\index.html  
+Adding: D:\webdevel\studentbookrepo\upload\akademik\index.html  
+Adding: D:\webdevel\studentbookrepo\upload\akademik\jurnalwali\index.html  
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul  
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9  
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\harian  
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\harian\20130605111659blog-fullwidth2.jpg  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\harian\20130605111659blog-fullwidth3.jpg  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\harian\20130605111659boxed-slider-image.jpg  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\harian\index.html  
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\index.html  
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr  
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130604045808banner_img3.jpg  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130604045808blog-fullwidth1.jpg  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130604045808blog-fullwidth2.jpg  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130604045808blog1.jpg  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130604045808blog2.jpg  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130604045808blog3.jpg  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130605101512blog-fullwidth3.jpg  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130605101525boxed-slider-image2.jpg  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130605102531boxed-slider-image.jpg  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130605102531boxed-slider-image2.jpg  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130605102531boxed-slider-image3.jpg  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130605102531client1.png  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130605102531client2.png  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130605110430blog-fullwidth3.jpg  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130605110430boxed-slider-image.jpg  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130605110430boxed-slider-image2.jpg  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130605111330blog-fullwidth2.jpg  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130605111330blog-fullwidth3.jpg  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130605111330boxed-slider-image.jpg  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130605111417blog-fullwidth3.jpg  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130605111417boxed-slider-image.jpg  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\index.html  
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\tugas  
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\tugas\20130605110216blog-fullwidth3.jpg  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\tugas\20130605110216boxed-slider-image.jpg  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\tugas\20130605110216boxed-slider-image2.jpg  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\tugas\20130605110216boxed-slider-image3.jpg  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\tugas\20130605110216client1.png  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\tugas\20130605110216client2.png  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\tugas\20130605110216client3.png  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\tugas\20130605111443blog-fullwidth2.jpg  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\tugas\20130605111443boxed-slider-image.jpg  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\tugas\index.html  
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\uas  
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\uas\20130605112110blog-fullwidth3.jpg  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\uas\20130605112110boxed-slider-image.jpg  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\uas\index.html  
+Adding: D:\webdevel\studentbookrepo\upload\akademik\kumpul\index.html  
+Adding: D:\webdevel\studentbookrepo\upload\akademik\materi\index.html  
+Adding: D:\webdevel\studentbookrepo\upload\akademik\pr\20130604042532client2.png  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\pr\index.html  
+Adding: D:\webdevel\studentbookrepo\upload\akademik\rencana_pembelajaran\index.html  
+Adding: D:\webdevel\studentbookrepo\upload\akademik\sekolah\20130601175848welcome-image.png  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\sekolah\20130601175906mission.png  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\sekolah\index.html  
+Adding: D:\webdevel\studentbookrepo\upload\akademik\template\index.html  
+Adding: D:\webdevel\studentbookrepo\upload\akademik\timeline_pembelajaran\index.html  
+Adding: D:\webdevel\studentbookrepo\upload\akademik\tugas\20130605105240blog1.jpg  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\tugas\20130605105240blog2.jpg  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\tugas\20130605105255boxed-slider-image2.jpg  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\tugas\index.html  
+Adding: D:\webdevel\studentbookrepo\upload\akademik\uas\20130605112051blog2.jpg  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\uas\index.html  
+Adding: D:\webdevel\studentbookrepo\upload\akademik\uts\20130604011125blog-fullwidth2.jpg  application/octet-stream
+Adding: D:\webdevel\studentbookrepo\upload\akademik\uts\index.html  
+Adding: D:\webdevel\studentbookrepo\upload\dokumen\index.html  
+Adding: D:\webdevel\studentbookrepo\upload\dokumen\surat_pribadi\index.html  
+Adding: D:\webdevel\studentbookrepo\upload\images\index.html  
+Adding: D:\webdevel\studentbookrepo\upload\images\larger\index.html  
+Adding: D:\webdevel\studentbookrepo\upload\images\medium\index.html  
+Adding: D:\webdevel\studentbookrepo\upload\images\thumb\index.html  
+Adding: D:\webdevel\studentbookrepo\upload\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\styles\default\index.html  
+Sending content: D:\webdevel\studentbookrepo\calender\css\images\alert\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130604045808blog-fullwidth1.jpg  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130605110430boxed-slider-image2.jpg  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\skins\v2\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\colordialog\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\uicolor\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\templates\templates\images\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\smiley\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\popup\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\undo\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\siswa\kirimuts\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\_samples\php\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\core\connector\php\lang\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\a11yhelp\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\styles\purple\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\skins\office2003\images\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\harian\20130605111659blog-fullwidth2.jpg  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\uicolor\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\skins\kama\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\siswa\kirimtugas\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130605102531client1.png  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\pastetext\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\pastefromword\filter\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\pastetext\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\skins\kama\images\icons\16\index.html  
+Sending content: D:\webdevel\studentbookrepo\jadwal\src\Plugins\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\iframedialog\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\icons\ws\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\akademik\raport\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\forms\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\elementspath\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\akademik\kirimpr\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\about\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130604045808blog3.jpg  
+Sending content: D:\webdevel\studentbookrepo\calender\css\images\icons\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\templates\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\templates\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\templates\templates\images\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\help\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\schooladmin\pelajaran\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\a11yhelp\lang\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\schooladmin\nilaikkm\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\styles\silver\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\post-images\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\table\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\jadwal\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\wysiwygarea\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\akademik\kirimharian\index.html  
+Sending content: D:\webdevel\studentbookrepo\calender\php\index.html  
+Sending content: D:\webdevel\studentbookrepo\calender\src\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\userfiles\_thumbs\index.html  
+Sending content: D:\webdevel\studentbookrepo\system\libraries\javascript\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\skins\kama\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\styles\red\backgrounds\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\flash\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\link\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\jadwal\css\images\calendar\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\tugas\20130605110216client3.png  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\skins\kama\images\index.html  
+Sending content: D:\webdevel\studentbookrepo\calender\css\images\dailog\index.html  
+Sending content: D:\webdevel\studentbookrepo\jadwal\sample-css\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\image\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\entities\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\selection\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\format\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\plugins\dummy\index.html  
+Sending content: D:\webdevel\studentbookrepo\highlighter\styles\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\plugins\watermark\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\sekolah\20130601175848welcome-image.png  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\tugas\20130605105240blog2.jpg  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\colordialog\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\tugas\20130605110216boxed-slider-image3.jpg  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\dialog\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\htmlwriter\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\pastetext\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\tab\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\bidi\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\schooladmin\kelas\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\tabletools\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\forms\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_samples\php\index.html  
+Sending content: D:\webdevel\studentbookrepo\system\libraries\Cache\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130605111330blog-fullwidth2.jpg  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\pagebreak\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\indent\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\templates\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\images\medium\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\uicolor\yui\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\pagebreak\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\help\es\files\images\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\tugas\20130605111443blog-fullwidth2.jpg  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\core\connector\php\php5\ErrorHandler\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\akademik\perencanaan\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\themes\default\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\layer-skins\defaultskin\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\pastefromword\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\index.html  
+Sending content: D:\webdevel\studentbookrepo\calender\src\Plugins\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130605101525boxed-slider-image2.jpg  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\plugins\imageresize\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\sosial\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\help\es-mx\files\images\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\prettyPhoto\default\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\image\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\scayt\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130605110430boxed-slider-image.jpg  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\tableresize\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\models\ad_pengumpulan.php  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\tabletools\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\plugins\dummy\lang\index.html  
+Sending content: D:\webdevel\studentbookrepo\jadwal\css\images\share\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\layout\homepage\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\about\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\core\connector\php\php4\CommandHandler\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\styles\red\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\userfiles\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\specialchar\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\akademik\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\siswa\materi\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\preview\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\colordialog\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\tugas\20130605110216blog-fullwidth3.jpg  
+Sending content: D:\webdevel\studentbookrepo\application\views\akademik\nilaiekstrakurikuler\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\adapters\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\iframedialog\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\siswa\jurnalwalikelas\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\layer-skins\borderlessdark\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\core\connector\php\php4\Core\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\core\connector\php\php5\Core\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130604045808blog-fullwidth2.jpg  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\pr\20130604042532client2.png  
+Sending content: D:\webdevel\studentbookrepo\application\views\akademik\rekapnilai\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\icons\bs\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\uas\20130605112051blog2.jpg  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\core\connector\php\php4\Utils\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\core\connector\php\php5\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\images\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\flash\images\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\skins\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130605111330boxed-slider-image.jpg  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\contextmenu\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\colorbutton\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\akademik\nilai\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\harian\20130605111659blog-fullwidth3.jpg  
+Sending content: D:\webdevel\studentbookrepo\calender\css\images\dropdown\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130605102531client2.png  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\userfiles\files\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\maximize\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\uicolor\yui\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\styles\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\schooladmin\setting\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\newpage\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\forms\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\akademik\kepribadian\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\sekolah\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\styles\lime\backgrounds\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\tabletools\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\akademik\catatanguru\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\about\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\highlighter\src\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\save\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\panel\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\dialog\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\clipboard\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\clipboard\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\core\connector\php\php5\Utils\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\link\images\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\find\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\akademik\kirimuas\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\help\pl\files\other\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\icons\wb\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\menu\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\styles\styles\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\help\en\files\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\akademik\pengumpulan\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\tableresize\index.html  
+Sending content: D:\webdevel\studentbookrepo\calender\css\images\home\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\akademik\nilaipr\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130605110430blog-fullwidth3.jpg  
+Sending content: D:\webdevel\studentbookrepo\application\controllers\siswa\pengumpulan.php  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\specialchar\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\image\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\schooladmin\content\index.html  
+Sending content: D:\webdevel\studentbookrepo\calender\css\images\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\enterkey\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\themes\default\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\styles\default\backgrounds\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\layer-skins\glass\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\liststyle\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\uicolor\lang\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\justify\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\liststyle\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\skins\v1\images\icons\32\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\htmldataprocessor\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\skins\v1\images\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\skins\v1\images\toolbar\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\skins\v2\images\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\themes\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\skins\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\akademik\prestasi\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\skins\office2003\images\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\uas\20130605112110boxed-slider-image.jpg  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130605111330blog-fullwidth3.jpg  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\wsc\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\jadwal\css\images\alert\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\_samples\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\horizontalrule\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\clipboard\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\find\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\layer-skins\noskin\index.html  
+Sending content: D:\webdevel\studentbookrepo\jadwal\css\images\bgs\index.html  
+Sending content: D:\webdevel\studentbookrepo\calender\css\images\dp\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\pagebreak\images\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\domiterator\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\styles\lime\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\schooladmin\kegiatan\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\print\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\skins\kama\images\icons\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\pastefromword\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\wsc\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\plugins\index.html  
+Sending content: D:\webdevel\studentbookrepo\highlighter\scripts\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\skins\v2\index.html  
+Sending content: D:\webdevel\studentbookrepo\jadwal\css\images\home\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\menubutton\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\specialchar\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\jadwal\php\index.html  
+Sending content: D:\webdevel\studentbookrepo\jadwal\src\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\layer-skins\preview\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\flash\images\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\link\images\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\siswa\raport\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\siswa\rekapabsensi\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\removeformat\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\plugins\imageresize\images\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\controllers\siswa\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\styles\silver\backgrounds\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\about\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\jurnalwali\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\tugas\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\siswa\kirimpr\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\images\larger\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\schooladmin\pengajaran\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130605101512blog-fullwidth3.jpg  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\liststyle\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\jadwal\css\images\icons\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\styles\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\showblocks\images\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\skins\kama\images\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\uicolor\yui\assets\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\skins\kama\images\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\table\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\plugins\fileeditor\codemirror\contrib\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\plugins\fileeditor\codemirror\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\uas\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\siswa\kirimharian\index.html  
+Sending content: D:\webdevel\studentbookrepo\additional\jQuery-Timepicker-Addon-master.zip  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\flash\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\link\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\core\connector\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\dokumen\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\skins\v2\images\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\styles\green\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\styles\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\find\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\div\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\skins\office2003\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\layer-skins\lightskin\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\template\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\showblocks\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\icons\bb\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130605111417boxed-slider-image.jpg  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\wsc\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\uas\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\index.html  
+Sending content: D:\webdevel\studentbookrepo\additional\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\dialogadvtab\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\div\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130605111417blog-fullwidth3.jpg  
+Sending content: D:\webdevel\studentbookrepo\application\views\schooladmin\calender\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\schooladmin\extrakurikuler\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\akademik\mainakademik\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130604045808blog1.jpg  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\panelbutton\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\dialogui\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\homepage\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\templates\templates\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130605102531boxed-slider-image2.jpg  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\editingblock\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\uicolor\lang\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\lang\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\core\connector\php\php4\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\schooladmin\nilai\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\fmslideshow\cursors\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\skins\office2003\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\css\stylus\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\a11yhelp\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\styles\styles\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\blockquote\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\skins\v1\images\icons\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\button\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130605102531boxed-slider-image.jpg  
+Sending content: D:\webdevel\studentbookrepo\install\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\tugas\20130605110216client1.png  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\showblocks\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\tugas\20130605111443boxed-slider-image.jpg  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\colordialog\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\help\pl\files\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\skins\kama\images\toolbar\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\materi\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\smiley\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\scayt\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\akademik\kirimuts\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\listblock\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\schooladmin\formulasinilai\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\layer-skins\darkskin\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\skins\v1\images\loaders\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\skins\v1\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\akademik\kirimtugas\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\lang\index.html  
+Sending content: D:\webdevel\studentbookrepo\calender\css\images\bgs\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\uicolor\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\siswa\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\skins\v1\images\icons\16\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\keystrokes\index.html  
+Sending content: D:\webdevel\studentbookrepo\jadwal\css\images\dropdown\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\fmslideshow\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\pastetext\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\richcombo\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\div\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\font\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\akademik\pengumpulan\pr.php  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\skins\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\schooladmin\jadwal\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130604045808banner_img3.jpg  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\styles\purple\backgrounds\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\siswa\rekapnilai\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\help\en\files\images\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\help\es\files\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\templates\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\skins\kama\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\layer-skins\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\uts\20130604011125blog-fullwidth2.jpg  
+Sending content: D:\webdevel\studentbookrepo\application\views\akademik\jurnalwali\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\core\connector\php\php4\ErrorHandler\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\help\en\files\other\index.html  
+Sending content: D:\webdevel\studentbookrepo\system\libraries\Cache\drivers\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\akademik\absensi\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\themes\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\smiley\images\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\styles\marble\backgrounds\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\core\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\controllers\admin\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\siswa\catatanguru\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\find\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\akademik\comment\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\images\thumb\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\prettyPhoto\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\siswa\kirimuas\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\pastefromword\filter\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\userfiles\images\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\layer-skins\fullwidth\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\plugins\fileeditor\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\pr\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\floatpanel\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\layout\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\controllers\sos\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\akademik\nilaikegiatansekolah\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_samples\assets\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\core\dom\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\table\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\controllers\akademik\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\sourcearea\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\harian\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\tabletools\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\forms\images\index.html  
+Sending content: D:\webdevel\studentbookrepo\calender\css\images\calendar\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\flash\index.html  
+Sending content: D:\webdevel\studentbookrepo\copy.php  
+Sending content: D:\webdevel\studentbookrepo\application\views\akademik\ticker\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\lang\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\showborders\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\stylescombo\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\core\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\harian\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\schooladmin\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\prettyPhoto\light_square\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\fonts\Bree_Serif\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\list\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\uts\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\help\es-mx\files\other\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\skins\kama\images\icons\32\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\tugas\20130605105255boxed-slider-image2.jpg  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\uas\20130605112110blog-fullwidth3.jpg  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\adapters\index.html  
+Sending content: D:\webdevel\studentbookrepo\additional\database\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\styles\dark\index.html  
+Sending content: D:\webdevel\studentbookrepo\calender\css\images\share\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\tugas\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\core\htmlparser\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\layer-gallery\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130604045808blog2.jpg  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\wsc\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\link\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\schooladmin\sekolah\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\pr\20130605102531boxed-slider-image3.jpg  
+Sending content: D:\webdevel\studentbookrepo\application\views\akademik\materi\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\help\es-mx\files\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\specialchar\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\resize\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\smiley\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\fonts\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\a11yhelp\lang\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\styles\marble\index.html  
+Sending content: D:\webdevel\studentbookrepo\jadwal\css\images\dailog\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\autogrow\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\table\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\skins\kama\images\loaders\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\rencana_pembelajaran\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_samples\api_dialog\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\schooladmin\otoritas\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\tugas\20130605110216boxed-slider-image.jpg  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\core\connector\php\php5\CommandHandler\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\flash\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\tugas\20130605110216client2.png  
+Sending content: D:\webdevel\studentbookrepo\application\controllers\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\scayt\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\filebrowser\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\core\connector\php\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\help\pl\files\images\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\pagebreak\images\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\profile\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\tugas\20130605105240blog1.jpg  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\help\es\files\other\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\tugas\20130605110216boxed-slider-image2.jpg  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\styles\green\backgrounds\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\autogrow\index.html  
+Sending content: D:\webdevel\studentbookrepo\jadwal\css\images\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\forms\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\schooladmin\sms\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\userfiles\flash\index.html  
+Sending content: D:\webdevel\studentbookrepo\jadwal\css\images\dp\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\uicolor\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\link\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\fakeobjects\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\div\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\clipboard\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\uicolor\yui\assets\index.html  
+Sending content: D:\webdevel\studentbookrepo\ckfinder.zip  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\a11yhelp\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\basicstyles\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\smiley\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\styles\dark\backgrounds\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\dokumen\surat_pribadi\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\icons\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\sekolah\20130601175906mission.png  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\templates\templates\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\forms\images\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\language\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\schooladmin\jurusan\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\index.html  
+Sending content: D:\webdevel\studentbookrepo\jadwal\css\images\validation\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\toolbar\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\php\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\skins\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\image\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\scayt\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\highlighter\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\layer-skins\minimal\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\kumpul\9\harian\20130605111659boxed-slider-image.jpg  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\smiley\images\index.html  
+Sending content: D:\webdevel\studentbookrepo\upload\akademik\timeline_pembelajaran\index.html  
+Sending content: D:\webdevel\studentbookrepo\calender\css\images\validation\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\layer-skins\borderlesslight\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\liststyle\dialogs\index.html  
+Sending content: D:\webdevel\studentbookrepo\application\views\schooladmin\raport\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\images\patterns\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\userfiles\_thumbs\Images\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\_source\plugins\a11yhelp\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\fancybox\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\plugins\showblocks\images\index.html  
+Sending content: D:\webdevel\studentbookrepo\asset\default\js\ckfinder\ckeditor\images\index.html  
+Sending content: D:\webdevel\studentbookrepo\calender\index.html  
+Completed: At revision: 249  

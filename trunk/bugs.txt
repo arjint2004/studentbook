@@ -1,0 +1,9 @@
+ADMIN SEKOLAH
+	1.edit jadwal validasi pelajaran yang diajar masih error
+	2.kenaikan kelulusan belum di cek
+	
+AKADEMIK 
+	1. PR, TUGAS, UL HARIAN, UTS, UAS fitur delete harus dibuat bisa menghapus semua data relasinya
+	
+PENGAJARAN
+	1. perlu fitur pergantian pengajar. data pr, tugas dll harus bisa dipindah tangankan

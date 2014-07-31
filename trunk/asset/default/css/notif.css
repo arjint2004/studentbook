@@ -1,0 +1,61 @@
+div.contrnt-notif div.team  div.image img{
+	margin: 0;
+width: 72px;
+}
+div.contrnt-notif div.team{
+	margin:0;
+}
+div.contrnt-notif div.column{
+	margin:0;width:100%;
+}
+div.contrnt-notif{
+	display:none;
+	border: 1px solid #bbb;
+bottom: 40px;
+display: none;
+height: 200px;
+position: absolute;
+width: 200px;
+right:11px;
+z-index:999;
+padding:5px;
+background:#fff;
+overflow: scroll;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+div#alertnotif{
+background: none repeat scroll 0 0 #FFFFFF;
+border: 1px solid yellowgreen;
+font-size: 13px;
+padding: 10px;
+position: absolute;
+z-index: 999;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	height:17px;
+}
+div.notifikasiasb{
+background: url("../images/notif.jpg") no-repeat scroll 0 2px transparent;
+border: 1px solid #D7D7D7;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-moz-box-shadow:0 1px 0 0 #FFFFFF inset;
+	-webkit-box-shadow:0 1px 0 0 #FFFFFF inset;
+	box-shadow: 0 1px 0 0 #FFFFFF inset;
+color: red;
+cursor: pointer;
+float: left;
+font-size: 14px;
+font-weight: bold;
+height: 21px;
+margin: 2px;
+padding: 3px 0 0 10px;
+position: relative;
+text-align: center;
+width: 48px;
+z-index: 1;
+}
