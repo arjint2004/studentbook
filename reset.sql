@@ -1,0 +1,77 @@
+TRUNCATE `ak_absensi`;
+TRUNCATE `ak_artikel`;
+TRUNCATE `ak_aspek_kepribadian`;
+TRUNCATE `ak_catatanguru`;
+TRUNCATE `ak_catatan_raport`;
+TRUNCATE `ak_det_jenjang`;
+TRUNCATE `ak_det_materi`;
+TRUNCATE `ak_extrakurikuler`;
+TRUNCATE `ak_harian`;
+TRUNCATE `ak_harian_det`;
+TRUNCATE `ak_harian_det_remidial`;
+TRUNCATE `ak_harian_file`;
+TRUNCATE `ak_jabatan_pegawai`;
+TRUNCATE `ak_jadwal`;
+TRUNCATE `ak_jurnal_wali`;
+TRUNCATE `ak_jurnal_wali_file`;
+TRUNCATE `ak_jurusan`;
+TRUNCATE `ak_kategori_artikel`;
+TRUNCATE `ak_kegiatan_sekolah`;
+TRUNCATE `ak_kelas`;
+TRUNCATE `ak_materi_file`;
+TRUNCATE `ak_materi_kirim`;
+TRUNCATE `ak_materi_pelajaran`;
+TRUNCATE `ak_mengajar`;
+TRUNCATE `ak_nilai_afektif`;
+TRUNCATE `ak_nilai_ekstrakurikuler`;
+TRUNCATE `ak_nilai_formulasi`;
+TRUNCATE `ak_nilai_kegiatan_sekolah`;
+TRUNCATE `ak_nilai_kkm`;
+TRUNCATE `ak_nilai_kompetensi`;
+TRUNCATE `ak_nilai_lain_lain`;
+TRUNCATE `ak_nilai_pr`;
+TRUNCATE `ak_nilai_praktik`;
+TRUNCATE `ak_nilai_tugas`;
+TRUNCATE `ak_nilai_uan`;
+TRUNCATE `ak_nilai_uas`;
+TRUNCATE `ak_nilai_ulangan_harian`;
+TRUNCATE `ak_nilai_uts`;
+TRUNCATE `ak_pegawai`;
+TRUNCATE `ak_pelajaran`;
+TRUNCATE `ak_pr`;
+TRUNCATE `ak_prestasi`;
+TRUNCATE `ak_pr_det`;
+TRUNCATE `ak_pr_det_remidial`;
+TRUNCATE `ak_pr_file`;
+TRUNCATE `ak_rencana_pembelajaran`;
+TRUNCATE `ak_rencana_pembelajaran_file`;
+TRUNCATE `ak_sekolah`;
+TRUNCATE `ak_semester`;
+TRUNCATE `ak_setting`;
+TRUNCATE `ak_siswa`;
+TRUNCATE `ak_siswa_ekstrakurikuler`;
+TRUNCATE `ak_siswa_notif`;
+TRUNCATE `ak_step_registrasi`;
+TRUNCATE `ak_subject_nilai`;
+TRUNCATE `ak_tahun_ajaran`;
+TRUNCATE `ak_timeline_pembelajaran`;
+TRUNCATE `ak_timeline_pembelajaran_file`;
+TRUNCATE `ak_tugas`;
+TRUNCATE `ak_tugas_det`;
+TRUNCATE `ak_tugas_det_remidial`;
+TRUNCATE `ak_tugas_file`;
+TRUNCATE `ak_uas`;
+TRUNCATE `ak_uas_det`;
+TRUNCATE `ak_uas_det_remidial`;
+TRUNCATE `ak_uas_file`;
+TRUNCATE `ak_uts`;
+TRUNCATE `ak_uts_det`;
+TRUNCATE `ak_uts_det_remidial`;
+TRUNCATE `ak_uts_file`;
+TRUNCATE `users`;
+
+/*INSERT INTO `users` (`id`, `id_group`, `id_pengguna`, `id_sekolah`, `username`, `password`, `images`, `aktif`) VALUES
+(1, 10, 0, 0, 'asbin', 'e6d291d5effd688082fa6d483762c3e5', '', 1),
+(2, 11, 1, 1, 'adminsekolah', 'c5a9c89e63451dfcd9f6b6d07f4c9fd0', 'profile.png', 1),
+(3, 12, 1, 1, 'siswa', 'bcd724d15cde8c47650fda962968f102', '', 1),
+(4, 13, 1, 1, 'guru', '77e69c137812518e359196bb2f5e9bb9', '', 1);*/

@@ -1,0 +1,607 @@
+/* LayerSlider Styles */
+
+.layer-slider-container { height:420px; width:100%; }
+
+.ls-container {
+	visibility: hidden;
+	position: relative;
+}
+
+.ls-inner {
+	position: relative;
+	background-position: center center;
+}
+
+.ls-inner,
+.ls-layer {
+	width: 100%;
+	height: 100%;
+}
+
+.ls-layer {
+	position: absolute;
+	display: none;
+	background-position: center center;
+	overflow: hidden;
+}
+
+.ls-layer * {
+	margin: 0px;
+	line-height: normal;
+}
+
+.ls-active,
+.ls-animating {
+	display: block !important;
+}
+
+.ls-layer > * {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+
+.ls-layer .ls-bg {
+	left: 50%;
+	top: 50%;
+}
+
+.ls-yourlogo {
+	position: absolute;
+	z-index: 99;
+}
+
+
+
+/* Navigation */
+
+.ls-bottom-nav-wrapper {
+	height: 0px;
+}
+
+.ls-bottom-nav-wrapper,
+.ls-below-thumbnails {
+	z-index: 2;
+	height: 0px;
+	position: relative;
+	text-align: center;
+	margin: 0px auto;
+	bottom:-52px;
+}
+
+.ls-below-thumbnails {
+	display: none;
+	z-index: 6;
+}
+
+.ls-bottom-nav-wrapper a,
+.ls-nav-prev,
+.ls-nav-next {
+	outline: none;
+}
+
+.ls-bottom-slidebuttons {
+	position: relative;
+	z-index: 1000;
+}
+
+.ls-bottom-slidebuttons,
+.ls-nav-start,
+.ls-nav-stop,
+.ls-nav-sides {
+	position: relative;	
+}
+
+
+
+/* Embedded videos */
+
+.ls-vpcontainer {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+
+.ls-videopreview {
+	width : 100%;
+	height : 100%;
+	position : absolute;
+	left : 0px;
+	top : 0px;
+	cursor : pointer;
+}
+
+.ls-playvideo {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	cursor: pointer;
+}
+
+
+
+/* Thumbnails */
+
+.ls-tn {
+	display: none !important;
+}
+
+.ls-thumbnail-hover {
+	display: none;
+	position: absolute;
+	left: 0px;
+}
+
+.ls-thumbnail-hover-inner {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	display: none;
+}
+
+.ls-thumbnail-hover-bg {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0px;
+	top: 0px;
+}
+
+.ls-thumbnail-hover-img {
+	position: absolute;
+	overflow: hidden;
+}
+
+.ls-thumbnail-hover img {
+	max-width: none !important;
+	position: absolute;
+	display: inline-block;
+	left: 50%;
+	top: 0px;
+}
+
+.ls-thumbnail-hover span {
+	left: 50%;
+	top: 100%;
+	width: 0px;
+	height: 0px;
+	display: block;
+	position: absolute;
+	border-left-color: transparent !important;
+	border-right-color: transparent !important;
+	border-bottom-color: transparent !important;
+}
+
+.ls-thumbnail-wrapper {
+	position: relative;
+	width: 100%;
+	margin: 0 auto;
+	z-index: 4;
+}
+
+.ls-thumbnail {
+	position: relative;
+	margin: 0 auto;
+}
+
+.ls-thumbnail-inner,
+.ls-thumbnail-slide-container {
+	width: 100%;	
+}
+
+.ls-thumbnail-slide-container {
+	overflow: hidden !important;
+	position: relative;
+}
+
+.ls-thumbnail-slide {
+	text-align: center;
+	white-space: nowrap;
+	float: left;
+	position: relative;
+}
+
+.ls-thumbnail-slide a {
+	overflow: hidden;
+	display: inline-block;
+	width: 0px;
+	height: 0px;
+	position: relative;
+}
+
+.ls-thumbnail-slide img {
+	max-width: none !important;
+	max-height: 100% !important;
+	height: 100%;
+}
+
+.ls-shadow {
+	display: none;
+	position: absolute;
+	z-index: 1;
+	top: 100%;
+	width: 100%;
+	left: 0px;
+}
+
+.ls-shadow img {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+
+
+
+/* WP plugin fullWidth */
+
+.ls-wp-fullwidth-container {
+	width: 100%;
+	position: relative;
+}
+
+.ls-wp-fullwidth-helper {
+	position: absolute;
+}
+
+
+
+/* Trying to remove all the default global styles of WordPress :) */
+
+.ls-container img,
+.entry-content .ls-container img,
+.comment-content .ls-container img,
+.widget .ls-container img {
+	border-radius: 0px;
+	box-shadow: none;
+	max-width: none !important;
+	transition: none !important;
+	-o-transition: none !important;
+	-ms-transition: none !important;
+	-moz-transition: none !important;
+	-webkit-transition: none !important;
+}
+
+.entry-content .ls-container *,
+.comment-content .ls-container *,
+.widget .ls-container * {
+	line-height: normal;
+	padding: 0px;
+	outline: none;
+	border: 0px;
+}
+
+.entry-content .ls-yourlogo,
+.entry-content .ls-inner *,
+.comment-content .ls-inner *,
+.widget .ls-inner * {
+	margin: 0px;
+}
+
+.entry-content .ls-tn,
+.comment-content .ls-tn,
+.widget .ls-tn {
+	display: none;
+}
+
+/* Style of LayerSlider Debug Console */
+
+.ls-debug-console * {
+	margin: 0px !important;
+	padding: 0px !important;
+	border: 0px !important;
+	color: white !important;
+	text-shadow: none !important;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", Helvetica, Arial, serif !important;
+	line-height: normal !important;
+	-webkit-font-smoothing: antialiased !important;
+	text-align: left !important;
+}
+
+.ls-debug-console h1 {
+	padding-top: 10px !important;
+	font-size: 17px !important;
+	font-weight: bold !important;
+}
+
+.ls-debug-console h1:first-child {
+	padding-top: 0px !important;
+}
+
+.ls-debug-console ul {
+	padding-top: 10px !important;
+	list-style: none !important;
+}
+
+.ls-debug-console li {
+	margin-left: 10px !important;
+	font-size: 13px !important;
+	position: relative !important;
+	font-weight: normal !important;
+}
+
+.ls-debug-console li ul {
+	display: none;
+	position: absolute !important;
+	width: 260px;
+	left: -10px;
+	bottom: 100% !important;
+	padding: 10px 10px 10px 0px !important;
+	background: white !important;
+	border-radius: 10px !important;
+	box-shadow: 0px 0px 20px black !important;
+}
+
+.ls-debug-console li:hover ul {
+	display: block;
+}
+
+.ls-debug-console li ul * {
+	color: black !important;
+}
+
+.ls-debug-console a {
+	text-decoration: none !important;
+	border-bottom: 1px dotted white !important;
+}
+
+
+/* Custom Styles */
+
+/*#layerslider h2 { color:#ffffff; text-shadow: 0px 1px 0px #000000; font-size:24px; margin:0px; }
+#layerslider .subtitle { font-size:14px; text-transform:uppercase; text-shadow:none; clear:both; float:left; }
+#layerslider .short-desc { font-size:16px; line-height:20px; text-shadow:none; font-style:italic; float:left; display:block; clear:both; width:445px; padding:12px 20px; margin:20px 0px 0px; border-radius:20px 0px 0px 20px; behavior:url(PIE.htc); }
+
+#layerslider ul { float:left; margin:30px 0px 10px 30px; padding:0px; clear:both; }
+#layerslider ul li { float:left; display:block; clear:both; background:url(../images/banner-arrow.png) left 12px no-repeat; text-shadow: 0px 1px 0px #000000; color:#ffffff; padding:7px 0px 7px 30px; margin:0px; text-transform:uppercase; font-size:18px; }*/
+
+#layerslider-container { width:960px; min-width:210px; max-width:100%; margin: 0px auto; }
+
+.ls-thumbnail-hover-inner { opacity:1 !important; }
+
+
+
+
+
+
+.ls-layer,
+.ls-layer * {
+	font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', Helvetica, Arial, Serif;
+	white-space: nowrap;
+	font-weight: normal;
+}
+
+.l1-s1 {
+	color: #ecffb3;
+	text-shadow: 0px 2px 3px #546223;
+	font-size: 60px;
+}
+
+.l1-s1b {
+	color: #fff;
+	text-shadow: 0px 0px 10px #fff;
+	font-size: 60px;
+}
+
+.l1-s2 {
+	color: #ecffb3;
+	text-shadow: 0px 2px 3px #546223;
+	font-size: 90px;
+}
+
+.l1-s2b {
+	color: #fff;
+	text-shadow: 0px 0px 10px #fff;
+	font-size: 90px;
+}
+
+.l1-s3 {
+	padding: 0px 10px;
+	height: 40px;
+	line-height: 40px;
+	box-shadow: 0px 4px 10px -5px black;
+	color: white;
+	text-shadow: none;
+	font-size: 28px;
+	background: #8bae4e;
+	background: -moz-linear-gradient(left, #8bae4e 0%, #b1c758 100%);
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#8bae4e), color-stop(100%,#b1c758));
+	background: -webkit-linear-gradient(left, #8bae4e 0%,#b1c758 100%);
+	background: -o-linear-gradient(left, #8bae4e 0%,#b1c758 100%);
+	background: -ms-linear-gradient(left, #8bae4e 0%,#b1c758 100%);
+	background: linear-gradient(to right, #8bae4e 0%,#b1c758 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8bae4e', endColorstr='#b1c758',GradientType=1 );
+}
+
+.l1-s4 {
+	padding: 0px 10px;
+	height: 40px;
+	line-height: 40px;
+	box-shadow: 0px 4px 10px -5px black;
+	color: white;
+	text-shadow: none;
+	font-size: 24px;
+	color: #4f6716;
+	background: white;
+}
+
+.l2-s1 {
+	padding: 0px 10px;
+	height: 36px;
+	line-height: 36px;
+	color: white;
+	text-shadow: none;
+	font-size: 25px;
+	background: #98b3c7;
+	background: -moz-linear-gradient(left,  #98b3c7 0%, #77b8e9 100%);
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#98b3c7), color-stop(100%,#77b8e9));
+	background: -webkit-linear-gradient(left,  #98b3c7 0%,#77b8e9 100%);
+	background: -o-linear-gradient(left,  #98b3c7 0%,#77b8e9 100%);
+	background: -ms-linear-gradient(left,  #98b3c7 0%,#77b8e9 100%);
+	background: linear-gradient(to right,  #98b3c7 0%,#77b8e9 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#98b3c7', endColorstr='#77b8e9',GradientType=1 );
+}
+
+.l2-s2 {
+	padding: 0px 10px;
+	height: 36px;
+	line-height: 36px;
+	color: white;
+	text-shadow: none;
+	font-size: 25px;
+	background: #cd9084;
+	background: -moz-linear-gradient(left,  #cd9084 0%, #ce533d 100%);
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#cd9084), color-stop(100%,#ce533d));
+	background: -webkit-linear-gradient(left,  #cd9084 0%,#ce533d 100%);
+	background: -o-linear-gradient(left,  #cd9084 0%,#ce533d 100%);
+	background: -ms-linear-gradient(left,  #cd9084 0%,#ce533d 100%);
+	background: linear-gradient(to right,  #cd9084 0%,#ce533d 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cd9084', endColorstr='#ce533d',GradientType=1 );
+}
+
+.l4-s1 {
+	padding: 0px 10px;
+	height: 36px;
+	line-height: 36px;
+	color: white;
+	text-shadow: none;
+	font-size: 25px;
+	background: #036d99;
+}
+
+.l4-s2 {
+	background: #5a96b4;
+}
+
+.l5-s1 {
+	padding: 15px;
+	background: #ff9933;
+	border-radius: 5px;
+	moz-border-radius: 5px;
+	webkit-border-radius: 5px;
+	color: white;
+	text-shadow: 0px -1px 0px #985a1d;
+	font-size: 16px;
+	font-weight: bold;
+	line-height: auto;
+	box-shadow: 0px 3px 10px -2px black;
+}
+
+.layer2 p {
+	font-size: 20px;
+	height: 30px;
+	line-height: 30px;
+	border-radius: 4px;
+	padding: 0px 10px;
+	box-shadow: 0px 1px 8px -2px black;
+	text-shadow: none;
+	color: white;
+}
+
+.l3-s1 {
+	 color: #f8dfcf;
+	background: #b0734d;
+	font-size: 30px;
+	height: 40px;
+	line-height: 40px;
+	box-shadow: 0px 2px 20px -3px black;
+	padding: 0px 20px;
+	text-shadow: none;
+}
+
+<!-- Fullwidth Layer Slider -->
+
+#layerslider-container-fw {
+	width: 100%;
+	margin: 0px auto;
+}
+
+#layerslider-container-fw a { transition:none; -moz-transition:none; -o-transition:none; -webkit-transition:none; }
+
+#layerslider-container-fw .ls-layer,
+#layerslider-container-fw .ls-layer * {
+	font-family:Tahoma, Geneva, sans-serif;
+	font-weight: normal;
+}
+
+#layerslider-container-fw .ls-layer p {
+	padding: 0px 10px;				
+	line-height: 40px;
+	box-shadow: 0px 4px 10px -5px black;
+	text-shadow: none;
+	font-size: 22px;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+.l21-s1 {
+	height: 80px;
+	color: black;
+	background: white;
+	opacity: .9;
+	width: 650px;
+	text-align: center;
+}
+
+.l22-s1 {
+	height: 40px;
+	color: white;
+	background: black;
+	opacity: .65;
+	white-space: nowrap;
+}
+
+.l23-s1 {
+	height: 40px;
+	color: black;
+	background: white;
+	opacity: .9;
+	white-space: nowrap;
+}
+
+#layerslider-container-fw .ls-bottom-nav-wrapper, #layerslider-container-fw .ls-below-thumbnails { bottom:-47px; }
+
+.ls-fullwidth { background:none !important; }
+
+/*----*****---- << Responsive >> ----*****----*/
+
+	/*----*****---- << Tablet (Portrait) >> ----*****----*/	
+	
+    /* Note: Design for a width of 768px, Gutter: 30px, Unit: 32px */
+
+    @media only screen and (min-width: 768px) and (max-width: 989px) {
+		#layerslider ul li { font-size:14px; padding:3px 0 3px 25px; background-position:left 5px; } 
+	}
+	
+	/*----*****---- << Mobile (Landscape) >> ----*****----*/	
+	
+    /* Note: Design for a width of 480px */
+
+    @media only screen and (min-width: 480px) and (max-width: 767px) {
+		#layerslider ul li { font-size:10px; padding:0px 0 0px 0px; text-shadow:none; background:none; text-transform:none; font-weight:normal; } 
+	}
+	
+	/*----*****---- << Mobile >> ----*****----*/	
+
+	/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+	@media only screen and (max-width: 479px) {
+		#layerslider ul li { font-size:8px; padding:0px 0 0px 0px; text-shadow:none; background:none; text-transform:none; font-weight:normal; } 
+	}
+
+	/*----*****---- << Mobile >> ----*****----*/	
+
+	/* Crappy Android portrait Size (devices and browsers) */
+	@media only screen and (max-width:320px) {
+		#layerslider ul li { font-size:6px; padding:0px 0 0px 0px; text-shadow:none; background:none; text-transform:none; font-weight:normal; } 
+	}
+	
+	
+	
+	
+	
+

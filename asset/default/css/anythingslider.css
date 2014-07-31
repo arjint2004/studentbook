@@ -1,0 +1,153 @@
+/*
+	AnythingSlider v1.8+ Default theme
+	By Chris Coyier: http://css-tricks.com
+	with major improvements by Doug Neiner: http://pixelgraphics.us/
+	based on work by Remy Sharp: http://jqueryfordesigners.com/
+*/
+
+/*****************************
+  SET DEFAULT DIMENSIONS HERE
+ *****************************/
+/* change the ID & dimensions to match your slider */
+
+#slider { width:960px; list-style: none; /* Prevent FOUC (see FAQ page) and keep things readable if javascript is disabled */ overflow-y: auto; overflow-x: hidden; }
+
+.anythingSlider { width:960px; height:420px; margin:0 auto; overflow:hidden; }
+
+#banner-slider { float:left; width:100%; position:relative; margin:0px; padding:0px; }
+
+.textSlide { margin:0px; padding:0px; width:100%; float:left; }
+.slider-content-container { margin:18% 0px 0px; float:left; width:40%; padding:0px;  }
+.textSlide h2 { color:#ffffff; text-shadow: 0px 1px 0px #000000; font-size:24px; margin:0px; width:100%; }
+.slider-content-container .subtitle { font-size:14px; text-transform:uppercase; text-shadow:none; clear:both; float:left; width:100%; }
+.slider-video-container { float:right; margin:3% 0px 0px; width:58%; text-align:right; }
+.slider-video-container iframe { max-width:100% !important; }
+
+
+.slider-video-container  { position: relative; padding-bottom:44.25%; padding-top: 30px; height: 0; overflow: hidden; }
+
+.slider-video-container iframe,
+.slider-video-container object,
+.slider-video-container embed {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 80%;
+}
+
+
+/******************
+  SET STYLING HERE
+ ******************
+ =================================
+ Default state (no keyboard focus)
+ ==================================*/
+/* Overall Wrapper */
+.anythingSlider-default { margin: 0 auto; /* 45px right & left padding for the arrows, 28px @ bottom for navigation */ }
+
+/* Navigation buttons + start/stop button, default state */
+
+.anythingSlider-default .anythingControls { z-index:9999; position:absolute; bottom:-55px; margin:0px; padding:0px; width:100%; text-align:center; margin:0; }
+.anythingSlider-default .anythingControls ul li { display:inline; margin:0px 2px; }
+.anythingSlider-default .anythingControls a { background:url(../images/banner-bullets.png) left top no-repeat; display:inline-block; width:18px; height:18px; text-align:center; font-size:0; behavior:url(PIE.htc); }
+.anythingSlider-default.activeSlider .anythingControls a.cur,
+.anythingSlider-default.activeSlider .anythingControls a:hover { border-radius:18px; behavior:url(PIE.htc); }
+
+.thumbNav { width:100%; text-align:center; }
+
+/***********************
+  COMMON SLIDER STYLING
+ ***********************/
+/* Overall Wrapper */
+.anythingSlider { display: block; overflow: visible !important; position: relative; }
+
+/* anythingSlider viewport window */
+.anythingSlider .anythingWindow { overflow: hidden; position: relative; width: 100%; height: 100%; }
+
+/* anythingSlider base (original element) */
+.anythingSlider .anythingBase { background: transparent; list-style: none; position: absolute; overflow: visible !important; top: 0; left: 0; margin: 0; padding: 0; }
+
+/* Navigation arrow text; indent moved to span inside "a", for IE7;
+  apparently, a negative text-indent on an "a" link moves the link as well as the text */
+.anythingSlider .arrow span { display: block; visibility: hidden; }
+
+/* disabled arrows, hide or reduce opacity: opacity: .5; filter: alpha(opacity=50); */
+.anythingSlider .arrow.disabled { display: none; }
+
+/* all panels inside the slider; horizontal mode */
+.anythingSlider .panel { background: transparent; display: block; overflow: hidden; float: left; padding: 0; margin: 0; }
+
+/* vertical mode */
+.anythingSlider .vertical .panel { float: none; }
+
+/* fade mode */
+.anythingSlider .fade .panel { float: none; position: absolute; top: 0; left: 0; z-index: 0; }
+
+/* fade mode active page - visible & on top */
+.anythingSlider .fade .activePage { z-index: 1; }
+
+
+/*----*****---- << Responsive >> ----*****----*/
+
+	/*----*****---- << Tablet (Portrait) >> ----*****----*/	
+	
+    /* Note: Design for a width of 768px, Gutter: 30px, Unit: 32px */
+	
+    @media only screen and (min-width: 768px) and (max-width: 989px) {
+		
+		.anythingSlider { width:750px; height:328px; }
+		
+		.slider-video-container { margin:3% 0px 0px; }
+	}
+	
+	/*----*****---- << Mobile (Landscape) >> ----*****----*/	
+	
+    /* Note: Design for a width of 480px */
+
+    @media only screen and (min-width: 480px) and (max-width: 767px) {
+		
+		.anythingSlider { width:460px; height:201px; }
+		
+		.slider-video-container { margin:3% 0px 0px; }
+		
+		.slider-content-container { margin-top:10%; }
+		.slider-video-container { margin-top:2%; }
+		.textSlide h2 { font-size:18px; }
+		
+	}
+	
+	/*----*****---- << Mobile >> ----*****----*/	
+
+	/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+	@media only screen and (max-width: 479px) {
+		
+		.anythingSlider { width:300px; height:131px; }
+		
+		.slider-video-container { margin:3% 0px 0px; padding-bottom:40.25%; }
+		
+	
+		.slider-content-container { margin-top:10%; }
+		.slider-video-container { margin-top:2%; }
+		.textSlide h2 { font-size:14px; line-height:normal; text-transform:none; }
+		
+		.slider-content-container .subtitle { display:none; }
+		
+	}
+
+	/*----*****---- << Mobile >> ----*****----*/	
+
+	/* Crappy Android portrait Size (devices and browsers) */
+	@media only screen and (max-width:320px) {
+		
+		.anythingSlider { width:220px; height:96px; }
+		
+		.slider-video-container { margin:3% 0px 0px; padding-bottom:37.25%; }
+		
+		.slider-content-container { margin-top:10%; }
+		.slider-video-container { margin-top:2%; }
+		.textSlide h2 { font-size:11px; line-height:normal; text-transform:none; }
+		
+		.slider-content-container .subtitle { display:none; }
+		
+	}

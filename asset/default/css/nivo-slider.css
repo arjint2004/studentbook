@@ -1,0 +1,153 @@
+/*
+ * jQuery Nivo Slider v3.1
+ * http://nivo.dev7studios.com
+ *
+ * Copyright 2012, Dev7studios
+ * Free to use and abuse under the MIT license.
+ * http://www.opensource.org/licenses/mit-license.php
+ */
+ 
+/* The Nivo Slider styles */
+
+.slider-wrapper { float:left; width:100%; position:relative; margin:0px; padding:0px; }
+.theme-default .nivoSlider { position:relative; background:url(../images/loading.png) no-repeat 50% 50%; }
+
+.nivoSlider { position:relative; width:100%; height:auto; overflow: visible; }
+.nivoSlider img { position:absolute; top:0px; left:0px; max-width: none; }
+.nivo-main-image { display: block !important; position: relative !important;  width: 100% !important; }
+
+/* If an image is wrapped in a link */
+.nivoSlider a.nivo-imageLink { position:absolute; top:0px; left:0px; width:100%; height:100%; border:0; padding:0; margin:0; z-index:6; display:none; }
+
+/* The slices and boxes in the Slider */
+.nivo-slice { display:block; position:absolute; z-index:5; height:100%; top:0; }
+.nivo-box { display:block; position:absolute; z-index:5; overflow:hidden; }
+.nivo-box img { display:block; } 
+
+/* Caption styles */
+.nivo-caption { z-index:100; position:absolute; left:20px; top:10%; float:left; width:46%; margin:0px; padding:0px; overflow: hidden; display: none; }
+.nivo-caption h2 { text-shadow: 0px 1px 0px #000000; font-size:24px; margin:0px; width:100%; }
+.nivo-caption .subtitle { font-size:14px; text-transform:uppercase; text-shadow:none; clear:both; float:left; width:100%; }
+.nivo-caption .short-desc { font-size:16px; line-height:20px; text-shadow:none; font-style:italic; float:left; clear:both; width:91%; padding:12px 20px; margin:20px 0px 0px; }
+.nivo-caption ul { float:left; margin:30px 0px 10px 30px; padding:0px; clear:both; width:91%; }
+.nivo-caption ul li { float:left; display:block; clear:both; background:url(../images/banner-arrow.png) left 12px no-repeat; font-size:18px; text-shadow: 0px 1px 0px #000000; padding:7px 0px 7px 30px; margin:0px; text-transform:uppercase; width:91%; }
+.nivo-html-caption { display:none; }
+
+/* Direction nav styles (e.g. Next & Prev) */
+.nivo-directionNav a { position:absolute; top:45%; z-index:9; cursor:pointer; }
+.nivo-prevNav { left:0px; }
+.nivo-nextNav { right:0px; }
+.theme-default .nivo-directionNav a { display:block; width:56px; height:56px; position:absolute; top:40%; font-size:0; border:0; border-radius:56px; behavior:url(PIE.htc); }
+.theme-default:hover .nivo-directionNav a { opacity: 1; } 
+.theme-default a.nivo-nextNav { right:-25px; -webkit-transition: all 200ms ease-in-out; -moz-transition: all 200ms ease-in-out; -o-transition: all 200ms ease-in-out; transition: all 200ms ease-in-out; }
+.theme-default a.nivo-prevNav { left:-25px; }
+
+
+/* Control nav styles (e.g. 1,2,3...) */
+
+.nivo-controlNav { position:absolute; bottom:-37px; margin:0px; padding:0px; z-index:9999; width:100%; text-align:center; }
+.nivo-controlNav a { background:url(../images/banner-bullets.png) left top no-repeat; display:inline-block; width:18px; height:18px; cursor:pointer; font-size:0; margin:0px 2px; behavior:url(PIE.htc); }
+.nivo-controlNav a.active, .nivo-controlNav a:hover.active { border-radius:18px; behavior:url(PIE.htc); }
+.nivo-controlNav a:hover { border-radius:18px; }
+.theme-default .nivoSlider img { position:absolute; top:0px; left:0px; display:none; }
+.theme-default .nivoSlider a { border:0; display:block; }
+
+.theme-default .nivo-controlNav.nivo-thumbs-enabled { width: 100%; }
+.theme-default .nivo-controlNav.nivo-thumbs-enabled a { width: auto; height: auto; background: none; margin-bottom: 5px; }
+.theme-default .nivo-controlNav.nivo-thumbs-enabled img { display: block; width: 120px; height: auto; }
+
+
+
+/*----*****---- << Responsive >> ----*****----*/
+
+	/*----*****---- << Tablet (Portrait) >> ----*****----*/	
+	
+    /* Note: Design for a width of 768px, Gutter: 30px, Unit: 32px */
+
+    @media only screen and (min-width: 768px) and (max-width: 989px) {
+		
+		/*.slider-wrapper { height:328px; background:#3479a1; }*/
+		
+		.nivo-caption h2 { font-size:20px; }
+		.nivo-caption ul li { font-size:16px; background-position:left 10px; padding-left:25px; }
+		
+		.nivo-caption .short-desc { font-size:14px; margin-top:10px; }
+		
+		.nivo-caption ul { margin-top:20px; }	
+		
+		.theme-default a.nivo-nextNav { background-color:transparent; right:10px; width:35px; height:35px; }
+		.theme-default a.nivo-prevNav { background-color:transparent; left:10px; width:35px; height:35px; }
+		
+		.theme-default a.nivo-nextNav:hover { background-color:transparent; }
+		.theme-default a.nivo-prevNav:hover { background-color:transparent; }	
+
+	}
+	
+	/*----*****---- << Mobile (Landscape) >> ----*****----*/	
+	
+    /* Note: Design for a width of 480px */
+
+    @media only screen and (min-width: 480px) and (max-width: 767px) {
+		
+		.slider-wrapper { /*height:201px;*/ background:#3479a1; }
+		
+		.theme-default .nivo-directionNav a { top:35%; }
+		.nivo-caption ul, .nivo-caption .short-desc { display:none; }
+		.nivo-caption h2 { font-size:18px; }
+		.nivo-caption { width:62%; }
+		
+		.theme-default .nivo-directionNav a { top:40%; }
+		
+		.theme-default a.nivo-nextNav { background-color:transparent; right:10px; width:35px; height:35px; }
+		.theme-default a.nivo-prevNav { background-color:transparent; left:10px; width:35px; height:35px; }
+		
+		.theme-default a.nivo-nextNav:hover { background-color:transparent; }
+		.theme-default a.nivo-prevNav:hover { background-color:transparent; }	
+		
+	}
+	
+	/*----*****---- << Mobile >> ----*****----*/	
+
+	/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+	@media only screen and (max-width: 479px) {
+			
+		.slider-wrapper { /*height:131px;*/ background:#3479a1; }
+		
+		.theme-default .nivo-directionNav a { top:35%; }
+		.nivo-caption ul, .nivo-caption .short-desc { display:none; }
+		.nivo-caption h2 { font-size:18px; }
+		.nivo-caption { width:62%; }
+		
+		.theme-default .nivo-directionNav a { top:35%; }
+		
+		.theme-default a.nivo-nextNav { background-color:transparent; right:10px; width:35px; height:35px; }
+		.theme-default a.nivo-prevNav { background-color:transparent; left:10px; width:35px; height:35px; }
+		
+		.theme-default a.nivo-nextNav:hover { background-color:transparent; }
+		.theme-default a.nivo-prevNav:hover { background-color:transparent; }	
+
+	}
+	
+	/*----*****---- << Mobile >> ----*****----*/	
+
+	/* Crappy Android portrait Size (devices and browsers) */
+	@media only screen and (max-width:320px) {
+		
+		/*.slider-wrapper { height:96px; }*/
+		
+		.theme-default .nivo-directionNav a { top:30%; }
+		.nivo-caption ul, .nivo-caption .short-desc { display:none; }
+		.nivo-caption h2 { font-size:14px; line-height:normal; }
+		.nivo-caption { width:62%; }
+		
+		.theme-default .nivo-directionNav a { top:35%; }
+		
+		.nivo-caption .subtitle { display:none; }
+		
+		.theme-default a.nivo-nextNav { background-color:transparent; right:10px; width:35px; height:35px; }
+		.theme-default a.nivo-prevNav { background-color:transparent; left:10px; width:35px; height:35px; }
+		
+		.theme-default a.nivo-nextNav:hover { background-color:transparent; }
+		.theme-default a.nivo-prevNav:hover { background-color:transparent; }
+
+	}

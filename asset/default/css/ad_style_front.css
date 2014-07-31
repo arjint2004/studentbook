@@ -1,0 +1,455 @@
+
+.profile .container .content .one-half .buttons a{
+
+	padding: 9px 0 10px;
+	text-align: center;
+	width: 100%;
+}
+.profile .container .content .hr{
+	margin: 5px 0 20px;
+}
+.profile .container .content .topprofile{
+margin-bottom: 8px;
+}
+.profile .container .content .bottomprofile{
+margin: 20px 0;
+}
+.profile  h3, #nilaitab h3{
+	margin: 30px 0 0;
+	text-align: left;
+}
+
+.profile  .tabs-container .one-half:nth-child(2n+2) { margin-right: 0; }
+.profile  .tabs-container .tabs-frame-content	 {
+	text-align:left;
+}
+.profile  .column-one-half-with-sidebar .buttonasbin {
+	text-align:left;
+}
+.fixed div.readmorenoplus,.fixed a.readmorenoplus  {
+	height: 10px;
+	margin: 2px;
+	max-width: 154px;
+	padding: 4px 5px 10px;
+}
+.profile  .column-one-half-with-sidebar .buttonasbin a.button{
+	margin: 5px;
+	width:166px;
+}
+.profile  .tabs-container .tabs-frame-content .selected,  div#nilaitab .selected{
+	background:#4e4e4e !important; border:1px solid #303030; color:#ffffff; text-shadow:#000000 0px 1px 0px;
+}
+.profile  .tabs-container .tabs-frame-content	 .readmore:hover,div#nilaitab .readmore:hover, .readmorenoplus:hover, .readmorenoplus2:hover{
+	background:#4e4e4e; border:1px solid #303030; color:#ffffff; text-shadow:#000000 0px 1px 0px;
+}
+.profile  .tabs-container .tabs-frame-content	 .readmore, div#nilaitab .readmore{
+	background: none repeat scroll 0 0 #EBEBEB;
+	float: left;
+	margin: 5px;
+	text-align: center;
+	width: 70px;
+	cursor:pointer;
+}
+.readmorenoplus{
+	-moz-border-radius:5px; 
+	-webkit-border-radius:5px; 
+	border-radius:5px;
+	-webkit-box-shadow: 0 1px 0 0 #FFFFFF inset;
+	-moz-box-shadow: 0 1px 0 0 #FFFFFF inset;
+	-ms-box-shadow: 0 1px 0 0 #FFFFFF inset;
+	-o-box-shadow: 0 1px 0 0 #FFFFFF inset;
+	box-shadow: 0 1px 0 0 #FFFFFF inset;
+	float: left;
+	text-align:center;
+	cursor:pointer;
+	font-size: 13px;
+	margin: 10px 0 0;
+	padding: 7px 30px 7px 13px;
+	position: relative;
+	z-index: 1;
+	border:1px solid #D7D7D7;
+	color:#929292;
+	margin:5px;
+	background:none repeat scroll 0 0 #EBEBEB;
+}
+.readmorenoplus2{
+	-moz-border-radius:5px; 
+	-webkit-border-radius:5px; 
+	border-radius:5px;
+	-webkit-box-shadow: 0 1px 0 0 #FFFFFF inset;
+	-moz-box-shadow: 0 1px 0 0 #FFFFFF inset;
+	-ms-box-shadow: 0 1px 0 0 #FFFFFF inset;
+	-o-box-shadow: 0 1px 0 0 #FFFFFF inset;
+	box-shadow: 0 1px 0 0 #FFFFFF inset;
+	float: left;
+	text-align:center;
+	cursor:pointer;
+	font-size: 13px;
+	margin: 10px 0 0 10px;
+	padding: 7px 30px 7px 13px;
+	position: relative;
+	z-index: 1;
+	border:1px solid #D7D7D7;
+	color:#929292;
+	background:none repeat scroll 0 0 #EBEBEB;
+}
+.profile  .tabs-container input.nilai[type="text"]{
+	width:25px;
+}
+.profile  .tabs-container input[type="text"],.profile  .tabs-container  input[type="password"],.profile  .tabs-container  input.text,.profile  .tabs-container  textarea,.profile  .tabs-container  select	{
+	display:inline-block;
+}
+.profile  .tabs-container  select	{
+	max-width: 200px;
+}
+.profile  .tabs-container  .brthome	{
+	margin-right:3% !important;
+}
+.profile  .tabs-container .one-half	{
+	max-width:48%;
+	min-width:190px;
+	margin-right:3%;
+}
+.bordettop{
+	border-top:1px solid #A5E9E9 !important;
+}
+.max400{height:400px; overflow:auto;}
+.profile  .team h5,.profile  .team h6	{
+	text-align:left;
+}
+.profile  .team p{
+	font-size: 13px;
+	line-height: 20px;
+	text-align: left;
+}
+.profile .raport  .team p{
+	line-height: 20px;
+	margin: 0;
+	font-size:13px;
+} 
+.profile .raport  .team p span{
+	color:#999999;
+	font-size:12px;
+}
+.profile .raport  .column{
+	width:98%;
+}
+.profile  .team .titlehead span{
+	float:right;
+}
+.profile  .team .headcontent{
+
+}
+.profile  .tabs-frame-content table.adddata tr td select,.profile  .tabs-frame-content table.adddata tr td input,
+.profile  .tabs-frame-content table.adddata tr td textarea,.profile  .tabs-frame-content table.adddata tr td checkbox,
+.profile  .tabs-frame-content table.adddata tr td radio{
+	margin :0;
+}
+.profile  .tabs-frame-content table.adddata tr td.nilai{
+	text-align:center;
+}
+.profile  .tabs-frame-content table.adddata tr td{
+	font-size: 13px;
+	padding: 10px;
+	text-align: left;
+	border:none;
+}
+.profile .tabs-frame-content table.adddata{
+	width: 100%;
+	border: 1px solid #cccccc;
+}
+.profile  table tr td.nilaiextrain{
+	border-bottom:1px solid #999999;
+}
+.profile  table tr td.nilaiextra{
+border-bottom: 1px solid #999999;
+padding-top: 34px;
+vertical-align: top;
+}
+.profile  table tr td.title{
+	text-align:left;
+}
+  table.lap  tr td.title{
+	width:100px;
+}
+  table.lap  tr td.center{
+	width:10%;
+	text-align:center !important;
+}
+.profile  table tr td.titikdua{
+	width:3px;
+}
+.profile  table tr td.value{
+	text-align: left;
+	width: 65%;
+}
+.profile  .team .titlehead{
+	display: inline-block;
+	font-weight: bold;
+	min-width: 69px;
+}
+
+.profile  .share-links h2{
+	margin:0;
+	text-align:center;
+}
+.profile  .toggle-frame a{
+	text-align:left;
+}
+.profile  .clear{
+	clear:both;
+}
+table.absensi input[type="radio"]{
+margin:0;
+}
+textarea.keteranganabsen{
+	height:15px;
+	margin:0;
+}
+#popupDatepicker,.absenbutton{
+	width:100px;
+	display:inline;
+	margin :0;
+}
+#berhasil{
+	color: #008000;
+	left: 40%;
+	position: absolute;
+	text-transform: uppercase;
+}
+input.simpanpr[type="submit"]{
+
+}
+.nilaitab{
+	width:40%;
+}
+.tabnilai{
+	margin: 0 !important;
+	width: 40% !important;
+}
+ul.tabnilai li a.current span{
+	right: 2px !important;
+}
+.vcontnilai a{
+	font-size:12px;
+}
+ul.tabs-vertical-frame li a h5{
+	margin: 0;
+	text-align: center;
+}
+ul.tabs-vertical-frame li a h6{
+	margin: 0;
+	text-align: center;
+	text-transform: capitalize;
+}
+.profile .tabs-frame-content table.adddata tr td.nilai textarea{
+	height:30px;
+}
+.vcontnilai table tr th,.vcontnilai table tr td, .vcontnilai table {
+	border:none !important;
+}
+ .actdell, .actedit,.actexcell{
+	background: url("../images/icon-delete.png") no-repeat scroll 4px center #E5E6E7;
+	border: 1px solid #AAAAAA;
+	display: inline-block;
+	height: 21px;
+	width: 18px;
+	cursor:pointer;
+	-moz-border-radius:3px; 
+	-webkit-border-radius:3px; 
+	border-radius:3px;
+}
+.actexcell{
+	background: url("../images/Excel-icon-small.png") no-repeat scroll -1px center #E5E6E7;
+}
+.actedit{
+	background: url("../images/icon-edit.png") no-repeat scroll 4px center #E5E6E7;
+}
+.vcontnilai{
+	padding: 5px !important;
+	text-align: left;
+	width: 58%;
+}
+.profile .tabs-frame-content div#nilai table.adddata tr th{
+	padding:10px 0px;
+}
+a#kirimprremidi, a#kirimtugasremidi,a#kirimtugas, a#kirimharianremidi,a#kirimharian, a#kirimuasremidi,a#kirimuas, a#kirimutsremidi,a#kirimuts{
+	padding:10px !important;
+	width:60px;
+}
+table tr td.innercolspan  div.siswa{
+border: 1px solid #CCCCCC;
+clear: none;
+float: right;
+padding: 5px;
+width: 50%;
+}
+
+table tr td.innercolspan div.hide{
+background: url("../images/arrow-up.png") repeat-y scroll right 0 transparent;
+cursor: pointer;
+float: left;
+height: 13px;
+left: 5px;
+opacity: 0.7;
+position: relative;
+top: -4px;
+width: 20px;
+}
+								table tr td div.active {
+									background: url("../images/toggle-icon-active.png") no-repeat scroll 93px 9px #E5E5E5 !important;
+								}
+								table tr td div.menu{
+									background: url("../images/toggle-icon.png") no-repeat scroll 93px 9px #E5E5E5;
+									cursor: pointer;
+									float: right;
+									font-weight: bold;
+									height: 25px;
+									padding: 10px 0 0 10px;
+									text-align: left;
+									text-transform: uppercase;
+									width: 112px;
+								}
+								table tr td ul.submenu{
+									background: none repeat scroll 0 0 #F0F0F0;
+									float: right;
+									padding: 0 0 0 10px;
+									text-align: left;
+									width: 112px;
+								}
+								table tr td ul.submenu li:hover{
+									background: none repeat scroll 0 0 #EBEBEB;
+								}
+								table tr td ul.submenu li{
+									background: none repeat scroll 0 0 #F0F0F0;
+									cursor: pointer;
+									list-style: circle outside none;
+									margin: 0 0 0 20px;
+									padding: 4px 0 8px;
+								}
+table tr td.innercolspan {
+	padding: 11px 11px 40px;
+}
+table tr td.innercolspan h3{
+	font-size: 12px;
+	margin-top: 0px;
+}
+table tr td.innercolspan div.hr{
+	margin: 5px 0 10px !important;
+}
+table tr td.innercolspan div.file, table tr td.innercolspan div.full{
+	border: 1px solid #CCCCCC;
+	float: left;
+	min-height: 148px;
+	width: 44%;
+	padding: 5px;
+	text-align: left;
+	margin-top:15px;
+}
+table tr td.innercolspan div.full{
+	width: 98%;
+}
+table tr td.innercolspan div.file ul li, ul.file li{
+	border-bottom: 1px solid #E4E4E4;
+	list-style: none outside none;
+	margin: 5px;
+}
+ul.file li div.actdell{
+	float:right;
+}
+table.noborder, table.noborder tr, table.noborder tr td{
+	border:none;
+}
+div.actedit{
+
+}
+div.actdell{
+
+}
+ul#filecek{
+	margin-top:10px;
+}
+img#wait{
+	
+}
+div.contentpagebox #submitjurnal{
+bottom: 44px;
+float: left;
+position: relative;
+right: 5px;
+}
+div.contentpagebox h5{
+	margin-top:0;
+	margin-bottom:0;
+	text-align: left;
+}
+div.contentpagebox .hr{
+	margin-bottom:10px !important;
+}
+div.contentpagebox{
+	background: none repeat scroll 0 0 #F3F3F3;
+	border: 1px solid #CCCCCC;
+	margin-top: 10px;
+	min-height: 44px;
+	padding: 10px;
+	text-align: right;
+}
+table.polos {border:none;}
+table.polos td{ background: none repeat scroll 0 0 #FFFFFF;
+border-right: medium none;
+color: #5A5A5A;
+padding-left: 13%;
+text-align: left;
+width: 50%;}
+table.polos 	tbody tr:nth-child(2n+1) td{ background:#ffffff; }
+
+.fixed{
+bottom: 0;
+left: 0;
+padding: 5px;
+position: fixed;
+text-transform: capitalize;
+width: 100%;
+z-index: 999999;
+}
+
+div.ribbon{
+background: url("../images/ribbon.png") no-repeat scroll left 0 transparent;
+height: 55px;
+position: fixed;
+width: 92px;
+}
+
+/* Error Message Section */
+
+.error-box {
+	position:relative;
+	width:200px;
+	padding:10px;
+	top:30px;
+	left:90px;
+	opacity:0.8;
+	background-color:#4BB008;
+	display:none;
+	color:white;
+	border-radius:3px;
+	text-align:center;
+	z-index:99999;
+}
+.content-box{
+	height:0px;
+}
+.error-box p {
+	text-align:left;
+	margin-bottom: 5px;
+}
+.error-boxtop{
+	display: block; position: fixed; width: 100%; left: 0px; top: 0px;
+}
+.addasb {
+  background: url("../images/icon-edit.png") no-repeat scroll left 1px rgba(0, 0, 0, 0);
+  cursor: pointer;
+  float: right;
+  height: 20px;
+  width: 20px;
+}

@@ -1,0 +1,194 @@
+	textarea{
+		font-size:12px;
+		font-family:arial;
+	}
+	div.comment textarea.editreply{
+		width:377px;
+	}
+	div.comment textarea.postreply{
+		width:384px;
+	}
+	textarea#comment{
+		border: 1px solid #CCCCCC;
+		width: 98%;
+		resize:none;
+		color: #8E8E8E;
+		font-family: arial;
+		font-size: 11px;
+		margin:20px 0;
+		
+	}
+	textarea#commentreply{
+		border: 1px solid #CCCCCC;
+		resize: none;
+		width: 98%;
+		color: #8E8E8E;
+		font-family: arial;
+		font-size: 11px;
+	}
+	textarea#commentreplyedit{
+		border: 1px solid #CCCCCC;
+		color: #727272;
+		font-size: 12px;
+		resize: none;
+		width: 382px;
+	}
+	div.post{
+		background: none repeat scroll 0 0 #EEEEEE;
+		border: 1px solid #CCCCCC;
+		bottom: 2px;
+		height: 30px;
+		position: relative;	
+	}
+	div.containcomment{
+		margin: 0 auto;
+		width: 100%;
+	}
+	div.post div.date{
+		color: #727272;
+		float: left;
+		font-family: arial;
+		font-size: 14px;
+		margin: 5px;
+		text-align:left;
+		width: 50%;
+	}
+	div.post input[type=submit]{
+		background: -moz-linear-gradient(center top , #DDDDDD, #FFFFFF) repeat scroll 0 0 transparent;
+		border: 1px solid #AAAAAA;
+		border-radius: 3px 3px 3px 3px;
+		color: #727272;
+		float: right;
+		margin: 1px;
+		padding: 3px;
+		text-shadow: none;
+	
+	}
+	
+	div.containcomment .textpost .textpostinner{
+		margin: 5px 37px 5px 5px;
+		text-align: left;
+	}
+	div.containcomment .textpost .textpostinner .del,div.containcomment .textpost .textpostinner .edit{
+		background: url("../images/editdelete.png") no-repeat scroll 0 -22px #FFFFFF;
+		bottom: -19px;
+		float: right;
+		height: 23px;
+		left: 31px;
+		position: relative;
+		width: 23px;
+		cursor:pointer;
+	}
+	div.containcomment .textpost .textpostinner .edit{
+		background: url("../images/editdelete.png") no-repeat scroll 0 0 #FFFFFF;
+		bottom: 3px;
+		left: 54px;
+		cursor:pointer;
+	}
+	div.containcomment .textpost{
+		background: none repeat scroll 0 0 #FFFFFF;
+		border: 1px solid #CCCCCC;
+		color: #727272;
+		font-family: arial;
+		font-size: 12px;
+		margin-top: 5px;
+		padding: 5px 0 16px 5px;
+	}
+	
+	div.containcomment .textpost .photo img{
+		margin:0;
+	}
+	div.containcomment .textpost .photo{
+		border: 1px solid #CCCCCC;
+		float: left;
+		height: 50px;
+		margin-right: 10px;
+		width: 50px;
+	}
+	div.containcomment .textpost .date{
+		border-bottom: 1px solid #CCCCCC;
+		margin-bottom: 5px;
+	}
+	div.containcomment .textpost p{
+		font-size: 12px;
+		margin: 0 0 5px;
+		text-align: justify;
+	}
+	div.containcomment .textpost .reply{
+		background: none repeat scroll 0 0 #EEEEEE;
+		border: 1px solid #CCCCCC;
+		height: 20px;
+		width: 100%;
+	}
+	div.containcomment .textpost .replyshow .date{
+		padding:5px 0;
+	}
+	div.containcomment .textpost .replyshow .cucuk{
+		background: url("../images/cucuk.png") no-repeat scroll 0 0 #FFFFFF;
+		bottom: 0;
+		float: right;
+		height: 14px;
+		left: 11px;
+		position: relative;
+		top: 12px;
+		width: 10px;
+	}
+	div.containcomment .textpost .replyshow .del,div.containcomment .textpost .replyshow .edit{
+		background: url("../images/editdelete.png") no-repeat scroll 0 -22px #FFFFFF;
+		bottom: -19px;
+		float: right;
+		height: 23px;
+		left: 45px;
+		position: relative;
+		width: 23px;
+		cursor:pointer;
+	}
+	div.containcomment .textpost .replyshow .edit{
+		background: url("../images/editdelete.png") no-repeat scroll 0 0 #FFFFFF;
+		bottom: 3px;
+		left: 68px;
+		cursor:pointer;
+	}
+	div.containcomment .textpost .replyshow{
+		background: none repeat scroll 0 0 #EEEEEE;
+		border: 1px solid #CCCCCC;
+		margin: 10px 0 0 13px;
+		min-height: 53px;
+		padding: 2px;
+		width: 94%;	
+
+	}
+	div.containcomment .textpost .reply .date{
+		float: left;
+		margin: 3px 2px 2px 6px;
+		width: 50%;
+	}
+	div.containcomment .textpost .reply .buttonreply{
+		border-left: 1px solid #CCCCCC;
+		float: right;
+		padding: 3px 2px 2px 19px;
+		width: 45px;
+	}
+	
+/* Error Message Section */
+.error-box {
+	background-color: #4BB008;
+	border-radius: 3px 3px 3px 3px;
+	display: none;
+	left: 182px;
+	opacity: 0.5;
+	padding: 25px;
+	position: relative;
+	text-align: center;
+	text-transform: uppercase;
+	top: 67px;
+	width: 200px;
+	z-index: 99999;
+}
+.content-box{
+	height:0px;
+}
+.error-box p {
+	text-align:left;
+	margin-bottom: 5px;
+}

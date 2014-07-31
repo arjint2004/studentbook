@@ -1,0 +1,1 @@
+<?=rekapitulasinilaiByKelasMapel($kelas,$id_pelajaran)?>

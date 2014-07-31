@@ -1,0 +1,90 @@
+<?php
+if (!defined('BASEPATH')) exit('No direct script access allowed');
+class Ak_notifikasi {
+	var $CI=null;
+	function __construct(){
+		 $this->CI = & get_instance();
+		 $this->CI->load->model('ad_notifikasi');
+		 $this->CI->load->model('ad_akun');
+		 $this->CI->load->model('ad_kelas');
+		 $this->CI->load->model('ad_pelajaran');
+	}
+    function set_notifikasi_akademik_per_kelas($id_kelas=null,$gorup_notif=null,$id_mapel=null,$judul=null,$id_pegawai=null,$keterangan=null,$id_information=0,$jenis_information='') {
+        //notifikasi
+			$mapelarray=$this->CI->ad_pelajaran->getdataById($id_mapel);
+			$guruarray=$this->CI->ad_akun->getdataById($id_pegawai,$this->CI->session->userdata['user_authentication']['id_group'],$aktif=1);
+			//echo $this->CI->db->last_query();
+			//pr($guruarray);
+			$kelas=$this->CI->ad_kelas->getkelasById($this->CI->session->userdata['user_authentication']['id_sekolah'],$id_kelas);
+			$notifikasi=$this->replace_template($gorup_notif,$mapelarray[0]['nama'],$judul,$guruarray[0]['nama']);
+			if($keterangan!=null){
+				$namakelas=$kelas[0]['kelas'].$kelas[0]['nama'];
+				$notifikasi .='. Keterangan :"'.$keterangan.'" ke kelas <b>'.$namakelas.'</b>';
+			}
+			$url=$this->set_url($jenis_information,$id_information);
+			$notifikasi ='<a href="'.$url.'" class="notif">'.$notifikasi.'</a>';
+			$this->CI->ad_notifikasi->add_notif_siswa_perkelas($id_kelas,$gorup_notif,$notifikasi);
+			$this->CI->ad_notifikasi->add_notif($this->CI->session->userdata['user_authentication']['id_sekolah'],$this->CI->session->userdata['ak_setting']['id_kepsek'],16,$gorup_notif,$notifikasi);
+			
+		//end notifikasi
+    }
+    function set_notifikasi($id_pengguna=null,$gorup_notif=null,$id_group=null,$nama_pengirim='',$keterangan=null,$id_information=0,$jenis_information='') {
+        //notifikasi
+			$notifikasi=$this->replace_template($gorup_notif,'','',$nama_pengirim);
+			$notifikasi=str_replace('"<b></b>"','',$notifikasi);
+			if($keterangan!=null){
+				$notifikasi .='"'.$keterangan.'"';
+			}
+			$url=$this->set_url($jenis_information,$id_information);
+			if($jenis_information=='' && $id_information==0){
+				
+			}else{
+				$notifikasi ='<a href="'.$url.'" class="notif">'.$notifikasi.'</a>';
+			}
+			
+			$this->CI->ad_notifikasi->add_notif($this->CI->session->userdata['user_authentication']['id_sekolah'],$id_pengguna,$id_group,$gorup_notif,$notifikasi);
+		//end notifikasi
+    }
+	function set_url($jenis_information,$id_information){
+		return base_url().'akademik/detailpembelajaran/detail/'.base64_encode(serialize(array('id'=>$id_information,'jenis'=>$jenis_information)));
+	}
+    function set_notifikasi_akademik_per_siswa($id_siswa=null,$gorup_notif=null,$id_mapel=null,$judul=null,$id_pegawai=null,$keterangan=null,$id_information=0,$jenis_information='') {
+        //notifikasi
+			$mapelarray=$this->CI->ad_pelajaran->getdataById($id_mapel);
+			$guruarray=$this->CI->ad_akun->getdataById($id_pegawai,$this->CI->session->userdata['user_authentication']['id_group'],$aktif=1);
+			$notifikasi=$this->replace_template($gorup_notif,$mapelarray[0]['nama'],$judul,$guruarray[0]['nama']);
+			if($keterangan!=null){
+				$notifikasi .='"'.$keterangan.'"';
+			}
+			$url=$this->set_url($jenis_information,$id_information);
+			$notifikasi ='<a href="'.$url.'" class="notif">'.$notifikasi.'</a>';
+			$this->CI->ad_notifikasi->add_notif_siswa_persiswa($id_siswa,$gorup_notif,$notifikasi);
+		//end notifikasi
+    }
+    function set_notifikasi_akademik_per_siswa_detjenjang($id_siswa_det_jenjang=null,$gorup_notif=null,$id_mapel=null,$judul=null,$id_pegawai=null,$keterangan=null,$id_information=0,$jenis_information='') {
+        //notifikasi
+			$mapelarray=$this->CI->ad_pelajaran->getdataById($id_mapel);
+			$guruarray=$this->CI->ad_akun->getdataById($id_pegawai,$this->CI->session->userdata['user_authentication']['id_group'],$aktif=1);
+			$siswaarray=$this->CI->ad_akun->getdataSiswaByDetjenjang($id_siswa_det_jenjang);
+			$notifikasi=$this->replace_template($gorup_notif,$mapelarray[0]['nama'],$judul,$guruarray[0]['nama']);
+			$notifikasi .='"'.$keterangan.'"';
+			$url=$this->set_url($jenis_information,$id_information);
+			$notifikasi ='<a href="'.$url.'" class="notif">'.$notifikasi.'</a>';
+			$this->CI->ad_notifikasi->add_notif_siswa_persiswa($siswaarray[0]['id'],$gorup_notif,$notifikasi);
+		//end notifikasi
+    }
+	function replace_template($gorup_notif=null,$mapel=null,$judul=null, $nama_pengirim=null){
+			$temp_notif=$this->CI->ad_notifikasi->get_notif_tmp($gorup_notif);
+			$direplace=array("pengirim","mapel","judulnya");
+			$pereplace=array("<b>$nama_pengirim</b>","<b>$mapel</b>","<b>$judul</b>");
+			$out=str_replace($direplace,$pereplace,$temp_notif[0]['temp']);
+			return $out;
+	}
+    function send_sms($id_pelajaran,$id_kelas) {
+        
+    }
+   function make_url_sms($id_user=0){
+   
+   }
+}
+

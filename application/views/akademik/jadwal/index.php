@@ -1,0 +1,1 @@
+<?=jadwal($_POST['id_kelas'])?>

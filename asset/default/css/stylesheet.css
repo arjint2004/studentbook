@@ -1,0 +1,147 @@
+@import "icons.css";
+@import "bootstrap.css";
+@import "bootstrap-responsive.css";
+
+
+    
+        /* ~BOXES~ */        
+        .status_style .workplace .head{background: url("../img/styles/default/backgrounds/box-head.jpg") left top repeat-x; background-clip: padding-box; border: 1px solid #335A85;
+                                 -moz-border-top-left-radius: 3px; -moz-border-top-right-radius: 3px;
+                                 -webkit-border-top-left-radius: 3px; -webkit-border-top-right-radius: 3px;
+                                 -o-border-top-left-radius: 3px; -o-border-top-right-radius: 3px;
+                                 -ms-border-top-left-radius: 3px; -ms-border-top-right-radius: 3px;
+                                 border-top-left-radius: 3px; border-top-right-radius: 3px;
+                                 }
+            .status_style .workplace .head h1, .status_style .workplace .head h2, .status_style .workplace .head h3, .status_style .workplace .head h4, .status_style .workplace .head h5, .status_style .workplace .head h6{
+                font-size: 12px; color: #fff; line-height: 22px; padding: 8px 0px; margin: 0px; font-weight: bold; margin-left: 10px; display: block; float: left;
+                -moz-text-shadow: 0 1px 0 #333; -webkit-text-shadow: 0 1px 0 #333; text-shadow: 0 1px 0 #333;
+            }
+            .status_style .workplace .head .buttons{float: right; background: none; position: relative; list-style: none; margin: 0px;}
+                .status_style .workplace .head .buttons > li{display: block; float: left;}
+                .status_style .workplace .head .buttons li:active, .status_style .workplace .head .buttons li.active{background: url('../img/styles/default/backgrounds/box-head-active.jpg') left center repeat-x;}
+                
+                .status_style .workplace .head .buttons li > a{outline: none;}
+                .status_style .workplace .head .buttons [class*="isw-"], .status_style .workplace .head .button [class*="isb-"]{ margin: 0px; padding: 11px 10px; border-left: 1px solid #335A85;}
+                
+                .status_style .workplace .head .buttons li .dd-list{display: none; position: absolute; z-index: 2; right: -1px; min-width: 150px; list-style: none; padding: 0px; margin: 0px; top: 100%; background-color: #395E88; border: 1px solid #143D6B;}
+                    .status_style .workplace .head .buttons li .dd-list li{display: block; clear: left; border-top: 1px solid #507298; border-bottom: 1px solid #143D6B;}
+                    .status_style .workplace .head .buttons li .dd-list li:last-child{border-bottom: 0px;}
+                        .status_style .workplace .head .buttons li .dd-list li a{line-height: 38px; color: #fff; font-size: 11px; display: block; text-decoration: none;}
+                        .status_style .workplace .head .buttons li .dd-list li a:hover{background-color: #2C517A;}
+                            .status_style .workplace .head .buttons li .dd-list li [class*="isw-"], .status_style .workplace .head .button .dd-list li [class*="isb-"]{border: 0px;}
+            
+                .status_style .workplace .head .buttons > li.s_loader,
+                .status_style .workplace .head .buttons > li.w_loader,
+                .status_style .workplace .head .buttons > li.c_loader,
+                .status_style .workplace .head .buttons > li.loader{border: 0px;}
+                    .status_style .workplace .head .buttons > li.s_loader{padding: 9px 13px;}
+                    .status_style .workplace .head .buttons > li.c_loader{padding: 3px 4px 4px 5px;}
+                    .status_style .workplace .head .buttons > li.w_loader,
+                    .status_style .workplace .head .buttons > li.loader{padding: 3px 5px;}
+                    
+                .status_style .workplace .head .buttons > li.toggle a{background: url("../img/styles/default/menu_arrow_up.png") center center no-repeat; display: block; float: left; width: 30px; height: 38px; border-left: 1px solid #315680;}
+                .status_style .workplace .head .buttons > li.toggle{background: none;}
+                .status_style .workplace .head .buttons > li.toggle.active a{background: url("../img/styles/default/menu_arrow_down.png") center center no-repeat;}
+
+                    
+            .status_style .workplace .headInfo{background-color: #F1F1F1; border: 1px solid #D5D5D5; padding: 5px; position: relative;
+                                          -moz-border-top-left-radius: 3px; -webkit-border-top-left-radius: 3px; border-top-left-radius: 3px;
+                                          -moz-border-top-right-radius: 3px; -webkit-border-top-right-radius: 3px; border-top-right-radius: 3px;}            
+            .status_style .workplace .headInfo .arrow_down{width: 17px; height: 12px; position: absolute; left: 50%; margin-left: -9px; bottom: -12px; background: url('../img/menu-arrow-down.png') left top no-repeat; z-index: 1;}            
+                .status_style .workplace .headInfo .image{margin: 0px 10px 5px 5px; float: left;}                
+                    .status_style .workplace .headInfo .image a{display: block; font-weight: bold; text-align: center;}
+                .status_style .workplace .headInfo .info{float: left; font-size: 11px; color: #333;}
+                    .status_style .workplace .headInfo .info address{margin-bottom: 0px;}                    
+                    .status_style .workplace .headInfo .input-append{text-align: right;}                    
+                    .status_style .workplace .headInfo .input-append,
+                    .status_style .workplace .headInfo .input-append button{margin-bottom: 0px;}                                        
+                    .status_style .workplace .headInfo .actions{text-align: right; margin: 5px 0px 0px;}
+                        .status_style .workplace .headInfo .actions .btn-group .btn{margin: 0px;}
+                        
+                    
+            .block,.block-fluid{border: 1px solid #ccc; border-top: 0px; background-color: #F9F9F9; margin-bottom: 20px;
+                    -moz-border-bottom-left-radius: 3px; -moz-border-bottom-right-radius: 3px;
+                    -webkit-border-bottom-left-radius: 3px; -webkit-border-bottom-right-radius: 3px;
+                    -o-border-bottom-left-radius: 3px; -o-border-bottom-right-radius: 3px;
+                    -ms-border-bottom-left-radius: 3px; -ms-border-bottom-right-radius: 3px;
+                    border-bottom-left-radius: 3px; border-bottom-right-radius: 3px;}
+            .block-fluid.without-head,
+            .block.without-head{-moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; border-top: 1px solid #ccc;}
+            .block{padding: 10px;}
+
+            
+                
+            /* Messaging */           
+            
+            .messaging{padding-top: 5px;}
+            .messaging .itemIn,.messaging .itemOut{margin: 5px 0px 10px 0px; clear: left; position: relative;}            
+                .messaging .itemIn .text,.messaging .itemOut .text{padding: 7px 8px; border: 1px solid #d5d5d5; background-color: #FFF; margin-right: 70px; font-size: 11px; color: #333; line-height: 17px;
+                    -moz-border-radius: 3px;-webkit-border-radius: 3px;-o-border-radius: 3px;-ms-border-radius: 3px;border-radius: 3px;}
+                    .messaging .itemOut .text{margin: 0px 0px 0px 70px;}
+                        .messaging .itemOut .text .info,
+                        .messaging .itemIn .text .info{ margin-bottom: 5px;}
+                            .messaging .itemOut .text .info .name,
+                            .messaging .itemIn .text .info .name{ float: left; font-size: 11px; color: #005580; font-weight: bold; }
+                            .messaging .itemOut .text .info .name{color: #333;}
+                            .messaging .itemOut .text .info .date,
+                            .messaging .itemIn .text .info .date{ float: right; font-size: 11px; color: #999; }
+                .messaging .itemIn .image,.messaging .itemOut .image{position: absolute; display: block; right: 0px; top: 0px;}
+                    .messaging .itemOut .image{right: auto; left: 0px;}
+                .messaging .controls{margin-top: 20px; text-align: right;}                
+                    .messaging .controls .control{ padding: 0; marign: 0; display: block; padding-right: 10px;}
+                        .messaging .controls .control textarea{width: 100%; padding: 4px; font-size: 11px;}
+                    
+            
+            /* Messaging */
+            
+            .row-form{border-bottom: 1px solid #DDD; border-top: 1px solid white; padding: 19px 16px; vertical-align: baseline;}
+            div[class^="span"] .row-form:first-child{border-top: 0px;}
+            div[class^="span"] .row-form:last-child{border-bottom: 0px;}            
+                .row-form [class^="span"]{line-height: 30px;}
+                    .row-form input[type="text"],
+                    .row-form input[type="password"], 
+                    .row-form textarea{ width: 100%; font-size: 11px; color: #454545; padding: 0px 7px 0px; border: 1px solid #D7D7D7;
+                        box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box;                                                
+                        display: inline-block; background: #FDFDFD; height: 26px; margin: 0px; line-height: 24px; 
+                    }   
+                    .row-form input[type="text"].input-mini,.row-form input[type="password"].input-mini{width: 50px;}
+                    .row-form input[type="text"].input-small,.row-form input[type="password"].input-small{width: 90px;}
+                    .row-form input[type="text"].input-medium,.row-form input[type="password"].input-medium{width: 150px;}
+                    .row-form input[type="text"].input-large,.row-form input[type="password"].input-large{width: 210px;}
+                    .row-form input[type="text"].input-xlarge,.row-form input[type="password"].input-xlarge{width: 270px;}
+                    .row-form input[type="text"].input-xxlarge,.row-form input[type="password"].input-xxlarge{width: 530px;}
+                    
+                    
+                    
+                    .row-form textarea{min-height: 100px;}
+                    
+                    .row-form select{margin: 0px; font-size: 11px; color: #666; padding: 7px 5px 6px 5px; display: inline-block; line-height: 11px; border: 1px solid #AAAAAA; width: auto; max-width: 100%; width: 100%;
+                                    background: #FFF;
+                                    background: -moz-linear-gradient(center bottom , #EEE 0%, white 50%);                                    
+                                    background: -webkit-gradient(linear, center bottom, center bottom, color-stop(0%,#EEE), color-stop(50%,#FFF));
+                                    background: -webkit-linear-gradient(center bottom, #EEE 0%,#FFF 50%);
+                                    background: -o-linear-gradient(center bottom, #EEE 0%,#FFF 50%);
+                                    background: -ms-linear-gradient(center bottom, #EEE 0%,#FFF 50%);
+                                    background: linear-gradient(center bottom, #EEE 0%,#FFF 50%);
+                                    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#EEEEEE', endColorstr='#FFFFFF',GradientType=0 );                                     
+                    }
+                        .row-form select optgroup{border-left: 1px solid #AAA; border-right: 1px solid #AAA;}
+                        .row-form select option{padding: 3px;}
+                            
+                    .row-form select[multiple]{min-height: 100px; padding: 0px 0px 0px 5px; background: none; background-color: #FFF;}
+                    .row-form .select2-container,.select2-results{font-size: 11px;}
+                    .row-form label.inline{font-size: 11px;}
+                    .radio.inline, .checkbox.inline{padding-top: 0px;}
+            
+            .row-form span{font-size: 11px; color: #666;}                    
+            
+            .row-form input[type="checkbox"],
+            .row-form input[type="radio"]{margin-left: 0px;}
+                    
+            .formErrorContent{line-height: 19px !important;}
+            
+            .scrollBox{padding-right: 0px;}
+            .scroll{overflow: hidden;}
+            
+        /* ~BOXES~ */
+        

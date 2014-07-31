@@ -1,0 +1,9 @@
+@charset "utf-8";
+/* CSS Document */
+
+#banner-slider > li { background:none !important; }
+
+ul.menu li .hoverL { background:none; }
+ul.menu li .hoverR { background:none; }
+
+ul.menu li:hover { background:#000000; }
