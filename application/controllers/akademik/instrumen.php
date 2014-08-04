@@ -513,37 +513,91 @@ class Instrumen extends CI_Controller
             $data['main']= 'akademik/instrumen/kognitifs';
             $this->load->view('layout/ad_blank',$data);
 		}
-        public function afektif($id_pembelajaran=0,$id_pelajaran=0){
+        public function praafektif($param){
+			$data['param']=$param;
+			$param=unserialize($this->myencrypt->decode($param));
+			$data['evaluasi_ke'] 	=$evaluasi_ke=$param['evaluasi_ke'];
+			$data['kelas'] 	=$kelas=$param['kelas'];
+			$data['id_mengjar'] 	=$id_mengjar=$param['id_mengjar'];
+			$data['id_kelas'] 	=$id_kelas=$param['id_kelas'];
+			$data['id_pelajaran'] 	=$id_pelajaran=$param['id_pelajaran'];
+			$data['id_pembelajaran'] 	=$id_pembelajaran=$param['id_pembelajaran'];
+			//$id_pembelajaran=0,$id_pelajaran=0,$id_mengjar=0,$evaluasi_ke=0,$kelas='',$id_kelas=0
+			$this->load->model('ad_pelajaran');
+			$this->load->model("ad_siswa");
+			$data['pelajaran'] 	=$this->ad_pelajaran->getdataById($id_pelajaran);
+			$data['siswa']= $this->ad_siswa->getsiswaByIdKelas($id_kelas,'s.id,s.nama, adj.id as id_siswa_det_jenjang');
+            $data['main']= 'akademik/instrumen/praafektif';
+            $this->load->view('layout/ad_blank',$data);
+		}
+        public function afektif($param){
+			$param=unserialize($this->myencrypt->decode($param));
+			$this->load->model("ad_siswa");
+			$data['siswa']= $this->ad_siswa->getsiswaByIdKelas($id_kelas,'s.id,s.nama, adj.id as id_siswa_det_jenjang');
+			$data['evaluasi_ke'] 	=$evaluasi_ke=$param['evaluasi_ke'];
+			$data['kelas'] 	=$kelas=$param['kelas'];
+			$data['id_mengjar'] 	=$id_mengjar=$param['id_mengjar'];
+			$data['id_kelas'] 	=$id_kelas=$param['id_kelas'];
+			$data['id_pelajaran'] 	=$id_pelajaran=$param['id_pelajaran'];
+			$data['id_pembelajaran'] 	=$id_pembelajaran=$param['id_pembelajaran'];
 			if(isset($_POST['afektif'])){
-				$id_pembelajaranarr=json_decode(base64_decode($_POST['id_pembelajaran']));
-				$id_pembelajaran=@implode(",",$id_pembelajaranarr,true);
-				$id_pelajaranx=$_POST['id_pelajaranx'];
+
+				pr($_POST['point']);
+				//pr($_POST['afektif']);
 				//$nilaix=$_POST['nilai'];
-
-				foreach($id_pembelajaranarr as $id_pemb){
-				foreach($_POST['afektif'] as $idx=>$afektif){
-					@$in['id_sekolah']=$this->session->userdata['user_authentication']['id_sekolah'];
-					@$in['id_pegawai']=$this->session->userdata['user_authentication']['id_pengguna'];
-					@$in['semester']=$this->session->userdata['ak_setting']['semester'];
-					@$in['ta']=$this->session->userdata['ak_setting']['ta'];
-					@$in['penilaian']='afektif';
-					@$in['indikator']=$afektif;
-					@$in['id_pertemuan']=$id_pemb;
-					@$in['id_pelajaran']=$id_pelajaranx[$idx];
-					//@$in['nilai']=$nilaix[$idx];
-
-					if(isset($_POST['id'][$idx])){echo 'update'; 
-						$this->db->where('id',$_POST['id'][$idx]);
-						$this->db->update('ak_rencana_indikator',$in);
-						$id_insert[]=$idx;
-					}else{
-						$this->db->insert('ak_rencana_indikator',$in);	
-						$id_insert[]=mysql_insert_id();
+					unset($_POST['afektif'][0]);
+					foreach($_POST['afektif'] as $idx=>$afektif){
+						@$in['id_sekolah']=$this->session->userdata['user_authentication']['id_sekolah'];
+						@$in['id_pegawai']=$this->session->userdata['user_authentication']['id_pengguna'];
+						@$in['semester']=$this->session->userdata['ak_setting']['semester'];
+						@$in['penilaian']='afektif';
+						@$in['indikator']=$afektif;
+						@$in['id_mengajar']=$_POST['id_mengjar'];
+						//@$in['id_pertemuan']=$id_pemb;
+						@$in['id_pelajaran']=$id_pelajaran;
+						//@$in['nilai']=$nilaix[$idx];
+						//pr($in);
+						if(isset($_POST['id'][$idx])){
+							$this->db->where('id',$_POST['id'][$idx]);
+							$this->db->update('ak_rencana_indikator',$in);
+							$id_insert[]=$idx;
+							//echo $this->db->last_query();
+						}else{
+							$this->db->insert('ak_rencana_indikator',$in);	
+							$id_indik=mysql_insert_id();
+							$id_insert[]=$id_indik;
+							//echo $this->db->last_query();
+						}
+						
+						$point['id_sekolah']=$this->session->userdata['user_authentication']['id_sekolah'];
+						$point['id_pelajaran']=$_POST['id_pelajaran'];
+						$point['id_pembelajaran']=$id_pembelajaran;
+						$point['id_indikator']=$idx;
+						$point['id_siswa_det_jenjang']=$_POST['id_det_jenjang'];
+						$point['id_kelas']=$_POST['id_kelas'];
+						
+						foreach($_POST['point'][$idx] as $id_point=>$pointnya){}
+						
+						if($id_point==0 || $id_point==1){
+							if(isset($id_indik)){
+								$point['id_indikator']=$id_indik;
+							}
+							if(!isset($_POST['point'][$idx][0])){
+								$point['point']=$_POST['point'][$idx][1];
+							}else{
+								$point['point']=$_POST['point'][$idx][0];
+							}
+							$this->db->insert('ak_rencana_point_indikator',$point);
+							echo $this->db->last_query();
+						}else{
+							$point['point']=$_POST['point'][$idx][$id_point];
+							$this->db->where(array('id_sekolah'=>$this->session->userdata['user_authentication']['id_sekolah'],'id_indikator'=>$_POST['id'][$idx],'id_siswa_det_jenjang'=>$_POST['id_det_jenjang'],'id_kelas'=>$_POST['id_kelas']));
+							$this->db->update('ak_rencana_point_indikator',$point);
+							echo $this->db->last_query();
+						}
+						
 					}
-					
-
-				}
-				}
+				
 				echo base64_encode(json_encode($id_insert));
 				die();
 			}
@@ -552,19 +606,18 @@ class Instrumen extends CI_Controller
 			$this->load->model('ad_pelajaran');
 			$this->load->model('ad_instrumen');
 			
-			if(isset($_POST['id_pembelajaran'])){
-				$data['afektif'] 	=array();
-			}else{
-				$data['afektif'] 	=$this->ad_instrumen->getIndikatorByPegSmTaSk('afektif',$id_pembelajaran);			
+			$data['pelajaran'] 	=$this->ad_pelajaran->getdataById($id_pelajaran);
+			
+							
+			$this->load->model("ad_instrumen");
+			$point= $this->ad_instrumen->getPointIndikatorBySekPelJenKel($this->session->userdata['user_authentication']['id_sekolah'],$_POST['id_pelajaran'],$_POST['id_det_jenjang'],$_POST['id_kelas']);
+			foreach($point as $dtpoint){
+				$point2[$dtpoint['id']]=$dtpoint;
 			}
-			//kondisi bukan dari awal
-			if(!isset($_POST['id_pembelajaran']) && $id_pembelajaran!=0){
-				$data['id_pembelajaran'] =base64_encode(json_encode(array($id_pembelajaran)));
-				$_POST['id_pembelajaran']=$id_pembelajaran;
-			}else{
-				$data['id_pembelajaran'] =$_POST['id_pembelajaran'];
-			}
-			$data['pelajaran'] 	=$this->ad_pelajaran->getdatabySemesterJenjangJurusanPegawaimengajar();
+			
+			$data['afektif'] 	=$this->ad_instrumen->getIndikatorByPegSmTaSk('afektif',$_POST['id_pelajaran'],$id_mengjar,$id_kelas,$_POST['id_det_jenjang']);	
+			
+			$data['pelajaran'] 	=$this->ad_pelajaran->getdataById($_POST['id_pelajaran']);
             $data['main']= 'akademik/instrumen/afektif';
             $this->load->view('layout/ad_blank',$data);
 		}

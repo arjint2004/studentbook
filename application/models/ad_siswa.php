@@ -57,8 +57,11 @@ Class Ad_siswa extends CI_Model
 		return $query->result_array();
  
 	}
-	function getsiswaByIdKelas($id_kelas=null){
-		$query=$this->db->query('SELECT s.*,ap.id as id_ortu,ap.hp, adj.id as id_siswa_det_jenjang FROM
+	function getsiswaByIdKelas($id_kelas=null,$field=''){
+		if($field==''){
+			$field='s.*,ap.id as id_ortu,ap.hp, adj.id as id_siswa_det_jenjang';
+		}
+		$query=$this->db->query('SELECT '.$field.' FROM
 									ak_det_jenjang adj 
 									JOIN ak_siswa s 
 									JOIN ak_kelas ak 

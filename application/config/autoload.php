@@ -52,7 +52,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('database','session','smsprivate');
+$autoload['libraries'] = array('database','session','smsprivate','ak_db','myencrypt');
 
 
 /*
