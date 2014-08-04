@@ -93,7 +93,7 @@
 						</ul>
 						
 						<? 
-						//pr($pembelajaran['pembelajaran']);
+						//pr($pembelajaran);
 						$nox=array();$no=1;
 						if(!empty($pembelajaran['pembelajaran'])){
 						foreach($pembelajaran['pembelajaran'] as $kt=>$datapembelajaran){?>
@@ -111,7 +111,11 @@
 															<!--<div  href="#nilaitab" class="modal_dialog addasb"></div>-->
 														</li>
 														<li>
-															<a href="<?=site_url('akademik/instrumen/afektif/'.$datapembelajaran['id'].'/'.$datapembelajaran['id_pelajaran'].'')?>" id="penilaianklik" class="modal">Indikator Evaluasi Afektif</a>
+															<?
+															$par=array('id_pembelajaran'=>$datapembelajaran['id'],'id_pelajaran'=>$datapembelajaran['id_pelajaran'],'id_mengjar'=>$datapembelajaran['id_mengajar'],'evaluasi_ke'=>$datapembelajaran['pertemuan_ke'],'kelas'=>$datapembelajaran['kelas'],'id_kelas'=>$datapembelajaran['id_kelas']);
+															$par=$this->myencrypt->encode(serialize($par));
+															?>
+															<a href="<?=site_url('akademik/instrumen/praafektif/'.$par.'')?>" id="penilaianklik" class="modal">Indikator Evaluasi Afektif</a>
 														</li>
 														<li>
 															<a href="<?=site_url('akademik/instrumen/psikomotorik/'.$datapembelajaran['id'].'/'.$datapembelajaran['id_pelajaran'].'')?>" id="penilaianklik" class="modal">Indikator Evaluasi Psikomototik</a>

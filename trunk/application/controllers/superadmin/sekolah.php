@@ -296,5 +296,7 @@ class Sekolah extends CI_Controller {
 		}
 		}*/
 	 }
+	 
+
 }
 ?>
