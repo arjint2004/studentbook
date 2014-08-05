@@ -26,6 +26,7 @@
 										
 										$("#formindikator").submit(function(e){
 											e.stopImmediatePropagation();
+											
 											var error=false;
 											var error2=false;
 											$("table tr td textarea.afektif").each(function(e){
@@ -51,34 +52,32 @@
 											
 											if(error==true){return false}
 											if(error2==true){return false}
-											
+											$("#afektifindikatorload").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+											$(".error-box").html("Memproses Data").fadeIn("slow");
 											$.ajax({
 												type: "POST",
 												data: $(this).serialize()+'&simpan=true&id_pembelajaran=<?=$id_pembelajaran?>',
 												url: $(this).attr('action'),
 												beforeSend: function() {
-													$(".simpancatatan").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+													$(".simpancatatan").after("<img class='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+												},
+												error	: function(){
+													$(".error-box").delay(1000).html('Sending Data Failed');
+													$(".error-box").delay(1000).fadeOut("slow",function(){
+														$(this).remove();
+													});
+													
 												},
 												success: function(msg) {
-													$("#wait").remove();	
-														/*$.ajax({
-															type: "POST",
-															data: 'ajax=1&id_pembelajaran=<?=$id_pembelajaran?>&id_pelajaran=<?=$_POST['id_pelajaran']?>',
-															
-															<? if(empty($afektif)){?>
-															url: '<?=base_url('akademik/instrumen/psikomotorik')?>',
-															<? }else{ ?>
-															url: '<?=base_url('akademik/instrumen/sukses/AFEKTIF')?>',
-															<? } ?>
-															beforeSend: function() {
-																$(".simpancatatan").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
-															},
-															success: function(msg) {
-																$("#wait").remove();
-																$('#fancybox-content div').html(msg);
-																$('#fancybox-outer').scrollintoview({ speed:'1100'});
-															}
-														});*/
+													$("img.wait").remove();	
+														$(".error-box").delay(1000).html('Data berhasil di simpan');
+														$(".error-box").delay(1000).fadeOut("slow",function(){
+															$(this).remove();
+														});
+														$objrata=JSON.parse(msg);
+														$ratascor=$objrata.ratascor+' / '+$objrata.jmlscor;
+														$("table tr td#rataafektif").html($ratascor);
+														
 												}
 											});
 											return false;
@@ -109,10 +108,12 @@
 									}
 								</script>
 								<? //pr($afektif);?>
+								<div style="display:none;" id="ratajml"><?=$ratapoint.' / '.$jmlpoint?></div>
 								<table style="display:none;">
 									<tr id="master"  class="afektiftrx" >
 										<td class="no">1</td>
 										<td >
+										<div style="color:#ababab; float:left;"><?=$_POST['nama_siswa']?></div>
 										<textarea class="afektif" style="height:61px;" cols="30" name="afektif[]" ></textarea>
 										</td>
 										<td class="radio">
@@ -143,7 +144,9 @@
 											foreach($afektif as $ky=>$dataaff){?>
 											<tr class="afektiftrx identy<?=$dataaff['id']?>" idnya="<?=$dataaff['id']?>" >
 												<td class="no"><?=$no++?></td>
-												<td ><textarea style="height:61px;" cols="30" name="afektif[<?=$dataaff['id']?>]" class="afektif" ><?=$dataaff['indikator']?></textarea>
+												<td >
+												<div style="color:#ababab; float:left;"><?=$_POST['nama_siswa']?></div>
+												<textarea style="height:61px; margin:5px 0;" cols="30" name="afektif[<?=$dataaff['id']?>]" class="afektif" ><?=$dataaff['indikator']?></textarea>
 												</td>
 												<td >
 													<? if(!isset($dataaff['point'][0]['id'])){$dataaff['point'][0]['id']=0;}?>

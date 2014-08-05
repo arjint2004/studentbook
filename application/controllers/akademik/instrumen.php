@@ -531,6 +531,7 @@ class Instrumen extends CI_Controller
             $this->load->view('layout/ad_blank',$data);
 		}
         public function afektif($param){
+			$data['param']=$param;
 			$param=unserialize($this->myencrypt->decode($param));
 			$this->load->model("ad_siswa");
 			$data['siswa']= $this->ad_siswa->getsiswaByIdKelas($id_kelas,'s.id,s.nama, adj.id as id_siswa_det_jenjang');
@@ -542,8 +543,6 @@ class Instrumen extends CI_Controller
 			$data['id_pembelajaran'] 	=$id_pembelajaran=$param['id_pembelajaran'];
 			if(isset($_POST['afektif'])){
 
-				pr($_POST['point']);
-				//pr($_POST['afektif']);
 				//$nilaix=$_POST['nilai'];
 					unset($_POST['afektif'][0]);
 					foreach($_POST['afektif'] as $idx=>$afektif){
@@ -560,12 +559,10 @@ class Instrumen extends CI_Controller
 						if(isset($_POST['id'][$idx])){
 							$this->db->where('id',$_POST['id'][$idx]);
 							$this->db->update('ak_rencana_indikator',$in);
-							$id_insert[]=$idx;
 							//echo $this->db->last_query();
 						}else{
 							$this->db->insert('ak_rencana_indikator',$in);	
 							$id_indik=mysql_insert_id();
-							$id_insert[]=$id_indik;
 							//echo $this->db->last_query();
 						}
 						
@@ -577,7 +574,7 @@ class Instrumen extends CI_Controller
 						$point['id_kelas']=$_POST['id_kelas'];
 						
 						foreach($_POST['point'][$idx] as $id_point=>$pointnya){}
-						
+						$jmlpoint=$jmlpoint+$pointnya;
 						if($id_point==0 || $id_point==1){
 							if(isset($id_indik)){
 								$point['id_indikator']=$id_indik;
@@ -588,17 +585,18 @@ class Instrumen extends CI_Controller
 								$point['point']=$_POST['point'][$idx][0];
 							}
 							$this->db->insert('ak_rencana_point_indikator',$point);
-							echo $this->db->last_query();
+							//echo $this->db->last_query();
 						}else{
 							$point['point']=$_POST['point'][$idx][$id_point];
 							$this->db->where(array('id_sekolah'=>$this->session->userdata['user_authentication']['id_sekolah'],'id_indikator'=>$_POST['id'][$idx],'id_siswa_det_jenjang'=>$_POST['id_det_jenjang'],'id_kelas'=>$_POST['id_kelas']));
 							$this->db->update('ak_rencana_point_indikator',$point);
-							echo $this->db->last_query();
+							//echo $this->db->last_query();
 						}
 						
 					}
-				
-				echo base64_encode(json_encode($id_insert));
+					$data['jmlscor']=$jmlpoint;
+					$data['ratascor']=round($jmlpoint/count($_POST['afektif']),2);
+					echo json_encode($data);
 				die();
 			}
 			
@@ -608,15 +606,14 @@ class Instrumen extends CI_Controller
 			
 			$data['pelajaran'] 	=$this->ad_pelajaran->getdataById($id_pelajaran);
 			
-							
-			$this->load->model("ad_instrumen");
-			$point= $this->ad_instrumen->getPointIndikatorBySekPelJenKel($this->session->userdata['user_authentication']['id_sekolah'],$_POST['id_pelajaran'],$_POST['id_det_jenjang'],$_POST['id_kelas']);
-			foreach($point as $dtpoint){
-				$point2[$dtpoint['id']]=$dtpoint;
-			}
-			
 			$data['afektif'] 	=$this->ad_instrumen->getIndikatorByPegSmTaSk('afektif',$_POST['id_pelajaran'],$id_mengjar,$id_kelas,$_POST['id_det_jenjang']);	
-			
+			if(!empty($data['afektif'])){
+			foreach($data['afektif'] as $dtaff){
+				$jmlpoint=$jmlpoint+$dtaff['point'][0]['point'];
+			}
+			}
+			$data['jmlpoint']=$jmlpoint;
+			$data['ratapoint']=@round($jmlpoint/count($data['afektif']),2);
 			$data['pelajaran'] 	=$this->ad_pelajaran->getdataById($_POST['id_pelajaran']);
             $data['main']= 'akademik/instrumen/afektif';
             $this->load->view('layout/ad_blank',$data);
