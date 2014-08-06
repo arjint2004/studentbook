@@ -12,7 +12,8 @@
 				  id_pelajaran:{required:true,notEqual:'Pilih Pelajaran'},
 				  topik:{required:true,notEqual:''},
 				  waktu:{required:true,notEqual:''},
-				  pertemuan_ke:{required:true,notEqual:''}
+				  pertemuan_ke:{required:true,notEqual:''},
+				  tanggal:{required:true,notEqual:''}
 				}
 			});//Validate End
 
@@ -41,18 +42,22 @@
 			$(".addaccount").remove();
 		});
 		$("#pembelajaranadd").submit(function(e){
+			
+			$("#subjectevaluasi").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+			$(".error-box").html("Memproses Data").fadeIn("slow");
 			$frm = $(this);
 			$id_pelajaran = $frm.find('*[name=id_pelajaran]').val();
 			$topik = $frm.find('*[name=topik]').val();
 			$waktu = $frm.find('*[name=waktu]').val();
 			$pertemuan_ke = $frm.find('*[name=pertemuan_ke]').val();
+			$tanggal = $frm.find('*[name=tanggal]').val();
 			if($('select#kelas_addpert').val()==null){
 				$('select#kelas_addpert').css('border','1px solid red');
 				return false;
 			}else{
 				$('select#kelas_addpert').css('border','1px solid #D8D8D8');
 			}
-			if($frm.find('*[name=id_pelajaran]').is('.valid') &&   $frm.find('*[name=topik]').is('.valid') && $frm.find('*[name=waktu]').is('.valid') && $frm.find('*[name=pertemuan_ke]').is('.valid')) {
+			if($frm.find('*[name=id_pelajaran]').is('.valid') &&   $frm.find('*[name=topik]').is('.valid') && $frm.find('*[name=waktu]').is('.valid') && $frm.find('*[name=pertemuan_ke]').is('.valid') && $frm.find('*[name=tanggal]').is('.valid')) {
 				$.ajax({
 					type: "POST",
 					data: $(this).serialize()+'&'+$('form#nilai').serialize(),
@@ -70,17 +75,22 @@
 							beforeSend: function() {
 								$("#simpanpr").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
 							},
+							error	: function(){
+								$(".error-box").delay(1000).html('Pemrosesan data gagal');
+								$(".error-box").delay(1000).fadeOut("slow",function(){
+									$(this).remove();
+								});
+													
+							},
 							success: function(msg) {
 								$("#wait").remove();
-								$('#fancybox-content div').html(msg);
-								$('#subjectevaluasi').load('<?=base_url('akademik/instrumen/pembelajaranlist')?>');
-								$('a#addpertemuan').attr('class','readmore');
-								$('a#datapertemuan').attr('class','readmore selected');
-								$('#tabpertlistcnt').scrollintoview({ speed:'1100'});
-								/*$('select#kelas').val($('select#kelas_addpert').val());
-								$('select#pelajaran').html($('select#pelajaran_addpert').html());
-								$('select#pelajaran').val($('select#pelajaran_addpert').val());
-								$('#subjectlist').html(msg);*/
+								$(".error-box").delay(1000).html('Data berhasil di simpan');
+								$(".error-box").delay(1000).fadeOut("slow",function(){
+									$(this).remove();
+									$('#subjectevaluasi').load('<?=base_url('akademik/instrumen/pembelajaranlist')?>');
+									$('a#addpertemuan').attr('class','readmore');
+									$('a#datapertemuan').attr('class','readmore selected');
+								});	
 							}
 						});
 					}
@@ -107,9 +117,21 @@
 		});//Submit End
 	});
 </script>		
+<link type="text/css" href="<?=$this->config->item('css');?>datepick.css" rel="stylesheet">
+<script type="text/javascript" src="<?=$this->config->item('js');?>jquery.datepick.js"></script>
+<script type="text/javascript" src="<?=$this->config->item('js');?>jquery.datepick-id.js"></script>
+
+<script type="text/javascript">
+function getadd(obj,date) {
+
+}
+$(function() {
+	$('#tanggalevaluasi').datepick();
+});
+</script>	
 <div class="addaccount">
 <form method="post" name="pembelajaran" enctype="multipart/form-data" id="pembelajaranadd" action="<? echo base_url();?>akademik/instrumen/addpertemuan">
-		<h3>Tambah Pertemuan Pembelajaran</h3>
+		<h3>Tambah Evaluasi Otentik</h3>
 		<div class="hr"></div>
 		<table class="adddata adddatapemb">
 			<tbody>
@@ -152,14 +174,14 @@
 				</td>
 			</tr>
 			<tr>
-				<td width="30%" class="title">Topik</td> 
+				<td width="30%" class="title">Tanggal Pelaksanaan</td> 
 				<td width="1">:</td>
 				<td>
-					<textarea name="topik"></textarea>
+					<input type="text" style="width:100px"  name="tanggal" id="tanggalevaluasi" size="10" value="">
 				</td>
 			</tr>
 			<tr>
-				<td width="30%" class="title">Waktu</td> 
+				<td width="30%" class="title">Lama Pelaksanaan</td> 
 				<td width="1">:</td>
 				<td>
 					<input type="text" name="waktu" size="30" value="">
@@ -167,10 +189,25 @@
 				</td>
 			</tr>
 			<tr>
-				<td width="30%" class="title">Pertemuan Ke</td> 
+				<td width="30%" class="title">Evaluasi Ke</td> 
 				<td width="1">:</td>
 				<td>
 					<input type="text" name="pertemuan_ke" size="20" style="width:50px" value="">
+				</td>
+			</tr>
+			<tr>
+				<td width="30%" class="title">Topik</td> 
+				<td width="1">:</td>
+				<td>
+					<textarea name="topik"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td width="30%" class="title">Keterangan ke Wali/Ortu</td> 
+				<td width="1">:</td>
+				<td>
+					<textarea name="sms"></textarea>
+					<div style="font-size:11px;" id="response">*) Jika di isi, keterangan akan dikirim ke Wali/ortu melalui SMS</div>
 				</td>
 			</tr>
 			<tr>

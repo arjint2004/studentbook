@@ -138,7 +138,8 @@ class Instrumen extends CI_Controller
 			$this->load->model('ad_pelajaran');
 			
 			if(isset($_POST['id_pelajaran'])){
-				 	 	 	 	 	 	 	 	 	 	 	 	 	 
+				$this->load->library('smsprivate'); 	 
+				
 				foreach($_POST['id_kelas'] as $id_kelas){
 					$datainsert=array(
 										'id_sekolah'=>$this->session->userdata['user_authentication']['id_sekolah'],
@@ -149,15 +150,17 @@ class Instrumen extends CI_Controller
 										'semester'=>$this->session->userdata['ak_setting']['semester'],
 										'topik'=>$_POST['topik'],
 										'waktu'=>$_POST['waktu'],
+										'tanggal'=>$_POST['tanggal'],
 										'pertemuan_ke'=>$_POST['pertemuan_ke']
 					);
 					
 					$this->db->insert('ak_rencana_pertemuan',$datainsert);
 					$id_pertemuan=mysql_insert_id();
-					$id_pertemuanarray[$id_pertemuan]=$id_pertemuan;
+					//$id_pertemuanarray[$id_pertemuan]=$id_pertemuan;
+					$this->smsprivate->send_by_kelas($id_kelas,$_POST['sms'],'pertemuanevaluasi',$id_pertemuan);
 					//$this->db->insert('ak_rencana_detail',array('id_kelas'=>$id_kelas,'id_pertemuan'=>$id_pertemuan));
 				}
-				echo json_encode($id_pertemuanarray);
+				//echo json_encode($id_pertemuanarray);
 				die();
 			}
 			
