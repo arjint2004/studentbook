@@ -65,24 +65,14 @@
 					beforeSend: function() {
 						$("#simpanpr").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
 					},
-					success: function(msg) {
-						$("#wait").remove();
-						//$.fancybox.close();
-						$.ajax({
-							type: "POST",
-							data: 'ajax=1&id_pelajaran='+$('select#pelajaran_addpert').val()+'&id_pertemuanarray='+msg,
-							url: '<?=base_url('akademik/instrumen/addpembelajaran')?>',
-							beforeSend: function() {
-								$("#simpanpr").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
-							},
-							error	: function(){
+					error	: function(){
 								$(".error-box").delay(1000).html('Pemrosesan data gagal');
 								$(".error-box").delay(1000).fadeOut("slow",function(){
 									$(this).remove();
 								});
 													
-							},
-							success: function(msg) {
+					},
+					success: function(msg) {
 								$("#wait").remove();
 								$(".error-box").delay(1000).html('Data berhasil di simpan');
 								$(".error-box").delay(1000).fadeOut("slow",function(){
@@ -91,8 +81,6 @@
 									$('a#addpertemuan').attr('class','readmore');
 									$('a#datapertemuan').attr('class','readmore selected');
 								});	
-							}
-						});
 					}
 				});
 				return false;
@@ -174,10 +162,10 @@ $(function() {
 				</td>
 			</tr>
 			<tr>
-				<td width="30%" class="title">Tanggal Pelaksanaan</td> 
+				<td width="30%" class="title" >Tanggal Pelaksanaan</td> 
 				<td width="1">:</td>
 				<td>
-					<input type="text" style="width:100px"  name="tanggal" id="tanggalevaluasi" size="10" value="">
+					<input type="text" style="width:100px" readonly name="tanggal" id="tanggalevaluasi" size="10" value="">
 				</td>
 			</tr>
 			<tr>

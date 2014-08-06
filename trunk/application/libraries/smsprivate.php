@@ -93,12 +93,48 @@ class smsprivate {
 		$dataxml =simplexml_load_file(urlencode('http://raja-sms.com/api/smsgetinboxprivate.php?startid='.$this->startid.'&countid='.$this->countid.'&phone='.$this->phone.'&key='.$this->key));
 		return $dataxml;
 	}	
-	public function send_by_kelas($id_kelas=0,$pesan='',$jenis='',$id_jenis=0) {		$CI = & get_instance();		$queryf=$CI->db->query('SELECT * FROM ak_fitur_sekolah
-									WHERE id_sekolah=? AND fitur="sms_notifikasi"									',array($id_kelas,$CI->session->userdata['user_authentication']['id_sekolah']));		$fitur=$queryf->result_array();
-		if(!empty($fitur)){			$query=$CI->db->query('SELECT ap.hp FROM										ak_det_jenjang adj 										JOIN ak_siswa s 										JOIN ak_kelas ak 										JOIN ak_pegawai ap										ON adj.id_siswa=s.id 										AND adj.id_kelas=ak.id										AND ap.id_siswa=s.id										WHERE ak.id=?										AND adj.id_sekolah=?										AND adj.id_ta=?										AND ak.publish=1										ORDER BY s.nama ASC										',array($id_kelas,$CI->session->userdata['user_authentication']['id_sekolah'],$CI->session->userdata['ak_setting']['ta']));			$no_hp=$query->result_array();			//echo $CI->db->last_query();
-			//pr($no_hp);			//$no_hp=array(0=>array('hp'=>'083867139945'));
-			foreach($no_hp as $datanya){				if($datanya['hp']!='' && strlen($pesan)>10){					$insert_sms=array(									'no_hp'=>$datanya['hp'],									'pesan'=>$pesan,									'jenis'=>$jenis,									'id_jenis'=>$id_jenis,									'waktu'=>date('Y-m-d H:i:s')					);					$CI->db->insert('ak_sms',$insert_sms);					/*$this->setTo($datanya['hp']);					$this->setText('Lorem Ipsum adalah contoh teks atau dummy dalam industri percetakan dan penataan huruf atau typesetting. Lorem Ipsum telah menjadi standar contoh teks sejak tahun 1500an, saat seorang tukang cetak yang tidak dikenal mengambil sebuah kumpulan teks dan mengacaknya untuk menjadi sebuah buku contoh huruf.');					$this->send();*/						}			}
+	public function send_by_kelas($id_kelas=0,$pesan='',$jenis='',$id_jenis=0) {
+		$CI = & get_instance();
+		$queryf=$CI->db->query('SELECT * FROM ak_fitur_sekolah
+									WHERE id_sekolah=? AND fitur="sms_notifikasi"
+									',array($CI->session->userdata['user_authentication']['id_sekolah']));
+		$fitur=$queryf->result_array();
+		if(!empty($fitur)){
+			$query=$CI->db->query('SELECT ap.hp FROM
+										ak_det_jenjang adj 
+										JOIN ak_siswa s 
+										JOIN ak_kelas ak 
+										JOIN ak_pegawai ap
+										ON adj.id_siswa=s.id 
+										AND adj.id_kelas=ak.id
+										AND ap.id_siswa=s.id
+										WHERE ak.id=?
+										AND adj.id_sekolah=?
+										AND adj.id_ta=?
+										AND ak.publish=1
+										ORDER BY s.nama ASC
+										',array($id_kelas,$CI->session->userdata['user_authentication']['id_sekolah'],$CI->session->userdata['ak_setting']['ta']));
+			$no_hp=$query->result_array();
+			//echo $CI->db->last_query();
+			//pr($no_hp);
+			//$no_hp=array(0=>array('hp'=>'083867139945'));
+			foreach($no_hp as $datanya){
+				if($datanya['hp']!='' && strlen($datanya['hp'])>8){
+					$insert_sms=array(
+									'no_hp'=>$datanya['hp'],
+									'pesan'=>$pesan,
+									'jenis'=>$jenis,
+									'id_jenis'=>$id_jenis,
+									'waktu'=>date('Y-m-d H:i:s')
+					);
+					$CI->db->insert('ak_sms',$insert_sms);echo $CI->db->last_query();
+					/*$this->setTo($datanya['hp']);
+					$this->setText('Lorem Ipsum adalah contoh teks atau dummy dalam industri percetakan dan penataan huruf atau typesetting. Lorem Ipsum telah menjadi standar contoh teks sejak tahun 1500an, saat seorang tukang cetak yang tidak dikenal mengambil sebuah kumpulan teks dan mengacaknya untuk menjadi sebuah buku contoh huruf.');
+					$this->send();*/		
+				}
+			}
 		}
-	}	
+	}
+	
 }
 ?>

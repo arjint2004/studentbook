@@ -164,7 +164,7 @@ Class Ad_instrumen extends CI_Model{
 		}
 		
 		
-		$pem['pembelajaran']=$datapemb2;
+		$pem['pertemuan']=$datapemb2;
 		return $pem;
 	}
 	function getPembelajaranByKelasPelajaranIdPegawaiIdPertemuan($id_pelajaran=0,$id_kelas=0,$id_pertemuan=0){

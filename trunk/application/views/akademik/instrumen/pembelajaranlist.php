@@ -52,12 +52,21 @@
 										$("div#actdellpemp").click(function(){
 											var objdell=$(this);
 											if(confirm('Data dan File akan di hapus secara permanen, untuk menggunakannya kembali anda harus upload ulang..')){
+												$("#subjectevaluasi").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+												$(".error-box").html("Memproses Data").fadeIn("slow");
 												$.ajax({
 													type: "POST",
 													data: '',
 													url: base_url+'akademik/instrumen/deletepert/'+$(this).attr('id_pemb'),
 													beforeSend: function() {
 														$(objdell).after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+													},
+													error	: function(){
+														$(".error-box").delay(1000).html('Pemrosesan data gagal');
+														$(".error-box").delay(1000).fadeOut("slow",function(){
+															$(this).remove();
+														});
+														
 													},
 													success: function(msg) {
 														$("#wait").remove();	
@@ -67,8 +76,12 @@
 															$('div.tabs-vertical-frame-content').first().attr('style','display:block;');
 															$('ul.tabs-vertical-frame li').first().addClass('current');
 															$('ul.tabs-vertical-frame li').first().children('a').addClass('current');
-															
+															$(".error-box").delay(1000).html('Data berhasil di hapus');
+															$(".error-box").delay(1000).fadeOut("slow",function(){
+																$(this).remove();
+															});
 														}
+														
 													}
 												});
 												return false;
@@ -85,28 +98,28 @@
 							
 							<? 
 							$nox=array();$no=1;
-							if(!empty($pembelajaran['pembelajaran'])){
-								foreach($pembelajaran['pembelajaran'] as $kt=>$datapembelajaran){?>
-									<li id="tab<?=$datapembelajaran['id']?>" class="first current"><a href="#" class="current"><h5>Evaluasi ke <?=$datapembelajaran['pertemuan_ke']?></h5><h6><? echo 'Kelas '.$datapembelajaran['kelas'].''.$datapembelajaran['nama_kelas'].' | '.$datapembelajaran['nama_pelajaran'].'';?></h6><span></span></a></li>
+							if(!empty($pertemuan['pertemuan'])){
+								foreach($pertemuan['pertemuan'] as $kt=>$datapertemuan){?>
+									<li id="tab<?=$datapertemuan['id']?>" class="first current"><a href="#" class="current"><h5>Evaluasi ke <?=$datapertemuan['pertemuan_ke']?></h5><h6><? echo 'Kelas '.$datapertemuan['kelas'].''.$datapertemuan['nama_kelas'].' | '.$datapertemuan['nama_pelajaran'].'';?></h6><span></span></a></li>
 								<? } ?>
 							<? } ?>
 						</ul>
 						
 						<? 
-						//pr($pembelajaran);
+						//pr($pertemuan);
 						$nox=array();$no=1;
-						if(!empty($pembelajaran['pembelajaran'])){
-						foreach($pembelajaran['pembelajaran'] as $kt=>$datapembelajaran){?>
-						<div class="tabs-vertical-frame-content vcontnilai" id="cnttab<?=$datapembelajaran['id']?>" style="display: block;">
-							<div class="actedit modal" href="<?=base_url('akademik/instrumen/editpertemuan/'.$datapembelajaran['id'])?>"></div> 
-							<div id="actdellpemp" id_pemb="<?=$datapembelajaran['id']?>" class="actdell"></div>
+						if(!empty($pertemuan['pertemuan'])){
+						foreach($pertemuan['pertemuan'] as $kt=>$datapertemuan){?>
+						<div class="tabs-vertical-frame-content vcontnilai" id="cnttab<?=$datapertemuan['id']?>" style="display: block;">
+							<div class="actedit modal" href="<?=base_url('akademik/instrumen/editpertemuan/'.$datapertemuan['id'])?>"></div> 
+							<div id="actdellpemp" id_pemb="<?=$datapertemuan['id']?>" class="actdell"></div>
 													<div style="width:99%;" class="file">
 													<br />
-													<h6 ><?=$datapembelajaran['topik']?></h6>
+													<h6 ><?=$datapertemuan['topik']?></h6>
 													<h5 >Penilaian Otentik</h5>
 													<div class="hr"></div>
 													<?
-													$par=array('id_pembelajaran'=>$datapembelajaran['id'],'id_pelajaran'=>$datapembelajaran['id_pelajaran'],'id_mengjar'=>$datapembelajaran['id_mengajar'],'evaluasi_ke'=>$datapembelajaran['pertemuan_ke'],'kelas'=>$datapembelajaran['kelas'],'id_kelas'=>$datapembelajaran['id_kelas']);
+													$par=array('id_pertemuan'=>$datapertemuan['id'],'id_pelajaran'=>$datapertemuan['id_pelajaran'],'id_mengjar'=>$datapertemuan['id_mengajar'],'evaluasi_ke'=>$datapertemuan['pertemuan_ke'],'kelas'=>$datapertemuan['kelas'],'id_kelas'=>$datapertemuan['id_kelas']);
 													?>
 													<h5 >Kognitif</h5>
 														<ul  class="file">
@@ -165,17 +178,17 @@
 													<!--<h5 >Scoring</h5>
 													<ul class="file">
 														<li>
-															<a href="<?=site_url('akademik/instrumen/penilaian/kognitif/'.$datapembelajaran['id'].'/'.$datapembelajaran['id_pelajaran'].'/'.$datapembelajaran['id_kelas'].'/'.$datapembelajaran['kelas'].''.$datapembelajaran['nama_kelas'].'/'.base64_encode($datapembelajaran['topik']))?>" id="penilaianklik" class="modal">Scoring Evaluasi Kognitif</a>
-															<!--<div  href="<?=site_url('akademik/instrumen/penilaian/kognitif/'.$datapembelajaran['id'].'/'.$datapembelajaran['id_pelajaran'].'/'.$datapembelajaran['id_kelas'].'/'.$datapembelajaran['kelas'].''.$datapembelajaran['nama_kelas'].'/'.base64_encode($datapembelajaran['topik']))?>" class="modal addasb"></div>
+															<a href="<?=site_url('akademik/instrumen/penilaian/kognitif/'.$datapertemuan['id'].'/'.$datapertemuan['id_pelajaran'].'/'.$datapertemuan['id_kelas'].'/'.$datapertemuan['kelas'].''.$datapertemuan['nama_kelas'].'/'.base64_encode($datapertemuan['topik']))?>" id="penilaianklik" class="modal">Scoring Evaluasi Kognitif</a>
+															<!--<div  href="<?=site_url('akademik/instrumen/penilaian/kognitif/'.$datapertemuan['id'].'/'.$datapertemuan['id_pelajaran'].'/'.$datapertemuan['id_kelas'].'/'.$datapertemuan['kelas'].''.$datapertemuan['nama_kelas'].'/'.base64_encode($datapertemuan['topik']))?>" class="modal addasb"></div>
 															<div  href="#nilaitab" class="modal_dialog addasb"></div>
 														</li>
 														<li>
-															<a href="<?=site_url('akademik/instrumen/penilaian/otentik/'.$datapembelajaran['id'].'/'.$datapembelajaran['id_pelajaran'].'/'.$datapembelajaran['id_kelas'].'/'.$datapembelajaran['kelas'].''.$datapembelajaran['nama_kelas'].'/'.base64_encode($datapembelajaran['topik']))?>" id="penilaianklik" class="modal">Scoring Evaluasi otentik</a>
-															<!--<div  href="<?=site_url('akademik/instrumen/penilaian/otentik/'.$datapembelajaran['id'].'/'.$datapembelajaran['id_pelajaran'].'/'.$datapembelajaran['id_kelas'].'/'.$datapembelajaran['kelas'].''.$datapembelajaran['nama_kelas'].'/'.base64_encode($datapembelajaran['topik']))?>" class="modal addasb"></div>
+															<a href="<?=site_url('akademik/instrumen/penilaian/otentik/'.$datapertemuan['id'].'/'.$datapertemuan['id_pelajaran'].'/'.$datapertemuan['id_kelas'].'/'.$datapertemuan['kelas'].''.$datapertemuan['nama_kelas'].'/'.base64_encode($datapertemuan['topik']))?>" id="penilaianklik" class="modal">Scoring Evaluasi otentik</a>
+															<!--<div  href="<?=site_url('akademik/instrumen/penilaian/otentik/'.$datapertemuan['id'].'/'.$datapertemuan['id_pelajaran'].'/'.$datapertemuan['id_kelas'].'/'.$datapertemuan['kelas'].''.$datapertemuan['nama_kelas'].'/'.base64_encode($datapertemuan['topik']))?>" class="modal addasb"></div>
 														</li>
 														<li>
-															<a href="<?=site_url('akademik/instrumen/penilaian/psikomotorik/'.$datapembelajaran['id'].'/'.$datapembelajaran['id_pelajaran'].'/'.$datapembelajaran['id_kelas'].'/'.$datapembelajaran['kelas'].''.$datapembelajaran['nama_kelas'].'/'.base64_encode($datapembelajaran['topik']))?>" id="penilaianklik" class="modal">Scoring Evaluasi Psikomotorik</a>
-															<!--<div href="<?=site_url('akademik/instrumen/penilaian/psikomotorik/'.$datapembelajaran['id'].'/'.$datapembelajaran['id_pelajaran'].'/'.$datapembelajaran['id_kelas'].'/'.$datapembelajaran['kelas'].''.$datapembelajaran['nama_kelas'].'/'.base64_encode($datapembelajaran['topik']))?>"  class="modal addasb"></div>
+															<a href="<?=site_url('akademik/instrumen/penilaian/psikomotorik/'.$datapertemuan['id'].'/'.$datapertemuan['id_pelajaran'].'/'.$datapertemuan['id_kelas'].'/'.$datapertemuan['kelas'].''.$datapertemuan['nama_kelas'].'/'.base64_encode($datapertemuan['topik']))?>" id="penilaianklik" class="modal">Scoring Evaluasi Psikomotorik</a>
+															<!--<div href="<?=site_url('akademik/instrumen/penilaian/psikomotorik/'.$datapertemuan['id'].'/'.$datapertemuan['id_pelajaran'].'/'.$datapertemuan['id_kelas'].'/'.$datapertemuan['kelas'].''.$datapertemuan['nama_kelas'].'/'.base64_encode($datapertemuan['topik']))?>"  class="modal addasb"></div>
 														</li>
 													</ul>-->
 													</div>
@@ -188,35 +201,35 @@
 													  <td colspan="2" class="title">Kelas</td>
 														<td>:</td>
 														<td class="title">
-															<?=$datapembelajaran['kelas']?><?=$datapembelajaran['nama_kelas']?>
+															<?=$datapertemuan['kelas']?><?=$datapertemuan['nama_kelas']?>
 														</td>
 													</tr>
 													<tr>
 													  <td colspan="2" class="title">Pelajaran</td>
 														<td>:</td>
 														<td class="title">
-															<?=$datapembelajaran['nama_pelajaran']?>
+															<?=$datapertemuan['nama_pelajaran']?>
 														</td>
 													</tr>
 													<tr>
 													  <td colspan="2" class="title">Topik Pertemuan</td>
 														<td>:</td>
 														<td class="title">
-															<?=@$datapembelajaran['topik']?>
+															<?=@$datapertemuan['topik']?>
 														</td>
 													</tr>
 													<tr>
 													  <td colspan="2" class="title">Waktu Pertemuan</td>
 														<td>:</td>
 														<td class="title">
-															<?=@$datapembelajaran['waktu']?>
+															<?=@$datapertemuan['waktu']?>
 														</td>
 													</tr>
 													<tr>
 													  <td colspan="2" class="title">Pertemuan ke</td>
 														<td>:</td>
 														<td class="title">
-															<?=@$datapembelajaran['pertemuan_ke']?>
+															<?=@$datapertemuan['pertemuan_ke']?>
 														</td>
 													</tr>
 												</tbody></table>
