@@ -47,9 +47,9 @@ class Instrumen extends CI_Controller
 		public function pembelajaranlist($id_pertemuan=0,$id_pegawai=0){
 			$this->load->model('ad_instrumen');
 			if($id_pertemuan!=0){
-				$data['pembelajaran']=$this->ad_instrumen->getPembelajaranByKelasPelajaranIdPegawaiIdPertemuan($_POST['pelajaran'],$_POST['id_kelas'],$id_pertemuan);
+				$data['pertemuan']=$this->ad_instrumen->getPembelajaranByKelasPelajaranIdPegawaiIdPertemuan($_POST['pelajaran'],$_POST['id_kelas'],$id_pertemuan);
 			}else{
-				$data['pembelajaran']=$this->ad_instrumen->getPembelajaranByKelasPelajaranIdPegawai($_POST['pelajaran'],$_POST['id_kelas'],$id_pegawai);
+				$data['pertemuan']=$this->ad_instrumen->getPembelajaranByKelasPelajaranIdPegawai($_POST['pelajaran'],$_POST['id_kelas'],$id_pegawai);
 			}
             $data['main']= 'akademik/instrumen/pembelajaranlist';
 			
@@ -57,29 +57,14 @@ class Instrumen extends CI_Controller
         }
 		public function deletepert($id=null)
         {	
-			$this->load->model('ad_instrumen');
-			$pembelajarandata=$this->ad_instrumen->getFilePembById_pertemuan($id);
 			if($this->db->query('DELETE FROM ak_rencana_pertemuan WHERE id='.$id.'')){
-				foreach($pembelajarandata as $pembdata){
-					$this->deletepemb($pembdata['id']);
-				}
+				$this->db->query('DELETE FROM ak_rencana_point_indikator WHERE id_pertemuan='.$id.'');
 				echo 1;
 			}else{
 				echo 0;
 			}
 		}
-		public function deletefilepemb($id=null)
-        {	
-		
-			$this->load->model('ad_instrumen');
-			$datafile=$this->ad_instrumen->getFilePembById($id);
-			//pr($datafile);
-			if($this->db->query('DELETE FROM ak_rencana_pembelajaran_file WHERE id='.$id.'')){
-				if(file_exists($this->upload_dirpembelajaran.$datafile[0]['file_name'])){
-					unlink($this->upload_dirpembelajaran.$datafile[0]['file_name']);
-				}
-			}
-		}
+
 
 		public function deletepemb($id_pemb=null)
         {	
@@ -219,23 +204,19 @@ class Instrumen extends CI_Controller
 			$this->load->model('ad_kelas');
 			$this->load->model('ad_pelajaran');
 			
-			if(isset($_POST['id_pelajaran'])){
+			if(isset($_POST['id'])){
 				 	 	 	 	 	 	 	 	 	 	 	 	 	 
 				$datainsert=array(
 									'id_sekolah'=>$this->session->userdata['user_authentication']['id_sekolah'],
-									'id_pelajaran'=>$_POST['id_pelajaran'],
-									'id_pegawai'=>$this->session->userdata['user_authentication']['id_pengguna'],
-									'id_kelas'=>$_POST['id_kelas'],
-									'ta'=>$this->session->userdata['ak_setting']['ta'],
-									'semester'=>$this->session->userdata['ak_setting']['semester'],
 									'topik'=>$_POST['topik'],
 									'waktu'=>$_POST['waktu'],
+									'tanggal'=>$_POST['tanggal'],
 									'pertemuan_ke'=>$_POST['pertemuan_ke']
 				);
 				
 				$this->db->where('id',$_POST['id']);
 				$this->db->update('ak_rencana_pertemuan',$datainsert);
-				
+				pr($this->db->last_query());
 				echo $_POST['id'];
 				die();
 			}
@@ -546,7 +527,7 @@ class Instrumen extends CI_Controller
 			$data['id_mengjar'] 	=$id_mengjar=$param['id_mengjar'];
 			$data['id_kelas'] 	=$id_kelas=$param['id_kelas'];
 			$data['id_pelajaran'] 	=$id_pelajaran=$param['id_pelajaran'];
-			$data['id_pembelajaran'] 	=$id_pembelajaran=$param['id_pembelajaran'];
+			$data['id_pertemuan'] 	=$id_pertemuan=$param['id_pertemuan'];
 			if(isset($_POST['otentik'])){
 				
 				//$nilaix=$_POST['nilai'];
@@ -574,7 +555,7 @@ class Instrumen extends CI_Controller
 						
 						$point['id_sekolah']=$this->session->userdata['user_authentication']['id_sekolah'];
 						$point['id_pelajaran']=$_POST['id_pelajaran'];
-						$point['id_pembelajaran']=$id_pembelajaran;
+						$point['id_pertemuan']=$id_pertemuan;
 						$point['id_indikator']=$idx;
 						$point['id_siswa_det_jenjang']=$_POST['id_det_jenjang'];
 						$point['id_kelas']=$_POST['id_kelas'];
