@@ -62,7 +62,7 @@
 													$(".simpancatatan").after("<img class='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
 												},
 												error	: function(){
-													$(".error-box").delay(1000).html('Sending Data Failed');
+													$(".error-box").delay(1000).html('Pemrosesan data gagal');
 													$(".error-box").delay(1000).fadeOut("slow",function(){
 														$(this).remove();
 													});
