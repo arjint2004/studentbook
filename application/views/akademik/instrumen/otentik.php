@@ -1,13 +1,13 @@
 								<script>
 									$(document).ready(function(){
 										//Submit Start
-										<? if(empty($afektif)){?>
-										var tr='<tr  class="afektiftrx identy1" idnya="1">'+$("table tr#master").html()+'</tr>';
+										<? if(empty($otentik)){?>
+										var tr='<tr  class="otentiktrx identy1" idnya="1">'+$("table tr#master").html()+'</tr>';
 										$("table tr#beforeadd").before(tr);
 										$("table tr.identy1 td.radio").html('1<input type="radio" name="point[1][1]" value="1" /><br />2<input type="radio" name="point[1][1]" value="2" /><br />3<input type="radio" name="point[1][1]" checked value="3" /><br />4<input type="radio" name="point[1][1]" value="4" /><br />5<input type="radio" name="point[1][1]" value="5" />');
 										<? } ?>
 										$("table tr td a.readmore").click(function(){
-											var last_id=$("table#dataafektif tr.afektiftrx").last().attr('idnya');
+											var last_id=$("table#dataotentik tr.otentiktrx").last().attr('idnya');
 											if(last_id==null){
 											last_id=1;
 											}
@@ -16,8 +16,8 @@
 											no=0;
 											}
 											var last_id=parseInt(last_id)+1;
-											var tr='<tr class="afektiftrx identy'+last_id+'" idnya="'+last_id+'">'+$("table tr#master").html()+'</tr>';
-											no=parseInt($("table#dataafektif tr.afektiftrx td.no").last().html())+1;
+											var tr='<tr class="otentiktrx identy'+last_id+'" idnya="'+last_id+'">'+$("table tr#master").html()+'</tr>';
+											no=parseInt($("table#dataotentik tr.otentiktrx td.no").last().html())+1;
 											$("table tr#beforeadd").before(tr);
 											$("table tr.identy"+last_id+" td.no").html(no);
 											$("table tr.identy"+last_id+" td.radio").html('1<input type="radio" name="point['+last_id+'][0]" value="1" /><br />2<input type="radio" name="point['+last_id+'][0]" value="2" /><br />3<input type="radio" name="point['+last_id+'][0]" checked value="3" /><br />4<input type="radio" name="point['+last_id+'][0]" value="4" /><br />5<input type="radio" name="point['+last_id+'][0]" value="5" />');
@@ -29,7 +29,7 @@
 											
 											var error=false;
 											var error2=false;
-											$("table tr td textarea.afektif").each(function(e){
+											$("table tr td textarea.otentik").each(function(e){
 												if($(this).val()==''){
 													$(this).css('border','1px solid red');
 													error=true;
@@ -38,7 +38,7 @@
 													error=false;
 												}
 											});
-											$("table tr td select#afektifsiswa").each(function(e){
+											$("table tr td select#otentiksiswa").each(function(e){
 												if($(this).val()==0){
 													$(this).css('border','1px solid red');
 													error2=true;
@@ -52,7 +52,7 @@
 											
 											if(error==true){return false}
 											if(error2==true){return false}
-											$("#afektifindikatorload").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+											$("#otentikindikatorload").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
 											$(".error-box").html("Memproses Data").fadeIn("slow");
 											$.ajax({
 												type: "POST",
@@ -76,7 +76,20 @@
 														});
 														$objrata=JSON.parse(msg);
 														$ratascor=$objrata.ratascor+' / '+$objrata.jmlscor;
-														$("table tr td#rataafektif").html($ratascor);
+														$("table tr td#rataotentik").html($ratascor);
+														$.ajax({
+																	type: "POST",
+																	data: 'id_det_jenjang='+$('select#otentiksiswa').val()+'&nama_siswa='+$('select#otentiksiswa').find(":selected").text(),
+																	url: '<?=site_url('akademik/instrumen/otentik/'.$param.'')?>',
+																	beforeSend: function() {
+																	$("select#otentiksiswa").after("<img id='wait' style='margin: 0px; float: right; position: relative; top: 24px;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+																	},
+																	success: function(msg) {
+																		$('img#wait').remove();
+																		$('div#otentikindikatorload').html(msg);
+																		$('table tr td#rataotentik').html($('div#ratajml').html());
+																	}
+														});
 														
 												}
 											});
@@ -90,7 +103,7 @@
 									}
 									
 									function hapusdata(thisobj,id){
-										if(confirm('Data indikator afektif akan dihapus. klik "OK" untuk menghapus. Klik cancel untuk batal. ')){
+										if(confirm('Data indikator otentik akan dihapus. klik "OK" untuk menghapus. Klik cancel untuk batal. ')){
 											$.ajax({
 													type: "POST",
 													data: '',
@@ -107,14 +120,14 @@
 										}
 									}
 								</script>
-								<? //pr($afektif);?>
+								<? //pr($otentik);?>
 								<div style="display:none;" id="ratajml"><?=$ratapoint.' / '.$jmlpoint?></div>
 								<table style="display:none;">
-									<tr id="master"  class="afektiftrx" >
+									<tr id="master"  class="otentiktrx" >
 										<td class="no">1</td>
 										<td >
 										<div style="color:#ababab; float:left;"><?=$_POST['nama_siswa']?></div>
-										<textarea class="afektif" style="height:61px;" cols="30" name="afektif[]" ></textarea>
+										<textarea class="otentik" style="height:61px;" cols="30" name="otentik[]" ></textarea>
 										</td>
 										<td class="radio">
 										
@@ -123,7 +136,7 @@
 									</tr>
 								</table>
 								
-								<table id="dataafektif">
+								<table id="dataotentik">
 										<thead>
 											<tr>
 												<td align="right" colspan="5">
@@ -140,13 +153,13 @@
 										<tbody>
 											
 											<? $no=1;
-											if(!empty($afektif)){
-											foreach($afektif as $ky=>$dataaff){?>
-											<tr class="afektiftrx identy<?=$dataaff['id']?>" idnya="<?=$dataaff['id']?>" >
+											if(!empty($otentik)){
+											foreach($otentik as $ky=>$dataaff){?>
+											<tr class="otentiktrx identy<?=$dataaff['id']?>" idnya="<?=$dataaff['id']?>" >
 												<td class="no"><?=$no++?></td>
 												<td >
 												<div style="color:#ababab; float:left;"><?=$_POST['nama_siswa']?></div>
-												<textarea style="height:61px; margin:5px 0;" cols="30" name="afektif[<?=$dataaff['id']?>]" class="afektif" ><?=$dataaff['indikator']?></textarea>
+												<textarea style="height:61px; margin:5px 0;" cols="30" name="otentik[<?=$dataaff['id']?>]" class="otentik" ><?=$dataaff['indikator']?></textarea>
 												</td>
 												<td >
 													<? if(!isset($dataaff['point'][0]['id'])){$dataaff['point'][0]['id']=0;}?>
