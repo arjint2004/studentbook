@@ -513,9 +513,11 @@ class Instrumen extends CI_Controller
             $data['main']= 'akademik/instrumen/kognitifs';
             $this->load->view('layout/ad_blank',$data);
 		}
-        public function praafektif($param){
+        public function praotentik($param){
 			$data['param']=$param;
 			$param=unserialize($this->myencrypt->decode($param));
+			
+			$data['jenis'] 	=$jenis=$param['jenis'];
 			$data['evaluasi_ke'] 	=$evaluasi_ke=$param['evaluasi_ke'];
 			$data['kelas'] 	=$kelas=$param['kelas'];
 			$data['id_mengjar'] 	=$id_mengjar=$param['id_mengjar'];
@@ -527,30 +529,31 @@ class Instrumen extends CI_Controller
 			$this->load->model("ad_siswa");
 			$data['pelajaran'] 	=$this->ad_pelajaran->getdataById($id_pelajaran);
 			$data['siswa']= $this->ad_siswa->getsiswaByIdKelas($id_kelas,'s.id,s.nama, adj.id as id_siswa_det_jenjang');
-            $data['main']= 'akademik/instrumen/praafektif';
+            $data['main']= 'akademik/instrumen/praotentik';
             $this->load->view('layout/ad_blank',$data);
 		}
-        public function afektif($param){
+        public function otentik($param){
 			$data['param']=$param;
 			$param=unserialize($this->myencrypt->decode($param));
 			$this->load->model("ad_siswa");
 			$data['siswa']= $this->ad_siswa->getsiswaByIdKelas($id_kelas,'s.id,s.nama, adj.id as id_siswa_det_jenjang');
+			$data['jenis'] 	=$jenis=$param['jenis'];
 			$data['evaluasi_ke'] 	=$evaluasi_ke=$param['evaluasi_ke'];
 			$data['kelas'] 	=$kelas=$param['kelas'];
 			$data['id_mengjar'] 	=$id_mengjar=$param['id_mengjar'];
 			$data['id_kelas'] 	=$id_kelas=$param['id_kelas'];
 			$data['id_pelajaran'] 	=$id_pelajaran=$param['id_pelajaran'];
 			$data['id_pembelajaran'] 	=$id_pembelajaran=$param['id_pembelajaran'];
-			if(isset($_POST['afektif'])){
-
+			if(isset($_POST['otentik'])){
+				
 				//$nilaix=$_POST['nilai'];
-					unset($_POST['afektif'][0]);
-					foreach($_POST['afektif'] as $idx=>$afektif){
+					unset($_POST['otentik'][0]);
+					foreach($_POST['otentik'] as $idx=>$otentik){
 						@$in['id_sekolah']=$this->session->userdata['user_authentication']['id_sekolah'];
 						@$in['id_pegawai']=$this->session->userdata['user_authentication']['id_pengguna'];
 						@$in['semester']=$this->session->userdata['ak_setting']['semester'];
-						@$in['penilaian']='afektif';
-						@$in['indikator']=$afektif;
+						@$in['penilaian']=$jenis;
+						@$in['indikator']=$otentik;
 						@$in['id_mengajar']=$_POST['id_mengjar'];
 						//@$in['id_pertemuan']=$id_pemb;
 						@$in['id_pelajaran']=$id_pelajaran;
@@ -559,11 +562,11 @@ class Instrumen extends CI_Controller
 						if(isset($_POST['id'][$idx])){
 							$this->db->where('id',$_POST['id'][$idx]);
 							$this->db->update('ak_rencana_indikator',$in);
-							//echo $this->db->last_query();
+							//pr($this->db->last_query());
 						}else{
 							$this->db->insert('ak_rencana_indikator',$in);	
 							$id_indik=mysql_insert_id();
-							//echo $this->db->last_query();
+							//pr($this->db->last_query());
 						}
 						
 						$point['id_sekolah']=$this->session->userdata['user_authentication']['id_sekolah'];
@@ -595,7 +598,7 @@ class Instrumen extends CI_Controller
 						
 					}
 					$data['jmlscor']=$jmlpoint;
-					$data['ratascor']=round($jmlpoint/count($_POST['afektif']),2);
+					$data['ratascor']=round($jmlpoint/count($_POST['otentik']),2);
 					echo json_encode($data);
 				die();
 			}
@@ -606,16 +609,16 @@ class Instrumen extends CI_Controller
 			
 			$data['pelajaran'] 	=$this->ad_pelajaran->getdataById($id_pelajaran);
 			
-			$data['afektif'] 	=$this->ad_instrumen->getIndikatorByPegSmTaSk('afektif',$_POST['id_pelajaran'],$id_mengjar,$id_kelas,$_POST['id_det_jenjang']);	
-			if(!empty($data['afektif'])){
-			foreach($data['afektif'] as $dtaff){
+			$data['otentik'] 	=$this->ad_instrumen->getIndikatorByPegSmTaSk($jenis,$_POST['id_pelajaran'],$id_mengjar,$id_kelas,$_POST['id_det_jenjang']);
+			if(!empty($data['otentik'])){
+			foreach($data['otentik'] as $dtaff){
 				$jmlpoint=$jmlpoint+$dtaff['point'][0]['point'];
 			}
 			}
 			$data['jmlpoint']=$jmlpoint;
-			$data['ratapoint']=@round($jmlpoint/count($data['afektif']),2);
+			$data['ratapoint']=@round($jmlpoint/count($data['otentik']),2);
 			$data['pelajaran'] 	=$this->ad_pelajaran->getdataById($_POST['id_pelajaran']);
-            $data['main']= 'akademik/instrumen/afektif';
+            $data['main']= 'akademik/instrumen/otentik';
             $this->load->view('layout/ad_blank',$data);
 		}
         public function psikomotorik($id_pembelajaran=0,$id_pelajaran=0){

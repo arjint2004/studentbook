@@ -1,49 +1,49 @@
 								<script>
 								$(document).ready(function(){
-									//$('div#afektifindikatorload').load('<?=site_url('akademik/instrumen/afektif/'.$param.'')?>');
+									//$('div#otentikindikatorload').load('<?=site_url('akademik/instrumen/otentik/'.$param.'')?>');
 									$.ajax({
 												type: "POST",
-												data: 'id_det_jenjang='+$('select#afektifsiswa').val()+'&nama_siswa='+$('select#afektifsiswa').find(":selected").text(),
-												url: '<?=site_url('akademik/instrumen/afektif/'.$param.'')?>',
+												data: 'id_det_jenjang='+$('select#otentiksiswa').val()+'&nama_siswa='+$('select#otentiksiswa').find(":selected").text(),
+												url: '<?=site_url('akademik/instrumen/otentik/'.$param.'')?>',
 												beforeSend: function() {
-												$("select#afektifsiswa").after("<img id='wait' style='margin: 0px; float: right; position: relative; top: 24px;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+												$("select#otentiksiswa").after("<img id='wait' style='margin: 0px; float: right; position: relative; top: 24px;'  src='<?=$this->config->item('images').'loading.png';?>' />");
 												},
 												success: function(msg) {
 													$('img#wait').remove();
-													$('div#afektifindikatorload').html(msg);
-													$('table tr td#rataafektif').html($('div#ratajml').html());
+													$('div#otentikindikatorload').html(msg);
+													$('table tr td#rataotentik').html($('div#ratajml').html());
 												}
 									});
-									$("#afektifsiswa").change(function(e){
+									$("#otentiksiswa").change(function(e){
 										$.ajax({
 													type: "POST",
 													data: 'id_det_jenjang='+$(this).val()+'&nama_siswa='+$(this).find(":selected").text(),
-													url: '<?=site_url('akademik/instrumen/afektif/'.$param.'')?>',
+													url: '<?=site_url('akademik/instrumen/otentik/'.$param.'')?>',
 													beforeSend: function() {
-													$("select#afektifsiswa").after("<img id='wait' style='margin: 0px; float: right; position: relative; top: 24px;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+													$("select#otentiksiswa").after("<img id='wait' style='margin: 0px; float: right; position: relative; top: 24px;'  src='<?=$this->config->item('images').'loading.png';?>' />");
 													},
 													success: function(msg) {
 														$('img#wait').remove();
-														$('div#afektifindikatorload').html(msg);
-														$('table tr td#rataafektif').html($('div#ratajml').html());
+														$('div#otentikindikatorload').html(msg);
+														$('table tr td#rataotentik').html($('div#ratajml').html());
 														
 													}
 										});
 									});
 								});
 								</script>	
-								<form action="<?=base_url()?>akademik/instrumen/afektif/<?=$param?>" method="post" id="formindikator" style="width:700px;height:100%;">
+								<form action="<?=base_url()?>akademik/instrumen/otentik/<?=$param?>" method="post" id="formindikator" style="width:700px;height:100%;">
 								<table class="left">
 									<tbody>
 										<tr>
 											<th colspan="2" style="text-align:center;">
-												<b>INDIKATOR PENILAIAN AFEKTIF<br />
+												<b>INDIKATOR PENILAIAN <?=strtoupper($jenis)?><br />
 											</th>
 										</tr>
 										<tr>
 											<td width="20%"><b>NAMA SISWA</b></td>
 											<td>
-												<select name="id_det_jenjang" id="afektifsiswa" style="width:95%;">
+												<select name="id_det_jenjang" id="otentiksiswa" style="width:95%;">
 													<? foreach($siswa as $datasis){?>
 													<option value="<?=$datasis['id_siswa_det_jenjang']?>"><?=$datasis['nama']?></option>
 													<? } ?>
@@ -71,9 +71,9 @@
 										</tr>
 										<tr>
 											<td><b>RATA-RATA / SCOR</b></td>
-											<td id="rataafektif"></td>
+											<td id="rataotentik"></td>
 										</tr>
 									</tbody>
 								</table>
-								<div id="afektifindikatorload"></div>
+								<div id="otentikindikatorload"></div>
 								</form>

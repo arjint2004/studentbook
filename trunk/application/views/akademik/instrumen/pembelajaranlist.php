@@ -103,39 +103,63 @@
 													<div style="width:99%;" class="file">
 													<br />
 													<h6 ><?=$datapembelajaran['topik']?></h6>
-													<h5 >Indikator</h5>
+													<h5 >Penilaian Otentik</h5>
 													<div class="hr"></div>
-													<ul class="file">
-														<li>
-															<a href="<?=site_url('akademik/instrumen/kognitifs/'.$datapembelajaran['id'].'/'.$datapembelajaran['id_pelajaran'].'')?>" id="penilaianklik" class="modal">Indikator Evaluasi Kognitif</a>
-															<!--<div  href="#nilaitab" class="modal_dialog addasb"></div>-->
-														</li>
-														<li>
-															<?
-															$par=array('id_pembelajaran'=>$datapembelajaran['id'],'id_pelajaran'=>$datapembelajaran['id_pelajaran'],'id_mengjar'=>$datapembelajaran['id_mengajar'],'evaluasi_ke'=>$datapembelajaran['pertemuan_ke'],'kelas'=>$datapembelajaran['kelas'],'id_kelas'=>$datapembelajaran['id_kelas']);
-															$par=$this->myencrypt->encode(serialize($par));
-															?>
-															<a href="<?=site_url('akademik/instrumen/praafektif/'.$par.'')?>" id="penilaianklik" class="modal">Indikator Evaluasi Afektif</a>
-														</li>
-														<li>
-															<a href="<?=site_url('akademik/instrumen/psikomotorik/'.$datapembelajaran['id'].'/'.$datapembelajaran['id_pelajaran'].'')?>" id="penilaianklik" class="modal">Indikator Evaluasi Psikomototik</a>
-														</li>
-													</ul>
+													<?
+													$par=array('id_pembelajaran'=>$datapembelajaran['id'],'id_pelajaran'=>$datapembelajaran['id_pelajaran'],'id_mengjar'=>$datapembelajaran['id_mengajar'],'evaluasi_ke'=>$datapembelajaran['pertemuan_ke'],'kelas'=>$datapembelajaran['kelas'],'id_kelas'=>$datapembelajaran['id_kelas']);
+													?>
 													<h5 >Kognitif</h5>
 														<ul  class="file">
-															<li><a href="" class="modal">Penilaian Otentik Kognitif</a></li>
+															<li>
+																<?
+																$par['jenis']='kognitif';
+																$parafektif=$this->myencrypt->encode(serialize($par));
+																?>
+																<a href="<?=site_url('akademik/instrumen/praotentik/'.$parafektif.'')?>" id="penilaianklik" class="modal">Penilaian Otentik Kognitif</a>
+															</li>
 														</ul>
 													
 													<h5 >Afektif</h5>
 														<ul  class="file">
-															<li><a href="" class="modal">Penilaian Otentik Afektif</a></li>
+															<li>
+																<?
+																$par['jenis']='afektif';
+																$parafektif=$this->myencrypt->encode(serialize($par));
+																?>
+																<a href="<?=site_url('akademik/instrumen/praotentik/'.$parafektif.'')?>" id="penilaianklik" class="modal">Penilaian Otentik Afektif</a>
+															</li>
 														</ul>
 													
 													<h5 >Psikomotorik</h5>
 														<ul  class="file">
-															<li><a href="" class="modal">Penilaian Otentik Kinerja</a></li>
-															<li><a href="" class="modal">Penilaian Otentik Proyek</a></li>
-															<li><a href="" class="modal">Penilaian Otentik Kreatifitas</a></li>
+															<li>
+																<?
+																$par['jenis']='psikomotorik';
+																$parpsikomotorik=$this->myencrypt->encode(serialize($par));
+																?>
+																<a href="<?=site_url('akademik/instrumen/praotentik/'.$parpsikomotorik.'')?>" id="penilaianklik" class="modal">Penilaian Psikomotorik</a>															
+															</li>
+															<li>
+																<?
+																$par['jenis']='kinerja';
+																$parkinerja=$this->myencrypt->encode(serialize($par));
+																?>
+																<a href="<?=site_url('akademik/instrumen/praotentik/'.$parkinerja.'')?>" id="penilaianklik" class="modal">Penilaian Otentik Kinerja</a>															
+															</li>
+															<li>
+																<?
+																$par['jenis']='project';
+																$parproject=$this->myencrypt->encode(serialize($par));
+																?>
+																<a href="<?=site_url('akademik/instrumen/praotentik/'.$parproject.'')?>" id="penilaianklik" class="modal">Penilaian Otentik Project</a>																
+															</li>
+															<li>
+																<?
+																$par['jenis']='creative';
+																$parcreative=$this->myencrypt->encode(serialize($par));
+																?>
+																<a href="<?=site_url('akademik/instrumen/praotentik/'.$parcreative.'')?>" id="penilaianklik" class="modal">Penilaian Otentik Creative</a>																
+															</li>
 														</ul>
 													
 													<!--<h5 >Scoring</h5>
@@ -146,8 +170,8 @@
 															<div  href="#nilaitab" class="modal_dialog addasb"></div>
 														</li>
 														<li>
-															<a href="<?=site_url('akademik/instrumen/penilaian/afektif/'.$datapembelajaran['id'].'/'.$datapembelajaran['id_pelajaran'].'/'.$datapembelajaran['id_kelas'].'/'.$datapembelajaran['kelas'].''.$datapembelajaran['nama_kelas'].'/'.base64_encode($datapembelajaran['topik']))?>" id="penilaianklik" class="modal">Scoring Evaluasi Afektif</a>
-															<!--<div  href="<?=site_url('akademik/instrumen/penilaian/afektif/'.$datapembelajaran['id'].'/'.$datapembelajaran['id_pelajaran'].'/'.$datapembelajaran['id_kelas'].'/'.$datapembelajaran['kelas'].''.$datapembelajaran['nama_kelas'].'/'.base64_encode($datapembelajaran['topik']))?>" class="modal addasb"></div>
+															<a href="<?=site_url('akademik/instrumen/penilaian/otentik/'.$datapembelajaran['id'].'/'.$datapembelajaran['id_pelajaran'].'/'.$datapembelajaran['id_kelas'].'/'.$datapembelajaran['kelas'].''.$datapembelajaran['nama_kelas'].'/'.base64_encode($datapembelajaran['topik']))?>" id="penilaianklik" class="modal">Scoring Evaluasi otentik</a>
+															<!--<div  href="<?=site_url('akademik/instrumen/penilaian/otentik/'.$datapembelajaran['id'].'/'.$datapembelajaran['id_pelajaran'].'/'.$datapembelajaran['id_kelas'].'/'.$datapembelajaran['kelas'].''.$datapembelajaran['nama_kelas'].'/'.base64_encode($datapembelajaran['topik']))?>" class="modal addasb"></div>
 														</li>
 														<li>
 															<a href="<?=site_url('akademik/instrumen/penilaian/psikomotorik/'.$datapembelajaran['id'].'/'.$datapembelajaran['id_pelajaran'].'/'.$datapembelajaran['id_kelas'].'/'.$datapembelajaran['kelas'].''.$datapembelajaran['nama_kelas'].'/'.base64_encode($datapembelajaran['topik']))?>" id="penilaianklik" class="modal">Scoring Evaluasi Psikomotorik</a>
