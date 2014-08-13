@@ -286,6 +286,7 @@ class Sekolah extends CI_Controller {
 								AND TABLE_SCHEMA = 'studentbook'
 								");
 		$allcols=$allcolsq->result_array();
+		pr($allcols);
 		foreach($allcols as $dtcols){
 			//pr($dtcols);
 			$this->db->query('DELETE FROM '.$dtcols['TABLE_NAME'].' WHERE id_sekolah='.$id_sekolah.'');
