@@ -291,8 +291,8 @@ class Sekolah extends CI_Controller {
 			$this->db->query('DELETE FROM '.$dtcols['TABLE_NAME'].' WHERE id_sekolah='.$id_sekolah.'');
 			pr($this->db->last_query());
 		}
-		$this->db->query('DELETE FROM ak_pelajaran WHERE id_sekolah='.$id_sekolah.'');
-		pr($this->db->last_query());
+		//$this->db->query('DELETE FROM ak_pelajaran WHERE id_sekolah='.$id_sekolah.'');
+		//pr($this->db->last_query());
 	}
 	
 	public function makedetgroup(){/*
