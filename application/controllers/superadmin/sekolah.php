@@ -283,7 +283,7 @@ class Sekolah extends CI_Controller {
 								IN (
 								'id_pelajaran'
 								)
-								AND TABLE_SCHEMA = 'studentbook'
+								AND TABLE_SCHEMA = 'studoid1_develop'
 								");
 		$allcols=$allcolsq->result_array();
 		pr($allcols);
