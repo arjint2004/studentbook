@@ -18,17 +18,20 @@
 				<a >Pembelajaran</a>
 			</li>
 			<li>
-				<a  id="tababsensi" >Absensi</a>
-			</li>
-			<li>
 				<a >Ujian</a>
-			</li>
-			
-			<li id="tabpertlist" tab="evaluasi">
-				<a > Penilaian Otentik</a>
 			</li>
 			<li>
 				<a >Nilai</a>
+			</li>
+			<li>
+				<a  id="tababsensi" >Absensi</a>
+			</li>
+			
+			<li id="tabpertlist" tab="evaluasi">
+				<a >Evaluasi Otentik</a>
+			</li>
+			<li>
+				<a >Penilaian Otentik</a>
 			</li>
 		</ul>
 		
@@ -46,19 +49,10 @@
 			<br id="brsubject"  tab="pembelajaran"  class="clear" />
             <div id="subject"></div>
 		</div>
-		<div class="tabs-frame-content" id="absensi" style="display: none;">
-			
-		</div>
 		<div class="tabs-frame-content" style="display: none;">
 			<a class="readmore" title="" href="" tab="ujian" id="daftar_harian"> Ulangan<br /> Harian </a>
             <a class="readmore" title="" href="" tab="ujian" id="daftar_uts"> Ujian<br /> Tengah Semester </a>
             <a class="readmore" title="" href="" tab="ujian" id="daftar_uas"> Ujian<br /> Akhir Semester </a>
-		</div>
-		<div class="tabs-frame-content" id="tabpertlistcnt" style="display: none;">
-			<h3>Evaluasi Pembelajaran</h3>
-			<div class="hr"></div>
-			<a class="readmore" title="" tab="evaluasi" id="addpertemuan"> Buat <br> Evaluasi </a>
-			<a class="readmore" title="" tab="evaluasi" id="datapertemuan"> Scoring <br> Evaluasi </a>
 		</div>
 		<div class="tabs-frame-content"  style="display: none;">
 				<a class="readmore" title="" tab="nilai" href="" id="<?=base64_encode('nilai pr');?>">Penilaian<br /> PR </a>
@@ -67,20 +61,26 @@
 				<a class="readmore" title="" tab="nilai"  href="" id="<?=base64_encode('nilai uts');?>">Penilaian<br /> UTS </a>
 				<a class="readmore" title="" tab="nilai"  href="" id="<?=base64_encode('nilai uas');?>">Penilaian<br /> UAS </a>
 				<a class="readmore" title="" tab="nilai"  href="" id="<?=base64_encode('nilai uan');?>"> Penilaian<br />UAN </a>
-				<a class="readmore" title="" tab="nilai"  href="" id="<?=base64_encode('nilai praktik');?>">Penilaian<br /> praktik </a>
+				<!--<a class="readmore" title="" tab="nilai"  href="" id="<?=base64_encode('nilai praktik');?>">Penilaian<br /> praktik </a>
 				<a class="readmore" title="" tab="nilai"  href="" id="psikomotorik">Penilaian<br /> Psikomotorik </a>
 				<a class="readmore" title="" tab="nilai"  href="" id="afektif">Penilaian<br /> Afektif </a>
 				<a class="readmore" title="" tab="nilai"  href="" id="<?=base64_encode('nilai kompetensi');?>"> Penilaian<br /> Kompetensi </a>
-				<a class="readmore" title="" tab="nilai" id="rekapitulasinilai" href=""> Rekapitulasi<br /> Nilai </a>
+				<a class="readmore" title="" tab="nilai" id="rekapitulasinilai" href=""> Rekapitulasi<br /> Nilai </a>-->
+		</div>
+		<div class="tabs-frame-content" id="absensi" style="display: none;">
+			
+		</div>
+		<div class="tabs-frame-content" id="tabpertlistcnt" style="display: none;">
+			<h3>Evaluasi Pembelajaran</h3>
+			<div class="hr"></div>
+			<a class="readmore" title="" tab="evaluasi" id="addpertemuan"> Buat <br> Evaluasi </a>
+			<a class="readmore" title="" tab="evaluasi" id="datapertemuan"> Scoring <br> Evaluasi </a>
 		</div>
 		<div class="tabs-frame-content"  style="display: none;">
-			<div  id="nilaitab">
-				<a class="readmore" title="" tab="nilai" href="" id="<?=base64_encode('nilai pr');?>">Penilaian<br /> PR </a>
-				<a class="readmore" title="" tab="nilai"  href="" id="<?=base64_encode('nilai tugas');?>">Penilaian<br /> Tugas  </a>
-				<a class="readmore" title="" tab="nilai"  href="" id="<?=base64_encode('nilai ulangan harian');?>">Penilaian<br /> UL harian  </a>
-				<a class="readmore" title="" tab="nilai"  href="" id="<?=base64_encode('nilai uts');?>">Penilaian<br /> UTS </a>
-				<a class="readmore" title="" tab="nilai"  href="" id="<?=base64_encode('nilai uas');?>">Penilaian<br /> UAS </a>
-			</div>
+				<a class="readmore" title="" tab="otentik" href="" id="<?=base64_encode('kognitif');?>" >Nilai<br /> Kognitif </a>
+				<a class="readmore" title="" tab="otentik" href="" id="<?=base64_encode('afektif');?>" >Nilai<br /> Afektif </a>
+				<a class="readmore" title="" tab="otentik" href="" id="<?=base64_encode('portofolio');?>" >Record<br /> Portofolio </a>
+				<a class="readmore" title="" tab="otentik" href="" id="<?=base64_encode('psikomotorik');?>">Nilai<br /> Psikomotorik</a>
 		</div>
 	</div>
 	

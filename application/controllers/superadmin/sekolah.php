@@ -273,6 +273,27 @@ class Sekolah extends CI_Controller {
 		}
 		$this->db->query('DELETE FROM ak_sekolah WHERE id='.$id_sekolah.'');
 	}
+	public function resetmapelsekolah($id_sekolah=0){
+
+
+		$allcolsq=$this->db->query("
+								SELECT DISTINCT TABLE_NAME
+								FROM INFORMATION_SCHEMA.COLUMNS
+								WHERE COLUMN_NAME
+								IN (
+								'id_pelajaran'
+								)
+								AND TABLE_SCHEMA = 'studentbook'
+								");
+		$allcols=$allcolsq->result_array();
+		foreach($allcols as $dtcols){
+			//pr($dtcols);
+			$this->db->query('DELETE FROM '.$dtcols['TABLE_NAME'].' WHERE id_sekolah='.$id_sekolah.'');
+			pr($this->db->last_query());
+		}
+		$this->db->query('DELETE FROM ak_pelajaran WHERE id_sekolah='.$id_sekolah.'');
+		pr($this->db->last_query());
+	}
 	
 	public function makedetgroup(){/*
 		$group=array(12,13,14,15);

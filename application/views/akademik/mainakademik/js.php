@@ -386,6 +386,29 @@
 								return false;
 							break;
 							  
+							case 'otentik':
+								$.ajax({
+										type: 'GET',
+										url: '<? echo base_url();?>akademik/nilaiotentik/pranilai/'+$(this).attr('id'),
+										data: '',
+										beforeSend: function() {
+											$(thisobj).append("<img style='float: right; position: absolute; top: -5px; right: 3px;' id='wait' src='<?=$this->config->item('images').'loaderhover.gif';?>' />");
+										},
+										success: function(data) {
+											$('#wait').remove();
+											$('#nilai').html('');
+											$('#subject'+$(thisobj).attr('tab')).html(data);
+											$($(thisobj).parent('div').children('a')).each(function(i) {
+													$(this).parent('div').children('a').attr('class', 'readmore');
+													lastreadmore=$(this);
+											});
+											$(thisobj).attr('class','readmore selected');
+											//$('#subject'+$(thisobj).attr('tab')).scrollintoview({ speed:'1100'});
+										}
+								});
+									return false;
+							break;
+							  
 							case 'pembelajaran':
 								var url='';
 								if($(this).attr('id')=='materi_pelajaran'){
