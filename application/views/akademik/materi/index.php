@@ -114,7 +114,7 @@
 											<option <? if(@$_POST['pelajaran']==$datapelajaran['id']){echo 'selected';}?> value="<?=$datapelajaran['id']?>"><?=$datapelajaran['nama']?></option>
 											<? } ?>
 										</select>
-										<a id="materiadd" title="" class="readmore"> Tambah Materi <br /> Prlajaran </a>
+										<a id="materiadd" title="" class="readmore"> Tambah Materi <br /> Pelajaran </a>
 										<a id="kirimmateri" title="" class="readmore"> Kirim Materi <br /> Prlajaran </a>
 										<a  style="padding:5px;" class="readmore exportexcellmateri"><img height="30" src="<?=$this->config->item('images')?>/Excel-icon.png" style="margin:0;" /> Export</a>
 										<input type="hidden" name="jenis" value="Materi" />
