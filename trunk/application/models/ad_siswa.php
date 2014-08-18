@@ -75,6 +75,7 @@ Class Ad_siswa extends CI_Model
 									AND ak.publish=1
 									ORDER BY s.nama ASC
 									',array($id_kelas,$this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['ak_setting']['ta']));
+									echo $this->db->last_query();
 		return $query->result_array();	
 	}
 	function getsiswaByIdSiswa($id_siswa=null){
