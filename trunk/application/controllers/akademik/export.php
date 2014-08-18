@@ -15,7 +15,7 @@ class Export extends CI_Controller
         }
 		
 		public function index()
-        { 
+        {
 			switch($_POST['jenis']){
 				case "Pertemuan_Pembelajaran":
 					$header=array(
@@ -86,9 +86,16 @@ class Export extends CI_Controller
 					$this->load->model('ad_absen');
 					$currentabsen=$this->ad_absen->getCurrentAbsensiExport($_POST['tanggalnyaabsensi'],$_POST['jamabsen']);
 					
+					if($this->session->userdata['ak_setting']['jenjang'][0]['nama']=='SD'){
+						unset($header[3]);
+						unset($header[4]);
+					}
 					//pr($_POST);
 					//pr($currentabsen);
 					foreach($currentabsen as $id=>$data){
+						if($this->session->userdata['ak_setting']['jenjang'][0]['nama']=='SD'){
+							unset($data['jam_ke']);
+						}
 						unset($data['id']);
 						unset($data['id_siswa_det_jenjang']);
 						unset($data['id_sekolah']);
