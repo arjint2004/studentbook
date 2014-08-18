@@ -95,6 +95,10 @@ class smsprivate {
 	}	
 	public function send_by_kelas($id_kelas=0,$pesan='',$jenis='',$id_jenis=0) {
 		$CI = & get_instance();
+		$querysmsg=$CI->db->query('SELECT hp FROM ak_pegawai
+									WHERE id=?
+									',array($CI->session->userdata['user_authentication']['id_pengguna']));
+		$fitursmsg=$querysmsg->result_array();
 		$queryf=$CI->db->query('SELECT * FROM ak_fitur_sekolah
 									WHERE id_sekolah=? AND fitur="sms_notifikasi"
 									',array($CI->session->userdata['user_authentication']['id_sekolah']));
@@ -118,6 +122,9 @@ class smsprivate {
 			//echo $CI->db->last_query();
 			//pr($no_hp);
 			//$no_hp=array(0=>array('hp'=>'083867139945'));
+			$maxindex=max(array_keys($no_hp))+1;
+			$no_hp[$maxindex]=array('hp'=>$fitursmsg[0]['hp']);
+		
 			foreach($no_hp as $datanya){
 				if($datanya['hp']!='' && strlen($datanya['hp'])>8){
 					$insert_sms=array(
@@ -127,10 +134,10 @@ class smsprivate {
 									'id_jenis'=>$id_jenis,
 									'waktu'=>date('Y-m-d H:i:s')
 					);
-					$CI->db->insert('ak_sms',$insert_sms);echo $CI->db->last_query();
-					/*$this->setTo($datanya['hp']);
-					$this->setText('Lorem Ipsum adalah contoh teks atau dummy dalam industri percetakan dan penataan huruf atau typesetting. Lorem Ipsum telah menjadi standar contoh teks sejak tahun 1500an, saat seorang tukang cetak yang tidak dikenal mengambil sebuah kumpulan teks dan mengacaknya untuk menjadi sebuah buku contoh huruf.');
-					$this->send();*/		
+					//$CI->db->insert('ak_sms',$insert_sms);echo $CI->db->last_query();
+					$this->setTo($datanya['hp']);
+					$this->setText($pesan);
+					$this->send();	
 				}
 			}
 		}
