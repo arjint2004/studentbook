@@ -634,12 +634,12 @@ class Schooladmin extends CI_Controller {
 			$this->ak_file->send_download('',$filename);	
 	}
 	
-	function fixnis(){
+	/*function fixnis(){
 		$q=$this->db->query('SELECT * FROM ak_siswa WHERE id_sekolah=59');
 		$data=$q->result_array();
 		foreach($data as $datane){
 			echo 'UPDATE ak_siswa SET nis='.$datane['nis'].' WHERE id='.$datane['id'].' AND id_sekolah=59; </br />';
 		}
-	}
+	}*/
 }
 ?>
