@@ -75,6 +75,9 @@ class Export extends CI_Controller
 					$header=array(
 							array('Data','Abseni'),
 							array('Kelas',$_POST['kelasnyaabsesnsi']),
+							array('Guru Pengajar',$this->session->userdata['user_authentication']['nama']),
+							array('Pelajaran',$_POST['pelajarannyaabsen']),
+							array('Jam Pelajaran ke',$_POST['jamkenya']),
 							array('Tanggal',$tgl[2]),
 							array('Tahun Ajaran',$this->session->userdata['ak_setting']['ta_nama']),
 							array('Semester',$this->session->userdata['ak_setting']['semester_nama']),
@@ -368,7 +371,8 @@ class Export extends CI_Controller
 			}else{
 				echo '<script>
 				alert("Data kosong");
-				window.location="'.base_url().'akademik/mainakademik/index";
+				//window.location="'.base_url().'akademik/mainakademik/index";
+				window.close();
 				</script>';
 			}
 		}

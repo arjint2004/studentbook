@@ -44,10 +44,17 @@
 	}
 	
 	$('#jamabsen').bind('change', function() {
+		$('#hiddenjamke').remove();
+		$(this).after('<input type="hidden" name="jamkenya" id="hiddenjamke" value="'+$(this).find(":selected").text()+'"/>');
 		getadd($(this),$('#popupDatepicker').val());
 	});
+	$('#pelajaranabsen').bind('change', function() {
+		$('#hiddenmapel').remove();
+		$(this).after('<input type="hidden" name="pelajarannyaabsen" id="hiddenmapel" value="'+$(this).find(":selected").text()+'"/>');
+	});
 	$('#kelasabsen').bind('change', function() {
-		$(this).after('<input type="hidden" name="kelasnyaabsesnsi" value="'+$(this).find(":selected").text()+'"/>');
+		$('#hiddenkelas').remove();
+		$(this).after('<input type="hidden" name="kelasnyaabsesnsi" id="hiddenkelas" value="'+$(this).find(":selected").text()+'"/>');
 		$.ajax({
 			type: "POST",
 			data: "id_kelas="+$('#kelasabsen').val()+"&jamabsen="+$('#jamabsen').val()+"&tanggal="+$('#popupDatepicker').val(),
@@ -90,6 +97,7 @@ $(function() {
 							
 						}
 						$('form#absensi').attr('action','<?=base_url()?>akademik/export');
+						$('form#absensi').attr('target', '__blank');  
 						$('form#absensi').submit();
 					});
 });
@@ -117,7 +125,7 @@ $(function() {
 				<select  id="jamabsen" name="jamabsen">
 					<option value="">Jam Pelajaran ke</option>
 					<? for($xx=1;$xx<=24;$xx++){?>
-					<option value="<?=$xx?>"><?=$xx?></option>
+					<option value="<?=$xx?>"> <?=$xx?> </option>
 					<? } ?>
 				</select>
 				<input type="text" placeholder="Pilih Tanggal"  name="tanggalnyaabsensi" id="popupDatepicker" style="height:28px;">
@@ -126,6 +134,11 @@ $(function() {
 				<input type="hidden" name="jenis" value="absensi" />
 				<input type="hidden" name="fileName" value="Absensi" />
 				</form>
+				<!--<h3>Export</h3>
+				<div class="hr"></div>
+				<input type="text" placeholder="Pilih Tanggal"  name="tanggalnyaabsensi" id="popupDatepicker" style="height:28px;"> 
+				S/D &nbsp;<input type="text" placeholder="Pilih Tanggal"  name="tanggalnyaabsensi" id="popupDatepicker" style="height:28px;">
+				<a  style="padding: 5px; position: relative; float: left; bottom: 16px; margin-right: 15px;" class="readmore exportexcellabsensi"><img height="30" src="<?=$this->config->item('images')?>/Excel-icon.png" style="margin:0;" /> Export</a>-->
 			</td>
 		</tr>
 	</tbody>
