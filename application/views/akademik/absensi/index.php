@@ -119,6 +119,8 @@ $(function() {
 					<option <? if(@$_POST['kelas']==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>"><?=$datakelas['kelas']?><?=$datakelas['nama']?></option>
 					<? } ?>
 				</select>
+				<? //pr($this->session->userdata['ak_setting']['jenjang'][0]['nama']);?>
+				<? if($this->session->userdata['ak_setting']['jenjang'][0]['nama']!='SD'){?>
 				<select  id="pelajaranabsen" name="pelajaranabsen">
 					<option value="">Pilih Pelajaran</option>
 				</select>
@@ -128,6 +130,9 @@ $(function() {
 					<option value="<?=$xx?>"> <?=$xx?> </option>
 					<? } ?>
 				</select>
+				<? }else{ ?>
+				<input type="hidden" name="jamabsen" value="0" />
+				<? } ?>
 				<input type="text" placeholder="Pilih Tanggal"  name="tanggalnyaabsensi" id="popupDatepicker" style="height:28px;">
 				<a id="simpanabsensi" class="button medium light-grey absenbutton" style="height:28px;" title="" > Simpan </a>
 				<a  style="padding:5px;float:right;" class="readmore exportexcellabsensi"><img height="30" src="<?=$this->config->item('images')?>/Excel-icon.png" style="margin:0;" /> Export</a>

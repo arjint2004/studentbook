@@ -635,11 +635,20 @@ class Schooladmin extends CI_Controller {
 	}
 	
 	/*function fixnis(){
-		$q=$this->db->query('SELECT * FROM ak_siswa WHERE id_sekolah=59');
+		$q=$this->db->query('SELECT * FROM ak_pegawai WHERE id_sekolah=59 AND id_siswa=""');
 		$data=$q->result_array();
 		foreach($data as $datane){
-			echo 'UPDATE ak_siswa SET nis='.$datane['nis'].' WHERE id='.$datane['id'].' AND id_sekolah=59; </br />';
+			echo $datane['nama'].'<br />';
+			echo 'UPDATE ak_pegawai SET hp="" WHERE id='.$datane['id'].' AND id_sekolah=59; </br /></br />';
 		}
 	}*/
+	function smsguru(){
+		$q=$this->db->query('SELECT * FROM ak_pegawai p JOIN users u ON p.id=u.id_pengguna WHERE p.id_sekolah=59 AND u.id_group=13');
+		$data=$q->result_array();
+		pr($data);
+		foreach($data as $datane){
+			
+		}
+	}
 }
 ?>
