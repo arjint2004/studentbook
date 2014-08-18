@@ -7,7 +7,12 @@ Class Ad_absen extends CI_Model{
 		return $query->result_array();
 	}
 	function getCurrentAbsensiExport(){
-		$query=$this->db->query('SELECT * FROM ak_absensi WHERE tanggal=? AND jam_ke=?',array($_POST['tanggalnyaabsensi'],$_POST['jamabsen']));
+		$query=$this->db->query('SELECT s.nis,s.nama,ab.* FROM ak_absensi ab
+								JOIN ak_det_jenjang adj
+								JOIN ak_siswa s
+								ON ab.id_siswa_det_jenjang=adj.id
+								AND s.id=adj.id_siswa
+		WHERE ab.tanggal=? AND ab.jam_ke=? AND ab.id_sekolah',array($_POST['tanggalnyaabsensi'],$_POST['jamabsen'],$this->session->userdata['user_authentication']['id_sekolah']));
 		//echo $this->db->last_query();
 		return $query->result_array();
 	}
