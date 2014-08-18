@@ -120,7 +120,7 @@ class Absensi extends CI_Controller
 										AND date(`waktu`) = "'.$_POST['tanggal'].'"
 										
 						');
-						echo $this->db->last_query().'<br />';
+						//echo $this->db->last_query().'<br />';
 						
 					}
 				}

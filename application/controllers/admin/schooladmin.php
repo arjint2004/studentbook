@@ -643,11 +643,20 @@ class Schooladmin extends CI_Controller {
 		}
 	}*/
 	function smsguru(){
-		$q=$this->db->query('SELECT * FROM ak_pegawai p JOIN users u ON p.id=u.id_pengguna WHERE p.id_sekolah=59 AND u.id_group=13');
+		$q=$this->db->query('SELECT *, p.password as oripass FROM ak_pegawai p JOIN users u ON p.id=u.id_pengguna WHERE p.id_sekolah=59 AND u.id_group=13');
 		$data=$q->result_array();
-		pr($data);
+		$this->load->library('smsprivate');
+		
+		
+		//pr($data);
 		foreach($data as $datane){
-			
+			//if(strlen($datane['hp'])>8 AND strlen($datane['hp'])<13){
+				$pesan="Asalamualaikum, Bp/Ibu ".$datane['nama'].". info login studentbook anda adalah username: ".$datane['username']." Password: ".$datane['oripass']."  Untuk login ke http://studentbook.co ,Sukses selalu dan tetap semangat. Terima kasih. Wassalamualaikum. (Asbin Arjinto S.Kom)";
+				pr($datane['hp']);
+				//$this->smsprivate->setTo($datane['hp']);
+				//$this->smsprivate->setText('');
+				//$this->smsprivate->send();	
+			//}
 		}
 	}
 }
