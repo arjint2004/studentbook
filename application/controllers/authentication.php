@@ -95,7 +95,7 @@ class Authentication extends CI_Controller {
 			}
 			/* not ajax, do more.... */
 
-			set_blue_notification('Welcome to Studentbook');
+			//set_blue_notification('Welcome to Studentbook');
             //redirect('home');
 			$session = session_data();
 			$group = $session['otoritas'];
@@ -121,7 +121,7 @@ class Authentication extends CI_Controller {
 				die();
 			}
 			/* not ajax, do more.... */
-            set_red_notification('Password dan Username tidak terdaftar, mohon ulangi lagi');
+            //set_red_notification('Password dan Username tidak terdaftar, mohon ulangi lagi');
 			//print_notification();
 			redirect('homepage');
         }
