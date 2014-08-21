@@ -111,7 +111,7 @@ class Authentication extends CI_Controller {
 				}elseif($group=='admin'){
 					redirect('adminsb/admin');
 				}else{
-					redirect('sos/pegawai');
+					redirect('akademik/mainakademik/index');
 				}
 			}
         } else {
