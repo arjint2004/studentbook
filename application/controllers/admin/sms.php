@@ -40,22 +40,22 @@ class Sms extends CI_Controller {
 					//pr($datauntuk);
 					unset($datauntuks);
 				}
-				if(!empty($inser_sms)){
-					if($pulsa[0]['jml_pulsa']>100){
-						$this->smsprivate->setTo($inser_sms['no_hp']);
-						$this->smsprivate->setText($inser_sms['pesan']);
-						$sts=$this->smsprivate->send();
-						$stsn=explode("=",$sts);
-						if($stsn[0]=='0'){
-							$this->db->query("UPDATE `ak_sekolah` SET `jml_pulsa` = jml_pulsa-100 WHERE `id` = ? ",array($this->session->userdata['user_authentication']['id_sekolah']));
-							$data['status'][$inser_sms['nama']]='Terkirim';
+				if(!empty($inser_sms)){					if($inser_sms['no_hp']!='' && strlen($inser_sms['no_hp'])>8){						//pr($inser_sms['no_hp']);
+						if($pulsa[0]['jml_pulsa']>100){
+							$this->smsprivate->setTo($inser_sms['no_hp']);
+							$this->smsprivate->setText($inser_sms['pesan']);
+							$sts=$this->smsprivate->send();
+							$stsn=explode("=",$sts);
+							if($stsn[0]=='0'){
+								$this->db->query("UPDATE `ak_sekolah` SET `jml_pulsa` = jml_pulsa-100 WHERE `id` = ? ",array($this->session->userdata['user_authentication']['id_sekolah']));
+								$data['status'][$inser_sms['nama']]='Terkirim';
+							}else{
+								$data['status'][$inser_sms['nama']]='SMS Error (Tidak Terkirim) / No HP salah';
+							}
 						}else{
-							$data['status'][$inser_sms['nama']]='SMS Error (Tidak Terkirim) / No HP salah';
+							$data['status'][$inser_sms['nama']]='Pulsa tinggal '.$pulsa[0]['jml_pulsa'].' tidak cukup untuk mengirim sms';
 						}
-					}else{
-						$data['status'][$inser_sms['nama']]='Pulsa tinggal '.$pulsa[0]['jml_pulsa'].' tidak cukup untuk mengirim sms';
-					}
-				}
+					}				}
 				unset($inser_sms);
 			}
 		}

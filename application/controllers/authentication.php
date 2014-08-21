@@ -98,7 +98,24 @@ class Authentication extends CI_Controller {
 			/* not ajax, do more.... */
 
 			set_blue_notification('Welcome to Studentbook');
-            redirect('home');
+            //redirect('home');
+			$session = session_data();
+			$group = $session['otoritas'];
+			if(!empty($group)) {
+				if($group=='siswa') {
+					redirect('siswa');
+				}elseif($group=='ortu') {
+					redirect('ortu');
+				}elseif($group=='admin sekolah'){
+					redirect('admin/schooladmin');
+				}elseif($group=='superadmin'){
+					redirect('superadmin/super');
+				}elseif($group=='admin'){
+					redirect('adminsb/admin');
+				}else{
+					redirect('sos/pegawai');
+				}
+			}
         } else {
 			if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
 				/* special ajax here */
