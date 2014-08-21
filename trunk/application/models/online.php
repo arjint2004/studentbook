@@ -27,7 +27,7 @@ class Online extends CI_Model
 	 * @return	bool
 	 */
 	function is_online($user_id) {
-		$this->db->select('1', FALSE);
+		$this->db->select('*');
 		$this->db->where('user_id =', $user_id);
 		$query = $this->db->get($this->table_online);
 		return $query->num_rows();
