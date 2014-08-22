@@ -30,7 +30,7 @@ class Online extends CI_Model
 		$this->db->select('*');
 		$this->db->where('user_id =', $user_id);
 		$query = $this->db->get($this->table_online);
-		return $query->num_rows();
+		return $query->num_rows(); 
 	}
 	
 	/**
