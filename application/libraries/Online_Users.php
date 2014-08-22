@@ -39,7 +39,7 @@ class Online_Users {
 	private function Run_Online() {
 		$timeout = time() - 150;
 		 
-		if (!$this->ci->online->is_online($this->user_id)) {
+		if ($this->ci->online->is_online($this->user_id)==0) {
 			$data = array(
 				'user_id'	=> $this->user_id,
 				'time'		=> time()

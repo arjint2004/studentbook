@@ -27,10 +27,9 @@ class Online extends CI_Model
 	 * @return	bool
 	 */
 	function is_online($user_id) {
-		$this->db->select('*');
-		$this->db->where('user_id =', $user_id);
-		$query = $this->db->get($this->table_online);
-		return $query->num_rows(); 
+		$q=$this->db->query('SELECT COUNT(*) as jml FROM '.$this->table_online.' WHERE user_id=?',array($user_id));
+		$dt=$q->result_array();
+		return $dt[0]['jml']; 
 	}
 	
 	/**
