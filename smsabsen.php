@@ -31,13 +31,15 @@ class sms{
 	function execute_sms(){
 	
 		//get data sms
-		$q=mysql_query("SELECT sms.notifikasi,sms.id ,ap.hp,ap.password,u.username,u.id as iduser
+		$sql="SELECT sms.notifikasi,sms.id ,ap.hp,ap.password,u.username,u.id as iduser
 						FROM ak_notifikasi_sms sms
 						JOIN ak_pegawai ap 
 						JOIN users u
 						ON ap.id_siswa = sms.id_siswa
 						AND u.id_pengguna=ap.id
-						WHERE date(waktu)='2014-06-14'");
+						WHERE date(waktu)='".date('Y-m-d')."'";
+		$q=mysql_query($sql);		
+		echo $sql;
 		$apikey='81f6cf2706d2302a33782a6126b16469';
 		//$nohp  = '+6283867139945';
 		//$pesan = 'cek api';
@@ -46,18 +48,22 @@ class sms{
 		$this->sms->phone = '2rajasms';
 		
 		while($hsl=mysql_fetch_assoc($q)){
-			
+			if(strlen($hsl['hp'])>8 && strlen($hsl['hp'])<13){
+
+			$encode=$hsl['notifikasi'].'. Pantau akademik putra/putri anda di https://studentbook.co/u/'.base64_encode($hsl['iduser']);						
+			echo '<pre>';				
+			print_r($hsl['hp']);			
+			echo '</pre>';			
 			echo '<pre>';
-			$encode=$hsl['notifikasi'].'. Pantau kegiatan anak anda di https://studentbook.co/u/'.base64_encode($hsl['iduser']);
-			//print_r($encode);
-			print_r($hsl);
-			echo '</pre>';
-			$this->sms->setTo($hsl['hp']);
+			print_r($encode);			
+			echo '</pre>';	
+
+			$this->sms->setTo('083867139945'); 
 			$this->sms->setText($encode);
-			//$sts=$this->sms->send();	
+			$sts=$this->sms->send();	
 			mysql_query("DELETE FROM `ak_notifikasi_sms` WHERE id=".$hsl['id']."");
 			//die();
-		}
+		}		}
 		
 	}
 }

@@ -134,10 +134,11 @@ class smsprivate {
 									'id_jenis'=>$id_jenis,
 									'waktu'=>date('Y-m-d H:i:s')
 					);
-					//$CI->db->insert('ak_sms',$insert_sms);echo $CI->db->last_query();
-					$this->setTo($datanya['hp']);
+					$CI->db->insert('ak_sms',$insert_sms);
+					//echo $CI->db->last_query(); 
+					/*$this->setTo($datanya['hp']);
 					$this->setText($pesan);
-					$this->send();	
+					$this->send();	*/
 				}
 			}
 		}

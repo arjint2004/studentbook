@@ -101,10 +101,7 @@
 	});
 </script>	
 
-<link type="text/css" href="<?=$this->config->item('css');?>datepick.css" rel="stylesheet">
-<script type="text/javascript" src="<?=$this->config->item('js');?>jquery.datepick.js"></script>
-<script type="text/javascript" src="<?=$this->config->item('js');?>jquery.datepick-id.js"></script>
-<script type="text/javascript" src="<?=$this->config->item('js');?>upload.js"></script>
+
 
 <script type="text/javascript">
 function getadd(obj,date) {
