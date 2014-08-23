@@ -40,6 +40,12 @@ class sms{
 		
 		while($hsl=mysql_fetch_assoc($q)){
 			if(strlen($hsl['no_hp'])>=8){
+				echo '<pre>';				
+				print_r($hsl['no_hp']);			
+				echo '</pre>';
+				echo '<pre>';				
+				print_r($hsl['pesan']);			
+				echo '</pre>';	
 				$this->sms->setTo($hsl['no_hp']);
 				$this->sms->setText($hsl['pesan']);
 				$sts=$this->sms->send();	
