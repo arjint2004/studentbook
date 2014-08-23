@@ -26,7 +26,6 @@
 			<li>
 				<a  id="tababsensi" >Absensi</a>
 			</li>
-			
 			<li id="tabpertlist" tab="evaluasi">
 				<a >Evaluasi Otentik</a>
 			</li>

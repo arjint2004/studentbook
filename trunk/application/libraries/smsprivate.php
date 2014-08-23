@@ -95,10 +95,49 @@ class smsprivate {
 	}	
 	public function send_by_kelas($id_kelas=0,$pesan='',$jenis='',$id_jenis=0) {
 		$CI = & get_instance();
+		//get mapel
+		$pel=0;
+		switch($jenis){
+			case "materi":
+				$table='ak_materi_pelajaran';
+				$pel=1;
+			break;
+			case "pr":
+				$table='ak_pr';
+				$pel=1;
+			break;
+			case "tugas":
+				$table='ak_tugas';
+				$pel=1;
+			break;
+			case "harian":
+				$table='ak_harian';
+				$pel=1;
+			break;
+			case "uas":
+				$table='ak_uas';
+				$pel=1;
+			break;
+			case "uts":
+				$table='ak_uts';
+				$pel=1;
+			break;
+			
+		}
+		if($pel==1){
+			$querypel=$CI->db->query('SELECT p.nama FROM '.$table.' t JOIN ak_pelajaran p ON t.id_pelajaran=p.id
+										WHERE t.id=?
+										',array($id_jenis));
+			$pel=$querypel->result_array();
+			$pesan=$pel[0]['nama'].'# '.$pesan;
+		}
+		//sms ke guru
 		$querysmsg=$CI->db->query('SELECT hp FROM ak_pegawai
 									WHERE id=?
 									',array($CI->session->userdata['user_authentication']['id_pengguna']));
 		$fitursmsg=$querysmsg->result_array();
+		
+		//cek fitur sms
 		$queryf=$CI->db->query('SELECT * FROM ak_fitur_sekolah
 									WHERE id_sekolah=? AND fitur="sms_notifikasi"
 									',array($CI->session->userdata['user_authentication']['id_sekolah']));
@@ -134,6 +173,7 @@ class smsprivate {
 									'id_jenis'=>$id_jenis,
 									'waktu'=>date('Y-m-d H:i:s')
 					);
+					
 					$CI->db->insert('ak_sms',$insert_sms);
 					//echo $CI->db->last_query(); 
 					/*$this->setTo($datanya['hp']);
