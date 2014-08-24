@@ -179,7 +179,7 @@ class smsprivate {
 					);
 					
 					$CI->db->insert('ak_sms',$insert_sms);
-					//echo $CI->db->last_query(); 
+					echo $CI->db->last_query(); 
 					/*$this->setTo($datanya['hp']);
 					$this->setText($pesan);
 					$this->send();	*/
