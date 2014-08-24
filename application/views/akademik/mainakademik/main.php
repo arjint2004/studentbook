@@ -5,6 +5,14 @@
 	<? $guru=$this->auth->array_searchRecursive( 13, $group, $strict=false, $path=array() );
 		if(!empty($guru)){
 	?>
+	
+	<h3 id="guru"> Notifikasi SMS yang akan dikirim hari ini</h3>
+	<div class="hr"></div>
+	<div class="tabs-container">
+		<div class="tabs-frame-content" id="smsnotifikasi" style="display: block;"></div>
+	</div>
+
+	
 	<h3 id="guru"> Pembelajaran </h3>
 
 	<div class="hr"></div>
@@ -18,19 +26,19 @@
 				<a >Pembelajaran</a>
 			</li>
 			<li>
-				<a >Ujian</a>
-			</li>
-			<li>
-				<a >Nilai</a>
-			</li>
-			<li>
 				<a  id="tababsensi" >Absensi</a>
+			</li>
+			<li>
+				<a >Ujian</a>
 			</li>
 			<li id="tabpertlist" tab="evaluasi">
 				<a >Evaluasi Otentik</a>
 			</li>
 			<li>
 				<a >Penilaian Otentik</a>
+			</li>
+			<li>
+				<a >Nilai</a>
 			</li>
 		</ul>
 		
@@ -48,10 +56,25 @@
 			<br id="brsubject"  tab="pembelajaran"  class="clear" />
             <div id="subject"></div>
 		</div>
+		<div class="tabs-frame-content" id="absensi" style="display: none;">
+			
+		</div>
 		<div class="tabs-frame-content" style="display: none;">
 			<a class="readmore" title="" href="" tab="ujian" id="daftar_harian"> Ulangan<br /> Harian </a>
             <a class="readmore" title="" href="" tab="ujian" id="daftar_uts"> Ujian<br /> Tengah Semester </a>
             <a class="readmore" title="" href="" tab="ujian" id="daftar_uas"> Ujian<br /> Akhir Semester </a>
+		</div>
+		<div class="tabs-frame-content" id="tabpertlistcnt" style="display: none;">
+			<h3>Evaluasi Otentik</h3>
+			<div class="hr"></div>
+			<a class="readmore" title="" tab="evaluasi" id="addpertemuan"> Buat <br> Evaluasi </a>
+			<a class="readmore" title="" tab="evaluasi" id="datapertemuan"> Scoring <br> Evaluasi </a>
+		</div>
+		<div class="tabs-frame-content"  style="display: none;">
+				<a class="readmore" title="" tab="otentik" href="" id="<?=base64_encode('kognitif');?>" >Nilai<br /> Kognitif </a>
+				<a class="readmore" title="" tab="otentik" href="" id="<?=base64_encode('afektif');?>" >Nilai<br /> Afektif </a>
+				<a class="readmore" title="" tab="otentik" href="" id="<?=base64_encode('portofolio');?>" >Record<br /> Portofolio </a>
+				<a class="readmore" title="" tab="otentik" href="" id="<?=base64_encode('psikomotorik');?>">Nilai<br /> Psikomotorik</a>
 		</div>
 		<div class="tabs-frame-content"  style="display: none;">
 				<a class="readmore" title="" tab="nilai" href="" id="<?=base64_encode('nilai pr');?>">Penilaian<br /> PR </a>
@@ -65,21 +88,6 @@
 				<a class="readmore" title="" tab="nilai"  href="" id="afektif">Penilaian<br /> Afektif </a>
 				<a class="readmore" title="" tab="nilai"  href="" id="<?=base64_encode('nilai kompetensi');?>"> Penilaian<br /> Kompetensi </a>
 				<a class="readmore" title="" tab="nilai" id="rekapitulasinilai" href=""> Rekapitulasi<br /> Nilai </a>-->
-		</div>
-		<div class="tabs-frame-content" id="absensi" style="display: none;">
-			
-		</div>
-		<div class="tabs-frame-content" id="tabpertlistcnt" style="display: none;">
-			<h3>Evaluasi Pembelajaran</h3>
-			<div class="hr"></div>
-			<a class="readmore" title="" tab="evaluasi" id="addpertemuan"> Buat <br> Evaluasi </a>
-			<a class="readmore" title="" tab="evaluasi" id="datapertemuan"> Scoring <br> Evaluasi </a>
-		</div>
-		<div class="tabs-frame-content"  style="display: none;">
-				<a class="readmore" title="" tab="otentik" href="" id="<?=base64_encode('kognitif');?>" >Nilai<br /> Kognitif </a>
-				<a class="readmore" title="" tab="otentik" href="" id="<?=base64_encode('afektif');?>" >Nilai<br /> Afektif </a>
-				<a class="readmore" title="" tab="otentik" href="" id="<?=base64_encode('portofolio');?>" >Record<br /> Portofolio </a>
-				<a class="readmore" title="" tab="otentik" href="" id="<?=base64_encode('psikomotorik');?>">Nilai<br /> Psikomotorik</a>
 		</div>
 	</div>
 	
@@ -171,14 +179,7 @@
 
 	<div class="hr"></div>
 	<div class="tabs-container">
-
-		<ul class="tabs-frame">
-			<li>
-				<a>Nilai</a>
-			</li>
-		</ul>
-		
-		<div class="tabs-frame-content" style="display: none;" id="nilaiekstra">
+		<div class="tabs-frame-content"  id="nilaiekstra">
 			
 		</div>
 	</div>

@@ -21,6 +21,7 @@
 				}
 			}).trigger("scroll");*/
 			
+			$('#smsnotifikasi').load('<?=base_url('akademik/sms')?>');
 			$('#tababsensi').bind('click', function() {
 				$.ajax({
 					type: "GET",

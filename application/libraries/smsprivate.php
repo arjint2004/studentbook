@@ -143,7 +143,7 @@ class smsprivate {
 									',array($CI->session->userdata['user_authentication']['id_sekolah']));
 		$fitur=$queryf->result_array();
 		if(!empty($fitur)){
-			$query=$CI->db->query('SELECT ap.hp FROM
+			$query=$CI->db->query('SELECT ap.hp,ak.nama,ak.kelas,ak.id as id_kelas, s.nama as nama_siswa FROM
 										ak_det_jenjang adj 
 										JOIN ak_siswa s 
 										JOIN ak_kelas ak 
@@ -159,18 +159,22 @@ class smsprivate {
 										',array($id_kelas,$CI->session->userdata['user_authentication']['id_sekolah'],$CI->session->userdata['ak_setting']['ta']));
 			$no_hp=$query->result_array();
 			//echo $CI->db->last_query();
-			//pr($no_hp);
+			
 			//$no_hp=array(0=>array('hp'=>'083867139945'));
 			$maxindex=max(array_keys($no_hp))+1;
 			$no_hp[$maxindex]=array('hp'=>$fitursmsg[0]['hp']);
-		
+			//pr($no_hp);
 			foreach($no_hp as $datanya){
 				if($datanya['hp']!='' && strlen($datanya['hp'])>8){
 					$insert_sms=array(
-									'no_hp'=>$datanya['hp'],
-									'pesan'=>$pesan,
-									'jenis'=>$jenis,
-									'id_jenis'=>$id_jenis,
+									'nama_siswa'=>''.$datanya['nama_siswa'].'',
+									'no_hp'=>''.$datanya['hp'].'',
+									'pesan'=>''.$pesan.'',
+									'jenis'=>''.$jenis.'',
+									'id_jenis'=>''.$id_jenis.'',
+									'id_kelas'=>''.$datanya['id_kelas'].'',
+									'id_pegawai'=>''.$CI->session->userdata['user_authentication']['id_pengguna'].'',
+									'kelas'=>''.$datanya['kelas'].$datanya['nama'].'',
 									'waktu'=>date('Y-m-d H:i:s')
 					);
 					

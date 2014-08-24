@@ -9,5 +9,17 @@ Class Ad_sms extends CI_Model{
 		//echo $this->db->last_query();
 		return $query->result_array();
 	}
+	function getSms($tanggal='',$start=0,$offset=0){
+		if($tanggal==''){$tanggal=date('Y-m-d');}
+		$query=$this->db->query('SELECT * FROM ak_sms
+								WHERE date(waktu)=? AND id_pegawai=? LIMIT '.$start.','.$offset.'',array($tanggal,$this->session->userdata['user_authentication']['id_pengguna']));
+		//echo $this->db->last_query();
+		return $query->result_array();
+	}
+	function getSmsCount(){
+		$query=$this->db->query('SELECT COUNT(*) FROM ak_sms WHERE id_pegawai=?',array($this->session->userdata['user_authentication']['id_pengguna']));
+		$cn=$query->result_array();
+		return $cn[0]['COUNT(*)'];
+	}
 }
  
