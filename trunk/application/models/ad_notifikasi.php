@@ -122,7 +122,7 @@ Class Ad_notifikasi extends CI_Model{
 			$nama=explode(" ",$siswa[0]['nama']);
 			//$data2['notifikasi']="Ananda ".strtoupper($nama[0])." hari ini (".date('d-m-Y').") hadir pada pelajaran ke |".$data2['jam_ke']."| ";
 			if($data2['absensi']=='masuk'){$data2['absensi']='hadir';}
-			$data2['notifikasi']="Ananda ".strtoupper($nama[0])." hari ini ".date('d-m-Y')." |".$data2['absensi']."|";
+			$data2['notifikasi']="PRESENSI Ananda ".strtoupper($nama[0])." hari ini ".date('d-m-Y')." |".$_POST['pelajarannyaabsen'].":".$data2['absensi']."|";
 			unset($data2['jam_ke']);
 			unset($data2['absensi']);
 			unset($nama);
@@ -135,8 +135,35 @@ Class Ad_notifikasi extends CI_Model{
 			$data3=array_merge($data2,$data);
 			//pr($data3);
 			$this->db->insert('ak_notifikasi_sms',$data3);
+			//echo $this->db->last_query();
 			
 	}
+	function add_notif_sms_ortu_per_siswa_detjenjang_absenedit($currentsms2,$id_det_jenjang,$databsen){
+		// !!!!!!!... hanya absen yang pakai
+			if($this->session->userdata['ak_setting']['jenjang'][0]['nama']!='SD'){
+				// set notif absen
+				$mapelabsenq=$this->db->query('SELECT ab.*,ap.nama as mapel FROM ak_absensi ab
+								  JOIN ak_pelajaran ap ON ab.id_pelajaran=ap.id
+								  WHERE ab.id_kelas=?  AND ab.tanggal=? AND ab.id_siswa_det_jenjang =? ORDER BY ab.jam_ke',array($_POST['id_kelas'],$_POST['tanggal'],$id_det_jenjang));
+				$mapelabsen=$mapelabsenq->result_array();
+				pr($this->db->last_query());
+				
+				foreach($mapelabsen as $smse){
+					if($smse['absensi']=='masuk'){$smse['absensi']='hadir';}
+					$smse2 .="|".$smse['mapel'].":".$smse['absensi']."";
+				}
+				
+				$textsms=explode("|",$currentsms2[$id_det_jenjang]['notifikasi']);
+				$dataUpdate['notifikasi']=$textsms[0].''.$smse2;
+			}else{
+				$textsms=explode("|",$currentsms2[$id_det_jenjang]['notifikasi']);
+				$dataUpdate['notifikasi']=$textsms[0].'|'.$databsen.'|';
+			}
+			$this->db->where('id',$currentsms2[$id_det_jenjang]['id']);
+			$this->db->update('ak_notifikasi_sms',$dataUpdate);
+			
+	}
+	
 	function add_notif_sms_ortu_nilai_perkelas($id_kelas=null,$id_mapel=null,$data=array(),$nilai){
 			// pr($data);
 		$this->load->model('ad_siswa');

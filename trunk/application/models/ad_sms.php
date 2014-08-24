@@ -2,13 +2,25 @@
 Class Ad_sms extends CI_Model{
 	
 	function getCurrentSms($tanggal){
-		$query=$this->db->query('SELECT * FROM ak_notifikasi_sms sms
+		$query=$this->db->query('SELECT sms.* FROM ak_notifikasi_sms sms
 								JOIN ak_det_jenjang adj
 								ON adj.id=sms.id_det_jenjang
 								WHERE date(sms.waktu)=? AND adj.id_kelas=?',array($tanggal,$_POST['id_kelas']));
 		//echo $this->db->last_query();
 		return $query->result_array();
 	}
+	
+	/*function getCurrentSms($tanggal){
+		$query=$this->db->query('SELECT * FROM ak_notifikasi_sms sms
+								JOIN ak_det_jenjang adj
+								ON adj.id=sms.id_det_jenjang
+								WHERE date(sms.waktu)=? 
+								AND adj.id_kelas=?
+								AND sms.id_pelajaran=?
+								',array($tanggal,$_POST['id_kelas'],$_POST['id_pelajaran']));
+		//echo $this->db->last_query();
+		return $query->result_array();
+	}*/
 	function getSms($tanggal='',$start=0,$offset=0){
 		if($tanggal==''){$tanggal=date('Y-m-d');}
 		$query=$this->db->query('SELECT * FROM ak_sms

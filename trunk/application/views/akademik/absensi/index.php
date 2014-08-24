@@ -13,7 +13,7 @@
 		$.ajax({
 			type: 'POST',
 			url: $('#absensiform').attr('action'),
-			data: $('#absensiform').serialize()+'&id_kelas='+$('#kelasabsen').val()+'&jamabsen='+$('#jamabsen').val()+'&pelajaranabsen='+$('#pelajaranabsen').val()+'&tanggal='+$('#popupDatepicker').val()+'&nama_kelas='+$('#kelasabsen').find(":selected").text(),
+			data: $('#absensiform').serialize()+'&id_kelas='+$('#kelasabsen').val()+'&jamabsen='+$('#jamabsen').val()+'&pelajaranabsen='+$('#pelajaranabsen').val()+"&pelajarannyaabsen="+$('#hiddenmapel').val()+'&tanggal='+$('#popupDatepicker').val()+'&nama_kelas='+$('#kelasabsen').find(":selected").text(),
 			beforeSend: function() {
 				$('#simpanabsensi').after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
 			},
@@ -31,7 +31,7 @@
 		if($('#kelasabsen').val()==''){$('#kelasabsen').css('border','1px solid red'); return false;}else{$('#kelasabsen').css('border','1px solid #D8D8D8');}
 		$.ajax({
 			type: "POST",
-			data: "id_kelas="+$('#kelasabsen').val()+"&jamabsen="+$('#jamabsen').val()+"&tanggal="+date,
+			data: "id_kelas="+$('#kelasabsen').val()+"&jamabsen="+$('#jamabsen').val()+"&id_pelajaran="+$('#pelajaranabsen').val()+"&pelajarannyaabsen="+$('#hiddenmapel').val()+"&tanggal="+date,
 			url: '<?=base_url()?>akademik/absensi/add',
 			beforeSend: function() {
 				$('#popupDatepicker').after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -51,6 +51,7 @@
 	$('#pelajaranabsen').bind('change', function() {
 		$('#hiddenmapel').remove();
 		$(this).after('<input type="hidden" name="pelajarannyaabsen" id="hiddenmapel" value="'+$(this).find(":selected").text()+'"/>');
+		getadd($(this),$('#popupDatepicker').val());
 	});
 	$('#kelasabsen').bind('change', function() {
 		$('#hiddenkelas').remove();
@@ -129,6 +130,7 @@ $(function() {
 					<? } ?>
 				</select>
 				<? }else{ ?>
+				<input type="hidden" name="pelajaranabsen" value="" />
 				<input type="hidden" name="jamabsen" value="0" />
 				<? } ?>
 				<input type="text" placeholder="Pilih Tanggal"  name="tanggalnyaabsensi" id="popupDatepicker" style="height:28px;">
