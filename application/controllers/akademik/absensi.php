@@ -34,16 +34,21 @@ class Absensi extends CI_Controller
 			}
 			
 
-			//pr($currentsms2);
 			//pr($currentabsen2);
-			if(isset($_POST['absen'])){			
+			if(isset($_POST['absen'])){
 				$currentsms=$this->ad_sms->getCurrentSms($_POST['tanggal']);
+				//pr($currentsms);
 				$currentsms2=array();
 				foreach($currentsms as $kysms=>$dtsms){
 					$currentsms2[$dtsms['id_det_jenjang']]=$dtsms;
 				}
 				unset($currentsms);
 				//pr($_POST['absen']);
+				if($this->session->userdata['ak_setting']['jenjang'][0]['nama']=='SD'){
+					$_POST['jamabsen']='';
+					$_POST['pelajaranabsen']='';
+					$_POST['pelajarannyaabsen']='';
+				}
 				if(empty($currentabsen)){
 					foreach($_POST['absen'] as $id_siswa_det_jenjang=>$databsen){
 						$datainsert=array(
@@ -67,8 +72,11 @@ class Absensi extends CI_Controller
 									'group'=>'absensi',
 									'waktu'=>''.$_POST['tanggal'].' '.date("H:i:s").''
 						);
+						
 						if(empty($currentsms2)){
 							$this->ad_notifikasi->add_notif_sms_ortu_per_siswa_detjenjang_absen($id_siswa_det_jenjang,$data);
+						}else{
+							$this->ad_notifikasi->add_notif_sms_ortu_per_siswa_detjenjang_absenedit($currentsms2,$id_siswa_det_jenjang,$databsen);
 						}
 						
 					}
@@ -106,20 +114,7 @@ class Absensi extends CI_Controller
 								$sambungsms=$textsms[1].','.$_POST['jamabsen'].$textsms[1];				
 							}
 						}*/
-						if($databsen=='masuk'){$databsen='hadir';}
-						$textsms=explode("|",$currentsms2[$id_siswa_det_jenjang]['notifikasi']);
-						$sambungsms=$textsms[0].'|'.$databsen.'|'.$textsms[2];
-						
-						$this->db->query('
-										UPDATE ak_notifikasi_sms SET
-										notifikasi="'.$sambungsms.'"
-										WHERE
-										id_sekolah='.$this->session->userdata['user_authentication']['id_sekolah'].'
-										AND id_det_jenjang='.$id_siswa_det_jenjang.'
-										AND `group`="absensi"
-										AND date(`waktu`) = "'.$_POST['tanggal'].'"
-										
-						');
+						$this->ad_notifikasi->add_notif_sms_ortu_per_siswa_detjenjang_absenedit($currentsms2,$id_siswa_det_jenjang,$databsen);
 						//echo $this->db->last_query().'<br />';
 						
 					}
