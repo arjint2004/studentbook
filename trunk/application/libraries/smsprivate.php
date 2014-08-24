@@ -158,7 +158,7 @@ class smsprivate {
 										ORDER BY s.nama ASC
 										',array($id_kelas,$CI->session->userdata['user_authentication']['id_sekolah'],$CI->session->userdata['ak_setting']['ta']));
 			$no_hp=$query->result_array();
-			echo $CI->db->last_query();
+			//echo $CI->db->last_query();
 			
 			//$no_hp=array(0=>array('hp'=>'083867139945'));
 			$maxindex=max(array_keys($no_hp))+1;
@@ -179,7 +179,7 @@ class smsprivate {
 					);
 					
 					$CI->db->insert('ak_sms',$insert_sms);
-					echo $CI->db->last_query(); 
+					//echo $CI->db->last_query(); 
 					/*$this->setTo($datanya['hp']);
 					$this->setText($pesan);
 					$this->send();	*/
