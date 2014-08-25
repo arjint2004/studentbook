@@ -50,6 +50,7 @@ $route['sekolah'] = 'sos/sekolah';
 $route['sekolah/get_kota'] = 'sos/sekolah/get_kota';
 $route['sekolah/daftar_sekolah'] = 'sos/sekolah/daftar_sekolah';
 $route['u/(:any)'] = 'akademik/shorturl/short/$1';
+$route['editakun'] = 'sos/pegawai/edit_pegawai';
 
 
 /* End of file routes.php */

@@ -46,10 +46,10 @@ if($cek['otoritas']=='siswa' || $cek['otoritas']=='ortu') {
                                     <a title="" href=""> <img title="" alt="" src="<?=$this->config->item('images');?>team-flickr.png"> </a>
                                     <a title="" href=""> <img title="" alt="" src="<?=$this->config->item('images');?>team-skype.png"> </a>
                                     <a title="" href=""> <img title="" alt="" src="images/team-twitter.png"> </a>-->
-                                    <? if($cek['otoritas']=='siswa' || $cek['otoritas']=='ortu') { ?>
+                                    <? if($cek['otoritas']=='siswa') { ?>
 										<a title="" href=""><a href="<?=site_url('sos/siswa/edit_siswa')?>" style="float:right; margin-right:5px;background:none;"> Ubah Biodata </a> <img title="" width="20" height="20" alt="" src="<?=$this->config->item('images');?>edit_icon.gif"> </a>
 									<? }else{ ?>
-										<a title="" href=""><a href="<?=site_url('sos/pegawai/edit_pegawai')?>" style="float:right; margin-right:5px;background:none;"> Ubah Biodata </a> <img title="" width="20" height="20" alt="" src="<?=$this->config->item('images');?>edit_icon.gif"> </a>
+										<a title="" href=""><a href="<?=site_url('editakun')?>" style="float:right; margin-right:5px;background:none;"> Ubah Biodata </a> <img title="" width="20" height="20" alt="" src="<?=$this->config->item('images');?>edit_icon.gif"> </a>
 									<? } ?>
 								</div>
                             </div>                    
