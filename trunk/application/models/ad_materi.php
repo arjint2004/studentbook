@@ -51,8 +51,8 @@ Class Ad_materi extends CI_Model{
 		$cnd2='';
 		if($id_pelajaran!=0){$cnd='AND amp.id_pelajaran="'.mysql_real_escape_string($id_pelajaran).'"';}
 		//if($id_kelas!=0){$cnd2='AND amk.id_kelas="'.mysql_real_escape_string($id_kelas).'"';}
-		$query=$this->db->query('SELECT amp.*,ap.nama as pelajaran FROM ak_materi_pelajaran amp JOIN
-								 /*ak_materi_kirim amk JOIN*/
+		$query=$this->db->query('SELECT amp.*,ap.nama as pelajaran,amk.tanggal_diajarkan FROM ak_materi_pelajaran amp JOIN
+								 ak_materi_kirim amk JOIN
 								 ak_pelajaran ap
 								 ON ap.id=amp.id_pelajaran
 								 WHERE
