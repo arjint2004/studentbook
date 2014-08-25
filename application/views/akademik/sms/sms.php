@@ -59,7 +59,7 @@
 					<th>Pesan</th>
 					<th>Kelas</th>
 					<th>Tanggal</th>
-					<th><input id="kirimcekall" type="checkbox" name="cekall" value="1"/></th>
+					<!--<th><input id="kirimcekall" type="checkbox" name="cekall" value="1"/></th>-->
 				</tr>
 				<? 
 				$no=$start;
@@ -74,16 +74,16 @@
 					<td style="text-align:left;"><?=$psn[1]?></td>
 					<td><?=$datasms['kelas']?></td>
 					<td style="text-align:left;"><? $tg=tanggal($datasms['waktu'].""); echo $tg[1];?></td>
-					<td>
+					<!--<td>
 					<input type="checkbox" class="smskirim" name="id_sms[<?=$datasms['id']?>]" value="<?=$datasms['id']?>"/>
 					<input type="hidden" name="no_hp[<?=$datasms['id']?>]" value="<?=$datasms['no_hp']?>"/>
 					<input type="hidden" name="pesan[<?=$datasms['id']?>]" value="<?=$datasms['pesan']?>"/>
 					
-					</td>
+					</td>-->
 				</tr>
 				<? } ?>
 				<tr>
-					<td style="text-align:right;" colspan="6" >
+					<td style="text-align:right;" colspan="5" >
 					<div style="float:left;" id="paginationsmsnotif" >
 					<?=$pagination?>
 					</div>
