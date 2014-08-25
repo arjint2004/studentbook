@@ -6,7 +6,7 @@
 		if(!empty($guru)){
 	?>
 	
-	<h3 id="guru"> Notifikasi SMS yang akan dikirim hari ini</h3>
+	<h3 id="guru"> Notifikasi SMS hari ini</h3>
 	<div class="hr"></div>
 	<div class="tabs-container">
 		<div class="tabs-frame-content" id="smsnotifikasi" style="display: block;"></div>
