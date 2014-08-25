@@ -64,7 +64,7 @@ Class Ad_materi extends CI_Model{
 								 ORDER BY amp.id DESC
 								 LIMIT 15
 								',array($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']));
-		//echo $this->db->last_query();
+		echo $this->db->last_query();
 		return $query->result_array();
 	}
 	function getFileMatById_mat($id_materi){
@@ -92,7 +92,7 @@ Class Ad_materi extends CI_Model{
 			$condpel='';
 			$limit='LIMIT 10';
 		}
-		$query=$this->db->query('SELECT amp.*, ak.nama as nama_kelas,ak.kelas ,ap.nama as nama_pelajaran,ag.nama as nama_guru FROM ak_materi_pelajaran amp JOIN
+		$query=$this->db->query('SELECT amk.tanggal_diajarkan,amp.*, ak.nama as nama_kelas,ak.kelas ,ap.nama as nama_pelajaran,ag.nama as nama_guru FROM ak_materi_pelajaran amp JOIN
 								 ak_materi_kirim amk JOIN
 								 ak_kelas ak JOIN 
 								 ak_pelajaran ap JOIN
