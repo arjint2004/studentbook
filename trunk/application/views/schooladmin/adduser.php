@@ -113,6 +113,9 @@
                         <p class="column one-third ">
                             <input name="nis" type="text" onblur="this.value=(this.value=='') ? 'NIS' : this.value;" onfocus="this.value=(this.value=='NIS') ? '' : this.value;" value="NIS" />
                         </p>
+                        <p class="column one-third ">
+                            <input name="hp" type="text" onblur="this.value=(this.value=='') ? 'No HP Ortu' : this.value;" onfocus="this.value=(this.value=='No HP Ortu') ? '' : this.value;" value="No HP Ortu" />
+                        </p>
 						<? } ?>
                         <p >
                             <input name="save" type="hidden" value="Simpan"/>
