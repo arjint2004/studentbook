@@ -64,7 +64,7 @@ Class Ad_materi extends CI_Model{
 								 ORDER BY amp.id DESC
 								 LIMIT 15
 								',array($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']));
-		echo $this->db->last_query();
+		//echo $this->db->last_query();
 		return $query->result_array();
 	}
 	function getFileMatById_mat($id_materi){
