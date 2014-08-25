@@ -83,7 +83,7 @@
 				</tr>
 				<? } ?>
 				<tr>
-					<td style="text-align:right;" colspan="5" >
+					<td style="text-align:right;" colspan="6" >
 					<div style="float:left;" id="paginationsmsnotif" >
 					<?=$pagination?>
 					</div>
