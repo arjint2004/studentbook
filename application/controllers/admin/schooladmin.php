@@ -471,6 +471,7 @@ class Schooladmin extends CI_Controller {
 								   'tgl_daftar' => date('Y-m-d H:i:s'),
 								   'id_sekolah' => $this->session->userdata['user_authentication']['id_sekolah'],
 								   'nama' => $_POST['NmOrtu'],
+								   'hp' => $_POST['hp'],
 								   'password' => $pass
 								);
 								//pr($dataortu);
