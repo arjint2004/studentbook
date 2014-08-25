@@ -58,7 +58,7 @@ class sms{
 			print_r($encode);			
 			echo '</pre>';	
 
-			$this->sms->setTo('083867139945'); 
+			$this->sms->setTo($hsl['hp']); 
 			$this->sms->setText($encode);
 			$sts=$this->sms->send();	
 			mysql_query("DELETE FROM `ak_notifikasi_sms` WHERE id=".$hsl['id']."");
