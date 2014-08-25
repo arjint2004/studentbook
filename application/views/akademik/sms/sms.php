@@ -88,8 +88,8 @@
 					<?=$pagination?>
 					</div>
 					<div style="font-size:11px;">*) Data diatas adalah data antri. Akan dikirim setiap 1 jam secara otomatis</div>
-					<input type="submit" name="kirim" value="Kirim Yang dipilih" class="kirimsms" />
-					<input style="margin-left:10px;" type="submit" name="kirimsemua" class="kirimsms" value="Kirim Semua" /></td>
+					<!--<input type="submit" name="kirim" value="Kirim Yang dipilih" class="kirimsms" />
+					<input style="margin-left:10px;" type="submit" name="kirimsemua" class="kirimsms" value="Kirim Semua" />--></td>
 				</tr>
 			</table>
 			<form>
