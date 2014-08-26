@@ -643,6 +643,21 @@ class Schooladmin extends CI_Controller {
 			echo 'UPDATE ak_pegawai SET hp="" WHERE id='.$datane['id'].' AND id_sekolah=59; </br /></br />';
 		}
 	}*/
+	
+	function hp_guru(){
+		
+		if(isset($_POST['hp'])){
+			foreach($_POST['hp'] as $id=>$hp){ 
+				$this->db->query('UPDATE ak_pegawai SET hp="'.$hp.'" WHERE id='.$id.'');
+			}
+		}
+		$q=$this->db->query('SELECT p.hp,p.id,p.nama FROM ak_pegawai p JOIN users u ON p.id=u.id_pengguna WHERE p.id_sekolah=59 AND u.id_group=13');
+		$data['dataguru']=$q->result_array();
+		
+		
+		$data['main']	= 'schooladmin/hp_guru'; // memilih view
+		$this->load->view('layout/ad_adminsekolah',$data);
+	}
 	function smsguru(){
 		$q=$this->db->query('SELECT *, p.password as oripass FROM ak_pegawai p JOIN users u ON p.id=u.id_pengguna WHERE p.id_sekolah=59 AND u.id_group=13');
 		$data=$q->result_array();
