@@ -3,6 +3,7 @@
 					?>
 					<ul class="side-nav">						
                     	<li <? if($this->router->class=='schooladmin' && $this->router->method=='dataakun'){echo 'class="current_page_item"';}?>> <a href="<?=site_url()?>admin/schooladmin/dataakun" title=""> Data Akun <span> </span> </a> </li>
+                    	<li <? if($this->router->class=='schooladmin' && $this->router->method=='hp_guru'){echo 'class="current_page_item"';}?>> <a href="<?=site_url()?>admin/schooladmin/hp_guru" title=""> No HP Guru <span> </span> </a> </li>
                         <li <? if($this->router->class=='sekolah' && $this->router->method=='editprofil'){echo 'class="current_page_item"';}?>> <a href="<?=site_url()?>admin/sekolah/editprofil" title="" id="ta"> Profil Sekolah <span> </span> </a> </li>
                         <li <? if($this->router->class=='content' && $this->router->method=='index'){echo 'class="current_page_item"';}?>> <a href="<?=site_url()?>admin/content/index" title="" id="ta"> Content Sekolah <span> </span> </a> </li>
 						<? if($fitur[$this->session->userdata['user_authentication']['id_sekolah']]['sms_blasting']['aktif']==1){?>
