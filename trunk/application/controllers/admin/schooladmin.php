@@ -651,7 +651,7 @@ class Schooladmin extends CI_Controller {
 				$this->db->query('UPDATE ak_pegawai SET hp="'.$hp.'" WHERE id='.$id.'');
 			}
 		}
-		$q=$this->db->query('SELECT p.hp,p.id,p.nama FROM ak_pegawai p JOIN users u ON p.id=u.id_pengguna WHERE p.id_sekolah=59 AND u.id_group=13');
+		$q=$this->db->query('SELECT p.hp,p.id,p.nama FROM ak_pegawai p JOIN users u ON p.id=u.id_pengguna WHERE p.id_sekolah='.$this->session->userdata['user_authentication']['id_sekolah'].' AND u.id_group=13');
 		$data['dataguru']=$q->result_array();
 		
 		
@@ -659,7 +659,7 @@ class Schooladmin extends CI_Controller {
 		$this->load->view('layout/ad_adminsekolah',$data);
 	}
 	function smsguru(){
-		$q=$this->db->query('SELECT *, p.password as oripass FROM ak_pegawai p JOIN users u ON p.id=u.id_pengguna WHERE p.id_sekolah=59 AND u.id_group=13');
+		$q=$this->db->query('SELECT *, p.password as oripass FROM ak_pegawai p JOIN users u ON p.id=u.id_pengguna WHERE p.id_sekolah='.$this->session->userdata['user_authentication']['id_sekolah'].' AND u.id_group=13');
 		$data=$q->result_array();
 		$this->load->library('smsprivate');
 		
@@ -670,9 +670,9 @@ class Schooladmin extends CI_Controller {
 				$pesan="Assalamualaikum, Bp/Ibu ".$datane['nama'].". info login studentbook anda adalah username: ".$datane['username']." Password: ".$datane['oripass']."  Untuk login ke http://studentbook.co ,Sukses selalu dan tetap semangat. Terima kasih. Wassalamualaikum. (Asbin Arjinto S.Kom)";
 				pr($datane['hp']);
 				pr($pesan);
-				$this->smsprivate->setTo($datane['hp']);
-				$this->smsprivate->setText($pesan);
-				$this->smsprivate->send();	
+				//$this->smsprivate->setTo($datane['hp']);
+				//$this->smsprivate->setText($pesan);
+				//$this->smsprivate->send();	
 			}
 		}
 	}
