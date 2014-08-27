@@ -93,7 +93,9 @@
 													</div>
 													<? 
 													if($this->session->userdata['user_authentication']['id_group']==12){
+														if($jenis!='materi'){
 														pengumpulan_akademik_siswa($out['id'],$jenis,$out['id_kelas']);
+														}
 													}else{
 														if($jenis!='materi'){
 															pengumpulan_akademik($out['id_kelas'],$out['id_sekolah'],$jenis,$out['id'],$out['id_pelajaran']); 

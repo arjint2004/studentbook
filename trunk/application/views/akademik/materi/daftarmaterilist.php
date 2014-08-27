@@ -63,6 +63,40 @@
 												});
 												return false;
 											}
+										});
+										$("div#paginationmaterilist a").click(function(){
+											var objdell=$(this);
+											
+												$.ajax({
+													type: "POST",
+													data: '',
+													url: $(objdell).attr('href'),
+													beforeSend: function() {
+														$(objdell).after("<img class='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+													},
+													success: function(msg) {
+														$(".wait").remove();	
+														$("#subjectlistmateri").html(msg);
+													}
+												});
+												return false;
+										});	
+										$("div#paginationmaterilistk a").click(function(){
+											var objdell=$(this);
+											
+												$.ajax({
+													type: "POST",
+													data: '',
+													url: $(objdell).attr('href'),
+													beforeSend: function() {
+														$(objdell).after("<img class='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+													},
+													success: function(msg) {
+														$(".wait").remove();	
+														$("#subjectlistmateri").html(msg);
+													}
+												});
+												return false;
 										});	
 										
 										$("div.actdellmateri").click(function(){
@@ -188,6 +222,9 @@
 											<? } ?>
 										</tbody>
 								</table>
+								<div style="float:left;" id="paginationmaterilist" >
+								<?=$pagination?>
+								</div>
     </div>
     <div class="tabs-frame-content tabs-frame-content2">
 								<table class="materilist">
@@ -303,5 +340,9 @@
 											<? } ?>
 										</tbody>
 								</table>
+								
+								<div style="float:left;" id="paginationmaterilistk" >
+								<?//=$paginationk?>
+								</div>
     </div>
 </div>
