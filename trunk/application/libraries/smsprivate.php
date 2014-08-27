@@ -143,7 +143,7 @@ class smsprivate {
 									',array($CI->session->userdata['user_authentication']['id_sekolah']));
 		$fitur=$queryf->result_array();
 		if(!empty($fitur)){
-			$query=$CI->db->query('SELECT ap.hp,ak.nama,ak.kelas,ak.id as id_kelas, s.nama as nama_siswa FROM
+			$query=$CI->db->query('SELECT ap.hp,ap.id as id_user,ak.nama,ak.kelas,ak.id as id_kelas, s.nama as nama_siswa FROM
 										ak_det_jenjang adj 
 										JOIN ak_siswa s 
 										JOIN ak_kelas ak 
@@ -169,7 +169,7 @@ class smsprivate {
 					$insert_sms=array(
 									'nama_siswa'=>''.$datanya['nama_siswa'].'',
 									'no_hp'=>''.$datanya['hp'].'',
-									'pesan'=>''.$pesan.'',
+									'pesan'=>''.$pesan.'. lihat di https://studentbook.co/u/'.base64_encode($datanya['id_user']).'',
 									'jenis'=>''.$jenis.'',
 									'id_jenis'=>''.$id_jenis.'',
 									'id_kelas'=>''.$datanya['id_kelas'].'',
