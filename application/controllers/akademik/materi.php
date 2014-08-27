@@ -231,11 +231,39 @@ class Materi extends CI_Controller
 				echo 0;
 			}
 		}
-        public function daftarmaterilist()
+		
+        public function daftarmaterilist($pelajaran=0,$id_kelas=0,$start=0,$page=0)
         {
+			if(isset($_POST['pelajaran'])){$pelajaran=$_POST['pelajaran'];}
+			if(isset($_POST['id_kelas'])){$id_kelas=$_POST['id_kelas'];}
 			$this->load->model('ad_materi');
-			$materi=$this->ad_materi->getmateriByKelasPelajaranIdPegawaiAll($_POST['pelajaran'],$_POST['id_kelas']);
+			//$materi=$this->ad_materi->getmateriByKelasPelajaranIdPegawaiAll($_POST['pelajaran'],$_POST['id_kelas']);
 			$terkirim=$this->ad_materi->getmateriByKelasPelajaranIdPegawaiKirim($_POST['pelajaran'],$_POST['id_kelas']);
+			
+			
+			$this->load->library('pagination');
+			
+			$config['base_url']   = site_url('akademik/materi/daftarmaterilist/'.$pelajaran.'/'.$id_kelas.'');
+			$config['per_page']   = 10;
+			//$config['uri_segment']   = 5;
+			$config['cur_page']   = $start;
+			$data['start'] = $start;
+			$config['total_rows'] = $this->ad_materi->getmateriByKelasPelajaranIdPegawaiAllCount($pelajaran,$id_kelas);
+            $materi =$this->ad_materi->getmateriByKelasPelajaranIdPegawaiAll($pelajaran,$id_kelas,$start,$config['per_page']);
+			$this->pagination->initialize($config);
+			$data['pagination'] = $this->pagination->create_links();
+			
+			/*$configk['base_url']   = site_url('akademik/materi/daftarmaterilist/'.$pelajaran.'/'.$id_kelas.'');
+			$configk['per_page']   = 3;
+			//$config['uri_segment']   = 5;
+			$configk['cur_page']   = $start;
+			$data['start'] = $start;
+			$configk['total_rows'] = $this->ad_materi->getmateriByKelasPelajaranIdPegawaiKirimCount($pelajaran,$id_kelas);
+            $terkirim =$this->ad_materi->getmateriByKelasPelajaranIdPegawaiKirim($pelajaran,$id_kelas,$start,$configk['per_page']);
+			$this->pagination->initialize($configk);
+			$data['paginationk'] = $this->pagination->create_links();*/
+			
+			
 			$telahdikirim=array();
 			$materi2=array();
 			if(!empty($materi)){
@@ -253,7 +281,7 @@ class Materi extends CI_Controller
 				$materi=array_merge($telahdikirim,$materi2);
 			}
 			unset($materi2);
-
+			//pr($telahdikirim);
 			$data['materi']=$materi;
 			$data['terkirim']=$telahdikirim;
 			$data['main']= 'akademik/materi/daftarmaterilist';

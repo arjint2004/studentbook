@@ -14,19 +14,16 @@ class Sms extends CI_Controller
         public function index($start=0,$page=0){
 			
 			$this->load->model('ad_sms');		
-			$this->load->library('pagination');
 			$this->load->library('smsprivate');
-
-			$config['base_url']   = site_url('akademik/sms/index');
 			
+			$this->load->library('pagination');
+			$config['base_url']   = site_url('akademik/sms/index');
 			$config['per_page']   = 5;
 			//$config['uri_segment']   = 5;
 			$config['cur_page']   = $start;
 			$data['start'] = $start;
 			$config['total_rows'] = $this->ad_sms->getSmsCount();
-			
             $data['smsakademik'] =$this->ad_sms->getSms('',$start,$config['per_page']);
-			
 			$this->pagination->initialize($config);
 			$data['pagination'] = $this->pagination->create_links();
 
