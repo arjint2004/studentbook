@@ -280,7 +280,7 @@ class Pelajaran extends CI_Controller {
 			}else{
 				$slct="";
 			}
-			$select .="<option ".@$slct." value='".$datamapel['id']."'>".$datamapel['nama']."</option>";
+			$select .="<option ".@$slct." alias='".$datamapel['alias']."' value='".$datamapel['id']."'>".$datamapel['nama']."</option>";
 	   }
 	   echo $select;
 	   die();

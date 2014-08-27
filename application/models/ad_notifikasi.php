@@ -142,15 +142,15 @@ Class Ad_notifikasi extends CI_Model{
 		// !!!!!!!... hanya absen yang pakai
 			if($this->session->userdata['ak_setting']['jenjang'][0]['nama']!='SD'){
 				// set notif absen
-				$mapelabsenq=$this->db->query('SELECT ab.*,ap.nama as mapel FROM ak_absensi ab
+				$mapelabsenq=$this->db->query('SELECT ab.*,ap.nama as mapel,ap.alias FROM ak_absensi ab
 								  JOIN ak_pelajaran ap ON ab.id_pelajaran=ap.id
 								  WHERE ab.id_kelas=?  AND ab.tanggal=? AND ab.id_siswa_det_jenjang =? ORDER BY ab.jam_ke',array($_POST['id_kelas'],$_POST['tanggal'],$id_det_jenjang));
 				$mapelabsen=$mapelabsenq->result_array();
-				pr($this->db->last_query());
+				//pr($this->db->last_query());
 				
 				foreach($mapelabsen as $smse){
 					if($smse['absensi']=='masuk'){$smse['absensi']='hadir';}
-					$smse2 .="|".$smse['mapel'].":".$smse['absensi']."";
+					$smse2 .="|".$smse['alias'].":".$smse['absensi']."";
 				}
 				
 				$textsms=explode("|",$currentsms2[$id_det_jenjang]['notifikasi']);
