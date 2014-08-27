@@ -50,7 +50,9 @@
 	});
 	$('#pelajaranabsen').bind('change', function() {
 		$('#hiddenmapel').remove();
-		$(this).after('<input type="hidden" name="pelajarannyaabsen" id="hiddenmapel" value="'+$(this).find(":selected").text()+'"/>');
+		var alias;
+		if($(this).find(":selected").attr('alias')==''){alias=$(this).find(":selected").text();}else{alias=$(this).find(":selected").attr('alias');}
+		$(this).after('<input type="hidden" name="pelajarannyaabsen" id="hiddenmapel" value="'+alias+'"/>');
 		getadd($(this),$('#popupDatepicker').val());
 	});
 	$('#kelasabsen').bind('change', function() {

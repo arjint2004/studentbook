@@ -129,7 +129,7 @@ class smsprivate {
 										WHERE t.id=?
 										',array($id_jenis));
 			$pel=$querypel->result_array();
-			$pesan=$pel[0]['nama'].'# '.$pesan;
+			$pesan=strtoupper($jenis).' '.$pel[0]['nama'].'# '.$pesan;
 		}
 		//sms ke guru
 		$querysmsg=$CI->db->query('SELECT hp FROM ak_pegawai

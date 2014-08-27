@@ -150,7 +150,8 @@ Class Ad_notifikasi extends CI_Model{
 				
 				foreach($mapelabsen as $smse){
 					if($smse['absensi']=='masuk'){$smse['absensi']='hadir';}
-					$smse2 .="|".$smse['alias'].":".$smse['absensi']."";
+					if($smse['alias']==''){$aliase=$smse['mapel'];}else{$aliase=$smse['alias'];}
+					$smse2 .="|".$aliase.":".$smse['absensi']."";
 				}
 				
 				$textsms=explode("|",$currentsms2[$id_det_jenjang]['notifikasi']);
