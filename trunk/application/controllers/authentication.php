@@ -123,7 +123,9 @@ class Authentication extends CI_Controller {
 			/* not ajax, do more.... */
             //set_red_notification('Password dan Username tidak terdaftar, mohon ulangi lagi');
 			//print_notification();
-			redirect('homepage');
+			
+			echo "<script>alert('Username atau Password anda tidak terdaftar');window.location='".base_url()."';</script>";
+			
         }
     }
     
