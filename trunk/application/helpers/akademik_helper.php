@@ -83,6 +83,7 @@ if (!function_exists('jejnjangoption')) {
 		$jenjang2['MTs']=$jenjang2['SMP'];
 		$jenjang2['MA']=$jenjang2['SMA'];
 		$jenjang2['KURSUS']=$jenjang2['SD'];
+		$jenjang2['SEKOLAH KHUSUS (SK)']=$jenjang2['SD'];
 		//pr($jenjang2);
 		$select.='<select name="jenjang" '.$atribut.'>';
 		$select.='<option value="">Pilih Jenjang</option>';
