@@ -39,21 +39,22 @@
 					data: $(this).serialize(),
 					url: $(this).attr('action'),
 					beforeSend: function() {
-						$("#adduser").html("<img src='<?=$this->config->item('images').'loading.png';?>' />");
+						$("#ajax"+listtype+"").html("<img id='waitaddsiswa' src='<?=$this->config->item('images').'loading.png';?>' />");
 					},
 					success: function(msg) {
-						$(".addaccount").remove();	
+						$("img#waitaddsiswa").remove();	
 							$.ajax({
 								type: "POST",
-								data: "ajax=1",
+								data: "ajax=1&id_kelas="+$('select#kelassiswa').val(),
 								url: '<?php echo base_url(); ?>admin/schooladmin/dataakun/'+listtype+'/0',
 								beforeSend: function() {
 									$("#ajax"+listtype+"").html("<img src='<?=$this->config->item('images').'loading.png';?>' />");
 								},
 								success: function(msg) {
-									$("#ajax"+listtype+"").html(msg);			
+									$("#ajax"+listtype+"").html(msg);					
 								}
-							});			
+							});
+						$(".addaccount").remove();				
 					}
 				});
 				return false;
@@ -100,7 +101,7 @@
                         </p>
 						<?if($otoritas=='siswa'){?>
                         <p class="column one-third">
-                            		<select name="kelas" class="valid" style="width:210px">
+                            		<select name="kelas" id="kelassiswa" class="valid" style="width:210px">
 										<option value="" >Pilih Kelas</option>
 										<? foreach($kelas as $datakelas){?>
 											<option value="<?=$datakelas['id']?>" ><?=$datakelas['kelas'].$datakelas['nama']?></option>
@@ -121,7 +122,7 @@
                             <input name="save" type="hidden" value="Simpan"/>
                             <input name="ajax" type="hidden" value="1"/>
                             <input name="listtype" type="hidden" value="<?=$otoritas?>"/>
-                            <input name="submit" type="submit" value="Simpan" class="button small grey" />
+                            <input name="submit" type="submit" value="Simpan" id="adduserloadsiswa" class="button small grey" />
                         </p>
                     </form>
                     <div class="error-container" style="display:none;"> Semua field harus di isi!  </div>
