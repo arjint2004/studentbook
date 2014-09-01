@@ -241,7 +241,7 @@
 											<td class="title">Pesan SMS ke ortu</td>
 											<td>:</td>
 											<td colspan="2">		
-												<textarea style="width:98%; height:100px;" name="pesan" cols="" rows="" placeholder="Pesan ini akan dikirim ke Orang Tua / Wali Siswa melalui SMS"></textarea>
+												<textarea style="width:98%; height:100px;" maxlength="200" name="pesan" cols="" rows="" placeholder="Pesan ini akan dikirim ke Orang Tua / Wali Siswa melalui SMS. Max 200 Char"></textarea>
 											</td>
 										</tr>
 										<tr>
