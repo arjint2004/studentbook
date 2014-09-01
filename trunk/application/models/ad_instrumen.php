@@ -268,6 +268,28 @@ Class Ad_instrumen extends CI_Model{
 		unset($indikator);
 		return $indikator2;
 	}
+	function getIndikatorByPegSmTaSkEv($indikator='',$id_pelajaran=0,$id_mengjar=0,$id_kelas=0,$id_siswa_det_jenjang=0,$id_pertemuan=0){
+		$query=$this->db->query('SELECT *
+								 FROM ak_rencana_indikator
+								 WHERE
+								 penilaian="'.$indikator.'"
+								 AND id_sekolah=?
+								 AND id_pelajaran="'.$id_pelajaran.'"
+								 AND id_pegawai=?
+								 AND semester=?
+								 AND id_mengajar=?
+								',array($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna'],$this->session->userdata['ak_setting']['semester'],$id_mengjar));
+		//echo $this->db->last_query();
+		$indikator=$query->result_array();
+		foreach($indikator as $indikdata){
+			$indikator2[$indikdata['id']]=$indikdata;
+			$querypoint=$this->db->query('SELECT * FROM ak_rencana_point_indikator WHERE id_sekolah=? AND id_indikator=? AND id_pelajaran=? AND id_kelas=? AND id_siswa_det_jenjang=? AND id_pertemuan=?',array($this->session->userdata['user_authentication']['id_sekolah'],$indikdata['id'],$id_pelajaran,$id_kelas,$id_siswa_det_jenjang,$id_pertemuan));
+			$indikator2[$indikdata['id']]['point']=$querypoint->result_array();
+			
+		}
+		unset($indikator);
+		return $indikator2;
+	}
 	function getPointIndikatorBySekPelJenKel($id_sekolah=0,$id_pelajaran=0,$id_det_jenjang=0,$id_kelas=0){
 		$query=$this->db->query('SELECT *
 								 FROM 
@@ -281,6 +303,77 @@ Class Ad_instrumen extends CI_Model{
 								',array($this->session->userdata['user_authentication']['id_sekolah'],$id_pelajaran,$id_det_jenjang,$id_kelas));
 		//echo $this->db->last_query();
 		return $query->result_array();
+	}
+	function getPointIndikatorBySekPelJenKelJenis($id_sekolah=0,$id_pelajaran=0,$id_det_jenjang=0,$id_kelas=0,$jenis=''){
+		$query=$this->db->query('SELECT *
+								 FROM 
+								 ak_rencana_point_indikator arpi
+								 INNER JOIN ak_rencana_indikator ari
+								 ON arpi.id_indikator=ari.id
+								 WHERE arpi.id_sekolah=?
+								 AND arpi.id_pelajaran=?
+								 AND arpi.id_siswa_det_jenjang=?
+								 AND arpi.id_kelas=?
+								 AND ari.penilaian=?
+								',array($this->session->userdata['user_authentication']['id_sekolah'],$id_pelajaran,$id_det_jenjang,$id_kelas,$jenis));
+		//echo $this->db->last_query();
+		return $query->result_array();
+	}
+	function getPointIndikatorByKelasMaplelJenis($id_pelajaran=0,$id_kelas=0,$jenis='',$id_siswa_det_jenjang=0){
+		$query=$this->db->query('SELECT ari.*
+								 FROM 
+								 ak_rencana_indikator ari
+								 INNER JOIN ak_mengajar am
+								 ON am.id=ari.id_mengajar
+								 WHERE ari.id_sekolah=?
+								 AND am.id_pelajaran=?
+								 AND am.id_kelas=?
+								 AND ari.penilaian=?
+								',array($this->session->userdata['user_authentication']['id_sekolah'],$id_pelajaran,$id_kelas,$jenis));
+		//echo $this->db->last_query();
+		$return=$query->result_array();
+		foreach($return as $k=>$dataind){
+			$query2=$this->db->query('SELECT arpi.point,arpi.id_pertemuan
+								 FROM 
+								 ak_rencana_point_indikator arpi
+								 WHERE arpi.id_sekolah=?
+								 AND arpi.id_indikator=?
+								 AND arpi.id_pelajaran=?
+								 AND arpi.id_kelas=?
+								 AND arpi.id_siswa_det_jenjang=?
+								',array($this->session->userdata['user_authentication']['id_sekolah'],$dataind['id'],$id_pelajaran,$id_kelas,$id_siswa_det_jenjang));
+			$point=$query2->result_array();
+			$return[$k]['point']=$point;
+		}
+		return $return;
+	}
+	function getPointIndikatorByKelasMaplelJenisPsikomotorik($id_pelajaran=0,$id_kelas=0,$jenis='',$id_siswa_det_jenjang=0){
+		$query=$this->db->query('SELECT ari.*
+								 FROM 
+								 ak_rencana_indikator ari
+								 INNER JOIN ak_mengajar am
+								 ON am.id=ari.id_mengajar
+								 WHERE ari.id_sekolah=?
+								 AND am.id_pelajaran=?
+								 AND am.id_kelas=?
+								 AND ari.penilaian IN ("psikomotorik","kinerja","project","creative")
+								',array($this->session->userdata['user_authentication']['id_sekolah'],$id_pelajaran,$id_kelas));
+		//echo $this->db->last_query();
+		$return=$query->result_array();
+		foreach($return as $k=>$dataind){
+			$query2=$this->db->query('SELECT arpi.point,arpi.id_pertemuan
+								 FROM 
+								 ak_rencana_point_indikator arpi
+								 WHERE arpi.id_sekolah=?
+								 AND arpi.id_indikator=?
+								 AND arpi.id_pelajaran=?
+								 AND arpi.id_kelas=?
+								 AND arpi.id_siswa_det_jenjang=?
+								',array($this->session->userdata['user_authentication']['id_sekolah'],$dataind['id'],$id_pelajaran,$id_kelas,$id_siswa_det_jenjang));
+			$point=$query2->result_array();
+			$return[$k]['point']=$point;
+		}
+		return $return;
 	}
 	function getPointIndikatorByPegSk($id_indikator=0,$id_kelas=0){
 		$query=$this->db->query('SELECT *

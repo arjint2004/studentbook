@@ -25,6 +25,27 @@ class Pelajaran extends CI_Controller {
 		}
 		echo $freepelajaran;
 	}
+	function deletehard($id_pelajaran=null){
+		$allcolsq=$this->db->query("
+								SELECT DISTINCT TABLE_NAME
+								FROM INFORMATION_SCHEMA.COLUMNS
+								WHERE COLUMN_NAME
+								IN (
+								'id_pelajaran'
+								)
+								AND TABLE_SCHEMA = 'studentbook'
+								");
+		$allcols=$allcolsq->result_array();
+		pr($allcols);
+		foreach($allcols as $dtcols){
+			//pr($dtcols);
+			$this->db->query('DELETE FROM '.$dtcols['TABLE_NAME'].' WHERE id_pelajaran='.$id_pelajaran.'');
+			pr($this->db->last_query());
+		}
+		$this->db->query('DELETE FROM ak_pelajaran WHERE  id='.$id_pelajaran.'');
+		
+		echo 0;
+	}
 	function editdata($id=0){
 		$this->load->model('ad_jurusan');
 		$this->load->model('ad_kelas');
@@ -265,7 +286,7 @@ class Pelajaran extends CI_Controller {
 		   $this->load->view('layout/ad_adminsekolah',$data);
 		} 
 	}
-	public function getMapelByKelasAndPegawai($id_kelas=null,$id_mapel=null)
+	public function getMapelByKelasAndPegawai($id_kelas=null,$id_mapel=null,$nopilih=0)
     {
        $this->load->model('ad_pelajaran');
        $this->load->model('ad_kelas');
@@ -273,7 +294,9 @@ class Pelajaran extends CI_Controller {
 		// pr($jurusankelasnya);die();
 	   $mapel=$this->ad_pelajaran->getdatabySemesterJenjangJurusanKelasPegawaimengajar($this->session->userdata['ak_setting']['semester'],$jurusankelasnya[0]['kelas'],$jurusankelasnya[0]['id_jurusan'],$id_kelas);
 	   $select ='';
-	   $select ="<option value='0'>Pilih Pelajaran</option>";
+	    if($nopilih==0){
+			$select ="<option value='0'>Pilih Pelajaran</option>";
+		}
 	   foreach($mapel as $datamapel){
 			if($id_mapel==$datamapel['id']){
 				$slct="selected";

@@ -2,12 +2,14 @@
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 class Ak_siswa {
 
-    function createOptionSiswaByIdKelas($id_kelas) {
+    function createOptionSiswaByIdKelas($id_kelas,$nopilih=0) {
         $CI = & get_instance();
         $CI->load->model('ad_siswa');
         $siswa=$CI->ad_siswa->getsiswaByIdKelas($id_kelas);
 		//pr($siswa);
-		$sel='<option value="">Pilih Siswa</option>';
+		if($nopilih==0){
+			$sel='<option value="">Pilih Siswa</option>';
+		}
 		foreach($siswa as $datasiswa){
 			$sel .='<option value="'.$datasiswa['id_siswa_det_jenjang'].'">('.$datasiswa['nis'].') '.$datasiswa['nama'].'</option>';
 		}

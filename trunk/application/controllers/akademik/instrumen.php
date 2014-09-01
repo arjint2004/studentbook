@@ -517,6 +517,8 @@ class Instrumen extends CI_Controller
             $this->load->view('layout/ad_blank',$data);
 		}
         public function otentik($param){
+			$this->load->model('ad_pelajaran');
+			$this->load->model('ad_instrumen');
 			$data['param']=$param;
 			$param=unserialize($this->myencrypt->decode($param));
 			$this->load->model("ad_siswa");
@@ -528,8 +530,11 @@ class Instrumen extends CI_Controller
 			$data['id_kelas'] 	=$id_kelas=$param['id_kelas'];
 			$data['id_pelajaran'] 	=$id_pelajaran=$param['id_pelajaran'];
 			$data['id_pertemuan'] 	=$id_pertemuan=$param['id_pertemuan'];
+			
+			if(!isset($_POST['id_pelajaran']) && $id_pelajaran!=0){$_POST['id_pelajaran']=$id_pelajaran;}
+			$data['otentik'] 	=$this->ad_instrumen->getIndikatorByPegSmTaSkEv($jenis,$_POST['id_pelajaran'],$id_mengjar,$id_kelas,$_POST['id_det_jenjang'],$id_pertemuan);
+			//pr($data['otentik']);
 			if(isset($_POST['otentik'])){
-				
 				//$nilaix=$_POST['nilai'];
 					unset($_POST['otentik'][0]);
 					foreach($_POST['otentik'] as $idx=>$otentik){
@@ -562,7 +567,7 @@ class Instrumen extends CI_Controller
 						
 						foreach($_POST['point'][$idx] as $id_point=>$pointnya){}
 						$jmlpoint=$jmlpoint+$pointnya;
-						if($id_point==0 || $id_point==1){
+						if($id_point==0){
 							if(isset($id_indik)){
 								$point['id_indikator']=$id_indik;
 							}
@@ -575,7 +580,7 @@ class Instrumen extends CI_Controller
 							//echo $this->db->last_query();
 						}else{
 							$point['point']=$_POST['point'][$idx][$id_point];
-							$this->db->where(array('id_sekolah'=>$this->session->userdata['user_authentication']['id_sekolah'],'id_indikator'=>$_POST['id'][$idx],'id_siswa_det_jenjang'=>$_POST['id_det_jenjang'],'id_kelas'=>$_POST['id_kelas']));
+							$this->db->where(array('id_sekolah'=>$this->session->userdata['user_authentication']['id_sekolah'],'id_indikator'=>$_POST['id'][$idx],'id_siswa_det_jenjang'=>$_POST['id_det_jenjang'],'id_kelas'=>$_POST['id_kelas'],'id_pertemuan'=>$id_pertemuan));
 							$this->db->update('ak_rencana_point_indikator',$point);
 							//echo $this->db->last_query();
 						}
@@ -587,13 +592,12 @@ class Instrumen extends CI_Controller
 				die();
 			}
 			
-			if(!isset($_POST['id_pelajaran']) && $id_pelajaran!=0){$_POST['id_pelajaran']=$id_pelajaran;}
-			$this->load->model('ad_pelajaran');
-			$this->load->model('ad_instrumen');
+			
+
 			
 			$data['pelajaran'] 	=$this->ad_pelajaran->getdataById($id_pelajaran);
 			
-			$data['otentik'] 	=$this->ad_instrumen->getIndikatorByPegSmTaSk($jenis,$_POST['id_pelajaran'],$id_mengjar,$id_kelas,$_POST['id_det_jenjang']);
+			
 			if(!empty($data['otentik'])){
 			foreach($data['otentik'] as $dtaff){
 				$jmlpoint=$jmlpoint+$dtaff['point'][0]['point'];
