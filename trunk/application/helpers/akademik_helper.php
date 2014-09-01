@@ -112,6 +112,31 @@ if (!function_exists('getkelaswali')) {
 		echo $select;
 	}
 }
+if (!function_exists('nilaihuruf')) {
+    function nilaihuruf($nilai=0) {
+		if($nilai>4 AND $nilai<=5){
+			echo 'A+';
+		}
+		if($nilai>3.5 AND $nilai<=4){
+			echo 'A';
+		}
+		if($nilai>3 AND $nilai<=3.5){
+			echo 'B+';
+		}
+		if($nilai>2.5 AND $nilai<=3){
+			echo 'B';
+		}
+		if($nilai>2 AND $nilai<=2.5){
+			echo 'C+';
+		}
+		if($nilai>1.5 AND $nilai<=2){
+			echo 'D+';
+		}
+		if($nilai>1 AND $nilai<=1.5){
+			echo 'D';
+		}
+	}
+}
 if (!function_exists('getkelas')) {
     function getkelas($atribut='') {
 		$CI = get_instance();

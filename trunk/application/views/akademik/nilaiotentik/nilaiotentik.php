@@ -43,7 +43,7 @@ $(document).ready(function(){
     <th colspan="<?=count($indikator[0]['point'])?>">NILAI EVALUASI</th>
     <th rowspan="2">RATA</th>
     <th rowspan="2">RATA TOTAL</th>
-    <th rowspan="2">NILAI KOGN</th>
+    <th rowspan="2">NILAI <?=strtoupper($_POST['jenis'])?></th>
     <th rowspan="2">DESKRIPSI KOGN</th>
   </tr>
   

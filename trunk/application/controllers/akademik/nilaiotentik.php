@@ -44,7 +44,7 @@ class Nilaiotentik extends CI_Controller {
 			}
 				 	 	 	 	
 			$Qc=$this->db->query('SELECt * FROM ak_nilai_kompetensi_kogn WHERE id_sekolah=? AND id_siswa_det_jenjang=? AND id_pelajaran=? AND ta=? AND semester=? AND penilaian=?',array($this->session->userdata['user_authentication']['id_sekolah'],$_POST['id_det_jenjang'],$_POST['pelajaran'],$this->session->userdata['ak_setting']['ta'],$this->session->userdata['ak_setting']['semester'],$_POST['jenis']));
-				$desc_kogn=$Qc->result_array();
+			$desc_kogn=$Qc->result_array();
 			if(isset($_POST['nilai'])){
 				if(empty($desc_kogn)){
 					$insert_des_kogn=array(
@@ -73,13 +73,20 @@ class Nilaiotentik extends CI_Controller {
 					$this->db->where($where);
 					$this->db->update('ak_nilai_kompetensi_kogn',$insert_des_kogn);
 				}
-				echo $this->db->last_query();
+				//echo $this->db->last_query();
 				
 			}
 			
 		}
-		$kogn=$this->ak_akademik->nilaiKognByIdDetJenPel($_POST['id_det_jenjang'],$_POST['pelajaran']);
-		$data['kogn']	=$kogn[$_POST['pelajaran']]['kognitif'];
+		$kogn=$this->ak_akademik->nilaiKognByIdDetJenPelOtentik($_POST['id_det_jenjang'],$_POST['pelajaran']);
+		if($_POST['jenis']=='kognitif'){
+			$data['kogn']	=$kogn[$_POST['pelajaran']]['kognitif'];
+		}elseif($_POST['jenis']=='afektif'){
+			$data['kogn']	=$kogn[$_POST['pelajaran']]['afektif'][0]['nilai'];
+		}elseif($_POST['jenis']=='psikomotorik'){
+			$data['kogn']	=$kogn[$_POST['pelajaran']]['Psikomotorik'][0]['nilai'];
+		}
+		
 		$data['desc_kogn']	=$desc_kogn;
 		$data['main'] 	= 'akademik/nilaiotentik/nilaiotentik';
 		$data['page_title'] 	= 'Nilai Otentik';

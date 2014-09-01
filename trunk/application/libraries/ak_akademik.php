@@ -289,8 +289,9 @@ class Ak_akademik {
 	}
 	
 	//DENGAN RUMUS
-	function nilaiKognByIdDetJenPel($id_det_jenjang=0,$id_pel=0){
+	function nilaiKognByIdDetJenPelOtentik($id_det_jenjang=0,$id_pel=0){
 		$CI =& get_instance();
+		$CI->load->model('ad_nilai');
 		$CI->load->model('ad_setting');
 		$CI->load->model('ad_pelajaran');
 
@@ -298,6 +299,10 @@ class Ak_akademik {
 		$rumusraport2=unserialize(@$rumusraport[0]['value']);
 		$rumuskognitif=$rumusraport2['rumus_raport'];
 		$pelajaran=$CI->ad_pelajaran->getdataById($id_pel);
+		
+		$Afektif=$CI->ad_nilai->getNilaiByIddetjenjangIdkelasIdPelajaran($id_det_jenjang,$id_pel,'nilai_afektif');
+		$Psikomotorik=$CI->ad_nilai->getNilaiByIddetjenjangIdkelasIdPelajaran($id_det_jenjang,$id_pel,'nilai_praktik');
+
 		//foreach($pelajaran as $datapel){
 
 			$kognitif[$id_pel]['pelajaran']=$pelajaran[0]['nama'];
@@ -317,7 +322,10 @@ class Ak_akademik {
 			$rumuskognitif2='$hs='.$rumuskognitif.';';
 			eval($rumuskognitif2);
 			$kognitif[$id_pel]['kognitif']=$hs;
+			$kognitif[$id_pel]['afektif']=$Afektif;
+			$kognitif[$id_pel]['Psikomotorik']=$Psikomotorik;
 				
+			//pr($kognitif);
 			if($pelajaran[0]['havechild']==1){
 				$subnilai=$this->SubnilaiRaportPerSiswa($id_det_jenjang,$id_pel);
 				if($subnilai=='nosub'){

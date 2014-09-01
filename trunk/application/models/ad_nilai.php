@@ -110,7 +110,7 @@ Class Ad_nilai extends CI_Model{
 								 AND an.semester=?
 								 AND an.ta=?
 									',array($id_kelas,$id_pelajaran,$this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['ak_setting']['semester'],$this->session->userdata['ak_setting']['ta']));
-		//echo $this->db->last_query();
+		echo $this->db->last_query();
 		return $query->result_array();
 	}
 	function getSubjectNilaiListNilai($id_kelas=null,$id_pelajaran=null,$jenis=null){
@@ -203,7 +203,7 @@ Class Ad_nilai extends CI_Model{
 								pl.id="'.$id_pelajaran.'"
 								ORDER BY sis.nama ASC
 								');
-								//echo $this->db->last_query();
+								//pr($this->db->last_query());
 		return $query->result_array();
 	}
 	//nilai
