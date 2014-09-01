@@ -289,6 +289,51 @@ class Ak_akademik {
 	}
 	
 	//DENGAN RUMUS
+	function nilaiKognByIdDetJenPel($id_det_jenjang=0,$id_pel=0){
+		$CI =& get_instance();
+		$CI->load->model('ad_setting');
+		$CI->load->model('ad_pelajaran');
+
+		$rumusraport=$CI->ad_setting->getSetting('rumusraport',$CI->session->userdata['user_authentication']['id_sekolah']);
+		$rumusraport2=unserialize(@$rumusraport[0]['value']);
+		$rumuskognitif=$rumusraport2['rumus_raport'];
+		$pelajaran=$CI->ad_pelajaran->getdataById($id_pel);
+		//foreach($pelajaran as $datapel){
+
+			$kognitif[$id_pel]['pelajaran']=$pelajaran[0]['nama'];
+			
+			//kognitif
+			//Rata2
+			$rata2=$this->getAllRata2_Nilai_perSiswa($id_det_jenjang, $id_pel);
+			$PR=@$rata2['nilai_pr'][$id_det_jenjang]['rata'];
+			$TUGAS=@$rata2['nilai_tugas'][$id_det_jenjang]['rata'];
+			$HARIAN=@$rata2['nilai_ulangan_harian'][$id_det_jenjang]['rata'];
+			
+			$nilaiUAS=$this->getNilai_PerSiswa($id_det_jenjang, $id_pel,'nilai uas');
+			$nilaiUTS=$this->getNilai_PerSiswa($id_det_jenjang, $id_pel,'nilai uts');
+			$UTS=$nilaiUTS[$id_det_jenjang][0]['nilai'];
+			$UAS=$nilaiUAS[$id_det_jenjang][0]['nilai'];
+			
+			$rumuskognitif2='$hs='.$rumuskognitif.';';
+			eval($rumuskognitif2);
+			$kognitif[$id_pel]['kognitif']=$hs;
+				
+			if($pelajaran[0]['havechild']==1){
+				$subnilai=$this->SubnilaiRaportPerSiswa($id_det_jenjang,$id_pel);
+				if($subnilai=='nosub'){
+				
+				}else{
+					$kognitif[$id_pel]['kognitif']=$subnilai['kognitif'];
+					$kognitif[$id_pel]['praktik']=$subnilai['praktik'];
+					$kognitif['submapel'][$id_pel.'-'.$pelajaran[0]['nama']]=$subnilai['datasub'];
+					
+				}
+			}
+			
+		//}
+		return $kognitif;	
+	}
+	//DENGAN RUMUS
 	function nilaiRaportPerSiswa($id_det_jenjang=0){
 		$CI =& get_instance();
 		$CI->load->model('ad_pelajaran');

@@ -4,7 +4,7 @@
 						$.ajax({
 							type: "POST",
 							data: $("form#filterpelajaranlistOtentik").serialize(),
-							url: '<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$('select#kelasListotentik').val(),
+							url: '<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$('select#kelasListotentik').val()+'/0/1',
 							beforeSend: function() {
 								$("#filterpelajaranlistOtentik select#kelasListotentik").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
 								$("#subjectnilaiotentiklist table.tabelkelas tbody").html("");
@@ -16,19 +16,34 @@
 								
 								$.ajax({
 									type: "POST",
-									data: $("form#filterpelajaranlistOtentik").serialize(),
-									url: '<?=base_url()?>akademik/nilaiotentik/nilai',
+									data: 'id_kelas='+$('select#kelasListotentik').val(),
+									url: '<?=base_url()?>akademik/nilaiotentik/getOptionSiswaByIdKelas',
 									beforeSend: function() {
-										$("#filterpelajaranlistOtentik select#pelajaranlistotentik").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
+										$("#filterpelajaranlistOtentik select#id_det_jenjang_otentik").after("<img id='wait' style='float:left;' src='<?=$this->config->item('images').'loading.png';?>' />");
 									},
 									success: function(msg) {
 										$("#wait").remove();
-										$("#subjectnilaiotentiklist").html(msg);	
+										$("#id_det_jenjang_otentik").html(msg);	
+										$.ajax({
+											type: "POST",
+											data: $("form#filterpelajaranlistOtentik").serialize(),
+											url: '<?=base_url()?>akademik/nilaiotentik/nilai',
+											beforeSend: function() {
+												$("#filterpelajaranlistOtentik select#pelajaranlistotentik").after("<img id='wait' style='float:left;' src='<?=$this->config->item('images').'loading.png';?>' />");
+											},
+											success: function(msg) {
+												$("#wait").remove();
+												$("#subjectnilaiotentiklist").html(msg);
+											}
+										});
+									
 									}
 								});
+
 								return false;
 							}
 						});
+
 					//Submit Start
 					$(".editdata").click(function(e){
 						$('#ajaxside').load('<?=base_url()?>admin/pelajaran/editData/'+$(this).attr('id'));
@@ -38,14 +53,25 @@
 						$.ajax({
 							type: "POST",
 							data: $("form#filterpelajaranlistOtentik").serialize(),
-							url: '<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$(this).val(),
+							url: '<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$(this).val()+'/0/1',
 							beforeSend: function() {
-								$("#filterpelajaranlistOtentik select#kelasListotentik").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
-								$("#subjectnilaiotentiklist table.tabelkelas tbody").html("");
+								$("#filterpelajaranlistOtentik select#kelasListotentik").after("<img id='wait' style='float:left;' src='<?=$this->config->item('images').'loading.png';?>' />");
 							},
 							success: function(msg) {
 								$("#wait").remove();
 								$("#pelajaranlistotentik").html(msg);	
+							}
+						});
+						$.ajax({
+							type: "POST",
+							data: 'id_kelas='+$(this).val(),
+							url: '<?=base_url()?>akademik/nilaiotentik/getOptionSiswaByIdKelas',
+							beforeSend: function() {
+								$("#filterpelajaranlistOtentik select#id_det_jenjang_otentik").after("<img id='wait' style='float:left;' src='<?=$this->config->item('images').'loading.png';?>' />");
+							},
+							success: function(msg) {
+								$("#wait").remove();
+								$("#id_det_jenjang_otentik").html(msg);	
 							}
 						});
 						return false;
@@ -56,7 +82,7 @@
 							data: $("form#filterpelajaranlistOtentik").serialize(),
 							url: '<?=base_url()?>akademik/nilaiotentik/nilai',
 							beforeSend: function() {
-								$("#filterpelajaranlistOtentik select#pelajaranlistotentik").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
+								$("#filterpelajaranlistOtentik select#pelajaranlistotentik").after("<img id='wait' style='float:left;' src='<?=$this->config->item('images').'loading.png';?>' />");
 							},
 							success: function(msg) {
 								$("#wait").remove();
@@ -75,24 +101,30 @@
 							<form action="" method="post" id="filterpelajaranlistOtentik" >
 							<table class="tabelfilter">
 								<tr>
+								<td style="text-align:left;">KELAS</td>
 								<td>
-									Kelas :
-										<select class="selectfilter" id="kelasListotentik" name="id_kelas">
-											<option value="">Pilih Kelas</option>
-											<? foreach($kelas as $datakelas){?>
+									<select style="margin:0; float:left;" class="selectfilter" id="kelasListotentik" name="id_kelas">
+										<option value="">Pilih Kelas</option>
+										<? foreach($kelas as $datakelas){?>
 											<option <? if(@$_POST['kelas']==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>"><?=$datakelas['kelas']?><?=$datakelas['nama']?></option>
-											<? } ?>
-										</select>
-
-									
-									Pelajaran :
-										<select class="selectfilter" id="pelajaranlistotentik" name="pelajaran">
-											<? foreach($pelajaran as $datapelajaran){?>
-											<option <? if(@$_POST['pelajaran']==$datapelajaran['id']){echo 'selected';}?> value="<?=$datapelajaran['id']?>"><?=$datapelajaran['nama']?></option>
-											<? } ?>
-										</select>
-										<input type="hidden" name="jenis" value="<?=$jenis?>" />
-									</td>
+										<? } ?>
+									</select>
+								</td>
+								</tr>
+								<tr>
+								<td style="text-align:left;">PELAJARAN</td>
+								<td>
+									<select style="margin:0; float:left;" class="selectfilter" id="pelajaranlistotentik" name="pelajaran"></select>
+								</td>
+								</tr>
+								<tr>
+								<td style="text-align:left;">SISWA</td>
+								<td>
+									<select style="margin:0; float:left;" class="selectfilter" id="id_det_jenjang_otentik" name="id_det_jenjang">
+										<option value="">Pilih Siswa</option>
+									</select>
+									<input type="hidden" name="jenis" value="<?=$jenis?>" />
+								</td>
 								</tr>
 							</table>
 							<input type="hidden" name="ajax" value="1" />
