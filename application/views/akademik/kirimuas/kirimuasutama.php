@@ -260,7 +260,7 @@ $(function() {
 				<td width="30%" class="title">SMS ke ORTU</td>
 				<td width="1">:</td>
 				<td colspan="2">
-					<textarea name="keterangan" placeholder="Keterangan akan dikirim ke Orang Tua / Wali Siswa melalui SMS" id="keteranganadduas"></textarea>
+					<textarea name="keterangan" maxlength="200" placeholder="Keterangan akan dikirim ke Orang Tua / Wali Siswa melalui SMS" id="keteranganadduas"></textarea>
 				</td>
 			</tr>
 			<tr>
