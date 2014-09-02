@@ -66,7 +66,7 @@ $(document).ready(function(){
 					success: function(msg) {
 						if(msg==1){
 							$(".addaccount").remove();	
-							$.ajax({
+							/*$.ajax({
 								type: "POST",
 								data: "ajax=1&id_pegawai="+$id_pegawai,
 								url: '<?php echo base_url(); ?>admin/pengajaran/listData',
@@ -76,7 +76,7 @@ $(document).ready(function(){
 								success: function(msg) {
 									$("#listpengajaran").html(msg);			
 								}
-							});		
+							});	*/	
 						}else{
 							alert('Guru ini sudah mengajar di kelas, jurusan, semester, pelajaran yang anda pilih.');
 						}
