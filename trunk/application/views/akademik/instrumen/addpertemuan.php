@@ -190,14 +190,14 @@ $(function() {
 					<textarea name="topik"></textarea>
 				</td>
 			</tr>
-			<tr>
+			<!--<tr>
 				<td width="30%" class="title">Keterangan ke Wali/Ortu</td> 
 				<td width="1">:</td>
 				<td>
 					<textarea name="sms"></textarea>
 					<div style="font-size:11px;" id="response">*) Jika di isi, keterangan akan dikirim ke Wali/ortu melalui SMS</div>
 				</td>
-			</tr>
+			</tr>-->
 			<tr>
 				<th style="text-align:right;" colspan="3">
 				<a onclick="$('#pembelajaranadd').submit();" id="simpanpr" class="button small light-grey absenbutton" title=""> Simpan </a>
