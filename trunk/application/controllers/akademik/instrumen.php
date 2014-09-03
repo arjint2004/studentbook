@@ -134,7 +134,7 @@ class Instrumen extends CI_Controller
 										'ta'=>$this->session->userdata['ak_setting']['ta'],
 										'semester'=>$this->session->userdata['ak_setting']['semester'],
 										'topik'=>$_POST['topik'],
-										'waktu'=>$_POST['waktu'],
+										//'waktu'=>$_POST['waktu'],
 										'tanggal'=>$_POST['tanggal'],
 										'pertemuan_ke'=>$_POST['pertemuan_ke']
 					);
@@ -209,7 +209,7 @@ class Instrumen extends CI_Controller
 				$datainsert=array(
 									'id_sekolah'=>$this->session->userdata['user_authentication']['id_sekolah'],
 									'topik'=>$_POST['topik'],
-									'waktu'=>$_POST['waktu'],
+									//'waktu'=>$_POST['waktu'],
 									'tanggal'=>$_POST['tanggal'],
 									'pertemuan_ke'=>$_POST['pertemuan_ke']
 				);

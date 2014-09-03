@@ -145,14 +145,14 @@ $(function() {
 					<input type="text" style="width:100px"  name="tanggal" readonly id="tanggalevaluasi" size="10" value="<?=$pertemuan[0]['tanggal']?>">
 				</td>
 			</tr>
-			<tr>
+			<!--<tr>
 				<td width="30%" class="title">Lama pelaksanaan</td> 
 				<td width="1">:</td>
 				<td>
 					<input type="text" name="waktu" size="30" value="<?=$pertemuan[0]['waktu']?>">
 					<div style="font-size:11px;" id="response">*) Contoh: 2 x 45 Menit</div>
 				</td>
-			</tr>
+			</tr>-->
 			<tr>
 				<td width="30%" class="title">Evaluasi Ke</td> 
 				<td width="1">:</td>

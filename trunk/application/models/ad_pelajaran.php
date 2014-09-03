@@ -163,6 +163,18 @@ Class Ad_pelajaran extends CI_Model
 		//echo $this->db->last_query();
 		return $query->result_array();
 	}
+	function getdataChild($id_parentmapel=0){
+		$query=$this->db->query('
+								SELECT * FROM ak_pelajaran ap
+								WHERE 
+								ap.id_sekolah='.$this->session->userdata['user_authentication']['id_sekolah'].'
+								AND ap.semester='.$this->session->userdata['ak_setting']['semester'].'
+								AND ap.id_parent='.$id_parentmapel.'
+								
+		');
+		//echo $this->db->last_query();
+		return $query->result_array();
+	}
 	function getdataById($id=0){
 		
 		$query=$this->db->query('SELECT pl.*,jr.nama as nama_jurusan FROM ak_pelajaran pl JOIN ak_jurusan jr ON pl.id_jurusan=jr.id WHERE pl.id_sekolah='.$this->session->userdata['user_authentication']['id_sekolah'].' AND pl.id='.$id.'');
