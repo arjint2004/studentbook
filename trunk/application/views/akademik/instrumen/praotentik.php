@@ -69,10 +69,10 @@
 											<td><b>GURU PENGAJAR</b></td>
 											<td><?=$this->session->userdata['user_authentication']['nama']?></td>
 										</tr>
-										<tr>
+										<!--<tr>
 											<td><b>RATA-RATA / SCOR</b></td>
 											<td id="rataotentik"></td>
-										</tr>
+										</tr>-->
 									</tbody>
 								</table>
 								<div id="otentikindikatorload"></div>
