@@ -91,7 +91,6 @@
 						});
 						return false;
 					});//Submit End
-				
 					$("form#filterpelajaranlistOtentik select#id_det_jenjang_otentik").change(function(e){
 						$.ajax({
 							type: "POST",
