@@ -293,6 +293,7 @@ class Pelajaran extends CI_Controller {
 	   $jurusankelasnya=$this->ad_kelas->getkelasById($this->session->userdata['user_authentication']['id_sekolah'],$id_kelas);
 		// pr($jurusankelasnya);die();
 	   $mapel=$this->ad_pelajaran->getdatabySemesterJenjangJurusanKelasPegawaimengajar($this->session->userdata['ak_setting']['semester'],$jurusankelasnya[0]['kelas'],$jurusankelasnya[0]['id_jurusan'],$id_kelas);
+	   //pr($mapel);
 	   $select ='';
 	    if($nopilih==0){
 			$select ="<option value='0'>Pilih Pelajaran</option>";
@@ -303,7 +304,19 @@ class Pelajaran extends CI_Controller {
 			}else{
 				$slct="";
 			}
-			$select .="<option ".@$slct." alias='".$datamapel['alias']."' value='".$datamapel['id']."'>".$datamapel['nama']."</option>";
+			/*if($datamapel['havechild']==1){
+				$mapelchild=$this->ad_pelajaran->getdataChild($datamapel['id']);
+				foreach($mapelchild as $datamapelchild){
+					if($id_mapel==$datamapelchild['id']){
+						$slct="selected";
+					}else{
+						$slct="";
+					}
+					$select .="<option ".@$slct." alias='".$datamapelchild['alias']."' value='".$datamapelchild['id']."'>".$datamapelchild['nama']."</option>";
+				}
+			}else{*/
+				$select .="<option ".@$slct." alias='".$datamapel['alias']."' value='".$datamapel['id']."'>".$datamapel['nama']."</option>";
+			//}
 	   }
 	   echo $select;
 	   die();
