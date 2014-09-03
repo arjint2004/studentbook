@@ -516,6 +516,99 @@ class Instrumen extends CI_Controller
             $data['main']= 'akademik/instrumen/praotentik';
             $this->load->view('layout/ad_blank',$data);
 		}
+        public function otentikmassal($param){
+			$this->load->model('ad_pelajaran');
+			$this->load->model('ad_instrumen');
+			$data['param']=$param;
+			$param=unserialize($this->myencrypt->decode($param));
+			$this->load->model("ad_siswa");
+			$data['siswa']= $this->ad_siswa->getsiswaByIdKelas($id_kelas,'s.id,s.nama, adj.id as id_siswa_det_jenjang');
+			$data['jenis'] 	=$jenis=$param['jenis'];
+			$data['evaluasi_ke'] 	=$evaluasi_ke=$param['evaluasi_ke'];
+			$data['kelas'] 	=$kelas=$param['kelas'];
+			$data['id_mengjar'] 	=$id_mengjar=$param['id_mengjar'];
+			$data['id_kelas'] 	=$id_kelas=$param['id_kelas'];
+			$data['id_pelajaran'] 	=$id_pelajaran=$param['id_pelajaran'];
+			$data['id_pertemuan'] 	=$id_pertemuan=$param['id_pertemuan'];
+			
+			if(!isset($_POST['id_pelajaran']) && $id_pelajaran!=0){$_POST['id_pelajaran']=$id_pelajaran;}
+			$data['otentik'] 	=$this->ad_instrumen->getIndikatorByPegSmTaSkEv($jenis,$_POST['id_pelajaran'],$id_mengjar,$id_kelas,$_POST['id_det_jenjang'],$id_pertemuan);
+			//pr($data['otentik']);
+			if(isset($_POST['otentik'])){
+				//$nilaix=$_POST['nilai'];
+					unset($_POST['otentik'][0]);
+					foreach($_POST['otentik'] as $idx=>$otentik){
+						@$in['id_sekolah']=$this->session->userdata['user_authentication']['id_sekolah'];
+						@$in['id_pegawai']=$this->session->userdata['user_authentication']['id_pengguna'];
+						@$in['semester']=$this->session->userdata['ak_setting']['semester'];
+						@$in['penilaian']=$jenis;
+						@$in['indikator']=$otentik;
+						@$in['id_mengajar']=$_POST['id_mengjar'];
+						//@$in['id_pertemuan']=$id_pemb;
+						@$in['id_pelajaran']=$id_pelajaran;
+						//@$in['nilai']=$nilaix[$idx];
+						//pr($in);
+						if(isset($_POST['id'][$idx])){
+							$this->db->where('id',$_POST['id'][$idx]);
+							$this->db->update('ak_rencana_indikator',$in);
+							//pr($this->db->last_query());
+						}else{
+							$this->db->insert('ak_rencana_indikator',$in);	
+							$id_indik=mysql_insert_id();
+							//pr($this->db->last_query());
+						}
+						
+						$point['id_sekolah']=$this->session->userdata['user_authentication']['id_sekolah'];
+						$point['id_pelajaran']=$_POST['id_pelajaran'];
+						$point['id_pertemuan']=$id_pertemuan;
+						$point['id_indikator']=$idx;
+						$point['id_siswa_det_jenjang']=$_POST['id_det_jenjang'];
+						$point['id_kelas']=$_POST['id_kelas'];
+						
+						foreach($_POST['point'][$idx] as $id_point=>$pointnya){}
+						//$jmlpoint=$jmlpoint+$pointnya;
+						if($id_point==0){
+							if(isset($id_indik)){
+								$point['id_indikator']=$id_indik;
+							}
+							if(!isset($_POST['point'][$idx][0])){
+								$point['point']=$_POST['point'][$idx][1];
+							}else{
+								$point['point']=$_POST['point'][$idx][0];
+							}
+							$this->db->insert('ak_rencana_point_indikator',$point);
+							//echo $this->db->last_query();
+						}else{
+							$point['point']=$_POST['point'][$idx][$id_point];
+							$this->db->where(array('id_sekolah'=>$this->session->userdata['user_authentication']['id_sekolah'],'id_indikator'=>$_POST['id'][$idx],'id_siswa_det_jenjang'=>$_POST['id_det_jenjang'],'id_kelas'=>$_POST['id_kelas'],'id_pertemuan'=>$id_pertemuan));
+							$this->db->update('ak_rencana_point_indikator',$point);
+							//echo $this->db->last_query();
+						}
+						
+					}
+					//$data['jmlscor']=$jmlpoint;
+					//$data['ratascor']=round($jmlpoint/count($_POST['otentik']),2);
+					echo json_encode($data);
+				die();
+			}
+			
+			
+
+			
+			$data['pelajaran'] 	=$this->ad_pelajaran->getdataById($id_pelajaran);
+			
+			
+			if(!empty($data['otentik'])){
+			foreach($data['otentik'] as $dtaff){
+				$jmlpoint=$jmlpoint+$dtaff['point'][0]['point'];
+			}
+			}
+			$data['jmlpoint']=$jmlpoint;
+			$data['ratapoint']=@round($jmlpoint/count($data['otentik']),2);
+			$data['pelajaran'] 	=$this->ad_pelajaran->getdataById($_POST['id_pelajaran']);
+            $data['main']= 'akademik/instrumen/otentikmassal';
+            $this->load->view('layout/ad_blank',$data);
+		}
         public function otentik($param){
 			$this->load->model('ad_pelajaran');
 			$this->load->model('ad_instrumen');

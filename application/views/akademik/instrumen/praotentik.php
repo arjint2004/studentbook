@@ -30,9 +30,11 @@
 													}
 										});
 									});
+									var winwidth=(90/100)*parseInt($(window).width());
+									$('form#formindikator').css('width',winwidth+'px');
 								});
 								</script>	
-								<form action="<?=base_url()?>akademik/instrumen/otentik/<?=$param?>" method="post" id="formindikator" style="width:700px;height:100%;">
+								<form action="<?=base_url()?>akademik/instrumen/otentik/<?=$param?>" method="post" id="formindikator" style="width:900px;height:100%;">
 								<table class="left">
 									<tbody>
 										<tr>

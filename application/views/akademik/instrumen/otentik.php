@@ -145,7 +145,7 @@
 											</tr>
 											<tr>     
 												<th>No</th>
-												<th>Indikator Afektif</th>
+												<th>Indikator <?=$jenis?></th>
 												<th>Scoring</th>
 												<th class="action">Action</th>
 											</tr>                         
