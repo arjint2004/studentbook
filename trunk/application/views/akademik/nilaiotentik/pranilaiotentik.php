@@ -6,11 +6,11 @@
 							data: $("form#filterpelajaranlistOtentik").serialize(),
 							url: '<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$('select#kelasListotentik').val()+'/0/1',
 							beforeSend: function() {
-								$("#filterpelajaranlistOtentik select#kelasListotentik").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
+								$("#filterpelajaranlistOtentik select#kelasListotentik").after("<img class='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
 								$("#subjectnilaiotentiklist table.tabelkelas tbody").html("");
 							},
 							success: function(msg) {
-								$("#wait").remove();
+								$(".wait").remove();
 								$("#pelajaranlistotentik").html(msg);
 								$("#pelajaranlistotentik option").first().remove();
 								
@@ -19,20 +19,20 @@
 									data: 'id_kelas='+$('select#kelasListotentik').val(),
 									url: '<?=base_url()?>akademik/nilaiotentik/getOptionSiswaByIdKelas',
 									beforeSend: function() {
-										$("#filterpelajaranlistOtentik select#id_det_jenjang_otentik").after("<img id='wait' style='float:left;' src='<?=$this->config->item('images').'loading.png';?>' />");
+										$("#filterpelajaranlistOtentik select#id_det_jenjang_otentik").after("<img class='wait' style='float:left;' src='<?=$this->config->item('images').'loading.png';?>' />");
 									},
 									success: function(msg) {
-										$("#wait").remove();
+										$(".wait").remove();
 										$("#id_det_jenjang_otentik").html(msg);	
 										$.ajax({
 											type: "POST",
 											data: $("form#filterpelajaranlistOtentik").serialize(),
 											url: '<?=base_url()?>akademik/nilaiotentik/nilai',
 											beforeSend: function() {
-												$("#filterpelajaranlistOtentik select#pelajaranlistotentik").after("<img id='wait' style='float:left;' src='<?=$this->config->item('images').'loading.png';?>' />");
+												$("#filterpelajaranlistOtentik select#pelajaranlistotentik").after("<img class='wait' style='float:left;' src='<?=$this->config->item('images').'loading.png';?>' />");
 											},
 											success: function(msg) {
-												$("#wait").remove();
+												$(".wait").remove();
 												$("#subjectnilaiotentiklist").html(msg);
 											}
 										});
@@ -55,10 +55,10 @@
 							data: $("form#filterpelajaranlistOtentik").serialize(),
 							url: '<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$(this).val()+'/0/1',
 							beforeSend: function() {
-								$("#filterpelajaranlistOtentik select#kelasListotentik").after("<img id='wait' style='float:left;' src='<?=$this->config->item('images').'loading.png';?>' />");
+								$("#filterpelajaranlistOtentik select#kelasListotentik").after("<img class='wait' style='float:left;' src='<?=$this->config->item('images').'loading.png';?>' />");
 							},
 							success: function(msg) {
-								$("#wait").remove();
+								$(".wait").remove();
 								$("#pelajaranlistotentik").html(msg);	
 							}
 						});
@@ -67,10 +67,10 @@
 							data: 'id_kelas='+$(this).val(),
 							url: '<?=base_url()?>akademik/nilaiotentik/getOptionSiswaByIdKelas',
 							beforeSend: function() {
-								$("#filterpelajaranlistOtentik select#id_det_jenjang_otentik").after("<img id='wait' style='float:left;' src='<?=$this->config->item('images').'loading.png';?>' />");
+								$("#filterpelajaranlistOtentik select#id_det_jenjang_otentik").after("<img class='wait' style='float:left;' src='<?=$this->config->item('images').'loading.png';?>' />");
 							},
 							success: function(msg) {
-								$("#wait").remove();
+								$(".wait").remove();
 								$("#id_det_jenjang_otentik").html(msg);	
 							}
 						});
@@ -82,10 +82,10 @@
 							data: $("form#filterpelajaranlistOtentik").serialize(),
 							url: '<?=base_url()?>akademik/nilaiotentik/nilai',
 							beforeSend: function() {
-								$("#filterpelajaranlistOtentik select#pelajaranlistotentik").after("<img id='wait' style='float:left;' src='<?=$this->config->item('images').'loading.png';?>' />");
+								$("#filterpelajaranlistOtentik select#pelajaranlistotentik").after("<img class='wait' style='float:left;' src='<?=$this->config->item('images').'loading.png';?>' />");
 							},
 							success: function(msg) {
-								$("#wait").remove();
+								$(".wait").remove();
 								$("#subjectnilaiotentiklist").html(msg);	
 							}
 						});
