@@ -76,14 +76,13 @@
 						});
 						return false;
 					});//Submit End
-					$("#filterpelajaranlistOtentik select#pelajaranlistotentik,form#filterpelajaranlistOtentik select#id_det_jenjang_otentik").change(function(e){
+					$("#filterpelajaranlistOtentik select#pelajaranlistotentik").change(function(e){
 						$.ajax({
 							type: "POST",
 							data: $("form#filterpelajaranlistOtentik").serialize(),
 							url: '<?=base_url()?>akademik/nilaiotentik/nilai',
 							beforeSend: function() {
 								$("#filterpelajaranlistOtentik select#pelajaranlistotentik").after("<img class='wait' style='float:left;' src='<?=$this->config->item('images').'loading.png';?>' />");
-								$("form#filterpelajaranlistOtentik select#id_det_jenjang_otentik").after("<img class='wait' style='float:left;' src='<?=$this->config->item('images').'loading.png';?>' />");
 							},
 							success: function(msg) {
 								$(".wait").remove();
@@ -93,6 +92,21 @@
 						return false;
 					});//Submit End
 				
+					$("form#filterpelajaranlistOtentik select#id_det_jenjang_otentik").change(function(e){
+						$.ajax({
+							type: "POST",
+							data: $("form#filterpelajaranlistOtentik").serialize(),
+							url: '<?=base_url()?>akademik/nilaiotentik/nilai',
+							beforeSend: function() {
+								$("form#filterpelajaranlistOtentik select#id_det_jenjang_otentik").after("<img class='wait' style='float:left;' src='<?=$this->config->item('images').'loading.png';?>' />");
+							},
+							success: function(msg) {
+								$(".wait").remove();
+								$("#subjectnilaiotentiklist").html(msg);	
+							}
+						});
+						return false;
+					});//Submit End
 				});
 				</script>
 				<h3 id="namanilai"><?=$jenis?></h3>
