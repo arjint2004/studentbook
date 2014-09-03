@@ -43,7 +43,7 @@ jQuery(document).ready(function($){
 			}
 			
 		});
-		setTimeout(updatenotif, 10000);
+		setTimeout(updatenotif, 90000);
     }
     updatenotif();
 	
