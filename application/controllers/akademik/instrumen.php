@@ -142,7 +142,7 @@ class Instrumen extends CI_Controller
 					$this->db->insert('ak_rencana_pertemuan',$datainsert);
 					$id_pertemuan=mysql_insert_id();
 					//$id_pertemuanarray[$id_pertemuan]=$id_pertemuan;
-					$this->smsprivate->send_by_kelas($id_kelas,$_POST['sms'],'pertemuanevaluasi',$id_pertemuan);
+					//$this->smsprivate->send_by_kelas($id_kelas,$_POST['sms'],'pertemuanevaluasi',$id_pertemuan);
 					//$this->db->insert('ak_rencana_detail',array('id_kelas'=>$id_kelas,'id_pertemuan'=>$id_pertemuan));
 				}
 				//echo json_encode($id_pertemuanarray);
@@ -216,8 +216,8 @@ class Instrumen extends CI_Controller
 				
 				$this->db->where('id',$_POST['id']);
 				$this->db->update('ak_rencana_pertemuan',$datainsert);
-				pr($this->db->last_query());
-				echo $_POST['id'];
+				//pr($this->db->last_query());
+				//echo $_POST['id'];
 				die();
 			}
 			
