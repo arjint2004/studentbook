@@ -566,7 +566,7 @@ class Instrumen extends CI_Controller
 						$point['id_kelas']=$_POST['id_kelas'];
 						
 						foreach($_POST['point'][$idx] as $id_point=>$pointnya){}
-						$jmlpoint=$jmlpoint+$pointnya;
+						//$jmlpoint=$jmlpoint+$pointnya;
 						if($id_point==0){
 							if(isset($id_indik)){
 								$point['id_indikator']=$id_indik;
@@ -586,8 +586,8 @@ class Instrumen extends CI_Controller
 						}
 						
 					}
-					$data['jmlscor']=$jmlpoint;
-					$data['ratascor']=round($jmlpoint/count($_POST['otentik']),2);
+					//$data['jmlscor']=$jmlpoint;
+					//$data['ratascor']=round($jmlpoint/count($_POST['otentik']),2);
 					echo json_encode($data);
 				die();
 			}

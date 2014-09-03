@@ -11,7 +11,7 @@
 												success: function(msg) {
 													$('img#wait').remove();
 													$('div#otentikindikatorload').html(msg);
-													$('table tr td#rataotentik').html($('div#ratajml').html());
+													//$('table tr td#rataotentik').html($('div#ratajml').html());
 												}
 									});
 									$("#otentiksiswa").change(function(e){
@@ -25,7 +25,7 @@
 													success: function(msg) {
 														$('img#wait').remove();
 														$('div#otentikindikatorload').html(msg);
-														$('table tr td#rataotentik').html($('div#ratajml').html());
+														//$('table tr td#rataotentik').html($('div#ratajml').html());
 														
 													}
 										});
@@ -67,7 +67,7 @@
 										</tr>
 										<tr>
 											<td><b>GURU PENGAJAR</b></td>
-											<td>Bpk/Ibu Guru<?=$this->session->userdata['user_authentication']['nama']?></td>
+											<td><?=$this->session->userdata['user_authentication']['nama']?></td>
 										</tr>
 										<tr>
 											<td><b>RATA-RATA / SCOR</b></td>
