@@ -87,7 +87,7 @@
 																	success: function(msg) {
 																		$('img#wait').remove();
 																		$('div#otentikindikatorload').html(msg);
-																		$('table tr td#rataotentik').html($('div#ratajml').html());
+																		//$('table tr td#rataotentik').html($('div#ratajml').html());
 																	}
 														});
 														
@@ -121,7 +121,7 @@
 									}
 								</script>
 								<? //pr($otentik);?>
-								<div style="display:none;" id="ratajml"><?=$ratapoint.' / '.$jmlpoint?></div>
+								<div style="display:none;" id="ratajml"><?//=$ratapoint.' / '.$jmlpoint?></div>
 								<table style="display:none;">
 									<tr id="master"  class="otentiktrx" >
 										<td class="no">1</td>
