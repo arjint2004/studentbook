@@ -35,7 +35,7 @@
 				<a >Evaluasi Otentik</a>
 			</li>
 			<li>
-				<a >Penilaian Otentik</a>
+				<a >Penilaian Deskriptif</a>
 			</li>
 			<li>
 				<a >Nilai</a>
