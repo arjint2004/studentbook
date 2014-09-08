@@ -113,9 +113,9 @@
 			<th colspan="4">Jumlah</th>
 		  </tr>
 		  <tr>
-			<? foreach($absensi as $colaps){?>
+			<? if(!empty($absensi)){foreach($absensi as $colaps){?>
 			<th><?=$colaps['tanggal']?></th>
-			<? } ?>
+			<? }  } ?>
 			<th>Hadir</th>
 			<th>Izin</th>
 			<th>Sakit</th>
@@ -130,6 +130,7 @@
 			$izin[$datasiswa['id_siswa_det_jenjang']]=0;
 			$sakit[$datasiswa['id_siswa_det_jenjang']]=0;
 			$alpha[$datasiswa['id_siswa_det_jenjang']]=0;
+			if(!empty($absensi)){
 			foreach($absensi as $datajamnya){ $i++;?>
 				<td style="text-align:center;">
 				<?=$datajamnya['data'][$datasiswa['id_siswa_det_jenjang']]['absensi']?>
@@ -151,7 +152,7 @@
 					
 				?>
 				</td>
-			<? } ?>
+			<? }} ?>
 			<td style="text-align:center;"><?=$hadir[$datasiswa['id_siswa_det_jenjang']]?></td>
 			<td style="text-align:center;"><?=$izin[$datasiswa['id_siswa_det_jenjang']]?></td>
 			<td style="text-align:center;"><?=$sakit[$datasiswa['id_siswa_det_jenjang']]?></td>
