@@ -51,7 +51,7 @@
 				<tr>
 					<td align="center">
 						<p style="text-align: center;">
-							<img alt="" src="<?=base_url('upload/akademik/sekolah/').'/'.$this->session->userdata['ak_setting']['logo_sekolah']?>" style="width: 49px; height: 49px;" /></p>
+							<img alt="" src="<?=base_url('upload/akademik/sekolah/').'/'.$this->session->userdata['ak_setting']['logo_sekolah']?>" style="width: 100px; height: 100px;" /></p>
 						<p style="text-align: center;">
 							<span style="font-family: arial,helvetica,sans-serif;"><span style="font-size: 16px;"><strong>DEPARTEMEN PENDIDIKAN NASIONAL REPUBLIK INDONESIA</strong></span></span></p>
 						<p style="text-align: center;">
