@@ -44,18 +44,7 @@
 	$('#kelasabsenrekap').bind('change', function() {
 		$('#hiddenkelas').remove();
 		$(this).after('<input type="hidden" name="kelasnyaabsesnsi" id="hiddenkelas" value="'+$(this).find(":selected").text()+'"/>');
-		$.ajax({
-			type: "POST",
-			data: "id_kelas="+$('#kelasabsenrekap').val()+"&jamabsen="+$('#jamabsen').val()+"&tanggal="+$('#bulanrekapabsen').val(),
-			url: '<?=base_url()?>akademik/absensi/rekapabsensidata',
-			beforeSend: function() {
-				$('#kelasabsenrekap').after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
-			},
-			success: function(msg) {
-				$("#wait").remove();			
-				$("#absenarearekap").html(msg);			
-			}
-		});
+		
 		$.ajax({
 			type: "POST",
 			url: '<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$(this).val()+'/0/1',
@@ -65,6 +54,7 @@
 			success: function(msg) {
 				$("#waitabsen1").remove();
 				$("#pelajaranabsenrekap").html(msg);	
+				getaddrekap($(this),$('select#bulanrekapabsen').val());
 			}
 		});
 		
