@@ -135,7 +135,7 @@ $(function() {
 				<input type="hidden" name="pelajaranabsen" value="" />
 				<input type="hidden" name="jamabsen" value="0" />
 				<? } ?>
-				<input type="text" placeholder="Pilih Tanggal"  name="tanggalnyaabsensi" id="popupDatepicker" style="height:28px;">
+				<input type="text" placeholder="Pilih Tanggal" readonly name="tanggalnyaabsensi" id="popupDatepicker" style="height:28px;">
 				<a id="simpanabsensi" class="button medium light-grey absenbutton" style="height:28px;" title="" > Simpan </a>
 				<a  style="padding:5px;float:right;" class="readmore exportexcellabsensi"><img height="30" src="<?=$this->config->item('images')?>/Excel-icon.png" style="margin:0;" /> Export</a>
 				<input type="hidden" name="jenis" value="absensi" />

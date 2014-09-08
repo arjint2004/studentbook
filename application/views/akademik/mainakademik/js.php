@@ -36,6 +36,20 @@
 					}
 				});
 			});
+			$('#tabarekapbsensi').bind('click', function() {
+				$.ajax({
+					type: "GET",
+					data: '',
+					url: '<?=base_url('akademik/absensi/rekapabsensi')?>',
+					beforeSend: function() {
+						$('#tabarekapbsensi').append("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
+					},
+					success: function(msg) {
+						$("#wait").remove();			
+						$("#rekapbsensi").html(msg);			
+					}
+				});
+			});
 			
 			$('#jurnaltab').bind('click', function() {
 				$.ajax({

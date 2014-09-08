@@ -30,6 +30,29 @@ if (!function_exists('fitur_sekolah')) {
 		return $fitur;
 	}
 }
+if (!function_exists('month')) {
+    function month($name="month", $selected=null,$ttr="")
+{
+        $dd = '<select name="'.$name.'" '.$ttr.'>';
+
+        /*** the current month ***/
+        $selected = is_null($selected) ? date('n', time()) : $selected;
+
+        for ($i = 1; $i <= 12; $i++)
+        {
+                $dd .= '<option value="'.$i.'"';
+                if ($i == $selected)
+                {
+                        $dd .= ' selected';
+                }
+                /*** get the month ***/
+                $mon = @date("F", mktime(0, 0, 0, $i+1, 0, 0, 0));
+                $dd .= '>'.$mon.'</option>';
+        }
+        $dd .= '</select>';
+        return $dd;
+}
+}
 
 if (!function_exists('array_searchRecursive')) {
     function array_searchRecursive( $needle, $haystack, $strict=false, $path=array() )

@@ -145,7 +145,7 @@ Class Ad_kelas extends CI_Model
 							 AND ak.publish=1
 							GROUP BY ak.id
 	');
-	echo $this->db->last_query();
+	//echo $this->db->last_query();
 	return $query->result_array();
  }
  function getkelasByPengajarAllkelas($id_sekolah=null,$id_pegawai=null){
@@ -232,6 +232,12 @@ Class Ad_kelas extends CI_Model
 								AND u.id_group=13
 								ORDER BY p.nama  ASC
 								',array($id_sekolah))->result_array();
+		return $kelas;
+	
+ }
+ function getWaliKelasByIdKelas($id_kelas){
+		$kelas=$this->db->query('SELECT * FROM ak_kelas  k JOIN ak_pegawai p ON k.id_pegawai=p.id WHERE k.id=? AND k.id_sekolah=?
+								',array($id_kelas,$this->session->userdata['user_authentication']['id_sekolah']))->result_array();
 		return $kelas;
 	
  }

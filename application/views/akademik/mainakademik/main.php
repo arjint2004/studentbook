@@ -29,6 +29,9 @@
 				<a  id="tababsensi" >Absensi</a>
 			</li>
 			<li>
+				<a  id="tabarekapbsensi" >Rekap Absensi</a>
+			</li>
+			<li>
 				<a >Ujian</a>
 			</li>
 			<li id="tabpertlist" tab="evaluasi">
@@ -56,9 +59,8 @@
 			<br id="brsubject"  tab="pembelajaran"  class="clear" />
             <div id="subject"></div>
 		</div>
-		<div class="tabs-frame-content" id="absensi" style="display: none;">
-			
-		</div>
+		<div class="tabs-frame-content" id="absensi" style="display: none;"></div>
+		<div class="tabs-frame-content" id="rekapbsensi" style="display: none;"></div>
 		<div class="tabs-frame-content" style="display: none;">
 			<a class="readmore" title="" href="" tab="ujian" id="daftar_harian"> Ulangan<br /> Harian </a>
             <a class="readmore" title="" href="" tab="ujian" id="daftar_uts"> Ujian<br /> Tengah Semester </a>
