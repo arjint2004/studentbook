@@ -18,7 +18,7 @@
 							}
 					});
 				}
-				function editfield(obj,id_jurusan,field){
+				function editfield(obj,id_jurusan,field){alert();
 					var value=$(obj).html();
 					var childval=$(obj).children('input[type["text"]]').attr('type');
 					if(childval!='text'){

@@ -18,6 +18,36 @@ class Absensi extends CI_Controller
             $data['main']= 'akademik/absensi/index';
             $this->load->view('layout/ad_blank',$data);
         }
+        public function rekapabsensi(){
+			
+			$this->load->model('ad_kelas');
+            $data['kelas'] 	=$this->ad_kelas->getkelasByPengajar($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']);
+           
+            $data['main']= 'akademik/absensi/rekapabsensi';
+            $this->load->view('layout/ad_blank',$data);
+        }
+        public function rekapabsensidata(){
+			$this->load->model('ad_siswa');
+			$this->load->model('ad_absen');	
+            
+			$data['absensi']=$this->ad_absen->getAbsensiByMonthByKelasPel($_POST['month'],$_POST['id_kelas']);
+            $data['siswa']= $this->ad_siswa->getsiswaByIdKelas($_POST['id_kelas']);
+            $data['main']= 'akademik/absensi/rekapabsensidata';
+            $this->load->view('layout/ad_blank',$data);
+        }
+        public function printrekapabsensidata(){
+			$this->load->model('ad_siswa');
+			$this->load->model('ad_absen');	
+			$this->load->model('ad_kelas');	
+           // pr($_POST);
+			$data['walikelas']=$this->ad_kelas->getWaliKelasByIdKelas($_POST['kelas']);
+			$data['kelas']=$this->ad_kelas->getkelasById($this->session->userdata['user_authentication']['id_sekolah'],$_POST['kelas']);
+			$data['absensi']=$this->ad_absen->getAbsensiByMonthByKelasPel($_POST['month'],$_POST['kelas']);
+            $data['siswa']= $this->ad_siswa->getsiswaByIdKelas($_POST['kelas']);
+			//pr($data['walikelas']);
+            $data['main']= 'akademik/absensi/printrekapabsensidata';
+            $this->load->view('layout/ad_blank',$data);
+        }
         public function add(){
 			$this->load->model('ad_absen');			
 			$this->load->model('ad_sms');			
