@@ -35,8 +35,13 @@
 	$sakit[$datasiswa['id_siswa_det_jenjang']]=0;
 	$alpha[$datasiswa['id_siswa_det_jenjang']]=0;
 	if(!empty($absensi)){
-	foreach($absensi as $datajamnya){ $i++;?>
-		<td>
+	foreach($absensi as $datajamnya){ $i++;
+	if($datajamnya['data'][$datasiswa['id_siswa_det_jenjang']]['absensi']=="masuk"){$warna="green";}
+	if($datajamnya['data'][$datasiswa['id_siswa_det_jenjang']]['absensi']=="izin"){$warna="blue";}
+	if($datajamnya['data'][$datasiswa['id_siswa_det_jenjang']]['absensi']=="sakit"){$warna="brown";}
+	if($datajamnya['data'][$datasiswa['id_siswa_det_jenjang']]['absensi']=="alpha"){$warna="red";}
+	?>
+		<td style="color:<?=$warna?>;">
 		<?=$datajamnya['data'][$datasiswa['id_siswa_det_jenjang']]['absensi']?>
 		<?
 			
