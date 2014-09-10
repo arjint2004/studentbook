@@ -432,13 +432,13 @@
                     
                     $this->image_moo
                         ->load($data['upload_data']['full_path'])
-                        ->resize_crop(150,150)
+                        ->resize_crop(300,300)
                         ->save($path_small.$data['upload_data']['file_name']);
                     
-                     $this->image_moo
+                    /* $this->image_moo
                             ->load($data['upload_data']['full_path'])
                             ->resize(560,350)
-                            ->save($path_small2.$data['upload_data']['file_name']);
+                            ->save($path_small2.$data['upload_data']['file_name']);*/
                     
                     if ($this->image_moo->errors) {
                         print_r($this->image_moo->display_errors()) ;
@@ -460,7 +460,14 @@
                             $this->db->update('users',array('password'=>md5($pwd_baru)));
                         }
                     }
-                    
+                    //data lama
+					$datalamaq=$this->db->query('SELECT * FROM ak_siswa WHERE id='.$session['id'].'');
+					$datalama=$datalamaq->result_array();
+					
+					if(file_exists($this->config->item('dir').$datalama[0]['foto'])){
+						unlink($this->config->item('dir').$datalama[0]['foto']);
+					}
+					
                     $foto       = "upload/images/thumb/".$data['upload_data']['file_name'];
                     $update     = array('gender'=>$jenis_kelamin,
                                   'tglahir'=>$tgl_lahir,
