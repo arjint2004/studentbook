@@ -24,8 +24,8 @@ if($cek['otoritas']=='siswa' || $cek['otoritas']=='ortu') {
 ?>
 <div class="one-full">
                     <!-- **Team** -->
-                    <div class="team">          
-                        <div class="image"> <img title="" alt="" src="<?=base_url($user->foto)?>"> </div>
+                    <div class="team">
+                        <div class="image"> <img title="" alt="" src="<?=base_url()?>view.php?image=<?=$user->foto?>&amp;mode=crop&amp;size=100x100"> </div>
                         <h5> <?=$user->nama?> </h5>
                         <h6 class="role"> <?=$user->nama_sekolah?> </h6>
                        <?php
