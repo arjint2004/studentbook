@@ -103,9 +103,9 @@ jQuery(function($){
 					<? 
 					if(isset($this->session->userdata['ak_setting']['logo_sekolah']) && $this->session->userdata['ak_setting']['logo_sekolah']!=''){
 						if(!file_exists('upload/akademik/sekolah/'.$this->session->userdata['ak_setting']['logo_sekolah'])){
-							$logo=$this->config->item('akademik_sekolah').'school.png';
+							$logo=base_url().'view.php?image=upload/akademik/sekolah/school.png&amp;mode=crop&amp;size=100x100';
 						}else{
-							$logo=$this->config->item('akademik_sekolah').$this->session->userdata['ak_setting']['logo_sekolah'];
+							$logo=base_url().'view.php?image=upload/akademik/sekolah/'.$this->session->userdata['ak_setting']['logo_sekolah'].'&amp;mode=crop&amp;size=100x100';
 						}
 						$h1="<h1 >".$this->session->userdata['ak_setting']['nama_sekolah']."</h1>";
 						$h2="<h6 >".$this->session->userdata['ak_setting']['alamat_sekolah']."</h6>";
