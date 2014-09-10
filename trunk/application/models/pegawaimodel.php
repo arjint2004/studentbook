@@ -492,13 +492,13 @@
 		    
                     $this->image_moo
                         ->load($data['upload_data']['full_path'])
-                        ->resize_crop(100,100)
+                        ->resize_crop(300,300)
                         ->save($path_small.$data['upload_data']['file_name']);
 			
-		    $this->image_moo
+		    /*$this->image_moo
                         ->load($data['upload_data']['full_path'])
                         ->resize_crop(560,350)
-                        ->save($path_small2.$data['upload_data']['file_name']);
+                        ->save($path_small2.$data['upload_data']['file_name']);*/
                     
                     if ($this->image_moo->errors) {
                         print_r($this->image_moo->display_errors()) ;
@@ -521,6 +521,15 @@
                         }
                     }
                     
+					//data lama
+					$datalamaq=$this->db->query('SELECT * FROM ak_pegawai WHERE id='.$session['id'].'');
+					$datalama=$datalamaq->result_array();
+					
+					if(file_exists($this->config->item('dir').$datalama[0]['foto'])){
+						unlink($this->config->item('dir').$datalama[0]['foto']);
+					}
+					
+					//pr($this->config->item('dir').$datalama[0]['foto']);die();
                     $foto       = "upload/images/thumb/".$data['upload_data']['file_name'];
                     $update     = array(
 									'tgl_lahir'=>$tgl_lahir,
@@ -561,7 +570,6 @@
 									'kota'=>$kota,
 									'hp'=>$hp,
 									'email'=>$email,
-									'foto'=>$foto,
 									'nama'=>$nama);
                 $this->db->where('id',$session['id']);
                 $this->db->update('ak_pegawai',$data);

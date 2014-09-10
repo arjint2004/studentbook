@@ -1,5 +1,5 @@
 <form name="absensi" id="absensiform" method="post" action="<?=base_url()?>akademik/absensi/add" >
-<? //pr($absensi);?>
+<? //pr($absensi);1466?>
 <style>
 	table#rekapabsensi tr th{
 		background-color:#eee;
