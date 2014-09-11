@@ -18,7 +18,7 @@
   </tr>
   <tr>
 	<? if(!empty($absensi)){foreach($absensi as $colaps){?>
-    <th>Tgl <?=$colaps['tanggal']?><br />Jam <?=$colaps['jam_ke']?></th>
+    <th>Tgl <?=$colaps['tanggal']?><br />Jm ke <?=$colaps['jam_ke']?></th>
 	<? }  } ?>
     <th>Hadir</th>
     <th>Izin</th>
