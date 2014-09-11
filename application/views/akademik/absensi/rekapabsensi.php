@@ -101,7 +101,7 @@ $(function() {
 </script>
 
 <form action="" method="post" id="rekapabsensiform" >
-				<table>
+				<table class="adddata">
 					<tr>
 						<td style="text-align:left;">Kelas</td>
 						<td style="text-align:left;">
