@@ -36,7 +36,7 @@ Class Ad_absen extends CI_Model{
 								AND id_ta=?
 								AND id_sekolah=?
 								AND id_pelajaran=?
-								GROUP BY jam_ke
+								GROUP BY jam_ke,tanggal
 								',array($month,$id_kelas,$this->session->userdata['ak_setting']['semester'],$this->session->userdata['ak_setting']['ta'],$this->session->userdata['user_authentication']['id_sekolah'],$_POST['id_pelajaran']));
 		
 		$jam_ke=$queryj->result_array();
@@ -54,13 +54,16 @@ Class Ad_absen extends CI_Model{
 		//echo $this->db->last_query();
 		foreach($jam_ke as $jamkenya){
 			foreach($absennya as $jamkenyaabsen){
-					$array1[$jamkenya['jam_ke']]['tanggal']=$jamkenyaabsen['tanggal'];
-				if($jamkenya['jam_ke']==$jamkenyaabsen['jam_ke']){
-					$array1[$jamkenya['jam_ke']]['data'][$jamkenyaabsen['id_siswa_det_jenjang']]=$jamkenyaabsen;
+					$array1[$jamkenya['jam_ke'].$jamkenya['tanggal']]['tanggal']=$jamkenya['tanggal'];
+					$array1[$jamkenya['jam_ke'].$jamkenya['tanggal']]['jam_ke']=$jamkenya['jam_ke'];
+				if($jamkenya['jam_ke']==$jamkenyaabsen['jam_ke'] && $jamkenya['tanggal']==$jamkenyaabsen['tanggal']){
+					$array1[$jamkenya['jam_ke'].$jamkenya['tanggal']]['data'][$jamkenyaabsen['id_siswa_det_jenjang']]=$jamkenyaabsen;
 				}
 				
 			}
 		}
+		//pr($jam_ke);
+		//pr($absennya);
 		//pr($array1);
 		//echo $this->db->last_query();
 		
