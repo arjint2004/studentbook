@@ -15,7 +15,7 @@
 			url: $('#absensiform').attr('action'),
 			data: $('#absensiform').serialize()+'&id_kelas='+$('#kelasabsen').val()+'&jamabsen='+$('#jamabsen').val()+'&pelajaranabsen='+$('#pelajaranabsen').val()+"&pelajarannyaabsen="+$('#hiddenmapel').val()+'&tanggal='+$('#popupDatepicker').val()+'&nama_kelas='+$('#kelasabsen').find(":selected").text(),
 			beforeSend: function() {
-				$('#simpanabsensi').after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
+				$('#simpanabsensi').after("<img id='wait' style='position: relative; top: 21px; left: 28px;' src='<?=$this->config->item('images').'loading.png';?>' />");
 			},
 			success: function(data) {
 				$('#wait').remove();
@@ -104,52 +104,64 @@ $(function() {
 });
 
 </script>
-
-<table >
+<form action="" method="post" id="absensi" >
+<table class="adddata">
 	<tbody>
 		<tr>
+			<td>Kelas</td>
 			<td>
-				<form action="" method="post" id="absensi" >
-				<!--<div style="">Kelas</div>
-				<div style="">Pelajaran</div>
-				<div style="">Jam Ke</div>
-				<div style="">Tanggal</div>-->
 				<select  id="kelasabsen" name="kelas">
 					<option value="">Pilih Kelas</option>
 					<? foreach($kelas as $datakelas){?>
 					<option <? if(@$_POST['kelas']==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>"><?=$datakelas['kelas']?><?=$datakelas['nama']?></option>
 					<? } ?>
-				</select>
-				<? //pr($this->session->userdata['ak_setting']['jenjang'][0]['nama']);?>
-				<? if($this->session->userdata['ak_setting']['jenjang'][0]['nama']!='SD'){?>
+				</select>				
+			</td>
+		</tr>
+		<? if($this->session->userdata['ak_setting']['jenjang'][0]['nama']!='SD'){?>
+		<tr>
+			<td>Pelajaran</td>
+			<td>
 				<select  id="pelajaranabsen" name="pelajaranabsen">
 					<option value="">Pilih Pelajaran</option>
 				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Jam ke</td>
+			<td>
 				<select  id="jamabsen" name="jamabsen">
 					<option value="">Jam Pelajaran ke</option>
 					<? for($xx=1;$xx<=24;$xx++){?>
 					<option value="<?=$xx?>"> <?=$xx?> </option>
 					<? } ?>
-				</select>
-				<? }else{ ?>
+				</select>		
+			</td>
+		</tr>
+		
+		<? }else{ ?>
 				<input type="hidden" name="pelajaranabsen" value="" />
 				<input type="hidden" name="jamabsen" value="0" />
-				<? } ?>
+		<? } ?>	
+		<tr>
+			<td>Tanggal</td>
+			<td>
 				<input type="text" placeholder="Pilih Tanggal" readonly name="tanggalnyaabsensi" id="popupDatepicker" style="height:28px;">
-				<a id="simpanabsensi" class="button medium light-grey absenbutton" style="height:28px;" title="" > Simpan </a>
-				<a  style="padding:5px;float:right;" class="readmore exportexcellabsensi"><img height="30" src="<?=$this->config->item('images')?>/Excel-icon.png" style="margin:0;" /> Export</a>
+			</td>
+		</tr>
+		<tr>
+			<td>Button</td>
+			<td>
+				<a  style="padding:5px;float:left; margin:0;" class="readmore exportexcellabsensi"><img height="30" src="<?=$this->config->item('images')?>/Excel-icon.png" style="margin:0;" /> Export</a>
 				<input type="hidden" name="jenis" value="absensi" />
 				<input type="hidden" name="fileName" value="Absensi" />
-				</form>
-				<!--<h3>Export</h3>
-				<div class="hr"></div>
-				<input type="text" placeholder="Pilih Tanggal"  name="tanggalnyaabsensi" id="popupDatepicker" style="height:28px;"> 
-				S/D &nbsp;<input type="text" placeholder="Pilih Tanggal"  name="tanggalnyaabsensi" id="popupDatepicker" style="height:28px;">
-				<a  style="padding: 5px; position: relative; float: left; bottom: 16px; margin-right: 15px;" class="readmore exportexcellabsensi"><img height="30" src="<?=$this->config->item('images')?>/Excel-icon.png" style="margin:0;" /> Export</a>-->
+				<a title="" class="button medium light-grey absenbutton" id="simpanabsensi" style="top: 20px; position: relative; left: 20px;"> Simpan </a>
 			</td>
 		</tr>
 	</tbody>
 </table>
+</form>
+
 <div id="absenarea">
 <form name="absensi" id="absensiform" method="post" action="<?=base_url()?>akademik/absensi/add" >
 <table>
