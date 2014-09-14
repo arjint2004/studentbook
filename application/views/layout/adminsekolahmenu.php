@@ -2,7 +2,7 @@
 					$fitur=fitur_sekolah();
 					?>
 					<ul class="side-nav">						
-                    	<li <? if($this->router->class=='schooladmin' && $this->router->method=='ubahpassword'){echo 'class="current_page_item"';}?>> <a href="<?=site_url()?>admin/schooladmin/ubahpassword" title=""> Data Ubah Password <span> </span> </a> </li>
+                    	<li <? if($this->router->class=='schooladmin' && $this->router->method=='ubahpassword'){echo 'class="current_page_item"';}?>> <a href="<?=site_url()?>admin/schooladmin/ubahpassword" title=""> Ubah Password Admin <span> </span> </a> </li>
                     	<li <? if($this->router->class=='schooladmin' && $this->router->method=='dataakun'){echo 'class="current_page_item"';}?>> <a href="<?=site_url()?>admin/schooladmin/dataakun" title=""> Data Akun <span> </span> </a> </li>
                     	<li <? if($this->router->class=='schooladmin' && $this->router->method=='hp_guru'){echo 'class="current_page_item"';}?>> <a href="<?=site_url()?>admin/schooladmin/hp_guru" title=""> No HP Guru <span> </span> </a> </li>
                         <li <? if($this->router->class=='sekolah' && $this->router->method=='editprofil'){echo 'class="current_page_item"';}?>> <a href="<?=site_url()?>admin/sekolah/editprofil" title="" id="ta"> Profil Sekolah <span> </span> </a> </li>

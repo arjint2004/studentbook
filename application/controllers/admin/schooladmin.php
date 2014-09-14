@@ -12,7 +12,7 @@ class Schooladmin extends CI_Controller {
 	 
 	 public function ubahpassword() {
 		
-		pr($_POST);
+		//pr($_POST);
 		if(isset($_POST['password'])){
 			//cek password lama
 			$datalama=$this->db->query('SELECT * FROM users WHERE id_sekolah='.$this->session->userdata['user_authentication']['id_sekolah'].' AND password="'.md5($_POST['password_lama']).'"')->result_array();
