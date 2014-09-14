@@ -349,7 +349,6 @@ function getadd(){
 							</table>
 							</form>
 						</div>
-					</div>
                     <div class="hr"> </div>
                     <div class="clear"> </div>
                 </div> <!-- **Styled Elements - End** --> 
