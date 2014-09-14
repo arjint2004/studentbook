@@ -10,6 +10,27 @@ class Schooladmin extends CI_Controller {
 		  $this->auth->logged_in();
 	 }
 	 
+	 public function ubahpassword() {
+		
+		pr($_POST);
+		if(isset($_POST['password'])){
+			//cek password lama
+			$datalama=$this->db->query('SELECT * FROM users WHERE id_sekolah='.$this->session->userdata['user_authentication']['id_sekolah'].' AND password="'.md5($_POST['password_lama']).'"')->result_array();
+			if(!empty($datalama)){
+				if($_POST['password']==$_POST['passwordc']){
+					$this->db->query('UPDATE users SET password="'.md5($_POST['password']).'" WHERE  id_sekolah='.$this->session->userdata['user_authentication']['id_sekolah'].' AND password="'.md5($_POST['password_lama']).'"');
+					echo "<script>alert('Password anda berhasil di ubah. Password baru anda adalah ".$_POST['password']." ');</script>";
+				}else{
+					echo "<script>alert('Konfirmasi Password baru tidak valid. masukkan konfirmasi password dengan benar');</script>";
+				}
+			}else{
+				echo "<script>alert('Konfirmasi password lama salah. Masukkan password lama dengan benar.');</script>";
+			}
+		}
+		$data['main'] 	= 'schooladmin/ubahpassword';
+		$data['page_title'] 	= 'Admin Sekolah';
+		$this->load->view('layout/ad_adminsekolah',$data);
+	 }
 	 public function ceksis() {
 
 		$query=$this->db->query('SELECT * FROM ak_siswa WHERE id_sekolah=59');
