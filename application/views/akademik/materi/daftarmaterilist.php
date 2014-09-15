@@ -113,7 +113,7 @@
 														$("#wait").remove();	
 														if(msg==1){
 															$(objdell).parent('td').parent('tr').remove();
-															$(objdell).parent('td').parent('tr').next().remove();
+															$('table tr#detailmateriall'+$(objdell).attr('id_materi')).remove();
 														}
 													}
 												});

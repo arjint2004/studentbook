@@ -1,5 +1,6 @@
 <script>
 	$(document).ready(function(){
+		
 		$("#materi").each(function(){
 			$container = $(this).next("div.error-container");
 			//Validate Starts
@@ -42,7 +43,9 @@
 		$(".addaccountclose").click(function(){
 			$(".addaccount").remove();
 		});
+		filesize('fileaddmateri',15000000,50);
 		$("#materi").submit(function(e){
+			
 			if($('select#kelas_add').val()==null && !$('input#simpanarsip').is(':checked')){
 				$('select#kelas_add').css('border','1px solid red');
 					if($('#date2materi').val()==''){
@@ -67,28 +70,63 @@
 					data: $(this).serialize()+'&'+$('form#nilai').serialize(),
 					url: $(this).attr('action'),
 					beforeSend: function() {
-						$("#simpanpr").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+						$("#materi").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+						$(".error-box").delay(1000).html('Inserting Data');
+						//$("#simpanpr").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
 					},
 					success: function(msg) {
-						$("#wait").remove();	
-						
-						ajaxupload("<? echo base_url();?>akademik/materi/upload/"+msg,"response","image-list","file");
+						$(".error-box").delay(1000).fadeOut("slow",function(){
+							$(this).remove();
+						});	
+						var upload=ajaxupload("<? echo base_url();?>akademik/materi/upload/"+msg,"response","image-list","fileaddmateri");
 						$.ajax({
+							url: "<? echo base_url();?>akademik/materi/upload/"+msg,
 							type: "POST",
-							data: '&ajax=1',
-							url: '<?=base_url('akademik/materi/daftarmaterilist')?>',
+							data: upload,
+							processData: false,
+							contentType: false,
 							beforeSend: function() {
-								$("#simpanpr").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+								$("#materi").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+								$(".error-box").delay(1000).html('Proses Upload File');
 							},
-							success: function(msg) {
-								$("#wait").remove();
-								$('select#kelas').val($('select#kelas_add').val());
-								$('select#pelajaran').html($('select#pelajaran_add').html());
-								$('select#pelajaran').val($('select#pelajaran_add').val());
-								$('#subjectlistmateri').html(msg);
-								$('#subject').scrollintoview({ speed:'1100'});
+							error	: function(){
+								alert('Materi anda sudah tersimpan. Tetapi lampiran file anda gagal di Upload. Klik OK untuk melengkapi lampiran');
+								$('#subjectlistmateri').load('<?=base_url('akademik/materi/editmateri')?>/'+msg);						
+							},
+							success: function (res) {
+								$(".error-box").delay(1000).fadeOut("slow",function(){
+									$(this).remove();
+								});	
+								if(res=='allowed' || res=='null'){
+									$.ajax({
+										type: "POST",
+										data: '&ajax=1',
+										url: '<?=base_url('akademik/materi/daftarmaterilist')?>',
+										beforeSend: function() {
+											$("#materi").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+											$(".error-box").delay(1000).html('Load data');
+											$(".error-box").delay(1000).fadeOut("slow",function(){
+												$(this).remove();
+											});
+										},
+										success: function(msg2) {
+											$("#wait").remove();
+											$('select#kelas').val($('select#kelas_add').val());
+											$('select#pelajaran').html($('select#pelajaran_add').html());
+											$('select#pelajaran').val($('select#pelajaran_add').val());
+											$('#subjectlistmateri').html(msg2);
+											$('#subject').scrollintoview({ speed:'1100'});
+										}
+									});
+								}else{
+									alert(res+'');
+									$('#subjectlistmateri').load('<?=base_url('akademik/materi/editmateri')?>/'+msg);
+								}
 							}
 						});
+						
+
+						$("#wait").remove();
 					}
 				});
 				return false;
@@ -219,7 +257,7 @@ $(function() {
 				<td width="30%" class="title">Lampiran File</td>
 				<td width="1">:</td>
 				<td colspan="2">
-					<input type="file" name="file" id="file" multiple />
+					<input type="file" name="file" id="fileaddmateri" multiple />
 					<div id="response" style="font-size:11px;">Anda bisa memilih banyak file dengan memencet tombol "Ctrl", kemudian klik file yang dipilih lebih dari satu</div>
 				</td>
 			</tr>
@@ -229,19 +267,19 @@ $(function() {
 				<td>
 					<input type="text" name="tanggal_diberikan" style="width:100px;" value="<?=date('Y-m-d')?>" id="datemateri">
 				</td>
-			</tr>--> 
+			</tr>
 			<tr  id="tanggalmateri">
 				<td width="30%" class="title">Tanggal Diajarkan</td>
 				<td width="1">:</td>
 				<td>
 					<input type="text" name="tanggal_diajarkan" style="width:100px;" value="" id="date2materi">
 				</td>
-			</tr>
+			</tr>--> 
 			<tr id="keteranganmateri">
 				<td width="30%" class="title">Keterangan</td>
 				<td width="1">:</td>
 				<td colspan="2">
-					<textarea name="keterangan" placeholder="Keterangan akan dikirim ke Orang Tua / Wali Siswa melalui SMS" id="keteranganaddmateri"></textarea>
+					<textarea name="keterangan" id="keteranganaddmateri"></textarea>
 				</td>
 			</tr>
 			<tr>

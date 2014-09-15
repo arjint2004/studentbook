@@ -14,7 +14,7 @@ function ajaxupload(url,responseId,imagelist,fileId) {
   		formdata = new FormData();
 
 	}
- 		document.getElementById(responseId).innerHTML = "<div id='uploading'>Uploading...</div>"
+ 		//document.getElementById(responseId).innerHTML = "<div id='uploading'>Uploading...</div>"
  		var i = 0, len = input.files.length, img, reader, file;
 	
 		for ( ; i < len; i++ ) {
@@ -34,7 +34,7 @@ function ajaxupload(url,responseId,imagelist,fileId) {
 			//}	
 		}
 
-		if (formdata) {
+		/*if (formdata) {
 			$.ajax({
 				url: url,
 				type: "POST",
@@ -46,6 +46,29 @@ function ajaxupload(url,responseId,imagelist,fileId) {
 					$('#'+responseId).append(res);
 				}
 			});
-		}
+		}*/
+		return formdata;
+}
 
+function filesize(IdFile,max,maxjml){
+	$('#'+IdFile).bind('change', function() {
+		var totsize=0;
+		var maxMB=parseInt(max)/1000000;
+		$.each(this.files, function( index, value ){
+			//alert( index + ": " + value.size );
+			totsize=totsize+parseInt(value.size);
+		});
+		
+		if(this.files.length>maxjml){
+			alert('Maximal jumlah file untuk di upload  '+maxjml+' File. Pilih kembali file dengan jumlah yang lebih sedikit dari '+maxjml+'');
+			$(this).val("");
+			return false;
+		}
+		if(totsize>max){
+			alert('Ukuran file terlalu besar, Maximal jumlah ukuran file '+maxMB+'MB. Pilih kembali file dengan jumlah ukuran yang lebih kecil dari '+maxMB+'');
+			$(this).val("");
+			return false;
+		}
+		//alert(this.files[0].size);
+	});
 }
