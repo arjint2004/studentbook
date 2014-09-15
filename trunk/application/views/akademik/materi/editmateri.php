@@ -12,8 +12,8 @@
 				  bab:{required:true,notEqual:''},
 				  pokok_bahasan:{required:true,notEqual:''},
 				  
-				  keterangan:{required:true,notEqual:''}
-				  /*,message:{required:true,minlength:10}*/
+				  /*keterangan:{required:true,notEqual:''}
+				  ,message:{required:true,minlength:10}*/
 				}
 			});//Validate End
 
@@ -30,7 +30,7 @@
 					success: function(msg) {
 						$("#wait").remove();
 						$("#wait").remove();
-						//$('select#kelas').val($('select#kelas_add').val());
+						//$('select#kelas').val($('select#kelas_addeditmateri').val());
 						//$('select#pelajaran').html($('select#pelajaran_add').html());
 						//$('select#pelajaran').val($('select#pelajaran_add').val());	
 						$('#subjectlistmateri').html(msg);
@@ -49,8 +49,8 @@
 			$id_pelajaran = $frm.find('*[name=id_pelajaran]').val();
 			$bab = $frm.find('*[name=bab]').val();
 			$pokok_bahasan = $frm.find('*[name=pokok_bahasan]').val();
-			$keterangan = $frm.find('*[name=keterangan]').val();
-			if(/*$frm.find('*[name=id_kelas]').is('.valid') && $frm.find('*[name=id_pelajaran]').is('.valid') && */$frm.find('*[name=bab]').is('.valid') && $frm.find('*[name=pokok_bahasan]').is('.valid')  &&  $frm.find('*[name=keterangan]').is('.valid')) {
+			//$keterangan = $frm.find('*[name=keterangan]').val();
+			if(/*$frm.find('*[name=id_kelas]').is('.valid') && $frm.find('*[name=id_pelajaran]').is('.valid') && */$frm.find('*[name=bab]').is('.valid') && $frm.find('*[name=pokok_bahasan]').is('.valid')  /*&&  $frm.find('*[name=keterangan]').is('.valid')*/) {
 				$.ajax({
 					type: "POST",
 					data: $(this).serialize()+'&'+$('form#nilai').serialize(),
@@ -64,14 +64,14 @@
 						ajaxupload("<? echo base_url();?>akademik/materi/upload/"+msg,"response","image-list","file");
 						$.ajax({
 							type: "POST",
-							data: 'id_kelas='+$('select#kelas_add').val()+'&pelajaran='+$('select#pelajaran_add').val()+'&ajax=1',
+							data: 'id_kelas='+$('select#kelas_addeditmateri').val()+'&pelajaran='+$('select#pelajaran_add').val()+'&ajax=1',
 							url: '<?=base_url('akademik/materi/daftarmaterilist')?>',
 							beforeSend: function() {
 								$(".simpanmateri").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
 							},
 							success: function(msg) {
 								$("#wait").remove();
-								$('select#kelas').val($('select#kelas_add').val());
+								$('select#kelas').val($('select#kelas_addeditmateri').val());
 								$('select#pelajaran').html($('select#pelajaran_add').html());
 								$('select#pelajaran').val($('select#pelajaran_add').val());
 								$('#subjectlistmateri').html(msg);
@@ -85,7 +85,7 @@
 			
 			return false;
 		});//Submit End	
-		//$('#pelajaran_add').load('<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$('#kelas_add').val()+'/<?=$materi[0]['id_pelajaran']?>');
+		//$('#pelajaran_add').load('<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$('#kelas_addeditmateri').val()+'/<?=$materi[0]['id_pelajaran']?>');
 		
 		/*$.ajax({
 				type: "POST",
@@ -117,13 +117,13 @@
 				return false;
 			}
 		});		
-		/*$("select#kelas_add").change(function(e){
+		/*$("select#kelas_addeditmateri").change(function(e){
 			$.ajax({
 				type: "POST",
 				data: '',
 				url: '<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$(this).val(),
 				beforeSend: function() {
-					$('select#kelas_add').after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
+					$('select#kelas_addeditmateri').after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
 				},
 				success: function(msg) {
 					$('#wait').remove();
@@ -131,6 +131,15 @@
 				}
 			});
 		});*///Submit End
+		
+		
+		$('a#selectalleditmateri').click(function() {
+			$('#kelas_addeditmateri > option').attr("selected", "selected");
+		});   
+
+		$('a#deselectalleditmateri').click(function() {
+			$('#kelas_addeditmateri > option').removeAttr("selected");
+		});
 	});
 </script>	
 
@@ -194,7 +203,7 @@ $(function() {
 								?>
 							</td>
 							<td>
-								<select class="selectfilter" style="width:100px;" id="kelas_add" name="id_kelas[]" multiple >
+								<select class="selectfilter" style="width:100px;" id="kelas_addeditmateri" name="id_kelas[]" multiple >
 								  
 								  <? foreach($kelas as $datakelas){?>
 								  <option  <? if(isset($kelaspenerima2[$datakelas['id']])){echo 'style="display:none;"';}?> value="<?=$datakelas['id']?>">
@@ -203,6 +212,8 @@ $(function() {
 								  </option>
 								  <? } ?>
 								</select>
+								<a id="selectalleditmateri" style="cursor:pointer;">Pilih Semua</a> |
+								<a id="deselectalleditmateri" style="cursor:pointer;">Kosongkan Pilihan</a>
 							</td>
 						</tr>
 						</tbody>

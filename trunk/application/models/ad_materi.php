@@ -72,10 +72,7 @@ Class Ad_materi extends CI_Model{
 		$cnd2='';
 		if($id_pelajaran!=0){$cnd='AND amp.id_pelajaran="'.mysql_real_escape_string($id_pelajaran).'"';}
 		//if($id_kelas!=0){$cnd2='AND amk.id_kelas="'.mysql_real_escape_string($id_kelas).'"';}
-		$query=$this->db->query('SELECT COUNT(*) as jml FROM ak_materi_pelajaran amp JOIN
-								 ak_materi_kirim amk JOIN
-								 ak_pelajaran ap
-								 ON ap.id=amp.id_pelajaran
+		$query=$this->db->query('SELECT COUNT(*) as jml FROM ak_materi_pelajaran amp 
 								 WHERE
 								 amp.id_sekolah=?
 								 '.$cnd.'
@@ -83,10 +80,10 @@ Class Ad_materi extends CI_Model{
 								 AND amp.id_pegawai=?
 								 GROUP BY amp.id
 								 ORDER BY amp.id DESC
-								 LIMIT 15
 								',array($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']));
 		$out=$query->result_array();						
 		//echo $this->db->last_query();
+		//pr($out[0]['jml']);
 		return $out[0]['jml'];
 	}
 	function getmateriByKelasPelajaranIdPegawaiAll($id_pelajaran=0,$id_kelas=0,$start=0,$page=0){
