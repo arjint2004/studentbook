@@ -65,7 +65,7 @@ function filesize(IdFile,max,maxjml){
 			return false;
 		}
 		if(totsize>max){
-			alert('Ukuran file terlalu besar, Maximal jumlah ukuran file '+maxMB+'MB. Pilih kembali file dengan jumlah ukuran yang lebih kecil dari '+maxMB+'');
+			alert('Ukuran file terlalu besar, Maximal jumlah ukuran file '+maxMB+'MB. Pilih kembali file dengan jumlah ukuran yang lebih kecil dari '+maxMB+'MB');
 			$(this).val("");
 			return false;
 		}
