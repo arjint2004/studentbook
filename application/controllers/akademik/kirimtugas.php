@@ -45,6 +45,9 @@ class Kirimtugas extends CI_Controller
 											);
 											
 						$this->db->insert('ak_tugas_det',$insert_detail);
+						//notifikasi
+						$this->load->library('ak_notifikasi');
+						$this->ak_notifikasi->set_notifikasi_akademik_per_kelas($id_kelas,$gorup_notif='tugas',$_POST['id_pelajaran'],$_POST['judul'],$this->session->userdata['user_authentication']['id_pengguna'],$_POST['keterangan'],$_POST['id_tugas'],'tugas');
 						$this->smsprivate->send_by_kelas($id_kelas,$_POST['keterangan'],'tugas',$_POST['id_tugas']);
 				}
 			}

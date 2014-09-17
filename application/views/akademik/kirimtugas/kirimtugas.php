@@ -53,7 +53,7 @@
 			if($frm.find('*[name=id_pelajaran]').is('.valid') && $frm.find('*[name=id_tugas]').is('.valid') && $frm.find('*[name=tanggal_kumpul]').is('.valid')) {
 				$.ajax({
 					type: "POST",
-					data: $(this).serialize()+'&'+$('form#nilai').serialize(),
+					data: $(this).serialize()+'&judul='+$("select#tugas_add :selected").text(),
 					url: $(this).attr('action'),
 					beforeSend: function() {
 						$("#simpantugas").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -72,7 +72,7 @@
 							},
 							success: function(msg) {
 								$(".waittugas37").remove();
-								$.ajax({
+								/*$.ajax({
 										type: "POST",
 										data: 'id_kelas='+$('select#kelastugas').val()+'&pelajaran='+$('select#pelajarantugas').val()+'&ajax=1',
 										url: '<?=base_url()?>akademik/kirimtugas/daftartugaslist',
@@ -82,9 +82,10 @@
 										},
 										success: function(msg) {
 											$(".waittugas37").remove();
-											$("#subjectlisttugas").html(msg);	
+												
 										}
-								});
+								});*/
+								$("#subjectlisttugas").html(msg);
 								$('#subjectpembelajaran').scrollintoview({ speed:'1100'});
 							}
 						});

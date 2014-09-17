@@ -53,7 +53,7 @@
 			if($frm.find('*[name=id_pelajaran]').is('.valid') && $frm.find('*[name=id_uas]').is('.valid') && $frm.find('*[name=tanggal_kumpul]').is('.valid')) {
 				$.ajax({
 					type: "POST",
-					data: $(this).serialize()+'&'+$('form#nilai').serialize(),
+					data: $(this).serialize()+'&judul='+$("select#uas_add :selected").text(),
 					url: $(this).attr('action'),
 					beforeSend: function() {
 						$("#simpanuas").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -72,7 +72,7 @@
 							},
 							success: function(msg) {
 								$(".waituas37").remove();
-								$.ajax({
+								/*$.ajax({
 										type: "POST",
 										data: 'id_kelas='+$('select#kelasuas').val()+'&pelajaran='+$('select#pelajaranuas').val()+'&ajax=1',
 										url: '<?=base_url()?>akademik/kirimuas/daftaruaslist',
@@ -82,10 +82,11 @@
 										},
 										success: function(msg) {
 											$(".waituas37").remove();
-											$("#subjectlistuas").html(msg);	
+												
 										}
-								});
-								$('#subjectpembelajaran').scrollintoview({ speed:'1100'});
+								});*/
+								$("#subjectlistuas").html(msg);
+								$('#subjectlistuas').scrollintoview({ speed:'1100'});
 							}
 						});
 					}

@@ -53,7 +53,7 @@
 			if($frm.find('*[name=id_pelajaran]').is('.valid') && $frm.find('*[name=id_uts]').is('.valid') && $frm.find('*[name=tanggal_kumpul]').is('.valid')) {
 				$.ajax({
 					type: "POST",
-					data: $(this).serialize()+'&'+$('form#nilai').serialize(),
+					data: $(this).serialize()+'&judul='+$("select#uts_add :selected").text(),
 					url: $(this).attr('action'),
 					beforeSend: function() {
 						$("#simpanuts").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -72,7 +72,7 @@
 							},
 							success: function(msg) {
 								$(".waituts37").remove();
-								$.ajax({
+								/*$.ajax({
 										type: "POST",
 										data: 'id_kelas='+$('select#kelasuts').val()+'&pelajaran='+$('select#pelajaranuts').val()+'&ajax=1',
 										url: '<?=base_url()?>akademik/kirimuts/daftarutslist',
@@ -82,10 +82,12 @@
 										},
 										success: function(msg) {
 											$(".waituts37").remove();
-											$("#subjectlistuts").html(msg);	
+											
 										}
-								});
-								$('#subjectpembelajaran').scrollintoview({ speed:'1100'});
+								});*/
+								
+								$("#subjectlistuts").html(msg);	
+								$('#subjectlistuts').scrollintoview({ speed:'1100'});
 							}
 						});
 					}

@@ -53,7 +53,7 @@
 			if($frm.find('*[name=id_pelajaran]').is('.valid') && $frm.find('*[name=id_harian]').is('.valid') && $frm.find('*[name=tanggal_kumpul]').is('.valid')) {
 				$.ajax({
 					type: "POST",
-					data: $(this).serialize()+'&'+$('form#nilai').serialize(),
+					data: $(this).serialize()+'&judul='+$("select#harian_add :selected").text(),
 					url: $(this).attr('action'),
 					beforeSend: function() {
 						$("#simpanharian").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -72,7 +72,7 @@
 							},
 							success: function(msg) {
 								$(".waitharian37").remove();
-								$.ajax({
+								/*$.ajax({
 										type: "POST",
 										data: 'id_kelas='+$('select#kelasharian').val()+'&pelajaran='+$('select#pelajaranharian').val()+'&ajax=1',
 										url: '<?=base_url()?>akademik/kirimharian/daftarharianlist',
@@ -82,10 +82,12 @@
 										},
 										success: function(msg) {
 											$(".waitharian37").remove();
-											$("#subjectlistharian").html(msg);	
+											
 										}
-								});
-								$('#subjectpembelajaran').scrollintoview({ speed:'1100'});
+								});*/
+								
+								$("#subjectlistharian").html(msg);	
+								$('#subjectlistharian').scrollintoview({ speed:'1100'});
 							}
 						});
 					}

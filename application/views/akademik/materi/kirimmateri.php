@@ -58,7 +58,7 @@
 			if($frm.find('*[name=id_pelajaran]').is('.valid') && $frm.find('*[name=tanggal_diajarkan]').is('.valid') && $frm.find('*[name=id_materi]').is('.valid')) {
 				$.ajax({
 					type: "POST",
-					data: $(this).serialize()+'&'+$('form#nilai').serialize(),
+					data: $(this).serialize()+'&pokok_bahasan='+$("select#materi_add :selected").text(),
 					url: $(this).attr('action'),
 					beforeSend: function() {
 						$("#simpanpr").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -69,14 +69,15 @@
 					
 						$.ajax({
 							type: "POST",
-							data: 'id_kelas='+$('select#kelas_add').val()+'&pelajaran='+$('select#pelajaran_add').val()+'&ajax=1',
+							//data: 'id_kelas='+$('select#kelas_add').val()+'&pelajaran='+$('select#pelajaran_add').val()+'&ajax=1',
+							data: '&ajax=1',
 							url: '<?=base_url('akademik/materi/daftarmaterilist')?>',
 							beforeSend: function() {
 								$("#simpanpr").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
 							},
 							success: function(msg) {
 								$("#wait").remove();
-								$.ajax({
+								/*$.ajax({
 										type: "POST",
 										data: 'ajax=1',
 										url: '<?=base_url()?>akademik/materi/daftarmaterilist',
@@ -85,9 +86,10 @@
 										},
 										success: function(msg) {
 											$("#wait").remove();
-											$("#subjectlistmateri").html(msg);	
+											
 										}
-								});
+								});*/
+								$("#subjectlistmateri").html(msg);	
 								$('#subjectlistmateri').scrollintoview({ speed:'1100'});
 							}
 						});
@@ -200,9 +202,9 @@ $(function() {
 				<td>
 					<select class="selectfilter" id="materi_add" name="id_materi">
 						<option value="">Pilih Materi</option>
-						<? foreach($materi as $datamateri){?>
-						<option <? //if(@$_POST['kelas']==$datamateri['id']){echo 'selected';}?> value="<?=$datamateri['id']?>"><?=$datamateri['kelas']?><?=$datamateri['nama']?></option>
-						<? } ?>
+						<? //foreach($materi as $datamateri){?>
+						<option <? //if(@$_POST['kelas']==$datamateri['id']){echo 'selected';}?> value="<?//=$datamateri['id']?>"><?//=$datamateri['kelas']?><?//=$datamateri['nama']?></option>
+						<? //} ?>
 					</select>
 				</td>
 			</tr>
