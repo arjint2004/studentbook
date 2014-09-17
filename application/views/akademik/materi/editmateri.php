@@ -61,7 +61,7 @@
 					success: function(msg) {
 						$("#wait").remove();	
 						
-						ajaxupload("<? echo base_url();?>akademik/materi/upload/"+msg,"response","image-list","file");
+						ajaxuploadnew("<? echo base_url();?>akademik/materi/upload/"+msg,"response","image-list","file");
 						$.ajax({
 							type: "POST",
 							data: 'id_kelas='+$('select#kelas_addeditmateri').val()+'&pelajaran='+$('select#pelajaran_add').val()+'&ajax=1',
