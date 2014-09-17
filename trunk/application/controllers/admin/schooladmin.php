@@ -672,7 +672,7 @@ class Schooladmin extends CI_Controller {
 				$this->db->query('UPDATE ak_pegawai SET hp="'.$hp.'" WHERE id='.$id.'');
 			}
 		}
-		$q=$this->db->query('SELECT p.hp,p.id,p.nama FROM ak_pegawai p JOIN users u ON p.id=u.id_pengguna WHERE p.id_sekolah='.$this->session->userdata['user_authentication']['id_sekolah'].' AND u.id_group=13');
+		$q=$this->db->query('SELECT p.hp,p.id,p.nama FROM ak_pegawai p JOIN users u ON p.id=u.id_pengguna WHERE p.id_sekolah='.$this->session->userdata['user_authentication']['id_sekolah'].' AND u.id_group=13 ORDER BY p.nama ASC');
 		$data['dataguru']=$q->result_array();
 		
 		
