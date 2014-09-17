@@ -188,7 +188,7 @@
 														</ul>
 														</div>-->
 														<br class="clear" />
-														<div id="komentaruas<?=$datauas['id']?>"></div>
+														<!--<div id="komentaruas<?=$datauas['id']?>"></div>-->
 														</div>
 													</td>
 												</tr>

@@ -188,7 +188,7 @@
 														</ul>
 														</div>-->
 														<br class="clear" />
-														<div id="komentarharian<?=$dataharian['id']?>"></div>
+														<!--<div id="komentarharian<?=$dataharian['id']?>"></div>-->
 														</div>
 													</td>
 												</tr>

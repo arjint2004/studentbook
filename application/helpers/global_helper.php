@@ -675,13 +675,15 @@ if (!function_exists('download_panduan')) {
 	if (!function_exists('graph')) {
 		function graph($value=0,$total=0){
 			if($total>0){
-				$persen=($value/$total) * 100 ;
+				//$persen=($value/$total) * 100 ;
+				$persen=$value ;
+				$width=$persen*5;
 			}else{
 				$persen=0;
 			}
 			echo '
 				<div class="meter animate">
-					<span style="width: '.$persen.'%">'.round($persen,2).'%</span>
+					<span style="width: '.$width.'px">'.$persen.' POST</span>
 				</div>
 			';
 		}
