@@ -5,7 +5,7 @@
 											}else{
 												$('#detailmateri'+id).toggle('fade');
 											}
-											$('table.materilist div.comment').remove();
+											//$('table.materilist div.comment').remove();
 											$(obj).prev('tr').hide();
 											$(obj).next('tr').next('tr').next('tr').hide();
 											$.ajax({
@@ -20,7 +20,7 @@
 													//$("#wait").remove();
 													
 													if(all=='all'){
-														$('#komentarall'+id).html(msg);	
+														//$('#komentarall'+id).html(msg);	
 													}else{
 														$('#komentar'+id).html(msg);	
 													}
@@ -215,7 +215,7 @@
 													</ul>
 													</div>-->
 													<br class="clear" />
-													<div id="komentarall<?=$datamateri['id']?>"></div>
+													<!--<div id="komentarall<?=$datamateri['id']?>"></div>-->
 													</div>
 												</td>
 											</tr>

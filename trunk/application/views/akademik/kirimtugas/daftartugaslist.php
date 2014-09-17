@@ -188,7 +188,7 @@
 														</ul>
 														</div>-->
 														<br class="clear" />
-														<div id="komentartugas<?=$datatugas['id']?>"></div>
+														<!--<div id="komentartugas<?=$datatugas['id']?>"></div>-->
 														</div>
 													</td>
 												</tr>
