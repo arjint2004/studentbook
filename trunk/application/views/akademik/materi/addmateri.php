@@ -78,7 +78,7 @@
 						$(".error-box").delay(1000).fadeOut("slow",function(){
 							$(this).remove();
 						});	
-						var upload=ajaxupload("<? echo base_url();?>akademik/materi/upload/"+msg,"response","image-list","fileaddmateri");
+						var upload=ajaxuploadnew("<? echo base_url();?>akademik/materi/upload/"+msg,"response","image-list","fileaddmateri");
 						$.ajax({
 							url: "<? echo base_url();?>akademik/materi/upload/"+msg,
 							type: "POST",
