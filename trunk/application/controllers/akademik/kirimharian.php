@@ -43,7 +43,8 @@ class Kirimharian extends CI_Controller
 											 'keterangan'=>$_POST['keterangan'],
 											 'tanggal'=>date('Y-m-d H:i:s')
 											);
-											
+						$this->load->library('ak_notifikasi');
+						$this->ak_notifikasi->set_notifikasi_akademik_per_kelas($id_kelas,$gorup_notif='harian',$_POST['id_pelajaran'],$_POST['judul'],$this->session->userdata['user_authentication']['id_pengguna'],$_POST['keterangan'],$_POST['id_harian'],'harian');					
 						$this->db->insert('ak_harian_det',$insert_detail);
 						$this->smsprivate->send_by_kelas($id_kelas,$_POST['keterangan'],'harian',$_POST['id_harian']);
 				}

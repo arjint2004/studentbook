@@ -75,9 +75,13 @@ class Materi extends CI_Controller
 											 'tanggal_diajarkan'=>$_POST['tanggal_diajarkan'],
 											 'keterangan'=>$_POST['keterangan'],
 											);
-											 
+						//notifikasi
+						$this->load->library('ak_notifikasi');
+						$this->ak_notifikasi->set_notifikasi_akademik_per_kelas($id_kelas,$gorup_notif='materi',$_POST['id_pelajaran'],$_POST['pokok_bahasan'],$this->session->userdata['user_authentication']['id_pengguna'],$_POST['keterangan'],$id_materi,'materi');
+						
 						$this->db->insert('ak_materi_kirim',$insert_detail);
 						$this->smsprivate->send_by_kelas($id_kelas,$_POST['keterangan'],'materi',$_POST['id_materi']);
+						
 				}
 				
 				
@@ -117,7 +121,7 @@ class Materi extends CI_Controller
 						$this->smsprivate->send_by_kelas($id_kelas,$_POST['keterangan'],'materi',$id_materi);
 						//notifikasi
 						$this->load->library('ak_notifikasi');
-						//$this->ak_notifikasi->set_notifikasi_akademik_per_kelas($id_kelas,$gorup_notif='materi',$_POST['id_pelajaran'],$_POST['pokok_bahasan'],$datainsert['id_pegawai'],$_POST['keterangan'],$id_materi,'materi');
+						$this->ak_notifikasi->set_notifikasi_akademik_per_kelas($id_kelas,$gorup_notif='materi',$_POST['id_pelajaran'],$_POST['pokok_bahasan'],$datainsert['id_pegawai'],$_POST['keterangan'],$id_materi,'materi');
 						//$this->load->model('ad_notifikasi');
 						//$this->ad_notifikasi->add_notif_sms_ortu_perkelas($id_kelas,$_POST['id_pelajaran'],$data=array('group'=>'materi'));
 						//end notifikasi

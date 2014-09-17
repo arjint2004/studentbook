@@ -45,6 +45,8 @@ class Kirimuas extends CI_Controller
 											);
 											
 						$this->db->insert('ak_uas_det',$insert_detail);
+						$this->load->library('ak_notifikasi');
+						$this->ak_notifikasi->set_notifikasi_akademik_per_kelas($id_kelas,$gorup_notif='uas',$_POST['id_pelajaran'],$_POST['judul'],$this->session->userdata['user_authentication']['id_pengguna'],$_POST['keterangan'],$_POST['id_uas'],'uas');
 						$this->smsprivate->send_by_kelas($id_kelas,$_POST['keterangan'],'uas',$_POST['id_uas']);
 				}
 			}

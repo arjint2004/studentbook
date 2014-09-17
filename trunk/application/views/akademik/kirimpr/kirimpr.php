@@ -53,7 +53,7 @@
 			if($frm.find('*[name=id_pelajaran]').is('.valid') && $frm.find('*[name=id_pr]').is('.valid') && $frm.find('*[name=tanggal_kumpul]').is('.valid')) {
 				$.ajax({
 					type: "POST",
-					data: $(this).serialize()+'&'+$('form#nilai').serialize(),
+					data: $(this).serialize()+'&judul='+$("select#pr_add :selected").text(),
 					url: $(this).attr('action'),
 					beforeSend: function() {
 						$("#simpanpr").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -72,7 +72,7 @@
 							},
 							success: function(msg) {
 								$(".waitpr37").remove();
-								$.ajax({
+								/*$.ajax({
 										type: "POST",
 										data: 'id_kelas='+$('select#kelaspr').val()+'&pelajaran='+$('select#pelajaranpr').val()+'&ajax=1',
 										url: '<?=base_url()?>akademik/kirimpr/daftarprlist',
@@ -82,9 +82,10 @@
 										},
 										success: function(msg) {
 											$(".waitpr37").remove();
-											$("#subjectlistpr").html(msg);	
+											
 										}
-								});
+								});*/
+								$("#subjectlistpr").html(msg);	
 								$('#subjectpembelajaran').scrollintoview({ speed:'1100'});
 							}
 						});
