@@ -427,7 +427,8 @@ class Siswa extends CI_Controller
     {   
         $session = session_data();
         $data['siswa_edit']     = $this->siswamodel->edit_data_siswa($session['id']);
-        $data['siswa']          = $this->siswamodel->get_siswa($session['id']);
+       // $data['siswa']          = $this->siswamodel->get_siswa($session['id']);
+		//pr($data['siswa_edit']);
         $data['sidebar']        = 'layout/template_sidebar';
         $data['main']           = 'sosial/editsiswa';
         $this->load->view('layout/fr_default',$data);
@@ -438,9 +439,9 @@ class Siswa extends CI_Controller
         $this->form_validation->set_rules('jenis_kelamin','Gender','required');
         $this->form_validation->set_rules('tgl_lahir','Tanggal Lahir','required');
         $this->form_validation->set_rules('alamat','Alamat','required');
-        $this->form_validation->set_rules('telp','Telp','required');
+        $this->form_validation->set_rules('hp','No Hp','required');
         $this->form_validation->set_rules('email','Email','required');
-        $this->form_validation->set_rules('orangtua','Orangtua','required');
+        //$this->form_validation->set_rules('orangtua','Orangtua','required');
         $this->form_validation->set_rules('pwd_baru', 'Password', 'trim|matches[konfirm]');
         $this->form_validation->set_rules('konfirm', 'Password Confirmation', 'trim');
         if($this->form_validation->run()==FALSE){

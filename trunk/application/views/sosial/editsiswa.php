@@ -22,7 +22,10 @@
             event.preventDefault();
             window.location.href='<?=site_url('sos/siswa/')?>'; 
         });
+		
+		$('#dateeditsiswa').datepick();
     });
+	
 </script>
 <div class="portfolio column-one-half-with-sidebar">
     <?=print_iklan(); ?>
@@ -44,9 +47,9 @@
                             <dl>
                                 <dt>Jenis Kelamin</dt>
                                 <dd>
-                                    <select name="jenis_kelamin">
+                                    <select name="jenis_kelamin" style="margin:0;">
                                         <option value="L" <?php if($siswa_edit->gender=="L") echo 'selected';?>>L</option>
-                                        <option value="W" <?php if($siswa_edit->gender=="W") echo 'selected';?>>W</option>
+                                        <option value="W" <?php if($siswa_edit->gender=="W") echo 'selected';?>>P</option>
                                     </select>
                                     <?=form_error('jenis_kelamin','<br><span class="konfirm_error">','</span>')?>
                                 </dd>
@@ -54,22 +57,22 @@
                             <dl>
                                 <dt>Tanggal Lahir</dt>
                                 <dd>
-                                    <input type="text" class="text-field datepicker" name="tgl_lahir" style="margin: 0px;" value="<?=$siswa_edit->tglahir?>">                       
+                                    <input type="text" class="text-field" name="tgl_lahir" id="dateeditsiswa" style="width:100px;margin: 0px;" value="<?=$siswa_edit->tglahir?>">                       
                                     <?=form_error('tgl_lahir','<br><span class="konfirm_error">','</span>')?>
                                 </dd>
                             </dl>
                             <dl>
                                 <dt>Alamat</dt>
                                 <dd>
-                                    <input type="text" class="text-field" name="alamat" style="margin: 0px;" value="<?=$siswa_edit->alamat?>">
+                                    <textarea  class="text-field" name="alamat" style="margin: 0px; height:50px;"><?=$siswa_edit->alamat?></textarea>
                                     <?=form_error('alamat','<br><span class="konfirm_error">','</span>')?>
                                 </dd>
                             </dl>
                             <dl>
-                                <dt>Telp/HP</dt>
+                                <dt>No HP</dt>
                                 <dd>
-                                    <input type="text" class="text-field" name="telp" value="<?=$siswa_edit->telp?>" style="margin: 0px;" />
-                                    <?=form_error('telp','<br><span class="konfirm_error">','</span>')?>
+                                    <input type="text" class="text-field" name="hp" value="<?=$siswa_edit->hp?>" style="margin: 0px;" />
+                                    <?=form_error('hp','<br><span class="konfirm_error">','</span>')?>
                                 </dd>
                             </dl>
                             <dl>
@@ -77,13 +80,6 @@
                                 <dd>
                                     <input type="text" class="text-field" name="email" value="<?=$siswa_edit->email?>" style="margin: 0px;" />
                                     <?=form_error('email','<br><span class="konfirm_error">','</span>')?>
-                                </dd>
-                            </dl>
-                            <dl>
-                                <dt>Nama Orang Tua</dt>
-                                <dd>
-                                    <input type="text" class="text-field" name="orangtua" value="<?=$siswa_edit->NmOrtu?>" style="margin: 0px;"/>
-                                    <?=form_error('orangtua','<br><span class="konfirm_error">','</span>')?>
                                 </dd>
                             </dl>
                         </div> 
@@ -112,8 +108,8 @@
                     </div>
                 </div>
                 <input type="hidden" name="edit_data" value="oke"/>
-                <input type="submit" value="Ubah Data" class="button" />
-                <button class="button back_edit">Kembali</button>
+                <input type="submit" value="Ubah Data" class="button small light-grey" />
+                <button class="button small light-grey">Kembali</button>
             </form>
         </div>
     </div>
