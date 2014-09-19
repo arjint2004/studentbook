@@ -108,7 +108,7 @@
                     </div>
                 </div>
                 <input type="hidden" name="edit_data" value="oke"/>
-                <input type="submit" value="Ubah Data" class="button small light-grey" />
+                <input type="submit" value="Simpan" class="button small light-grey" />
                 <button class="button small light-grey">Kembali</button>
             </form>
         </div>
