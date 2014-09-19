@@ -8,10 +8,10 @@
 				onfocusout: function(element) {	$(element).valid();	},
 				errorContainer: $container,
 				rules:{
-				  id_kelas:{required:true,notEqual:'Pilih Kelas'},
+				  //id_kelas:{required:true,notEqual:'Pilih Kelas'},
 				  id_pelajaran:{required:true,notEqual:'Pilih Pelajaran'},
 				  topik:{required:true,notEqual:''},
-				  waktu:{required:true,notEqual:''},
+				  //waktu:{required:true,notEqual:''},
 				  pertemuan_ke:{required:true,notEqual:''},
 				  tanggal:{required:true,notEqual:''}
 				}
@@ -43,21 +43,23 @@
 		});
 		$("#pembelajaranadd").submit(function(e){
 			
-			$("#subjectevaluasi").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
-			$(".error-box").html("Memproses Data").fadeIn("slow");
+
 			$frm = $(this);
 			$id_pelajaran = $frm.find('*[name=id_pelajaran]').val();
 			$topik = $frm.find('*[name=topik]').val();
-			$waktu = $frm.find('*[name=waktu]').val();
+			//$waktu = $frm.find('*[name=waktu]').val();
 			$pertemuan_ke = $frm.find('*[name=pertemuan_ke]').val();
 			$tanggal = $frm.find('*[name=tanggal]').val();
+			//$id_kelas = $frm.find('*[name=id_kelas]').val();
 			if($('select#kelas_addpert').val()==null){
 				$('select#kelas_addpert').css('border','1px solid red');
 				return false;
 			}else{
 				$('select#kelas_addpert').css('border','1px solid #D8D8D8');
 			}
-			if($frm.find('*[name=id_pelajaran]').is('.valid') &&   $frm.find('*[name=topik]').is('.valid') && $frm.find('*[name=waktu]').is('.valid') && $frm.find('*[name=pertemuan_ke]').is('.valid') && $frm.find('*[name=tanggal]').is('.valid')) {
+			if($frm.find('*[name=id_pelajaran]').is('.valid') &&   $frm.find('*[name=topik]').is('.valid') /*&& $frm.find('*[name=waktu]').is('.valid')*/ && $frm.find('*[name=pertemuan_ke]').is('.valid') && $frm.find('*[name=tanggal]').is('.valid') /*&& $frm.find('*[name=id_kelas]').is('.valid')*/) {
+				$("#subjectevaluasi").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+				$(".error-box").html("Memproses Data").fadeIn("slow");
 				$.ajax({
 					type: "POST",
 					data: $(this).serialize()+'&'+$('form#nilai').serialize(),
@@ -105,9 +107,7 @@
 		});//Submit End
 	});
 </script>		
-<link type="text/css" href="<?=$this->config->item('css');?>datepick.css" rel="stylesheet">
-<script type="text/javascript" src="<?=$this->config->item('js');?>jquery.datepick.js"></script>
-<script type="text/javascript" src="<?=$this->config->item('js');?>jquery.datepick-id.js"></script>
+
 
 <script type="text/javascript">
 function getadd(obj,date) {
