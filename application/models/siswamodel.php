@@ -403,12 +403,28 @@
             $jenis_kelamin      = $this->input->post('jenis_kelamin');
             $tgl_lahir          = $this->input->post('tgl_lahir');
             $alamat             = $this->input->post('alamat');
-            $telp               = $this->input->post('telp');
+            $hp                 = $this->input->post('hp');
             $email              = $this->input->post('email');
             $orangtua           = $this->input->post('orangtua');
             $session = session_data();
-                                    
-            if(!empty($_FILES['foto_siswa']['tmp_name']))
+                          
+           
+            if(!empty($pwd_baru) AND !empty($konfirm))
+                    {
+                //print_r('rubah password');exit;
+                $this->db->where('id',$session['id']);
+                $this->db->where('password',$pwd_lama);
+                $sql=$this->db->get('ak_siswa');
+                if($sql->num_rows()>0){
+                    //ubah password
+                    $this->db->where('id',$session['id']);
+                    $this->db->update('ak_siswa',array('password'=>$pwd_baru));
+                            
+                    $this->db->where('id',$session['id']);
+                    $this->db->update('users',array('password'=>md5($pwd_baru)));
+                }
+            }
+		   if(!empty($_FILES['foto_siswa']['tmp_name']))
             {
                 $config['upload_path']      = $path_large = "upload/images/larger/";
                 $config['allowed_types']    = 'gif|jpg|png';
@@ -444,27 +460,11 @@
                         print_r($this->image_moo->display_errors()) ;
                     }
                     
-                    if(!empty($pwd_baru) AND !empty($konfirm))
-                    {
-                        print_r('rubah password');exit;
-                        $this->db->where('id',$session['id']);
-                        $this->db->where('password',$pwd_lama);
-                        $sql=$this->db->get('ak_siswa');
-                        if($sql->num_rows()>0)
-                        {
-                            //ubah password
-                            $this->db->where('id',$session['id']);
-                            $this->db->update('ak_siswa',array('password'=>$pwd_baru));
-                            
-                            $this->db->where('id',$session['id']);
-                            $this->db->update('users',array('password'=>md5($pwd_baru)));
-                        }
-                    }
                     //data lama
 					$datalamaq=$this->db->query('SELECT * FROM ak_siswa WHERE id='.$session['id'].'');
 					$datalama=$datalamaq->result_array();
 					
-					if(file_exists($this->config->item('dir').$datalama[0]['foto'])){
+					if(file_exists($this->config->item('dir').$datalama[0]['foto']) && $datalama[0]['foto']!=''){
 						unlink($this->config->item('dir').$datalama[0]['foto']);
 					}
 					
@@ -472,7 +472,7 @@
                     $update     = array('gender'=>$jenis_kelamin,
                                   'tglahir'=>$tgl_lahir,
                                   'alamat'=>$alamat,
-                                  'telp'=>$telp,
+                                  'hp'=>$hp,
                                   'email'=>$email,
                                   'NmOrtu'=>$orangtua,
                                   'foto'=>$foto);
@@ -480,31 +480,15 @@
                     $this->db->update('ak_siswa',$update);
                 }
             }else{
-                if(!empty($pwd_baru) AND !empty($konfirm))
-                {
-                    $session = session_data();
-                    $this->db->where('id',$session['id']);
-                    $this->db->where('password',$pwd_lama);
-                    $sql=$this->db->get('ak_siswa');
-                    if($sql->num_rows()>0)
-                    {
-                        //ubah password
-                        $this->db->where('id',$session['id']);
-                        $this->db->update('ak_siswa',array('password'=>$pwd_baru));
-                        
-                        $this->db->where('id',$session['id']);
-                        $this->db->update('users',array('password'=>md5($pwd_baru)));
-                    }
-                }
-                
-                $data = array('gender'=>$jenis_kelamin,
-                              'tglahir'=>$tgl_lahir,
-                              'alamat'=>$alamat,
-                              'telp'=>$telp,
-                              'email'=>$email,
-                              'NmOrtu'=>$orangtua);
+                    $foto       = "upload/images/thumb/".$data['upload_data']['file_name'];
+                    $update     = array('gender'=>$jenis_kelamin,
+                                  'tglahir'=>$tgl_lahir,
+                                  'alamat'=>$alamat,
+                                  'hp'=>$hp,
+                                  'email'=>$email);
+				//pr($update);	die();			  
                 $this->db->where('id',$session['id']);
-                $this->db->update('ak_siswa',$data);
+                $this->db->update('ak_siswa',$update);
             }
         }
         
@@ -1260,8 +1244,10 @@
         public function edit_data_siswa($id)
         {
 
+            $this->db->select('ak_siswa.gender,ak_siswa.nama,ak_siswa.email,ak_siswa.alamat,ak_siswa.tglahir,ak_siswa.hp,ak_siswa.foto');
             $this->db->from('ak_siswa');
-            $this->db->join('ak_sekolah','ak_siswa.id_sekolah=ak_sekolah.id','left');
+            $this->db->join('ak_sekolah','ak_siswa.id_sekolah=ak_sekolah.id');
+            $this->db->join('ak_pegawai','ak_pegawai.id_siswa=ak_siswa.id');
             $this->db->where('ak_siswa.id',$id);
             $sql = $this->db->get();
             if($sql->num_rows()>0)
