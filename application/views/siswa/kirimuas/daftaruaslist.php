@@ -50,7 +50,7 @@
 													<table class="noborder">
 														<?foreach($datauas['file'] as $file){?>
 														<tr>
-															<td class="title"><a title="<?=$file['file_name']?>" href="<?=base_url('siswa/kirimuas/send_download/'.base64_encode($file['file_name']).'');?>" target="_self"><?=substr($file['file_name'],-30)?></a></td>
+															<td class="title"><a title="<?=$file['file_name']?>" href="<?=base_url('homepage/send_download/'.base64_encode($file['file_name']).'');?>" target="_self"><?=substr($file['file_name'],-30)?></a></td>
 														</tr>
 														<? } ?>
 													</table>
