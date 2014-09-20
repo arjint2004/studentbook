@@ -150,10 +150,10 @@ class Homepage extends MY_Controller {
         {
 			$filename=base64_decode($filename);
 			$path=base64_decode($path);
-			redirect(base_url($path.$filename));
+			//redirect(base_url($path.$filename));
 			
-			//$this->load->library('ak_file');
-			//$this->ak_file->send_download($path,$filename);	
+			$this->load->library('ak_file');
+			$this->ak_file->send_download($path,$filename);	
 		}
 	function cekusername($username=''){
 		if(isset($_POST['username'])){
