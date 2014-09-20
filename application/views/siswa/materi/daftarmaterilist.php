@@ -50,7 +50,7 @@
 													<table class="noborder">
 														<? foreach($datamateri['file'] as $file){?>
 														<tr>
-															<td class="title"><a href="<?=base_url('homepage/send_download/'.base64_encode($file['file_name']).'');?>" target="_self"><?=$file['file_name']?></a></td>
+															<td class="title"><a href="<?=base_url('siswa/materi/send_download/'.base64_encode($file['file_name']).'');?>" target="_self"><?=$file['file_name']?></a></td>
 														</tr>
 														<? } ?>
 													</table>

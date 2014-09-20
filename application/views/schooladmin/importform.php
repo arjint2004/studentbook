@@ -32,9 +32,9 @@
 	<form method="post" class="frmimports" enctype="multipart/form-data" action="<?=base_url()?>admin/schooladmin/importexcell">
 		<input name="akun" class="file" type="hidden" value="<?=$_GET['akun']?>">
 		<? if($listtype=='siswa'){?>
-		<input class="button small light-grey" type='button' name="submit" onclick="window.location='<?=base_url('homepage/send_download/'.base64_encode("upload/akademik/template/FormDataSiswadanOrangTua.xls").'')?>'"   id="buttondownloadsiswa" value="Download File" />
+		<input class="button small light-grey" type='button' name="submit" onclick="window.location='<?=base_url('admin/schooladmin/send_download/'.base64_encode("upload/akademik/template/FormDataSiswadanOrangTua.xls").'')?>'"   id="buttondownloadsiswa" value="Download File" />
 		<? }else{ ?>
-		<input class="button small light-grey" type='button' name="submit" onclick="window.location='<?=base_url('homepage/send_download/'.base64_encode("upload/akademik/template/FormDataGuru.xls").'')?>'"  id="buttondownloadguru" onclick="window.location='<?=base_url()?>'" value="Download File" />
+		<input class="button small light-grey" type='button' name="submit" onclick="window.location='<?=base_url('admin/schooladmin/send_download/'.base64_encode("upload/akademik/template/FormDataGuru.xls").'')?>'"  id="buttondownloadguru" onclick="window.location='<?=base_url()?>'" value="Download File" />
 		<? } ?>
 		<input class="button small light-grey" type='submit' name="submit"  style="margin-right:5px;" id="buttonimport" value="Import Excell" />
 		<? if($listtype=='siswa'){?>

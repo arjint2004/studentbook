@@ -9,12 +9,13 @@ class Ak_file {
 		}
     }
 	function send_download($dir,$filename){
-		$file_path = $dir.$filename;
+		redirect(base_url($dir.$filename));
+		/*$file_path = $dir.$filename;
 		$file_size=@filesize($file_path);
 		header("Content-Type: application/x-zip-compressed");
 		header("Content-disposition: attachment; filename=$filename");
 		header("Content-Length: $file_size");
-		readfile($file_path);
+		readfile($file_path);*/
 		exit;
 	} 
 }
