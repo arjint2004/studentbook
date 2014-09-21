@@ -289,7 +289,7 @@ Class Ad_pr extends CI_Model{
 								WHERE
 								af.id_pr=?
 								',array($id_pr));
-		pr($this->db->last_query());
+		//pr($this->db->last_query());
 		return $query->result_array();
 	}
 	function getFilePrInId($id_pr=array()){
@@ -530,6 +530,7 @@ Class Ad_pr extends CI_Model{
 		$pr=array();
 		if($id_pelajaran!=0){$cnd='AND amp.id_pelajaran="'.mysql_real_escape_string($id_pelajaran).'"';}
 		if($id_kelas!=0){$cnd2='AND amk.id_kelas="'.mysql_real_escape_string($id_kelas).'"';}
+		if(!empty($id_prarray)){ $cndin='AND amp.id IN('.implode(',',$id_prarray).')';}else{$cndin='';}
 		$query=$this->db->query('SELECT amk.*,ak.nama as nama_kelas,ak.kelas FROM ak_pr amp JOIN
 								 ak_pr_det amk JOIN ak_kelas ak
 								 ON
@@ -540,7 +541,7 @@ Class Ad_pr extends CI_Model{
 								 '.$cnd.'
 								 '.$cnd2.'
 								 AND amp.id_pegawai=?
-								 AND amp.id IN('.implode(',',$id_prarray).')
+								 '.$cndin.'
 								 GROUP BY amp.id
 								 ORDER BY amp.id DESC
 								',array($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']));

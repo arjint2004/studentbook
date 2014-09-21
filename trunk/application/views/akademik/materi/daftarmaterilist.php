@@ -125,21 +125,27 @@
 								<? //pr($materi);?>
 							   
 
-<? //pr($pagination);?>								
+<? //pr($materi);?>								
 <div class="tabs-container">
     <ul class="tabs-frame tabs-frame2">
         <li><a href="#">Semua Materi</a></li>
         <li><a href="#">Terkirim</a></li>
     </ul>
     <div class="tabs-frame-content tabs-frame-content2 ">
-									<table class="materilist">
+		
+								<div style="float:left;" id="paginationmaterilist" >
+								<?=$link?>
+								</div>
+									<table class="materilist" style="margin:0;">
 										<thead>
 											<tr> 
 												<th>No</th>      
 												<th>Pokok Bahasan</th>
 												<th>Pelajaran</th>
-												<th>Tanggal</th>
-												<th>Action</th>
+												<th>Dikirim Ke</th>
+												<th>Tgl Upload</th>
+												<th style="width:37px;">Detail</th>
+												<th style="width:75px;">Ubah|Hapus</th>
 											</tr>                         
 										</thead>
 										<tbody>
@@ -151,7 +157,15 @@
 												<td><?=$no++;?></td>
 												<td class="title" ><?=$datamateri['pokok_bahasan']?></td>
 												<td class="title" ><?=$datamateri['pelajaran']?></td>
+												<td class="title" ><? 
+													if(!empty($datamateri['dikirim'])){
+														foreach($datamateri['dikirim'] as $dtdkrm){echo $dtdkrm['kelas'].$dtdkrm['nama_kelas']." &nbsp; ";}
+													}else{
+														echo 'Belum dikirim';
+													}
+													?></td>
 												<td ><? $tg=tanggal($datamateri['tanggal_buat']." 00:00:00"); echo $tg[2];?></td>
+												<td ><a style="cursor:pointer;">Lihat</a></td>
 												<td >
 													<div class="actedit acteditmateri" id_materi="<?=$datamateri['id']?>"></div> 
 													<div class="actdell actdellmateri" id_materi="<?=$datamateri['id']?>"></div>
@@ -159,7 +173,7 @@
 											</tr>
 											
 											<tr id="detailmateriall<?=$datamateri['id']?>" style="display:none;">
-												<td colspan="6" class="innercolspan">
+												<td colspan="7" class="innercolspan">
 													<div class="">
 													<div class="full file">
 													<h3 >Detail MATERI</h3>
@@ -200,13 +214,15 @@
 													<h3 >Lampiran</h3>
 													<div class="hr"></div>
 													<table class="noborder">
-														<?foreach($datamateri['file'] as $file){?>
+														<?
+														if(!empty($datamateri['file'])){
+														foreach($datamateri['file'] as $file){?>
 														<tr>
 															<td class="title"><a title="<?=$file['file_name']?>" href="<?=base_url('homepage/send_download/'.base64_encode('upload/akademik/materi/').'/'.base64_encode($file['file_name']).'');?>" target="_self"><?=substr($file['file_name'],-30)?> Download</a>
 															| <a target="file"  href="<?=base_url()?>akademik/nilai/view_document/null/null/null/null/null/<?=base64_encode(base_url('upload/akademik/materi/'.$file['file_name']).'')?>">Lihat</a>
 															</td>
 														</tr>
-														<? } ?>
+														<? } } ?>
 													</table>
 													</div>
 													
@@ -225,9 +241,17 @@
 											<? } ?>
 										</tbody>
 								</table>
+									
+								<div style="float:left;" id="paginationmaterilist" >
+								<?=$link?>
+								</div>
     </div>
     <div class="tabs-frame-content tabs-frame-content2">
-								<table class="materilist">
+		
+								<div style="float:left;" id="paginationmaterilist" >
+								<?=$link?>
+								</div>
+								<table class="materilist"  style="margin:0;">
 										<thead>
 											<tr> 
 												<th>No</th>      
@@ -235,7 +259,8 @@
 												<th>Pelajaran</th>
 												<th>Ke Kelas</th>
 												<th>Tanggal</th>
-												<th>Action</th>
+												<th style="width:37px;">Detail</th>
+												<th style="width:75px;">Ubah|Hapus</th>
 											</tr>                         
 										</thead>
 										<tbody>
@@ -251,6 +276,7 @@
 												<td class="title" ><?=$datamateri['pelajaran']?></td>
 												<td class="title" ><? foreach($datamateri['dikirim'] as $dtdkrm){echo $dtdkrm['kelas'].$dtdkrm['nama_kelas']." &nbsp; ";}?></td>
 												<td ><? $tg=tanggal($datamateri['tanggal_buat']." 00:00:00"); echo $tg[2];?></td>
+												<td ><a style="cursor:pointer;">Lihat</a></td>
 												<td >
 													<div class="actedit acteditmateri" id_materi="<?=$datamateri['id']?>"></div> 
 													<div class="actdell actdellmateri" id_materi="<?=$datamateri['id']?>"></div>
@@ -258,7 +284,7 @@
 											</tr>
 											
 											<tr id="detailmateri<?=$datamateri['id']?>" style="display:none;">
-												<td colspan="6" class="innercolspan">
+												<td colspan="7" class="innercolspan">
 													<div class="">
 													<div class="full file">
 													<h3 >Di Kirim ke Kelas</h3>
@@ -271,14 +297,16 @@
 															<th >Tanggal Diajarkan</th>
 															<th >Keterangan</th>
 														</tr>
-														<? foreach($datamateri['dikirim'] as $dtdkrm){ $noo++;?>
+														<? 
+														if(!empty($datamateri['dikirim'])){
+														foreach($datamateri['dikirim'] as $dtdkrm){ $noo++;?>
 														<tr>
 															<td ><?=$noo?></td>
 															<td class="title"><?=$dtdkrm['kelas'].$dtdkrm['nama_kelas']?></td>
 															<td class="title"><? $tg=tanggal($dtdkrm['tanggal_diajarkan']." 00:00:00"); echo $tg[2];?></td>
 															<td class="title"><?=$dtdkrm['keterangan']?></td>
 														</tr>
-														<? }
+														<? }}
 															unset($noo);
 														?>
 													</table>
@@ -320,13 +348,15 @@
 													<h3 >Lampiran</h3>
 													<div class="hr"></div>
 													<table class="noborder">
-														<?foreach($datamateri['file'] as $file){?>
+														<?
+														if(!empty($datamateri['file'])){
+														foreach($datamateri['file'] as $file){?>
 														<tr>
 															<td class="title"><a title="<?=$file['file_name']?>" href="<?=base_url('homepage/send_download/'.base64_encode('upload/akademik/materi/').'/'.base64_encode($file['file_name']).'');?>" target="_self"><?=substr($file['file_name'],-30)?> Download</a>
 															| <a target="file"  href="<?=base_url()?>akademik/nilai/view_document/null/null/null/null/null/<?=base64_encode(base_url('upload/akademik/materi/'.$file['file_name']).'')?>">Lihat</a>
 															</td>
 														</tr>
-														<? } ?>
+														<? } } ?>
 													</table>
 													</div>
 													
@@ -345,13 +375,10 @@
 											<? } ?>
 										</tbody>
 								</table>
-								
-								<div style="float:left;" id="paginationmaterilistk" >
-								<?//=$paginationk?>
+									
+								<div style="float:left;" id="paginationmaterilist" >
+								<?=$link?>
 								</div>
     </div>
-	
-								<div style="float:left;" id="paginationmaterilist" >
-								<?=$this->pagination->create_links()?>
-								</div>
+
 </div>

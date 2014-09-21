@@ -378,7 +378,7 @@ class Export extends CI_Controller
 			}else{
 				echo '<script>
 				alert("Data kosong");
-				//window.location="'.base_url().'akademik/mainakademik/index";
+				window.location="'.base_url().'akademik/mainakademik/index";
 				window.close();
 				</script>';
 			}

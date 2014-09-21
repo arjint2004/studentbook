@@ -68,7 +68,7 @@
 											success: function(msg) {
 												$(".wait").remove();	
 												$("#subjectlistpr").html(msg);
-												$('#subjectlistpr').scrollintoview({ speed:'1100'});
+												$('#subjectpembelajaran').scrollintoview({ speed:'1100'});
 											}
 										});
 										return false;
@@ -105,6 +105,9 @@
 										<li><a href="#">PR Terkirim</a></li>
 									</ul>
 									<div class="tabs-frame-content tabs-frame-contentpr ">
+									<div style="float:left;" id="paginationprilist" >
+									<?=$link?>
+									</div>										
 									<table class="prlist">
 											<thead>
 												<tr> 
@@ -112,8 +115,9 @@
 													<th>Jenis</th>      
 													<th>Judul</th>
 													<th>Dikirim Ke</th>
-													<th>Waktu Upload</th>
-													<th>Action</th>
+													<th>Tgl Upload</th>
+													<th style="width:37px;">Detail</th>
+													<th style="width:75px;">Ubah|Hapus</th>
 												</tr>                         
 											</thead>
 											<tbody>
@@ -138,6 +142,7 @@
 													}
 													?></td>
 													<td class="<?=$bordettop?>"><? $tg=tanggal($datapr['tanggal_buat']." 00:00:00"); echo $tg[2];?></td>
+													<td class="<?=$bordettop?>"><a style="cursor:pointer;">Lihat</a></td>
 													<td class="<?=$bordettop?>" >
 														<? if($datapr['jenis']=='non_remidial'){?>
 														<div class="acteditpr actedit" id_pr="<?=$datapr['id']?>" title="ubah" href="<?=base_url('akademik/kirimpr/kirimprutamaedit/'.$datapr['id'])?>"></div>
@@ -148,7 +153,7 @@
 													</td>
 												</tr>
 												<tr id="detailprsemua<?=$datapr['id']?>" style="display:none;">
-													<td colspan="6" class="innercolspan">
+													<td colspan="7" class="innercolspan">
 														<div class="">
 														<? 
 														if(!empty($datapr['dikirim'])){
@@ -220,9 +225,16 @@
 												</tr>
 												<? } } ?>
 											</tbody>
-										</table>			
+										</table>
+										<div style="float:left;" id="paginationprilist" >
+										<?=$link?>
+										</div>										
+										
 									</div>
 									<div class="tabs-frame-content tabs-frame-contentpr">
+										<div style="float:left;" id="paginationprilist" >
+										<?=$link?>
+										</div>											
 										<table class="prlist">
 											<thead>
 												<tr> 
@@ -351,9 +363,10 @@
 												</tr>
 												<? } } ?>
 											</tbody>
-										</table>									
+										</table>	
+										<div style="float:left;" id="paginationprilist" >
+										<?=$link?>
+										</div>										
 									</div>
-								<div style="float:left;" id="paginationprilist" >
-								<?=$link?>
-								</div>
+
 								</div>

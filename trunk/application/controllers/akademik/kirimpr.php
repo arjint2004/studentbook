@@ -123,9 +123,10 @@ class Kirimpr extends CI_Controller
 			
 			$config['total_rows'] = $this->ad_pr->getPrByKelasPelajaranIdPegawaiAllCount($pelajaran,$id_kelas);
 			//pr($config['total_rows']);
-			
+
 			$pr=$this->ad_pr->getPrByKelasPelajaranIdPegawaiAll($pelajaran,$id_kelas,$start,$config['per_page']);
-			$id_prsemua = array_map(function($var){ return $var['id']; }, $pr);
+
+			$id_prsemua = @array_map(function($var){ return $var['id']; }, $pr);
 			$terkirim=$this->ad_pr->getprByKelasPelajaranIdPegawaiKirim($pelajaran,$id_kelas,$id_prsemua,$start,$config['per_page']);
 			$this->pagination->initialize($config);
 			$data['link'] = $this->pagination->create_links();
@@ -136,7 +137,6 @@ class Kirimpr extends CI_Controller
 				
 				//file pr
 				$filepr=$this->ad_pr->getFilePrInId($id_prsemua);
-				$search=array_search('259', $filepr);
 				foreach($pr as $ky=>$datapr){
 					if(isset($terkirim[$datapr['id']])){
 						$telahdikirim[$datapr['id']]=$datapr;
