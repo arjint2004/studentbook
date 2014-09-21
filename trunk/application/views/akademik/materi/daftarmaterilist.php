@@ -125,7 +125,7 @@
 								<? //pr($materi);?>
 							   
 
-								
+<? //pr($pagination);?>								
 <div class="tabs-container">
     <ul class="tabs-frame tabs-frame2">
         <li><a href="#">Semua Materi</a></li>
@@ -143,7 +143,10 @@
 											</tr>                         
 										</thead>
 										<tbody>
-											<? $nox=array();$no=1;foreach($materi as $kt=>$datamateri){?>
+											<? 
+											if(@$cur_page==0){@$cur_page=1;}
+											$no=(@$cur_page*@$per_page)-@$per_page+1;
+											foreach($materi as $kt=>$datamateri){?>
 											<tr style="cursor:pointer;" title="klik untuk menampilkan / menyembunyikan detail"  onclick="getdetail(<?=$datamateri['id']?>,this,'all');">
 												<td><?=$no++;?></td>
 												<td class="title" ><?=$datamateri['pokok_bahasan']?></td>
@@ -222,9 +225,6 @@
 											<? } ?>
 										</tbody>
 								</table>
-								<div style="float:left;" id="paginationmaterilist" >
-								<?=$pagination?>
-								</div>
     </div>
     <div class="tabs-frame-content tabs-frame-content2">
 								<table class="materilist">
@@ -239,9 +239,14 @@
 											</tr>                         
 										</thead>
 										<tbody>
-											<? $nox=array();$no=1;foreach($terkirim as $kt=>$datamateri){?>
+											<? 
+											$nox=array();
+											//$forno=$this->pagination;
+											if(@$cur_page==0){@$cur_page=1;}
+											$noq=(@$cur_page*@$per_page)-@$per_page+1;
+											foreach($terkirim as $kt=>$datamateri){?>
 											<tr style="cursor:pointer;" title="klik untuk menampilkan / menyembunyikan detail"  onclick="getdetail(<?=$datamateri['id']?>,this);">
-												<td><?=$no++;?></td>
+												<td><?=$noq++;?></td>
 												<td class="title" ><?=$datamateri['pokok_bahasan']?></td>
 												<td class="title" ><?=$datamateri['pelajaran']?></td>
 												<td class="title" ><? foreach($datamateri['dikirim'] as $dtdkrm){echo $dtdkrm['kelas'].$dtdkrm['nama_kelas']." &nbsp; ";}?></td>
@@ -345,4 +350,8 @@
 								<?//=$paginationk?>
 								</div>
     </div>
+	
+								<div style="float:left;" id="paginationmaterilist" >
+								<?=$this->pagination->create_links()?>
+								</div>
 </div>

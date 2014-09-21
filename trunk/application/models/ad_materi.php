@@ -59,7 +59,7 @@ Class Ad_materi extends CI_Model{
 								 '.$cnd2.'
 								 AND amp.id_pegawai=?
 								 ORDER BY amp.id DESC
-								 /*LIMIT '.$start.','.$page.'*/
+								 LIMIT '.$start.','.$page.'
 								',array($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']));
 								//echo $this->db->last_query();
 		foreach($query->result_array() as $mtrkrm){
@@ -72,14 +72,14 @@ Class Ad_materi extends CI_Model{
 		$cnd2='';
 		if($id_pelajaran!=0){$cnd='AND amp.id_pelajaran="'.mysql_real_escape_string($id_pelajaran).'"';}
 		//if($id_kelas!=0){$cnd2='AND amk.id_kelas="'.mysql_real_escape_string($id_kelas).'"';}
-		$query=$this->db->query('SELECT COUNT(*) as jml FROM ak_materi_pelajaran amp 
+		$query=$this->db->query('SELECT COUNT(*) as jml FROM ak_materi_pelajaran amp JOIN
+								 ak_pelajaran ap
+								 ON ap.id=amp.id_pelajaran
 								 WHERE
 								 amp.id_sekolah=?
 								 '.$cnd.'
 								 '.$cnd2.'
 								 AND amp.id_pegawai=?
-								 GROUP BY amp.id
-								 ORDER BY amp.id DESC
 								',array($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']));
 		$out=$query->result_array();						
 		//echo $this->db->last_query();
@@ -91,8 +91,7 @@ Class Ad_materi extends CI_Model{
 		$cnd2='';
 		if($id_pelajaran!=0){$cnd='AND amp.id_pelajaran="'.mysql_real_escape_string($id_pelajaran).'"';}
 		//if($id_kelas!=0){$cnd2='AND amk.id_kelas="'.mysql_real_escape_string($id_kelas).'"';}
-		$query=$this->db->query('SELECT amp.*,ap.nama as pelajaran,amk.tanggal_diajarkan FROM ak_materi_pelajaran amp JOIN
-								 ak_materi_kirim amk JOIN
+		$query=$this->db->query('SELECT amp.*,ap.nama as pelajaran FROM ak_materi_pelajaran amp JOIN
 								 ak_pelajaran ap
 								 ON ap.id=amp.id_pelajaran
 								 WHERE
@@ -100,7 +99,6 @@ Class Ad_materi extends CI_Model{
 								 '.$cnd.'
 								 '.$cnd2.'
 								 AND amp.id_pegawai=?
-								 GROUP BY amp.id
 								 ORDER BY amp.id DESC
 								 LIMIT '.$start.','.$page.'
 								',array($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']));

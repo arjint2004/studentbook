@@ -106,24 +106,55 @@ class Kirimpr extends CI_Controller
 			}
 
         }
-        public function daftarprlist()
+        public function daftarprlist($pelajaran=0,$id_kelas=0,$start=0,$page=0)
         {
 			$this->load->model('ad_pr');
-			$pr=$this->ad_pr->getPrByKelasPelajaranIdPegawaiAll($_POST['pelajaran'],$_POST['id_kelas']);
-			$terkirim=$this->ad_pr->getprByKelasPelajaranIdPegawaiKirim($_POST['pelajaran'],$_POST['id_kelas']);
+			
+			if(isset($_POST['pelajaran'])){$pelajaran=$_POST['pelajaran'];}
+			if(isset($_POST['id_kelas'])){$id_kelas=$_POST['id_kelas'];}
+			
+			$this->load->library('pagination');
+			$config['base_url']   = site_url('akademik/kirimpr/daftarprlist/'.$pelajaran.'/'.$id_kelas.'');
+			$config['per_page'] = $data['per_page'] = 10;
+			//$config['uri_segment']   = 5;
+			$config['cur_page']   = $start;
+			$data['cur_page']   = $page;
+			$data['start'] = $start;
+			
+			$config['total_rows'] = $this->ad_pr->getPrByKelasPelajaranIdPegawaiAllCount($pelajaran,$id_kelas);
+			//pr($config['total_rows']);
+			
+			$pr=$this->ad_pr->getPrByKelasPelajaranIdPegawaiAll($pelajaran,$id_kelas,$start,$config['per_page']);
+			$id_prsemua = array_map(function($var){ return $var['id']; }, $pr);
+			$terkirim=$this->ad_pr->getprByKelasPelajaranIdPegawaiKirim($pelajaran,$id_kelas,$id_prsemua,$start,$config['per_page']);
+			$this->pagination->initialize($config);
+			$data['link'] = $this->pagination->create_links();
 			$telahdikirim=array();
 			$pr2=array();
 
 			if(!empty($pr)){
+				
+				//file pr
+				$filepr=$this->ad_pr->getFilePrInId($id_prsemua);
+				$search=array_search('259', $filepr);
 				foreach($pr as $ky=>$datapr){
 					if(isset($terkirim[$datapr['id']])){
 						$telahdikirim[$datapr['id']]=$datapr;
-						$telahdikirim[$datapr['id']]['file']=$this->ad_pr->getFilePrByIdPr($datapr['id']);
+						foreach($filepr as $dtfile){
+							if($dtfile['id_pr']==$datapr['id']){
+								$telahdikirim[$datapr['id']]['file'][]=$dtfile;
+							}
+						}
 						$telahdikirim[$datapr['id']]['dikirim']=$terkirim[$datapr['id']];
 					}else{
 						$pr2[$ky]=$datapr;
-						$pr2[$ky]['file']=$this->ad_pr->getFilePrByIdPr($datapr['id']);
+						foreach($filepr as $dtfile){
+							if($dtfile['id_pr']==$datapr['id']){
+								$pr2[$ky]['file'][]=$dtfile;
+							}
+						}
 					}
+					
 					
 				}
 				$pr=array_merge($telahdikirim,$pr2);
@@ -131,7 +162,7 @@ class Kirimpr extends CI_Controller
 			unset($pr2);
 			
 			$data['pr']=$pr;
-			//pr($telahdikirim);
+			//pr($pr);
 			$data['terkirim']=$telahdikirim;
 			$data['id_kelas']=$_POST['id_kelas'];
 			$data['main']= 'akademik/kirimpr/daftarprlist';

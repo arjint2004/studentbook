@@ -194,7 +194,24 @@ Class Ad_pr extends CI_Model{
 		
 		return $utamadata2;
 	}
-	function getPrByKelasPelajaranIdPegawaiAll($id_pelajaran=0,$id_kelas=0){
+	function getPrByKelasPelajaranIdPegawaiAllCount($id_pelajaran=0,$id_kelas=0){
+		$cnd='';
+		$cnd2='';
+		if($id_pelajaran!=0){$cnd='AND ap.id_pelajaran="'.mysql_real_escape_string($id_pelajaran).'"';}
+		//if($id_kelas!=0){$cnd2='AND amk.id_kelas="'.mysql_real_escape_string($id_kelas).'"';}
+		$query=$this->db->query('SELECT COUNT(*) as jml FROM ak_pr ap 
+								 WHERE
+								 ap.id_sekolah=?
+								 '.$cnd.'
+								 '.$cnd2.'
+								 AND ap.id_pegawai=?
+								',array($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']));
+		$out=$query->result_array();						
+		//echo $this->db->last_query();
+		//pr($out);
+		return $out[0]['jml'];
+	}
+	function getPrByKelasPelajaranIdPegawaiAll($id_pelajaran=0,$id_kelas=0,$start=0,$page=0){
 		$cnd='';
 		$cnd2='';
 		$cnd3='';
@@ -213,7 +230,7 @@ Class Ad_pr extends CI_Model{
 								
 								GROUP BY ap.id
 								ORDER BY ap.id DESC
-								LIMIT 8
+								 LIMIT '.$start.','.$page.'
 								');
 		//echo $this->db->last_query();
 		$query2=$this->db->query('SELECT ap. *,apj.nama as nama_pelajaran FROM 
@@ -266,27 +283,25 @@ Class Ad_pr extends CI_Model{
 		return $query->result_array();
 	}
 	function getFilePrByIdPr($id_pr){
-		$query=$this->db->query('SELECT af.* FROM ak_pr ap JOIN
+		$query=$this->db->query('SELECT af.* FROM 
 								ak_pr_file af 
-								ON
-								af.id_pr=ap.id
+								
 								WHERE
-								ap.id=?
+								af.id_pr=?
 								',array($id_pr));
-		//echo $this->db->last_query();
+		pr($this->db->last_query());
+		return $query->result_array();
+	}
+	function getFilePrInId($id_pr=array()){
+		$query=$this->db->query('SELECT * FROM 
+								ak_pr_file
+								WHERE id_pr IN('.implode(',',$id_pr).')
+								');
+		//pr($this->db->last_query());
 		return $query->result_array();
 	}
 	function getFilePrById_pr($id_pr){
-		$query=$this->db->query('SELECT apf.* FROM
-								ak_pr ap JOIN 
-								ak_pr_file apf
-								ON
-								apf.id_pr=ap.id
-								WHERE
-								apf.id_pr=?
-								',array($id_pr));
-		//echo $this->db->last_query();
-		return $query->result_array();
+		return $this->getFilePrByIdPr($id_pr);
 	}
 	function getJustPrById($id_pr){
 		$query=$this->db->query('SELECT ak.id as id_kelas,ak.kelas,ak.nama as nama_kelas,ap.* FROM 
@@ -509,7 +524,7 @@ Class Ad_pr extends CI_Model{
 		return $query->result_array();	
 	}
 	
-	function getprByKelasPelajaranIdPegawaiKirim($id_pelajaran=0,$id_kelas=0){
+	function getprByKelasPelajaranIdPegawaiKirim($id_pelajaran=0,$id_kelas=0,$id_prarray=array(),$start=0,$page=0){
 		$cnd='';
 		$cnd2='';
 		$pr=array();
@@ -525,8 +540,9 @@ Class Ad_pr extends CI_Model{
 								 '.$cnd.'
 								 '.$cnd2.'
 								 AND amp.id_pegawai=?
+								 AND amp.id IN('.implode(',',$id_prarray).')
+								 GROUP BY amp.id
 								 ORDER BY amp.id DESC
-								 LIMIT 15
 								',array($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']));
 								//echo $this->db->last_query();
 		foreach($query->result_array() as $mtrkrm){
