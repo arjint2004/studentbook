@@ -203,10 +203,10 @@ class Materi extends CI_Controller
 			$data['main']= 'akademik/materi/editmateri';
             $this->load->view('layout/ad_blank',$data);				
 		}
-		public function getOptionFileMateriByIdMateri($id_pr=null)
+		public function getOptionFileMateriByIdMateri($id_materi=null)
         {
 			$this->load->library('ak_materi');
-			echo $this->ak_materi->createOptionFileMateriByIdMateri($id_pr);
+			echo $this->ak_materi->createOptionFileMateriByIdMateri($id_materi);
 		}
 		public function deletefile($id=null)
         {	
@@ -258,9 +258,11 @@ class Materi extends CI_Controller
 			$data['start'] = $start;
 			$config['total_rows'] = $this->ad_materi->getmateriByKelasPelajaranIdPegawaiAllCount($pelajaran,$id_kelas);
 			//pr($config['total_rows']);
-			$terkirim=$this->ad_materi->getmateriByKelasPelajaranIdPegawaiKirim($pelajaran,$id_kelas,$start,$config['per_page']);
             $materi =$this->ad_materi->getmateriByKelasPelajaranIdPegawaiAll($pelajaran,$id_kelas,$start,$config['per_page']);
+			$id_materisemua = @array_map(function($var){ return $var['id']; }, $materi);
+			$terkirim=$this->ad_materi->getmateriByKelasPelajaranIdPegawaiKirim($pelajaran,$id_kelas,$id_materisemua,$start,$config['per_page']);
 			$this->pagination->initialize($config);
+			$data['link'] = $this->pagination->create_links();
 			//$data['pagination'] = $this->pagination->create_links();
 			//$data['paginationob'] = $this->pagination;
 			
@@ -277,22 +279,32 @@ class Materi extends CI_Controller
 			
 			$telahdikirim=array();
 			$materi2=array();
+		
 			if(!empty($materi)){
+				$filemateri=$this->ad_materi->getFileMateriInId($id_materisemua);
 				foreach($materi as $ky=>$datamateri){
+
 					if(isset($terkirim[$datamateri['id']])){
 						$telahdikirim[$datamateri['id']]=$datamateri;
-						$telahdikirim[$datamateri['id']]['file']=$this->ad_materi->getFileMateriByIdMateri($datamateri['id']);
+						foreach($filemateri as $dtfile){
+							if($dtfile['id_materi']==$datamateri['id']){
+								$telahdikirim[$datamateri['id']]['file'][]=$dtfile;
+							}
+						}
 						$telahdikirim[$datamateri['id']]['dikirim']=$terkirim[$datamateri['id']];
 					}else{
 						$materi2[$ky]=$datamateri;
-						$materi2[$ky]['file']=$this->ad_materi->getFileMateriByIdMateri($datamateri['id']);
+						foreach($filemateri as $dtfile){
+							if($dtfile['id_materi']==$datamateri['id']){
+								$materi2[$ky]['file'][]=$dtfile;
+							}
+						}
 					}
-					//$pr[$ky]['dikirim']=$this->ad_pr->getDetPrByKelasPelajaran($_POST['pelajaran'],$_POST['id_kelas']);
 				}
+				//pr($materi2);
 				$materi=array_merge($telahdikirim,$materi2);
 			}
 			unset($materi2);
-			//pr($telahdikirim);
 			$data['materi']=$materi;
 			$data['terkirim']=$telahdikirim;
 			$data['main']= 'akademik/materi/daftarmaterilist';

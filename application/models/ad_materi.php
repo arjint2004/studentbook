@@ -42,12 +42,13 @@ Class Ad_materi extends CI_Model{
 		$all=$query->result_array();
 		return $all[0]['jml'];
 	}
-	function getmateriByKelasPelajaranIdPegawaiKirim($id_pelajaran=0,$id_kelas=0,$start=0,$page=0){
+	function getmateriByKelasPelajaranIdPegawaiKirim($id_pelajaran=0,$id_kelas=0,$id_prarray,$start=0,$page=0){
 		$cnd='';
 		$cnd2='';
 		$materi=array();
 		if($id_pelajaran!=0){$cnd='AND amp.id_pelajaran="'.mysql_real_escape_string($id_pelajaran).'"';}
 		if($id_kelas!=0){$cnd2='AND amk.id_kelas="'.mysql_real_escape_string($id_kelas).'"';}
+		if(!empty($id_prarray)){ $cndin='AND amp.id IN('.implode(',',$id_prarray).')';}else{$cndin='';}
 		$query=$this->db->query('SELECT amk.*,ak.nama as nama_kelas,ak.kelas FROM ak_materi_pelajaran amp JOIN
 								 ak_materi_kirim amk JOIN ak_kelas ak
 								 ON
@@ -58,8 +59,8 @@ Class Ad_materi extends CI_Model{
 								 '.$cnd.'
 								 '.$cnd2.'
 								 AND amp.id_pegawai=?
+								 '.$cndin.'
 								 ORDER BY amp.id DESC
-								 LIMIT '.$start.','.$page.'
 								',array($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']));
 								//echo $this->db->last_query();
 		foreach($query->result_array() as $mtrkrm){
@@ -112,6 +113,14 @@ Class Ad_materi extends CI_Model{
 								',array($id_materi));
 		
 		return $query->result_array();	
+	}
+	function getFileMateriInId($id_materi=array()){
+		$query=$this->db->query('SELECT * FROM 
+								ak_materi_file
+								WHERE id_materi IN('.implode(',',$id_materi).')
+								');
+		//pr($this->db->last_query());
+		return $query->result_array();
 	}
 	function getMateriStok($id_pelajaran=0){
 		$query=$this->db->query('SELECT * FROM `ak_materi_pelajaran` a WHERE
