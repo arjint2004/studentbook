@@ -52,7 +52,27 @@
 														$('#subjectlistpr').html(msg);
 													}
 											});
+									});
+										
+										
+
+									$("div#paginationprilist a").click(function(){
+										var objdell=$(this);
+										$.ajax({
+											type: "POST",
+											data: '',
+											url: $(objdell).attr('href'),
+											beforeSend: function() {
+												$(objdell).after("<img class='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+											},
+											success: function(msg) {
+												$(".wait").remove();	
+												$("#subjectlistpr").html(msg);
+												$('#subjectlistpr').scrollintoview({ speed:'1100'});
+											}
 										});
+										return false;
+									});			
 								});
 								function getdetail(id,obj,ident){
 									$('#'+ident+id).toggle('fade');
@@ -97,7 +117,11 @@
 												</tr>                         
 											</thead>
 											<tbody>
-												<? $nox=array();$no=1;
+												<? 
+												$cur_page2=$cur_page;
+												$per_page2=$per_page;
+												if(@$cur_page==0){@$cur_page=1;}
+												$no=(@$cur_page*@$per_page)-@$per_page+1;
 												if(!empty($pr)){
 												foreach($pr as $kt=>$datapr){
 													if($datapr['jenis']!='remidial'){$bordettop="bordettop";}else{$bordettop="";}
@@ -170,13 +194,15 @@
 														<h3 >Lampiran</h3>
 														<div class="hr"></div>
 														<table class="noborder">
-															<?foreach($datapr['file'] as $file){?>
+															<?
+															if(!empty($datapr['file'])){
+															foreach($datapr['file'] as $file){?>
 															<tr>
 																<td class="title"><a title="<?=$file['file_name']?>" href="<?=base_url('homepage/send_download/'.base64_encode('upload/akademik/pr/').'/'.base64_encode($file['file_name']).'');?>" target="_self"><?=substr($file['file_name'],-30)?> Download</a>
 																| <a target="file"  href="<?=base_url()?>akademik/nilai/view_document/null/null/null/null/null/<?=base64_encode(base_url('upload/akademik/pr/'.$file['file_name']).'')?>">Lihat</a>
 																</td>
 															</tr>
-															<? } ?>
+															<? }} ?>
 														</table>
 														</div>
 														
@@ -209,13 +235,16 @@
 												</tr>                         
 											</thead>
 											<tbody>
-												<? $nox=array();$no=1;
+												<? 
+												//if(@$cur_page2==0){@$cur_page2=1;}
+												//$noc=(@$cur_page2*@$per_page2)-@$per_page2+1;
+												$noc=1;
 												if(!empty($terkirim)){
 												foreach($terkirim as $kt=>$datapr){
 													if($datapr['jenis']!='remidial'){$bordettop="bordettop";}else{$bordettop="";}
 												?>
 												<tr style="cursor:pointer;<? if($datapr['jenis']!='remidial'){?>border-top:1px solid #ccc;<?}?>" title="klik untuk menampilkan / menyembunyikan detail" onclick="getdetail(<?=$datapr['id']?>,this,'detailprterkirim');">
-													<td class="<?=$bordettop?>" ><? if($datapr['jenis']!='remidial'){?><?=$no++;?><? } ?></td>
+													<td class="<?=$bordettop?>" ><? if($datapr['jenis']!='remidial'){?><?=$noc++;?><? } ?></td>
 													<td class="<?=$bordettop?> title"><? if($datapr['jenis']=='non_remidial'){echo "PR Utama";}else{ echo "remidial";}?></td>
 													<td class="<?=$bordettop?> title" ><?=$datapr['judul']?></td>
 													<td class="<?=$bordettop?> title" ><? foreach($datapr['dikirim'] as $dtdkrm){echo $dtdkrm['kelas'].$dtdkrm['nama_kelas']." &nbsp; ";}?></td>
@@ -296,13 +325,15 @@
 														<h3 >Lampiran</h3>
 														<div class="hr"></div>
 														<table class="noborder">
-															<?foreach($datapr['file'] as $file){?>
+															<?
+															if(!empty($datapr['file'])){
+															foreach($datapr['file'] as $file){?>
 															<tr>
 																<td class="title"><a title="<?=$file['file_name']?>" href="<?=base_url('homepage/send_download/'.base64_encode('upload/akademik/pr/').'/'.base64_encode($file['file_name']).'');?>" target="_self"><?=substr($file['file_name'],-30)?> Download</a>
 																| <a target="file"  href="<?=base_url()?>akademik/nilai/view_document/null/null/null/null/null/<?=base64_encode(base_url('upload/akademik/pr/'.$file['file_name']).'')?>">Lihat</a>
 																</td>
 															</tr>
-															<? } ?>
+															<? } } ?>
 														</table>
 														</div>
 														
@@ -322,4 +353,7 @@
 											</tbody>
 										</table>									
 									</div>
+								<div style="float:left;" id="paginationprilist" >
+								<?=$link?>
+								</div>
 								</div>
