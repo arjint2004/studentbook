@@ -423,18 +423,18 @@ width: 92px;
 /* Error Message Section */
 
 .error-box {
-	position:relative;
-	width:200px;
-	padding:10px;
-	top:30px;
-	left:90px;
-	opacity:0.8;
-	background-color:#4BB008;
-	display:none;
-	color:white;
-	border-radius:3px;
-	text-align:center;
-	z-index:99999;
+	background: url("../images/ajax-loader-2.gif") no-repeat scroll 16px 13px #4bb008;
+	border-radius: 10px;
+	color: white;
+	display: none;
+	left: 90px;
+	opacity: 0.8;
+	padding: 20px;
+	position: relative;
+	text-align: center;
+	top: 30px;
+	width: 200px;
+	z-index: 99999;
 }
 .content-box{
 	height:0px;
