@@ -82,10 +82,10 @@
 										},
 										success: function(msg) {
 											$(".waittugas37").remove();
-												
+											
 										}
 								});*/
-								$("#subjectlisttugas").html(msg);
+								$("#subjectlisttugas").html(msg);	
 								$('#subjectpembelajaran').scrollintoview({ speed:'1100'});
 							}
 						});
@@ -201,7 +201,7 @@ $(function() {
 				</td>
 			</tr>
 			<tr>
-				<td class="title">tugas</td>
+				<td class="title">TUGAS</td>
 				<td>:</td>
 				<td>
 					<select class="selectfilter" id="tugas_add" name="id_tugas">
@@ -218,7 +218,7 @@ $(function() {
 				<td colspan="2">
 					<input type="text" name="tanggal_kumpul" style="width:100px;" value="" id="datekirimtugasutama">
 				</td>
-			</tr>			
+			</tr>
 			<tr>
 				<td width="30%" class="title">Keterangan</td>
 				<td width="1">:</td>

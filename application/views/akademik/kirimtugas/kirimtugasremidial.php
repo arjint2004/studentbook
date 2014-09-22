@@ -45,6 +45,7 @@
 		$(".addaccountclose").click(function(){
 			$(".addaccount").remove();
 		});
+		filesize('fileaddtugasremidi',15000000,50);
 		$("#kirimtugasremidial").submit(function(e){
 			$frm = $(this);
 			$id_kelas = $frm.find('*[name=id_kelas]').val();
@@ -64,29 +65,57 @@
 					data: $(this).serialize()+'&judul='+$("select#judul_addtugas").attr('title'),
 					url: $(this).attr('action'),
 					beforeSend: function() {
-						$("#simpantugas").after("<img class='waittugas10' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
-						$("#simpantugasbottom").after("<img class='waittugas10' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+						$("#kirimtugasremidial").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+						$(".error-box").delay(1000).html('Inserting Data');
 					},
 					success: function(msg) {
-						$(".waittugas10").remove();	
-						ajaxupload("<? echo base_url();?>akademik/kirimtugas/uploadfiletugas/"+msg,"response","image-list","file");
+					
+						$(".error-box").delay(1000).fadeOut("slow",function(){
+							$(this).remove();
+						});
+						var upload=ajaxuploadnew("<? echo base_url();?>akademik/kirimtugas/uploadfiletugas/"+msg,"response","image-list","fileaddtugasremidi");
 						$.ajax({
+							url: "<? echo base_url();?>akademik/kirimtugas/uploadfiletugas/"+msg,
 							type: "POST",
-							data: 'id_kelas='+$('select#kelastugas').val()+'&pelajaran='+$('select#pelajarantugas').val()+'&ajax=1',
-							url: '<?=base_url('akademik/kirimtugas/daftartugaslist')?>',
+							data: upload,
+							processData: false,
+							contentType: false,
 							beforeSend: function() {
-								$("#simpantugas").after("<img class='waittugas10' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
-								$("#simpantugasbottom").after("<img class='waittugas10' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+								$("#kirimtugasremidial").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+								$(".error-box").delay(1000).html('Proses Upload File');
 							},
-							success: function(msg) {
-								$(".waittugas10").remove();
-								//$('select#kelas').val($('select#kelas_addtugas').val());
-								//$('select#pelajaran').html($('select#pelajaran_addtugas').html());
-								//$('select#pelajaran').val($('select#pelajaran_addtugas').val());
-								$('#subjectlisttugas').html(msg);
-								$('#subjectpembelajaran').scrollintoview({ speed:'1100'});
+							error	: function(){
+								alert('TUGAS anda sudah tersimpan. Tetapi lampiran file anda gagal di Upload. Klik OK untuk melengkapi lampiran');
+								$('#subjectlisttugas').load('<?=base_url('akademik/kirimtugas/kirimtugasremidialedit')?>/'+msg);						
+							},
+							success: function (res) {
+								$(".error-box").delay(1000).fadeOut("slow",function(){
+									$(this).remove();
+								});	
+								if(res=='null'){
+									$.ajax({
+										type: "POST",
+										data: 'id_kelas='+$('select#kelas_addtugas').val()+'&pelajaran='+$('select#pelajaran_addtugas').val()+'&ajax=1',
+										url: '<?=base_url('akademik/kirimtugas/daftartugaslist')?>',
+										beforeSend: function() {
+											$("#kirimtugasremidial").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+											$(".error-box").delay(1000).html('Load data');
+											$(".error-box").delay(1000).fadeOut("slow",function(){
+												$(this).remove();
+											});
+										},
+										success: function(msg) {
+											$('#subjectlisttugas').html(msg);
+											$('#subjectpembelajaran').scrollintoview({ speed:'1100'});
+										}
+									});
+								}else{
+									alert(res+'');
+									$('#subjectlisttugas').load('<?=base_url('akademik/kirimtugas/kirimtugasremidialedit')?>/'+msg);
+								}
 							}
 						});
+						
 					}
 				});
 				return false;
@@ -100,7 +129,7 @@
 			$.ajax({
 				type: "POST",
 				data: '',
-				url: '<?=base_url()?>akademik/kirimtugas/getOptionFiletugasByIdtugas/'+$(this).val(),
+				url: '<?=base_url()?>akademik/kirimtugas/getOptionFileTugasByIdTugas/'+$(this).val(),
 				beforeSend: function() {
 					$('select#judul_addtugas').after("<img id='waittugas11' src='<?=$this->config->item('images').'loading.png';?>' />");
 				},
@@ -116,7 +145,7 @@
 			$.ajax({
 				type: "POST",
 				data: '',
-				url: '<?=base_url()?>akademik/kirimtugas/createOptiontugasByKelasPelajaranIdPegawai/'+$(this).val()+'/'+$('select#kelas_addtugas').val(),
+				url: '<?=base_url()?>akademik/kirimtugas/createOptionTugasByKelasPelajaranIdPegawai/'+$(this).val()+'/'+$('select#kelas_addtugas').val(),
 				beforeSend: function() {
 					$('select#judul_addtugas').after("<img id='waittugas12' src='<?=$this->config->item('images').'loading.png';?>' />");
 				},
@@ -168,7 +197,7 @@ $(function() {
 <form method="post" name="kirimtugasremidial" enctype="multipart/form-data" id="kirimtugasremidial" action="<? echo base_url();?>akademik/kirimtugas/kirimtugasremidial">
 	<div onclick="$('.addaccount').remove();" class="addaccountclose"></div>
 		
-		<h3>Tambah tugas Remidial</h3>
+		<h3>Tambah TUGAS Remidial</h3>
 		<div class="hr"></div>
 		<table class="adddata">
 			<tbody>
@@ -215,11 +244,11 @@ $(function() {
 				</td>
 			</tr>
 			<tr>
-				<td class="title">Judul tugas</td>
+				<td class="title">Judul TUGAS</td>
 				<td>:</td>
 				<td>
 					<select class="selectfilter" id="judul_addtugas" name="id_parent">
-						<option value="">Pilih tugas</option>
+						<option value="">Pilih TUGAS</option>
 					</select>				
 				</td>
 			</tr>
@@ -234,7 +263,7 @@ $(function() {
 				<td width="30%" class="title">Lampiran Soal</td>
 				<td width="1">:</td>
 				<td>
-					<input type="file" name="file" id="file" multiple />
+					<input type="file" name="file" id="fileaddtugasremidi" multiple />
 					<div id="response" style="font-size:11px;">Masukkan file baru jika dibutuhkan. Anda bisa memilih banyak file dengan memencet tombol "Ctrl", kemudian klik file yang dipilih lebih dari satu <br /> Atau pakai file asli di bawah</div>
 					<form id="remidialfile" method="post" action="">
 					<ul class="file" id="filecektugas">

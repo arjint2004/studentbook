@@ -33,7 +33,7 @@
 						//$('select#pelajaranuas').html($('select#pelajaran_adduas').html());
 						//$('select#pelajaranuas').val($('select#pelajaranuas').val());	
 						$('#subjectlistuas').html(msg);
-						$('#subjectpembelajaran').scrollintoview({ speed:'1100'});
+						$('#subjectujian').scrollintoview({ speed:'1100'});
 					}
 				});
 				return false;
@@ -62,6 +62,7 @@
 			$(".addaccount").remove();
 		});
 		//$('#pelajaran_adduas').load('<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$('#kelas_adduas').val()+'/<?=$uas['uas'][0]['id_pelajaran']?>');
+		filesize('fileadduas',15000000,50);
 		$("#kirimuasutamaedit").submit(function(e){
 			
 			if($('input#datekirimuas').val()==''  && $('select#kelas_adduas').val()!=null){
@@ -86,37 +87,64 @@
 			$bab = $frm.find('*[name=bab]').val();
 			$judul = $frm.find('*[name=judul]').val();
 			//$keterangan = $frm.find('*[name=keterangan]').val();
-			if(/*$frm.find('*[name=id_kelas]').is('.valid') && $frm.find('*[name=id_pelajaran]').is('.valid') &&*/ $frm.find('*[name=bab]').is('.valid') && $frm.find('*[name=judul]').is('.valid') /* && $frm.find('*[name=keterangan]').is('.valid')*/) {
+			if(/*$frm.find('*[name=id_kelas]').is('.valid') && $frm.find('*[name=id_pelajaran]').is('.valid') &&*/ $frm.find('*[name=bab]').is('.valid') && $frm.find('*[name=judul]').is('.valid')  /*&& $frm.find('*[name=keterangan]').is('.valid')*/) {
 				$.ajax({
 					type: "POST",
 					data: $(this).serialize(),
 					url: $(this).attr('action'),
 					beforeSend: function() {
-						$("#simpanuas").after("<img id='waituas32' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
-						$("#simpanuasbottom").after("<img id='waituas332' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+						$("#kirimuasutamaedit").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+						$(".error-box").delay(1000).html('Inserting Data');
 					},
-					success: function(msg) {
-						$("#waituas32").remove();
-						$("#waituas332").remove();	
-						
-						ajaxupload("<? echo base_url();?>akademik/kirimuas/uploadfileuas/"+msg,"response","image-list","file");
+					success: function(msg) {	
+						$(".error-box").delay(1000).fadeOut("slow",function(){
+							$(this).remove();
+						});
+						var upload=ajaxuploadnew("<? echo base_url();?>akademik/kirimuas/uploadfileuas/"+msg,"response","image-list","fileadduas");
 						
 						$.ajax({
+							url: "<? echo base_url();?>akademik/kirimuas/uploadfileuas/"+msg,
 							type: "POST",
-							data: 'id_kelas='+$('select#kelasuas').val()+'&pelajaran='+$('select#pelajaranuas').val()+'&ajax=1',
-							url: '<?=base_url('akademik/kirimuas/daftaruaslist')?>',
+							data: upload,
+							processData: false,
+							contentType: false,
 							beforeSend: function() {
-								$("#simpanuas").after("<img id='waituas32' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
-								$("#simpanuasbottom").after("<img id='waituas332' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+								$("#kirimuasutama").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+								$(".error-box").delay(1000).html('Proses Upload File');
 							},
-							success: function(msg) {
-								$("#waituas32").remove();
-								$("#waituas332").remove();
-								//$('select#kelas').val($('select#kelas_adduas').val());
-								//$('select#pelajaran').html($('select#pelajaran_adduas').html());
-								//$('select#pelajaran').val($('select#pelajaran_adduas').val());
-								$('#subjectlistuas').html(msg);
-								$('#subjectpembelajaran').scrollintoview({ speed:'1100'});
+							error	: function(){
+								alert('UAS anda sudah tersimpan. Tetapi lampiran file anda gagal di Upload. Klik OK untuk melengkapi lampiran');
+								//$('#subjectlistuas').load('<?=base_url('akademik/kirimuas/kirimuasutamaedit')?>/'+msg);	
+								$('#fileadduas').val("");
+								return false;
+							},
+							success: function (res) {
+								$(".error-box").delay(1000).fadeOut("slow",function(){
+									$(this).remove();
+								});	
+								if(res=='null'){
+									$.ajax({
+										type: "POST",
+										data: '&ajax=1',
+										url: '<?=base_url('akademik/kirimuas/daftaruaslist')?>',
+										beforeSend: function() {
+											$("#materi").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+											$(".error-box").delay(1000).html('Load data');
+											$(".error-box").delay(1000).fadeOut("slow",function(){
+												$(this).remove();
+											});
+										},
+										success: function(msg) {
+											$('#subjectlistuas').html(msg);
+											$('#subjectujian').scrollintoview({ speed:'1100'});
+										}
+									});
+								}else{
+									alert(res+'');
+									//$('#subjectlistuas').load('<?=base_url('akademik/kirimuas/kirimuasutamaedit')?>/'+msg);
+									$('#fileadduas').val("");
+									return false;
+								}
 							}
 						});
 					}
@@ -129,21 +157,17 @@
 		
 					
 		
-		$("#tanggaledituas").hide();
 		$("div#clearklsuas").click(function(e){
 			$("select#kelas_adduas option").each(function(){
 				$(this).prop("selected",false) ;
 			});
 			$("#iuntkdateuas").html('');
-			$("#tanggaledituas").hide(500);
 			$("#datekirimuas").css('border', '1px solid #bdbdbd');
 		});
 		$("select#kelas_adduas").change(function(e){
 			if($(this).is(':checked')){
 				$("#iuntkdateuas").html('');
-				
 			}else{
-				$("#tanggaledituas").show(500);
 				$("#iuntkdateuas").html('<input type="text"  name="tanggal_kumpul" style="width:100px;"  value="<?//=$uas['uas'][0]['tanggal_kumpul']?>" id="datekirimuas">');
 				$('#datekirimuas').datepick();
 			}
@@ -172,7 +196,7 @@ $(function() {
 <form method="post" name="kirimuasutamaedit" enctype="multipart/form-data" id="kirimuasutamaedit" action="<? echo base_url();?>akademik/kirimuas/kirimuasutamaedit">
 	<div onclick="$('.addaccount').remove();" class="addaccountclose"></div>
 		
-		<h3>Edit uas</h3>
+		<h3>Edit UAS</h3>
 		<div class="hr"></div>
 		<table class="adddata">
 			<tbody>
@@ -235,7 +259,7 @@ $(function() {
 				</td>
 			</tr>
 
-			<tr id="tanggaledituas">
+			<tr>
 				<td width="30%" class="title">Tanggal Dikumpulkan</td>
 				<td width="1">:</td>
 				<td id="iuntkdateuas">
@@ -250,7 +274,7 @@ $(function() {
 				</td>
 			</tr>
 			<tr>
-				<td class="title">Judul uas</td>
+				<td class="title">Judul UAS</td>
 				<td>:</td>
 				<td>
 					<input type="text" size="30" name="judul"  value="<?=$uas['uas'][0]['judul']?>">				
@@ -266,17 +290,17 @@ $(function() {
 						<? } ?>
 						
 					</ul>
-					<input type="file" name="file" id="file" multiple />
+					<input type="file" name="file" id="fileadduas" multiple />
 					<div id="response" style="font-size:11px;">Anda bisa memilih banyak file dengan memencet tombol "Ctrl", kemudian klik file yang dipilih lebih dari satu</div>
 				</td>
 			</tr>
-			<!--<tr>
+			<tr>
 				<td width="30%" class="title">Keterangan</td>
 				<td width="1">:</td>
 				<td>
 					<textarea name="keterangan"><?=$uas['uas'][0]['keterangan']?></textarea>
 				</td>
-			</tr>-->
+			</tr>
 			<tr>
 				<td width="30%" class="title">Berbagi</td>
 				<td width="1">:</td>

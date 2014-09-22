@@ -45,6 +45,7 @@
 		$(".addaccountclose").click(function(){
 			$(".addaccount").remove();
 		});
+		filesize('fileaddprremidi',15000000,50);
 		$("#kirimprremidial").submit(function(e){
 			$frm = $(this);
 			$id_kelas = $frm.find('*[name=id_kelas]').val();
@@ -64,29 +65,57 @@
 					data: $(this).serialize()+'&judul='+$("select#judul_addpr").attr('title'),
 					url: $(this).attr('action'),
 					beforeSend: function() {
-						$("#simpanpr").after("<img class='waitpr10' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
-						$("#simpanprbottom").after("<img class='waitpr10' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+						$("#kirimprremidial").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+						$(".error-box").delay(1000).html('Inserting Data');
 					},
 					success: function(msg) {
-						$(".waitpr10").remove();	
-						ajaxupload("<? echo base_url();?>akademik/kirimpr/uploadfilepr/"+msg,"response","image-list","file");
+					
+						$(".error-box").delay(1000).fadeOut("slow",function(){
+							$(this).remove();
+						});
+						var upload=ajaxuploadnew("<? echo base_url();?>akademik/kirimpr/uploadfilepr/"+msg,"response","image-list","fileaddprremidi");
 						$.ajax({
+							url: "<? echo base_url();?>akademik/kirimpr/uploadfilepr/"+msg,
 							type: "POST",
-							data: 'id_kelas='+$('select#kelaspr').val()+'&pelajaran='+$('select#pelajaranpr').val()+'&ajax=1',
-							url: '<?=base_url('akademik/kirimpr/daftarprlist')?>',
+							data: upload,
+							processData: false,
+							contentType: false,
 							beforeSend: function() {
-								$("#simpanpr").after("<img class='waitpr10' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
-								$("#simpanprbottom").after("<img class='waitpr10' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+								$("#kirimprremidial").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+								$(".error-box").delay(1000).html('Proses Upload File');
 							},
-							success: function(msg) {
-								$(".waitpr10").remove();
-								//$('select#kelas').val($('select#kelas_addpr').val());
-								//$('select#pelajaran').html($('select#pelajaran_addpr').html());
-								//$('select#pelajaran').val($('select#pelajaran_addpr').val());
-								$('#subjectlistpr').html(msg);
-								$('#subjectpembelajaran').scrollintoview({ speed:'1100'});
+							error	: function(){
+								alert('PR anda sudah tersimpan. Tetapi lampiran file anda gagal di Upload. Klik OK untuk melengkapi lampiran');
+								$('#subjectlistpr').load('<?=base_url('akademik/kirimpr/kirimprremidialedit')?>/'+msg);						
+							},
+							success: function (res) {
+								$(".error-box").delay(1000).fadeOut("slow",function(){
+									$(this).remove();
+								});	
+								if(res=='null'){
+									$.ajax({
+										type: "POST",
+										data: 'id_kelas='+$('select#kelas_addpr').val()+'&pelajaran='+$('select#pelajaran_addpr').val()+'&ajax=1',
+										url: '<?=base_url('akademik/kirimpr/daftarprlist')?>',
+										beforeSend: function() {
+											$("#kirimprremidial").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+											$(".error-box").delay(1000).html('Load data');
+											$(".error-box").delay(1000).fadeOut("slow",function(){
+												$(this).remove();
+											});
+										},
+										success: function(msg) {
+											$('#subjectlistpr').html(msg);
+											$('#subjectpembelajaran').scrollintoview({ speed:'1100'});
+										}
+									});
+								}else{
+									alert(res+'');
+									$('#subjectlistpr').load('<?=base_url('akademik/kirimpr/kirimprremidialedit')?>/'+msg);
+								}
 							}
 						});
+						
 					}
 				});
 				return false;
@@ -234,7 +263,7 @@ $(function() {
 				<td width="30%" class="title">Lampiran Soal</td>
 				<td width="1">:</td>
 				<td>
-					<input type="file" name="file" id="file" multiple />
+					<input type="file" name="file" id="fileaddprremidi" multiple />
 					<div id="response" style="font-size:11px;">Masukkan file baru jika dibutuhkan. Anda bisa memilih banyak file dengan memencet tombol "Ctrl", kemudian klik file yang dipilih lebih dari satu <br /> Atau pakai file asli di bawah</div>
 					<form id="remidialfile" method="post" action="">
 					<ul class="file" id="filecekpr">

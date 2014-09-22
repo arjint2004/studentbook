@@ -12,15 +12,15 @@ class Kirimuts extends CI_Controller
             $this->load->library('auth');
             $this->auth->user_logged_in();
         }
-		public function getutsStok($id_pelajaran)
+		public function getUtsStok($id_pelajaran)
         { 
 			
 			$this->load->model('ad_uts');
-			$uts =$this->ad_uts->getutsStok($id_pelajaran);
+			$uts =$this->ad_uts->getUtsStok($id_pelajaran);
 			if(empty($uts)){
-				echo '<option value="">uts TIDAK TERSEDIA</option>';
+				echo '<option value="">PR TIDAK TERSEDIA</option>';
 			}else{
-				echo '<option value="">Pilih uts</option>';
+				echo '<option value="">Pilih PR</option>';
 				foreach($uts as $duts){
 					echo '<option value="'.$duts['id'].'">'.$duts['judul'].'</option>';
 				}
@@ -45,8 +45,11 @@ class Kirimuts extends CI_Controller
 											);
 											
 						$this->db->insert('ak_uts_det',$insert_detail);
+						
+						//notifikasi
 						$this->load->library('ak_notifikasi');
 						$this->ak_notifikasi->set_notifikasi_akademik_per_kelas($id_kelas,$gorup_notif='uts',$_POST['id_pelajaran'],$_POST['judul'],$this->session->userdata['user_authentication']['id_pengguna'],$_POST['keterangan'],$_POST['id_uts'],'uts');
+						
 						$this->smsprivate->send_by_kelas($id_kelas,$_POST['keterangan'],'uts',$_POST['id_uts']);
 				}
 			}
@@ -57,7 +60,7 @@ class Kirimuts extends CI_Controller
        	public function delete($id_uts=null)
         {	
 			$this->load->model('ad_uts');
-			$datafile=$this->ad_uts->getFileutsById_uts($id_uts);
+			$datafile=$this->ad_uts->getFileUtsById_uts($id_uts);
 			
 			//delete file
 			foreach($datafile as $datainfile){
@@ -82,45 +85,74 @@ class Kirimuts extends CI_Controller
         {
 			
 			if(isset($_FILES)){
-			if(!empty($_FILES["file"]["error"])){
-				foreach ($_FILES["file"]["error"] as $key => $error) {
-					if ($error == UPLOAD_ERR_OK) {
-						$name = date('Ymdhis').str_replace(" ","",$_FILES["file"]["name"][$key]);
-						if(!in_array($_FILES["file"]["type"][$key], $this->denied_mime_types)){
-							if(move_uploaded_file($_FILES["file"]["tmp_name"][$key], $this->upload_dir . $name)){
-								$this->db->insert('ak_uts_file', array('id_uts'=>$id_uts,'file_name'=>''.$name.''));
+				if(!empty($_FILES["file"]["error"])){
+					foreach ($_FILES["file"]["error"] as $key => $error) {
+						if ($error == UPLOAD_ERR_OK) {
+							$name = date('Ymdhis').str_replace(" ","",$_FILES["file"]["name"][$key]);
+							if(!in_array($_FILES["file"]["type"][$key], $this->denied_mime_types)){
+								if(move_uploaded_file($_FILES["file"]["tmp_name"][$key], $this->upload_dir . $name)){
+									$this->db->insert('ak_uts_file', array('id_uts'=>$id_uts,'file_name'=>''.$name.''));
+								}
+							}else{
+								echo "Anda tidak diperbolehkan mengunggah file type ini. Silahkan edit data anda dan masukkan file yang benar.";
+								die();
 							}
-						}else{
-							echo "Anda tidak diperbolehkan mengunggah file type ini. Silahkan edit data anda dan masukkan file yang benar.";
-							die();
-						}						
-						
-
-						
-					}
-				}				
-			}
+						}
+					}				
+				}
+				echo 'null';
 			}
 
         }
-        public function daftarutslist()
+        public function daftarutslist($pelajaran=0,$id_kelas=0,$start=0,$page=0)
         {
 			$this->load->model('ad_uts');
-			$uts=$this->ad_uts->getutsByKelasPelajaranIdPegawaiAll($_POST['pelajaran'],$_POST['id_kelas']);
-			$terkirim=$this->ad_uts->getutsByKelasPelajaranIdPegawaiKirim($_POST['pelajaran'],$_POST['id_kelas']);
+			
+			if(isset($_POST['pelajaran'])){$pelajaran=$_POST['pelajaran'];}
+			if(isset($_POST['id_kelas'])){$id_kelas=$_POST['id_kelas'];}
+			
+			$this->load->library('pagination');
+			$config['base_url']   = site_url('akademik/kirimuts/daftarutslist/'.$pelajaran.'/'.$id_kelas.'');
+			$config['per_page'] = $data['per_page'] = 10;
+			//$config['uri_segment']   = 5;
+			$config['cur_page']   = $start;
+			$data['cur_page']   = $page;
+			$data['start'] = $start;
+			
+			$config['total_rows'] = $this->ad_uts->getUtsByKelasPelajaranIdPegawaiAllCount($pelajaran,$id_kelas);
+			//uts($config['total_rows']);
+
+			$uts=$this->ad_uts->getUtsByKelasPelajaranIdPegawaiAll($pelajaran,$id_kelas,$start,$config['per_page']);
+
+			$id_utssemua = @array_map(function($var){ return $var['id']; }, $uts);
+			$terkirim=$this->ad_uts->getutsByKelasPelajaranIdPegawaiKirim($pelajaran,$id_kelas,$id_utssemua,$start,$config['per_page']);
+			$this->pagination->initialize($config);
+			$data['link'] = $this->pagination->create_links();
 			$telahdikirim=array();
 			$uts2=array();
-			
+
 			if(!empty($uts)){
+				
+				//file uts
+				$fileuts=$this->ad_uts->getFileUtsInId($id_utssemua);
 				foreach($uts as $ky=>$datauts){
 					if(isset($terkirim[$datauts['id']])){
 						$telahdikirim[$datauts['id']]=$datauts;
-						$telahdikirim[$datauts['id']]['file']=$this->ad_uts->getFileutsByIduts($datauts['id']);
+						foreach($fileuts as $dtfile){
+							if($dtfile['id_uts']==$datauts['id']){
+								$telahdikirim[$datauts['id']]['file'][]=$dtfile;
+							}
+						}
 						$telahdikirim[$datauts['id']]['dikirim']=$terkirim[$datauts['id']];
 					}else{
 						$uts2[$ky]=$datauts;
-						$uts2[$ky]['file']=$this->ad_uts->getFileutsByIduts($datauts['id']);
+						foreach($fileuts as $dtfile){
+							if($dtfile['id_uts']==$datauts['id']){
+								$uts2[$ky]['file'][]=$dtfile;
+							}
+						}
 					}
+					
 					
 				}
 				$uts=array_merge($telahdikirim,$uts2);
@@ -128,7 +160,7 @@ class Kirimuts extends CI_Controller
 			unset($uts2);
 			
 			$data['uts']=$uts;
-			//uts($telahdikirim);
+			//uts($uts);
 			$data['terkirim']=$telahdikirim;
 			$data['id_kelas']=$_POST['id_kelas'];
 			$data['main']= 'akademik/kirimuts/daftarutslist';
@@ -325,7 +357,7 @@ class Kirimuts extends CI_Controller
 				echo $id_uts;
 				die();
 			}
-			$data['uts']=$this->ad_uts->getutsByIdForRemidi($id);
+			$data['uts']=$this->ad_uts->getUtsByIdForRemidi($id);
 			$this->load->model('ad_kelas');
 			$data['kelas'] 	=$this->ad_kelas->getkelasByPengajar($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']);
             $data['main']           = 'akademik/kirimuts/kirimutsremidialedit';
@@ -342,10 +374,10 @@ class Kirimuts extends CI_Controller
 			}
 			$this->db->query('DELETE FROM ak_uts_file WHERE id='.$id.'');
 		}
-        public function getOptionFileutsByIduts($id_uts=null)
+        public function getOptionFileUtsByIdUts($id_uts=null)
         {
 			$this->load->library('ak_uts');
-			echo $this->ak_uts->createOptionFileutsByIduts($id_uts);
+			echo $this->ak_uts->createOptionFileUtsByIdUts($id_uts);
 		}
         public function getOptionSiswaRemidiByIdKelas($id_kelas=null,$id_uts=null)
         {
@@ -357,15 +389,15 @@ class Kirimuts extends CI_Controller
 			$this->load->library('ak_siswa');
 			echo $this->ak_siswa->createOptionSiswaByIdKelas($id_kelas);
 		}
-        public function createOptionutsByKelasPelajaranIdPegawai($id_pelajaran=null,$id_kelas=null)
+        public function createOptionUtsByKelasPelajaranIdPegawai($id_pelajaran=null,$id_kelas=null)
         {
 			$this->load->library('ak_uts');
-			echo $this->ak_uts->createOptionutsByKelasPelajaranIdPegawai($id_pelajaran,$id_kelas);
+			echo $this->ak_uts->createOptionUtsByKelasPelajaranIdPegawai($id_pelajaran,$id_kelas);
 		}
-        public function createOptionutsRemidiEditByKelasPelajaranIdPegawai($id_pelajaran=null,$id_kelas=null,$id_parent_uts)
+        public function createOptionUtsRemidiEditByKelasPelajaranIdPegawai($id_pelajaran=null,$id_kelas=null,$id_parent_uts)
         {
 			$this->load->library('ak_uts');
-			echo $this->ak_uts->createOptionutsRemidiEditByKelasPelajaranIdPegawai($id_pelajaran,$id_kelas,$id_parent_uts);
+			echo $this->ak_uts->createOptionUtsRemidiEditByKelasPelajaranIdPegawai($id_pelajaran,$id_kelas,$id_parent_uts);
 		}
 		
         public function kirimutsutamaedit($id=null)
@@ -421,7 +453,7 @@ class Kirimuts extends CI_Controller
 				die();
 			}else{
 			
-			$data['uts']=$this->ad_uts->getJustutsById($id);
+			$data['uts']=$this->ad_uts->getJustUtsById($id);
 
 			}
 			

@@ -12,15 +12,15 @@ class Kirimtugas extends CI_Controller
             $this->load->library('auth');
             $this->auth->user_logged_in();
         }
-		public function gettugasStok($id_pelajaran)
+		public function getTugasStok($id_pelajaran)
         { 
 			
 			$this->load->model('ad_tugas');
-			$tugas =$this->ad_tugas->gettugasStok($id_pelajaran);
+			$tugas =$this->ad_tugas->getTugasStok($id_pelajaran);
 			if(empty($tugas)){
-				echo '<option value="">tugas TIDAK TERSEDIA</option>';
+				echo '<option value="">PR TIDAK TERSEDIA</option>';
 			}else{
-				echo '<option value="">Pilih tugas</option>';
+				echo '<option value="">Pilih PR</option>';
 				foreach($tugas as $dtugas){
 					echo '<option value="'.$dtugas['id'].'">'.$dtugas['judul'].'</option>';
 				}
@@ -45,9 +45,11 @@ class Kirimtugas extends CI_Controller
 											);
 											
 						$this->db->insert('ak_tugas_det',$insert_detail);
+						
 						//notifikasi
 						$this->load->library('ak_notifikasi');
 						$this->ak_notifikasi->set_notifikasi_akademik_per_kelas($id_kelas,$gorup_notif='tugas',$_POST['id_pelajaran'],$_POST['judul'],$this->session->userdata['user_authentication']['id_pengguna'],$_POST['keterangan'],$_POST['id_tugas'],'tugas');
+						
 						$this->smsprivate->send_by_kelas($id_kelas,$_POST['keterangan'],'tugas',$_POST['id_tugas']);
 				}
 			}
@@ -58,7 +60,7 @@ class Kirimtugas extends CI_Controller
        	public function delete($id_tugas=null)
         {	
 			$this->load->model('ad_tugas');
-			$datafile=$this->ad_tugas->getFiletugasById_tugas($id_tugas);
+			$datafile=$this->ad_tugas->getFileTugasById_tugas($id_tugas);
 			
 			//delete file
 			foreach($datafile as $datainfile){
@@ -83,45 +85,74 @@ class Kirimtugas extends CI_Controller
         {
 			
 			if(isset($_FILES)){
-			if(!empty($_FILES["file"]["error"])){
-				foreach ($_FILES["file"]["error"] as $key => $error) {
-					if ($error == UPLOAD_ERR_OK) {
-						$name = date('Ymdhis').str_replace(" ","",$_FILES["file"]["name"][$key]);
-						if(!in_array($_FILES["file"]["type"][$key], $this->denied_mime_types)){
-							if(move_uploaded_file($_FILES["file"]["tmp_name"][$key], $this->upload_dir . $name)){
-								$this->db->insert('ak_tugas_file', array('id_tugas'=>$id_tugas,'file_name'=>''.$name.''));
+				if(!empty($_FILES["file"]["error"])){
+					foreach ($_FILES["file"]["error"] as $key => $error) {
+						if ($error == UPLOAD_ERR_OK) {
+							$name = date('Ymdhis').str_replace(" ","",$_FILES["file"]["name"][$key]);
+							if(!in_array($_FILES["file"]["type"][$key], $this->denied_mime_types)){
+								if(move_uploaded_file($_FILES["file"]["tmp_name"][$key], $this->upload_dir . $name)){
+									$this->db->insert('ak_tugas_file', array('id_tugas'=>$id_tugas,'file_name'=>''.$name.''));
+								}
+							}else{
+								echo "Anda tidak diperbolehkan mengunggah file type ini. Silahkan edit data anda dan masukkan file yang benar.";
+								die();
 							}
-						}else{
-							echo "Anda tidak diperbolehkan mengunggah file type ini. Silahkan edit data anda dan masukkan file yang benar.";
-							die();
-						}						
-						
-
-						
-					}
-				}				
-			}
+						}
+					}				
+				}
+				echo 'null';
 			}
 
         }
-        public function daftartugaslist()
+        public function daftartugaslist($pelajaran=0,$id_kelas=0,$start=0,$page=0)
         {
 			$this->load->model('ad_tugas');
-			$tugas=$this->ad_tugas->gettugasByKelasPelajaranIdPegawaiAll($_POST['pelajaran'],$_POST['id_kelas']);
-			$terkirim=$this->ad_tugas->gettugasByKelasPelajaranIdPegawaiKirim($_POST['pelajaran'],$_POST['id_kelas']);
+			
+			if(isset($_POST['pelajaran'])){$pelajaran=$_POST['pelajaran'];}
+			if(isset($_POST['id_kelas'])){$id_kelas=$_POST['id_kelas'];}
+			
+			$this->load->library('pagination');
+			$config['base_url']   = site_url('akademik/kirimtugas/daftartugaslist/'.$pelajaran.'/'.$id_kelas.'');
+			$config['per_page'] = $data['per_page'] = 10;
+			//$config['uri_segment']   = 5;
+			$config['cur_page']   = $start;
+			$data['cur_page']   = $page;
+			$data['start'] = $start;
+			
+			$config['total_rows'] = $this->ad_tugas->getTugasByKelasPelajaranIdPegawaiAllCount($pelajaran,$id_kelas);
+			//tugas($config['total_rows']);
+
+			$tugas=$this->ad_tugas->getTugasByKelasPelajaranIdPegawaiAll($pelajaran,$id_kelas,$start,$config['per_page']);
+
+			$id_tugassemua = @array_map(function($var){ return $var['id']; }, $tugas);
+			$terkirim=$this->ad_tugas->gettugasByKelasPelajaranIdPegawaiKirim($pelajaran,$id_kelas,$id_tugassemua,$start,$config['per_page']);
+			$this->pagination->initialize($config);
+			$data['link'] = $this->pagination->create_links();
 			$telahdikirim=array();
 			$tugas2=array();
-			
+
 			if(!empty($tugas)){
+				
+				//file tugas
+				$filetugas=$this->ad_tugas->getFileTugasInId($id_tugassemua);
 				foreach($tugas as $ky=>$datatugas){
 					if(isset($terkirim[$datatugas['id']])){
 						$telahdikirim[$datatugas['id']]=$datatugas;
-						$telahdikirim[$datatugas['id']]['file']=$this->ad_tugas->getFiletugasByIdtugas($datatugas['id']);
+						foreach($filetugas as $dtfile){
+							if($dtfile['id_tugas']==$datatugas['id']){
+								$telahdikirim[$datatugas['id']]['file'][]=$dtfile;
+							}
+						}
 						$telahdikirim[$datatugas['id']]['dikirim']=$terkirim[$datatugas['id']];
 					}else{
 						$tugas2[$ky]=$datatugas;
-						$tugas2[$ky]['file']=$this->ad_tugas->getFiletugasByIdtugas($datatugas['id']);
+						foreach($filetugas as $dtfile){
+							if($dtfile['id_tugas']==$datatugas['id']){
+								$tugas2[$ky]['file'][]=$dtfile;
+							}
+						}
 					}
+					
 					
 				}
 				$tugas=array_merge($telahdikirim,$tugas2);
@@ -129,7 +160,7 @@ class Kirimtugas extends CI_Controller
 			unset($tugas2);
 			
 			$data['tugas']=$tugas;
-			//tugas($telahdikirim);
+			//tugas($tugas);
 			$data['terkirim']=$telahdikirim;
 			$data['id_kelas']=$_POST['id_kelas'];
 			$data['main']= 'akademik/kirimtugas/daftartugaslist';
@@ -326,7 +357,7 @@ class Kirimtugas extends CI_Controller
 				echo $id_tugas;
 				die();
 			}
-			$data['tugas']=$this->ad_tugas->gettugasByIdForRemidi($id);
+			$data['tugas']=$this->ad_tugas->getTugasByIdForRemidi($id);
 			$this->load->model('ad_kelas');
 			$data['kelas'] 	=$this->ad_kelas->getkelasByPengajar($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']);
             $data['main']           = 'akademik/kirimtugas/kirimtugasremidialedit';
@@ -343,10 +374,10 @@ class Kirimtugas extends CI_Controller
 			}
 			$this->db->query('DELETE FROM ak_tugas_file WHERE id='.$id.'');
 		}
-        public function getOptionFiletugasByIdtugas($id_tugas=null)
+        public function getOptionFileTugasByIdTugas($id_tugas=null)
         {
 			$this->load->library('ak_tugas');
-			echo $this->ak_tugas->createOptionFiletugasByIdtugas($id_tugas);
+			echo $this->ak_tugas->createOptionFileTugasByIdTugas($id_tugas);
 		}
         public function getOptionSiswaRemidiByIdKelas($id_kelas=null,$id_tugas=null)
         {
@@ -358,15 +389,15 @@ class Kirimtugas extends CI_Controller
 			$this->load->library('ak_siswa');
 			echo $this->ak_siswa->createOptionSiswaByIdKelas($id_kelas);
 		}
-        public function createOptiontugasByKelasPelajaranIdPegawai($id_pelajaran=null,$id_kelas=null)
+        public function createOptionTugasByKelasPelajaranIdPegawai($id_pelajaran=null,$id_kelas=null)
         {
 			$this->load->library('ak_tugas');
-			echo $this->ak_tugas->createOptiontugasByKelasPelajaranIdPegawai($id_pelajaran,$id_kelas);
+			echo $this->ak_tugas->createOptionTugasByKelasPelajaranIdPegawai($id_pelajaran,$id_kelas);
 		}
-        public function createOptiontugasRemidiEditByKelasPelajaranIdPegawai($id_pelajaran=null,$id_kelas=null,$id_parent_tugas)
+        public function createOptionTugasRemidiEditByKelasPelajaranIdPegawai($id_pelajaran=null,$id_kelas=null,$id_parent_tugas)
         {
 			$this->load->library('ak_tugas');
-			echo $this->ak_tugas->createOptiontugasRemidiEditByKelasPelajaranIdPegawai($id_pelajaran,$id_kelas,$id_parent_tugas);
+			echo $this->ak_tugas->createOptionTugasRemidiEditByKelasPelajaranIdPegawai($id_pelajaran,$id_kelas,$id_parent_tugas);
 		}
 		
         public function kirimtugasutamaedit($id=null)
@@ -422,7 +453,7 @@ class Kirimtugas extends CI_Controller
 				die();
 			}else{
 			
-			$data['tugas']=$this->ad_tugas->getJusttugasById($id);
+			$data['tugas']=$this->ad_tugas->getJustTugasById($id);
 
 			}
 			

@@ -82,11 +82,11 @@
 										},
 										success: function(msg) {
 											$(".waituas37").remove();
-												
+											
 										}
 								});*/
-								$("#subjectlistuas").html(msg);
-								$('#subjectlistuas').scrollintoview({ speed:'1100'});
+								$("#subjectlistuas").html(msg);	
+								$('#subjectujian').scrollintoview({ speed:'1100'});
 							}
 						});
 					}
@@ -201,7 +201,7 @@ $(function() {
 				</td>
 			</tr>
 			<tr>
-				<td class="title">uas</td>
+				<td class="title">UAS</td>
 				<td>:</td>
 				<td>
 					<select class="selectfilter" id="uas_add" name="id_uas">
@@ -218,12 +218,12 @@ $(function() {
 				<td colspan="2">
 					<input type="text" name="tanggal_kumpul" style="width:100px;" value="" id="datekirimuasutama">
 				</td>
-			</tr>			
+			</tr>
 			<tr>
 				<td width="30%" class="title">Keterangan</td>
 				<td width="1">:</td>
 				<td colspan="2">
-					<textarea name="keterangan"  maxlength="200" placeholder="Keterangan akan dikirim ke Orang Tua / Wali Siswa melalui SMS"></textarea>
+					<textarea name="keterangan" maxlength="200" placeholder="Keterangan akan dikirim ke Orang Tua / Wali Siswa melalui SMS"></textarea>
 				</td>
 			</tr>
 			<tr>

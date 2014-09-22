@@ -1,7 +1,6 @@
 <?php
 Class Ad_harian extends CI_Model{
 
-
 	function getHarianByIdSekolah($id_sekolah=0,$field=array('*')){
 		if(isset($_POST['filter'])){
 			$cond='AND date(tanggal_buat) > "'.date("Y-m-d", mktime(0, 0, 0,  date("m")  , date("d")-$_POST['filter'], date("Y"))).'"';
@@ -14,7 +13,7 @@ Class Ad_harian extends CI_Model{
 		//echo $this->db->last_query();
 		return $query->result_array();
 	}
-	function getharianByKelasPelajaran($id_pelajaran,$id_kelas){
+	function getHarianByKelasPelajaran($id_pelajaran,$id_kelas){
 		$query=$this->db->query('SELECT ap.* FROM ak_harian ap JOIN
 								ak_kelas ak
 								JOIN ak_harian_det apd
@@ -32,7 +31,7 @@ Class Ad_harian extends CI_Model{
 		return $query->result_array();
 	}
 
-	function getOptionharianByIdKelasIdPegawaiform($id_pelajaran,$id_kelas){
+	function getOptionHarianByIdKelasIdPegawaiform($id_pelajaran,$id_kelas){
 		$query=$this->db->query('SELECT ap . *
 								FROM ak_harian ap
 								JOIN ak_kelas ak
@@ -55,7 +54,7 @@ Class Ad_harian extends CI_Model{
 		return $query->result_array();
 	}
 	
-	function getharianByKelasPelajaranIdPegawaiNotParent($id_pelajaran,$id_kelas){
+	function getHarianByKelasPelajaranIdPegawaiNotParent($id_pelajaran,$id_kelas){
 		$query=$this->db->query('SELECT ap . *
 								FROM ak_harian ap
 								JOIN ak_kelas ak
@@ -78,7 +77,7 @@ Class Ad_harian extends CI_Model{
 		//echo $this->db->last_query();
 		return $query->result_array();
 	}
-	function getharianByKelasPelajaranId($id_pelajaran,$id_kelas){
+	function getHarianByKelasPelajaranId($id_pelajaran,$id_kelas){
 		
 		if($id_pelajaran!=''){
 			$condpel='AND aj.id="'.mysql_real_escape_string($id_pelajaran).'" AND ap.id_pelajaran="'.mysql_real_escape_string($id_pelajaran).'"';
@@ -114,7 +113,7 @@ Class Ad_harian extends CI_Model{
 		//echo $this->db->last_query();
 		return $query->result_array();
 	}
-	function getharianByKelasPelajaranIdPegawai($id_pelajaran=0,$id_kelas=0){
+	function getHarianByKelasPelajaranIdPegawai($id_pelajaran=0,$id_kelas=0){
 		$cnd='';
 		$cnd2='';
 		$cnd3='';
@@ -195,7 +194,24 @@ Class Ad_harian extends CI_Model{
 		
 		return $utamadata2;
 	}
-	function getharianByKelasPelajaranIdPegawaiAll($id_pelajaran=0,$id_kelas=0){
+	function getHarianByKelasPelajaranIdPegawaiAllCount($id_pelajaran=0,$id_kelas=0){
+		$cnd='';
+		$cnd2='';
+		if($id_pelajaran!=0){$cnd='AND ap.id_pelajaran="'.mysql_real_escape_string($id_pelajaran).'"';}
+		//if($id_kelas!=0){$cnd2='AND amk.id_kelas="'.mysql_real_escape_string($id_kelas).'"';}
+		$query=$this->db->query('SELECT COUNT(*) as jml FROM ak_harian ap 
+								 WHERE
+								 ap.id_sekolah=?
+								 '.$cnd.'
+								 '.$cnd2.'
+								 AND ap.id_pegawai=?
+								',array($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']));
+		$out=$query->result_array();						
+		//echo $this->db->last_query();
+		//harian($out);
+		return $out[0]['jml'];
+	}
+	function getHarianByKelasPelajaranIdPegawaiAll($id_pelajaran=0,$id_kelas=0,$start=0,$page=0){
 		$cnd='';
 		$cnd2='';
 		$cnd3='';
@@ -214,7 +230,7 @@ Class Ad_harian extends CI_Model{
 								
 								GROUP BY ap.id
 								ORDER BY ap.id DESC
-								LIMIT 8
+								 LIMIT '.$start.','.$page.'
 								');
 		//echo $this->db->last_query();
 		$query2=$this->db->query('SELECT ap. *,apj.nama as nama_pelajaran FROM 
@@ -251,7 +267,7 @@ Class Ad_harian extends CI_Model{
 		
 		return $utamadata2;
 	}
-	function getDetharianByKelasPelajaran($id_pelajaran,$id_kelas){
+	function getDetHarianByKelasPelajaran($id_pelajaran,$id_kelas){
 		$query=$this->db->query('SELECT ak.id,ak.kelas,ak.nama FROM ak_harian ap JOIN
 								JOIN ak_harian_det apd 
 								ak_kelas ak
@@ -266,30 +282,28 @@ Class Ad_harian extends CI_Model{
 		//echo $this->db->last_query();
 		return $query->result_array();
 	}
-	function getFileharianByIdharian($id_harian){
-		$query=$this->db->query('SELECT af.* FROM ak_harian ap JOIN
+	function getFileHarianByIdHarian($id_harian){
+		$query=$this->db->query('SELECT af.* FROM 
 								ak_harian_file af 
-								ON
-								af.id_harian=ap.id
+								
 								WHERE
-								ap.id=?
+								af.id_harian=?
 								',array($id_harian));
-		//echo $this->db->last_query();
+		//harian($this->db->last_query());
 		return $query->result_array();
 	}
-	function getFileharianById_harian($id_harian){
-		$query=$this->db->query('SELECT apf.* FROM
-								ak_harian ap JOIN 
-								ak_harian_file apf
-								ON
-								apf.id_harian=ap.id
-								WHERE
-								apf.id_harian=?
-								',array($id_harian));
-		//echo $this->db->last_query();
+	function getFileHarianInId($id_harian=array()){
+		$query=$this->db->query('SELECT * FROM 
+								ak_harian_file
+								WHERE id_harian IN('.implode(',',$id_harian).')
+								');
+		//harian($this->db->last_query());
 		return $query->result_array();
 	}
-	function getJustharianById($id_harian){
+	function getFileHarianById_harian($id_harian){
+		return $this->getFileHarianByIdHarian($id_harian);
+	}
+	function getJustHarianById($id_harian){
 		$query=$this->db->query('SELECT ak.id as id_kelas,ak.kelas,ak.nama as nama_kelas,ap.* FROM 
 								ak_harian ap 
 								JOIN ak_harian_det apd 
@@ -302,12 +316,12 @@ Class Ad_harian extends CI_Model{
 								GROUP BY ap.id
 								',array($id_harian));
 		$out['harian']=$query->result_array();						
-		$out['file']=$this->getFileharianByIdharian($id_harian);						
+		$out['file']=$this->getFileHarianByIdHarian($id_harian);						
 		//echo $this->db->last_query();
 		//harian($out['harian']);
 		return $out;
 	}
-	function getharianById($id_harian){
+	function getHarianById($id_harian){
 		$query=$this->db->query('SELECT ak.id as id_kelas,ak.kelas,ak.nama as nama_kelas,ap.* FROM 
 								ak_harian ap 
 								JOIN ak_harian_det apd 
@@ -322,11 +336,11 @@ Class Ad_harian extends CI_Model{
 								GROUP BY ap.id
 								',array($id_harian));
 		$out['harian']=$query->result_array();						
-		$out['file']=$this->getFileharianByIdharian($id_harian);						
+		$out['file']=$this->getFileHarianByIdHarian($id_harian);						
 		//echo $this->db->last_query();
 		return $out;
 	}
-	function getharianByIdFordetail($id_harian){
+	function getHarianByIdFordetail($id_harian){
 		$query=$this->db->query('SELECT ak.kelas,ak.nama as nama_kelas,apl.nama as nama_pelajaran, ap.*, ak.id as id_kelas FROM 
 								ak_harian ap 
 								JOIN ak_harian_det apd
@@ -344,10 +358,10 @@ Class Ad_harian extends CI_Model{
 								',array($id_harian));
 		//echo $this->db->last_query();
 		$out=$query->result_array();						
-		$out[0]['file']=$this->getFileharianByIdharian($id_harian);			 
+		$out[0]['file']=$this->getFileHarianByIdHarian($id_harian);			 
 		return $out;
 	}
-	function getharianByIdForRemidi($id_harian){
+	function getHarianByIdForRemidi($id_harian){
 		$query=$this->db->query('SELECT ak.id as id_kelas,ak.kelas,ak.nama as nama_kelas,ap.* FROM
 								ak_harian ap 
 								JOIN ak_harian_det apd 
@@ -361,7 +375,7 @@ Class Ad_harian extends CI_Model{
 								AND ak.publish=1
 								',array($id_harian));
 		$out['harian']=$query->result_array();						
-		$out['file']=$this->getFileharianByIdharian($id_harian);						
+		$out['file']=$this->getFileHarianByIdHarian($id_harian);						
 		//echo $this->db->last_query();
 		return $out;
 	}
@@ -376,7 +390,7 @@ Class Ad_harian extends CI_Model{
 		//echo $this->db->last_query();
 		return $query->result_array();
 	}
-	function getsiswaRemidiByIdKelasIdharian($id_kelas,$id_harian){
+	function getsiswaRemidiByIdKelasIdHarian($id_kelas,$id_harian){
 		$query=$this->db->query('SELECT * FROM ak_harian ap JOIN
 								 ak_harian_det_remidial apd JOIN
 								 ak_det_jenjang adj JOIN 
@@ -391,7 +405,7 @@ Class Ad_harian extends CI_Model{
 		//echo $this->db->last_query();
 		return $query->result_array();
 	}
-	function getharianByIdDetJenjang($id_det_jenjang){
+	function getHarianByIdDetJenjang($id_det_jenjang){
 		$query=$this->db->query('SELECT ap . *, ak.nama as nama_kelas, ak.kelas as kelas, ag.nama as nama_guru, aj.nama as nama_pelajaran
 								FROM ak_harian ap
 								JOIN ak_det_jenjang adj
@@ -500,7 +514,7 @@ Class Ad_harian extends CI_Model{
 		
 		return $out;
 	}
-	function getharianStok($id_pelajaran=0){
+	function getHarianStok($id_pelajaran=0){
 		$query=$this->db->query('SELECT * FROM `ak_harian` a WHERE
 									a.id_sekolah='.$this->session->userdata['user_authentication']['id_sekolah'].'
 									AND a.id_pegawai='.$this->session->userdata['user_authentication']['id_pengguna'].'
@@ -510,12 +524,13 @@ Class Ad_harian extends CI_Model{
 		return $query->result_array();	
 	}
 	
-	function getharianByKelasPelajaranIdPegawaiKirim($id_pelajaran=0,$id_kelas=0){
+	function getharianByKelasPelajaranIdPegawaiKirim($id_pelajaran=0,$id_kelas=0,$id_harianarray=array(),$start=0,$page=0){
 		$cnd='';
 		$cnd2='';
 		$harian=array();
 		if($id_pelajaran!=0){$cnd='AND amp.id_pelajaran="'.mysql_real_escape_string($id_pelajaran).'"';}
 		if($id_kelas!=0){$cnd2='AND amk.id_kelas="'.mysql_real_escape_string($id_kelas).'"';}
+		if(!empty($id_harianarray)){ $cndin='AND amp.id IN('.implode(',',$id_harianarray).')';}else{$cndin='';}
 		$query=$this->db->query('SELECT amk.*,ak.nama as nama_kelas,ak.kelas FROM ak_harian amp JOIN
 								 ak_harian_det amk JOIN ak_kelas ak
 								 ON
@@ -526,8 +541,9 @@ Class Ad_harian extends CI_Model{
 								 '.$cnd.'
 								 '.$cnd2.'
 								 AND amp.id_pegawai=?
+								 '.$cndin.'
+								 GROUP BY amp.id
 								 ORDER BY amp.id DESC
-								 LIMIT 15
 								',array($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']));
 								//echo $this->db->last_query();
 		foreach($query->result_array() as $mtrkrm){

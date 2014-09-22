@@ -85,9 +85,8 @@
 											
 										}
 								});*/
-								
 								$("#subjectlistuts").html(msg);	
-								$('#subjectlistuts').scrollintoview({ speed:'1100'});
+								$('#subjectujian').scrollintoview({ speed:'1100'});
 							}
 						});
 					}
@@ -202,7 +201,7 @@ $(function() {
 				</td>
 			</tr>
 			<tr>
-				<td class="title">uts</td>
+				<td class="title">UTS</td>
 				<td>:</td>
 				<td>
 					<select class="selectfilter" id="uts_add" name="id_uts">
@@ -219,12 +218,12 @@ $(function() {
 				<td colspan="2">
 					<input type="text" name="tanggal_kumpul" style="width:100px;" value="" id="datekirimutsutama">
 				</td>
-			</tr>			
+			</tr>
 			<tr>
 				<td width="30%" class="title">Keterangan</td>
 				<td width="1">:</td>
 				<td colspan="2">
-					<textarea maxlength="200" name="keterangan" placeholder="Keterangan akan dikirim ke Orang Tua / Wali Siswa melalui SMS"></textarea>
+					<textarea name="keterangan" maxlength="200" placeholder="Keterangan akan dikirim ke Orang Tua / Wali Siswa melalui SMS"></textarea>
 				</td>
 			</tr>
 			<tr>

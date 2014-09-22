@@ -10,9 +10,10 @@ Class Ad_uts extends CI_Model{
 								ap.id_sekolah='.$id_sekolah.'
 								'.$cond.'
 								',array($id_kelas,$id_pelajaran));
+		//echo $this->db->last_query();
 		return $query->result_array();
 	}
-	function getutsByKelasPelajaran($id_pelajaran,$id_kelas){
+	function getUtsByKelasPelajaran($id_pelajaran,$id_kelas){
 		$query=$this->db->query('SELECT ap.* FROM ak_uts ap JOIN
 								ak_kelas ak
 								JOIN ak_uts_det apd
@@ -30,7 +31,7 @@ Class Ad_uts extends CI_Model{
 		return $query->result_array();
 	}
 
-	function getOptionutsByIdKelasIdPegawaiform($id_pelajaran,$id_kelas){
+	function getOptionUtsByIdKelasIdPegawaiform($id_pelajaran,$id_kelas){
 		$query=$this->db->query('SELECT ap . *
 								FROM ak_uts ap
 								JOIN ak_kelas ak
@@ -53,7 +54,7 @@ Class Ad_uts extends CI_Model{
 		return $query->result_array();
 	}
 	
-	function getutsByKelasPelajaranIdPegawaiNotParent($id_pelajaran,$id_kelas){
+	function getUtsByKelasPelajaranIdPegawaiNotParent($id_pelajaran,$id_kelas){
 		$query=$this->db->query('SELECT ap . *
 								FROM ak_uts ap
 								JOIN ak_kelas ak
@@ -76,7 +77,7 @@ Class Ad_uts extends CI_Model{
 		//echo $this->db->last_query();
 		return $query->result_array();
 	}
-	function getutsByKelasPelajaranId($id_pelajaran,$id_kelas){
+	function getUtsByKelasPelajaranId($id_pelajaran,$id_kelas){
 		
 		if($id_pelajaran!=''){
 			$condpel='AND aj.id="'.mysql_real_escape_string($id_pelajaran).'" AND ap.id_pelajaran="'.mysql_real_escape_string($id_pelajaran).'"';
@@ -112,7 +113,7 @@ Class Ad_uts extends CI_Model{
 		//echo $this->db->last_query();
 		return $query->result_array();
 	}
-	function getutsByKelasPelajaranIdPegawai($id_pelajaran=0,$id_kelas=0){
+	function getUtsByKelasPelajaranIdPegawai($id_pelajaran=0,$id_kelas=0){
 		$cnd='';
 		$cnd2='';
 		$cnd3='';
@@ -193,7 +194,24 @@ Class Ad_uts extends CI_Model{
 		
 		return $utamadata2;
 	}
-	function getutsByKelasPelajaranIdPegawaiAll($id_pelajaran=0,$id_kelas=0){
+	function getUtsByKelasPelajaranIdPegawaiAllCount($id_pelajaran=0,$id_kelas=0){
+		$cnd='';
+		$cnd2='';
+		if($id_pelajaran!=0){$cnd='AND ap.id_pelajaran="'.mysql_real_escape_string($id_pelajaran).'"';}
+		//if($id_kelas!=0){$cnd2='AND amk.id_kelas="'.mysql_real_escape_string($id_kelas).'"';}
+		$query=$this->db->query('SELECT COUNT(*) as jml FROM ak_uts ap 
+								 WHERE
+								 ap.id_sekolah=?
+								 '.$cnd.'
+								 '.$cnd2.'
+								 AND ap.id_pegawai=?
+								',array($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']));
+		$out=$query->result_array();						
+		//echo $this->db->last_query();
+		//uts($out);
+		return $out[0]['jml'];
+	}
+	function getUtsByKelasPelajaranIdPegawaiAll($id_pelajaran=0,$id_kelas=0,$start=0,$page=0){
 		$cnd='';
 		$cnd2='';
 		$cnd3='';
@@ -212,7 +230,7 @@ Class Ad_uts extends CI_Model{
 								
 								GROUP BY ap.id
 								ORDER BY ap.id DESC
-								LIMIT 8
+								 LIMIT '.$start.','.$page.'
 								');
 		//echo $this->db->last_query();
 		$query2=$this->db->query('SELECT ap. *,apj.nama as nama_pelajaran FROM 
@@ -249,7 +267,7 @@ Class Ad_uts extends CI_Model{
 		
 		return $utamadata2;
 	}
-	function getDetutsByKelasPelajaran($id_pelajaran,$id_kelas){
+	function getDetUtsByKelasPelajaran($id_pelajaran,$id_kelas){
 		$query=$this->db->query('SELECT ak.id,ak.kelas,ak.nama FROM ak_uts ap JOIN
 								JOIN ak_uts_det apd 
 								ak_kelas ak
@@ -264,30 +282,28 @@ Class Ad_uts extends CI_Model{
 		//echo $this->db->last_query();
 		return $query->result_array();
 	}
-	function getFileutsByIduts($id_uts){
-		$query=$this->db->query('SELECT af.* FROM ak_uts ap JOIN
+	function getFileUtsByIdUts($id_uts){
+		$query=$this->db->query('SELECT af.* FROM 
 								ak_uts_file af 
-								ON
-								af.id_uts=ap.id
+								
 								WHERE
-								ap.id=?
+								af.id_uts=?
 								',array($id_uts));
-		//echo $this->db->last_query();
+		//uts($this->db->last_query());
 		return $query->result_array();
 	}
-	function getFileutsById_uts($id_uts){
-		$query=$this->db->query('SELECT apf.* FROM
-								ak_uts ap JOIN 
-								ak_uts_file apf
-								ON
-								apf.id_uts=ap.id
-								WHERE
-								apf.id_uts=?
-								',array($id_uts));
-		//echo $this->db->last_query();
+	function getFileUtsInId($id_uts=array()){
+		$query=$this->db->query('SELECT * FROM 
+								ak_uts_file
+								WHERE id_uts IN('.implode(',',$id_uts).')
+								');
+		//uts($this->db->last_query());
 		return $query->result_array();
 	}
-	function getJustutsById($id_uts){
+	function getFileUtsById_uts($id_uts){
+		return $this->getFileUtsByIdUts($id_uts);
+	}
+	function getJustUtsById($id_uts){
 		$query=$this->db->query('SELECT ak.id as id_kelas,ak.kelas,ak.nama as nama_kelas,ap.* FROM 
 								ak_uts ap 
 								JOIN ak_uts_det apd 
@@ -300,12 +316,12 @@ Class Ad_uts extends CI_Model{
 								GROUP BY ap.id
 								',array($id_uts));
 		$out['uts']=$query->result_array();						
-		$out['file']=$this->getFileutsByIduts($id_uts);						
+		$out['file']=$this->getFileUtsByIdUts($id_uts);						
 		//echo $this->db->last_query();
 		//uts($out['uts']);
 		return $out;
 	}
-	function getutsById($id_uts){
+	function getUtsById($id_uts){
 		$query=$this->db->query('SELECT ak.id as id_kelas,ak.kelas,ak.nama as nama_kelas,ap.* FROM 
 								ak_uts ap 
 								JOIN ak_uts_det apd 
@@ -320,11 +336,11 @@ Class Ad_uts extends CI_Model{
 								GROUP BY ap.id
 								',array($id_uts));
 		$out['uts']=$query->result_array();						
-		$out['file']=$this->getFileutsByIduts($id_uts);						
+		$out['file']=$this->getFileUtsByIdUts($id_uts);						
 		//echo $this->db->last_query();
 		return $out;
 	}
-	function getutsByIdFordetail($id_uts){
+	function getUtsByIdFordetail($id_uts){
 		$query=$this->db->query('SELECT ak.kelas,ak.nama as nama_kelas,apl.nama as nama_pelajaran, ap.*, ak.id as id_kelas FROM 
 								ak_uts ap 
 								JOIN ak_uts_det apd
@@ -342,10 +358,10 @@ Class Ad_uts extends CI_Model{
 								',array($id_uts));
 		//echo $this->db->last_query();
 		$out=$query->result_array();						
-		$out[0]['file']=$this->getFileutsByIduts($id_uts);			 
+		$out[0]['file']=$this->getFileUtsByIdUts($id_uts);			 
 		return $out;
 	}
-	function getutsByIdForRemidi($id_uts){
+	function getUtsByIdForRemidi($id_uts){
 		$query=$this->db->query('SELECT ak.id as id_kelas,ak.kelas,ak.nama as nama_kelas,ap.* FROM
 								ak_uts ap 
 								JOIN ak_uts_det apd 
@@ -359,7 +375,7 @@ Class Ad_uts extends CI_Model{
 								AND ak.publish=1
 								',array($id_uts));
 		$out['uts']=$query->result_array();						
-		$out['file']=$this->getFileutsByIduts($id_uts);						
+		$out['file']=$this->getFileUtsByIdUts($id_uts);						
 		//echo $this->db->last_query();
 		return $out;
 	}
@@ -374,7 +390,7 @@ Class Ad_uts extends CI_Model{
 		//echo $this->db->last_query();
 		return $query->result_array();
 	}
-	function getsiswaRemidiByIdKelasIduts($id_kelas,$id_uts){
+	function getsiswaRemidiByIdKelasIdUts($id_kelas,$id_uts){
 		$query=$this->db->query('SELECT * FROM ak_uts ap JOIN
 								 ak_uts_det_remidial apd JOIN
 								 ak_det_jenjang adj JOIN 
@@ -389,7 +405,7 @@ Class Ad_uts extends CI_Model{
 		//echo $this->db->last_query();
 		return $query->result_array();
 	}
-	function getutsByIdDetJenjang($id_det_jenjang){
+	function getUtsByIdDetJenjang($id_det_jenjang){
 		$query=$this->db->query('SELECT ap . *, ak.nama as nama_kelas, ak.kelas as kelas, ag.nama as nama_guru, aj.nama as nama_pelajaran
 								FROM ak_uts ap
 								JOIN ak_det_jenjang adj
@@ -498,7 +514,7 @@ Class Ad_uts extends CI_Model{
 		
 		return $out;
 	}
-	function getutsStok($id_pelajaran=0){
+	function getUtsStok($id_pelajaran=0){
 		$query=$this->db->query('SELECT * FROM `ak_uts` a WHERE
 									a.id_sekolah='.$this->session->userdata['user_authentication']['id_sekolah'].'
 									AND a.id_pegawai='.$this->session->userdata['user_authentication']['id_pengguna'].'
@@ -508,12 +524,13 @@ Class Ad_uts extends CI_Model{
 		return $query->result_array();	
 	}
 	
-	function getutsByKelasPelajaranIdPegawaiKirim($id_pelajaran=0,$id_kelas=0){
+	function getutsByKelasPelajaranIdPegawaiKirim($id_pelajaran=0,$id_kelas=0,$id_utsarray=array(),$start=0,$page=0){
 		$cnd='';
 		$cnd2='';
 		$uts=array();
 		if($id_pelajaran!=0){$cnd='AND amp.id_pelajaran="'.mysql_real_escape_string($id_pelajaran).'"';}
 		if($id_kelas!=0){$cnd2='AND amk.id_kelas="'.mysql_real_escape_string($id_kelas).'"';}
+		if(!empty($id_utsarray)){ $cndin='AND amp.id IN('.implode(',',$id_utsarray).')';}else{$cndin='';}
 		$query=$this->db->query('SELECT amk.*,ak.nama as nama_kelas,ak.kelas FROM ak_uts amp JOIN
 								 ak_uts_det amk JOIN ak_kelas ak
 								 ON
@@ -524,8 +541,9 @@ Class Ad_uts extends CI_Model{
 								 '.$cnd.'
 								 '.$cnd2.'
 								 AND amp.id_pegawai=?
+								 '.$cndin.'
+								 GROUP BY amp.id
 								 ORDER BY amp.id DESC
-								 LIMIT 15
 								',array($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']));
 								//echo $this->db->last_query();
 		foreach($query->result_array() as $mtrkrm){

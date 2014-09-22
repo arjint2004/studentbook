@@ -43,12 +43,13 @@
 		$(".addaccountclose").click(function(){
 			$(".addaccount").remove();
 		});
+		
+		filesize('fileadduts',15000000,50);
 		$("#kirimutsutama").submit(function(e){
 			$frm = $(this);
 			
 			if($('input#datekirimutsutama').val()==''  && !$('input#simpanarsiputs').is(':checked')){
 				$('input#datekirimutsutama').css('border','1px solid red');
-				
 			}else{
 				$('input#datekirimutsutama').css('border','1px solid #D8D8D8');
 			}
@@ -79,33 +80,56 @@
 					data: $(this).serialize(),
 					url: $(this).attr('action'),
 					beforeSend: function() {
-						$("#simpanuts").after("<img id='waituts27' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
-						$("#simpanutsbottom").after("<img id='waituts227' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+						$("#kirimutsutama").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+						$(".error-box").delay(1000).html('Inserting Data');
 					},
 					success: function(msg) {
-							$("#waituts27").remove();
-							$("#waituts227").remove();	
-						
-						ajaxupload("<? echo base_url();?>akademik/kirimuts/uploadfileuts/"+msg,"response","image-list","file");
-						
+						$(".error-box").delay(1000).fadeOut("slow",function(){
+							$(this).remove();
+						});
+						var upload=ajaxuploadnew("<? echo base_url();?>akademik/kirimuts/uploadfileuts/"+msg,"response","image-list","fileadduts");
 						$.ajax({
+							url: "<? echo base_url();?>akademik/kirimuts/uploadfileuts/"+msg,
 							type: "POST",
-							data: '&ajax=1',
-							url: '<?=base_url('akademik/kirimuts/daftarutslist')?>',
+							data: upload,
+							processData: false,
+							contentType: false,
 							beforeSend: function() {
-								$("#simpanuts").after("<img id='waituts27' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
-								$("#simpanutsbottom").after("<img id='waituts227' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+								$("#kirimutsutama").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+								$(".error-box").delay(1000).html('Proses Upload File');
 							},
-							success: function(msg) {
-								$("#waituts27").remove();
-								$("#waituts227").remove();
-								//$('select#kelasuts').val('');
-								//$('select#pelajaranuts').html($('select#pelajaran_adduts').html());
-								//$('select#pelajaranuts').val('');
-								$('#subjectlistuts').html(msg);
-								$('#subjectpembelajaran').scrollintoview({ speed:'1100'});
+							error	: function(){
+								alert('UTS anda sudah tersimpan. Tetapi lampiran file anda gagal di Upload. Klik OK untuk melengkapi lampiran');
+								$('#subjectlistuts').load('<?=base_url('akademik/kirimuts/kirimutsutamaedit')?>/'+msg);						
+							},
+							success: function (res) {
+								$(".error-box").delay(1000).fadeOut("slow",function(){
+									$(this).remove();
+								});	
+								if(res=='null'){
+									$.ajax({
+										type: "POST",
+										data: '&ajax=1',
+										url: '<?=base_url('akademik/kirimuts/daftarutslist')?>',
+										beforeSend: function() {
+											$("#materi").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+											$(".error-box").delay(1000).html('Load data');
+											$(".error-box").delay(1000).fadeOut("slow",function(){
+												$(this).remove();
+											});
+										},
+										success: function(msg) {
+											$('#subjectlistuts').html(msg);
+											$('#subjectujian').scrollintoview({ speed:'1100'});
+										}
+									});
+								}else{
+									alert(res+'');
+									$('#subjectlistuts').load('<?=base_url('akademik/kirimuts/kirimutsutamaedit')?>/'+msg);
+								}
 							}
-						});	
+						});
+	
 					}
 				});
 				return false;
@@ -113,21 +137,6 @@
 			
 			return false;
 		});//Submit End	
-		
-		/*$("select#kelas_adduts").change(function(e){
-			$.ajax({
-				type: "POST",
-				data: '',
-				url: '<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$(this).val(),
-				beforeSend: function() {
-					$('select#kelas_adduts').after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
-				},
-				success: function(msg) {
-					$('#wait').remove();
-					$("#pelajaran_adduts").html(msg);	
-				}
-			});
-		});*///Submit End
 		
 		$("#keteranganuts").hide(500);
 		$("#tanggaluts").hide(500);
@@ -188,7 +197,7 @@ $(function() {
 <form method="post" name="kirimutsutama" enctype="multipart/form-data" id="kirimutsutama" action="<? echo base_url();?>akademik/kirimuts/kirimutsutama">
 	<div onclick="$('.addaccount').remove();" class="addaccountclose"></div>
 		
-		<h3>Tambah uts</h3>
+		<h3>Tambah UTS</h3>
 		<div class="hr"></div>
 		<table class="adddata">
 			<tbody>
@@ -242,7 +251,7 @@ $(function() {
 				</td>
 			</tr>
 			<tr>
-				<td class="title">Judul uts</td>
+				<td class="title">Judul UTS</td>
 				<td>:</td>
 				<td colspan="2">
 					<input type="text" value="" size="30" name="judul">				
@@ -252,7 +261,7 @@ $(function() {
 				<td width="30%" class="title">Lampiran Soal</td>
 				<td width="1">:</td>
 				<td colspan="2">
-					<input type="file" name="file" id="file" multiple />
+					<input type="file" name="file" id="fileadduts" multiple />
 					<div id="response" style="font-size:11px;">Anda bisa memilih banyak file dengan memencet tombol "Ctrl", kemudian klik file yang dipilih lebih dari satu</div>
 				</td>
 			</tr>
@@ -260,7 +269,7 @@ $(function() {
 				<td width="30%" class="title">SMS ke ORTU</td>
 				<td width="1">:</td>
 				<td colspan="2">
-					<textarea maxlength="200" name="keterangan" placeholder="Keterangan akan dikirim ke Orang Tua / Wali Siswa melalui SMS" id="keteranganadduts"></textarea>
+					<textarea name="keterangan"  maxlength="200" placeholder="Keterangan akan dikirim ke Orang Tua / Wali Siswa melalui SMS" id="keteranganadduts"></textarea>
 				</td>
 			</tr>
 			<tr>

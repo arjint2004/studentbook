@@ -85,24 +85,22 @@ class Kirimpr extends CI_Controller
         {
 			
 			if(isset($_FILES)){
-			if(!empty($_FILES["file"]["error"])){
-				foreach ($_FILES["file"]["error"] as $key => $error) {
-					if ($error == UPLOAD_ERR_OK) {
-						$name = date('Ymdhis').str_replace(" ","",$_FILES["file"]["name"][$key]);
-						if(!in_array($_FILES["file"]["type"][$key], $this->denied_mime_types)){
-							if(move_uploaded_file($_FILES["file"]["tmp_name"][$key], $this->upload_dir . $name)){
-								$this->db->insert('ak_pr_file', array('id_pr'=>$id_pr,'file_name'=>''.$name.''));
+				if(!empty($_FILES["file"]["error"])){
+					foreach ($_FILES["file"]["error"] as $key => $error) {
+						if ($error == UPLOAD_ERR_OK) {
+							$name = date('Ymdhis').str_replace(" ","",$_FILES["file"]["name"][$key]);
+							if(!in_array($_FILES["file"]["type"][$key], $this->denied_mime_types)){
+								if(move_uploaded_file($_FILES["file"]["tmp_name"][$key], $this->upload_dir . $name)){
+									$this->db->insert('ak_pr_file', array('id_pr'=>$id_pr,'file_name'=>''.$name.''));
+								}
+							}else{
+								echo "Anda tidak diperbolehkan mengunggah file type ini. Silahkan edit data anda dan masukkan file yang benar.";
+								die();
 							}
-						}else{
-							echo "Anda tidak diperbolehkan mengunggah file type ini. Silahkan edit data anda dan masukkan file yang benar.";
-							die();
-						}						
-						
-
-						
-					}
-				}				
-			}
+						}
+					}				
+				}
+				echo 'null';
 			}
 
         }

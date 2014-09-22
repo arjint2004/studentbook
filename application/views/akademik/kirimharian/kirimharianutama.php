@@ -43,12 +43,13 @@
 		$(".addaccountclose").click(function(){
 			$(".addaccount").remove();
 		});
+		
+		filesize('fileaddharian',15000000,50);
 		$("#kirimharianutama").submit(function(e){
 			$frm = $(this);
 			
 			if($('input#datekirimharianutama').val()==''  && !$('input#simpanarsipharian').is(':checked')){
 				$('input#datekirimharianutama').css('border','1px solid red');
-				
 			}else{
 				$('input#datekirimharianutama').css('border','1px solid #D8D8D8');
 			}
@@ -79,33 +80,56 @@
 					data: $(this).serialize(),
 					url: $(this).attr('action'),
 					beforeSend: function() {
-						$("#simpanharian").after("<img id='waitharian27' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
-						$("#simpanharianbottom").after("<img id='waitharian227' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+						$("#kirimharianutama").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+						$(".error-box").delay(1000).html('Inserting Data');
 					},
 					success: function(msg) {
-							$("#waitharian27").remove();
-							$("#waitharian227").remove();	
-						
-						ajaxupload("<? echo base_url();?>akademik/kirimharian/uploadfileharian/"+msg,"response","image-list","file");
-						
+						$(".error-box").delay(1000).fadeOut("slow",function(){
+							$(this).remove();
+						});
+						var upload=ajaxuploadnew("<? echo base_url();?>akademik/kirimharian/uploadfileharian/"+msg,"response","image-list","fileaddharian");
 						$.ajax({
+							url: "<? echo base_url();?>akademik/kirimharian/uploadfileharian/"+msg,
 							type: "POST",
-							data: '&ajax=1',
-							url: '<?=base_url('akademik/kirimharian/daftarharianlist')?>',
+							data: upload,
+							processData: false,
+							contentType: false,
 							beforeSend: function() {
-								$("#simpanharian").after("<img id='waitharian27' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
-								$("#simpanharianbottom").after("<img id='waitharian227' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+								$("#kirimharianutama").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+								$(".error-box").delay(1000).html('Proses Upload File');
 							},
-							success: function(msg) {
-								$("#waitharian27").remove();
-								$("#waitharian227").remove();
-								//$('select#kelasharian').val('');
-								//$('select#pelajaranharian').html($('select#pelajaran_addharian').html());
-								//$('select#pelajaranharian').val('');
-								$('#subjectlistharian').html(msg);
-								$('#subjectpembelajaran').scrollintoview({ speed:'1100'});
+							error	: function(){
+								alert('HARIAN anda sudah tersimpan. Tetapi lampiran file anda gagal di Upload. Klik OK untuk melengkapi lampiran');
+								$('#subjectlistharian').load('<?=base_url('akademik/kirimharian/kirimharianutamaedit')?>/'+msg);						
+							},
+							success: function (res) {
+								$(".error-box").delay(1000).fadeOut("slow",function(){
+									$(this).remove();
+								});	
+								if(res=='null'){
+									$.ajax({
+										type: "POST",
+										data: '&ajax=1',
+										url: '<?=base_url('akademik/kirimharian/daftarharianlist')?>',
+										beforeSend: function() {
+											$("#materi").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+											$(".error-box").delay(1000).html('Load data');
+											$(".error-box").delay(1000).fadeOut("slow",function(){
+												$(this).remove();
+											});
+										},
+										success: function(msg) {
+											$('#subjectlistharian').html(msg);
+											$('#subjectujian').scrollintoview({ speed:'1100'});
+										}
+									});
+								}else{
+									alert(res+'');
+									$('#subjectlistharian').load('<?=base_url('akademik/kirimharian/kirimharianutamaedit')?>/'+msg);
+								}
 							}
-						});	
+						});
+	
 					}
 				});
 				return false;
@@ -113,21 +137,6 @@
 			
 			return false;
 		});//Submit End	
-		
-		/*$("select#kelas_addharian").change(function(e){
-			$.ajax({
-				type: "POST",
-				data: '',
-				url: '<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$(this).val(),
-				beforeSend: function() {
-					$('select#kelas_addharian').after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
-				},
-				success: function(msg) {
-					$('#wait').remove();
-					$("#pelajaran_addharian").html(msg);	
-				}
-			});
-		});*///Submit End
 		
 		$("#keteranganharian").hide(500);
 		$("#tanggalharian").hide(500);
@@ -188,7 +197,7 @@ $(function() {
 <form method="post" name="kirimharianutama" enctype="multipart/form-data" id="kirimharianutama" action="<? echo base_url();?>akademik/kirimharian/kirimharianutama">
 	<div onclick="$('.addaccount').remove();" class="addaccountclose"></div>
 		
-		<h3>Tambah harian</h3>
+		<h3>Tambah HARIAN</h3>
 		<div class="hr"></div>
 		<table class="adddata">
 			<tbody>
@@ -242,7 +251,7 @@ $(function() {
 				</td>
 			</tr>
 			<tr>
-				<td class="title">Judul harian</td>
+				<td class="title">Judul HARIAN</td>
 				<td>:</td>
 				<td colspan="2">
 					<input type="text" value="" size="30" name="judul">				
@@ -252,7 +261,7 @@ $(function() {
 				<td width="30%" class="title">Lampiran Soal</td>
 				<td width="1">:</td>
 				<td colspan="2">
-					<input type="file" name="file" id="file" multiple />
+					<input type="file" name="file" id="fileaddharian" multiple />
 					<div id="response" style="font-size:11px;">Anda bisa memilih banyak file dengan memencet tombol "Ctrl", kemudian klik file yang dipilih lebih dari satu</div>
 				</td>
 			</tr>
@@ -260,7 +269,7 @@ $(function() {
 				<td width="30%" class="title">SMS ke ORTU</td>
 				<td width="1">:</td>
 				<td colspan="2">
-					<textarea name="keterangan" maxlength="200" placeholder="Keterangan akan dikirim ke Orang Tua / Wali Siswa melalui SMS" id="keteranganaddharian"></textarea>
+					<textarea name="keterangan"  maxlength="200" placeholder="Keterangan akan dikirim ke Orang Tua / Wali Siswa melalui SMS" id="keteranganaddharian"></textarea>
 				</td>
 			</tr>
 			<tr>

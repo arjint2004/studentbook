@@ -30,7 +30,7 @@ class Materi extends CI_Controller
 							if(move_uploaded_file( $_FILES["file"]["tmp_name"][$key], $this->upload_dir . $name)){
 								$this->db->insert('ak_materi_file', array('id_materi'=>$id_materi,'file_name'=>''.$name.''));
 							}
-							$out= 'allowed';
+							//$out= 'allowed';
 							
 						}else{
 							echo "Anda tidak diperbolehkan mengunggah file type ini. Silahkan edit data anda dan masukkan file yang benar.";

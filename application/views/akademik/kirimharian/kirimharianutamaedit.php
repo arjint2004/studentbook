@@ -33,7 +33,7 @@
 						//$('select#pelajaranharian').html($('select#pelajaran_addharian').html());
 						//$('select#pelajaranharian').val($('select#pelajaranharian').val());	
 						$('#subjectlistharian').html(msg);
-						$('#subjectpembelajaran').scrollintoview({ speed:'1100'});
+						$('#subjectujian').scrollintoview({ speed:'1100'});
 					}
 				});
 				return false;
@@ -62,6 +62,7 @@
 			$(".addaccount").remove();
 		});
 		//$('#pelajaran_addharian').load('<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$('#kelas_addharian').val()+'/<?=$harian['harian'][0]['id_pelajaran']?>');
+		filesize('fileaddharian',15000000,50);
 		$("#kirimharianutamaedit").submit(function(e){
 			
 			if($('input#datekirimharian').val()==''  && $('select#kelas_addharian').val()!=null){
@@ -86,37 +87,64 @@
 			$bab = $frm.find('*[name=bab]').val();
 			$judul = $frm.find('*[name=judul]').val();
 			//$keterangan = $frm.find('*[name=keterangan]').val();
-			if(/*$frm.find('*[name=id_kelas]').is('.valid') && $frm.find('*[name=id_pelajaran]').is('.valid') &&*/ $frm.find('*[name=bab]').is('.valid') && $frm.find('*[name=judul]').is('.valid') /* && $frm.find('*[name=keterangan]').is('.valid')*/) {
+			if(/*$frm.find('*[name=id_kelas]').is('.valid') && $frm.find('*[name=id_pelajaran]').is('.valid') &&*/ $frm.find('*[name=bab]').is('.valid') && $frm.find('*[name=judul]').is('.valid')  /*&& $frm.find('*[name=keterangan]').is('.valid')*/) {
 				$.ajax({
 					type: "POST",
 					data: $(this).serialize(),
 					url: $(this).attr('action'),
 					beforeSend: function() {
-						$("#simpanharian").after("<img id='waitharian32' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
-						$("#simpanharianbottom").after("<img id='waitharian332' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+						$("#kirimharianutamaedit").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+						$(".error-box").delay(1000).html('Inserting Data');
 					},
-					success: function(msg) {
-						$("#waitharian32").remove();
-						$("#waitharian332").remove();	
-						
-						ajaxupload("<? echo base_url();?>akademik/kirimharian/uploadfileharian/"+msg,"response","image-list","file");
+					success: function(msg) {	
+						$(".error-box").delay(1000).fadeOut("slow",function(){
+							$(this).remove();
+						});
+						var upload=ajaxuploadnew("<? echo base_url();?>akademik/kirimharian/uploadfileharian/"+msg,"response","image-list","fileaddharian");
 						
 						$.ajax({
+							url: "<? echo base_url();?>akademik/kirimharian/uploadfileharian/"+msg,
 							type: "POST",
-							data: 'id_kelas='+$('select#kelasharian').val()+'&pelajaran='+$('select#pelajaranharian').val()+'&ajax=1',
-							url: '<?=base_url('akademik/kirimharian/daftarharianlist')?>',
+							data: upload,
+							processData: false,
+							contentType: false,
 							beforeSend: function() {
-								$("#simpanharian").after("<img id='waitharian32' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
-								$("#simpanharianbottom").after("<img id='waitharian332' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+								$("#kirimharianutama").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+								$(".error-box").delay(1000).html('Proses Upload File');
 							},
-							success: function(msg) {
-								$("#waitharian32").remove();
-								$("#waitharian332").remove();
-								//$('select#kelas').val($('select#kelas_addharian').val());
-								//$('select#pelajaran').html($('select#pelajaran_addharian').html());
-								//$('select#pelajaran').val($('select#pelajaran_addharian').val());
-								$('#subjectlistharian').html(msg);
-								$('#subjectpembelajaran').scrollintoview({ speed:'1100'});
+							error	: function(){
+								alert('HARIAN anda sudah tersimpan. Tetapi lampiran file anda gagal di Upload. Klik OK untuk melengkapi lampiran');
+								//$('#subjectlistharian').load('<?=base_url('akademik/kirimharian/kirimharianutamaedit')?>/'+msg);	
+								$('#fileaddharian').val("");
+								return false;
+							},
+							success: function (res) {
+								$(".error-box").delay(1000).fadeOut("slow",function(){
+									$(this).remove();
+								});	
+								if(res=='null'){
+									$.ajax({
+										type: "POST",
+										data: '&ajax=1',
+										url: '<?=base_url('akademik/kirimharian/daftarharianlist')?>',
+										beforeSend: function() {
+											$("#materi").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+											$(".error-box").delay(1000).html('Load data');
+											$(".error-box").delay(1000).fadeOut("slow",function(){
+												$(this).remove();
+											});
+										},
+										success: function(msg) {
+											$('#subjectlistharian').html(msg);
+											$('#subjectujian').scrollintoview({ speed:'1100'});
+										}
+									});
+								}else{
+									alert(res+'');
+									//$('#subjectlistharian').load('<?=base_url('akademik/kirimharian/kirimharianutamaedit')?>/'+msg);
+									$('#fileaddharian').val("");
+									return false;
+								}
 							}
 						});
 					}
@@ -129,21 +157,17 @@
 		
 					
 		
-		$("#tanggaleditharian").hide();
 		$("div#clearklsharian").click(function(e){
 			$("select#kelas_addharian option").each(function(){
 				$(this).prop("selected",false) ;
 			});
 			$("#iuntkdateharian").html('');
-			$("#tanggaleditharian").hide(500);
 			$("#datekirimharian").css('border', '1px solid #bdbdbd');
 		});
 		$("select#kelas_addharian").change(function(e){
 			if($(this).is(':checked')){
 				$("#iuntkdateharian").html('');
-				
 			}else{
-				$("#tanggaleditharian").show(500);
 				$("#iuntkdateharian").html('<input type="text"  name="tanggal_kumpul" style="width:100px;"  value="<?//=$harian['harian'][0]['tanggal_kumpul']?>" id="datekirimharian">');
 				$('#datekirimharian').datepick();
 			}
@@ -172,7 +196,7 @@ $(function() {
 <form method="post" name="kirimharianutamaedit" enctype="multipart/form-data" id="kirimharianutamaedit" action="<? echo base_url();?>akademik/kirimharian/kirimharianutamaedit">
 	<div onclick="$('.addaccount').remove();" class="addaccountclose"></div>
 		
-		<h3>Edit harian</h3>
+		<h3>Edit HARIAN</h3>
 		<div class="hr"></div>
 		<table class="adddata">
 			<tbody>
@@ -235,7 +259,7 @@ $(function() {
 				</td>
 			</tr>
 
-			<tr id="tanggaleditharian">
+			<tr>
 				<td width="30%" class="title">Tanggal Dikumpulkan</td>
 				<td width="1">:</td>
 				<td id="iuntkdateharian">
@@ -250,7 +274,7 @@ $(function() {
 				</td>
 			</tr>
 			<tr>
-				<td class="title">Judul harian</td>
+				<td class="title">Judul HARIAN</td>
 				<td>:</td>
 				<td>
 					<input type="text" size="30" name="judul"  value="<?=$harian['harian'][0]['judul']?>">				
@@ -266,17 +290,17 @@ $(function() {
 						<? } ?>
 						
 					</ul>
-					<input type="file" name="file" id="file" multiple />
+					<input type="file" name="file" id="fileaddharian" multiple />
 					<div id="response" style="font-size:11px;">Anda bisa memilih banyak file dengan memencet tombol "Ctrl", kemudian klik file yang dipilih lebih dari satu</div>
 				</td>
 			</tr>
-			<!--<tr>
+			<tr>
 				<td width="30%" class="title">Keterangan</td>
 				<td width="1">:</td>
 				<td>
 					<textarea name="keterangan"><?=$harian['harian'][0]['keterangan']?></textarea>
 				</td>
-			</tr>-->
+			</tr>
 			<tr>
 				<td width="30%" class="title">Berbagi</td>
 				<td width="1">:</td>

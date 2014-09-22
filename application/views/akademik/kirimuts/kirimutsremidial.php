@@ -36,7 +36,7 @@
 						//$('select#pelajaranuts').html($('select#pelajaran_adduts').html());
 						//$('select#pelajaranuts').val('');	
 						$('#subjectlistuts').html(msg);
-						$('#subjectpembelajaran').scrollintoview({ speed:'1100'});
+						$('#subjectujian').scrollintoview({ speed:'1100'});
 					}
 				});
 				return false;
@@ -45,6 +45,7 @@
 		$(".addaccountclose").click(function(){
 			$(".addaccount").remove();
 		});
+		filesize('fileaddutsremidi',15000000,50);
 		$("#kirimutsremidial").submit(function(e){
 			$frm = $(this);
 			$id_kelas = $frm.find('*[name=id_kelas]').val();
@@ -64,29 +65,57 @@
 					data: $(this).serialize()+'&judul='+$("select#judul_adduts").attr('title'),
 					url: $(this).attr('action'),
 					beforeSend: function() {
-						$("#simpanuts").after("<img class='waituts10' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
-						$("#simpanutsbottom").after("<img class='waituts10' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+						$("#kirimutsremidial").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+						$(".error-box").delay(1000).html('Inserting Data');
 					},
 					success: function(msg) {
-						$(".waituts10").remove();	
-						ajaxupload("<? echo base_url();?>akademik/kirimuts/uploadfileuts/"+msg,"response","image-list","file");
+					
+						$(".error-box").delay(1000).fadeOut("slow",function(){
+							$(this).remove();
+						});
+						var upload=ajaxuploadnew("<? echo base_url();?>akademik/kirimuts/uploadfileuts/"+msg,"response","image-list","fileaddutsremidi");
 						$.ajax({
+							url: "<? echo base_url();?>akademik/kirimuts/uploadfileuts/"+msg,
 							type: "POST",
-							data: 'id_kelas='+$('select#kelasuts').val()+'&pelajaran='+$('select#pelajaranuts').val()+'&ajax=1',
-							url: '<?=base_url('akademik/kirimuts/daftarutslist')?>',
+							data: upload,
+							processData: false,
+							contentType: false,
 							beforeSend: function() {
-								$("#simpanuts").after("<img class='waituts10' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
-								$("#simpanutsbottom").after("<img class='waituts10' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+								$("#kirimutsremidial").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+								$(".error-box").delay(1000).html('Proses Upload File');
 							},
-							success: function(msg) {
-								$(".waituts10").remove();
-								//$('select#kelas').val($('select#kelas_adduts').val());
-								//$('select#pelajaran').html($('select#pelajaran_adduts').html());
-								//$('select#pelajaran').val($('select#pelajaran_adduts').val());
-								$('#subjectlistuts').html(msg);
-								$('#subjectpembelajaran').scrollintoview({ speed:'1100'});
+							error	: function(){
+								alert('UTS anda sudah tersimpan. Tetapi lampiran file anda gagal di Upload. Klik OK untuk melengkapi lampiran');
+								$('#subjectlistuts').load('<?=base_url('akademik/kirimuts/kirimutsremidialedit')?>/'+msg);						
+							},
+							success: function (res) {
+								$(".error-box").delay(1000).fadeOut("slow",function(){
+									$(this).remove();
+								});	
+								if(res=='null'){
+									$.ajax({
+										type: "POST",
+										data: 'id_kelas='+$('select#kelas_adduts').val()+'&pelajaran='+$('select#pelajaran_adduts').val()+'&ajax=1',
+										url: '<?=base_url('akademik/kirimuts/daftarutslist')?>',
+										beforeSend: function() {
+											$("#kirimutsremidial").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+											$(".error-box").delay(1000).html('Load data');
+											$(".error-box").delay(1000).fadeOut("slow",function(){
+												$(this).remove();
+											});
+										},
+										success: function(msg) {
+											$('#subjectlistuts').html(msg);
+											$('#subjectujian').scrollintoview({ speed:'1100'});
+										}
+									});
+								}else{
+									alert(res+'');
+									$('#subjectlistuts').load('<?=base_url('akademik/kirimuts/kirimutsremidialedit')?>/'+msg);
+								}
 							}
 						});
+						
 					}
 				});
 				return false;
@@ -100,7 +129,7 @@
 			$.ajax({
 				type: "POST",
 				data: '',
-				url: '<?=base_url()?>akademik/kirimuts/getOptionFileutsByIduts/'+$(this).val(),
+				url: '<?=base_url()?>akademik/kirimuts/getOptionFileUtsByIdUts/'+$(this).val(),
 				beforeSend: function() {
 					$('select#judul_adduts').after("<img id='waituts11' src='<?=$this->config->item('images').'loading.png';?>' />");
 				},
@@ -116,7 +145,7 @@
 			$.ajax({
 				type: "POST",
 				data: '',
-				url: '<?=base_url()?>akademik/kirimuts/createOptionutsByKelasPelajaranIdPegawai/'+$(this).val()+'/'+$('select#kelas_adduts').val(),
+				url: '<?=base_url()?>akademik/kirimuts/createOptionUtsByKelasPelajaranIdPegawai/'+$(this).val()+'/'+$('select#kelas_adduts').val(),
 				beforeSend: function() {
 					$('select#judul_adduts').after("<img id='waituts12' src='<?=$this->config->item('images').'loading.png';?>' />");
 				},
@@ -168,7 +197,7 @@ $(function() {
 <form method="post" name="kirimutsremidial" enctype="multipart/form-data" id="kirimutsremidial" action="<? echo base_url();?>akademik/kirimuts/kirimutsremidial">
 	<div onclick="$('.addaccount').remove();" class="addaccountclose"></div>
 		
-		<h3>Tambah uts Remidial</h3>
+		<h3>Tambah UTS Remidial</h3>
 		<div class="hr"></div>
 		<table class="adddata">
 			<tbody>
@@ -215,11 +244,11 @@ $(function() {
 				</td>
 			</tr>
 			<tr>
-				<td class="title">Judul uts</td>
+				<td class="title">Judul UTS</td>
 				<td>:</td>
 				<td>
 					<select class="selectfilter" id="judul_adduts" name="id_parent">
-						<option value="">Pilih uts</option>
+						<option value="">Pilih UTS</option>
 					</select>				
 				</td>
 			</tr>
@@ -234,7 +263,7 @@ $(function() {
 				<td width="30%" class="title">Lampiran Soal</td>
 				<td width="1">:</td>
 				<td>
-					<input type="file" name="file" id="file" multiple />
+					<input type="file" name="file" id="fileaddutsremidi" multiple />
 					<div id="response" style="font-size:11px;">Masukkan file baru jika dibutuhkan. Anda bisa memilih banyak file dengan memencet tombol "Ctrl", kemudian klik file yang dipilih lebih dari satu <br /> Atau pakai file asli di bawah</div>
 					<form id="remidialfile" method="post" action="">
 					<ul class="file" id="filecekuts">

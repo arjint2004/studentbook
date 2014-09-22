@@ -62,6 +62,7 @@
 			$(".addaccount").remove();
 		});
 		//$('#pelajaran_addtugas').load('<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$('#kelas_addtugas').val()+'/<?=$tugas['tugas'][0]['id_pelajaran']?>');
+		filesize('fileaddtugas',15000000,50);
 		$("#kirimtugasutamaedit").submit(function(e){
 			
 			if($('input#datekirimtugas').val()==''  && $('select#kelas_addtugas').val()!=null){
@@ -86,37 +87,64 @@
 			$bab = $frm.find('*[name=bab]').val();
 			$judul = $frm.find('*[name=judul]').val();
 			//$keterangan = $frm.find('*[name=keterangan]').val();
-			if(/*$frm.find('*[name=id_kelas]').is('.valid') && $frm.find('*[name=id_pelajaran]').is('.valid') &&*/ $frm.find('*[name=bab]').is('.valid') && $frm.find('*[name=judul]').is('.valid') /* && $frm.find('*[name=keterangan]').is('.valid')*/) {
+			if(/*$frm.find('*[name=id_kelas]').is('.valid') && $frm.find('*[name=id_pelajaran]').is('.valid') &&*/ $frm.find('*[name=bab]').is('.valid') && $frm.find('*[name=judul]').is('.valid')  /*&& $frm.find('*[name=keterangan]').is('.valid')*/) {
 				$.ajax({
 					type: "POST",
 					data: $(this).serialize(),
 					url: $(this).attr('action'),
 					beforeSend: function() {
-						$("#simpantugas").after("<img id='waittugas32' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
-						$("#simpantugasbottom").after("<img id='waittugas332' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+						$("#kirimtugasutamaedit").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+						$(".error-box").delay(1000).html('Inserting Data');
 					},
-					success: function(msg) {
-						$("#waittugas32").remove();
-						$("#waittugas332").remove();	
-						
-						ajaxupload("<? echo base_url();?>akademik/kirimtugas/uploadfiletugas/"+msg,"response","image-list","file");
+					success: function(msg) {	
+						$(".error-box").delay(1000).fadeOut("slow",function(){
+							$(this).remove();
+						});
+						var upload=ajaxuploadnew("<? echo base_url();?>akademik/kirimtugas/uploadfiletugas/"+msg,"response","image-list","fileaddtugas");
 						
 						$.ajax({
+							url: "<? echo base_url();?>akademik/kirimtugas/uploadfiletugas/"+msg,
 							type: "POST",
-							data: 'id_kelas='+$('select#kelastugas').val()+'&pelajaran='+$('select#pelajarantugas').val()+'&ajax=1',
-							url: '<?=base_url('akademik/kirimtugas/daftartugaslist')?>',
+							data: upload,
+							processData: false,
+							contentType: false,
 							beforeSend: function() {
-								$("#simpantugas").after("<img id='waittugas32' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
-								$("#simpantugasbottom").after("<img id='waittugas332' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+								$("#kirimtugasutama").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+								$(".error-box").delay(1000).html('Proses Upload File');
 							},
-							success: function(msg) {
-								$("#waittugas32").remove();
-								$("#waittugas332").remove();
-								//$('select#kelas').val($('select#kelas_addtugas').val());
-								//$('select#pelajaran').html($('select#pelajaran_addtugas').html());
-								//$('select#pelajaran').val($('select#pelajaran_addtugas').val());
-								$('#subjectlisttugas').html(msg);
-								$('#subjectpembelajaran').scrollintoview({ speed:'1100'});
+							error	: function(){
+								alert('TUGAS anda sudah tersimpan. Tetapi lampiran file anda gagal di Upload. Klik OK untuk melengkapi lampiran');
+								//$('#subjectlisttugas').load('<?=base_url('akademik/kirimtugas/kirimtugasutamaedit')?>/'+msg);	
+								$('#fileaddtugas').val("");
+								return false;
+							},
+							success: function (res) {
+								$(".error-box").delay(1000).fadeOut("slow",function(){
+									$(this).remove();
+								});	
+								if(res=='null'){
+									$.ajax({
+										type: "POST",
+										data: '&ajax=1',
+										url: '<?=base_url('akademik/kirimtugas/daftartugaslist')?>',
+										beforeSend: function() {
+											$("#materi").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+											$(".error-box").delay(1000).html('Load data');
+											$(".error-box").delay(1000).fadeOut("slow",function(){
+												$(this).remove();
+											});
+										},
+										success: function(msg) {
+											$('#subjectlisttugas').html(msg);
+											$('#subjectpembelajaran').scrollintoview({ speed:'1100'});
+										}
+									});
+								}else{
+									alert(res+'');
+									//$('#subjectlisttugas').load('<?=base_url('akademik/kirimtugas/kirimtugasutamaedit')?>/'+msg);
+									$('#fileaddtugas').val("");
+									return false;
+								}
 							}
 						});
 					}
@@ -129,21 +157,17 @@
 		
 					
 		
-		$("#tanggaledittugas").hide();
 		$("div#clearklstugas").click(function(e){
 			$("select#kelas_addtugas option").each(function(){
 				$(this).prop("selected",false) ;
 			});
 			$("#iuntkdatetugas").html('');
-			$("#tanggaledittugas").hide(500);
 			$("#datekirimtugas").css('border', '1px solid #bdbdbd');
 		});
 		$("select#kelas_addtugas").change(function(e){
 			if($(this).is(':checked')){
 				$("#iuntkdatetugas").html('');
-				
 			}else{
-				$("#tanggaledittugas").show(500);
 				$("#iuntkdatetugas").html('<input type="text"  name="tanggal_kumpul" style="width:100px;"  value="<?//=$tugas['tugas'][0]['tanggal_kumpul']?>" id="datekirimtugas">');
 				$('#datekirimtugas').datepick();
 			}
@@ -172,7 +196,7 @@ $(function() {
 <form method="post" name="kirimtugasutamaedit" enctype="multipart/form-data" id="kirimtugasutamaedit" action="<? echo base_url();?>akademik/kirimtugas/kirimtugasutamaedit">
 	<div onclick="$('.addaccount').remove();" class="addaccountclose"></div>
 		
-		<h3>Edit tugas</h3>
+		<h3>Edit TUGAS</h3>
 		<div class="hr"></div>
 		<table class="adddata">
 			<tbody>
@@ -235,7 +259,7 @@ $(function() {
 				</td>
 			</tr>
 
-			<tr id="tanggaledittugas">
+			<tr>
 				<td width="30%" class="title">Tanggal Dikumpulkan</td>
 				<td width="1">:</td>
 				<td id="iuntkdatetugas">
@@ -250,7 +274,7 @@ $(function() {
 				</td>
 			</tr>
 			<tr>
-				<td class="title">Judul tugas</td>
+				<td class="title">Judul TUGAS</td>
 				<td>:</td>
 				<td>
 					<input type="text" size="30" name="judul"  value="<?=$tugas['tugas'][0]['judul']?>">				
@@ -266,17 +290,17 @@ $(function() {
 						<? } ?>
 						
 					</ul>
-					<input type="file" name="file" id="file" multiple />
+					<input type="file" name="file" id="fileaddtugas" multiple />
 					<div id="response" style="font-size:11px;">Anda bisa memilih banyak file dengan memencet tombol "Ctrl", kemudian klik file yang dipilih lebih dari satu</div>
 				</td>
 			</tr>
-			<!--<tr>
+			<tr>
 				<td width="30%" class="title">Keterangan</td>
 				<td width="1">:</td>
 				<td>
 					<textarea name="keterangan"><?=$tugas['tugas'][0]['keterangan']?></textarea>
 				</td>
-			</tr>-->
+			</tr>
 			<tr>
 				<td width="30%" class="title">Berbagi</td>
 				<td width="1">:</td>
