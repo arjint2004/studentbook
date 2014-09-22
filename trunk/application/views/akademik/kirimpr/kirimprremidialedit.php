@@ -99,29 +99,66 @@
 					data: $(this).serialize()+'&judul='+$("select#judul_addpr").attr('title'),
 					url: $(this).attr('action'),
 					beforeSend: function() {
-						$("#simpanpr").after("<img class='waitpr18' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
-						$("#simpanprbottom").after("<img class='waitpr18' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+						$("#kirimprremidialedit").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+						$(".error-box").delay(1000).html('Inserting Data');
 					},
 					success: function(msg) {
-						$(".waitpr18").remove();	
-						ajaxupload("<? echo base_url();?>akademik/kirimpr/uploadfilepr/"+msg,"response","image-list","file");
+						$(".error-box").delay(1000).fadeOut("slow",function(){
+							$(this).remove();
+						});
+						var upload=ajaxuploadnew("<? echo base_url();?>akademik/kirimpr/uploadfilepr/"+msg,"response","image-list","fileprremidial");
+						
+						
 						$.ajax({
+							url: "<? echo base_url();?>akademik/kirimpr/uploadfilepr/"+msg,
 							type: "POST",
-							data: 'id_kelas='+$('select#kelaspr').val()+'&pelajaran='+$('select#pelajaranpr').val()+'&ajax=1',
-							url: '<?=base_url('akademik/kirimpr/daftarprlist')?>',
+							data: upload,
+							processData: false,
+							contentType: false,
 							beforeSend: function() {
-								$("#simpanpr").after("<img class='waitpr19' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
-								$("#simpanprbottom").after("<img class='waitpr19' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+								$("#kirimprremidialedit").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+								$(".error-box").delay(1000).html('Proses Upload File');
 							},
-							success: function(msg) {
-								$(".waitpr19").remove();
-								//$('select#kelaspr').val($('select#kelas_addpr').val());
-								//$('select#pelajaranpr').html($('select#pelajaran_addpr').html());
-								//$('select#pelajaranpr').val($('select#pelajaran_addpr').val());
-								$('#subjectlistpr').html(msg);
-								$('#subjectpembelajaran').scrollintoview({ speed:'1100'});
+							error	: function(){
+								alert('PR anda sudah tersimpan. Tetapi lampiran file anda gagal di Upload. Klik OK untuk melengkapi lampiran');
+								//$('#subjectlistpr').load('<?=base_url('akademik/kirimpr/kirimprutamaedit')?>/'+msg);	
+								$('#fileprremidial').val("");
+								return false;
+							},
+							success: function (res) {
+								$(".error-box").delay(1000).fadeOut("slow",function(){
+									$(this).remove();
+								});	
+								if(res=='null'){
+									$.ajax({
+										type: "POST",
+										data: 'id_kelas='+$('select#kelas_addpr').val()+'&pelajaran='+$('select#pelajaran_addpr').val()+'&ajax=1',
+										url: '<?=base_url('akademik/kirimpr/daftarprlist')?>',
+										beforeSend: function() {
+											$("#kirimprremidial").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+											$(".error-box").delay(1000).html('Load data');
+											$(".error-box").delay(1000).fadeOut("slow",function(){
+												$(this).remove();
+											});
+										},
+										success: function(msg) {
+											$(".waitpr19").remove();
+											//$('select#kelaspr').val($('select#kelas_addpr').val());
+											//$('select#pelajaranpr').html($('select#pelajaran_addpr').html());
+											//$('select#pelajaranpr').val($('select#pelajaran_addpr').val());
+											$('#subjectlistpr').html(msg);
+											$('#subjectpembelajaran').scrollintoview({ speed:'1100'});
+										}
+									});
+								}else{
+									alert(res+'');
+									//$('#subjectlistpr').load('<?=base_url('akademik/kirimpr/kirimprutamaedit')?>/'+msg);
+									$('#fileprremidial').val("");
+									return false;
+								}
 							}
 						});
+						
 					}
 				});
 				return false;
@@ -129,7 +166,25 @@
 			
 			return false;
 		});//Submit End	
-		
+		$("ul.file div.actdell").click(function(){
+			var objdell=$(this);
+			if(confirm('File akan di hapus secara permanen, untuk menggunakannya kembali anda harus upload ulang..')){
+				$('ul.file').load();
+				$.ajax({
+					type: "POST",
+					data: '',
+					url: base_url+'akademik/kirimpr/deletefile/'+$(this).attr('id'),
+					beforeSend: function() {
+						$(objdell).after("<img id='waitpr31' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+					},
+					success: function(msg) {
+						$("#waitpr31").remove();	
+						$(objdell).parent().remove();
+					}
+				});
+				return false;
+			}
+		});	
 		$("select#judul_addpr").change(function(e){
 			var obj=$(this);
 			$.ajax({
@@ -271,7 +326,13 @@ $(function() {
 				<td width="30%" class="title">Lampiran Soal</td>
 				<td width="1">:</td>
 				<td>
-					<input type="file" name="file" id="file" multiple />
+					<ul class="file">
+						<?foreach($pr['file'] as $file){?>
+							<li><?=$file['file_name']?><div id="<?=$file['id']?>" class="actdell"></div></li>
+						<? } ?>
+						
+					</ul>
+					<input type="file" name="file" id="fileprremidial" multiple />
 					<div id="response" style="font-size:11px;">Masukkan file baru jika dibutuhkan. Anda bisa memilih banyak file dengan memencet tombol "Ctrl", kemudian klik file yang dipilih lebih dari satu <br /> Atau pakai file asli di bawah</div>
 					<form id="remidialfile" method="post" action="">
 					<ul class="file" id="filecekpr">

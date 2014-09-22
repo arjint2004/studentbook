@@ -52,7 +52,27 @@
 														$('#subjectlistuts').html(msg);
 													}
 											});
+									});
+										
+										
+
+									$("div#paginationutsilist a").click(function(){
+										var objdell=$(this);
+										$.ajax({
+											type: "POST",
+											data: '',
+											url: $(objdell).attr('href'),
+											beforeSend: function() {
+												$(objdell).after("<img class='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+											},
+											success: function(msg) {
+												$(".wait").remove();	
+												$("#subjectlistuts").html(msg);
+												$('#subjectujian').scrollintoview({ speed:'1100'});
+											}
 										});
+										return false;
+									});			
 								});
 								function getdetail(id,obj,ident){
 									$('#'+ident+id).toggle('fade');
@@ -81,10 +101,13 @@
 								
 								<div class="tabs-container">
 									<ul class="tabs-frame tabs-frameuts">
-										<li><a href="#">Semua arsip uts</a></li>
-										<li><a href="#">uts Terkirim</a></li>
+										<li><a href="#">Semua arsip UTS</a></li>
+										<li><a href="#">UTS Terkirim</a></li>
 									</ul>
 									<div class="tabs-frame-content tabs-frame-contentuts ">
+									<div style="float:left;" id="paginationutsilist" >
+									<?=$link?>
+									</div>										
 									<table class="utslist">
 											<thead>
 												<tr> 
@@ -92,19 +115,24 @@
 													<th>Jenis</th>      
 													<th>Judul</th>
 													<th>Dikirim Ke</th>
-													<th>Waktu Upload</th>
-													<th>Action</th>
+													<th>Tgl Upload</th>
+													<th style="width:37px;">Detail</th>
+													<th style="width:75px;">Ubah|Hapus</th>
 												</tr>                         
 											</thead>
 											<tbody>
-												<? $nox=array();$no=1;
+												<? 
+												$cur_page2=$cur_page;
+												$per_page2=$per_page;
+												if(@$cur_page==0){@$cur_page=1;}
+												$no=(@$cur_page*@$per_page)-@$per_page+1;
 												if(!empty($uts)){
 												foreach($uts as $kt=>$datauts){
 													if($datauts['jenis']!='remidial'){$bordettop="bordettop";}else{$bordettop="";}
 												?>
 												<tr style="cursor:pointer;<? if($datauts['jenis']!='remidial'){?>border-top:1px solid #ccc;<?}?>" title="klik untuk menampilkan / menyembunyikan detail" onclick="getdetail(<?=$datauts['id']?>,this,'detailutssemua');">
 													<td class="<?=$bordettop?>" ><? if($datauts['jenis']!='remidial'){?><?=$no++;?><? } ?></td>
-													<td class="<?=$bordettop?> title"><? if($datauts['jenis']=='non_remidial'){echo "uts Utama";}else{ echo "remidial";}?></td>
+													<td class="<?=$bordettop?> title"><? if($datauts['jenis']=='non_remidial'){echo "UTS Utama";}else{ echo "remidial";}?></td>
 													<td class="<?=$bordettop?> title" ><?=$datauts['judul']?></td>
 													<td class="<?=$bordettop?> title" ><? 
 													if(!empty($datauts['dikirim'])){
@@ -114,6 +142,7 @@
 													}
 													?></td>
 													<td class="<?=$bordettop?>"><? $tg=tanggal($datauts['tanggal_buat']." 00:00:00"); echo $tg[2];?></td>
+													<td class="<?=$bordettop?>"><a style="cursor:pointer;">Lihat</a></td>
 													<td class="<?=$bordettop?>" >
 														<? if($datauts['jenis']=='non_remidial'){?>
 														<div class="actedituts actedit" id_uts="<?=$datauts['id']?>" title="ubah" href="<?=base_url('akademik/kirimuts/kirimutsutamaedit/'.$datauts['id'])?>"></div>
@@ -124,7 +153,7 @@
 													</td>
 												</tr>
 												<tr id="detailutssemua<?=$datauts['id']?>" style="display:none;">
-													<td colspan="6" class="innercolspan">
+													<td colspan="7" class="innercolspan">
 														<div class="">
 														<? 
 														if(!empty($datauts['dikirim'])){
@@ -139,11 +168,11 @@
 														}
 														?>
 														<div class="full file">
-														<h3 >Detail uts</h3>
+														<h3 >Detail UTS</h3>
 														<div class="hr"></div>
 														<table class="noborder">
 															<tr>
-																<td class="title">Judul uts</td>
+																<td class="title">Judul UTS</td>
 																<td class="titikdua">:</td>
 																<td class="value"><?=$datauts['judul']?></td>
 															</tr>
@@ -170,13 +199,15 @@
 														<h3 >Lampiran</h3>
 														<div class="hr"></div>
 														<table class="noborder">
-															<?foreach($datauts['file'] as $file){?>
+															<?
+															if(!empty($datauts['file'])){
+															foreach($datauts['file'] as $file){?>
 															<tr>
 																<td class="title"><a title="<?=$file['file_name']?>" href="<?=base_url('homepage/send_download/'.base64_encode('upload/akademik/uts/').'/'.base64_encode($file['file_name']).'');?>" target="_self"><?=substr($file['file_name'],-30)?> Download</a>
 																| <a target="file"  href="<?=base_url()?>akademik/nilai/view_document/null/null/null/null/null/<?=base64_encode(base_url('upload/akademik/uts/'.$file['file_name']).'')?>">Lihat</a>
 																</td>
 															</tr>
-															<? } ?>
+															<? }} ?>
 														</table>
 														</div>
 														
@@ -194,9 +225,16 @@
 												</tr>
 												<? } } ?>
 											</tbody>
-										</table>			
+										</table>
+										<div style="float:left;" id="paginationutsilist" >
+										<?=$link?>
+										</div>										
+										
 									</div>
 									<div class="tabs-frame-content tabs-frame-contentuts">
+										<div style="float:left;" id="paginationutsilist" >
+										<?=$link?>
+										</div>											
 										<table class="utslist">
 											<thead>
 												<tr> 
@@ -209,14 +247,17 @@
 												</tr>                         
 											</thead>
 											<tbody>
-												<? $nox=array();$no=1;
+												<? 
+												//if(@$cur_page2==0){@$cur_page2=1;}
+												//$noc=(@$cur_page2*@$per_page2)-@$per_page2+1;
+												$noc=1;
 												if(!empty($terkirim)){
 												foreach($terkirim as $kt=>$datauts){
 													if($datauts['jenis']!='remidial'){$bordettop="bordettop";}else{$bordettop="";}
 												?>
 												<tr style="cursor:pointer;<? if($datauts['jenis']!='remidial'){?>border-top:1px solid #ccc;<?}?>" title="klik untuk menampilkan / menyembunyikan detail" onclick="getdetail(<?=$datauts['id']?>,this,'detailutsterkirim');">
-													<td class="<?=$bordettop?>" ><? if($datauts['jenis']!='remidial'){?><?=$no++;?><? } ?></td>
-													<td class="<?=$bordettop?> title"><? if($datauts['jenis']=='non_remidial'){echo "uts Utama";}else{ echo "remidial";}?></td>
+													<td class="<?=$bordettop?>" ><? if($datauts['jenis']!='remidial'){?><?=$noc++;?><? } ?></td>
+													<td class="<?=$bordettop?> title"><? if($datauts['jenis']=='non_remidial'){echo "UTS Utama";}else{ echo "remidial";}?></td>
 													<td class="<?=$bordettop?> title" ><?=$datauts['judul']?></td>
 													<td class="<?=$bordettop?> title" ><? foreach($datauts['dikirim'] as $dtdkrm){echo $dtdkrm['kelas'].$dtdkrm['nama_kelas']." &nbsp; ";}?></td>
 													<td class="<?=$bordettop?>"><? $tg=tanggal($datauts['tanggal_buat']." 00:00:00"); echo $tg[2];?></td>
@@ -266,11 +307,11 @@
 														}
 														?>
 														<div class="full file">
-														<h3 >Detail uts</h3>
+														<h3 >Detail UTS</h3>
 														<div class="hr"></div>
 														<table class="noborder">
 															<tr>
-																<td class="title">Judul uts</td>
+																<td class="title">Judul UTS</td>
 																<td class="titikdua">:</td>
 																<td class="value"><?=$datauts['judul']?></td>
 															</tr>
@@ -296,13 +337,15 @@
 														<h3 >Lampiran</h3>
 														<div class="hr"></div>
 														<table class="noborder">
-															<?foreach($datauts['file'] as $file){?>
+															<?
+															if(!empty($datauts['file'])){
+															foreach($datauts['file'] as $file){?>
 															<tr>
 																<td class="title"><a title="<?=$file['file_name']?>" href="<?=base_url('homepage/send_download/'.base64_encode('upload/akademik/uts/').'/'.base64_encode($file['file_name']).'');?>" target="_self"><?=substr($file['file_name'],-30)?> Download</a>
 																| <a target="file"  href="<?=base_url()?>akademik/nilai/view_document/null/null/null/null/null/<?=base64_encode(base_url('upload/akademik/uts/'.$file['file_name']).'')?>">Lihat</a>
 																</td>
 															</tr>
-															<? } ?>
+															<? } } ?>
 														</table>
 														</div>
 														
@@ -320,6 +363,10 @@
 												</tr>
 												<? } } ?>
 											</tbody>
-										</table>									
+										</table>	
+										<div style="float:left;" id="paginationutsilist" >
+										<?=$link?>
+										</div>										
 									</div>
+
 								</div>

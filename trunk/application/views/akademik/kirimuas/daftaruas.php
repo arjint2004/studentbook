@@ -2,7 +2,7 @@
 				$(document).ready(function(){
 					
 					$("#filterpelajaranuas select#kelasuas").change(function(e){
-					$(this).after('<input type="hidden" name="kelasnya" value="'+$(this).find(":selected").text()+'"/>');
+						$(this).after('<input type="hidden" name="kelasnya" value="'+$(this).find(":selected").text()+'"/>');
 						$.ajax({
 							type: "POST",
 							data: $("form#filterpelajaranuas").serialize(),
@@ -19,7 +19,7 @@
 						return false;
 					});//Submit End
 					$("#filterpelajaranuas select#pelajaranuas").change(function(e){
-					$(this).after('<input type="hidden" name="pelajarannya" value="'+$(this).find(":selected").text()+'"/>');
+						$(this).after('<input type="hidden" name="pelajarannya" value="'+$(this).find(":selected").text()+'"/>');
 						$.ajax({
 							type: "POST",
 							data: $("form#filterpelajaranuas").serialize(),
@@ -91,10 +91,11 @@
 								$("#subjectlistuas").html(msg);	
 							}
 						});
+					
 					$(".exportexcelluas").click(function(){
 						$('form#filterpelajaranuas').attr('action','<?=base_url()?>akademik/export');
 						$('form#filterpelajaranuas').submit();
-					});
+					});	
 				});
 
 				</script>
@@ -122,13 +123,12 @@
 											<option <? if(@$_POST['pelajaran']==$datapelajaran['id']){echo 'selected';}?> value="<?=$datapelajaran['id']?>"><?=$datapelajaran['nama']?></option>
 											<? } ?>
 										</select>
-										<a id="kirimuasadd" title="" class="readmore"> Tambah <br /> uas </a>
-										<a id="kirimuasremidiadd" title="" class="readmore"> Tambah uas <br /> Remidi</a>
-										<a id="kirimuas" title="" class="readmore"> Kirim <br /> uas </a>
+										<a id="kirimuasadd" title="" class="readmore"> Tambah <br /> UAS </a>
+										<a id="kirimuasremidiadd" title="" class="readmore"> Tambah UAS <br /> Remidi</a>
+										<a id="kirimuas" title="" class="readmore"> Kirim <br /> UAS </a>
 										<a  style="padding:5px;" class="readmore exportexcelluas"><img height="30" src="<?=$this->config->item('images')?>/Excel-icon.png" style="margin:0;" /> Export</a>
 										<input type="hidden" name="jenis" value="UAS" />
 										<input type="hidden" name="fileName" value="UAS" />
-										
 										
 									</td>
 								</tr>

@@ -43,6 +43,7 @@
 		$(".addaccountclose").click(function(){
 			$(".addaccount").remove();
 		});
+		filesize('fileaddmateri',15000000,50);
 		$("#materi").submit(function(e){
 			$frm = $(this);
 			//$id_kelas = $frm.find('*[name=id_kelas]').val();
@@ -56,26 +57,62 @@
 					data: $(this).serialize()+'&'+$('form#nilai').serialize(),
 					url: $(this).attr('action'),
 					beforeSend: function() {
-						$(".simpanmateri").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+						$("#materi").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+						$(".error-box").delay(1000).html('Memasukkan Data');
 					},
 					success: function(msg) {
-						$("#wait").remove();	
+						$(".error-box").delay(1000).fadeOut("slow",function(){
+							$(this).remove();
+						});	
+						var upload=ajaxuploadnew("<? echo base_url();?>akademik/materi/upload/"+msg,"response","image-list","fileaddmateri");
 						
-						ajaxuploadnew("<? echo base_url();?>akademik/materi/upload/"+msg,"response","image-list","file");
 						$.ajax({
+							url: "<? echo base_url();?>akademik/materi/upload/"+msg,
 							type: "POST",
-							data: 'id_kelas='+$('select#kelas_addeditmateri').val()+'&pelajaran='+$('select#pelajaran_add').val()+'&ajax=1',
-							url: '<?=base_url('akademik/materi/daftarmaterilist')?>',
+							data: upload,
+							processData: false,
+							contentType: false,
 							beforeSend: function() {
-								$(".simpanmateri").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+								$("#materi").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+								$(".error-box").delay(1000).html('Proses Upload File');
 							},
-							success: function(msg) {
-								$("#wait").remove();
-								$('select#kelas').val($('select#kelas_addeditmateri').val());
-								$('select#pelajaran').html($('select#pelajaran_add').html());
-								$('select#pelajaran').val($('select#pelajaran_add').val());
-								$('#subjectlistmateri').html(msg);
-								$('#subject').scrollintoview({ speed:'1100'});
+							error	: function(){
+								alert('Materi anda sudah tersimpan. Tetapi lampiran file anda gagal di Upload. Klik OK untuk melengkapi lampiran');
+								$('#fileaddmateri').val("");
+								return false;
+								//$('#subjectlistmateri').load('<?=base_url('akademik/materi/editmateri')?>/'+msg);						
+							},
+							success: function (res) {
+								$(".error-box").delay(1000).fadeOut("slow",function(){
+									$(this).remove();
+								});	
+								if(res=='null'){
+									$.ajax({
+										type: "POST",
+										data: '&ajax=1',
+										url: '<?=base_url('akademik/materi/daftarmaterilist')?>',
+										beforeSend: function() {
+											$("#materi").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+											$(".error-box").delay(1000).html('Load data');
+											$(".error-box").delay(1000).fadeOut("slow",function(){
+												$(this).remove();
+											});
+										},
+										success: function(msg2) {
+											$("#wait").remove();
+											//$('select#kelas').val($('select#kelas_add').val());
+											$('select#pelajaran').html($('select#pelajaran_add').html());
+											$('select#pelajaran').val($('select#pelajaran_add').val());
+											$('#subjectlistmateri').html(msg2);
+											$('#subject').scrollintoview({ speed:'1100'});
+										}
+									});
+								}else{
+									alert(res+'');
+									//$('#subjectlistmateri').load('<?=base_url('akademik/materi/editmateri')?>/'+msg);
+									$('#fileaddmateri').val("");
+									return false;
+								}
 							}
 						});
 					}
@@ -238,7 +275,7 @@ $(function() {
 				<td width="30%" class="title">Lampiran File</td>
 				<td width="1">:</td>
 				<td>
-					<input type="file" name="file" id="file" multiple />
+					<input type="file" name="file" id="fileaddmateri" multiple />
 					<div id="response" style="font-size:11px;">Anda bisa memilih banyak file dengan memencet tombol "Ctrl", kemudian klik file yang dipilih lebih dari satu</div>
 					<form id="remidialfile" method="post" action="">
 					<ul class="file">

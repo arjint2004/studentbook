@@ -36,7 +36,7 @@
 						//$('select#pelajaranuas').html($('select#pelajaran_adduas').html());
 						//$('select#pelajaranuas').val('');	
 						$('#subjectlistuas').html(msg);
-						$('#subjectpembelajaran').scrollintoview({ speed:'1100'});
+						$('#subjectujian').scrollintoview({ speed:'1100'});
 					}
 				});
 				return false;
@@ -45,6 +45,7 @@
 		$(".addaccountclose").click(function(){
 			$(".addaccount").remove();
 		});
+		filesize('fileadduasremidi',15000000,50);
 		$("#kirimuasremidial").submit(function(e){
 			$frm = $(this);
 			$id_kelas = $frm.find('*[name=id_kelas]').val();
@@ -64,29 +65,57 @@
 					data: $(this).serialize()+'&judul='+$("select#judul_adduas").attr('title'),
 					url: $(this).attr('action'),
 					beforeSend: function() {
-						$("#simpanuas").after("<img class='waituas10' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
-						$("#simpanuasbottom").after("<img class='waituas10' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+						$("#kirimuasremidial").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+						$(".error-box").delay(1000).html('Inserting Data');
 					},
 					success: function(msg) {
-						$(".waituas10").remove();	
-						ajaxupload("<? echo base_url();?>akademik/kirimuas/uploadfileuas/"+msg,"response","image-list","file");
+					
+						$(".error-box").delay(1000).fadeOut("slow",function(){
+							$(this).remove();
+						});
+						var upload=ajaxuploadnew("<? echo base_url();?>akademik/kirimuas/uploadfileuas/"+msg,"response","image-list","fileadduasremidi");
 						$.ajax({
+							url: "<? echo base_url();?>akademik/kirimuas/uploadfileuas/"+msg,
 							type: "POST",
-							data: 'id_kelas='+$('select#kelasuas').val()+'&pelajaran='+$('select#pelajaranuas').val()+'&ajax=1',
-							url: '<?=base_url('akademik/kirimuas/daftaruaslist')?>',
+							data: upload,
+							processData: false,
+							contentType: false,
 							beforeSend: function() {
-								$("#simpanuas").after("<img class='waituas10' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
-								$("#simpanuasbottom").after("<img class='waituas10' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+								$("#kirimuasremidial").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+								$(".error-box").delay(1000).html('Proses Upload File');
 							},
-							success: function(msg) {
-								$(".waituas10").remove();
-								//$('select#kelas').val($('select#kelas_adduas').val());
-								//$('select#pelajaran').html($('select#pelajaran_adduas').html());
-								//$('select#pelajaran').val($('select#pelajaran_adduas').val());
-								$('#subjectlistuas').html(msg);
-								$('#subjectpembelajaran').scrollintoview({ speed:'1100'});
+							error	: function(){
+								alert('UAS anda sudah tersimpan. Tetapi lampiran file anda gagal di Upload. Klik OK untuk melengkapi lampiran');
+								$('#subjectlistuas').load('<?=base_url('akademik/kirimuas/kirimuasremidialedit')?>/'+msg);						
+							},
+							success: function (res) {
+								$(".error-box").delay(1000).fadeOut("slow",function(){
+									$(this).remove();
+								});	
+								if(res=='null'){
+									$.ajax({
+										type: "POST",
+										data: 'id_kelas='+$('select#kelas_adduas').val()+'&pelajaran='+$('select#pelajaran_adduas').val()+'&ajax=1',
+										url: '<?=base_url('akademik/kirimuas/daftaruaslist')?>',
+										beforeSend: function() {
+											$("#kirimuasremidial").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+											$(".error-box").delay(1000).html('Load data');
+											$(".error-box").delay(1000).fadeOut("slow",function(){
+												$(this).remove();
+											});
+										},
+										success: function(msg) {
+											$('#subjectlistuas').html(msg);
+											$('#subjectujian').scrollintoview({ speed:'1100'});
+										}
+									});
+								}else{
+									alert(res+'');
+									$('#subjectlistuas').load('<?=base_url('akademik/kirimuas/kirimuasremidialedit')?>/'+msg);
+								}
 							}
 						});
+						
 					}
 				});
 				return false;
@@ -100,7 +129,7 @@
 			$.ajax({
 				type: "POST",
 				data: '',
-				url: '<?=base_url()?>akademik/kirimuas/getOptionFileuasByIduas/'+$(this).val(),
+				url: '<?=base_url()?>akademik/kirimuas/getOptionFileUasByIdUas/'+$(this).val(),
 				beforeSend: function() {
 					$('select#judul_adduas').after("<img id='waituas11' src='<?=$this->config->item('images').'loading.png';?>' />");
 				},
@@ -116,7 +145,7 @@
 			$.ajax({
 				type: "POST",
 				data: '',
-				url: '<?=base_url()?>akademik/kirimuas/createOptionuasByKelasPelajaranIdPegawai/'+$(this).val()+'/'+$('select#kelas_adduas').val(),
+				url: '<?=base_url()?>akademik/kirimuas/createOptionUasByKelasPelajaranIdPegawai/'+$(this).val()+'/'+$('select#kelas_adduas').val(),
 				beforeSend: function() {
 					$('select#judul_adduas').after("<img id='waituas12' src='<?=$this->config->item('images').'loading.png';?>' />");
 				},
@@ -168,7 +197,7 @@ $(function() {
 <form method="post" name="kirimuasremidial" enctype="multipart/form-data" id="kirimuasremidial" action="<? echo base_url();?>akademik/kirimuas/kirimuasremidial">
 	<div onclick="$('.addaccount').remove();" class="addaccountclose"></div>
 		
-		<h3>Tambah uas Remidial</h3>
+		<h3>Tambah UAS Remidial</h3>
 		<div class="hr"></div>
 		<table class="adddata">
 			<tbody>
@@ -215,11 +244,11 @@ $(function() {
 				</td>
 			</tr>
 			<tr>
-				<td class="title">Judul uas</td>
+				<td class="title">Judul UAS</td>
 				<td>:</td>
 				<td>
 					<select class="selectfilter" id="judul_adduas" name="id_parent">
-						<option value="">Pilih uas</option>
+						<option value="">Pilih UAS</option>
 					</select>				
 				</td>
 			</tr>
@@ -234,7 +263,7 @@ $(function() {
 				<td width="30%" class="title">Lampiran Soal</td>
 				<td width="1">:</td>
 				<td>
-					<input type="file" name="file" id="file" multiple />
+					<input type="file" name="file" id="fileadduasremidi" multiple />
 					<div id="response" style="font-size:11px;">Masukkan file baru jika dibutuhkan. Anda bisa memilih banyak file dengan memencet tombol "Ctrl", kemudian klik file yang dipilih lebih dari satu <br /> Atau pakai file asli di bawah</div>
 					<form id="remidialfile" method="post" action="">
 					<ul class="file" id="filecekuas">

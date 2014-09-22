@@ -2,7 +2,7 @@
 				$(document).ready(function(){
 					
 					$("#filterpelajaranharian select#kelasharian").change(function(e){
-					$(this).after('<input type="hidden" name="kelasnya" value="'+$(this).find(":selected").text()+'"/>');
+						$(this).after('<input type="hidden" name="kelasnya" value="'+$(this).find(":selected").text()+'"/>');
 						$.ajax({
 							type: "POST",
 							data: $("form#filterpelajaranharian").serialize(),
@@ -19,7 +19,7 @@
 						return false;
 					});//Submit End
 					$("#filterpelajaranharian select#pelajaranharian").change(function(e){
-					$(this).after('<input type="hidden" name="pelajarannya" value="'+$(this).find(":selected").text()+'"/>');
+						$(this).after('<input type="hidden" name="pelajarannya" value="'+$(this).find(":selected").text()+'"/>');
 						$.ajax({
 							type: "POST",
 							data: $("form#filterpelajaranharian").serialize(),
@@ -91,15 +91,15 @@
 								$("#subjectlistharian").html(msg);	
 							}
 						});
-							
+					
 					$(".exportexcellharian").click(function(){
 						$('form#filterpelajaranharian').attr('action','<?=base_url()?>akademik/export');
 						$('form#filterpelajaranharian').submit();
-					});
+					});	
 				});
 
 				</script>
-				<h3>Daftar UL Harian</h3>
+				<h3>Daftar HARIAN</h3>
 				<div class="hr"></div>
 				
 				<div id="contentpage">
@@ -123,12 +123,12 @@
 											<option <? if(@$_POST['pelajaran']==$datapelajaran['id']){echo 'selected';}?> value="<?=$datapelajaran['id']?>"><?=$datapelajaran['nama']?></option>
 											<? } ?>
 										</select>
-										<a id="kirimharianadd" title="" class="readmore"> Tambah <br /> harian </a>
-										<a id="kirimharianremidiadd" title="" class="readmore"> Tambah harian <br /> Remidi</a>
-										<a id="kirimharian" title="" class="readmore"> Kirim <br /> harian </a>
+										<a id="kirimharianadd" title="" class="readmore"> Tambah <br /> HARIAN </a>
+										<a id="kirimharianremidiadd" title="" class="readmore"> Tambah HARIAN <br /> Remidi</a>
+										<a id="kirimharian" title="" class="readmore"> Kirim <br /> HARIAN </a>
 										<a  style="padding:5px;" class="readmore exportexcellharian"><img height="30" src="<?=$this->config->item('images')?>/Excel-icon.png" style="margin:0;" /> Export</a>
-										<input type="hidden" name="jenis" value="Ulangan_harian" />
-										<input type="hidden" name="fileName" value="Ulangan_harian" />
+										<input type="hidden" name="jenis" value="HARIAN" />
+										<input type="hidden" name="fileName" value="HARIAN" />
 										
 									</td>
 								</tr>

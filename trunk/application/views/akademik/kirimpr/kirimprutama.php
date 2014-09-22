@@ -43,12 +43,13 @@
 		$(".addaccountclose").click(function(){
 			$(".addaccount").remove();
 		});
+		
+		filesize('fileaddpr',15000000,50);
 		$("#kirimprutama").submit(function(e){
 			$frm = $(this);
 			
 			if($('input#datekirimprutama').val()==''  && !$('input#simpanarsippr').is(':checked')){
 				$('input#datekirimprutama').css('border','1px solid red');
-				
 			}else{
 				$('input#datekirimprutama').css('border','1px solid #D8D8D8');
 			}
@@ -79,33 +80,56 @@
 					data: $(this).serialize(),
 					url: $(this).attr('action'),
 					beforeSend: function() {
-						$("#simpanpr").after("<img id='waitpr27' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
-						$("#simpanprbottom").after("<img id='waitpr227' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+						$("#kirimprutama").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+						$(".error-box").delay(1000).html('Inserting Data');
 					},
 					success: function(msg) {
-							$("#waitpr27").remove();
-							$("#waitpr227").remove();	
-						
-						ajaxupload("<? echo base_url();?>akademik/kirimpr/uploadfilepr/"+msg,"response","image-list","file");
-						
+						$(".error-box").delay(1000).fadeOut("slow",function(){
+							$(this).remove();
+						});
+						var upload=ajaxuploadnew("<? echo base_url();?>akademik/kirimpr/uploadfilepr/"+msg,"response","image-list","fileaddpr");
 						$.ajax({
+							url: "<? echo base_url();?>akademik/kirimpr/uploadfilepr/"+msg,
 							type: "POST",
-							data: '&ajax=1',
-							url: '<?=base_url('akademik/kirimpr/daftarprlist')?>',
+							data: upload,
+							processData: false,
+							contentType: false,
 							beforeSend: function() {
-								$("#simpanpr").after("<img id='waitpr27' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
-								$("#simpanprbottom").after("<img id='waitpr227' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+								$("#kirimprutama").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+								$(".error-box").delay(1000).html('Proses Upload File');
 							},
-							success: function(msg) {
-								$("#waitpr27").remove();
-								$("#waitpr227").remove();
-								//$('select#kelaspr').val('');
-								//$('select#pelajaranpr').html($('select#pelajaran_addpr').html());
-								//$('select#pelajaranpr').val('');
-								$('#subjectlistpr').html(msg);
-								$('#subjectpembelajaran').scrollintoview({ speed:'1100'});
+							error	: function(){
+								alert('PR anda sudah tersimpan. Tetapi lampiran file anda gagal di Upload. Klik OK untuk melengkapi lampiran');
+								$('#subjectlistpr').load('<?=base_url('akademik/kirimpr/kirimprutamaedit')?>/'+msg);						
+							},
+							success: function (res) {
+								$(".error-box").delay(1000).fadeOut("slow",function(){
+									$(this).remove();
+								});	
+								if(res=='null'){
+									$.ajax({
+										type: "POST",
+										data: '&ajax=1',
+										url: '<?=base_url('akademik/kirimpr/daftarprlist')?>',
+										beforeSend: function() {
+											$("#materi").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+											$(".error-box").delay(1000).html('Load data');
+											$(".error-box").delay(1000).fadeOut("slow",function(){
+												$(this).remove();
+											});
+										},
+										success: function(msg) {
+											$('#subjectlistpr').html(msg);
+											$('#subjectpembelajaran').scrollintoview({ speed:'1100'});
+										}
+									});
+								}else{
+									alert(res+'');
+									$('#subjectlistpr').load('<?=base_url('akademik/kirimpr/kirimprutamaedit')?>/'+msg);
+								}
 							}
-						});	
+						});
+	
 					}
 				});
 				return false;
@@ -113,21 +137,6 @@
 			
 			return false;
 		});//Submit End	
-		
-		/*$("select#kelas_addpr").change(function(e){
-			$.ajax({
-				type: "POST",
-				data: '',
-				url: '<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$(this).val(),
-				beforeSend: function() {
-					$('select#kelas_addpr').after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
-				},
-				success: function(msg) {
-					$('#wait').remove();
-					$("#pelajaran_addpr").html(msg);	
-				}
-			});
-		});*///Submit End
 		
 		$("#keteranganpr").hide(500);
 		$("#tanggalpr").hide(500);
@@ -252,7 +261,7 @@ $(function() {
 				<td width="30%" class="title">Lampiran Soal</td>
 				<td width="1">:</td>
 				<td colspan="2">
-					<input type="file" name="file" id="file" multiple />
+					<input type="file" name="file" id="fileaddpr" multiple />
 					<div id="response" style="font-size:11px;">Anda bisa memilih banyak file dengan memencet tombol "Ctrl", kemudian klik file yang dipilih lebih dari satu</div>
 				</td>
 			</tr>

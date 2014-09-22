@@ -43,12 +43,13 @@
 		$(".addaccountclose").click(function(){
 			$(".addaccount").remove();
 		});
+		
+		filesize('fileaddtugas',15000000,50);
 		$("#kirimtugasutama").submit(function(e){
 			$frm = $(this);
 			
 			if($('input#datekirimtugasutama').val()==''  && !$('input#simpanarsiptugas').is(':checked')){
 				$('input#datekirimtugasutama').css('border','1px solid red');
-				
 			}else{
 				$('input#datekirimtugasutama').css('border','1px solid #D8D8D8');
 			}
@@ -79,33 +80,56 @@
 					data: $(this).serialize(),
 					url: $(this).attr('action'),
 					beforeSend: function() {
-						$("#simpantugas").after("<img id='waittugas27' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
-						$("#simpantugasbottom").after("<img id='waittugas227' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+						$("#kirimtugasutama").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+						$(".error-box").delay(1000).html('Inserting Data');
 					},
 					success: function(msg) {
-							$("#waittugas27").remove();
-							$("#waittugas227").remove();	
-						
-						ajaxupload("<? echo base_url();?>akademik/kirimtugas/uploadfiletugas/"+msg,"response","image-list","file");
-						
+						$(".error-box").delay(1000).fadeOut("slow",function(){
+							$(this).remove();
+						});
+						var upload=ajaxuploadnew("<? echo base_url();?>akademik/kirimtugas/uploadfiletugas/"+msg,"response","image-list","fileaddtugas");
 						$.ajax({
+							url: "<? echo base_url();?>akademik/kirimtugas/uploadfiletugas/"+msg,
 							type: "POST",
-							data: '&ajax=1',
-							url: '<?=base_url('akademik/kirimtugas/daftartugaslist')?>',
+							data: upload,
+							processData: false,
+							contentType: false,
 							beforeSend: function() {
-								$("#simpantugas").after("<img id='waittugas27' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
-								$("#simpantugasbottom").after("<img id='waittugas227' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+								$("#kirimtugasutama").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+								$(".error-box").delay(1000).html('Proses Upload File');
 							},
-							success: function(msg) {
-								$("#waittugas27").remove();
-								$("#waittugas227").remove();
-								//$('select#kelastugas').val('');
-								//$('select#pelajarantugas').html($('select#pelajaran_addtugas').html());
-								//$('select#pelajarantugas').val('');
-								$('#subjectlisttugas').html(msg);
-								$('#subjectpembelajaran').scrollintoview({ speed:'1100'});
+							error	: function(){
+								alert('TUGAS anda sudah tersimpan. Tetapi lampiran file anda gagal di Upload. Klik OK untuk melengkapi lampiran');
+								$('#subjectlisttugas').load('<?=base_url('akademik/kirimtugas/kirimtugasutamaedit')?>/'+msg);						
+							},
+							success: function (res) {
+								$(".error-box").delay(1000).fadeOut("slow",function(){
+									$(this).remove();
+								});	
+								if(res=='null'){
+									$.ajax({
+										type: "POST",
+										data: '&ajax=1',
+										url: '<?=base_url('akademik/kirimtugas/daftartugaslist')?>',
+										beforeSend: function() {
+											$("#materi").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+											$(".error-box").delay(1000).html('Load data');
+											$(".error-box").delay(1000).fadeOut("slow",function(){
+												$(this).remove();
+											});
+										},
+										success: function(msg) {
+											$('#subjectlisttugas').html(msg);
+											$('#subjectpembelajaran').scrollintoview({ speed:'1100'});
+										}
+									});
+								}else{
+									alert(res+'');
+									$('#subjectlisttugas').load('<?=base_url('akademik/kirimtugas/kirimtugasutamaedit')?>/'+msg);
+								}
 							}
-						});	
+						});
+	
 					}
 				});
 				return false;
@@ -113,21 +137,6 @@
 			
 			return false;
 		});//Submit End	
-		
-		/*$("select#kelas_addtugas").change(function(e){
-			$.ajax({
-				type: "POST",
-				data: '',
-				url: '<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$(this).val(),
-				beforeSend: function() {
-					$('select#kelas_addtugas').after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
-				},
-				success: function(msg) {
-					$('#wait').remove();
-					$("#pelajaran_addtugas").html(msg);	
-				}
-			});
-		});*///Submit End
 		
 		$("#keterangantugas").hide(500);
 		$("#tanggaltugas").hide(500);
@@ -188,7 +197,7 @@ $(function() {
 <form method="post" name="kirimtugasutama" enctype="multipart/form-data" id="kirimtugasutama" action="<? echo base_url();?>akademik/kirimtugas/kirimtugasutama">
 	<div onclick="$('.addaccount').remove();" class="addaccountclose"></div>
 		
-		<h3>Tambah tugas</h3>
+		<h3>Tambah TUGAS</h3>
 		<div class="hr"></div>
 		<table class="adddata">
 			<tbody>
@@ -242,7 +251,7 @@ $(function() {
 				</td>
 			</tr>
 			<tr>
-				<td class="title">Judul tugas</td>
+				<td class="title">Judul TUGAS</td>
 				<td>:</td>
 				<td colspan="2">
 					<input type="text" value="" size="30" name="judul">				
@@ -252,7 +261,7 @@ $(function() {
 				<td width="30%" class="title">Lampiran Soal</td>
 				<td width="1">:</td>
 				<td colspan="2">
-					<input type="file" name="file" id="file" multiple />
+					<input type="file" name="file" id="fileaddtugas" multiple />
 					<div id="response" style="font-size:11px;">Anda bisa memilih banyak file dengan memencet tombol "Ctrl", kemudian klik file yang dipilih lebih dari satu</div>
 				</td>
 			</tr>
@@ -260,7 +269,7 @@ $(function() {
 				<td width="30%" class="title">SMS ke ORTU</td>
 				<td width="1">:</td>
 				<td colspan="2">
-					<textarea name="keterangan" maxlength="200" placeholder="Keterangan akan dikirim ke Orang Tua / Wali Siswa melalui SMS" id="keteranganaddtugas"></textarea>
+					<textarea name="keterangan"  maxlength="200" placeholder="Keterangan akan dikirim ke Orang Tua / Wali Siswa melalui SMS" id="keteranganaddtugas"></textarea>
 				</td>
 			</tr>
 			<tr>

@@ -71,7 +71,7 @@
 					url: $(this).attr('action'),
 					beforeSend: function() {
 						$("#materi").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
-						$(".error-box").delay(1000).html('Inserting Data');
+						$(".error-box").delay(1000).html('Memasukkan Data');
 						//$("#simpanpr").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
 					},
 					success: function(msg) {
@@ -97,7 +97,7 @@
 								$(".error-box").delay(1000).fadeOut("slow",function(){
 									$(this).remove();
 								});	
-								if(res=='allowed' || res=='null'){
+								if(res=='null'){
 									$.ajax({
 										type: "POST",
 										data: '&ajax=1',

@@ -12,15 +12,15 @@ class Kirimharian extends CI_Controller
             $this->load->library('auth');
             $this->auth->user_logged_in();
         }
-		public function getharianStok($id_pelajaran)
+		public function getHarianStok($id_pelajaran)
         { 
 			
 			$this->load->model('ad_harian');
-			$harian =$this->ad_harian->getharianStok($id_pelajaran);
+			$harian =$this->ad_harian->getHarianStok($id_pelajaran);
 			if(empty($harian)){
-				echo '<option value="">harian TIDAK TERSEDIA</option>';
+				echo '<option value="">PR TIDAK TERSEDIA</option>';
 			}else{
-				echo '<option value="">Pilih harian</option>';
+				echo '<option value="">Pilih PR</option>';
 				foreach($harian as $dharian){
 					echo '<option value="'.$dharian['id'].'">'.$dharian['judul'].'</option>';
 				}
@@ -43,9 +43,13 @@ class Kirimharian extends CI_Controller
 											 'keterangan'=>$_POST['keterangan'],
 											 'tanggal'=>date('Y-m-d H:i:s')
 											);
-						$this->load->library('ak_notifikasi');
-						$this->ak_notifikasi->set_notifikasi_akademik_per_kelas($id_kelas,$gorup_notif='harian',$_POST['id_pelajaran'],$_POST['judul'],$this->session->userdata['user_authentication']['id_pengguna'],$_POST['keterangan'],$_POST['id_harian'],'harian');					
+											
 						$this->db->insert('ak_harian_det',$insert_detail);
+						
+						//notifikasi
+						$this->load->library('ak_notifikasi');
+						$this->ak_notifikasi->set_notifikasi_akademik_per_kelas($id_kelas,$gorup_notif='harian',$_POST['id_pelajaran'],$_POST['judul'],$this->session->userdata['user_authentication']['id_pengguna'],$_POST['keterangan'],$_POST['id_harian'],'harian');
+						
 						$this->smsprivate->send_by_kelas($id_kelas,$_POST['keterangan'],'harian',$_POST['id_harian']);
 				}
 			}
@@ -56,7 +60,7 @@ class Kirimharian extends CI_Controller
        	public function delete($id_harian=null)
         {	
 			$this->load->model('ad_harian');
-			$datafile=$this->ad_harian->getFileharianById_harian($id_harian);
+			$datafile=$this->ad_harian->getFileHarianById_harian($id_harian);
 			
 			//delete file
 			foreach($datafile as $datainfile){
@@ -81,45 +85,74 @@ class Kirimharian extends CI_Controller
         {
 			
 			if(isset($_FILES)){
-			if(!empty($_FILES["file"]["error"])){
-				foreach ($_FILES["file"]["error"] as $key => $error) {
-					if ($error == UPLOAD_ERR_OK) {
-						$name = date('Ymdhis').str_replace(" ","",$_FILES["file"]["name"][$key]);
-						if(!in_array($_FILES["file"]["type"][$key], $this->denied_mime_types)){
-							if(move_uploaded_file($_FILES["file"]["tmp_name"][$key], $this->upload_dir . $name)){
-								$this->db->insert('ak_harian_file', array('id_harian'=>$id_harian,'file_name'=>''.$name.''));
+				if(!empty($_FILES["file"]["error"])){
+					foreach ($_FILES["file"]["error"] as $key => $error) {
+						if ($error == UPLOAD_ERR_OK) {
+							$name = date('Ymdhis').str_replace(" ","",$_FILES["file"]["name"][$key]);
+							if(!in_array($_FILES["file"]["type"][$key], $this->denied_mime_types)){
+								if(move_uploaded_file($_FILES["file"]["tmp_name"][$key], $this->upload_dir . $name)){
+									$this->db->insert('ak_harian_file', array('id_harian'=>$id_harian,'file_name'=>''.$name.''));
+								}
+							}else{
+								echo "Anda tidak diperbolehkan mengunggah file type ini. Silahkan edit data anda dan masukkan file yang benar.";
+								die();
 							}
-						}else{
-							echo "Anda tidak diperbolehkan mengunggah file type ini. Silahkan edit data anda dan masukkan file yang benar.";
-							die();
-						}						
-						
-
-						
-					}
-				}				
-			}
+						}
+					}				
+				}
+				echo 'null';
 			}
 
         }
-        public function daftarharianlist()
+        public function daftarharianlist($pelajaran=0,$id_kelas=0,$start=0,$page=0)
         {
 			$this->load->model('ad_harian');
-			$harian=$this->ad_harian->getharianByKelasPelajaranIdPegawaiAll($_POST['pelajaran'],$_POST['id_kelas']);
-			$terkirim=$this->ad_harian->getharianByKelasPelajaranIdPegawaiKirim($_POST['pelajaran'],$_POST['id_kelas']);
+			
+			if(isset($_POST['pelajaran'])){$pelajaran=$_POST['pelajaran'];}
+			if(isset($_POST['id_kelas'])){$id_kelas=$_POST['id_kelas'];}
+			
+			$this->load->library('pagination');
+			$config['base_url']   = site_url('akademik/kirimharian/daftarharianlist/'.$pelajaran.'/'.$id_kelas.'');
+			$config['per_page'] = $data['per_page'] = 10;
+			//$config['uri_segment']   = 5;
+			$config['cur_page']   = $start;
+			$data['cur_page']   = $page;
+			$data['start'] = $start;
+			
+			$config['total_rows'] = $this->ad_harian->getHarianByKelasPelajaranIdPegawaiAllCount($pelajaran,$id_kelas);
+			//harian($config['total_rows']);
+
+			$harian=$this->ad_harian->getHarianByKelasPelajaranIdPegawaiAll($pelajaran,$id_kelas,$start,$config['per_page']);
+
+			$id_hariansemua = @array_map(function($var){ return $var['id']; }, $harian);
+			$terkirim=$this->ad_harian->getharianByKelasPelajaranIdPegawaiKirim($pelajaran,$id_kelas,$id_hariansemua,$start,$config['per_page']);
+			$this->pagination->initialize($config);
+			$data['link'] = $this->pagination->create_links();
 			$telahdikirim=array();
 			$harian2=array();
-			
+
 			if(!empty($harian)){
+				
+				//file harian
+				$fileharian=$this->ad_harian->getFileHarianInId($id_hariansemua);
 				foreach($harian as $ky=>$dataharian){
 					if(isset($terkirim[$dataharian['id']])){
 						$telahdikirim[$dataharian['id']]=$dataharian;
-						$telahdikirim[$dataharian['id']]['file']=$this->ad_harian->getFileharianByIdharian($dataharian['id']);
+						foreach($fileharian as $dtfile){
+							if($dtfile['id_harian']==$dataharian['id']){
+								$telahdikirim[$dataharian['id']]['file'][]=$dtfile;
+							}
+						}
 						$telahdikirim[$dataharian['id']]['dikirim']=$terkirim[$dataharian['id']];
 					}else{
 						$harian2[$ky]=$dataharian;
-						$harian2[$ky]['file']=$this->ad_harian->getFileharianByIdharian($dataharian['id']);
+						foreach($fileharian as $dtfile){
+							if($dtfile['id_harian']==$dataharian['id']){
+								$harian2[$ky]['file'][]=$dtfile;
+							}
+						}
 					}
+					
 					
 				}
 				$harian=array_merge($telahdikirim,$harian2);
@@ -127,7 +160,7 @@ class Kirimharian extends CI_Controller
 			unset($harian2);
 			
 			$data['harian']=$harian;
-			//harian($telahdikirim);
+			//harian($harian);
 			$data['terkirim']=$telahdikirim;
 			$data['id_kelas']=$_POST['id_kelas'];
 			$data['main']= 'akademik/kirimharian/daftarharianlist';
@@ -324,7 +357,7 @@ class Kirimharian extends CI_Controller
 				echo $id_harian;
 				die();
 			}
-			$data['harian']=$this->ad_harian->getharianByIdForRemidi($id);
+			$data['harian']=$this->ad_harian->getHarianByIdForRemidi($id);
 			$this->load->model('ad_kelas');
 			$data['kelas'] 	=$this->ad_kelas->getkelasByPengajar($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']);
             $data['main']           = 'akademik/kirimharian/kirimharianremidialedit';
@@ -341,10 +374,10 @@ class Kirimharian extends CI_Controller
 			}
 			$this->db->query('DELETE FROM ak_harian_file WHERE id='.$id.'');
 		}
-        public function getOptionFileharianByIdharian($id_harian=null)
+        public function getOptionFileHarianByIdHarian($id_harian=null)
         {
 			$this->load->library('ak_harian');
-			echo $this->ak_harian->createOptionFileharianByIdharian($id_harian);
+			echo $this->ak_harian->createOptionFileHarianByIdHarian($id_harian);
 		}
         public function getOptionSiswaRemidiByIdKelas($id_kelas=null,$id_harian=null)
         {
@@ -356,15 +389,15 @@ class Kirimharian extends CI_Controller
 			$this->load->library('ak_siswa');
 			echo $this->ak_siswa->createOptionSiswaByIdKelas($id_kelas);
 		}
-        public function createOptionharianByKelasPelajaranIdPegawai($id_pelajaran=null,$id_kelas=null)
+        public function createOptionHarianByKelasPelajaranIdPegawai($id_pelajaran=null,$id_kelas=null)
         {
 			$this->load->library('ak_harian');
-			echo $this->ak_harian->createOptionharianByKelasPelajaranIdPegawai($id_pelajaran,$id_kelas);
+			echo $this->ak_harian->createOptionHarianByKelasPelajaranIdPegawai($id_pelajaran,$id_kelas);
 		}
-        public function createOptionharianRemidiEditByKelasPelajaranIdPegawai($id_pelajaran=null,$id_kelas=null,$id_parent_harian)
+        public function createOptionHarianRemidiEditByKelasPelajaranIdPegawai($id_pelajaran=null,$id_kelas=null,$id_parent_harian)
         {
 			$this->load->library('ak_harian');
-			echo $this->ak_harian->createOptionharianRemidiEditByKelasPelajaranIdPegawai($id_pelajaran,$id_kelas,$id_parent_harian);
+			echo $this->ak_harian->createOptionHarianRemidiEditByKelasPelajaranIdPegawai($id_pelajaran,$id_kelas,$id_parent_harian);
 		}
 		
         public function kirimharianutamaedit($id=null)
@@ -420,7 +453,7 @@ class Kirimharian extends CI_Controller
 				die();
 			}else{
 			
-			$data['harian']=$this->ad_harian->getJustharianById($id);
+			$data['harian']=$this->ad_harian->getJustHarianById($id);
 
 			}
 			

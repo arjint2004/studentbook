@@ -13,7 +13,7 @@ Class Ad_tugas extends CI_Model{
 		//echo $this->db->last_query();
 		return $query->result_array();
 	}
-	function gettugasByKelasPelajaran($id_pelajaran,$id_kelas){
+	function getTugasByKelasPelajaran($id_pelajaran,$id_kelas){
 		$query=$this->db->query('SELECT ap.* FROM ak_tugas ap JOIN
 								ak_kelas ak
 								JOIN ak_tugas_det apd
@@ -31,7 +31,7 @@ Class Ad_tugas extends CI_Model{
 		return $query->result_array();
 	}
 
-	function getOptiontugasByIdKelasIdPegawaiform($id_pelajaran,$id_kelas){
+	function getOptionTugasByIdKelasIdPegawaiform($id_pelajaran,$id_kelas){
 		$query=$this->db->query('SELECT ap . *
 								FROM ak_tugas ap
 								JOIN ak_kelas ak
@@ -54,7 +54,7 @@ Class Ad_tugas extends CI_Model{
 		return $query->result_array();
 	}
 	
-	function gettugasByKelasPelajaranIdPegawaiNotParent($id_pelajaran,$id_kelas){
+	function getTugasByKelasPelajaranIdPegawaiNotParent($id_pelajaran,$id_kelas){
 		$query=$this->db->query('SELECT ap . *
 								FROM ak_tugas ap
 								JOIN ak_kelas ak
@@ -77,7 +77,7 @@ Class Ad_tugas extends CI_Model{
 		//echo $this->db->last_query();
 		return $query->result_array();
 	}
-	function gettugasByKelasPelajaranId($id_pelajaran,$id_kelas){
+	function getTugasByKelasPelajaranId($id_pelajaran,$id_kelas){
 		
 		if($id_pelajaran!=''){
 			$condpel='AND aj.id="'.mysql_real_escape_string($id_pelajaran).'" AND ap.id_pelajaran="'.mysql_real_escape_string($id_pelajaran).'"';
@@ -113,7 +113,7 @@ Class Ad_tugas extends CI_Model{
 		//echo $this->db->last_query();
 		return $query->result_array();
 	}
-	function gettugasByKelasPelajaranIdPegawai($id_pelajaran=0,$id_kelas=0){
+	function getTugasByKelasPelajaranIdPegawai($id_pelajaran=0,$id_kelas=0){
 		$cnd='';
 		$cnd2='';
 		$cnd3='';
@@ -194,7 +194,24 @@ Class Ad_tugas extends CI_Model{
 		
 		return $utamadata2;
 	}
-	function gettugasByKelasPelajaranIdPegawaiAll($id_pelajaran=0,$id_kelas=0){
+	function getTugasByKelasPelajaranIdPegawaiAllCount($id_pelajaran=0,$id_kelas=0){
+		$cnd='';
+		$cnd2='';
+		if($id_pelajaran!=0){$cnd='AND ap.id_pelajaran="'.mysql_real_escape_string($id_pelajaran).'"';}
+		//if($id_kelas!=0){$cnd2='AND amk.id_kelas="'.mysql_real_escape_string($id_kelas).'"';}
+		$query=$this->db->query('SELECT COUNT(*) as jml FROM ak_tugas ap 
+								 WHERE
+								 ap.id_sekolah=?
+								 '.$cnd.'
+								 '.$cnd2.'
+								 AND ap.id_pegawai=?
+								',array($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']));
+		$out=$query->result_array();						
+		//echo $this->db->last_query();
+		//tugas($out);
+		return $out[0]['jml'];
+	}
+	function getTugasByKelasPelajaranIdPegawaiAll($id_pelajaran=0,$id_kelas=0,$start=0,$page=0){
 		$cnd='';
 		$cnd2='';
 		$cnd3='';
@@ -213,7 +230,7 @@ Class Ad_tugas extends CI_Model{
 								
 								GROUP BY ap.id
 								ORDER BY ap.id DESC
-								LIMIT 8
+								 LIMIT '.$start.','.$page.'
 								');
 		//echo $this->db->last_query();
 		$query2=$this->db->query('SELECT ap. *,apj.nama as nama_pelajaran FROM 
@@ -250,7 +267,7 @@ Class Ad_tugas extends CI_Model{
 		
 		return $utamadata2;
 	}
-	function getDettugasByKelasPelajaran($id_pelajaran,$id_kelas){
+	function getDetTugasByKelasPelajaran($id_pelajaran,$id_kelas){
 		$query=$this->db->query('SELECT ak.id,ak.kelas,ak.nama FROM ak_tugas ap JOIN
 								JOIN ak_tugas_det apd 
 								ak_kelas ak
@@ -265,30 +282,28 @@ Class Ad_tugas extends CI_Model{
 		//echo $this->db->last_query();
 		return $query->result_array();
 	}
-	function getFiletugasByIdtugas($id_tugas){
-		$query=$this->db->query('SELECT af.* FROM ak_tugas ap JOIN
+	function getFileTugasByIdTugas($id_tugas){
+		$query=$this->db->query('SELECT af.* FROM 
 								ak_tugas_file af 
-								ON
-								af.id_tugas=ap.id
+								
 								WHERE
-								ap.id=?
+								af.id_tugas=?
 								',array($id_tugas));
-		//echo $this->db->last_query();
+		//tugas($this->db->last_query());
 		return $query->result_array();
 	}
-	function getFiletugasById_tugas($id_tugas){
-		$query=$this->db->query('SELECT apf.* FROM
-								ak_tugas ap JOIN 
-								ak_tugas_file apf
-								ON
-								apf.id_tugas=ap.id
-								WHERE
-								apf.id_tugas=?
-								',array($id_tugas));
-		//echo $this->db->last_query();
+	function getFileTugasInId($id_tugas=array()){
+		$query=$this->db->query('SELECT * FROM 
+								ak_tugas_file
+								WHERE id_tugas IN('.implode(',',$id_tugas).')
+								');
+		//tugas($this->db->last_query());
 		return $query->result_array();
 	}
-	function getJusttugasById($id_tugas){
+	function getFileTugasById_tugas($id_tugas){
+		return $this->getFileTugasByIdTugas($id_tugas);
+	}
+	function getJustTugasById($id_tugas){
 		$query=$this->db->query('SELECT ak.id as id_kelas,ak.kelas,ak.nama as nama_kelas,ap.* FROM 
 								ak_tugas ap 
 								JOIN ak_tugas_det apd 
@@ -301,12 +316,12 @@ Class Ad_tugas extends CI_Model{
 								GROUP BY ap.id
 								',array($id_tugas));
 		$out['tugas']=$query->result_array();						
-		$out['file']=$this->getFiletugasByIdtugas($id_tugas);						
+		$out['file']=$this->getFileTugasByIdTugas($id_tugas);						
 		//echo $this->db->last_query();
 		//tugas($out['tugas']);
 		return $out;
 	}
-	function gettugasById($id_tugas){
+	function getTugasById($id_tugas){
 		$query=$this->db->query('SELECT ak.id as id_kelas,ak.kelas,ak.nama as nama_kelas,ap.* FROM 
 								ak_tugas ap 
 								JOIN ak_tugas_det apd 
@@ -321,11 +336,11 @@ Class Ad_tugas extends CI_Model{
 								GROUP BY ap.id
 								',array($id_tugas));
 		$out['tugas']=$query->result_array();						
-		$out['file']=$this->getFiletugasByIdtugas($id_tugas);						
+		$out['file']=$this->getFileTugasByIdTugas($id_tugas);						
 		//echo $this->db->last_query();
 		return $out;
 	}
-	function gettugasByIdFordetail($id_tugas){
+	function getTugasByIdFordetail($id_tugas){
 		$query=$this->db->query('SELECT ak.kelas,ak.nama as nama_kelas,apl.nama as nama_pelajaran, ap.*, ak.id as id_kelas FROM 
 								ak_tugas ap 
 								JOIN ak_tugas_det apd
@@ -343,10 +358,10 @@ Class Ad_tugas extends CI_Model{
 								',array($id_tugas));
 		//echo $this->db->last_query();
 		$out=$query->result_array();						
-		$out[0]['file']=$this->getFiletugasByIdtugas($id_tugas);			 
+		$out[0]['file']=$this->getFileTugasByIdTugas($id_tugas);			 
 		return $out;
 	}
-	function gettugasByIdForRemidi($id_tugas){
+	function getTugasByIdForRemidi($id_tugas){
 		$query=$this->db->query('SELECT ak.id as id_kelas,ak.kelas,ak.nama as nama_kelas,ap.* FROM
 								ak_tugas ap 
 								JOIN ak_tugas_det apd 
@@ -360,7 +375,7 @@ Class Ad_tugas extends CI_Model{
 								AND ak.publish=1
 								',array($id_tugas));
 		$out['tugas']=$query->result_array();						
-		$out['file']=$this->getFiletugasByIdtugas($id_tugas);						
+		$out['file']=$this->getFileTugasByIdTugas($id_tugas);						
 		//echo $this->db->last_query();
 		return $out;
 	}
@@ -375,7 +390,7 @@ Class Ad_tugas extends CI_Model{
 		//echo $this->db->last_query();
 		return $query->result_array();
 	}
-	function getsiswaRemidiByIdKelasIdtugas($id_kelas,$id_tugas){
+	function getsiswaRemidiByIdKelasIdTugas($id_kelas,$id_tugas){
 		$query=$this->db->query('SELECT * FROM ak_tugas ap JOIN
 								 ak_tugas_det_remidial apd JOIN
 								 ak_det_jenjang adj JOIN 
@@ -390,7 +405,7 @@ Class Ad_tugas extends CI_Model{
 		//echo $this->db->last_query();
 		return $query->result_array();
 	}
-	function gettugasByIdDetJenjang($id_det_jenjang){
+	function getTugasByIdDetJenjang($id_det_jenjang){
 		$query=$this->db->query('SELECT ap . *, ak.nama as nama_kelas, ak.kelas as kelas, ag.nama as nama_guru, aj.nama as nama_pelajaran
 								FROM ak_tugas ap
 								JOIN ak_det_jenjang adj
@@ -499,7 +514,7 @@ Class Ad_tugas extends CI_Model{
 		
 		return $out;
 	}
-	function gettugasStok($id_pelajaran=0){
+	function getTugasStok($id_pelajaran=0){
 		$query=$this->db->query('SELECT * FROM `ak_tugas` a WHERE
 									a.id_sekolah='.$this->session->userdata['user_authentication']['id_sekolah'].'
 									AND a.id_pegawai='.$this->session->userdata['user_authentication']['id_pengguna'].'
@@ -509,12 +524,13 @@ Class Ad_tugas extends CI_Model{
 		return $query->result_array();	
 	}
 	
-	function gettugasByKelasPelajaranIdPegawaiKirim($id_pelajaran=0,$id_kelas=0){
+	function gettugasByKelasPelajaranIdPegawaiKirim($id_pelajaran=0,$id_kelas=0,$id_tugasarray=array(),$start=0,$page=0){
 		$cnd='';
 		$cnd2='';
 		$tugas=array();
 		if($id_pelajaran!=0){$cnd='AND amp.id_pelajaran="'.mysql_real_escape_string($id_pelajaran).'"';}
 		if($id_kelas!=0){$cnd2='AND amk.id_kelas="'.mysql_real_escape_string($id_kelas).'"';}
+		if(!empty($id_tugasarray)){ $cndin='AND amp.id IN('.implode(',',$id_tugasarray).')';}else{$cndin='';}
 		$query=$this->db->query('SELECT amk.*,ak.nama as nama_kelas,ak.kelas FROM ak_tugas amp JOIN
 								 ak_tugas_det amk JOIN ak_kelas ak
 								 ON
@@ -525,8 +541,9 @@ Class Ad_tugas extends CI_Model{
 								 '.$cnd.'
 								 '.$cnd2.'
 								 AND amp.id_pegawai=?
+								 '.$cndin.'
+								 GROUP BY amp.id
 								 ORDER BY amp.id DESC
-								 LIMIT 15
 								',array($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']));
 								//echo $this->db->last_query();
 		foreach($query->result_array() as $mtrkrm){

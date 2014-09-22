@@ -12,15 +12,15 @@ class Kirimuas extends CI_Controller
             $this->load->library('auth');
             $this->auth->user_logged_in();
         }
-		public function getuasStok($id_pelajaran)
+		public function getUasStok($id_pelajaran)
         { 
 			
 			$this->load->model('ad_uas');
-			$uas =$this->ad_uas->getuasStok($id_pelajaran);
+			$uas =$this->ad_uas->getUasStok($id_pelajaran);
 			if(empty($uas)){
-				echo '<option value="">uas TIDAK TERSEDIA</option>';
+				echo '<option value="">PR TIDAK TERSEDIA</option>';
 			}else{
-				echo '<option value="">Pilih uas</option>';
+				echo '<option value="">Pilih PR</option>';
 				foreach($uas as $duas){
 					echo '<option value="'.$duas['id'].'">'.$duas['judul'].'</option>';
 				}
@@ -45,8 +45,11 @@ class Kirimuas extends CI_Controller
 											);
 											
 						$this->db->insert('ak_uas_det',$insert_detail);
+						
+						//notifikasi
 						$this->load->library('ak_notifikasi');
 						$this->ak_notifikasi->set_notifikasi_akademik_per_kelas($id_kelas,$gorup_notif='uas',$_POST['id_pelajaran'],$_POST['judul'],$this->session->userdata['user_authentication']['id_pengguna'],$_POST['keterangan'],$_POST['id_uas'],'uas');
+						
 						$this->smsprivate->send_by_kelas($id_kelas,$_POST['keterangan'],'uas',$_POST['id_uas']);
 				}
 			}
@@ -57,7 +60,7 @@ class Kirimuas extends CI_Controller
        	public function delete($id_uas=null)
         {	
 			$this->load->model('ad_uas');
-			$datafile=$this->ad_uas->getFileuasById_uas($id_uas);
+			$datafile=$this->ad_uas->getFileUasById_uas($id_uas);
 			
 			//delete file
 			foreach($datafile as $datainfile){
@@ -82,45 +85,74 @@ class Kirimuas extends CI_Controller
         {
 			
 			if(isset($_FILES)){
-			if(!empty($_FILES["file"]["error"])){
-				foreach ($_FILES["file"]["error"] as $key => $error) {
-					if ($error == UPLOAD_ERR_OK) {
-						$name = date('Ymdhis').str_replace(" ","",$_FILES["file"]["name"][$key]);
-						if(!in_array($_FILES["file"]["type"][$key], $this->denied_mime_types)){
-							if(move_uploaded_file($_FILES["file"]["tmp_name"][$key], $this->upload_dir . $name)){
-								$this->db->insert('ak_uas_file', array('id_uas'=>$id_uas,'file_name'=>''.$name.''));
+				if(!empty($_FILES["file"]["error"])){
+					foreach ($_FILES["file"]["error"] as $key => $error) {
+						if ($error == UPLOAD_ERR_OK) {
+							$name = date('Ymdhis').str_replace(" ","",$_FILES["file"]["name"][$key]);
+							if(!in_array($_FILES["file"]["type"][$key], $this->denied_mime_types)){
+								if(move_uploaded_file($_FILES["file"]["tmp_name"][$key], $this->upload_dir . $name)){
+									$this->db->insert('ak_uas_file', array('id_uas'=>$id_uas,'file_name'=>''.$name.''));
+								}
+							}else{
+								echo "Anda tidak diperbolehkan mengunggah file type ini. Silahkan edit data anda dan masukkan file yang benar.";
+								die();
 							}
-						}else{
-							echo "Anda tidak diperbolehkan mengunggah file type ini. Silahkan edit data anda dan masukkan file yang benar.";
-							die();
-						}						
-						
-
-						
-					}
-				}				
-			}
+						}
+					}				
+				}
+				echo 'null';
 			}
 
         }
-        public function daftaruaslist()
+        public function daftaruaslist($pelajaran=0,$id_kelas=0,$start=0,$page=0)
         {
 			$this->load->model('ad_uas');
-			$uas=$this->ad_uas->getuasByKelasPelajaranIdPegawaiAll($_POST['pelajaran'],$_POST['id_kelas']);
-			$terkirim=$this->ad_uas->getuasByKelasPelajaranIdPegawaiKirim($_POST['pelajaran'],$_POST['id_kelas']);
+			
+			if(isset($_POST['pelajaran'])){$pelajaran=$_POST['pelajaran'];}
+			if(isset($_POST['id_kelas'])){$id_kelas=$_POST['id_kelas'];}
+			
+			$this->load->library('pagination');
+			$config['base_url']   = site_url('akademik/kirimuas/daftaruaslist/'.$pelajaran.'/'.$id_kelas.'');
+			$config['per_page'] = $data['per_page'] = 10;
+			//$config['uri_segment']   = 5;
+			$config['cur_page']   = $start;
+			$data['cur_page']   = $page;
+			$data['start'] = $start;
+			
+			$config['total_rows'] = $this->ad_uas->getUasByKelasPelajaranIdPegawaiAllCount($pelajaran,$id_kelas);
+			//uas($config['total_rows']);
+
+			$uas=$this->ad_uas->getUasByKelasPelajaranIdPegawaiAll($pelajaran,$id_kelas,$start,$config['per_page']);
+
+			$id_uassemua = @array_map(function($var){ return $var['id']; }, $uas);
+			$terkirim=$this->ad_uas->getuasByKelasPelajaranIdPegawaiKirim($pelajaran,$id_kelas,$id_uassemua,$start,$config['per_page']);
+			$this->pagination->initialize($config);
+			$data['link'] = $this->pagination->create_links();
 			$telahdikirim=array();
 			$uas2=array();
-			
+
 			if(!empty($uas)){
+				
+				//file uas
+				$fileuas=$this->ad_uas->getFileUasInId($id_uassemua);
 				foreach($uas as $ky=>$datauas){
 					if(isset($terkirim[$datauas['id']])){
 						$telahdikirim[$datauas['id']]=$datauas;
-						$telahdikirim[$datauas['id']]['file']=$this->ad_uas->getFileuasByIduas($datauas['id']);
+						foreach($fileuas as $dtfile){
+							if($dtfile['id_uas']==$datauas['id']){
+								$telahdikirim[$datauas['id']]['file'][]=$dtfile;
+							}
+						}
 						$telahdikirim[$datauas['id']]['dikirim']=$terkirim[$datauas['id']];
 					}else{
 						$uas2[$ky]=$datauas;
-						$uas2[$ky]['file']=$this->ad_uas->getFileuasByIduas($datauas['id']);
+						foreach($fileuas as $dtfile){
+							if($dtfile['id_uas']==$datauas['id']){
+								$uas2[$ky]['file'][]=$dtfile;
+							}
+						}
 					}
+					
 					
 				}
 				$uas=array_merge($telahdikirim,$uas2);
@@ -128,7 +160,7 @@ class Kirimuas extends CI_Controller
 			unset($uas2);
 			
 			$data['uas']=$uas;
-			//uas($telahdikirim);
+			//uas($uas);
 			$data['terkirim']=$telahdikirim;
 			$data['id_kelas']=$_POST['id_kelas'];
 			$data['main']= 'akademik/kirimuas/daftaruaslist';
@@ -325,7 +357,7 @@ class Kirimuas extends CI_Controller
 				echo $id_uas;
 				die();
 			}
-			$data['uas']=$this->ad_uas->getuasByIdForRemidi($id);
+			$data['uas']=$this->ad_uas->getUasByIdForRemidi($id);
 			$this->load->model('ad_kelas');
 			$data['kelas'] 	=$this->ad_kelas->getkelasByPengajar($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']);
             $data['main']           = 'akademik/kirimuas/kirimuasremidialedit';
@@ -342,10 +374,10 @@ class Kirimuas extends CI_Controller
 			}
 			$this->db->query('DELETE FROM ak_uas_file WHERE id='.$id.'');
 		}
-        public function getOptionFileuasByIduas($id_uas=null)
+        public function getOptionFileUasByIdUas($id_uas=null)
         {
 			$this->load->library('ak_uas');
-			echo $this->ak_uas->createOptionFileuasByIduas($id_uas);
+			echo $this->ak_uas->createOptionFileUasByIdUas($id_uas);
 		}
         public function getOptionSiswaRemidiByIdKelas($id_kelas=null,$id_uas=null)
         {
@@ -357,15 +389,15 @@ class Kirimuas extends CI_Controller
 			$this->load->library('ak_siswa');
 			echo $this->ak_siswa->createOptionSiswaByIdKelas($id_kelas);
 		}
-        public function createOptionuasByKelasPelajaranIdPegawai($id_pelajaran=null,$id_kelas=null)
+        public function createOptionUasByKelasPelajaranIdPegawai($id_pelajaran=null,$id_kelas=null)
         {
 			$this->load->library('ak_uas');
-			echo $this->ak_uas->createOptionuasByKelasPelajaranIdPegawai($id_pelajaran,$id_kelas);
+			echo $this->ak_uas->createOptionUasByKelasPelajaranIdPegawai($id_pelajaran,$id_kelas);
 		}
-        public function createOptionuasRemidiEditByKelasPelajaranIdPegawai($id_pelajaran=null,$id_kelas=null,$id_parent_uas)
+        public function createOptionUasRemidiEditByKelasPelajaranIdPegawai($id_pelajaran=null,$id_kelas=null,$id_parent_uas)
         {
 			$this->load->library('ak_uas');
-			echo $this->ak_uas->createOptionuasRemidiEditByKelasPelajaranIdPegawai($id_pelajaran,$id_kelas,$id_parent_uas);
+			echo $this->ak_uas->createOptionUasRemidiEditByKelasPelajaranIdPegawai($id_pelajaran,$id_kelas,$id_parent_uas);
 		}
 		
         public function kirimuasutamaedit($id=null)
@@ -421,7 +453,7 @@ class Kirimuas extends CI_Controller
 				die();
 			}else{
 			
-			$data['uas']=$this->ad_uas->getJustuasById($id);
+			$data['uas']=$this->ad_uas->getJustUasById($id);
 
 			}
 			

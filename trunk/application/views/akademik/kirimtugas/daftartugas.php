@@ -2,7 +2,7 @@
 				$(document).ready(function(){
 					
 					$("#filterpelajarantugas select#kelastugas").change(function(e){
-					$(this).after('<input type="hidden" name="kelasnya" value="'+$(this).find(":selected").text()+'"/>');
+						$(this).after('<input type="hidden" name="kelasnya" value="'+$(this).find(":selected").text()+'"/>');
 						$.ajax({
 							type: "POST",
 							data: $("form#filterpelajarantugas").serialize(),
@@ -19,7 +19,7 @@
 						return false;
 					});//Submit End
 					$("#filterpelajarantugas select#pelajarantugas").change(function(e){
-					$(this).after('<input type="hidden" name="pelajarannya" value="'+$(this).find(":selected").text()+'"/>');
+						$(this).after('<input type="hidden" name="pelajarannya" value="'+$(this).find(":selected").text()+'"/>');
 						$.ajax({
 							type: "POST",
 							data: $("form#filterpelajarantugas").serialize(),
@@ -91,7 +91,7 @@
 								$("#subjectlisttugas").html(msg);	
 							}
 						});
-						
+					
 					$(".exportexcelltugas").click(function(){
 						$('form#filterpelajarantugas').attr('action','<?=base_url()?>akademik/export');
 						$('form#filterpelajarantugas').submit();
@@ -99,7 +99,7 @@
 				});
 
 				</script>
-				<h3>Daftar Tugas</h3>
+				<h3>Daftar TUGAS</h3>
 				<div class="hr"></div>
 				
 				<div id="contentpage">
@@ -123,12 +123,12 @@
 											<option <? if(@$_POST['pelajaran']==$datapelajaran['id']){echo 'selected';}?> value="<?=$datapelajaran['id']?>"><?=$datapelajaran['nama']?></option>
 											<? } ?>
 										</select>
-										<a id="kirimtugasadd" title="" class="readmore"> Tambah <br /> tugas </a>
-										<a id="kirimtugasremidiadd" title="" class="readmore"> Tambah tugas <br /> Remidi</a>
-										<a id="kirimtugas" title="" class="readmore"> Kirim <br /> tugas </a>
+										<a id="kirimtugasadd" title="" class="readmore"> Tambah <br /> TUGAS </a>
+										<a id="kirimtugasremidiadd" title="" class="readmore"> Tambah TUGAS <br /> Remidi</a>
+										<a id="kirimtugas" title="" class="readmore"> Kirim <br /> TUGAS </a>
 										<a  style="padding:5px;" class="readmore exportexcelltugas"><img height="30" src="<?=$this->config->item('images')?>/Excel-icon.png" style="margin:0;" /> Export</a>
-										<input type="hidden" name="jenis" value="Tugas" />
-										<input type="hidden" name="fileName" value="Tugas" />
+										<input type="hidden" name="jenis" value="TUGAS" />
+										<input type="hidden" name="fileName" value="TUGAS" />
 										
 									</td>
 								</tr>
