@@ -1,12 +1,15 @@
 
-<?=$this->load->view('akademik/mainakademik/js')?>		
+<?
+if($this->session->userdata['user_authentication']['otoritas']!='siswa' && $this->session->userdata['user_authentication']['otoritas']!='ortu'){
+echo $this->load->view('akademik/mainakademik/js');
+}
+?>		
 <?php
 $cek = session_data();
 if(empty($cek)) {
 	$cek = '';
 }
-$user = DataUser();
-                    
+$user = DataUser();   
 if(!file_exists($user->foto)) {
     $user->foto = 'asset/default/images/no_profile.jpg';
 }

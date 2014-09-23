@@ -28,7 +28,6 @@
 	
 </script>
 <div class="portfolio column-one-half-with-sidebar">
-    <?=print_iklan(); ?>
     <div class="row-fluid edit_data" style="text-align: left;">
         <div class="span12">
             <form class="sosial" enctype="multipart/form-data" method="post" action="<?=site_url('sos/siswa/ubah_data')?>">
@@ -113,5 +112,4 @@
             </form>
         </div>
     </div>
-    <?=print_iklan()?>
 </div>
