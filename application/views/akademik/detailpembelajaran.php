@@ -2,6 +2,8 @@
 								<div class="clear"></div>
 								<h3><?=$title?></h3>
 								<div class="hr"></div>
+									<?//pr($out)?>
+									<? if(isset($out['id'])){?>
 								<script>
 								$(document).ready(function(){
 									$.ajax({
@@ -20,8 +22,6 @@
 								});
 								
 								</script>
-									<?//pr($out)?>
-									<? if(isset($out['id'])){?>
 									<table>
 										<tbody>
 											
