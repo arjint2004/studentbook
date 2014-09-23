@@ -77,7 +77,7 @@ class Materi extends CI_Controller
 											);
 						//notifikasi
 						$this->load->library('ak_notifikasi');
-						$this->ak_notifikasi->set_notifikasi_akademik_per_kelas($id_kelas,$gorup_notif='materi',$_POST['id_pelajaran'],$_POST['pokok_bahasan'],$this->session->userdata['user_authentication']['id_pengguna'],$_POST['keterangan'],$id_materi,'materi');
+						$this->ak_notifikasi->set_notifikasi_akademik_per_kelas($id_kelas,$gorup_notif='materi',$_POST['id_pelajaran'],$_POST['pokok_bahasan'],$this->session->userdata['user_authentication']['id_pengguna'],$_POST['keterangan'],$_POST['id_materi'],'materi');
 						
 						$this->db->insert('ak_materi_kirim',$insert_detail);
 						$this->smsprivate->send_by_kelas($id_kelas,$_POST['keterangan'],'materi',$_POST['id_materi']);
