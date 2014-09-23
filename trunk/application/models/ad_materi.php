@@ -160,8 +160,8 @@ Class Ad_materi extends CI_Model{
 		//echo $this->db->last_query();
 		$materi= $query->result_array();
 		foreach($materi as $k=>$datam){
-			$qdatam=$this->db->query('SELECT * FROM ak_materi_file WHERE id_materi='.$datam['id'].'
-								');
+			$qdatam=$this->db->query('SELECT * FROM ak_materi_file WHERE id_materi=?
+								',array($datam['id']));
 			$materi[$k]['file']=$qdatam->result_array();
 		}
 		
@@ -185,8 +185,8 @@ Class Ad_materi extends CI_Model{
 								ON
 								amf.id_materi=am.id
 								WHERE
-								amf.id_materi="'.$id_materi.'"
-								');
+								amf.id_materi=?
+								',array($id_materi));
 		//echo $this->db->last_query();
 		return $query->result_array();
 	}
@@ -209,8 +209,8 @@ Class Ad_materi extends CI_Model{
 								ON
 								amf.id_materi=am.id
 								WHERE
-								amf.id="'.$id.'"
-								');
+								amf.id=?
+								',array($id));
 		//echo $this->db->last_query();
 		return $query->result_array();;
 	}	
@@ -226,9 +226,9 @@ Class Ad_materi extends CI_Model{
 								AND
 								amk.id_materi=ap.id
 								WHERE
-								ap.id='.$id_materi.'
-									AND ak.publish=1
-								');
+								ap.id=?
+								AND ak.publish=1
+								',array($id_materi));
 		$out=$query->result_array();						
 		$out[0]['file']=$this->getFileMateriByIdMateri($id_materi);			
 		//echo $this->db->last_query();
@@ -240,8 +240,8 @@ Class Ad_materi extends CI_Model{
 								ON
 								af.id_materi=ap.id
 								WHERE
-								ap.id='.$id_materi.'
-								');
+								ap.id=?
+								',array($id_materi));
 		//echo $this->db->last_query();
 		return $query->result_array();
 	}
@@ -261,12 +261,12 @@ Class Ad_materi extends CI_Model{
 								 AND amp.id_pelajaran=ap.id
 								 AND amp.id_pegawai=ag.id
 								 WHERE
-								 amp.id_sekolah='.$this->session->userdata['user_authentication']['id_sekolah'].'
-								 AND amp.id_pegawai='.$id_user.'
+								 amp.id_sekolah=?
+								 AND amp.id_pegawai=?
 								 AND ak.publish=1
 								 ORDER BY amp.id DESC
 								 LIMIT '.$limit.'
-								');
+								',array($this->session->userdata['user_authentication']['id_sekolah'],$id_user));
 			$out=$query->result_array();
 		}elseif($guruorsiswa=='siswa'){
 			$query=$this->db->query('SELECT amp.*, ak.nama as nama_kelas,ak.kelas ,ap.nama as nama_pelajaran,ag.nama as nama_guru 
