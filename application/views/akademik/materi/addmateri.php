@@ -267,14 +267,14 @@ $(function() {
 				<td>
 					<input type="text" name="tanggal_diberikan" style="width:100px;" value="<?=date('Y-m-d')?>" id="datemateri">
 				</td>
-			</tr>
+			</tr>--> 
 			<tr  id="tanggalmateri">
 				<td width="30%" class="title">Tanggal Diajarkan</td>
 				<td width="1">:</td>
-				<td>
-					<input type="text" name="tanggal_diajarkan" style="width:100px;" value="" id="date2materi">
+				<td colspan="2">
+					<input type="text" name="tanggal_diajarkan" style="width:100px;" value="" id="date2materi" />
 				</td>
-			</tr>--> 
+			</tr>
 			<tr id="keteranganmateri">
 				<td width="30%" class="title">Keterangan</td>
 				<td width="1">:</td>
