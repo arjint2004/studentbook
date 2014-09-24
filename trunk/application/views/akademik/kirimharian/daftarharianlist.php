@@ -68,7 +68,7 @@
 											success: function(msg) {
 												$(".wait").remove();	
 												$("#subjectlistharian").html(msg);
-												$('#subjectujian').scrollintoview({ speed:'1100'});
+												$('#subjectpembelajaran').scrollintoview({ speed:'1100'});
 											}
 										});
 										return false;
@@ -96,13 +96,11 @@
 								}
 								</script>
 								<? //harian($harian);?>
-							   
-
-								
 								<div class="tabs-container">
 									<ul class="tabs-frame tabs-frameharian">
 										<li><a href="#">Semua arsip HARIAN</a></li>
 										<li><a href="#">HARIAN Terkirim</a></li>
+										<li><a href="#">Download</a></li>
 									</ul>
 									<div class="tabs-frame-content tabs-frame-contentharian ">
 									<div style="float:left;" id="paginationharianilist" >
@@ -368,5 +366,22 @@
 										<?=$link?>
 										</div>										
 									</div>
-
+									<div class="tabs-frame-content tabs-frame-contentharian">
+										<table>
+											<thead>
+													<tr>
+														<th>No</th>
+														<th>Nama</th>
+														<th>Link</th>
+													</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td style="text-align:left;width:1%;">1</td>
+													<td style="text-align:left;">Template  Soal</td>
+													<td><a href="<?=base_url('upload/akademik/template/TemplateUlanganHarian.docx')?>">Download</a></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
 								</div>

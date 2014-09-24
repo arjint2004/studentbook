@@ -96,13 +96,11 @@
 								}
 								</script>
 								<? //tugas($tugas);?>
-							   
-
-								
 								<div class="tabs-container">
 									<ul class="tabs-frame tabs-frametugas">
 										<li><a href="#">Semua arsip TUGAS</a></li>
 										<li><a href="#">TUGAS Terkirim</a></li>
+										<li><a href="#">Download</a></li>
 									</ul>
 									<div class="tabs-frame-content tabs-frame-contenttugas ">
 									<div style="float:left;" id="paginationtugasilist" >
@@ -368,5 +366,22 @@
 										<?=$link?>
 										</div>										
 									</div>
-
+									<div class="tabs-frame-content tabs-frame-contenttugas">
+										<table>
+											<thead>
+													<tr>
+														<th>No</th>
+														<th>Nama</th>
+														<th>Link</th>
+													</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td style="text-align:left;width:1%;">1</td>
+													<td style="text-align:left;">Template  Soal</td>
+													<td><a href="<?=base_url('upload/akademik/template/TemplateTugas.docx')?>">Download</a></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
 								</div>

@@ -96,13 +96,11 @@
 								}
 								</script>
 								<? //pr($pr);?>
-							   
-
-								
 								<div class="tabs-container">
 									<ul class="tabs-frame tabs-framepr">
 										<li><a href="#">Semua arsip PR</a></li>
 										<li><a href="#">PR Terkirim</a></li>
+										<li><a href="#">Download</a></li>
 									</ul>
 									<div class="tabs-frame-content tabs-frame-contentpr ">
 									<div style="float:left;" id="paginationprilist" >
@@ -368,5 +366,22 @@
 										<?=$link?>
 										</div>										
 									</div>
-
+									<div class="tabs-frame-content tabs-frame-contentpr">
+										<table>
+											<thead>
+													<tr>
+														<th>No</th>
+														<th>Nama</th>
+														<th>Link</th>
+													</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td style="text-align:left;width:1%;">1</td>
+													<td style="text-align:left;">Template  Soal</td>
+													<td><a href="<?=base_url('upload/akademik/template/TemplatePR.docx')?>">Download</a></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
 								</div>
