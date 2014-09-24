@@ -134,7 +134,9 @@ Class Ad_notifikasi extends CI_Model{
 			);
 			$data3=array_merge($data2,$data);
 			//pr($data3);
-			$this->db->insert('ak_notifikasi_sms',$data3);
+			if(in_array('sms_absensi',$this->session->userdata['ak_setting']['fitursekolah'])){
+				$this->db->insert('ak_notifikasi_sms',$data3);
+			}
 			//echo $this->db->last_query();
 			
 	}

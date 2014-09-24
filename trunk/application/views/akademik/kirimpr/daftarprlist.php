@@ -95,7 +95,7 @@
 									return false;
 								}
 								</script>
-								<? //pr($pr);?>
+									<? //pr($this->session->userdata['ak_setting']['fitursekolah']);?>			
 								<div class="tabs-container">
 									<ul class="tabs-frame tabs-framepr">
 										<li><a href="#">Semua arsip PR</a></li>

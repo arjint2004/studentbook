@@ -139,7 +139,7 @@ class smsprivate {
 		
 		//cek fitur sms
 		$queryf=$CI->db->query('SELECT * FROM ak_fitur_sekolah
-									WHERE id_sekolah=? AND fitur="sms_notifikasi"
+									WHERE id_sekolah=? AND fitur="sms_notifikasi" AND aktif=1
 									',array($CI->session->userdata['user_authentication']['id_sekolah']));
 		$fitur=$queryf->result_array();
 		if(!empty($fitur)){

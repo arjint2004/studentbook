@@ -34,7 +34,7 @@
 <div class="full file" style="margin-top:0;">
 	<h3 style="margin-bottom:0;">Fitur "<i id="nama<?=$id_sekolah?>"></i>"</h3>
 	<div class="hr"></div>
-				
+
 	<div class="full file" style="margin:0;min-height:50px;max-height:200px;overflow:auto;border:none;">
 		<table class="noborder">
 			<thead>
@@ -47,11 +47,16 @@
 			<tbody>
 				<tr>
 					<td>1</td>
+					<td class="title">SMS Absensi</td>
+					<td><input class="setfitur" type="checkbox" fitur="sms_absensi" id_sekolah="<?=$id_sekolah?>" <? if(@$fitur[$id_sekolah]['sms_absensi']['aktif']==1){echo 'checked';}?> name="fitur[<?=$id_sekolah?>][sms_absensi]" value="<?=@$fitur[$id_sekolah]['sms_absensi']['aktif']?>"/></td>
+				</tr>
+				<tr>
+					<td>2</td>
 					<td class="title">SMS Notifikasi</td>
 					<td><input class="setfitur" type="checkbox" fitur="sms_notifikasi" id_sekolah="<?=$id_sekolah?>" <? if(@$fitur[$id_sekolah]['sms_notifikasi']['aktif']==1){echo 'checked';}?> name="fitur[<?=$id_sekolah?>][sms_notifikasi]" value="<?=@$fitur[$id_sekolah]['sms_notifikasi']['aktif']?>"/></td>
 				</tr>
 				<tr>
-					<td>2</td>
+					<td>3</td>
 					<td class="title">SMS Blasting</td>
 					<td><input class="setfitur" type="checkbox" fitur="sms_blasting" id_sekolah="<?=$id_sekolah?>" <? if(@$fitur[$id_sekolah]['sms_blasting']['aktif']==1){echo 'checked';}?> name="fitur[<?=$id_sekolah?>][sms_blasting]" value="<?=@$fitur[$id_sekolah]['sms_blasting']['aktif']?>"/></td>
 				</tr>

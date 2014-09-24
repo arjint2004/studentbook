@@ -13,8 +13,15 @@ Class Ad_setting extends CI_Model
 	return $query->result_array();	
  }
  function getTaAktif($id_sekolah=null){
-	
-	
+ 
+ }
+ function getFiturSekolah($id_sekolah=null){
+	$query=$this->db->query('SELECT * FROM ak_fitur_sekolah WHERE id_sekolah='.$id_sekolah.' AND aktif=1');
+	$fitur=$query->result_array();
+	foreach($fitur as $datafitur){
+		$out[]=$datafitur['fitur'];
+	}
+	return $out;
  }
 
  function getNextTa($id_ta=null){

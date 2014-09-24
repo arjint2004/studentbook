@@ -78,7 +78,7 @@ class Sekolah extends CI_Controller {
 	}
 	public function setfitur($id_sekolah=0) {
 		$this->load->model('ad_sekolah');
-		
+		pr($this->session->userdata['ak_setting']);
 		if(isset($_POST['id_sekolah'])){
 			$data['id_sekolah']=$_POST['id_sekolah'];
 		}else{

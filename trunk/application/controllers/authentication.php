@@ -25,14 +25,16 @@ class Authentication extends CI_Controller {
 		
         $user   = $this->auth_user->get_user($username,$password);
         $auth   = $this->auth_user->get_auth($username,$password);
-
+		
         if (!empty($user)) {
 			$this->load->model('ad_setting');
 			$this->load->model('ad_kelas');
 			$this->load->model('ad_sekolah');
 			$kepsek=$this->ad_sekolah->getKepsek($user->id_sekolah);
 			$settingSmTa   = $this->ad_setting->getTaSemesterAktif($user->id_sekolah);
+			$fitursekolah   = $this->ad_setting->getFiturSekolah($user->id_sekolah);
 			$jenjang=$this->ad_kelas->thisjenjang($user->id);
+			
             $sessionsettings = array(
                 'jenjang' => $jenjang,
                 'semester' => $settingSmTa['semester']['id'],
@@ -44,6 +46,7 @@ class Authentication extends CI_Controller {
                 'alamat_sekolah' => $user->alamat_sekolah,
                 'logo_sekolah' => $user->logo,
                 'ta_selesai' => $settingSmTa['ta']['selesai'],
+                'fitursekolah' => $fitursekolah,
                 'id_kepsek' => $kepsek[0]['id']
             );
             $this->session->set_userdata('ak_setting', $sessionsettings);
