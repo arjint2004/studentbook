@@ -78,7 +78,7 @@
 							<table class="tabelfilter">
 								<tr>
 									<td>Filter Guru
-										<select class="selectfilter" name="id_pegawai">
+										<select class="selectfilter" name="id_pegawai" id="listpegawaipeng">
 											<option value="">Pilih Guru</option>
 											<? foreach($pegawai as $datapeg){?>
 											<option <? if(@$_POST['id_pegawai']==$datapeg['id']){echo 'selected';}?> value="<?=$datapeg['id']?>"><?=$datapeg['nama']?></option>
