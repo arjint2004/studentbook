@@ -4,7 +4,7 @@ Class Ad_pengajaran extends CI_Model
 
 	function getdataGuru(){
 		
-		$query=$this->db->query('SELECT ap.id as id, ap.nama FROM ak_mengajar am JOIN ak_pegawai ap ON am.id_pegawai=ap.id WHERE am.id_sekolah='.$this->session->userdata['user_authentication']['id_sekolah'].' GROUP BY ap.id');
+		$query=$this->db->query('SELECT ap.id as id, ap.nama FROM ak_mengajar am JOIN ak_pegawai ap ON am.id_pegawai=ap.id WHERE am.id_sekolah='.$this->session->userdata['user_authentication']['id_sekolah'].' GROUP BY ap.id ORDER BY ap.nama');
 		//echo $this->db->last_query();
 		return $query->result_array();
 	}
