@@ -110,7 +110,7 @@ $(document).ready(function(){
 						$(".addaccount").remove();	
 							$.ajax({
 								type: "POST",
-								data: "ajax=1&id_pegawai="+$id_pegawai,
+								data: "ajax=1&id_pegawai="+$('select#listpegawaipeng').val(),
 								url: '<?php echo base_url(); ?>admin/pengajaran/listData',
 								beforeSend: function() {
 									$("#listmengajarloading").html("<img src='<?=$this->config->item('images').'loading.png';?>' />");
