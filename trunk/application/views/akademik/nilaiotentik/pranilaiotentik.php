@@ -12,7 +12,7 @@
 							success: function(msg) {
 								$(".wait").remove();
 								$("#pelajaranlistotentik").html(msg);
-								$("#pelajaranlistotentik option").first().remove();
+								//$("#pelajaranlistotentik option").first().remove();
 								
 								$.ajax({
 									type: "POST",

@@ -75,7 +75,7 @@
 		<div class="tabs-frame-content"  style="display: none;">
 				<a class="readmore" title="" tab="otentik" href="" id="<?=base64_encode('kognitif');?>" >Nilai<br /> Kognitif </a>
 				<a class="readmore" title="" tab="otentik" href="" id="<?=base64_encode('afektif');?>" >Nilai<br /> Afektif </a>
-				<a class="readmore" title="" tab="otentik" href="" id="<?=base64_encode('portofolio');?>" >Record<br /> Portofolio </a>
+				<!--<a class="readmore" title="" tab="otentik" href="" id="<?=base64_encode('portofolio');?>" >Record<br /> Portofolio </a>-->
 				<a class="readmore" title="" tab="otentik" href="" id="<?=base64_encode('psikomotorik');?>">Nilai<br /> Psikomotorik</a>
 		</div>
 		<div class="tabs-frame-content"  style="display: none;">
