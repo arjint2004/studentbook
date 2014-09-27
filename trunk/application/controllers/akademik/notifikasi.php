@@ -45,6 +45,24 @@ class Notifikasi extends CI_Controller
 			   $this->load->view('layout/ad_adminsekolah',$data);
 			} 
 		}
+        public function hportu()
+        {
+			$this->load->model('ad_siswa');
+			$this->load->model('ad_kelas');
+			
+			if(isset($_POST['hp']) && !empty($_POST['hp'])){
+				foreach($_POST['hp'] as $id_ortu=>$hpnya){
+					$this->db->where(array('id'=>$id_ortu,'id_sekolah'=>$this->session->userdata['user_authentication']['id_sekolah']));
+					$this->db->update('ak_pegawai',array('hp'=>$hpnya));
+					//pr($this->db->last_query());
+				}
+			}
+			
+			$kelas=$this->ad_kelas->getKelasByIdWaliPeg($this->session->userdata['user_authentication']['id_pengguna']);
+			$data['siswa']=$this->ad_siswa->getsiswaByIdKelas($kelas[0]['id'],'s.id as id_siswa, s.nama, ap.id as id_ortu, ap.hp, ap.nama as nama_ortu,ak.nama as nama_kelas,ak.kelas');
+			$data['main'] 	= 'akademik/notifikasi/hportu';
+			$this->input->is_ajax_request() and $this->load->view('layout/ad_blank',$data);
+		}
 		
         public function sms_notifikasi_ortu_perkelas($data=array())
         {
