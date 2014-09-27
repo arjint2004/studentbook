@@ -50,6 +50,7 @@ $(document).ready(function(){
   <tr>
   <? 
   $noev=1;
+  if(!empty($indikator[0]['point'])){
   foreach($indikator[0]['point'] as $pnt){?>
     <th style="width:10px;"><?=$noev++?></th>
   <? } ?>
@@ -86,6 +87,6 @@ $(document).ready(function(){
 	</td>
 	<? }?>
   </tr>
-  <? } ?>
+  <? } } ?>
 </table>
 <input type="hidden" name="ratatt" id="ratatt" value="<? echo round($jmlrt/count($indikator),2);?>" />
