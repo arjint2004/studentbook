@@ -234,6 +234,9 @@
 				<a class="current" >Input</a>
 			</li>
 			<li>
+				<a  id="hportutab">Hp Ortu</a>
+			</li>
+			<li>
 				<a  id="jurnaltab">Jurnal</a>
 			</li>
 			<!--<li>
@@ -247,6 +250,9 @@
 			<a class="readmore" tab="wali_input" id="kepribadian" title="" > Kepribadian </a>
 			<a class="readmore" tab="wali_input" id="prestasi" title="" > Prestasi </a>
 			<a class="readmore" title="" tab="nilai" href="" id="<?=base64_encode('nilai lain_lain');?>">Lain-Lain </a>
+		</div>
+		<div class="tabs-frame-content" id="hportu" style="display: block;">
+           
 		</div>
 		<div class="tabs-frame-content" id="jurnal" style="display: block;">
             <!--<a class="readmore" tab="wali_jurnal" id="daftar_jurnal" title="" > Daftar <br /> Jurnal </a>

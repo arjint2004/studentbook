@@ -65,6 +65,20 @@
 					}
 				});
 			});
+			$('#hportutab').bind('click', function() {
+				$.ajax({
+					type: "GET",
+					data: '',
+					url: '<?=base_url('akademik/notifikasi/hportu')?>',
+					beforeSend: function() {
+						$('#hportutab').append("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
+					},
+					success: function(msg) {
+						$("#wait").remove();			
+						$("#hportu").html(msg);			
+					}
+				});
+			});
 			$('#raporttab').bind('click', function() {
 				if($('select#kelasraport').val()==''){
 					$('select#kelasraport').css('border','1px solid red');
