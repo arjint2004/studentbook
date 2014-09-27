@@ -58,7 +58,8 @@ class Notifikasi extends CI_Controller
 				}
 			}
 			
-			$kelas=$this->ad_kelas->getKelasByIdWaliPeg($this->session->userdata['user_authentication']['id_pengguna']);
+			$kelas 	=$this->ad_kelas->getKelasByWali($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']);
+			
 			$data['siswa']=$this->ad_siswa->getsiswaByIdKelas($kelas[0]['id'],'s.id as id_siswa, s.nama, ap.id as id_ortu, ap.hp, ap.nama as nama_ortu,ak.nama as nama_kelas,ak.kelas');
 			$data['main'] 	= 'akademik/notifikasi/hportu';
 			$this->input->is_ajax_request() and $this->load->view('layout/ad_blank',$data);

@@ -20,10 +20,6 @@ Class Ad_kelas extends CI_Model
 	return $query->result_array();
 	
  }
- function getKelasByIdWaliPeg($id_pegawai){
-	$query=$this->db->query('SELECT * FROM ak_kelas WHERE id_pegawai=? AND id_sekolah=?',array($id_pegawai,$this->session->userdata['user_authentication']['id_sekolah']));
-	return $query->result_array();	
- }
  function getnextkelaswali($id_sekolah,$id_kelas){
 	$kelascurrent=$this->getkelasById($id_sekolah,$id_kelas);
 	$kelascurrent[0]['status']='Tinggal Kelas';
@@ -65,6 +61,7 @@ Class Ad_kelas extends CI_Model
 	
 	return $querypengguna->result_array();
  }
+ 
  function getWaliByIdKelas($id_sekolah=null,$id_kelas=null){
 	$querypengguna=$this->db->query('SELECT p.nama,p.alamat,p.id FROM
 							 ak_kelas k 
