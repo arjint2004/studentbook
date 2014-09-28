@@ -67,7 +67,11 @@ if($cek['otoritas']=='siswa') {
 			});	
     });
 </script>
-<?=$this->load->view('akademik/mainakademik/topindex')?>
+<?
+if($this->session->userdata['user_authentication']['id_group']!=10 && $this->session->userdata['user_authentication']['id_group']!=11 ){
+$this->load->view('akademik/mainakademik/topindex');
+}
+?>
 <div class="portfolio column-one-half-with-sidebar">	
     <!--<div class="hr "></div>
     <div class="content content-full-width" style="color: white;background: #CDCDCD;padding-top:40px;padding-bottom: 40px;">
