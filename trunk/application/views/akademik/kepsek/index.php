@@ -67,50 +67,7 @@ if($cek['otoritas']=='siswa') {
 			});	
     });
 </script>
-<div class="one-full">
-                    <!-- **Team** -->
-                    <div class="team">          
-                        <div class="image"> <img title="" alt="" src="<?=base_url($user->foto)?>"> </div>
-                        <h5> <?=$user->nama?> (Kepala Sekolah) </h5>
-                        <h6 class="role"> <?=$user->nama_sekolah?> </h6>
-                       <?php
-							$status = status_akhir_user();
-							if(!empty($status)) {
-							echo $status;	
-							}
-						?>
-						<!-- **Share Links** -->                   
-                        <div class="share-links"> 
-                            <div class="column one-half"> 
-                                <!--Email: <a title="" href=""> j.doe@domain.com </a> -->
-                                 
-                            </div>
-                            <div class="column one-half last"> 
-                                <div class="social">
-                                   <!-- <a title="" href=""> <img title="" alt="" src="<?=$this->config->item('images');?>team-facebook.png"> </a>
-                                    <a title="" href=""> <img title="" alt="" src="<?=$this->config->item('images');?>team-flickr.png"> </a>
-                                    <a title="" href=""> <img title="" alt="" src="<?=$this->config->item('images');?>team-skype.png"> </a>
-                                    <a title="" href=""> <img title="" alt="" src="images/team-twitter.png"> </a>-->
-                                    <a title="" href=""><a href="<?=site_url('sos/siswa/edit_siswa')?>" style="float:right; margin-right:5px;background:none;"> Ubah Biodata </a> <img title="" width="20" height="20" alt="" src="<?=$this->config->item('images');?>edit_icon.gif"> </a>
-                                </div>
-                            </div>                    
-                        </div> <!-- **Share Links - End** -->                 
-                    </div> <!-- **Team - End** -->               
-</div>
-
-<div class="hr toputsofile"></div>
-<div class="column one-half">
-    <div class="buttons">
-        <a  href="<?=base_url('akademik/mainakademik/index')?>" class="tombol_parent button medium light-grey">AKADEMIK</a>
-    </div>
-</div>
-
-		
-<div class="column one-half last">
-    <div class="buttons">
-        <a  href="<?=base_url('sos/pegawai/pertemanan')?>" class="button medium tombol_parent light-grey">JEJARING SOSIAL</a>
-    </div>
-</div>
+<?=$this->load->view('akademik/mainakademik/topindex')?>
 <div class="portfolio column-one-half-with-sidebar">	
     <!--<div class="hr "></div>
     <div class="content content-full-width" style="color: white;background: #CDCDCD;padding-top:40px;padding-bottom: 40px;">
@@ -118,9 +75,6 @@ if($cek['otoritas']=='siswa') {
          <p>Mengenang Iklan Sepanjang Masa</p>
     </div>
 	-->
-	<div class="clear"></div>
-	<h3></h3>
-	<div class="hr"></div>
 	<div id="buttonasbin" class="buttonasbin tabs-frame-content back_berita fixed">
 			<div style="width:158px;" class="readmorenoplus" title="" onclick="window.location='<?=base_url('akademik/mainakademik/index')?>'">Akademik</div>
 			<div style="width:158px;" class="readmorenoplus" title="" onclick="window.location='<?=base_url('sos/pegawai/pertemanan')?>'">Jejaring Sosial</div>
