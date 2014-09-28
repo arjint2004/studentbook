@@ -674,6 +674,7 @@ if (!function_exists('download_panduan')) {
 	}
 	if (!function_exists('graph')) {
 		function graph($value=0,$total=0){
+			$width=0;
 			if($total>0){
 				//$persen=($value/$total) * 100 ;
 				$persen=$value ;

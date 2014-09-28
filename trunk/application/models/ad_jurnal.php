@@ -134,5 +134,17 @@ Class Ad_jurnal extends CI_Model{
 		//echo $this->db->last_query();
 		return $query->result_array();
 	}
+	 function getPenghByIdSekolah($id_sekolah){
+		if(isset($_POST['filter'])){
+			$cond='AND date(tanggal) > "'.date("Y-m-d", mktime(0, 0, 0,  date("m")  , date("d")-$_POST['filter'], date("Y"))).'"';
+		}
+		$query=$this->db->query('SELECT * FROM
+								ak_penghubung am
+								WHERE
+								am.id_sekolah=?
+								'.$cond.'
+								',array($id_sekolah));
+		return $query->result_array();
+	}
  }
  

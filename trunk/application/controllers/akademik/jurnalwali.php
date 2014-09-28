@@ -179,6 +179,7 @@ class jurnalwali extends CI_Controller
 						'subject'=>$_POST['subject'],
 						'keterangan'=>$_POST['keterangan'],
 						'kepada'=>$siswaortu,
+						'tanggal'=>date('Y-m-d H:i:s'),
 						'id_kelas'=>$_POST['id_kelas']
 				);
 				//pr($siswaortu);

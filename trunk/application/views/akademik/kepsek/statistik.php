@@ -17,7 +17,8 @@
 						return false;
 					});
 				});
-</script>				
+</script>	
+<? //pr($rpp);?>			
 <table class="tabelfilter">
 	<tr>
 		<td>

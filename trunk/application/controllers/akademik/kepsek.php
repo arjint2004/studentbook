@@ -41,6 +41,28 @@ class Kepsek extends CI_Controller
 					
 				break;
 				
+				case "absen":
+					$this->load->model('ad_absen');
+					$datarpp	=$this->ad_absen->getAbsensiByIdSekolah($this->session->userdata['user_authentication']['id_sekolah']);
+					foreach($datarpp as $ky=>$dtrpp){
+						$datarpp2[$dtrpp['id_pegawai']][]=$dtrpp;
+					}
+					$data['rpp']=$datarpp2;
+					$data['totrpp']=count($datarpp);
+					
+					$data['main']           = 'akademik/kepsek/statistik';
+				break;
+				case "penghortu":
+					$this->load->model('ad_jurnal');
+					$datarpp	=$this->ad_jurnal->getPenghByIdSekolah($this->session->userdata['user_authentication']['id_sekolah']);
+					foreach($datarpp as $ky=>$dtrpp){
+						$datarpp2[$dtrpp['id_pegawai']][]=$dtrpp;
+					}
+					$data['rpp']=$datarpp2;
+					$data['totrpp']=count($datarpp);
+					
+					$data['main']           = 'akademik/kepsek/statistik';
+				break;
 				case "materi":
 					$this->load->model('ad_materi');
 					$datarpp	=$this->ad_materi->getMateriByIdSekolah($this->session->userdata['user_authentication']['id_sekolah']);

@@ -80,6 +80,22 @@ Class Ad_absen extends CI_Model{
 		//echo $this->db->last_query(); 
 		return $query->result_array();
 	}
-  
+   	function getAbsensiByIdSekolah($id_sekolah){
+		if(isset($_POST['filter'])){
+			$cond='AND date(tanggal) > "'.date("Y-m-d", mktime(0, 0, 0,  date("m")  , date("d")-$_POST['filter'], date("Y"))).'"';
+		}
+		$query=$this->db->query('SELECT am.*,m.id_pegawai FROM
+								ak_absensi am
+								JOIN ak_mengajar m
+								ON am.id_pelajaran=m.id_pelajaran
+								WHERE
+								am.id_sekolah=?
+								'.$cond.'
+								GROUP BY am.tanggal
+								',array($id_sekolah));
+								//echo $this->db->last_query(); 
+								//pr($query->result_array());
+		return $query->result_array();
+	}
  }
  

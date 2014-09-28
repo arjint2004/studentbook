@@ -55,14 +55,14 @@ if($cek['otoritas']=='siswa') {
 		if($('ul.tabs-framestatistik').length > 0) $('ul.tabs-framestatistik').tabs('> .tabs-frame-content6');
 		$.ajax({
 					type: "POST",
-					data: 'kepsek=true&jenis=rpp',
+					data: 'kepsek=true&jenis=absen',
 					url: '<?=base_url('akademik/kepsek/statistik')?>',
 					beforeSend: function() {
-						$('ul.tabs-framestatistik li#rpp').children('a').append("<img id='wait' style='position: relative; bottom: 0px; margin: 0px 5px;  top: 2px;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+						$('ul.tabs-framestatistik li#absen').children('a').append("<img id='wait' style='position: relative; bottom: 0px; margin: 0px 5px;  top: 2px;'  src='<?=$this->config->item('images').'loading.png';?>' />");
 					},
 					success: function(msg) {
 						$("#wait").remove();
-						$("#cntrpp").html(msg);
+						$("#cntabsen").html(msg);
 					}
 			});	
     });
@@ -112,12 +112,12 @@ if($cek['otoritas']=='siswa') {
     </div>
 </div>
 <div class="portfolio column-one-half-with-sidebar">	
-    <div class="hr "></div>
+    <!--<div class="hr "></div>
     <div class="content content-full-width" style="color: white;background: #CDCDCD;padding-top:40px;padding-bottom: 40px;">
         <div class="text_iklan">SPACE IKLAN</div>
          <p>Mengenang Iklan Sepanjang Masa</p>
     </div>
-	
+	-->
 	<div class="clear"></div>
 	<h3></h3>
 	<div class="hr"></div>
@@ -149,16 +149,21 @@ if($cek['otoritas']=='siswa') {
 	<div class="hr"></div>
 	<div class="tabs-container">
 		<ul class="tabs-frame tabs-framestatistik">
-			<li id="rpp"><a href="#">RPP</a></li>
+			<!--<li id="rpp"><a href="#">RPP</a></li>-->
+			<li id="absen"><a href="#">Absensi</a></li>
 			<li id="materi"><a href="#">Materi</a></li>
 			<li id="pr"><a href="#">PR</a></li>
 			<li id="tugas"><a href="#">Tugas</a></li>
 			<li id="harian"><a href="#">UL Harian</a></li>
 			<li id="uts"><a href="#">UTS</a></li>
 			<li id="uas"><a href="#">UAS</a></li>
-			<li id="catatan"><a href="#">Catatan</a></li>
+			<!--<li id="catatan"><a href="#">Catatan</a></li>-->
+			<li id="penghortu"><a href="#">Penghubung Ortu</a></li>
 		</ul>
-		<div id="cntrpp" class="tabs-frame-content tabs-frame-content6">
+		<!--<div id="cntrpp" class="tabs-frame-content tabs-frame-content6">
+			
+		</div>-->
+		<div id="cntabsen" class="tabs-frame-content tabs-frame-content6">
 			
 		</div>
 		<div id="cntmateri" class="tabs-frame-content tabs-frame-content6">
@@ -179,375 +184,13 @@ if($cek['otoritas']=='siswa') {
 		<div id="cntuas" class="tabs-frame-content tabs-frame-content6">
 			
 		</div>
-		<div id="cntcatatan" class="tabs-frame-content tabs-frame-content6">
+		<!--<div id="cntcatatan" class="tabs-frame-content tabs-frame-content6">
+			
+		</div>-->
+		<div id="cntpenghortu" class="tabs-frame-content tabs-frame-content6">
 			
 		</div>
 	</div>	
-					
 	
-	<div class="clear"></div>
-	<h3> RENCARA PEMBELAJARAN  (RPP) </h3>
-	<div class="hr"></div>
-	<div class="toggle-frame">
-        <h5 class="toggle"><a href="#" onclick="ajax(this,'<?=base_url()?>akademik/kepsek/filterrpp','rencanapembelajaran','<?=base64_encode('akademik/perencanaan/pembelajaranlist')?>');">Rencana Pembelajaran</a></h5>
-        <div style="display: none;" class="toggle-content" id="rencanapembelajaran">
-        
-        </div>
-    </div>
-	<!--<div class="toggle-frame">
-        <h5 class="toggle"><a href="#" onclick="ajax(this,'<?=base_url()?>akademik/kepsek/filter','timelinepembelajaran','<?=base64_encode('akademik/perencanaan/timelinepembelajaranlist')?>');">Timeline Pembelajaran</a></h5>
-        <div style="display: none;" class="toggle-content" id="timelinepembelajaran">
-        <p>  </p>
-        </div>
-    </div>
-	<div class="toggle-frame">
-        <h5 class="toggle"><a href="#">Mata Pelajaran Tahun Ini</a></h5>
-        <div style="display: none;" class="toggle-content">
-        <p>  </p>
-        </div>
-    </div>	-->
-
-
-	<!-- iklan batas -->
-	<!-- end iklan batas -->	
-	<div class="clear"></div>
-	<h3 id="absensikepsek"> ABSENSI </h3>
-	<div class="hr"></div>
-	<div class="toggle-frame">
-        <h5 class="toggle"><a onclick="ajax(this,'<?=base_url()?>akademik/kepsek/absensifilter','absensi','<?=base64_encode('akademik/absensi/add')?>');" href="#">Absensi Siswa</a></h5>
-        <div style="display: none;" class="toggle-content" id="absensi">
-        </div>
-    </div>
-	<!--<div class="toggle-frame">
-        <h5 class="toggle"><a href="#">Absensi Guru</a></h5>
-        <div style="display: none;" class="toggle-content">
-        <p>  </p>
-        </div>
-    </div>
-	<div class="toggle-frame">
-        <h5 class="toggle"><a href="#">Absensi karyawan</a></h5>
-        <div style="display: none;" class="toggle-content">
-        <p>  </p>
-        </div>
-    </div>	-->
-
-
-	<!-- iklan batas -->
-	<!-- end iklan batas -->	
-	<div class="clear"></div>
-	<h3> DATA PEMBELAJARAN</h3>
-	<div class="hr"></div>
-	<div class="toggle-frame" id="materikepsek">
-        <h5 class="toggle"><a href="#"  onclick="ajax(this,'<?=base_url()?>akademik/kepsek/filter','materilist','<?=base64_encode('akademik/materi/daftarmaterilist')?>');">Materi Pelajaran yang Dikirimkan Guru</a></h5>
-        <div style="display: none;" class="toggle-content" id="materilist">
-        <p>  </p>
-        </div>
-    </div>
-	<div class="toggle-frame" id="prkepsek">
-        <h5 class="toggle"><a href="#" onclick="ajax(this,'<?=base_url()?>akademik/kepsek/filter','prlist','<?=base64_encode('akademik/kirimpr/daftarprlist')?>');">Pekerjaan Rumah (PR) yang Dikirimkan Guru</a></h5>
-        <div style="display: none;" class="toggle-content" id="prlist">
-        <p>  </p>
-        </div>
-    </div>
-	<div class="toggle-frame" id="tugaskepsek">
-        <h5 class="toggle"><a href="#" onclick="ajax(this,'<?=base_url()?>akademik/kepsek/filter','tugaslist','<?=base64_encode('akademik/kirimtugas/daftartugaslist')?>');">Tugas yang Dikirimkan Guru</a></h5>
-        <div style="display: none;" class="toggle-content" id="tugaslist">
-        <p>  </p>
-        </div>
-    </div>	
-
-
-	<!-- iklan batas -->
-	<!-- end iklan batas -->	
-	<div class="clear"></div>
-	<h3> DATA UJIAN </h3>
-	<div class="hr"></div>
-	<div class="toggle-frame" id="uhkepsek">
-        <h5 class="toggle"><a href="#" onclick="ajax(this,'<?=base_url()?>akademik/kepsek/filter','harianlist','<?=base64_encode('akademik/kirimharian/daftarharianlist')?>');">Ulangan Harian yang Dikirimkan Guru</a></h5>
-        <div style="display: none;" class="toggle-content" id="harianlist">
-        <p>  </p>
-        </div>
-    </div>
-	<div class="toggle-frame" id="utskepsek">
-        <h5 class="toggle"><a href="#" onclick="ajax(this,'<?=base_url()?>akademik/kepsek/filter','utslist','<?=base64_encode('akademik/kirimuts/daftarutslist')?>');">Ujian Tengah Semester (UTS) yang Dikirimkan Guru</a></h5>
-        <div style="display: none;" class="toggle-content" id="utslist">
-        <p>  </p>
-        </div>
-    </div>
-	<!--<div class="toggle-frame">
-        <h5 class="toggle"><a href="#">Ujian Praktek yang Dikirimkan Guru</a></h5>
-        <div style="display: none;" class="toggle-content">
-        <p>  </p>
-        </div>
-    </div>-->
-	<div class="toggle-frame" id="uaskepsek">
-        <h5 class="toggle"><a href="#" onclick="ajax(this,'<?=base_url()?>akademik/kepsek/filter','uaslist','<?=base64_encode('akademik/kirimuas/daftaruaslist')?>');">Ujian Akhir Semester (UAS) yang Dikirimkan Guru</a></h5>
-        <div style="display: none;" class="toggle-content" id="uaslist">
-        <p>  </p>
-        </div>
-    </div>	
-
-
-	<!-- iklan batas -->
-	<!-- end iklan batas -->	
-	<div class="clear"></div>
-	<h3> DATA NILAI </h3>
-	<div class="hr"></div>
-	<div class="toggle-frame" id="nilaikepsek">
-        <h5 class="toggle"><a href="#" onclick="ajax(this,'<?=base_url()?>akademik/kepsek/filter','nilailist','<?=base64_encode('akademik/rekapnilai/rekapnilailist')?>');">Nilai Siswa</a></h5>
-        <div style="display: none;" class="toggle-content" id="nilailist">
-        <p>  </p>
-        </div>
-    </div>
-	<div class="toggle-frame" id="raportkepsek">
-		<?=$this->load->view('akademik/kepsek/js')?>
-        <h5 class="toggle"><a href="#">Raport</a></h5>
-        <div style="display: none;" class="toggle-content">
-		<div id="contentpage">
-		<table class="tabelfilter">
-			<tbody>
-				<tr>
-					<td>
-						Kelas :
-						<select class="selectfilter" id="kelasraport" name="id_kelas">
-							<option value="">Pilih Kelas</option>
-							<? foreach($kelas as $datakelas){?>
-								<option <? if(@$_POST['kelas']==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>"><?=$datakelas['kelas']?><?=$datakelas['nama']?></option>
-							<? } ?>
-						</select>
-									
-						Siswa :
-						<select class="selectfilter" id="siswaraport" name="id_siswa_det_jenjang">
-							<option value="">Pilih Siswa</option>
-						</select>					
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	<div class="tabs-container">
-
-		<ul class="tabs-frame">
-			<li>
-				<a style="padding:0 3px;" id="raporttab">Raport</a>
-			</li>
-			<li>
-				<a style="padding:0 3px;"  id="raporekstrattab">Ekstrakurikuler</a>
-			</li>
-			<li>
-				<a style="padding:0 3px;"  id="raportkegiatantab" >Kegiatan</a>
-			</li>
-			<li>
-				<a style="padding:0 3px;" id="raportkepribadiantab">Kepribadian</a>
-			</li>
-			<li>
-				<a style="padding:0 3px;" id="raportprestasitab">Prestasi</a>
-			</li>
-			<li>
-				<a style="padding:0 3px;" id="raportabsensitab">Absensi</a>
-			</li>
-			<!--<li>
-				<a style="padding:0 3px;" id="raportcatatantab">Catatan</a>
-			</li>-->
-			<li>
-				<a style="padding:0 3px;" id="raportkenaikantab">Keterangan</a>
-			</li>
-		</ul>
-		<div class="tabs-frame-content"  id="raport" style="display: block;">
-			
-		</div>
-		<div class="tabs-frame-content"  id="ekstraload"  style="display: none;">
-			
-		</div>
-		<div class="tabs-frame-content"   id="kegiatanload" style="display: none;">
-			
-		</div>
-		<div class="tabs-frame-content"   id="kepribadianload" style="display: none;">
-			
-		</div>
-		<div class="tabs-frame-content"   id="prestasiload" style="display: none;">
-			
-		</div>
-		<div class="tabs-frame-content"  id="absensiload"  style="display: none;">
-			
-		</div>
-		<!--<div class="tabs-frame-content"  id="catatanload"  style="display: none;">
-			
-		</div>-->
-		<div class="tabs-frame-content"  id="kenaikanload"  style="display: none;">
-			
-		</div>
-		
-	</div>
-        </div>
-    </div>
-
-
-	<!-- iklan batas -->
-	<!-- end iklan batas -->	
-	<div class="clear"></div>
-	<h3> DATA KENAIKAN / KELULUSAN </h3>
-	<div class="hr"></div>
-	<div class="toggle-frame" id="naiklllskepsek">
-        <h5 class="toggle"><a href="#">Kenaikan / Kelulusan Tahun Ini</a></h5>
-        <div style="display: none;" class="toggle-content">
-			
-			<table class="tabelfilter">
-			<tbody>
-				<tr>
-					<td>
-						Kelas :
-						<select id="kelaskenaikan" class="selectfilter" name="id_kelaskenaikan">
-							<option value="">Pilih Kelas</option>
-							<? foreach($kelas as $datakelas){?>
-								<option <? if(@$_POST['kelas']==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>"><?=$datakelas['kelas']?><?=$datakelas['nama']?></option>
-							<? } ?>
-						</select>		
-					</td>
-				</tr>
-			</tbody>
-			</table>
-			<div  id="kenaikankelulusanload"></div>
-        </div>
-    </div>
-
-	<!-- iklan batas -->
-	<!-- end iklan batas -->	
-	<div class="clear"></div>
-	<h3> DATA EVALUASI </h3>
-	<div class="hr"></div>
-	<div class="toggle-frame" id="catatankepsek">
-        <h5 class="toggle"><a href="#"  onclick="ajax(this,'<?=base_url()?>akademik/kepsek/catatangurufilter','catatanguru','<?=base64_encode('akademik/catatanguru/catatangurulist')?>');">Catatan Guru</a></h5>
-        <div style="display: none;" class="toggle-content" id="catatanguru">
-        </div>
-    </div>
-	<div class="toggle-frame" id="pribadikepsek">
-        <h5 class="toggle"><a href="#" onclick="ajax(this,'<?=base_url()?>akademik/kepsek/filterbysiswa','kepribadian','<?=base64_encode('akademik/kepribadian/kepribadianlist')?>');">Kepribadian Siswa</a></h5>
-        <div style="display: none;" class="toggle-content" id="kepribadian">
-        <p>  </p>
-        </div>
-    </div>
-	<div class="toggle-frame" id="lainkepsek">
-        <h5 class="toggle"><a href="#" onclick="ajax(this,'<?=base_url()?>akademik/kepsek/filterbykelas','lainlain','<?=base64_encode('akademik/nilai/getsubject/'.base64_encode('nilai lain_lain').'')?>');">Lain-Lain</a></h5>
-        <div style="display: none;" class="toggle-content" id="lainlain">
-        <p>  </p>
-        </div>
-    </div>
-
-	<!-- iklan batas -->
-	<!-- end iklan batas -->	
-	<!--<div class="clear"></div>
-	<h3> DATA PROFIL WARGA SEKOLAH </h3>
-	<div class="hr"></div>
-	<div class="toggle-frame">
-        <h5 class="toggle"><a href="#">Profil Guru</a></h5>
-        <div style="display: none;" class="toggle-content">
-        <p>  </p>
-        </div>
-    </div>
-	<div class="toggle-frame">
-        <h5 class="toggle"><a href="#">Profil Siswa</a></h5>
-        <div style="display: none;" class="toggle-content">
-        <p>  </p>
-        </div>
-    </div>
-	<div class="toggle-frame">
-        <h5 class="toggle"><a href="#">Profil Karyawan</a></h5>
-        <div style="display: none;" class="toggle-content">
-        <p>  </p>
-        </div>
-    </div>-->
-
-	<!-- iklan batas -->
-	<!-- end iklan batas -->	
-	<!--<div class="clear"></div>
-	<h3> DATA KEUANGAN SEKOLAH </h3>
-	<div class="hr"></div>
-	<div class="toggle-frame">
-        <h5 class="toggle"><a href="#">Keuangan Sekolah</a></h5>
-        <div style="display: none;" class="toggle-content">
-        <p>  </p>
-        </div>
-    </div>
-	<div class="toggle-frame">
-        <h5 class="toggle"><a href="#">Inventaris</a></h5>
-        <div style="display: none;" class="toggle-content">
-        <p>  </p>
-        </div>
-    </div>
-	<div class="toggle-frame">
-        <h5 class="toggle"><a href="#">SPP</a></h5>
-        <div style="display: none;" class="toggle-content">
-        <p>  </p>
-        </div>
-    </div>
-	<div class="toggle-frame">
-        <h5 class="toggle"><a href="#">Iuran</a></h5>
-        <div style="display: none;" class="toggle-content">
-        <p>  </p>
-        </div>
-    </div>-->
-
-	<!-- iklan batas -->
-	<!-- end iklan batas -->	
-	<div class="clear"></div>
-	<h3> DATA KEGIATAN / ORGANISASI SEKOLAH </h3>
-	<div class="hr"></div>
-	<div class="toggle-frame" id="pengembangankepsek">
-        <h5 class="toggle"><a href="#" onclick="ajax(this,'<?=base_url()?>akademik/kepsek/filterbykelaskegiatan','kegiatanx','<?=base64_encode('akademik/nilaikegiatansekolah/nilaiekstralist')?>');">Pengembangan Diri Siswa</a></h5>
-        <div style="display: none;" class="toggle-content" id="kegiatanx">
-        <p>  </p>
-        </div>
-    </div>
-	<div class="toggle-frame" id="ekstrakepsek">
-        <h5 class="toggle"><a href="#" onclick="ajax(this,'<?=base_url()?>akademik/kepsek/filterbyekstrakurikuler','kegiatanextrak','<?=base64_encode('akademik/nilaiekstrakurikuler/nilaiekstralist')?>');">Kegiatan Ekstrakurikuler</a></h5>
-        <div style="display: none;" class="toggle-content" id="kegiatanextrak" >
-        <p>  </p>
-        </div>
-    </div>
-
-	<!-- iklan batas -->
-	<!-- end iklan batas -->	
-	<!--<div class="clear"></div>
-	<h3> GRAFIK </h3>
-	<div class="hr"></div>
-	<div class="toggle-frame">
-        <h5 class="toggle"><a href="#">Grafik Mingguan</a></h5>
-        <div style="display: none;" class="toggle-content">
-        <p>  </p>
-        </div>
-    </div>
-	<div class="toggle-frame">
-        <h5 class="toggle"><a href="#">Grafik Bulanan</a></h5>
-        <div style="display: none;" class="toggle-content">
-        <p>  </p>
-        </div>
-    </div>
-	<div class="toggle-frame">
-        <h5 class="toggle"><a href="#">Grafik Semesteran</a></h5>
-        <div style="display: none;" class="toggle-content">
-        <p>  </p>
-        </div>
-    </div>
-	<div class="toggle-frame">
-        <h5 class="toggle"><a href="#">Grafik Tahunan</a></h5>
-        <div style="display: none;" class="toggle-content">
-        <p>  </p>
-        </div>
-    </div>-->
-
-	<!-- iklan batas -->
-	<!-- end iklan batas -->	
-	<!--<div class="clear"></div>
-	<h3> AGENDA KEPALA SEKOLAH</h3>
-	<div class="hr"></div>
-	<div class="toggle-frame">
-        <h5 class="toggle"><a href="#">Agenda Kepala Sekolah</a></h5>
-        <div style="display: none;" class="toggle-content">
-        <p>  </p>
-        </div>
-    </div>-->
-
-
 </div>
         
