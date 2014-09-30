@@ -223,6 +223,13 @@
 								$this->db->insert('users', $datausers); 
 								$this->db->insert('ak_step_registrasi', array('id_sekolah'=>$id)); 
 								
+								$rumus=array('rumus_raport'=>'((25/100) * $UAS)+((25/100) * $UTS)+((20/100) * $PR)+((20/100) * $TUGAS)+((10/100) * $HARIAN)');
+								$insertrumus=array(
+										'id_sekolah'=>$id,
+										'key'=>'rumusraport_'.$id.'',
+										'value'=>serialize($rumus)
+								);
+								$this->db->insert('ak_setting',$insertrumus);
 			//email verifikasi
 			// multiple recipients
 			$to  = $email. ', '; // note the comma
