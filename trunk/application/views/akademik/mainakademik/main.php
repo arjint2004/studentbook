@@ -30,6 +30,7 @@
 			</li>
 			<li>
 				<a  id="tabarekapbsensi" >Rekap Absensi</a>
+				<!--<a class="modal" href="<?=base_url('akademik/absensi/rekapabsensi')?>" >Rekap Absensi</a>-->
 			</li>
 			<li>
 				<a >Ujian</a>

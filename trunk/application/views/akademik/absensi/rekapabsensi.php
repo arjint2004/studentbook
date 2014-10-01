@@ -96,10 +96,12 @@ $(function() {
 						$('form#rekapabsensiform').attr('target', '__blank');
 						$('form#rekapabsensiform').submit();
 					});
+					var winwidth=(92/100)*parseInt($(window).width());
+					//$('div#widthabsensi').css('width',winwidth+'px');
 });
 
 </script>
-
+<div id="widthabsensi">
 <form action="" method="post" id="rekapabsensiform" >
 				<table class="adddata">
 					<tr>
