@@ -167,7 +167,7 @@
 													2<input type="radio" name="point[<?=$dataaff['id']?>][<?=$dataaff['point'][0]['id']?>]" <? if($dataaff['point'][0]['point']==2 && $dataaff['point'][0]['id']!=0){echo'checked';}?> value="2" /><br />
 													3<input type="radio" name="point[<?=$dataaff['id']?>][<?=$dataaff['point'][0]['id']?>]" <? if($dataaff['point'][0]['point']==3 && $dataaff['point'][0]['id']!=0){echo'checked';}elseif($dataaff['point'][0]['id']==0){echo'checked';}?>  value="3" /><br />
 													4<input type="radio" name="point[<?=$dataaff['id']?>][<?=$dataaff['point'][0]['id']?>]" <? if($dataaff['point'][0]['point']==4 && $dataaff['point'][0]['id']!=0){echo'checked';}?> value="4" /><br />
-													5<input type="radio" name="point[<?=$dataaff['id']?>][<?=$dataaff['point'][0]['id']?>]" <? if($dataaff['point'][0]['point']==5 && $dataaff['point'][0]['id']!=0){echo'checked';}?> value="5" /><br />
+													<!--5<input type="radio" name="point[<?=$dataaff['id']?>][<?=$dataaff['point'][0]['id']?>]" <? if($dataaff['point'][0]['point']==5 && $dataaff['point'][0]['id']!=0){echo'checked';}?> value="5" /><br />-->
 													
 												</td>
 												<td >
