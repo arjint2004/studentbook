@@ -278,6 +278,7 @@ Class Ad_instrumen extends CI_Model{
 								 AND id_pegawai=?
 								 AND semester=?
 								 AND id_mengajar=?
+								 ORDER BY id ASC
 								',array($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna'],$this->session->userdata['ak_setting']['semester'],$id_mengjar));
 		//echo $this->db->last_query();
 		$indikator=$query->result_array();
