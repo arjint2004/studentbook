@@ -50,6 +50,20 @@
 											});	
 										}
 										return false;
+									}else if($(obj).attr('class')=='edit'){
+											$.ajax({
+											  type: "POST",
+											  data: "ajax=1&id_pegawai="+$(obj).attr('id'),
+											  url: $(obj).attr('href'),
+											  beforeSend: function() {
+												$(obj).append("<img id='waitguru' src='<?=$this->config->item('images').'loading.png';?>' />");
+											  },
+											  success: function(msg) {
+												$("#waitguru").remove();
+												$("#adduserguru").html(msg);
+											  }
+											});	
+										return false;
 									}else if($(obj).attr('class')=='aktifasi'){
 										if(confirm('Apakah anda akan non aktifkan guru ini...')){
 											$.ajax({
@@ -160,6 +174,8 @@
 										<? } ?>
 										|
 										<a href="<?=base_url()?>admin/schooladmin/deletepegawai" id="<?=$guru['id']?>" class="delete">Delete</a> 
+										|
+										<a href="<?=base_url()?>admin/schooladmin/editpegawai" id="<?=$guru['id']?>" class="edit">Edit</a> 
 										</td>
 									</tr> 
 								<? } ?>
