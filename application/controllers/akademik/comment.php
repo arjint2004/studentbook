@@ -124,7 +124,7 @@ class Comment extends CI_Controller
 		}
         //return $this->_jsonSet(FALSE, validation_errors('<p>','</p>'));
 	}
-	function set_notifcomment($id,$_POST){
+	function set_notifcomment($id){
 			$yangdikirimikomentar=$this->Commentmodel->getcommentGroupByIdUser($_POST['id_information'],$_POST['jenis']);
 			foreach($yangdikirimikomentar as $ky=>$dt){
 				if($dt['id_group']==12){
