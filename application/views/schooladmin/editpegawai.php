@@ -5,7 +5,7 @@
 		}, "Please choose a value!");
 
 		
-		$(".adduseraccount").each(function(){
+		$(".edituseraccount").each(function(){
 			$container = $(this).next("div.error-container");
 			//Validate Starts
 			$(this).validate({
@@ -13,9 +13,10 @@
 				errorContainer: $container,
 				rules:{
 				  nama:{required:true,minlength:3,notEqual:'Nama'},
-				  NmOrtu:{required:true,minlength:3,notEqual:'Nama Orang Tua'},
-				  kelas:{required:true,notEqual:'Pilih Kelas'},
-				  nis:{required:true,minlength:3,notEqual:'NIS'}
+				  /*hp:{required:true,minlength:3,notEqual:'Hp'},
+				  alamat:{required:true,minlength:3,notEqual:'Alamat'},*/
+				  username:{required:true,notEqual:'Username'},
+				  password:{required:true,minlength:3,notEqual:'Password'}
 				  /*,message:{required:true,minlength:10}*/
 				}
 			});//Validate End
@@ -26,65 +27,40 @@
 		$(".addaccountclose").click(function(){
 			$(".addaccount").remove();
 		});
-		$(".adduseraccount").submit(function(e){
-			var listtype='<?=$otoritas?>';
+		$(".edituseraccount").submit(function(e){
+			var listtype='';
 			$frm = $(this);
 			$nama = $frm.find('*[name=nama]').val();
-			$NmOrtu = $frm.find('*[name=NmOrtu]').val();
-			$nis = $frm.find('*[name=nis]').val();
-			<?if($otoritas=='siswa'){?>
-			if($frm.find('*[name=nama]').is('.valid') && $frm.find('*[name=NmOrtu]').is('.valid') && $frm.find('*[name=nis]').is('.valid') && $frm.find('*[name=kelas]').is('.valid')) {
+			/*$hp = $frm.find('*[name=hp]').val();
+			$alamat = $frm.find('*[name=alamat]').val();*/
+			$username = $frm.find('*[name=username]').val();
+			$password = $frm.find('*[name=password]').val();
+
+			if($frm.find('*[name=nama]').is('.valid') && $frm.find('*[name=username]').is('.valid') && $frm.find('*[name=password]').is('.valid') ) {
 				$.ajax({
 					type: "POST",
 					data: $(this).serialize(),
 					url: $(this).attr('action'),
 					beforeSend: function() {
-						$("#adduser").html("<img src='<?=$this->config->item('images').'loading.png';?>' />");
+						$("#ajax").html("<img src='<?=$this->config->item('images').'loading.png';?>' />");
 					},
 					success: function(msg) {
 						$(".addaccount").remove();	
 							$.ajax({
 								type: "POST",
 								data: "ajax=1",
-								url: '<?php echo base_url(); ?>admin/schooladmin/dataakun/'+listtype+'/0',
+								url: '<?php echo base_url(); ?>admin/schooladmin/dataakun/guru/0',
 								beforeSend: function() {
-									$("#ajax"+listtype+"").html("<img src='<?=$this->config->item('images').'loading.png';?>' />");
+									$("#ajax").html("<img src='<?=$this->config->item('images').'loading.png';?>' />");
 								},
 								success: function(msg) {
-									$("#ajax"+listtype+"").html(msg);			
-								}
-							});			
-					}
-				});
-				return false;
-			}
-			<? }else{ ?>
-			if($frm.find('*[name=nama]').is('.valid')) {
-				$.ajax({
-					type: "POST",
-					data: $(this).serialize(),
-					url: $(this).attr('action'),
-					beforeSend: function() {
-						$("#ajax"+listtype+"").html("<img src='<?=$this->config->item('images').'loading.png';?>' />");
-					},
-					success: function(msg) {
-						$(".addaccount").remove();	
-							$.ajax({
-								type: "POST",
-								data: "ajax=1",
-								url: '<?php echo base_url(); ?>admin/schooladmin/dataakun/'+listtype+'/0',
-								beforeSend: function() {
-									$("#ajax"+listtype+"").html("<img src='<?=$this->config->item('images').'loading.png';?>' />");
-								},
-								success: function(msg) {
-									$("#ajax"+listtype+"").html(msg);			
+									$("#ajax").html(msg);			
 								}
 							});
 					}
 				});
 				return false;
-			}			
-			<? } ?>
+			}	
 			return false;
 		});//Submit End
 		
@@ -92,32 +68,28 @@
 </script>
 				<div class="addaccount">
 				<div class="addaccountclose"></div>
-                    <h3> Tambah data <?=$otoritas?> </h3>
+                    <h3> Edit data  </h3>
                      <div class="ajax_message"></div>
-                     <form class="adduseraccount" action="<?php echo base_url(); ?>admin/schooladmin/adduser/<?=$otoritas?>" method="post">
+                     <form class="edituseraccount" action="<?php echo base_url(); ?>admin/schooladmin/editpegawai" method="post">
                     	<p class="column one-third">
-                            <input name="nama" type="text" class="required" onblur="this.value=(this.value=='') ? 'Nama' : this.value;" onfocus="this.value=(this.value=='Nama') ? '' : this.value;"  value="Nama" />
+                            Nama :<input name="nama" type="text" class="required" placeholder="Nama"  value="<?=$dataedit[0]['nama']?>" />
                         </p>
-						<?if($otoritas=='siswa'){?>
-                        <p class="column one-third">
-                            		<select name="kelas" class="valid" style="width:210px">
-										<option value="" >Pilih Kelas</option>
-										<? foreach($kelas as $datakelas){?>
-											<option value="<?=$datakelas['id']?>" ><?=$datakelas['kelas'].$datakelas['nama']?></option>
-										<? } ?>
-									</select>
+                    	<p class="column one-third">
+                           Hp : <input name="hp" type="text" placeholder="HP"  value="<?=$dataedit[0]['hp']?>" />
                         </p>
-                        <p class="column one-third">
-                            <input name="NmOrtu" type="text" onblur="this.value=(this.value=='') ? 'Nama Orang Tua' : this.value;" onfocus="this.value=(this.value=='Nama Orang Tua') ? '' : this.value;" value="Nama Orang Tua" />
+                    	<p class="column one-third">
+                           Alamat:<textarea name="alamat"   placeholder="Alamat" ><?=$dataedit[0]['alamat']?></textarea>
                         </p>
-                        <p class="column one-third ">
-                            <input name="nis" type="text" onblur="this.value=(this.value=='') ? 'NIS' : this.value;" onfocus="this.value=(this.value=='NIS') ? '' : this.value;" value="NIS" />
+                    	<p class="column one-third">
+                            Username:<input name="username" type="text" class="required" placeholder="Username"  value="<?=$dataedit[0]['username']?>" />
                         </p>
-						<? } ?>
-                        <p >
+                    	<p class="column one-third">
+                            Password:<input name="password" type="text" class="required" placeholder="Password"  value="<?=$dataedit[0]['password']?>" />
+                        </p>
+                        <p>
                             <input name="save" type="hidden" value="Simpan"/>
+                            <input name="id_pegawai" type="hidden" value="<?=$dataedit[0]['id']?>"/>
                             <input name="ajax" type="hidden" value="1"/>
-                            <input name="listtype" type="hidden" value="<?=$otoritas?>"/>
                             <input name="submit" type="submit" value="Simpan" class="button small grey" />
                         </p>
                     </form>

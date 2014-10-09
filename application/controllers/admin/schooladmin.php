@@ -370,7 +370,34 @@ class Schooladmin extends CI_Controller {
 		}
 		return false;
 	 }
-	 
+	 function editpegawai($id_pegawai=null)
+	 {
+		if(isset($_POST['save'])){
+			$update_peg=array(
+								'nama'=>$_POST['nama'],
+								'alamat'=>$_POST['alamat'],
+								'hp'=>$_POST['username'],
+								'password'=>$_POST['password']
+			);
+			$this->db->where('id',$_POST['id_pegawai']);
+			$this->db->update('ak_pegawai',$update_peg);
+			
+			$update_user=array(
+								'username'=>$_POST['username'],
+								'password'=>md5($_POST['password'])
+			);
+			$this->db->where('id_pengguna',$_POST['id_pegawai']);
+			$this->db->update('users',$update_user);
+		}
+		$dataeditq=$this->db->query('SELECT p.*,u.username FROM ak_pegawai p JOIN users u ON p.id=u.id_pengguna WHERE p.id='.$_POST['id_pegawai'].'');
+		$dataedit=$dataeditq->result_array();
+		//pr($dataedit);
+		$data['dataedit']=$dataedit;
+		$data['otoritas']='pegawai';
+		$data['main'] 		= 'schooladmin/editpegawai';
+		$data['page_title'] 	= 'Edit Pegawai';
+		$this->load->view('layout/ad_blank',$data);
+	 }
 	 public function editsiswa($id_siswa=0,$otoritas='siswa')
 	 {  
 		if(isset($_POST['id_siswa'])){$id_siswa=$_POST['id_siswa'];}
