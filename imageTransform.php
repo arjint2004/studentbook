@@ -750,9 +750,7 @@ class imageTransform {
 	* return booelan
 	*/
 	function imageCreate ($thumb) {
-		echo $thumb;
-		echo $this->target;
-		echo $this->quality;die();
+		if($this->target==''){$this->target=null;}
 		if ($this->data[2] == 1) {
 			$ok = imageGIF($thumb, $this->target, $this->quality);
 		} elseif ($this->data[2] == 3) {
