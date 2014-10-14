@@ -3,10 +3,10 @@
 		<title> Cetak Absensi </title>
 		<link href="print.css" type="text/css" rel="stylesheet"  media="all"/>
 		<script language="JavaScript">
-		/*function varitext(text){
+		function varitext(text){
 			text= document
 			print(text)
-		}*/
+		}
 		</script>
 	<link id="default-css" href="<?=$this->config->item('css');?>print.css" rel="stylesheet" type="text/css" media="all" />
 	</head>
