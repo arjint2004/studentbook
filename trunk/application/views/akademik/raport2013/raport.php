@@ -29,9 +29,9 @@
 							NAMA PESETA DIDIK
 							<div style="margin: 30px auto 0px; width: 300px; padding: 10px; border: 1px solid black;">ASBIN ARJINTO M.KOM</div>
 						</p>
-						<p style="text-align: center; margin-top:80px;">
-							<span style="font-family: arial,helvetica,sans-serif;"><span style="font-size: 21px; line-height: 30px;"><strong>KEMENTRIAN PENDIDIKAN DAN KEBUDAYAAN<BR />REPUBLIK INDONESIA</strong></span></span>
-						</p>						
+						<!--<p style="text-align: center; margin-top:80px;">
+							<span style="font-family: arial,helvetica,sans-serif;"><span style="font-size: 21px; line-height: 30px;"><strong>KEMENTERIAN PENDIDIKAN DAN KEBUDAYAAN<BR />REPUBLIK INDONESIA</strong></span></span>
+						</p>-->						
 					</td>
 				</tr>
 			</tbody>
