@@ -88,6 +88,20 @@ jQuery(function($){
                         
                        }
                      });
+					 $(".fancyboxIframe").fancybox({
+						fitToView	: false,
+						width		: '90%',
+						height		: '90%',
+						autoSize	: false,
+						closeClick	: false,
+						openEffect	: 'none',
+						type		: 'iframe',
+						closeEffect	: 'none',
+						iframe: {
+							scrolling : 'auto',
+							preload   : true
+						}
+					});
                 });
             });
             </script>

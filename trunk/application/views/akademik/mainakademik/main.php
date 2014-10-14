@@ -299,6 +299,25 @@
 				<tr>
 					<td>
 						Kelas :
+						<select class="selectfilter" id="kelasraport2013" name="id_kelas">
+							<option value="">Pilih Kelas</option>
+							<? foreach($kelaswali as $datakelas){?>
+								<option <? if(@$_POST['kelas']==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>"><?=$datakelas['kelas']?><?=$datakelas['nama']?></option>
+							<? } ?>
+						</select>		
+						<div id="raport2013"></div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>	
+	
+	<!--<div id="contentpage">
+		<table class="tabelfilter">
+			<tbody>
+				<tr>
+					<td>
+						Kelas :
 						<select class="selectfilter" id="kelasraport" name="id_kelas">
 							<option value="">Pilih Kelas</option>
 							<? foreach($kelaswali as $datakelas){?>
@@ -336,9 +355,9 @@
 			<li>
 				<a style="padding:0 3px;" id="raportabsensitab">Absensi</a>
 			</li>
-			<!--<li>
+			<li>
 				<a style="padding:0 3px;" id="raportcatatantab">Catatan</a>
-			</li>-->
+			</li>
 			<li>
 				<a style="padding:0 3px;" id="raportkenaikantab">Keterangan</a>
 			</li>
@@ -360,15 +379,15 @@
 		</div>
 		<div class="tabs-frame-content"  id="absensiload"  style="display: none;">
 			
-		</div>
+		</div>-->
 		<!--<div class="tabs-frame-content"  id="catatanload"  style="display: none;">
 			
-		</div>-->
+		</div>
 		<div class="tabs-frame-content"  id="kenaikanload"  style="display: none;">
 			
 		</div>
 		
-	</div>
+	</div>-->
 	<? } ?>
 	<div class="clear"></div>
 

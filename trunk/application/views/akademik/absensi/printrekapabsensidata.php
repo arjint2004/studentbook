@@ -8,44 +8,11 @@
 			print(text)
 		}
 		</script>
-
+	<link id="default-css" href="<?=$this->config->item('css');?>print.css" rel="stylesheet" type="text/css" media="all" />
 	</head>
 
-	<body onLoad="javascript:varitext()"><style>
-		table#allset{
-			font-size:13px;
-			font-family:arial;
-		}
-		table.asbin tr td{
-			padding:3px 5px;
-		}
-		table.asbin{
-			border-collapse: collapse;
-			border: 1px solid black;
-			width:90%;
-			margin:0 auto;
-			font-size:11px;
-			font-family:arial;
-		}
-		table.noborder{
-			border: 0px solid;
-			width:90%;
-			margin:0 auto;
-			font-size:12px;
-			font-family:arial;
-		}
-		table.noborder td{
-			border: 0px solid;
-			padding:0 0 0 10px;
-		}
-		table.noborder td.title{
-			text-align:center;
-		}
-		table.asbin td#td_list_header {
-			text-align:center;
-			
-		}
-		</style>
+	<body onLoad="javascript:varitext()">
+	
 		<table  class="noborder" id="allset" border="1">
 			<tbody>
 				<tr>
