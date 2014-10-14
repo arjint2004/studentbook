@@ -1,0 +1,42 @@
+		table#allset{
+			font-family: arial;
+			font-size: 13px;
+			padding: 50px 0;
+		}
+		table.asbin tr td{
+			padding:3px 5px;
+		}
+		table.asbin{
+			border-collapse: collapse;
+			border: 1px solid black;
+			width:90%;
+			margin:0 auto;
+			font-size:11px;
+			font-family:arial;
+		}
+		table.noborder{
+			border: 0px solid;
+			width:90%;
+			margin:0 auto;
+			font-size:12px;
+			font-family:arial;
+		}
+		table.pg1{
+			font-size: 15px !important;
+			line-height: 25px;
+			padding-top:50px !important;
+		}
+		table.pg1 tr td{
+			padding:0px !important;
+		}
+		table.noborder td{
+			border: 0px solid;
+			padding:0 0 0 10px;
+		}
+		table.noborder td.title{
+			text-align:center;
+		}
+		table.asbin td#td_list_header {
+			text-align:center;
+			
+		}
