@@ -376,7 +376,7 @@ class Schooladmin extends CI_Controller {
 			$update_peg=array(
 								'nama'=>$_POST['nama'],
 								'alamat'=>$_POST['alamat'],
-								'hp'=>$_POST['username'],
+								'hp'=>$_POST['hp'],
 								'password'=>$_POST['password']
 			);
 			$this->db->where('id',$_POST['id_pegawai']);

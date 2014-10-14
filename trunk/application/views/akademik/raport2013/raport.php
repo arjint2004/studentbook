@@ -27,7 +27,7 @@
 						</p>
 						<p style="text-align: center; margin-top:100px;">
 							NAMA PESETA DIDIK
-							<div style="margin: 30px auto 0px; width: 300px; padding: 10px; border: 1px solid black;">ASBIN ARJINTO M.KOM</div>
+					  <div style="margin: 30px auto 0px; width: 300px; padding: 10px; border: 1px solid black;">ASBIN ARJINTO M.KOM</div>
 						</p>
 						<!--<p style="text-align: center; margin-top:80px;">
 							<span style="font-family: arial,helvetica,sans-serif;"><span style="font-size: 21px; line-height: 30px;"><strong>KEMENTERIAN PENDIDIKAN DAN KEBUDAYAAN<BR />REPUBLIK INDONESIA</strong></span></span>
@@ -315,21 +315,12 @@
 			  <td style="text-align:left; border-bottom:1px solid #000;" ></td>
 		  </tr>
 			<tr>
-			  <td style="text-align:left;">Nama</td>
-			  <td style="text-align:left;">:</td>
+			  <td style="text-align:left;">Nomor Induk/NISN </td>
+			  <td style="text-align:left;" width="5">:</td>
 			  <td style="text-align:left; border-bottom:1px solid #000;" ></td>
 			  <td style="text-align:left;" >&nbsp;</td>
 			  <td style="text-align:left;" >Tahun Pelajaran </td>
-			  <td style="text-align:left;">:</td>
-			  <td style="text-align:left;border-bottom:1px solid #000;" ></td>
-		  </tr>
-			<tr>
-			  <td style="text-align:left;">Nomor Induk/NISN </td>
-			  <td style="text-align:left;" width="5px">:</td>
-			  <td style="text-align:left; border-bottom:1px solid #000;" ></td>
-			  <td style="text-align:left;" >&nbsp;</td>
-			  <td style="text-align:left;" >&nbsp;</td>
-			  <td style="text-align:left;" width="5px">:</td>
+			  <td style="text-align:left;" width="5">:</td>
 			  <td style="text-align:left;border-bottom:1px solid #000;" ></td>
 		  </tr>
 		</table>	
@@ -370,6 +361,7 @@
 			  <td>1</td>
 			  <td align="left">Seni Budaya </td>
 			  <td>&nbsp;</td>
+
 			  <td>&nbsp;</td>
 			  <td>&nbsp;</td>
 		  </tr>
@@ -660,7 +652,7 @@
 					</tr>
 					<tr>
 					  <td>_____________________</td>
-					  </tr>
+				  </tr>
 					<tr>
 					  <td>&nbsp;</td>
 					</tr>
@@ -705,7 +697,7 @@
 					</tr>
 					<tr>
 					  <td>_____________________</td>
-					  </tr>
+				  </tr>
 					<tr>
 					  <td>&nbsp;</td>
 					</tr>
@@ -775,7 +767,7 @@
 					<tr>
 					  <td>NIP</td>
 					</tr>
-				  </table></td>
+			    </table></td>
 		  </tr>
 			<tr>
 			  <td>1</td>
@@ -947,7 +939,7 @@
 		<!-- GANTI HALAMAN -->
 		<DIV style="page-break-after:always;"></DIV>
 		
-		<table border="0" id="allset" class="asbin noborder" style="max-width:1024px;">
+	<table border="0" id="allset" class="asbin noborder" style="max-width:1024px;">
 			<tbody>
 			<tr>
 				  <td colspan="3" align="center"><span style="font-family: arial,helvetica,sans-serif;"><span style="font-size: 21px; line-height: 110px;"><strong><span class="style1">CATATAN PRESTASI YANG PERNAH DI CAPAI</span></strong></span></span></td>
