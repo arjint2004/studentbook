@@ -79,6 +79,21 @@
 					}
 				});
 			});
+			$('select#kelasraport2013').bind('change', function() {
+				$.ajax({
+					type: "POST",
+					data: 'id_kelas='+$(this).val(),
+					url: '<?=base_url('akademik/raport2013/index')?>',
+					beforeSend: function() {
+						$('select#kelasraport2013').append("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
+					},
+					success: function(msg) {
+						$("#wait").remove();			
+						$("#raport2013").html(msg);			
+					}
+				});
+			});
+			
 			$('#raporttab').bind('click', function() {
 				if($('select#kelasraport').val()==''){
 					$('select#kelasraport').css('border','1px solid red');
