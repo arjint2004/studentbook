@@ -281,7 +281,7 @@
 					  <td height="64" style="text-align:right;">&nbsp;</td>
 			  </tr>
 					<tr align="left">
-					  <td style="text-align:left;" >_____________________________</td>
+					  <td style="text-align:left;" >_________________</td>
 			  </tr>
 					<tr align="left">
 					  <td style="text-align:left;">NIP</td>
@@ -620,16 +620,16 @@
 			  <th width="100px">Tanggal</th>
 			  <th>Kelas Yang Ditinggalkan </th>
 			  <th>Sebab-sebab Keluar atau Atas Permintaan (Tertulis) </th>
-			  <th  width="300px">Tanda Tangan Kepala Sekolah, Stempel Sekolah dan Tandatangan Orang Tua / Wali </th>
+			  <th  width="200px">Tanda Tangan Kepala Sekolah, Stempel Sekolah dan Tandatangan Orang Tua / Wali </th>
 		  </tr>
 			<tr>
 			  <td>&nbsp;</td>
 			  <td>&nbsp;</td>
 			  <td>&nbsp;</td>
 			  <td>
-				<table style="max-width:1024px;" class="asbin noborder" id="allset"  border="1" >
+				<table  class="asbin noborder" id="allset"  border="1" >
 					<tr>
-					  <td>___________________,______________________</td>
+					  <td>__________,__________</td>
 				    </tr>
 					<tr>
 					  <td>Kepala Sekolah </td>
@@ -641,7 +641,7 @@
 					  <td>&nbsp;</td>
 					</tr>
 					<tr>
-					  <td>_________________________________________</td>
+					  <td>_____________________</td>
 					</tr>
 					<tr>
 					  <td>NIP</td>
@@ -659,7 +659,7 @@
 					  <td>&nbsp;</td>
 					</tr>
 					<tr>
-					  <td>_________________________________________</td>
+					  <td>_____________________</td>
 					  </tr>
 					<tr>
 					  <td>&nbsp;</td>
@@ -672,9 +672,9 @@
 			  <td>&nbsp;</td>
 			  <td>&nbsp;</td>
 			  <td>
-				<table style="max-width:1024px;" class="asbin noborder" id="allset"  border="1" >
+				<table  class="asbin noborder" id="allset"  border="1" >
 					<tr>
-					  <td>___________________,______________________</td>
+					  <td>__________,__________</td>
 				    </tr>
 					<tr>
 					  <td>Kepala Sekolah </td>
@@ -686,7 +686,7 @@
 					  <td>&nbsp;</td>
 					</tr>
 					<tr>
-					  <td>_________________________________________</td>
+					  <td>_____________________</td>
 					</tr>
 					<tr>
 					  <td>NIP</td>
@@ -704,7 +704,7 @@
 					  <td>&nbsp;</td>
 					</tr>
 					<tr>
-					  <td>_________________________________________</td>
+					  <td>_____________________</td>
 					  </tr>
 					<tr>
 					  <td>&nbsp;</td>
@@ -718,6 +718,346 @@
 			  </td>
 		  </tr>
 		</table>
+
+	
+<br /><br />
+		<!-- GANTI HALAMAN -->
+		<DIV style="page-break-after:always;"></DIV>
+		
+		<table  class="noborder" id="allset" border="1">
+			<tbody>
+				<tr>
+					<td align="center">
+
+						<p style="text-align: center;">
+							<span style="font-family: arial,helvetica,sans-serif;"><span style="font-size: 21px; line-height: 30px;"><strong>KETERANGAN PINDAH SEKOLAH</strong></span></span></p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">
+
+						<p style="text-align: center;">
+							<span style="font-family: arial,helvetica,sans-serif;"><span style="font-size: 21px; line-height: 30px;"><strong>NAMA PESERTA DIDIK :.........................</strong></span></span></p>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<table style="max-width:1024px;" class="asbin" id="allset"  border="1" >
+			<tr height="35">
+			  <th width="100" style="width:20px;">NO</th>
+		      <th colspan="4" style="width:20px;">MASUK</th>
+	      </tr>
+
+
+
+
+			<tr>
+			  <td>&nbsp;</td>
+			  <td>&nbsp;</td>
+			  <td width="40%">&nbsp;</td>
+			  <td rowspan="8" width="20%">				
+			  <table  class="asbin noborder" id="allset" width="200px" border="1" >
+					<tr>
+					  <td>__________,__________</td>
+					</tr>
+					<tr>
+					  <td>Kepala Sekolah </td>
+					</tr>
+					<tr>
+					  <td>&nbsp;</td>
+					</tr>
+					<tr>
+					  <td>&nbsp;</td>
+					</tr>
+					<tr>
+					  <td>____________________</td>
+					</tr>
+					<tr>
+					  <td>NIP</td>
+					</tr>
+				  </table></td>
+		  </tr>
+			<tr>
+			  <td>1</td>
+			  <td>Nama Siswa </td>
+			  <td>&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td>2</td>
+			  <td>Nomor Induk </td>
+			  <td>&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td>3</td>
+			  <td>Nama Sekolah </td>
+			  <td>&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td>4</td>
+			  <td>Masuk di Sekolah ini : </td>
+			  <td>&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td>&nbsp;</td>
+			  <td>&nbsp;&nbsp; a. Tanggal</td>
+			  <td>&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td>&nbsp;</td>
+			  <td>&nbsp;&nbsp; b. Di Kelas </td>
+			  <td>&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td>5</td>
+			  <td>Tahun Pelajaran</td>
+			  <td>&nbsp;</td>
+		  </tr>
+			
+
+			<tr>
+			  <td>&nbsp;</td>
+			  <td>&nbsp;</td>
+			  <td width="40%">&nbsp;</td>
+			  <td rowspan="8">				<table  class="asbin noborder" id="allset"  border="1" >
+					<tr>
+					  <td>__________,__________</td>
+					</tr>
+					<tr>
+					  <td>Kepala Sekolah </td>
+					</tr>
+					<tr>
+					  <td>&nbsp;</td>
+					</tr>
+					<tr>
+					  <td>&nbsp;</td>
+					</tr>
+					<tr>
+					  <td>_____________________</td>
+					</tr>
+					<tr>
+					  <td>NIP</td>
+					</tr>
+				  </table></td>
+		  </tr>
+			<tr>
+			  <td>1</td>
+			  <td>Nama Siswa </td>
+			  <td>&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td>2</td>
+			  <td>Nomor Induk </td>
+			  <td>&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td>3</td>
+			  <td>Nama Sekolah </td>
+			  <td>&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td>4</td>
+			  <td>Masuk di Sekolah ini : </td>
+			  <td>&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td>&nbsp;</td>
+			  <td>&nbsp;&nbsp; a. Tanggal</td>
+			  <td>&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td>&nbsp;</td>
+			  <td>&nbsp;&nbsp; b. Di Kelas </td>
+			  <td>&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td>5</td>
+			  <td>Tahun Pelajaran</td>
+			  <td>&nbsp;</td>
+		  </tr>
+			
+
+			<tr>
+			  <td>&nbsp;</td>
+			  <td>&nbsp;</td>
+			  <td width="40%">&nbsp;</td>
+			  <td rowspan="8">				<table  class="asbin noborder" id="allset"  border="1" >
+					<tr>
+					  <td>__________,__________</td>
+					</tr>
+					<tr>
+					  <td>Kepala Sekolah </td>
+					</tr>
+					<tr>
+					  <td>&nbsp;</td>
+					</tr>
+					<tr>
+					  <td>&nbsp;</td>
+					</tr>
+					<tr>
+					  <td>_____________________</td>
+					</tr>
+					<tr>
+					  <td>NIP</td>
+					</tr>
+				  </table></td>
+		  </tr>
+			<tr>
+			  <td>1</td>
+			  <td>Nama Siswa </td>
+			  <td>&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td>2</td>
+			  <td>Nomor Induk </td>
+			  <td>&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td>3</td>
+			  <td>Nama Sekolah </td>
+			  <td>&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td>4</td>
+			  <td>Masuk di Sekolah ini : </td>
+			  <td>&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td>&nbsp;</td>
+			  <td>&nbsp;&nbsp; a. Tanggal</td>
+			  <td>&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td>&nbsp;</td>
+			  <td>&nbsp;&nbsp; b. Di Kelas </td>
+			  <td>&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td>5</td>
+			  <td>Tahun Pelajaran</td>
+			  <td>&nbsp;</td>
+		  </tr>
+			
+			
+			
+			
+
+		</table>
+
+<br /><br />
+		<!-- GANTI HALAMAN -->
+		<DIV style="page-break-after:always;"></DIV>
+		
+		<table border="0" id="allset" class="asbin noborder" style="max-width:1024px;">
+			<tbody>
+			<tr>
+				  <td colspan="3" align="center"><span style="font-family: arial,helvetica,sans-serif;"><span style="font-size: 21px; line-height: 110px;"><strong><span class="style1">CATATAN PRESTASI YANG PERNAH DI CAPAI</span></strong></span></span></td>
+			</tr>
+			<tr>
+			  <td style="text-align:left; width:170px;">Nama Peserta Didik</td>
+			  <td style="text-align:left; width:5px;">:</td>
+			  <td style="text-align:left; border-bottom:1px solid #000;"></td>
+			  </tr>
+			<tr>
+			  <td style="text-align:left;">Nama Sekolah </td>
+			  <td style="text-align:left;">:</td>
+			  <td style="text-align:left; border-bottom:1px solid #000;"></td>
+			  </tr>
+			<tr>
+			  <td style="text-align:left;">Nomor Induk</td>
+			  <td style="text-align:left;">:</td>
+			  <td style="text-align:left; border-bottom:1px solid #000;"></td>
+			  </tr>
+		</tbody>
+		</table>
+		<BR />
+		<BR />
+		<table id="allset" class="asbin" border="1" style="max-width:1024px;" >
+			<tr height="35">
+			  <th width="100" style="width:20px;">NO</th>
+		      <th colspan="4" style="width:20px;">PRESTASI YANG PERNAH DICAPAI </th>
+	      </tr>
+
+
+			<tr>
+			  <td rowspan="7">1</td>
+			  <td rowspan="7" width="100">Kurikuler</td>
+			  <td>&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td>&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td>&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td>&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td>&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td>&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td>&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td rowspan="7">2</td>
+			  <td rowspan="7">Ekstra Kurikuler</td>
+			  <td>&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td>&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td>&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td>&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td>&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td>&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td>&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td rowspan="7">1</td>
+			  <td rowspan="7">Catatan Khusus Lainnya</td>
+			  <td>&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td>&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td>&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td>&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td>&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td>&nbsp;</td>
+		  </tr>
+			<tr>
+			  <td>&nbsp;</td>
+		  </tr>
+			
+			
+			
+			
+
+		</table>
+
+
+
+
+
 
 
 		<br /><br /><br />
