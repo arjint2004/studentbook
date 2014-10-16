@@ -44,7 +44,8 @@ class Absensi extends CI_Controller
 			$data['kelas']=$this->ad_kelas->getkelasById($this->session->userdata['user_authentication']['id_sekolah'],$_POST['kelas']);
 			$data['absensi']=$this->ad_absen->getAbsensiByMonthByKelasPel($_POST['month'],$_POST['kelas']);
             $data['siswa']= $this->ad_siswa->getsiswaByIdKelas($_POST['kelas']);
-			//pr($data['walikelas']);
+			//pr($_POST);
+			//pr($data['absensi']);
             $data['main']= 'akademik/absensi/printrekapabsensidata';
             $this->load->view('layout/ad_blank',$data);
         }
