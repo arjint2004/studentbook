@@ -27,6 +27,7 @@ Class Ad_absen extends CI_Model{
 	}
 	function getAbsensiByMonthByKelasPel($month=0,$id_kelas=0){
 		if($month==0){$month=date('m');}
+		if($_POST['id_pelajaran']==''){$_POST['id_pelajaran']=0;}
 		//get jam
 		$queryj=$this->db->query('SELECT id,jam_ke,day(tanggal) as tanggal
 								FROM `ak_absensi`
