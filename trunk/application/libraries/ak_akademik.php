@@ -342,6 +342,62 @@ class Ak_akademik {
 		return $kognitif;	
 	}
 	//DENGAN RUMUS
+	function nilaiRaportPerSiswa2013($id_det_jenjang=0){
+		$CI =& get_instance();
+		$CI->load->model('ad_pelajaran');
+		$CI->load->model('ad_setting');
+
+		$rumusraport=$CI->ad_setting->getSetting('rumusraport',$CI->session->userdata['user_authentication']['id_sekolah']);
+		$rumusraport2=unserialize(@$rumusraport[0]['value']);
+		$rumuskognitif=$rumusraport2['rumus_raport'];
+		
+		$pelajaran=$CI->ad_pelajaran->getdataByIdDetJenjang($id_det_jenjang);
+		//pr($pelajaran);die();
+		$nilaiAfektif=$this->nilaiByDetJenjangPelajaran($id_det_jenjang,$pelajaran,'nilai_afektif');
+		$nilaiPraktik=$this->nilaiByDetJenjangPelajaran($id_det_jenjang,$pelajaran,'nilai_psikomotorik');
+		//$nilaiKetercapaian=$this->nilaiByDetJenjangPelajaran($id_det_jenjang,$pelajaran,'nilai_kompetensi');
+		foreach($pelajaran as $datapel){
+
+			$kognitif[$datapel['id']]['pelajaran']=$datapel['nama'];
+			$kognitif[$datapel['id']]['kkm']=$datapel['nilai'];
+			
+			//kognitif
+			//Rata2
+			$rata2=$this->getAllRata2_Nilai_perSiswa($id_det_jenjang, $datapel['id']);
+			$PR=@$rata2['nilai_pr'][$id_det_jenjang]['rata'];
+			$TUGAS=@$rata2['nilai_tugas'][$id_det_jenjang]['rata'];
+			$HARIAN=@$rata2['nilai_ulangan_harian'][$id_det_jenjang]['rata'];
+			
+			$nilaiUAS=$this->getNilai_PerSiswa($id_det_jenjang, $datapel['id'],'nilai uas');
+			$nilaiUTS=$this->getNilai_PerSiswa($id_det_jenjang, $datapel['id'],'nilai uts');
+			$UTS=$nilaiUTS[$id_det_jenjang][0]['nilai'];
+			$UAS=$nilaiUAS[$id_det_jenjang][0]['nilai'];
+			
+			$kognitif[$datapel['id']]['psikomotorik']=round(@$nilaiPraktik[$datapel['id']][0]['nilai'],2);
+			$kognitif[$datapel['id']]['afektif']=@$nilaiAfektif[$datapel['id']][0]['nilai'];
+			//$kognitif[$datapel['id']]['ketercapaian']=@$nilaiKetercapaian[$datapel['id']][0]['nilai'];
+			
+			$rumuskognitif2='$hs='.$rumuskognitif.';';
+			eval($rumuskognitif2);
+			$kognitif[$datapel['id']]['kognitif']=$hs;
+			
+			if($datapel['havechild']==1){
+				$subnilai=$this->SubnilaiRaportPerSiswa2013($id_det_jenjang,$datapel['id']);
+				if($subnilai=='nosub'){
+				
+				}else{
+					$kognitif[$datapel['id']]['kognitif']=$subnilai['kognitif'];
+					$kognitif[$datapel['id']]['praktik']=$subnilai['praktik'];
+					$kognitif['submapel'][$datapel['id'].'-'.$datapel['nama']]=$subnilai['datasub'];
+					$kognitif[$datapel['id']]['submapel']=$subnilai['datasub'];
+				}
+			}
+			
+			
+		}
+		//pr($kognitif);
+		return $kognitif;
+	}
 	function nilaiRaportPerSiswa($id_det_jenjang=0){
 		$CI =& get_instance();
 		$CI->load->model('ad_pelajaran');
@@ -397,6 +453,57 @@ class Ak_akademik {
 		}
 		return $kognitif;
 	}
+	function SubnilaiRaportPerSiswa2013($id_det_jenjang=0,$id_parentmapel){
+		$CI =& get_instance();
+		$CI->load->model('ad_pelajaran');
+		$CI->load->model('ad_setting');
+
+		$rumusraport=$CI->ad_setting->getSetting('rumusraport',$CI->session->userdata['user_authentication']['id_sekolah']);
+		$rumusraport2=unserialize(@$rumusraport[0]['value']);
+		$rumuskognitif=$rumusraport2['rumus_raport'];
+		
+		$pelajaran=$CI->ad_pelajaran->getdataByIdDetJenjangByparentmapel($id_det_jenjang,$id_parentmapel);
+		//pr($pelajaran);die();
+		$nilaiAfektif=$this->nilaiByDetJenjangPelajaran($id_det_jenjang,$pelajaran,'nilai_afektif');
+		$nilaiPraktik=$this->nilaiByDetJenjangPelajaran($id_det_jenjang,$pelajaran,'nilai_psikomotorik');
+		//$nilaiKetercapaian=$this->nilaiByDetJenjangPelajaran($id_det_jenjang,$pelajaran,'nilai_kompetensi');
+		
+		if(empty($pelajaran)){return 'nosub';}
+		foreach($pelajaran as $datapel){
+
+			$kognitif[$datapel['id']]['pelajaran']=$datapel['nama'];
+			$kognitif[$datapel['id']]['kkm']=$datapel['nilai'];
+			
+			//kognitif
+			//Rata2
+			$rata2=$this->getAllRata2_Nilai_perSiswa($id_det_jenjang, $datapel['id']);
+			$PR=@$rata2['nilai_pr'][$id_det_jenjang]['rata'];
+			$TUGAS=@$rata2['nilai_tugas'][$id_det_jenjang]['rata'];
+			$HARIAN=@$rata2['nilai_ulangan_harian'][$id_det_jenjang]['rata'];
+			
+			$nilaiUAS=$this->getNilai_PerSiswa($id_det_jenjang, $datapel['id'],'nilai uas');
+			$nilaiUTS=$this->getNilai_PerSiswa($id_det_jenjang, $datapel['id'],'nilai uts');
+			$UTS=$nilaiUTS[$id_det_jenjang][0]['nilai'];
+			$UAS=$nilaiUAS[$id_det_jenjang][0]['nilai'];
+
+			$rumuskognitif2='$hs='.$rumuskognitif.';';
+			eval($rumuskognitif2);
+			$kognitif[$datapel['id']]['kognitif']=$hs;
+			
+			$kognitif[$datapel['id']]['psikomotorik']=round(@$nilaiPraktik[$datapel['id']][0]['nilai'],2);
+			$kognitif[$datapel['id']]['afektif']=@$nilaiAfektif[$datapel['id']][0]['nilai'];
+			//$kognitif[$datapel['id']]['ketercapaian']=@$nilaiKetercapaian[$datapel['id']][0]['nilai'];
+			
+			$jmlkg=$jmlkg+$hs;
+			$jmlprk=$jmlprk+$kognitif[$datapel['id']]['praktik'];
+		}
+		$out['kognitif']=$jmlkg/count($pelajaran);
+		$out['praktik']=$jmlprk/count($pelajaran);
+		$out['datasub']=$kognitif;
+		//pr($out);
+		return $out;
+	}
+	
 	function SubnilaiRaportPerSiswa($id_det_jenjang=0,$id_parentmapel){
 		$CI =& get_instance();
 		$CI->load->model('ad_pelajaran');
@@ -411,6 +518,7 @@ class Ak_akademik {
 		$nilaiAfektif=$this->nilaiByDetJenjangPelajaran($id_det_jenjang,$pelajaran,'nilai_afektif');
 		$nilaiPraktik=$this->nilaiByDetJenjangPelajaran($id_det_jenjang,$pelajaran,'nilai_psikomotorik');
 		$nilaiKetercapaian=$this->nilaiByDetJenjangPelajaran($id_det_jenjang,$pelajaran,'nilai_kompetensi');
+		
 		if(empty($pelajaran)){return 'nosub';}
 		foreach($pelajaran as $datapel){
 
@@ -498,7 +606,23 @@ class Ak_akademik {
 					$CI->db->insert('ak_nilai_'.$jenis,$insertnilai);	
 				//}	
 			}	
-			echo $CI->db->last_query();
+			//echo $CI->db->last_query();
+	}
+	
+	function get_nilaiKompetensiKogn($id_det_jenjang=0){
+		$CI =& get_instance();
+		$data=$CI->db->query("SELECT * FROM ak_nilai_kompetensi_kogn kg WHERE 
+		id_siswa_det_jenjang =? 
+		AND ta=? 
+		AND semester=? 
+		AND id_sekolah
+		",array($id_det_jenjang,$CI->session->userdata['ak_setting']['ta'],$CI->session->userdata['ak_setting']['semester'],$CI->session->userdata['user_authentication']['id_sekolah']))->result_array();
+
+		foreach($data as $dataout){
+			$data2[$dataout['id_pelajaran']][$dataout['penilaian']]=$dataout;
+		}
+		unset($data);
+		return $data2;
 	}
 }
 

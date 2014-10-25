@@ -241,7 +241,7 @@ class Nilai extends CI_Controller {
 		}elseif(base64_decode($jenis)=="nilai lain_lain"){
 			$data['kelas'] 	=$this->ad_kelas->getKelasByWali($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']);
 			$data['main'] 	= 'akademik/nilai/addnilailain'; // memilih view
-		}elseif($jns=='nilai uan' ||$jns=='nilai praktik' || $jns=='nilai afektif'){
+		}elseif($jns=='nilai uan' ||$jns=='nilai praktik' || $jns=='nilai afektif' || $jns=='nilai psikomotorik'){
 			$data['main'] 	= 'akademik/nilai/addnilai'; // memilih view
 		}else{
 			$data['main'] 	= 'akademik/nilai/addnilairef'; // memilih view

@@ -63,7 +63,7 @@ Class Ad_kelas extends CI_Model
  }
  
  function getWaliByIdKelas($id_sekolah=null,$id_kelas=null){
-	$querypengguna=$this->db->query('SELECT p.nama,p.alamat,p.id FROM
+	$querypengguna=$this->db->query('SELECT p.nama,p.nip,p.alamat,p.id FROM
 							 ak_kelas k 
 							 JOIN ak_pegawai p
 							 ON 

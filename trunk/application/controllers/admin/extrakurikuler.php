@@ -98,13 +98,13 @@ class Extrakurikuler extends CI_Controller {
 		 }
 		 
 			$data['datasiswa']=array();
+			
 			if(isset($_POST['id_kelas'])){
-				$cond="AND ak_siswa.IDkel=".$_POST['id_kelas']."";
+				$cond="AND ak_det_jenjang.id_kelas=".$_POST['id_kelas']."";
 				$data['kelasselected']=$_POST['id_kelas'];
 				$data['extraselected']=$_POST['id_extrakurikuler'];
 				$datasiswa=$this->ad_akun->getdataSiswaOrtu('0,150',12,$cond);
 				$qcurrentextra=$this->ad_extrakurikuler->getdataSiswaExtra();
-				//pr($qcurrentextra);
 				$datajump=array();
 				$data['datajumpcur']=array();
 				foreach( $datasiswa as $datafor){

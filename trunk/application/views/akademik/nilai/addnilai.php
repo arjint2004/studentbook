@@ -37,7 +37,7 @@ $(document).ready(function(){
 					},
 					success: function(msg) {
 						$("#wait").remove();	
-						$('#subject').load('<? echo base_url();?>akademik/nilai/listSubject/<?=base64_encode($jenis);?>');
+						$('#subjectnilai').load('<? echo base_url();?>akademik/nilai/listSubject/<?=base64_encode($jenis);?>');
 						//$('#simpanabsensi').before('<div id="berhasil" style="float:left;">Simpan Berhasil</div>');
 						//$('#berhasil').delay(10).fadeIn(500).delay(1000).fadeOut(500);
 						//$('#berhasil').remove();

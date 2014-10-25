@@ -33,7 +33,7 @@ $(document).ready(function(){
 <table>
 	<thead>
 		<tr>
-			<th colspan="4" style="text-align:right;">
+			<th colspan="5" style="text-align:right;">
 			</th>
 			<th>
 				<a title="" class="button small light-grey absenbutton" id="simpanhportu" onclick="$('#simpanhportuform').submit();"> Simpan </a>
@@ -44,6 +44,7 @@ $(document).ready(function(){
 			<th>Nama Siswa</th>
 			<th>Nama Ortu</th>
 			<th>Kelas</th>
+			<th>Ubah</th>
 			<th>Hp Ortu</th>
 		</tr>	
 	</thead>
@@ -56,6 +57,7 @@ $(document).ready(function(){
 			<td class="left"><?=$datasiswa['nama']?></td>
 			<td class="left"><?=$datasiswa['nama_ortu']?></td>
 			<td ><?=$datasiswa['kelas']?><?=$datasiswa['nama_kelas']?></td>
+			<td ><a class="modal" href="<?=base_url('akademik/biodatasiswa/edit/'.$this->myencrypt->encode(serialize(array('nama'=>$datasiswa['nama'],'id'=>$datasiswa['id_siswa']))).'')?>">Ubah Biodata</a></td>
 			<td ><input style="width:150px;" type="text" name="hp[<?=$datasiswa['id_ortu']?>]" value="<?=$datasiswa['hp']?>" /></td>
 		</tr>
 		<? } ?>

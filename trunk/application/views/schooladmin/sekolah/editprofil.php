@@ -5,7 +5,7 @@
              function(data){
                 var select ="<option value=''>Pilih Kabupaten</option>";
                 var selected ="";
-				var idkab=parseInt(<?=$sekolah[0]['kec']?>);
+				var idkab=parseInt(<?=$sekolah[0]['kota']?>);
                 $.each( data, function(i, n){
 					//alert(n.IDkota);
 					if(idkab==n.IDkota){ selected='selected';}else{selected='';}
@@ -95,6 +95,11 @@ function getadd(){
 										<td class="title"><input id="namaSekolah" type="text" size="40" value="<?=$sekolah[0]['nama_sekolah']?>" name="nama_sekolah"></td>
 									</tr>
 									<tr>
+										<td width="150" class="title">NSS</td>
+										<td width="1">:</td>
+										<td class="title"><input id="nss" type="text" size="40" value="<?=$sekolah[0]['nss']?>" name="nss"></td>
+									</tr>
+									<tr>
 										<td width="150" class="title">Foto Profil</td>
 										<td width="1">:</td>
 										<td class="title">
@@ -161,13 +166,18 @@ function getadd(){
 										<td class="title">
 										<!--<input type="text" size="30" value="<?=$sekolah[0]['kec']?>" name="kec">-->
 										
-										<select name="kec" id="kabupaten">
+										<select name="kota" id="kabupaten">
 											<option value="">Pilih Kabupaten</option>
 										</select>
 										</td>
 									</tr>
 									<tr>
-										<td class="title">Desa</td>
+										<td class="title">Kecamatan</td>
+										<td width="1">:</td>
+										<td class="title"><input type="text" size="20" value="<?=$sekolah[0]['kec']?>" name="kec"></td>
+									</tr>
+									<tr>
+										<td class="title">Kelurahan/Desa</td>
 										<td width="1">:</td>
 										<td class="title"><input type="text" size="20" value="<?=$sekolah[0]['desa']?>" name="desa"></td>
 									</tr>

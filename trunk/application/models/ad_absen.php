@@ -85,14 +85,12 @@ Class Ad_absen extends CI_Model{
 		if(isset($_POST['filter'])){
 			$cond='AND date(tanggal) > "'.date("Y-m-d", mktime(0, 0, 0,  date("m")  , date("d")-$_POST['filter'], date("Y"))).'"';
 		}
-		$query=$this->db->query('SELECT am.*,m.id_pegawai FROM
-								ak_absensi am
-								JOIN ak_mengajar m
-								ON am.id_pelajaran=m.id_pelajaran
+		$query=$this->db->query('SELECT * FROM
+								ak_absensi
 								WHERE
-								am.id_sekolah=?
+								id_sekolah=?
 								'.$cond.'
-								GROUP BY am.tanggal
+								GROUP BY id_pegawai
 								',array($id_sekolah));
 								//echo $this->db->last_query(); 
 								//pr($query->result_array());

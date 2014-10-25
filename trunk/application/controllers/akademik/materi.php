@@ -240,8 +240,13 @@ class Materi extends CI_Controller
 			}
 		}
 		
-        public function daftarmaterilist($pelajaran=0,$id_kelas=0,$start=0,$page=0)
+        public function daftarmaterilist($pelajaran=0,$id_kelas=0,$start=0,$page=0,$id_pengguna=0,$kepsek='')
         {
+			if($start==1){$start=0;}
+			if(isset($_POST['kepsek'])){$kepsek=$_POST['kepsek'];}
+			if(isset($_POST['id_pengguna'])){$id_pengguna=$_POST['id_pengguna'];}
+			$data['kepsek']   = $kepsek;
+			$data['id_pengguna']   = $id_pengguna;
 			if(isset($_POST['pelajaran'])){$pelajaran=$_POST['pelajaran'];}
 			if(isset($_POST['id_kelas'])){$id_kelas=$_POST['id_kelas'];}
 			$this->load->model('ad_materi');
@@ -258,7 +263,7 @@ class Materi extends CI_Controller
 			$data['start'] = $start;
 			$config['total_rows'] = $this->ad_materi->getmateriByKelasPelajaranIdPegawaiAllCount($pelajaran,$id_kelas);
 			//pr($config['total_rows']);
-            $materi =$this->ad_materi->getmateriByKelasPelajaranIdPegawaiAll($pelajaran,$id_kelas,$start,$config['per_page']);
+            $materi =$this->ad_materi->getmateriByKelasPelajaranIdPegawaiAll($pelajaran,$id_kelas,$start,$config['per_page'],$id_pengguna);
 			$id_materisemua = @array_map(function($var){ return $var['id']; }, $materi);
 			$terkirim=$this->ad_materi->getmateriByKelasPelajaranIdPegawaiKirim($pelajaran,$id_kelas,$id_materisemua,$start,$config['per_page']);
 			$this->pagination->initialize($config);

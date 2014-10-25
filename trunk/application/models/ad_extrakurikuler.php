@@ -2,7 +2,8 @@
 Class Ad_extrakurikuler extends CI_Model
 {
 	 function getdataSiswaExtra(){
-		$qcurrentextra=$this->db->query('SELECT ase.* FROM ak_siswa_ekstrakurikuler ase JOIN ak_det_jenjang ad JOIN ak_siswa siswa JOIN ak_kelas ak ON ase.id_siswa_det_jenjang=ad.id AND siswa.IDkel=ak.id AND ad.id_siswa=siswa.id WHERE siswa.IDkel='.$_POST['id_kelas'].' AND ase.id_ekstrakurikuler="'.$_POST['id_extrakurikuler'].'" AND ak.publish=1');
+		$qcurrentextra=$this->db->query('SELECT ase.* FROM ak_siswa_ekstrakurikuler ase JOIN ak_det_jenjang ad JOIN ak_siswa siswa JOIN ak_kelas ak ON ase.id_siswa_det_jenjang=ad.id AND ad.id_kelas=ak.id AND ad.id_siswa=siswa.id WHERE ad.id_kelas='.$_POST['id_kelas'].' AND ase.id_ekstrakurikuler="'.$_POST['id_extrakurikuler'].'" AND ak.publish=1');
+		//echo $this->db->last_query();
 		return $qcurrentextra->result_array();
 	 }
 	 function getEkstrakurikulerByIdDetjenjang($id_det_jenjang){

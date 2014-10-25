@@ -7,8 +7,14 @@
 					});
 					$(".addsub").click(function(e){
 						var thisobj=$(this);
+						if($('select#jenjangselect').val()==''){
+							$('select#jenjangselect').css('border','1px solid red');
+							$("select#semesterselect").scrollintoview({ speed:'1100'}); 
+							return false;
+						}
 						if($('select#semesterselect').val()==''){
 							$('select#semesterselect').css('border','1px solid red');
+							$("select#semesterselect").scrollintoview({ speed:'1100'}); 
 							return false;
 						}
 						$.ajax({

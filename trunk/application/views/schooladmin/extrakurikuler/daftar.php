@@ -122,7 +122,7 @@
 										</select>
 										<input type='hidden' value='1' name='ajax' />
 									</form>
-									<? //pr($datajumpcur);?>
+
 									<table >
 										<thead>
 											<tr> 

@@ -22,12 +22,13 @@ class Kepsek extends CI_Controller
 
         public function statistik($jenis='')
         {
+			$data['jenis']=$jenis;
 			if(isset($_POST['jenis'])){$jenis=$_POST['jenis'];}
 			$this->load->model('ad_akun');
 			$data['guru'] 	=$this->ad_akun->getGuruBySekolah();
 			$data['filter'] 	=$_POST['filter'];
 			switch($jenis){
-			
+				
 				case "rpp":
 					$this->load->model('ad_pembelajaran');
 					$datarpp	=$this->ad_pembelajaran->getPembelajaranByIdSekolah($this->session->userdata['user_authentication']['id_sekolah']);
@@ -44,6 +45,7 @@ class Kepsek extends CI_Controller
 				case "absen":
 					$this->load->model('ad_absen');
 					$datarpp	=$this->ad_absen->getAbsensiByIdSekolah($this->session->userdata['user_authentication']['id_sekolah']);
+					
 					foreach($datarpp as $ky=>$dtrpp){
 						$datarpp2[$dtrpp['id_pegawai']][]=$dtrpp;
 					}
@@ -147,7 +149,7 @@ class Kepsek extends CI_Controller
 			}
 			$this->load->view('layout/ad_blank',$data);
 		}
-        public function filterrpp()
+       /* public function filterrpp()
         {
 			$this->load->model('ad_akun');
 			$this->load->model('ad_pembelajaran');
@@ -160,7 +162,7 @@ class Kepsek extends CI_Controller
 			}
 			$data['rpp']=$datarpp2;
 			$data['totrpp']=count($datarpp);*/
-            $data['main']= 'akademik/kepsek/filterrpp';
+        /*    $data['main']= 'akademik/kepsek/filterrpp';
             $this->load->view('layout/ad_blank',$data);
 		}
 		
@@ -229,8 +231,59 @@ class Kepsek extends CI_Controller
 
             $data['main']= 'akademik/kepsek/chart';
             $this->load->view('layout/ad_blank',$data);
-		}
+		}*/
 		
+		
+		
+		//LIHAT DETAIL
+		
+		function lihat($jenis='',$params=''){
+			$params=unserialize($this->myencrypt->decode($params));
+			//pr($params);
+			$data['jenis']=$jenis;
+			if(isset($_POST['jenis'])){$jenis=$_POST['jenis'];}
+			switch($jenis){
+				
+				case "rpp":
+					
+				break;
+				
+				case "absen":
+					$this->load->model('ad_kelas');
+					$data['kelas'] 	=$this->ad_kelas->getkelasByPengajar($this->session->userdata['user_authentication']['id_sekolah'],$params['id_peg']);
+					$data['id_pegawai']=$params['id_peg'];
+					//pr($data['kelas']);
+				    $data['popup']='';
+					$data['main']= 'akademik/absensi/rekapabsensi';
+				break;
+				case "penghortu":
+				
+				break;
+				case "materi":
+					redirect('akademik/materi/daftarmaterilist/0/0/0/0/'.$params['id_peg'].'/kepsek');
+					die();
+				break;
+				case "pr":
+				
+				break;
+				case "tugas":
+				
+				break;
+				case "harian":
+				
+				break;
+				case "uts":
+				
+				break;
+				case "uas":
+				
+				break;
+				case "catatan":
+				
+				break;
+			}
+			$this->load->view('layout/ad_blank',$data);
+		}
 		
     }
 ?>

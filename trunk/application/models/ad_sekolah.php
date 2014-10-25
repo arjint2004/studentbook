@@ -2,10 +2,11 @@
 Class Ad_sekolah extends CI_Model
 {
 	 function getSekolahdata($id_sekolah=null,$field=null){
+	 $join='JOIN kota ON ak_sekolah.kota=kota.IDkota JOIN provinsi ON  ak_sekolah.prop=provinsi.IDprov';
 	 if($field==null){
-		$query=$this->db->query('SELECT * FROM ak_sekolah WHERE id='.$id_sekolah.'');
+		$query=$this->db->query('SELECT * FROM ak_sekolah '.$join.' WHERE id='.$id_sekolah.'');
 	 }else{
-		$query=$this->db->query('SELECT '.implode(',',$field).' FROM ak_sekolah WHERE id='.$id_sekolah.'');
+		$query=$this->db->query('SELECT '.implode(',',$field).' FROM ak_sekolah '.$join.' WHERE id='.$id_sekolah.'');
 	 }
 		return $query->result_array();		
 	 }
