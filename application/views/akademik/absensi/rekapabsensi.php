@@ -1,6 +1,6 @@
 <script>
 	
-	
+	<? if(isset($id_pegawai)){$id_peg=$id_pegawai;}else{$id_peg=0;}?>
 	function getaddrekap(obj,date) {
 		$("#rekapabsensiform").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
 			$(".error-box").html("Memproses Data").fadeIn("slow");
@@ -47,7 +47,7 @@
 		
 		$.ajax({
 			type: "POST",
-			url: '<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$(this).val()+'/0/1',
+			url: '<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$(this).val()+'/0/1/<?=$id_peg?>',
 			beforeSend: function() {
 				$("#pelajaranabsenrekap").after("<img id='waitabsen1' src='<?=$this->config->item('images').'loading.png';?>' />");
 			},
@@ -68,7 +68,7 @@
 	
 		$.ajax({
 			type: "POST",
-			url: '<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$('select#kelasabsenrekap').val()+'/0/1',
+			url: '<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$('select#kelasabsenrekap').val()+'/0/1/<?=$id_peg?>',
 			beforeSend: function() {
 				$("#pelajaranabsenrekap").after("<img id='waitabsen1' src='<?=$this->config->item('images').'loading.png';?>' />");
 			},
@@ -78,7 +78,10 @@
 				getaddrekap('',$('select#bulanrekapabsen').val());
 			}
 		});
-		
+		<? if(isset($popup)){?>
+		var winwidth=(90/100)*parseInt($(window).width());
+		$('form#rekapabsensiform').css('width',winwidth+'px');
+		<? } ?>
 </script>
 
 
@@ -102,6 +105,7 @@ $(function() {
 
 </script>
 <div id="widthabsensi">
+<? //pr($kelas);?>
 <form action="" method="post" id="rekapabsensiform" >
 				<table class="adddata">
 					<tr>

@@ -10,7 +10,7 @@
 	</thead>
 	<tbody>
 		<? $no=1;foreach($siswa as $datasiswa){
-			$url=array('nis'=>$datasiswa['nis'],'nama'=>$datasiswa['nama'],'id_siswa_det_jenjang'=>$datasiswa['id_siswa_det_jenjang']);
+			$url=array('nis'=>$datasiswa['nis'],'nama'=>$datasiswa['nama'],'id_siswa_det_jenjang'=>$datasiswa['id_siswa_det_jenjang'],'id'=>$datasiswa['id'],'id_kelas'=>$datasiswa['id_kelas']);
 		?>
 		<tr>
 			<td><?=$no++?></td>

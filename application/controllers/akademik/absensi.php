@@ -88,6 +88,7 @@ class Absensi extends CI_Controller
 									'id_kelas'=>$_POST['id_kelas'],
 									'id_semester'=>$this->session->userdata['ak_setting']['semester'],
 									'id_pelajaran'=>$_POST['pelajaranabsen'],
+									'id_pegawai'=>$this->session->userdata['user_authentication']['id_pengguna'],
 									'absensi'=>$databsen,
 									'jam'=>date("H:i:s"),
 									'jam_ke'=>$_POST['jamabsen'],

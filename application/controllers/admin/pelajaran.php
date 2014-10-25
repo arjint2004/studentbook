@@ -286,13 +286,13 @@ class Pelajaran extends CI_Controller {
 		   $this->load->view('layout/ad_adminsekolah',$data);
 		} 
 	}
-	public function getMapelByKelasAndPegawai($id_kelas=null,$id_mapel=null,$nopilih=0)
+	public function getMapelByKelasAndPegawai($id_kelas=null,$id_mapel=null,$nopilih=0,$id_pengguna=0)
     {
        $this->load->model('ad_pelajaran');
        $this->load->model('ad_kelas');
 	   $jurusankelasnya=$this->ad_kelas->getkelasById($this->session->userdata['user_authentication']['id_sekolah'],$id_kelas);
 		// pr($jurusankelasnya);die();
-	   $mapel=$this->ad_pelajaran->getdatabySemesterJenjangJurusanKelasPegawaimengajar($this->session->userdata['ak_setting']['semester'],$jurusankelasnya[0]['kelas'],$jurusankelasnya[0]['id_jurusan'],$id_kelas);
+	   $mapel=$this->ad_pelajaran->getdatabySemesterJenjangJurusanKelasPegawaimengajar($this->session->userdata['ak_setting']['semester'],$jurusankelasnya[0]['kelas'],$jurusankelasnya[0]['id_jurusan'],$id_kelas,$id_pengguna);
 	   //pr($mapel);
 	   $select ='';
 	    if($nopilih==0){

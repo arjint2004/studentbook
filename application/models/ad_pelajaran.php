@@ -54,7 +54,8 @@ Class Ad_pelajaran extends CI_Model
 		//echo $this->db->last_query();
 		return $query->result_array();		
 	}
-	function getdatabySemesterJenjangJurusanKelasPegawaimengajar($sm=0,$kelas=0,$jur=0,$id_kelas=0){
+	function getdatabySemesterJenjangJurusanKelasPegawaimengajar($sm=0,$kelas=0,$jur=0,$id_kelas=0,$id_penggunas=0){
+		if($id_penggunas!=0){$id_pengguna=$id_penggunas;}else{$id_pengguna=$this->session->userdata['user_authentication']['id_pengguna'];}
 		$query=$this->db->query('SELECT pl.*,jr.nama as nama_jurusan , am.id as id_mengajar
 								FROM ak_pelajaran pl 
 								JOIN ak_jurusan jr 
@@ -65,7 +66,7 @@ Class Ad_pelajaran extends CI_Model
 								AND pl.semester="'.$sm.'" 
 								AND pl.kelas="'.$kelas.'" 
 								AND pl.id_jurusan="'.$jur.'"
-								AND am.id_pegawai="'.$this->session->userdata['user_authentication']['id_pengguna'].'"
+								AND am.id_pegawai="'.$id_pengguna.'"
 								AND am.id_kelas="'.$id_kelas.'"
 								
 								');

@@ -59,7 +59,7 @@ Class Ad_siswa extends CI_Model
 	}
 	function getsiswaByIdKelas($id_kelas=null,$field=''){
 		if($field==''){
-			$field='s.*,ap.id as id_ortu,ap.hp, adj.id as id_siswa_det_jenjang';
+			$field='s.*,ap.id as id_ortu,ap.hp, adj.id as id_siswa_det_jenjang, adj.id_kelas';
 		}
 		$query=$this->db->query('SELECT '.$field.' FROM
 									ak_det_jenjang adj 
@@ -91,7 +91,9 @@ Class Ad_siswa extends CI_Model
 									 AND ap.id_siswa=s.id 
 									 WHERE s.id=?
 									AND ak.publish=1
-									 ORDER BY s.nama ASC',array($id_siswa));
+									 AND adj.id_ta=?
+									 ORDER BY s.nama ASC',array($id_siswa,$this->session->userdata['ak_setting']['ta']));
+									 //echo $this->db->last_query();
 		return $query->result_array();	
 	}
 	function getsiswaByIdSiswaTa($id_siswa=null){

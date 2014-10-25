@@ -47,8 +47,10 @@ class Authentication extends CI_Controller {
                 'logo_sekolah' => $user->logo,
                 'ta_selesai' => $settingSmTa['ta']['selesai'],
                 'fitursekolah' => $fitursekolah,
+                'nama_kepsek' => $kepsek[0]['nama'],
                 'id_kepsek' => $kepsek[0]['id']
             );
+			
             $this->session->set_userdata('ak_setting', $sessionsettings);
 			
 			if($user->nama_peg ==''){

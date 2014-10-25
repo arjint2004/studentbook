@@ -87,7 +87,8 @@ Class Ad_materi extends CI_Model{
 		//pr($out[0]['jml']);
 		return $out[0]['jml'];
 	}
-	function getmateriByKelasPelajaranIdPegawaiAll($id_pelajaran=0,$id_kelas=0,$start=0,$page=0){
+	function getmateriByKelasPelajaranIdPegawaiAll($id_pelajaran=0,$id_kelas=0,$start=0,$page=0,$id_penggunas=0){
+		if($id_penggunas!=0){$id_pengguna=$id_penggunas;}else{$id_pengguna=$this->session->userdata['user_authentication']['id_pengguna'];}
 		$cnd='';
 		$cnd2='';
 		if($id_pelajaran!=0){$cnd='AND amp.id_pelajaran="'.mysql_real_escape_string($id_pelajaran).'"';}
@@ -102,7 +103,7 @@ Class Ad_materi extends CI_Model{
 								 AND amp.id_pegawai=?
 								 ORDER BY amp.id DESC
 								 LIMIT '.$start.','.$page.'
-								',array($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']));
+								',array($this->session->userdata['user_authentication']['id_sekolah'],$id_pengguna));
 		//echo $this->db->last_query();
 		return $query->result_array();
 	}

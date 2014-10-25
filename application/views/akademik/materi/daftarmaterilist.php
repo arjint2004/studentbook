@@ -69,14 +69,15 @@
 											
 												$.ajax({
 													type: "POST",
-													data: '',
+													data: 'id_pengguna=<?=@$id_pengguna?>&kepsek=<?=@$kepsek?>',
 													url: $(objdell).attr('href'),
 													beforeSend: function() {
 														$(objdell).after("<img class='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
 													},
 													success: function(msg) {
-														$(".wait").remove();	
 														$("#subjectlistmateri").html(msg);
+														//$("#fancybox-content").html(msg);
+														$(".wait").remove();	
 													}
 												});
 												return false;
@@ -125,7 +126,10 @@
 								<? //pr($materi);?>
 							   
 
-<? //pr($materi);?>								
+<? //pr($materi);?>		
+<? if($kepsek=='kepsek'){?>
+<div id="subjectlistmateri">	
+<? } ?>			
 <div class="tabs-container">
     <ul class="tabs-frame tabs-frame2">
         <li><a href="#">Semua Materi</a></li>
@@ -145,7 +149,9 @@
 												<th>Dikirim Ke</th>
 												<th>Tgl Upload</th>
 												<th style="width:37px;">Detail</th>
+												<? if($kepsek!='kepsek'){?>
 												<th style="width:75px;">Ubah|Hapus</th>
+												<? } ?>
 											</tr>                         
 										</thead>
 										<tbody>
@@ -166,10 +172,13 @@
 													?></td>
 												<td ><? $tg=tanggal($datamateri['tanggal_buat']." 00:00:00"); echo $tg[2];?></td>
 												<td ><a style="cursor:pointer;">Lihat</a></td>
+												<? if($kepsek!='kepsek'){?>
 												<td >
 													<div class="actedit acteditmateri" id_materi="<?=$datamateri['id']?>"></div> 
 													<div class="actdell actdellmateri" id_materi="<?=$datamateri['id']?>"></div>
+												
 												</td>
+												<? } ?>
 											</tr>
 											
 											<tr id="detailmateriall<?=$datamateri['id']?>" style="display:none;">
@@ -260,7 +269,9 @@
 												<th>Ke Kelas</th>
 												<th>Tanggal</th>
 												<th style="width:37px;">Detail</th>
+												<? if($kepsek!='kepsek'){?>
 												<th style="width:75px;">Ubah|Hapus</th>
+												<? } ?>
 											</tr>                         
 										</thead>
 										<tbody>
@@ -277,10 +288,12 @@
 												<td class="title" ><? foreach($datamateri['dikirim'] as $dtdkrm){echo $dtdkrm['kelas'].$dtdkrm['nama_kelas']." &nbsp; ";}?></td>
 												<td ><? $tg=tanggal($datamateri['tanggal_buat']." 00:00:00"); echo $tg[2];?></td>
 												<td ><a style="cursor:pointer;">Lihat</a></td>
+												<? if($kepsek!='kepsek'){?>
 												<td >
 													<div class="actedit acteditmateri" id_materi="<?=$datamateri['id']?>"></div> 
 													<div class="actdell actdellmateri" id_materi="<?=$datamateri['id']?>"></div>
 												</td>
+												<? } ?>
 											</tr>
 											
 											<tr id="detailmateri<?=$datamateri['id']?>" style="display:none;">
@@ -382,3 +395,6 @@
     </div>
 
 </div>
+<? if($kepsek=='kepsek'){?>
+</div>
+<? } ?>
