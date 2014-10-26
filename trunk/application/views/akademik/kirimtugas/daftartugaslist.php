@@ -60,7 +60,7 @@
 										var objdell=$(this);
 										$.ajax({
 											type: "POST",
-											data: '',
+											data: 'id_pengguna=<?=@$id_pengguna?>&kepsek=<?=@$kepsek?>',
 											url: $(objdell).attr('href'),
 											beforeSend: function() {
 												$(objdell).after("<img class='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -68,7 +68,7 @@
 											success: function(msg) {
 												$(".wait").remove();	
 												$("#subjectlisttugas").html(msg);
-												$('#subjectpembelajaran').scrollintoview({ speed:'1100'});
+												//$('#subjectpembelajaran').scrollintoview({ speed:'1100'});
 											}
 										});
 										return false;
@@ -96,6 +96,9 @@
 								}
 								</script>
 								<? //tugas($tugas);?>
+								<? if($kepsek=='kepsek' && $page==0){?>
+								<div id="subjectlisttugas" style="min-width:700px;">	
+								<? } ?>	
 								<div class="tabs-container">
 									<ul class="tabs-frame tabs-frametugas">
 										<li><a href="#">Semua arsip TUGAS</a></li>
@@ -115,7 +118,9 @@
 													<th>Dikirim Ke</th>
 													<th>Tgl Upload</th>
 													<th style="width:37px;">Detail</th>
+													<? if($kepsek!='kepsek'){?>
 													<th style="width:75px;">Ubah|Hapus</th>
+													<? } ?>
 												</tr>                         
 											</thead>
 											<tbody>
@@ -141,6 +146,7 @@
 													?></td>
 													<td class="<?=$bordettop?>"><? $tg=tanggal($datatugas['tanggal_buat']." 00:00:00"); echo $tg[2];?></td>
 													<td class="<?=$bordettop?>"><a style="cursor:pointer;">Lihat</a></td>
+													<? if($kepsek!='kepsek'){?>
 													<td class="<?=$bordettop?>" >
 														<? if($datatugas['jenis']=='non_remidial'){?>
 														<div class="actedittugas actedit" id_tugas="<?=$datatugas['id']?>" title="ubah" href="<?=base_url('akademik/kirimtugas/kirimtugasutamaedit/'.$datatugas['id'])?>"></div>
@@ -149,6 +155,7 @@
 														<? } ?>
 														<div class="actdell" id="actdelltugas" id_tugas="<?=$datatugas['id']?>"></div>
 													</td>
+													<?}?>
 												</tr>
 												<tr id="detailtugassemua<?=$datatugas['id']?>" style="display:none;">
 													<td colspan="7" class="innercolspan">
@@ -241,7 +248,9 @@
 													<th>Judul</th>
 													<th>Ke Kelas</th>
 													<th>Waktu Upload</th>
-													<th>Action</th>
+													<? if($kepsek!='kepsek'){?>
+													<th>Ubah | Hapus</th>
+													<? } ?>
 												</tr>                         
 											</thead>
 											<tbody>
@@ -259,6 +268,7 @@
 													<td class="<?=$bordettop?> title" ><?=$datatugas['judul']?></td>
 													<td class="<?=$bordettop?> title" ><? foreach($datatugas['dikirim'] as $dtdkrm){echo $dtdkrm['kelas'].$dtdkrm['nama_kelas']." &nbsp; ";}?></td>
 													<td class="<?=$bordettop?>"><? $tg=tanggal($datatugas['tanggal_buat']." 00:00:00"); echo $tg[2];?></td>
+													<? if($kepsek!='kepsek'){?>
 													<td class="<?=$bordettop?>" >
 														<? if($datatugas['jenis']=='non_remidial'){?>
 														<div class="actedittugas actedit" id_tugas="<?=$datatugas['id']?>" title="ubah" href="<?=base_url('akademik/kirimtugas/kirimtugasutamaedit/'.$datatugas['id'])?>"></div>
@@ -267,6 +277,7 @@
 														<? } ?>
 														<div class="actdell" id="actdelltugas" id_tugas="<?=$datatugas['id']?>"></div>
 													</td>
+													<? } ?>
 												</tr>
 												<tr id="detailtugasterkirim<?=$datatugas['id']?>" style="display:none;">
 													<td colspan="6" class="innercolspan">
@@ -385,3 +396,6 @@
 										</table>
 									</div>
 								</div>
+								<? if($kepsek=='kepsek'){?>
+								</div>
+								<? } ?>

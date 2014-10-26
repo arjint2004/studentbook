@@ -5,11 +5,14 @@ Class Ad_harian extends CI_Model{
 		if(isset($_POST['filter'])){
 			$cond='AND date(tanggal_buat) > "'.date("Y-m-d", mktime(0, 0, 0,  date("m")  , date("d")-$_POST['filter'], date("Y"))).'"';
 		}
-		$query=$this->db->query('SELECT '.implode(",",$field).' FROM ak_harian ap 
+		$query=$this->db->query('SELECT '.implode(",",$field).' FROM ak_harian ap
+								JOIN ak_pelajaran apj
+								ON apj.id=ap.id_pelajaran
 								WHERE
-								ap.id_sekolah='.$id_sekolah.'
+								ap.id_sekolah=?
+								AND ap.id_parent=0
 								'.$cond.'
-								',array($id_kelas,$id_pelajaran));
+								',array($id_sekolah));
 		//echo $this->db->last_query();
 		return $query->result_array();
 	}
@@ -194,7 +197,14 @@ Class Ad_harian extends CI_Model{
 		
 		return $utamadata2;
 	}
-	function getHarianByKelasPelajaranIdPegawaiAllCount($id_pelajaran=0,$id_kelas=0){
+	function getHarianByKelasPelajaranIdPegawaiAllCount($id_pelajaran=0,$id_kelas=0,$id_penggunas=0){
+		
+		if($id_penggunas!=0){
+			$id_pengguna=$id_penggunas;
+		}else{
+			$id_pengguna=$this->session->userdata['user_authentication']['id_pengguna'];
+		}
+		
 		$cnd='';
 		$cnd2='';
 		if($id_pelajaran!=0){$cnd='AND ap.id_pelajaran="'.mysql_real_escape_string($id_pelajaran).'"';}
@@ -205,17 +215,26 @@ Class Ad_harian extends CI_Model{
 								 '.$cnd.'
 								 '.$cnd2.'
 								 AND ap.id_pegawai=?
-								',array($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']));
+								',array($this->session->userdata['user_authentication']['id_sekolah'],$id_pengguna));
 		$out=$query->result_array();						
 		//echo $this->db->last_query();
 		//harian($out);
 		return $out[0]['jml'];
 	}
-	function getHarianByKelasPelajaranIdPegawaiAll($id_pelajaran=0,$id_kelas=0,$start=0,$page=0){
+	function getHarianByKelasPelajaranIdPegawaiAll($id_pelajaran=0,$id_kelas=0,$start=0,$page=0,$id_penggunas=0){
 		$cnd='';
 		$cnd2='';
 		$cnd3='';
-		if(in_array(16,$this->session->userdata['user_authentication']['det_group']) && isset($_POST['kepsek'])){$cnd3='';}else{$cnd3='AND ap.id_pegawai='.mysql_real_escape_string($this->session->userdata['user_authentication']['id_pengguna']).'';}
+		
+		//if(in_array(16,$this->session->userdata['user_authentication']['det_group']) && isset($_POST['kepsek'])){$cnd3='';}else{$cnd3='AND ap.id_pegawai='.mysql_real_escape_string($this->session->userdata['user_authentication']['id_pengguna']).'';}
+
+		if($id_penggunas!=0){
+			$cnd3='AND ap.id_pegawai='.mysql_real_escape_string($id_penggunas).'';
+		}else{
+			$cnd3='AND ap.id_pegawai='.mysql_real_escape_string($this->session->userdata['user_authentication']['id_pengguna']).'';
+		}
+		
+		
 		if($id_pelajaran!=0){$cnd='AND ap.id_pelajaran="'.mysql_real_escape_string($id_pelajaran).'"';}
 		//if($id_kelas!=0){$cnd2='AND apd.id_kelas="'.mysql_real_escape_string($id_kelas).'"';}
 		$query=$this->db->query('SELECT ap. *,apj.nama as nama_pelajaran FROM 
@@ -524,7 +543,14 @@ Class Ad_harian extends CI_Model{
 		return $query->result_array();	
 	}
 	
-	function getharianByKelasPelajaranIdPegawaiKirim($id_pelajaran=0,$id_kelas=0,$id_harianarray=array(),$start=0,$page=0){
+	function getharianByKelasPelajaranIdPegawaiKirim($id_pelajaran=0,$id_kelas=0,$id_harianarray=array(),$start=0,$page=0,$id_penggunas=0){
+		
+		if($id_penggunas!=0){
+			$id_pengguna=$id_penggunas;
+		}else{
+			$id_pengguna=$this->session->userdata['user_authentication']['id_pengguna'];
+		}
+		
 		$cnd='';
 		$cnd2='';
 		$harian=array();
@@ -544,7 +570,7 @@ Class Ad_harian extends CI_Model{
 								 '.$cndin.'
 								 GROUP BY amp.id
 								 ORDER BY amp.id DESC
-								',array($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']));
+								',array($this->session->userdata['user_authentication']['id_sekolah'],$id_pengguna));
 								//echo $this->db->last_query();
 		foreach($query->result_array() as $mtrkrm){
 			$harian[$mtrkrm['id_harian']][$mtrkrm['id']]=$mtrkrm;

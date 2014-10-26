@@ -104,8 +104,16 @@ class Kirimuts extends CI_Controller
 			}
 
         }
-        public function daftarutslist($pelajaran=0,$id_kelas=0,$start=0,$page=0)
+        public function daftarutslist($pelajaran=0,$id_kelas=0,$start=0,$page=0,$id_pengguna=0,$kepsek='')
         {
+			
+			if($start==1){$start=0;}
+			if(isset($_POST['kepsek'])){$kepsek=$_POST['kepsek'];}
+			if(isset($_POST['id_pengguna'])){$id_pengguna=$_POST['id_pengguna'];}
+			$data['kepsek']   = $kepsek;
+			$data['page']   = $page;
+			$data['id_pengguna']   = $id_pengguna;
+			
 			$this->load->model('ad_uts');
 			
 			if(isset($_POST['pelajaran'])){$pelajaran=$_POST['pelajaran'];}
@@ -119,13 +127,14 @@ class Kirimuts extends CI_Controller
 			$data['cur_page']   = $page;
 			$data['start'] = $start;
 			
-			$config['total_rows'] = $this->ad_uts->getUtsByKelasPelajaranIdPegawaiAllCount($pelajaran,$id_kelas);
+			$config['total_rows'] = $this->ad_uts->getUtsByKelasPelajaranIdPegawaiAllCount($pelajaran,$id_kelas,$id_pengguna);
+			//pr($config['total_rows']);
 			//uts($config['total_rows']);
 
-			$uts=$this->ad_uts->getUtsByKelasPelajaranIdPegawaiAll($pelajaran,$id_kelas,$start,$config['per_page']);
+			$uts=$this->ad_uts->getUtsByKelasPelajaranIdPegawaiAll($pelajaran,$id_kelas,$start,$config['per_page'],$id_pengguna);
 
 			$id_utssemua = @array_map(function($var){ return $var['id']; }, $uts);
-			$terkirim=$this->ad_uts->getutsByKelasPelajaranIdPegawaiKirim($pelajaran,$id_kelas,$id_utssemua,$start,$config['per_page']);
+			$terkirim=$this->ad_uts->getutsByKelasPelajaranIdPegawaiKirim($pelajaran,$id_kelas,$id_utssemua,$start,$config['per_page'],$id_pengguna);
 			$this->pagination->initialize($config);
 			$data['link'] = $this->pagination->create_links();
 			$telahdikirim=array();

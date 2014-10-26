@@ -104,8 +104,16 @@ class Kirimtugas extends CI_Controller
 			}
 
         }
-        public function daftartugaslist($pelajaran=0,$id_kelas=0,$start=0,$page=0)
+        public function daftartugaslist($pelajaran=0,$id_kelas=0,$start=0,$page=0,$id_pengguna=0,$kepsek='')
         {
+			
+			if($start==1){$start=0;}
+			if(isset($_POST['kepsek'])){$kepsek=$_POST['kepsek'];}
+			if(isset($_POST['id_pengguna'])){$id_pengguna=$_POST['id_pengguna'];}
+			$data['kepsek']   = $kepsek;
+			$data['page']   = $page;
+			$data['id_pengguna']   = $id_pengguna;
+			
 			$this->load->model('ad_tugas');
 			
 			if(isset($_POST['pelajaran'])){$pelajaran=$_POST['pelajaran'];}
@@ -119,13 +127,14 @@ class Kirimtugas extends CI_Controller
 			$data['cur_page']   = $page;
 			$data['start'] = $start;
 			
-			$config['total_rows'] = $this->ad_tugas->getTugasByKelasPelajaranIdPegawaiAllCount($pelajaran,$id_kelas);
+			$config['total_rows'] = $this->ad_tugas->getTugasByKelasPelajaranIdPegawaiAllCount($pelajaran,$id_kelas,$id_pengguna);
+			//pr($config['total_rows']);
 			//tugas($config['total_rows']);
 
-			$tugas=$this->ad_tugas->getTugasByKelasPelajaranIdPegawaiAll($pelajaran,$id_kelas,$start,$config['per_page']);
+			$tugas=$this->ad_tugas->getTugasByKelasPelajaranIdPegawaiAll($pelajaran,$id_kelas,$start,$config['per_page'],$id_pengguna);
 
 			$id_tugassemua = @array_map(function($var){ return $var['id']; }, $tugas);
-			$terkirim=$this->ad_tugas->gettugasByKelasPelajaranIdPegawaiKirim($pelajaran,$id_kelas,$id_tugassemua,$start,$config['per_page']);
+			$terkirim=$this->ad_tugas->gettugasByKelasPelajaranIdPegawaiKirim($pelajaran,$id_kelas,$id_tugassemua,$start,$config['per_page'],$id_pengguna);
 			$this->pagination->initialize($config);
 			$data['link'] = $this->pagination->create_links();
 			$telahdikirim=array();
