@@ -104,8 +104,16 @@ class Kirimuas extends CI_Controller
 			}
 
         }
-        public function daftaruaslist($pelajaran=0,$id_kelas=0,$start=0,$page=0)
+        public function daftaruaslist($pelajaran=0,$id_kelas=0,$start=0,$page=0,$id_pengguna=0,$kepsek='')
         {
+			
+			if($start==1){$start=0;}
+			if(isset($_POST['kepsek'])){$kepsek=$_POST['kepsek'];}
+			if(isset($_POST['id_pengguna'])){$id_pengguna=$_POST['id_pengguna'];}
+			$data['kepsek']   = $kepsek;
+			$data['page']   = $page;
+			$data['id_pengguna']   = $id_pengguna;
+			
 			$this->load->model('ad_uas');
 			
 			if(isset($_POST['pelajaran'])){$pelajaran=$_POST['pelajaran'];}
@@ -119,13 +127,14 @@ class Kirimuas extends CI_Controller
 			$data['cur_page']   = $page;
 			$data['start'] = $start;
 			
-			$config['total_rows'] = $this->ad_uas->getUasByKelasPelajaranIdPegawaiAllCount($pelajaran,$id_kelas);
+			$config['total_rows'] = $this->ad_uas->getUasByKelasPelajaranIdPegawaiAllCount($pelajaran,$id_kelas,$id_pengguna);
+			//pr($config['total_rows']);
 			//uas($config['total_rows']);
 
-			$uas=$this->ad_uas->getUasByKelasPelajaranIdPegawaiAll($pelajaran,$id_kelas,$start,$config['per_page']);
+			$uas=$this->ad_uas->getUasByKelasPelajaranIdPegawaiAll($pelajaran,$id_kelas,$start,$config['per_page'],$id_pengguna);
 
 			$id_uassemua = @array_map(function($var){ return $var['id']; }, $uas);
-			$terkirim=$this->ad_uas->getuasByKelasPelajaranIdPegawaiKirim($pelajaran,$id_kelas,$id_uassemua,$start,$config['per_page']);
+			$terkirim=$this->ad_uas->getuasByKelasPelajaranIdPegawaiKirim($pelajaran,$id_kelas,$id_uassemua,$start,$config['per_page'],$id_pengguna);
 			$this->pagination->initialize($config);
 			$data['link'] = $this->pagination->create_links();
 			$telahdikirim=array();

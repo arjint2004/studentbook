@@ -78,7 +78,7 @@ class Kepsek extends CI_Controller
 				break;
 				case "pr":
 					$this->load->model('ad_pr');
-					$datarpp	=$this->ad_pr->getPrByIdSekolah($this->session->userdata['user_authentication']['id_sekolah'],array('id','id_pegawai,judul'));
+					$datarpp	=$this->ad_pr->getPrByIdSekolah($this->session->userdata['user_authentication']['id_sekolah'],array('ap.id','ap.id_pegawai,ap.judul'));
 					foreach($datarpp as $ky=>$dtrpp){
 						$datarpp2[$dtrpp['id_pegawai']][]=$dtrpp;
 					}
@@ -264,21 +264,32 @@ class Kepsek extends CI_Controller
 					die();
 				break;
 				case "pr":
-				
+					redirect('akademik/kirimpr/daftarprlist/0/0/0/0/'.$params['id_peg'].'/kepsek');
+					die();
 				break;
 				case "tugas":
+					redirect('akademik/kirimtugas/daftartugaslist/0/0/0/0/'.$params['id_peg'].'/kepsek');
+					die();
 				
 				break;
 				case "harian":
+					redirect('akademik/kirimharian/daftarharianlist/0/0/0/0/'.$params['id_peg'].'/kepsek');
+					die();
 				
 				break;
 				case "uts":
+					redirect('akademik/kirimuts/daftarutslist/0/0/0/0/'.$params['id_peg'].'/kepsek');
+					die();
 				
 				break;
 				case "uas":
+					redirect('akademik/kirimuas/daftaruaslist/0/0/0/0/'.$params['id_peg'].'/kepsek');
+					die();
 				
 				break;
 				case "catatan":
+					//redirect('akademik/kirimuas/daftartugaslist/0/0/0/0/'.$params['id_peg'].'/kepsek');
+					//die();
 				
 				break;
 			}

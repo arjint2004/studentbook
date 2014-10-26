@@ -60,7 +60,7 @@
 										var objdell=$(this);
 										$.ajax({
 											type: "POST",
-											data: '',
+											data: 'id_pengguna=<?=@$id_pengguna?>&kepsek=<?=@$kepsek?>',
 											url: $(objdell).attr('href'),
 											beforeSend: function() {
 												$(objdell).after("<img class='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -68,7 +68,7 @@
 											success: function(msg) {
 												$(".wait").remove();	
 												$("#subjectlistuts").html(msg);
-												$('#subjectujian').scrollintoview({ speed:'1100'});
+												//$('#subjectpembelajaran').scrollintoview({ speed:'1100'});
 											}
 										});
 										return false;
@@ -96,13 +96,14 @@
 								}
 								</script>
 								<? //uts($uts);?>
-							   
-
-								
+								<? if($kepsek=='kepsek' && $page==0){?>
+								<div id="subjectlistuts" style="min-width:700px;">	
+								<? } ?>	
 								<div class="tabs-container">
 									<ul class="tabs-frame tabs-frameuts">
 										<li><a href="#">Semua arsip UTS</a></li>
 										<li><a href="#">UTS Terkirim</a></li>
+										<li><a href="#">Download</a></li>
 									</ul>
 									<div class="tabs-frame-content tabs-frame-contentuts ">
 									<div style="float:left;" id="paginationutsilist" >
@@ -117,7 +118,9 @@
 													<th>Dikirim Ke</th>
 													<th>Tgl Upload</th>
 													<th style="width:37px;">Detail</th>
+													<? if($kepsek!='kepsek'){?>
 													<th style="width:75px;">Ubah|Hapus</th>
+													<? } ?>
 												</tr>                         
 											</thead>
 											<tbody>
@@ -143,6 +146,7 @@
 													?></td>
 													<td class="<?=$bordettop?>"><? $tg=tanggal($datauts['tanggal_buat']." 00:00:00"); echo $tg[2];?></td>
 													<td class="<?=$bordettop?>"><a style="cursor:pointer;">Lihat</a></td>
+													<? if($kepsek!='kepsek'){?>
 													<td class="<?=$bordettop?>" >
 														<? if($datauts['jenis']=='non_remidial'){?>
 														<div class="actedituts actedit" id_uts="<?=$datauts['id']?>" title="ubah" href="<?=base_url('akademik/kirimuts/kirimutsutamaedit/'.$datauts['id'])?>"></div>
@@ -151,6 +155,7 @@
 														<? } ?>
 														<div class="actdell" id="actdelluts" id_uts="<?=$datauts['id']?>"></div>
 													</td>
+													<?}?>
 												</tr>
 												<tr id="detailutssemua<?=$datauts['id']?>" style="display:none;">
 													<td colspan="7" class="innercolspan">
@@ -243,7 +248,9 @@
 													<th>Judul</th>
 													<th>Ke Kelas</th>
 													<th>Waktu Upload</th>
-													<th>Action</th>
+													<? if($kepsek!='kepsek'){?>
+													<th>Ubah | Hapus</th>
+													<? } ?>
 												</tr>                         
 											</thead>
 											<tbody>
@@ -261,6 +268,7 @@
 													<td class="<?=$bordettop?> title" ><?=$datauts['judul']?></td>
 													<td class="<?=$bordettop?> title" ><? foreach($datauts['dikirim'] as $dtdkrm){echo $dtdkrm['kelas'].$dtdkrm['nama_kelas']." &nbsp; ";}?></td>
 													<td class="<?=$bordettop?>"><? $tg=tanggal($datauts['tanggal_buat']." 00:00:00"); echo $tg[2];?></td>
+													<? if($kepsek!='kepsek'){?>
 													<td class="<?=$bordettop?>" >
 														<? if($datauts['jenis']=='non_remidial'){?>
 														<div class="actedituts actedit" id_uts="<?=$datauts['id']?>" title="ubah" href="<?=base_url('akademik/kirimuts/kirimutsutamaedit/'.$datauts['id'])?>"></div>
@@ -269,6 +277,7 @@
 														<? } ?>
 														<div class="actdell" id="actdelluts" id_uts="<?=$datauts['id']?>"></div>
 													</td>
+													<? } ?>
 												</tr>
 												<tr id="detailutsterkirim<?=$datauts['id']?>" style="display:none;">
 													<td colspan="6" class="innercolspan">
@@ -368,5 +377,25 @@
 										<?=$link?>
 										</div>										
 									</div>
-
+									<div class="tabs-frame-content tabs-frame-contentuts">
+										<table>
+											<thead>
+													<tr>
+														<th>No</th>
+														<th>Nama</th>
+														<th>Link</th>
+													</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td style="text-align:left;width:1%;">1</td>
+													<td style="text-align:left;">Template  Soal</td>
+													<td><a href="<?=base_url('upload/akademik/template/TemplateUts.docx')?>">Download</a></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
 								</div>
+								<? if($kepsek=='kepsek'){?>
+								</div>
+								<? } ?>

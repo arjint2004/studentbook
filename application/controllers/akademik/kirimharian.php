@@ -104,8 +104,16 @@ class Kirimharian extends CI_Controller
 			}
 
         }
-        public function daftarharianlist($pelajaran=0,$id_kelas=0,$start=0,$page=0)
+        public function daftarharianlist($pelajaran=0,$id_kelas=0,$start=0,$page=0,$id_pengguna=0,$kepsek='')
         {
+			
+			if($start==1){$start=0;}
+			if(isset($_POST['kepsek'])){$kepsek=$_POST['kepsek'];}
+			if(isset($_POST['id_pengguna'])){$id_pengguna=$_POST['id_pengguna'];}
+			$data['kepsek']   = $kepsek;
+			$data['page']   = $page;
+			$data['id_pengguna']   = $id_pengguna;
+			
 			$this->load->model('ad_harian');
 			
 			if(isset($_POST['pelajaran'])){$pelajaran=$_POST['pelajaran'];}
@@ -119,13 +127,14 @@ class Kirimharian extends CI_Controller
 			$data['cur_page']   = $page;
 			$data['start'] = $start;
 			
-			$config['total_rows'] = $this->ad_harian->getHarianByKelasPelajaranIdPegawaiAllCount($pelajaran,$id_kelas);
+			$config['total_rows'] = $this->ad_harian->getHarianByKelasPelajaranIdPegawaiAllCount($pelajaran,$id_kelas,$id_pengguna);
+			//pr($config['total_rows']);
 			//harian($config['total_rows']);
 
-			$harian=$this->ad_harian->getHarianByKelasPelajaranIdPegawaiAll($pelajaran,$id_kelas,$start,$config['per_page']);
+			$harian=$this->ad_harian->getHarianByKelasPelajaranIdPegawaiAll($pelajaran,$id_kelas,$start,$config['per_page'],$id_pengguna);
 
 			$id_hariansemua = @array_map(function($var){ return $var['id']; }, $harian);
-			$terkirim=$this->ad_harian->getharianByKelasPelajaranIdPegawaiKirim($pelajaran,$id_kelas,$id_hariansemua,$start,$config['per_page']);
+			$terkirim=$this->ad_harian->getharianByKelasPelajaranIdPegawaiKirim($pelajaran,$id_kelas,$id_hariansemua,$start,$config['per_page'],$id_pengguna);
 			$this->pagination->initialize($config);
 			$data['link'] = $this->pagination->create_links();
 			$telahdikirim=array();

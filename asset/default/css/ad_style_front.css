@@ -166,7 +166,7 @@ border-bottom: 1px solid #999999;
 padding-top: 34px;
 vertical-align: top;
 }
-.profile  table tr td.title{
+.profile table tr td.title, #fancybox-wrap table tr td.title{
 	text-align:left;
 }
   table.lap  tr td.title{
@@ -460,3 +460,6 @@ table.left tr td{
 .left{text-align:left;}
 .center{text-align:center;}
 .right{text-align:right;}
+
+form#simpanhportuform table tr td input,form#simpanbiodata table tr td input{margin:0;}
+form#simpanbiodata table tr td input{width:200px;}
