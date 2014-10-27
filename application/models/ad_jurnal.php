@@ -42,7 +42,8 @@ Class Ad_jurnal extends CI_Model{
 								//echo $this->db->last_query(); 
 		return $query->result_array();
 	}
-	function getCountPenghubung($id_kelas=0){
+	function getCountPenghubung($id_kelas=0,$id_penggunas=0){
+		if($id_penggunas!=0){$id_pengguna=$id_penggunas;}else{$id_pengguna=$this->session->userdata['user_authentication']['id_pengguna'];}
 		$query=$this->db->query('SELECT COUNT(*) AS count
 								FROM `ak_penghubung` peng 
 								JOIN ak_kelas ak
@@ -58,8 +59,9 @@ Class Ad_jurnal extends CI_Model{
 		$rslt=$query->result_array();				
 		return $rslt[0]['count'];
 	}
-	function getDataPenghubung($id_sekolah,$id_kelas,$limit){
-		if($this->session->userdata['user_authentication']['otoritas']=='ortu' || $this->session->userdata['user_authentication']['otoritas']=='siswa' ){
+	function getDataPenghubung($id_sekolah,$id_kelas,$limit,$id_penggunas=0){
+		if($id_penggunas!=0){$id_pengguna=$id_penggunas;}else{$id_pengguna=$this->session->userdata['user_authentication']['id_pengguna'];}
+		if($this->session->userdata['user_authentication']['otoritas']=='ortu' || $this->session->userdata['user_authentication']['otoritas']=='siswa' ){ //echo 1111;
 			$query=$this->db->query('SELECT peng.*,ak.nama,ak.kelas,ak.id as id_kelas
 									FROM `ak_penghubung` peng 
 									JOIN ak_kelas ak
@@ -78,7 +80,21 @@ Class Ad_jurnal extends CI_Model{
 									ORDER BY id DESC
 									LIMIT '.$limit.'
 									',array($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['ak_setting']['ta'],$this->session->userdata['ak_setting']['semester'],$id_kelas,$this->session->userdata['user_authentication']['id_siswa']));				
-		}else{
+		}elseif($id_penggunas!=0){ //echo $id_penggunas;
+			$query=$this->db->query('SELECT peng.*,ak.nama,ak.kelas,ak.id as id_kelas
+									FROM `ak_penghubung` peng 
+									JOIN ak_kelas ak
+									ON ak.id=peng.id_kelas
+									WHERE peng.id_sekolah=?
+									AND 
+									peng.id_ta=?
+									AND 
+									peng.semester=?
+									AND 
+									peng.id_pegawai=?
+									ORDER BY id DESC
+									',array($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['ak_setting']['ta'],$this->session->userdata['ak_setting']['semester'],$id_pengguna));			
+		}else{ //echo 3333;
 			$query=$this->db->query('SELECT peng.*,ak.nama,ak.kelas,ak.id as id_kelas
 									FROM `ak_penghubung` peng 
 									JOIN ak_kelas ak
@@ -90,9 +106,11 @@ Class Ad_jurnal extends CI_Model{
 									peng.semester=?
 									AND 
 									peng.id_kelas=?
+									AND 
+									peng.id_pegawai=?
 									ORDER BY id DESC
 									LIMIT '.$limit.'
-									',array($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['ak_setting']['ta'],$this->session->userdata['ak_setting']['semester'],$id_kelas));		
+									',array($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['ak_setting']['ta'],$this->session->userdata['ak_setting']['semester'],$id_kelas,$id_pengguna));		
 									
 		}//echo $this->db->last_query(); 
 		return $query->result_array();

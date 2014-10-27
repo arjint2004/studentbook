@@ -261,11 +261,11 @@ class Materi extends CI_Controller
 			$config['cur_page']   = $start;
 			$data['cur_page']   = $page;
 			$data['start'] = $start;
-			$config['total_rows'] = $this->ad_materi->getmateriByKelasPelajaranIdPegawaiAllCount($pelajaran,$id_kelas);
+			$config['total_rows'] = $this->ad_materi->getmateriByKelasPelajaranIdPegawaiAllCount($pelajaran,$id_kelas,$id_pengguna);
 			//pr($config['total_rows']);
             $materi =$this->ad_materi->getmateriByKelasPelajaranIdPegawaiAll($pelajaran,$id_kelas,$start,$config['per_page'],$id_pengguna);
 			$id_materisemua = @array_map(function($var){ return $var['id']; }, $materi);
-			$terkirim=$this->ad_materi->getmateriByKelasPelajaranIdPegawaiKirim($pelajaran,$id_kelas,$id_materisemua,$start,$config['per_page']);
+			$terkirim=$this->ad_materi->getmateriByKelasPelajaranIdPegawaiKirim($pelajaran,$id_kelas,$id_materisemua,$start,$config['per_page'],$id_pengguna);
 			$this->pagination->initialize($config);
 			$data['link'] = $this->pagination->create_links();
 			//$data['pagination'] = $this->pagination->create_links();
@@ -276,7 +276,7 @@ class Materi extends CI_Controller
 			//$config['uri_segment']   = 5;
 			$configk['cur_page']   = $start;
 			$data['start'] = $start;
-			$configk['total_rows'] = $this->ad_materi->getmateriByKelasPelajaranIdPegawaiKirimCount($pelajaran,$id_kelas);
+			$configk['total_rows'] = $this->ad_materi->getmateriByKelasPelajaranIdPegawaiKirimCount($pelajaran,$id_kelas,$id_pengguna);
             $terkirim =$this->ad_materi->getmateriByKelasPelajaranIdPegawaiKirim($pelajaran,$id_kelas,$start,$configk['per_page']);
 			$this->pagination->initialize($configk);
 			$data['paginationk'] = $this->pagination->create_links();*/
