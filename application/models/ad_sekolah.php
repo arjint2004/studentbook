@@ -7,7 +7,7 @@ Class Ad_sekolah extends CI_Model
 		$query=$this->db->query('SELECT * FROM ak_sekolah '.$join.' WHERE id='.$id_sekolah.'');
 	 }else{
 		$query=$this->db->query('SELECT '.implode(',',$field).' FROM ak_sekolah '.$join.' WHERE id='.$id_sekolah.'');
-	 }
+	 }echo $this->db->last_query();	
 		return $query->result_array();		
 	 }
 	 
