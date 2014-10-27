@@ -239,7 +239,7 @@ class Kepsek extends CI_Controller
 		
 		function lihat($jenis='',$params=''){
 			$params=unserialize($this->myencrypt->decode($params));
-			//pr($params);
+			pr($params);
 			$data['jenis']=$jenis;
 			if(isset($_POST['jenis'])){$jenis=$_POST['jenis'];}
 			switch($jenis){
@@ -258,6 +258,8 @@ class Kepsek extends CI_Controller
 				break;
 				case "penghortu":
 				
+					redirect('akademik/jurnalwali/penghubungortulist/0/0/'.$params['id_peg'].'/kepsek');
+					die();
 				break;
 				case "materi":
 					redirect('akademik/materi/daftarmaterilist/0/0/0/0/'.$params['id_peg'].'/kepsek');

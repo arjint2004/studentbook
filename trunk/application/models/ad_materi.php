@@ -22,7 +22,8 @@ Class Ad_materi extends CI_Model{
 		//echo $this->db->last_query();
 		return $query->result_array();
 	}
-	function getmateriByKelasPelajaranIdPegawaiKirimCount($id_pelajaran=0,$id_kelas=0){
+	function getmateriByKelasPelajaranIdPegawaiKirimCount($id_pelajaran=0,$id_kelas=0,$id_penggunas=0){
+		if($id_penggunas!=0){$id_pengguna=$id_penggunas;}else{$id_pengguna=$this->session->userdata['user_authentication']['id_pengguna'];}
 		$cnd='';
 		$cnd2='';
 		$materi=array();
@@ -38,11 +39,12 @@ Class Ad_materi extends CI_Model{
 								 '.$cnd.'
 								 '.$cnd2.'
 								 AND amp.id_pegawai=?
-								',array($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']));
+								',array($this->session->userdata['user_authentication']['id_sekolah'],$id_pengguna));
 		$all=$query->result_array();
 		return $all[0]['jml'];
 	}
-	function getmateriByKelasPelajaranIdPegawaiKirim($id_pelajaran=0,$id_kelas=0,$id_prarray,$start=0,$page=0){
+	function getmateriByKelasPelajaranIdPegawaiKirim($id_pelajaran=0,$id_kelas=0,$id_prarray,$start=0,$page=0,$id_penggunas=0){
+		if($id_penggunas!=0){$id_pengguna=$id_penggunas;}else{$id_pengguna=$this->session->userdata['user_authentication']['id_pengguna'];}
 		$cnd='';
 		$cnd2='';
 		$materi=array();
@@ -61,14 +63,15 @@ Class Ad_materi extends CI_Model{
 								 AND amp.id_pegawai=?
 								 '.$cndin.'
 								 ORDER BY amp.id DESC
-								',array($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']));
+								',array($this->session->userdata['user_authentication']['id_sekolah'],$id_pengguna));
 								//echo $this->db->last_query();
 		foreach($query->result_array() as $mtrkrm){
 			$materi[$mtrkrm['id_materi']][$mtrkrm['id']]=$mtrkrm;
 		}
 		return $materi;
 	}
-	function getmateriByKelasPelajaranIdPegawaiAllCount($id_pelajaran=0,$id_kelas=0){
+	function getmateriByKelasPelajaranIdPegawaiAllCount($id_pelajaran=0,$id_kelas=0,$id_penggunas=0){
+		if($id_penggunas!=0){$id_pengguna=$id_penggunas;}else{$id_pengguna=$this->session->userdata['user_authentication']['id_pengguna'];}
 		$cnd='';
 		$cnd2='';
 		if($id_pelajaran!=0){$cnd='AND amp.id_pelajaran="'.mysql_real_escape_string($id_pelajaran).'"';}
@@ -81,7 +84,7 @@ Class Ad_materi extends CI_Model{
 								 '.$cnd.'
 								 '.$cnd2.'
 								 AND amp.id_pegawai=?
-								',array($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']));
+								',array($this->session->userdata['user_authentication']['id_sekolah'],$id_pengguna));
 		$out=$query->result_array();						
 		//echo $this->db->last_query();
 		//pr($out[0]['jml']);

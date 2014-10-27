@@ -91,18 +91,23 @@ class jurnalwali extends CI_Controller
 		
 		//penghubung ortu
 		
-        public function penghubungortulist($start=0,$page=0)
+        public function penghubungortulist($start=0,$page=0,$id_pengguna=0,$kepsek=0)
         {
-						
+			if($start==1){$start=0;}
+			if(isset($_POST['kepsek'])){$kepsek=$_POST['kepsek'];}
+			if(isset($_POST['id_pengguna'])){$id_pengguna=$_POST['id_pengguna'];}
+			$data['kepsek']   = $kepsek;
+			$data['id_pengguna']   = $id_pengguna;
+			
 			//data
 			$this->load->model('ad_jurnal');
 			$this->load->library('pagination');
 			
 			$config['base_url']   = site_url('akademik/jurnalwali/penghubungortulist');
-			$config['per_page']   = 10;
+			$config['per_page']   = 2;
 
 			$config['cur_page']   = $start;
-			$config['total_rows'] = $this->ad_jurnal->getCountPenghubung($_POST['id_kelas']);
+			$config['total_rows'] = $this->ad_jurnal->getCountPenghubung($_POST['id_kelas'],$id_pengguna);
 			$data['start'] = $start;
 			
 			$data['datahubung']=array();
@@ -114,6 +119,14 @@ class jurnalwali extends CI_Controller
 						$data['datahubung'][$ky]['siswa']=$this->ad_jurnal->getPengDikirim($datapeng['id']);
 					}
 				}
+			}elseif($kepsek=='kepsek'){
+				$data['datahubung']=$this->ad_jurnal->getDataPenghubung($this->session->userdata['user_authentication']['id_sekolah'],$_POST['id_kelas'],''.$start.','.$config['per_page'].'',$id_pengguna);
+				if(!empty($data['datahubung'])){
+					foreach($data['datahubung'] as $ky=>$datapeng){
+						$data['datahubung'][$ky]['file']=$this->ad_jurnal->getFilePengByIdPeng($datapeng['id']);
+						$data['datahubung'][$ky]['siswa']=$this->ad_jurnal->getPengDikirim($datapeng['id']);
+					}
+				}				
 			}
 			
 			$this->pagination->initialize($config);
