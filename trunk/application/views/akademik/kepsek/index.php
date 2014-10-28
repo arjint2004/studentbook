@@ -79,7 +79,7 @@ $this->load->view('akademik/mainakademik/topindex');
          <p>Mengenang Iklan Sepanjang Masa</p>
     </div>
 	-->
-	<div id="buttonasbin" class="buttonasbin tabs-frame-content back_berita fixed">
+	<!--<div id="buttonasbin" class="buttonasbin tabs-frame-content back_berita fixed">
 			<div style="width:158px;" class="readmorenoplus" title="" onclick="window.location='<?=base_url('akademik/mainakademik/index')?>'">Akademik</div>
 			<div style="width:158px;" class="readmorenoplus" title="" onclick="window.location='<?=base_url('sos/pegawai/pertemanan')?>'">Jejaring Sosial</div>
 			<div style="width:158px;" class="readmorenoplus" title="" onclick="$('#absensikepsek').scrollintoview({ speed:'1100'});">Absensi</div>
@@ -99,7 +99,7 @@ $this->load->view('akademik/mainakademik/topindex');
 			<div style="width:158px;" class="readmorenoplus" title="" onclick="$('#lainkepsek').scrollintoview({ speed:'1100'});">Lain-Lain</div>
 	</div>
 
-	<!-- iklan batas -->
+	 iklan batas -->
 	<!-- end iklan batas -->	
 	
 	<div class="clear"></div>
