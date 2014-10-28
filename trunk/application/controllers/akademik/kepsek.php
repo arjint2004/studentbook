@@ -239,7 +239,7 @@ class Kepsek extends CI_Controller
 		
 		function lihat($jenis='',$params=''){
 			$params=unserialize($this->myencrypt->decode($params));
-			pr($params);
+			//pr($params);
 			$data['jenis']=$jenis;
 			if(isset($_POST['jenis'])){$jenis=$_POST['jenis'];}
 			switch($jenis){
