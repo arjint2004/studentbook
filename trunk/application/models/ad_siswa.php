@@ -221,5 +221,9 @@ Class Ad_siswa extends CI_Model
 									ORDER BY s.nama ASC',array($this->session->userdata['user_authentication']['id_sekolah'],$id_kelas,$id_ta_berikutnya));
 		return $query->result_array();	
 	}
+	function getraportmanuaal($id_siswa_det_jenjang){
+		$query=$this->db->query('SELECT * FROM raportmanual WHERE id_siswa_detjenjang=? AND id_sekolah=? AND id_ta=? AND semester=?',array($id_siswa_det_jenjang,$this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['ak_setting']['ta'],$this->session->userdata['ak_setting']['semester']));
+		return $query->result_array();			
+	}
 }
 ?>
