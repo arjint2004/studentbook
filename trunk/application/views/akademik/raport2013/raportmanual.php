@@ -406,7 +406,7 @@
 			  <td align="center" class="raportmanual actedit" name="psikomotorik_<?=$keymapel?>"><?=$raportmanual['psikomotorik_'.$keymapel.'']?></td>
 			  <td align="center" class="raportmanual actedit" name="afektif_<?=$keymapel?>"><?=$raportmanual['afektif_'.$keymapel.'']?></td>
 			  <? if($no==1){?>
-				<td rowspan="<?=count($raport)+count($dataraport['submapel'])?>" class="raportmanual actedit" name="deskripsi" type="textarea" >manual</td>
+				<td rowspan="<?=count($raport)+count($dataraport['submapel'])?>" class="raportmanual actedit" name="deskripsi" type="textarea" ><?=$raportmanual['deskripsi']?></td>
 			  <? } ?>
 		    </tr>
 			<?
