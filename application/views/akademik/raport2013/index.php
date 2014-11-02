@@ -16,7 +16,7 @@
 			<td><?=$no++?></td>
 			<td style="text-align:left;"><?=$datasiswa['nis']?></td>
 			<td style="text-align:left;"><?=$datasiswa['nama']?></td>
-			<td><a class="lihatraport fancyboxIframe" href="<?=base_url('akademik/raport2013/lihat/'.$this->myencrypt->encode(serialize($url)).'');?>">Lihat Raport</a></td>
+			<td><a class="lihatraport fancyboxIframe" href="<?=base_url('akademik/raport2013/lihat/'.$this->myencrypt->encode(serialize($url)).'');?>">Raport Otomatis</a> | <a class="lihatraport fancyboxIframe" href="<?=base_url('akademik/raport2013/lihatmanual/'.$this->myencrypt->encode(serialize($url)).'');?>">Raport Manual</a></td>
 		</tr>
 		<? } ?>
 	</tbody>
