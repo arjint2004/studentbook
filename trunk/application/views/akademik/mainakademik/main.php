@@ -233,7 +233,7 @@
 
 		<ul class="tabs-frame">
 			<li>
-				<a class="current" >Input</a>
+				<a class="current" >Prestasi</a>
 			</li>
 			<li>
 				<a  id="hportutab">Biodata Siswa</a>
@@ -249,9 +249,9 @@
 			</li>
 		</ul>
 		<div class="tabs-frame-content" style="display: none;">
-			<a class="readmore" tab="wali_input" id="kepribadian" title="" > Kepribadian </a>
-			<a class="readmore" tab="wali_input" id="prestasi" title="" > Prestasi </a>
-			<a class="readmore" title="" tab="nilai" href="" id="<?=base64_encode('nilai lain_lain');?>">Lain-Lain </a>
+			<!--<a class="readmore" tab="wali_input" id="kepribadian" title="" > Kepribadian </a>-->
+			<a class="readmore" tab="wali_input" id="prestasi" title="" >Input Prestasi </a>
+			<!--<a class="readmore" title="" tab="nilai" href="" id="<?=base64_encode('nilai lain_lain');?>">Lain-Lain </a>-->
 		</div>
 		<div class="tabs-frame-content" id="hportu" style="display: block;">
            
