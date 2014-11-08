@@ -116,7 +116,7 @@ class Sekolah extends CI_Controller {
 				$cond =" AND ak_sekolah.prop=".$_POST['propinsi']."";
 			}
 			if(isset($_POST['kabupaten']) && $_POST['kabupaten']!=0){
-				$cond .=" AND ak_sekolah.kec=".$_POST['kabupaten']."";
+				$cond .=" AND ak_sekolah.kota=".$_POST['kabupaten']."";
 			}
 			if(isset($_POST['jenjang']) && $_POST['jenjang']!=0){
 				if(isset($_POST['propinsi']) && $_POST['propinsi']==0){
