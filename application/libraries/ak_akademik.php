@@ -376,7 +376,12 @@ class Ak_akademik {
 			$kognitif[$datapel['id']]['psikomotorik']=round(@$nilaiPraktik[$datapel['id']][0]['nilai'],2);
 			$kognitif[$datapel['id']]['afektif']=@$nilaiAfektif[$datapel['id']][0]['nilai'];
 			//$kognitif[$datapel['id']]['ketercapaian']=@$nilaiKetercapaian[$datapel['id']][0]['nilai'];
-			
+			pr($PR);
+			pr($TUGAS);
+			pr($HARIAN);
+			pr($UAS);
+			pr($UTS);
+			pr($rumuskognitif);
 			$rumuskognitif2='$hs='.$rumuskognitif.';';
 			eval($rumuskognitif2);
 			$kognitif[$datapel['id']]['kognitif']=round($hs,2);
