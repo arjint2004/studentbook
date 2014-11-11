@@ -379,7 +379,7 @@ class Ak_akademik {
 			
 			$rumuskognitif2='$hs='.$rumuskognitif.';';
 			eval($rumuskognitif2);
-			$kognitif[$datapel['id']]['kognitif']=$hs;
+			$kognitif[$datapel['id']]['kognitif']=round($hs,2);
 			
 			if($datapel['havechild']==1){
 				$subnilai=$this->SubnilaiRaportPerSiswa2013($id_det_jenjang,$datapel['id']);

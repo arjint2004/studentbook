@@ -326,8 +326,8 @@
 		<table style="max-width:1024px;" class="asbin" id="allset"  border="1" >
 			<tr>
 			  <th colspan="2" rowspan="2" align="left">MATA PELAJARAN </th>
-			  <th rowspan="2">Pengetahuan (KI 3) </th>
-			  <th rowspan="2">Ketrampilan (KI 4) </th>
+			  <th colspan="2" rowspan="2">Pengetahuan (KI 3) </th>
+			  <th colspan="2" rowspan="2">Ketrampilan (KI 4) </th>
 			  <th colspan="2">Sikap Spiritual dan Sosial<br />(KI dan KI 2) </th>
 		  </tr>
 		  <tr>
@@ -340,6 +340,8 @@
 			  <th colspan="2" align="left">KELOMPOK A </th>
 			  <th>&nbsp;</th>
 			  <th>&nbsp;</th>
+			  <th>&nbsp;</th>
+			  <th>&nbsp;</th>
 			  <th>SB/B/C/K</th>
 			  <th>Deskripsi</th>
 		  </tr>
@@ -350,7 +352,9 @@
 			  <td><?=$no?></td>
 			  <td  align="left"><?=$dataraport['pelajaran']?></td>
 			  <td align="center"><?=$dataraport['kognitif']?></td>
+			  <td align="center"><?=coverttoabjad($dataraport['kognitif'])?></td>
 			  <td align="center"><?=$dataraport['psikomotorik']?></td>
+			  <td align="center"><?=coverttoabjad($dataraport['kognitif'])?></td>
 			  <td align="center"><?=$dataraport['afektif']?></td>
 			  <? if($no==1){?>
 				<td rowspan="<?=count($raport)+count($dataraport['submapel'])?>">&nbsp;</td>
@@ -363,7 +367,9 @@
 					  <td><?//=$noa2?></td>
 					  <td  align="left">&nbsp;&nbsp;<?=$dataraport2['pelajaran']?></td>
 					  <td align="center"><?=$dataraport2['kognitif']?></td>
+					  <td align="center"><?=coverttoabjad($dataraport['kognitif'])?></td>
 					  <td align="center"><?=$dataraport2['psikomotorik']?></td>
+					  <td align="center"><?=coverttoabjad($dataraport['kognitif'])?></td>
 					  <td align="center"><?=$dataraport2['afektif']?></td>
 					</tr>			  
 			<? } } ?>
@@ -790,8 +796,8 @@
 					<tr>
 					  <td>NIP:&nbsp;&nbsp;<?=$kepsek[0]['nip']?></td>
 					</tr>
-				  </table>
-				</td>
+			    </table>
+			  </td>
 		  </tr>
 			<tr>
 			  <td>1</td>
@@ -854,8 +860,8 @@
 					<tr>
 					  <td>NIP:&nbsp;&nbsp;<?=$kepsek[0]['nip']?></td>
 					</tr>
-				  </table>
-				</td>
+			    </table>
+			  </td>
 		  </tr>
 			<tr>
 			  <td>1</td>
@@ -894,6 +900,7 @@
 		  </tr>
 			
 
+
 			<tr>
 			  <td>&nbsp;</td>
 			  <td>&nbsp;</td>
@@ -918,8 +925,8 @@
 					<tr>
 					  <td>NIP:&nbsp;&nbsp;<?=$kepsek[0]['nip']?></td>
 					</tr>
-				  </table>
-				</td>
+			    </table>
+			  </td>
 		  </tr>
 			<tr>
 			  <td>1</td>
@@ -988,7 +995,7 @@
 			  <td style="text-align:left; border-bottom:1px solid #000;">&nbsp;&nbsp;<?=$siswa[0]['nis']?></td>
 			  </tr>
 		</tbody>
-		</table>
+	</table>
 		<BR />
 		<BR />
 		<table id="allset" class="asbin" border="1" style="max-width:1024px;" >

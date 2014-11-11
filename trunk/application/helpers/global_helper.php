@@ -637,6 +637,34 @@ if (!function_exists('is_image')) {
 		return false;
 	}
 }
+if (!function_exists('coverttoabjad')) {
+    function coverttoabjad($nilai=0)
+	{
+		if($nilai>=0 && $nilai<=1){
+			$nilainya='D';
+		}elseif($nilai>1 && $nilai<=1.33){
+			$nilainya='D+';
+		}elseif($nilai>1.33 && $nilai<=1.66){
+			$nilainya='C-';
+		}elseif($nilai>1.66 && $nilai<=2){
+			$nilainya='C';
+		}elseif($nilai>2 && $nilai<=2.33){
+			$nilainya='C+';
+		}elseif($nilai>2.33 && $nilai<=2.66){
+			$nilainya='B-';
+		}elseif($nilai>2.66 && $nilai<=3){
+			$nilainya='B';
+		}elseif($nilai>3 && $nilai<=3.33){
+			$nilainya='B+';
+		}elseif($nilai>3.33 && $nilai<=3.66){
+			$nilainya='A';
+		}elseif($nilai>3.66 && $nilai<=4){
+			$nilainya='A';
+		}
+		
+		return $nilainya;
+	}
+}
 if (!function_exists('download_panduan')) {
 
      function download_panduan($filename='')
