@@ -221,7 +221,7 @@ class Nilai extends CI_Controller {
 				//notifikasi
 				//$this->ak_notifikasi->set_notifikasi_akademik_per_siswa($id_siswa,$gorup_notif='pr',$_POST['id_pelajaran'],$_POST['judul'],$_POST['id_pegawai'],$_POST['keterangan']);
 				$this->ak_notifikasi->set_notifikasi_akademik_per_siswa_detjenjang($id_siswa_det_jenjag,$gorup_notif='nilai',$_POST['id_pelajaran'],$nilai,$this->session->userdata['user_authentication']['id_pengguna'],'Nilai '.$_POST['jenis'].' Tahun Ajaran '.$this->session->userdata['ak_setting']['ta_nama'].', Semester '.$this->session->userdata['ak_setting']['semester_nama'].'');
-				$this->ad_notifikasi->add_notif_sms_nilai_ortu_per_siswa_detjenjang($id_siswa_det_jenjag,$_POST['id_pelajaran'],$data=array('group'=>$_POST['jenis']),$nilai);
+				//$this->ad_notifikasi->add_notif_sms_nilai_ortu_per_siswa_detjenjang($id_siswa_det_jenjag,$_POST['id_pelajaran'],$data=array('group'=>$_POST['jenis']),$nilai);
 				//end notifikasi
 				}
 			}
