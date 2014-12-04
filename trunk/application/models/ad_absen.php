@@ -22,7 +22,7 @@ Class Ad_absen extends CI_Model{
 								WHERE month( `tanggal` ) =?
 								AND id_siswa_det_jenjang=?
 								',array($month,$this->session->userdata['user_authentication']['id_siswa_det_jenjang']));
-		echo $this->db->last_query();
+		//echo $this->db->last_query();
 		return $query->result_array();
 	}
 	function getAbsensiByMonthByKelasPel($month=0,$id_kelas=0){
