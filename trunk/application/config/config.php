@@ -14,8 +14,8 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://webdevel/studentbookrepo/';
-
+$config['base_url']	= 'https://studentbook.co/';
+ 
 /*
 |--------------------------------------------------------------------------
 | Index File
@@ -356,7 +356,7 @@ $config['rewrite_short_tags'] = FALSE;
 |
 */
 $config['proxy_ips'] = '';
-
+ 
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */
@@ -366,8 +366,7 @@ $config['images']   = $config['base_url'].'asset/default/images/';
 $config['skin']     = $config['base_url'].'asset/default/skins/';
 $config['js']       = $config['base_url'].'asset/default/js/';
 $config['fc']       = $config['base_url'].'asset/default/fancybox/';
-$config['dir']       = '/home/studiod1/public_html/studentbook.co/';
-$config['dir']       = 'D:/webdevel/studentbookrepo/';
+$config['dir']       = '/home/studiod1/public_html/studentbookrepo/';
 $config['akademik_sekolah']       = $config['base_url'].'upload/akademik/sekolah/';
 
 $config['css_almera']      = $config['base_url'].'asset/almera/css/';

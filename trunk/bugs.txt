@@ -1,4 +1,4 @@
-ADMIN SEKOLAH
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxADMIN SEKOLAH
 	1.edit jadwal validasi pelajaran yang diajar masih error
 	2.kenaikan kelulusan belum di cek
 	
