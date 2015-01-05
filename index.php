@@ -1,4 +1,22 @@
 <?php
+// Check if accessed via SSL
+    if($_SERVER['SERVER_NAME'] == 'www.studentbook.co') 
+    { 
+        // If not, redirect
+        $newurl = 'https://'.str_replace("www.","",$_SERVER['SERVER_NAME']).$_SERVER['REQUEST_URI']; 
+        header("location: $newurl"); 
+    }
+    if($_SERVER['HTTPS'] != 'on') 
+    { 
+        // If not, redirect
+        $newurl = 'https://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']; 
+        header("location: $newurl"); 
+    }
+	
+	/*echo "<pre>";
+	print_r(str_replace("www.","",$_SERVER['SERVER_NAME']).$_SERVER['REQUEST_URI']);
+	echo "</pre>";
+	die();*/ 
 session_start();
 /*
  *---------------------------------------------------------------
@@ -18,7 +36,7 @@ session_start();
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
-	define('ENVIRONMENT', 'development');
+	define('ENVIRONMENT', 'production');
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING
@@ -32,7 +50,7 @@ if (defined('ENVIRONMENT'))
 {
 	switch (ENVIRONMENT)
 	{
-		case 'development':
+		case 'production':
 			error_reporting(E_ALL ^ E_NOTICE);
 		break;
 	

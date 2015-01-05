@@ -152,7 +152,7 @@ class Pengajaran extends CI_Controller {
 	public function makeIndikator(){
 		$csv_dir='upload/akademik/';
 		$this->load->library('csvreader');
-        $result =   $this->csvreader->saveindikator($csv_dir.'indikator.csv');
+        //$result =   $this->csvreader->saveindikator($csv_dir.'indikator.csv');
 	}
 	private function setIndikator($id_mengajar,$id_pelajaran,$id_pegawai,$semester){
 		$csv_dir='upload/akademik/';

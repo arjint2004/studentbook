@@ -48,9 +48,10 @@ class sms{
 		$this->sms->phone = '2rajasms';
 		
 		while($hsl=mysql_fetch_assoc($q)){
-			if(strlen($hsl['hp'])>8 && strlen($hsl['hp'])<13){
+			if(strlen($hsl['hp'])>8 && strlen($hsl['hp'])<15 && $hsl['notifikasi']!=''){
 
-			$encode=$hsl['notifikasi'].'. Pantau akademik putra/putri anda di https://studentbook.co/u/'.base64_encode($hsl['iduser']);						
+			//$encode=$hsl['notifikasi'].'. Pantau akademik putra/putri anda di https://studentbook.co/u/'.base64_encode($hsl['iduser']);
+			$encode=$hsl['notifikasi'];					
 			echo '<pre>';				
 			print_r($hsl['hp']);			
 			echo '</pre>';			
@@ -70,5 +71,5 @@ class sms{
 
 $dom=new sms();
 $dom->execute_sms();
-
+ 
 ?>
