@@ -33,7 +33,7 @@ class Kelas extends CI_Controller {
 		 
 		 foreach($grade as $keygrade=>$gradevalue){
 			$gradeout[$keygrade]['grade']=$gradevalue;
-			$query=$this->db->query('SELECT * FROM ak_kelas WHERE id_jenjang='.$this->datajenjang[0]['id'].' AND kelas='.$gradevalue.' AND id_sekolah='.$this->session->userdata['user_authentication']['id_sekolah'].' AND publish=1');
+			$query=$this->db->query('SELECT * FROM ak_kelas WHERE id_jenjang='.$this->datajenjang[0]['id'].' AND kelas='.$gradevalue.' AND id_sekolah='.$this->session->userdata['user_authentication']['id_sekolah'].'');
 			$gradeout[$keygrade]['kelas']=$query->result_array();;
 		 }
 		 //pr($gradeout);
@@ -57,6 +57,7 @@ class Kelas extends CI_Controller {
 		if(isset($_POST['editkelas'])){
 			$datamapel=array(
 						'id_jurusan'=>$_POST['id_jurusan'],
+						'publish'=>$_POST['publish'],
 						'nama'=>$_POST['kelas']
 			);
 			
