@@ -22,10 +22,9 @@
 
 				}
 				</script>
-				    <div class="hr"> </div>
                     <div class="clear"> </div>
-					<h2 class="float-left" class="aktifitasakademik"> Buku Penghubung Ortu </h2>
-                    
+					<h3 class="float-left" class="aktifitasakademik"> Buku Penghubung Ortu </h2>
+				    <div class="hr"> </div>
                     <div class="tabs-container">
                         <ul class="tabs-frame">
                             <li id="listlap"><a style="cursor:pointer;" class="current">Daftar Laporan</a></li>

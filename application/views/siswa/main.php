@@ -20,11 +20,15 @@ if($cek['otoritas']=='siswa') {
 <?=$this->load->view('akademik/mainakademik/topindex')?>	
 
 <div class="portfolio column-one-half-with-sidebar">
-	<!-- iklan batas -->
-	<!-- end iklan batas -->	
-	
+
+	<script>
+		$(document).ready(function() {
+			$('#penghubungortu').load('<?=base_url('siswa/jurnalwalikelas/penghubungortu')?>');
+		});
+	</script>
+	<div id="penghubungortu"></div>	
 	<div class="clear"></div>
-	<h3 id="<?=$cek['otoritas']?>"> <?=$cek['otoritas']?> </h3>
+	<h3 id="<?=$cek['otoritas']?>"> Menu <?=$cek['otoritas']?> </h3>
 	<div class="hr"></div>
 	<div class="tabs-container">
 
@@ -60,20 +64,6 @@ if($cek['otoritas']=='siswa') {
 		</div>
 	</div>
 
-    <div class="hr "></div>
-    <div class="content content-full-width" style="color: white;background: #CDCDCD;padding-top:40px;padding-bottom: 40px;">
-        <div class="text_iklan">SPACE IKLAN</div>
-         <p>Mengenang Iklan Sepanjang Masa</p>
-    </div>
-<!-- iklan batas -->
-	<!-- end iklan batas -->	
-	
-	<script>
-		$(document).ready(function() {
-			$('#penghubungortu').load('<?=base_url('siswa/jurnalwalikelas/penghubungortu')?>');
-		});
-	</script>
-	<div id="penghubungortu"></div>
 	
 	<div class="clear"></div>
 	<h3> Raport </h3>
