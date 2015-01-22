@@ -106,9 +106,9 @@ class Authentication extends CI_Controller {
 			$group = $session['otoritas'];
 			if(!empty($group)) {
 				if($group=='siswa') {
-					redirect('siswa');
+					redirect('siswa/mainsiswa');
 				}elseif($group=='ortu') {
-					redirect('ortu');
+					redirect('siswa/mainsiswa');
 				}elseif($group=='admin sekolah'){
 					redirect('admin/schooladmin');
 				}elseif($group=='superadmin'){
