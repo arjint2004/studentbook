@@ -316,7 +316,7 @@
 														<tr>
 															<td ><?=$noo?></td>
 															<td class="title"><?=$dtdkrm['kelas'].$dtdkrm['nama_kelas']?></td>
-															<td class="title"><? $tg=tanggal($dtdkrm['tanggal_diajarkan']." 00:00:00"); echo $tg[2];?></td>
+															<td class="title"><? $tg=tanggal($dtdkrm['tanggal_diajarkan'].""); echo $tg[2];?></td>
 															<td class="title"><?=$dtdkrm['keterangan']?></td>
 														</tr>
 														<? }}
