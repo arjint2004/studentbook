@@ -475,8 +475,8 @@ if (!function_exists('artikel_populer')) {
 if (!function_exists('tanggal')) {
 
 function tanggal($tanggalin=null){
-		
-		if($tanggalin=="000:00:00 00:00:00" || $tanggalin=="000:00:00"){
+		pr($tanggalin);
+		if($tanggalin=="0000-00-00 00:00:00" || $tanggalin=="0000-00-00"){
 			return array('Tanggal Tidak tersedia','Tanggal Tidak tersedia','Tanggal Tidak tersedia');
 		}
 		$tglin=explode(' ',$tanggalin);
