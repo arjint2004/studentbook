@@ -469,27 +469,39 @@
 					}
 					
                     $foto       = "upload/images/thumb/".$data['upload_data']['file_name'];
-                    $update     = array('gender'=>$jenis_kelamin,
+                    /*$update     = array('gender'=>$jenis_kelamin,
                                   'tglahir'=>$tgl_lahir,
                                   'alamat'=>$alamat,
                                   'hp'=>$hp,
                                   'email'=>$email,
                                   'NmOrtu'=>$orangtua,
-                                  'foto'=>$foto);
+                                  'foto'=>$foto);*/
+					unset($_POST['edit_data']);
+					unset($_POST['pwd_lama']);
+					unset($_POST['pwd_baru']);
+					unset($_POST['konfirm']);
+					$update=$_POST;
+					$update['foto']=$foto;
                     $this->db->where('id',$session['id']);
                     $this->db->update('ak_siswa',$update);
                 }
             }else{
                     $foto       = "upload/images/thumb/".$data['upload_data']['file_name'];
-                    $update     = array('gender'=>$jenis_kelamin,
+                    /*$update     = array('gender'=>$jenis_kelamin,
                                   'tglahir'=>$tgl_lahir,
                                   'alamat'=>$alamat,
                                   'hp'=>$hp,
-                                  'email'=>$email);
-				//pr($update);	die();			  
+                                  'email'=>$email);*/
+				//pr($update);	die();	
+				unset($_POST['edit_data']);
+				unset($_POST['pwd_lama']);
+				unset($_POST['pwd_baru']);
+				unset($_POST['konfirm']);
+				$update=$_POST;
                 $this->db->where('id',$session['id']);
                 $this->db->update('ak_siswa',$update);
             }
+
         }
         
         public function simpan_kegiatan()
@@ -1244,7 +1256,7 @@
         public function edit_data_siswa($id)
         {
 
-            $this->db->select('ak_siswa.gender,ak_siswa.nama,ak_siswa.email,ak_siswa.alamat,ak_siswa.tglahir,ak_siswa.hp,ak_siswa.foto');
+            $this->db->select('ak_siswa.*');
             $this->db->from('ak_siswa');
             $this->db->join('ak_sekolah','ak_siswa.id_sekolah=ak_sekolah.id');
             $this->db->join('ak_pegawai','ak_pegawai.id_siswa=ak_siswa.id');

@@ -48,8 +48,8 @@
 												},
 												success: function(msg) {
 															$("#wait").remove();
-															$(".error-box").delay(100).html('Data berhasil di simpan');
-															$(".error-box").delay(100).fadeOut("slow",function(){
+															$(".error-box").delay(1000).html('Data berhasil di simpan');
+															$(".error-box").delay(1000).fadeOut("slow",function(){
 																$(this).remove();
 															});	
 												}

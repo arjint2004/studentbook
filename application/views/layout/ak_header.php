@@ -49,62 +49,7 @@ jQuery(function($){
 <script type="text/javascript" src="<?=$this->config->item('fc')?>/jquery.mousewheel-3.0.4.pack.js"></script>
             <script type="text/javascript" src="<?=$this->config->item('fc')?>/jquery.fancybox-1.3.4.js"></script>
             <link rel="stylesheet" type="text/css" href="<?=$this->config->item('fc')?>/jquery.fancybox-1.3.4.css" media="screen" />
-            <script>
-            $(function(){
-                $(document).ajaxStop(function() { 
-                    $("a.prev_image").fancybox({
-                        'opacity'		: true,
-                        'overlayShow'	: false,
-                        'transitionIn'	: 'elastic',
-                        'transitionOut'	: 'none'
-                    });
-     
-                     $("a[rel=group_image]").fancybox({
-                        'transitionIn'   : 'none',
-                        'transitionOut'  : 'none',
-                        'titlePosition'  : 'over',
-                        'titleFormat'    : function(title, currentArray, currentIndex, currentOpts) {
-                         return '<span id="fancybox-title-over">Image ' + (currentIndex + 1) + ' / ' + currentArray.length + (title.length ? ' &nbsp; ' + title : '') + '</span>';
-                         }
-                     });
-                     
-                     $("a.album_image").fancybox({
-                        'transitionIn'   : 'none',
-                        'transitionOut'  : 'none',
-                        'titlePosition'  : 'over',
-                        'titleFormat'    : function(title, currentArray, currentIndex, currentOpts) {
-                         return '<span id="fancybox-title-over">Image ' + (currentIndex + 1) + ' / ' + currentArray.length + (title.length ? ' &nbsp; ' + title : '') + '</span>';
-                       }
-                     });
-                     
-                     $(".modal_dialog").fancybox();
-                     $(".modal").fancybox({
-                        'showCloseButton'  : true,
-                        'autoScale'  : true,
-                        'height'  : 768,
-                        'onComplete'  : function() {
-						 var offset=$('.modal').offset();
-						 $('#fancybox-wrap').css('top',offset.top+'px !important');
-                        
-                       }
-                     });
-					 $(".fancyboxIframe").fancybox({
-						fitToView	: false,
-						width		: '90%',
-						height		: '90%',
-						autoSize	: false,
-						closeClick	: false,
-						openEffect	: 'none',
-						type		: 'iframe',
-						closeEffect	: 'none',
-						iframe: {
-							scrolling : 'auto',
-							preload   : true
-						}
-					});
-                });
-            });
-            </script>
+            
 <?
 	$this->load->view('akademik/comment/js');
 ?>
