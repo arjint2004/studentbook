@@ -1620,3 +1620,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#efefef', end
 			background-image: none;
 		}
 /*end chart area*/
+#fancybox-content div a.readmore{
+	margin:5px;
+}
+#fancybox-content div {
+	margin:0px;
+}

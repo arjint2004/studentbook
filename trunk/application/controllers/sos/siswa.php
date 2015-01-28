@@ -436,16 +436,19 @@ class Siswa extends CI_Controller
     
     public function ubah_data()
     {
-        $this->form_validation->set_rules('jenis_kelamin','Gender','required');
-        $this->form_validation->set_rules('tgl_lahir','Tanggal Lahir','required');
+        $this->form_validation->set_rules('nama','Nama Siswa','required');
+        $this->form_validation->set_rules('gender','Gender','required');
+        $this->form_validation->set_rules('tempat_lahir','Tempat Lahir','required');
+        $this->form_validation->set_rules('tglahir','Tanggal Lahir','required');
         $this->form_validation->set_rules('alamat','Alamat','required');
-        $this->form_validation->set_rules('hp','No Hp','required');
-        $this->form_validation->set_rules('email','Email','required');
+        $this->form_validation->set_rules('nis','No Induk Siswa','required');
+        //$this->form_validation->set_rules('email','Email','required');
         //$this->form_validation->set_rules('orangtua','Orangtua','required');
         $this->form_validation->set_rules('pwd_baru', 'Password', 'trim|matches[konfirm]');
         $this->form_validation->set_rules('konfirm', 'Password Confirmation', 'trim');
         if($this->form_validation->run()==FALSE){
-            $this->edit_siswa();
+            //pr($_POST);die();
+			$this->edit_siswa();
         }
         else{
             $this->siswamodel->ubah_data_user();

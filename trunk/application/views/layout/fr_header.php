@@ -238,6 +238,11 @@
             </script>
             <!-- endscroll-->
 			<script type="text/javascript" src="<?=$this->config->item('js').'jquery.validate.min.js';?>"></script>
+			<script>
+				$.validator.addMethod("notEqual", function(value, element, param) {
+				  return this.optional(element) || value != param;
+				}, "Please choose a value!");
+			</script>
             <!--<script type="text/javascript" src="<?=$this->config->item('js').'sendmail.js';?>"></script>-->
 </head>
 
