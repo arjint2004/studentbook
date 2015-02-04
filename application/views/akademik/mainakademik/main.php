@@ -5,7 +5,7 @@
 	<? $guru=$this->auth->array_searchRecursive( 13, $group, $strict=false, $path=array() );
 		if(!empty($guru)){
 	?>
-	
+	<? aktifitasakademik($this->session->userdata['user_authentication']['id_pengguna'],'guru',5);?>
 	<h3 id="guru"> Notifikasi SMS hari ini</h3>
 	<div class="hr"></div>
 	<div class="tabs-container">
@@ -16,7 +16,7 @@
 	<h3 id="guru"> Pembelajaran </h3>
 
 	<div class="hr"></div>
-	<div class="tabs-container">
+	<div class="tabs-container" id="tabpembelajaran">
 
 		<ul class="tabs-frame">
 			<!--<li>
@@ -33,7 +33,7 @@
 				<!--<a class="modal" href="<?=base_url('akademik/absensi/rekapabsensi')?>" >Rekap Absensi</a>-->
 			</li>
 			<li>
-				<a >Ujian</a>
+				<a  id="pembtabtitleujian">Ujian</a>
 			</li>
 			<li id="tabpertlist" tab="evaluasi">
 				<a >Evaluasi Otentik</a>
@@ -42,7 +42,7 @@
 				<a >Penilaian Deskriptif</a>
 			</li>
 			<li>
-				<a >Nilai</a>
+				<a id="pembtabtitlenilai">Nilai</a>
 			</li>
 		</ul>
 		
@@ -60,9 +60,9 @@
 			<br id="brsubject"  tab="pembelajaran"  class="clear" />
             <div id="subject"></div>
 		</div>
-		<div class="tabs-frame-content" id="absensi" style="display: none;"></div>
+		<div class="tabs-frame-content" id="absensi" style="display: none; "></div>
 		<div class="tabs-frame-content" id="rekapbsensi" style="display: none;"></div>
-		<div class="tabs-frame-content" style="display: none;">
+		<div class="tabs-frame-content" id="tpembelajaranujian" style="display:">
 			<a class="readmore" title="" href="" tab="ujian" id="daftar_harian"> Ulangan<br /> Harian </a>
             <a class="readmore" title="" href="" tab="ujian" id="daftar_uts"> Ujian<br /> Tengah Semester </a>
             <a class="readmore" title="" href="" tab="ujian" id="daftar_uas"> Ujian<br /> Akhir Semester </a>
@@ -79,7 +79,7 @@
 				<!--<a class="readmore" title="" tab="otentik" href="" id="<?=base64_encode('portofolio');?>" >Record<br /> Portofolio </a>-->
 				<a class="readmore" title="" tab="otentik" href="" id="<?=base64_encode('psikomotorik');?>">Nilai<br /> Psikomotorik</a>
 		</div>
-		<div class="tabs-frame-content"  style="display: none;">
+		<div class="tabs-frame-content" id="tpembelajarannilai" style="display: none;">
 				<a class="readmore" title="" tab="nilai" href="" id="<?=base64_encode('nilai pr');?>">Penilaian<br /> PR </a>
 				<a class="readmore" title="" tab="nilai"  href="" id="<?=base64_encode('nilai tugas');?>">Penilaian<br /> Tugas  </a>
 				<a class="readmore" title="" tab="nilai"  href="" id="<?=base64_encode('nilai ulangan harian');?>">Penilaian<br /> UL harian  </a>
@@ -121,11 +121,11 @@
 				<a >Informasi</a>
 			</li>
 		</ul>
-		<div class="tabs-frame-content" style="display: none;">
+		<div class="tabs-frame-content" id="administrasiarea" style="display: none;">
 			<a class="readmore" tab="administrasi" id="kalender_pendidikan" title="" >Kalender<br />pendidikan</a>
-			<a class="readmore" tab="administrasi" id="daftar_nilai" title="" >Daftar<br />nilai</a>
-			<a class="readmore" tab="administrasi" id="daftar_hadir" title="" >Daftar<br /> hadir </a>
-			<a class="readmore" tab="administrasi" id="soal_ulangan" title="" >Soal-soal ulangan</a>
+			<a class="readmore administrasifancy" id="daftar_nilai" href="#tpembelajarannilai" tabcurrent="pembtabtitlenilai" title="" >Daftar<br />nilai</a>
+			<a class="readmore modal" tab="administrasi" id="daftar_hadir" href="<?=base_url('akademik/absensi/rekapabsensi')?>" title="" >Daftar<br /> hadir </a>
+			<a class="readmore administrasifancy"  id="soal_ulangan" href="#tpembelajaranujian" tabcurrent="pembtabtitleujian" title="" >Soal-soal ulangan</a>
 			<a class="readmore" tab="administrasi" id="laporan_penilaian" title="" >Penilaian<br />akhlak</a>
 			<a class="readmore" tab="administrasi" id="tugas_mandir" title="" >Tugas<br />mandiri</a>
 			<a class="readmore" tab="administrasi" id="Jadwal_pelajaran" title="" >Jadwal pelajaran</a>
