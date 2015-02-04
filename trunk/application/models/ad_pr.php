@@ -490,11 +490,13 @@ Class Ad_pr extends CI_Model{
 									AND
 									ap.id_sekolah=?
 									AND
+									apd.id_kelas=?
+									AND
 									ak.publish=1
 									GROUP BY ap.id
 									ORDER BY ap.id DESC
 									LIMIT '.$limit.'
-									',array($this->session->userdata['user_authentication']['id_siswa'],$this->session->userdata['user_authentication']['id_sekolah']));
+									',array($this->session->userdata['user_authentication']['id_siswa'],$this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_kelas_siswa_det_jenjang']));
 			$out=$query->result_array();		
 		}elseif($guruorsiswa=='all'){
 			$query=$this->db->query('SELECT ap . *,apj.nama as nama_pelajaran,ak.nama as nama_kelas,ak.kelas,peg.nama as guru
@@ -525,6 +527,7 @@ Class Ad_pr extends CI_Model{
 			$out=$query->result_array();		
 		}
 		//echo $this->db->last_query();
+		//pr($this->session->userdata['user_authentication']['id_kelas_siswa_det_jenjang']);
 		return $out;
 	}
 	function getIdKelasPenerima($id=0){

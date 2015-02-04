@@ -291,6 +291,7 @@ Class Ad_materi extends CI_Model{
 								 amp.id_sekolah='.$this->session->userdata['user_authentication']['id_sekolah'].'
 								 AND adj.id_siswa='.$this->session->userdata['user_authentication']['id_siswa'].'
 								 AND ak.publish=1
+								 AND amk.id_kelas='.$this->session->userdata['user_authentication']['id_kelas_siswa_det_jenjang'].'
 								 ORDER BY amp.id DESC
 								 LIMIT '.$limit.'
 								');
