@@ -317,7 +317,7 @@ Class Ad_materi extends CI_Model{
 									',array($this->session->userdata['user_authentication']['id_sekolah'],$limit));
 			$out=$query->result_array();		
 		}
-		//echo $this->db->last_query();
+		echo $this->db->last_query();
 		return $out;
 	}
 	
