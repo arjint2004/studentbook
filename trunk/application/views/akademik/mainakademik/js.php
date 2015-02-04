@@ -285,9 +285,26 @@
 					}
 				});
 			});
-			
+		
+			$('div#administrasiarea a.administrasifancy').click(function(){
+				taboutdoor('div#tabpembelajaran',$(this).attr('href'),$(this).attr('tabcurrent'));
+			});
 		});
-				
+		
+		function taboutdoor(idtab,idtabarea,tabcurrent){
+
+			$(idtab+" ul.tabs-frame li a").each(function(){
+				$(this).removeClass('current');
+			});	
+			$(idtab+" ul.tabs-frame li a#"+tabcurrent).addClass('current');
+			
+			$(idtab+" div.tabs-frame-content").each(function(){
+				$(this).hide();
+			});
+			$(idtab+" div"+idtabarea).show();
+			//$(idtab).scrollintoview({ speed:'1100'});
+		}	
+		
 		$(document).ready(function() { 
 		
 					$('#tabpertlist').bind('click', function() {

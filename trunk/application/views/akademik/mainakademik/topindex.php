@@ -1,4 +1,75 @@
+<script>
+            $(function(){
+                $(document).ajaxStop(function() { 
+                    $("a.prev_image").fancybox({
+                        'opacity'		: true,
+                        'overlayShow'	: false,
+                        'transitionIn'	: 'elastic',
+                        'transitionOut'	: 'none'
+                    });
+     
+                     $("a[rel=group_image]").fancybox({
+                        'transitionIn'   : 'none',
+                        'transitionOut'  : 'none',
+                        'titlePosition'  : 'over',
+                        'titleFormat'    : function(title, currentArray, currentIndex, currentOpts) {
+                         return '<span id="fancybox-title-over">Image ' + (currentIndex + 1) + ' / ' + currentArray.length + (title.length ? ' &nbsp; ' + title : '') + '</span>';
+                         }
+                     });
+                     
+                     $("a.album_image").fancybox({
+                        'transitionIn'   : 'none',
+                        'transitionOut'  : 'none',
+                        'titlePosition'  : 'over',
+                        'titleFormat'    : function(title, currentArray, currentIndex, currentOpts) {
+                         return '<span id="fancybox-title-over">Image ' + (currentIndex + 1) + ' / ' + currentArray.length + (title.length ? ' &nbsp; ' + title : '') + '</span>';
+                       }
+                     });
+                     
+                     $(".modal_dialog").fancybox();
+                     $(".modal").fancybox({
+                        'showCloseButton'  : true,
+                        'autoScale'  : true,
+                        'height'  : 768,
+                        'onComplete'  : function() {
+						 var offset=$('.modal').offset();
+						 $('#fancybox-wrap').css('top',offset.top+'px !important');
+                        
+                       }
+                     });
+                     $(".administrasifancy").fancybox({
+                        'showCloseButton'  : true,
+                        'autoScale'  : true,
+                        'height'  : 768,
+                        'width'  : 600,
+                        'onComplete'  : function() {
+						$('div#'+$(this).attr('href')).css("display:block;");
+                       },
+                        'onClosed'  : function() {
+						 //var elmn=$('div#'+$(this).attr('href')).parent().html();
+                         //$('div#'+$(this).attr('href')).parent('div').before($('div#'+$(this).attr('href')).parent().html());
+                         
+						 $('div#'+$(this).attr('href')).unwrap();
 
+                       }
+                     });
+					 $(".fancyboxIframe").fancybox({
+						fitToView	: false,
+						width		: '90%',
+						height		: '90%',
+						autoSize	: false,
+						closeClick	: false,
+						openEffect	: 'none',
+						type		: 'iframe',
+						closeEffect	: 'none',
+						iframe: {
+							scrolling : 'auto',
+							preload   : true
+						}
+					});
+                });
+            });
+            </script>
 <?
 if($this->session->userdata['user_authentication']['otoritas']!='siswa' && $this->session->userdata['user_authentication']['otoritas']!='ortu'){
 echo $this->load->view('akademik/mainakademik/js');
@@ -23,7 +94,7 @@ if($cek['otoritas']=='siswa' || $cek['otoritas']=='ortu') {
 	$url_akademik = site_url('akademik/mainakademik/index');
 	$url_sos = site_url('sos/pegawai/pertemanan');
 }
-						
+					
 ?>
 <div class="one-full">
                     <!-- **Team** -->
@@ -50,9 +121,11 @@ if($cek['otoritas']=='siswa' || $cek['otoritas']=='ortu') {
                                     <a title="" href=""> <img title="" alt="" src="<?=$this->config->item('images');?>team-skype.png"> </a>
                                     <a title="" href=""> <img title="" alt="" src="images/team-twitter.png"> </a>-->
                                     <? if($cek['otoritas']=='siswa') { ?>
-										<a title="" href=""><a href="<?=site_url('editakunsiswa')?>" style="float:right; margin-right:5px;background:none;"> Ubah Biodata </a> <img title="" width="20" height="20" alt="" src="<?=$this->config->item('images');?>edit_icon.gif"> </a>
+										<a href="<?=site_url('editakunsiswa')?>" style="float:right; margin-right:5px;background:none;"> Ubah Biodata <img title="" width="20" height="20" alt="" src="<?=$this->config->item('images');?>edit_icon.gif"> </a>
+										&nbsp;&nbsp;&nbsp;
+										<!--<a class="modal" href="<?=base_url('akademik/biodatasiswa/edit/'.$this->myencrypt->encode(serialize(array('nama'=>$user->nama,'id'=>$user->id))).'')?>" style="float:right; margin-right:5px;background:none;"> Ubah Biodata  <img title="" width="20" height="20" alt="" src="<?=$this->config->item('images');?>edit_icon.gif"></a>-->
 									<? }else{ ?>
-										<a title="" href=""><a href="<?=site_url('editakun')?>" style="float:right; margin-right:5px;background:none;"> Ubah Biodata </a> <img title="" width="20" height="20" alt="" src="<?=$this->config->item('images');?>edit_icon.gif"> </a>
+										<a title="" href=""><a href="<?=site_url('editakun')?>" style="float:right; margin-right:5px;background:none;"> Ubah Biodata </a> <img title="" width="20" height="20" alt="" src="<?=$this->config->item('images');?>edit_icon.gif">
 									<? } ?>
 								</div>
                             </div>                    
