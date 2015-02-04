@@ -87,7 +87,7 @@
 														<tr>
 															<td class="title">Tanggal Diajarkan</td>
 															<td>:</td>
-															<td class="title"><? $tg=tanggal($datamateri['tanggal_diajarkan']." 00:00:00"); echo $tg[2];?></td>
+															<td class="title"><? $tg=tanggal($datamateri['tanggal_diajarkan'].""); echo $tg[2];?></td>
 														</tr>
 														<tr>
 															<td class="title">Keterangan</td>
