@@ -26,7 +26,7 @@ if($cek['otoritas']=='siswa') {
 			$('#penghubungortu').load('<?=base_url('siswa/jurnalwalikelas/penghubungortu')?>');
 		});
 	</script>
-	<? aktifitasakademik($this->session->userdata['user_authentication']['id_pengguna'],'guru',5);?>
+	<? aktifitasakademik($this->session->userdata['user_authentication']['id_pengguna'],'siswa',5);?>
 	<div id="penghubungortu"></div>	
 	<div class="clear"></div>
 	<h3 id="<?=$cek['otoritas']?>"> Menu <?=$cek['otoritas']?> </h3>
