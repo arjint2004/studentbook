@@ -39,7 +39,7 @@
 												<td><?=$no++;?></td>
 												<td class="title" ><?=$datamateri['pokok_bahasan']?></td>
 												<td class="title" ><?=$datamateri['bab']?></td>
-												<td ><? $tg=tanggal($datamateri['tanggal_diajarkan']." 00:00:00"); echo $tg[2];?></td>
+												<td ><? $tg=tanggal($datamateri['tanggal_diajarkan'].""); echo $tg[2];?></td>
 												
 											</tr>
 											<tr id="detailmateri<?=$datamateri['id']?>" style="display:none;">
