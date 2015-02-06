@@ -104,7 +104,7 @@ class jurnalwali extends CI_Controller
 			$this->load->library('pagination');
 			
 			$config['base_url']   = site_url('akademik/jurnalwali/penghubungortulist');
-			$config['per_page']   = 2;
+			$config['per_page']   = 15;
 
 			$config['cur_page']   = $start;
 			$config['total_rows'] = $this->ad_jurnal->getCountPenghubung($_POST['id_kelas'],$id_pengguna);
