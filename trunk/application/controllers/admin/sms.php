@@ -42,10 +42,26 @@ class Sms extends CI_Controller {
 				}
 				if(!empty($inser_sms)){					if($inser_sms['no_hp']!='' && strlen($inser_sms['no_hp'])>8){						//pr($inser_sms['no_hp']);
 						if($pulsa[0]['jml_pulsa']>100){
-							$this->smsprivate->setTo($inser_sms['no_hp']);
+							/*$this->smsprivate->setTo($inser_sms['no_hp']);
 							$this->smsprivate->setText($inser_sms['pesan']);
-							$sts=$this->smsprivate->send();
-							$stsn=explode("=",$sts);
+							$sts=$this->smsprivate->send();*/
+							if($inser_sms['no_hp']!='' && strlen($inser_sms['no_hp'])>8){
+								$insert_sms=array(
+												'nama_siswa'=>'',
+												'no_hp'=>''.$inser_sms['no_hp'].'',
+												'pesan'=>$inser_sms['pesan'],
+												'jenis'=>$inser_sms['jenis'],
+												'id_jenis'=>0,
+												'id_kelas'=>0,
+												'id_pegawai'=>0,
+												'kelas'=>0,
+												'waktu'=>date('Y-m-d H:i:s')
+								);
+								
+								$CI->db->insert('ak_sms',$insert_sms);
+								$stsn[0]='0';
+							}
+							//$stsn=explode("=",$sts);
 							if($stsn[0]=='0'){
 								$this->db->query("UPDATE `ak_sekolah` SET `jml_pulsa` = jml_pulsa-100 WHERE `id` = ? ",array($this->session->userdata['user_authentication']['id_sekolah']));
 								$data['status'][$inser_sms['nama']]='Terkirim';
