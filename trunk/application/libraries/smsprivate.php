@@ -180,7 +180,7 @@ class smsprivate {
 										ORDER BY s.nama ASC
 										',array($id_kelas,$CI->session->userdata['user_authentication']['id_sekolah'],$CI->session->userdata['ak_setting']['ta']));
 			}
-			pr($query);die();
+			//pr($query);die();
 			$no_hp=$query->result_array();
 			//echo $CI->db->last_query();
 			
