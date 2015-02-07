@@ -143,6 +143,7 @@ class smsprivate {
 									',array($CI->session->userdata['user_authentication']['id_sekolah']));
 		$fitur=$queryf->result_array();
 		if(!empty($fitur)){
+			pr($jenis);die();
 			if($jenis=="penghubungortu"){
 				foreach($_POST['id_siswa'] as $ky=>$id_siswax){
 					$id_siswa=json_decode(base64_decode($id_siswax),true);
