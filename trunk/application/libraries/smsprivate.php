@@ -143,11 +143,13 @@ class smsprivate {
 									',array($CI->session->userdata['user_authentication']['id_sekolah']));
 		$fitur=$queryf->result_array();
 		if(!empty($fitur)){
-			
-			if($jenis=="penghubungortu"){
+			if($jenis=='penghubungortu'){
 				foreach($_POST['id_siswa'] as $ky=>$id_siswax){
 					$id_siswa=json_decode(base64_decode($id_siswax),true);
-					$extract[]=$id_siswa['id'];
+					if($id_siswa['id']!=null || $id_siswa['id']!=""){
+						$extract[]=$id_siswa['id'];
+					}
+					
 				}
 			$query=$CI->db->query('SELECT ap.hp,ap.id as id_user,ak.nama,ak.kelas,ak.id as id_kelas, s.nama as nama_siswa FROM
 										ak_det_jenjang adj 
@@ -164,6 +166,7 @@ class smsprivate {
 										AND adj.id_siswa IN('.implode(",",$extract).')
 										ORDER BY s.nama ASC
 										',array($id_kelas,$CI->session->userdata['user_authentication']['id_sekolah'],$CI->session->userdata['ak_setting']['ta']));
+										
 			}else{
 			$query=$CI->db->query('SELECT ap.hp,ap.id as id_user,ak.nama,ak.kelas,ak.id as id_kelas, s.nama as nama_siswa FROM
 										ak_det_jenjang adj 
@@ -179,11 +182,12 @@ class smsprivate {
 										AND ak.publish=1
 										ORDER BY s.nama ASC
 										',array($id_kelas,$CI->session->userdata['user_authentication']['id_sekolah'],$CI->session->userdata['ak_setting']['ta']));
+										
 			}
 			//pr($query);die();
 			$no_hp=$query->result_array();
 			//echo $CI->db->last_query();
-			
+			//pr($no_hp);die();
 			//$no_hp=array(0=>array('hp'=>'083867139945'));
 			$maxindex=max(array_keys($no_hp))+1;
 			$no_hp[$maxindex]=array('hp'=>$fitursmsg[0]['hp']);
