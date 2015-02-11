@@ -18,6 +18,9 @@ class Absensi extends CI_Controller
             $data['main']= 'akademik/absensi/index';
             $this->load->view('layout/ad_blank',$data);
         }
+        public function tanggalcek(){
+			echo date("Y-m-d H:i:s");
+        }
         public function rekapabsensi(){
 			
 			$this->load->model('ad_kelas');
