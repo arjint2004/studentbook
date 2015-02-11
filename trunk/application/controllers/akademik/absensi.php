@@ -20,6 +20,7 @@ class Absensi extends CI_Controller
         }
         public function tanggalcek(){
 			echo date("Y-m-d H:i:s");
+			echo phpinfo();
         }
         public function rekapabsensi(){
 			
