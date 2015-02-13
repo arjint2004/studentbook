@@ -18,6 +18,6 @@ class Artikel extends MY_Controller {
 		$data['art_kat'] 	= $this->martikel->get_artikel_by_idkat($id_kategori);
 		
 		$data['page_title'] = 'StudentBooks';
-		$this->load->view('layout/homepage/artikel',$data);
+		$this->load->view('layout/homepage/artikel',$data); 
 	}
 }
