@@ -19,7 +19,7 @@ class Bahanajar extends CI_Controller
         public function index(){
             
 			#$arrdir=$this->ak_file->dirToArray('D:/webdevel/studentbookrepo/upload');
-			$data['file']=Array
+			/*$data['file']=Array
 				(
 
 					'SMP - Kelas 7 - Bahasa Indonesia' => Array
@@ -145,10 +145,11 @@ class Bahanajar extends CI_Controller
 							'6' => 'Terampil_Berkomputer_Kelas_7_Rohmat_Nur_Ibrahim_dan_Hendi_Hudaya_2010.pdf',
 						)
 
-				);
+				);*/
 
-			//$arrdir=$this->ak_file->dirToArray('/home/studoid1/public_html/studentbookrepo/upload/contentsekolah/SMP/Kelas 7');
+			$arrdir=$this->ak_file->dirToArray('/home/studoid1/public_html/studentbookrepo/upload/contentsekolah/SMP/Kelas 7');
 			$data['kelasdir']="Kelas 7";
+			$data['file']=$arrdir;
 			//pr($arrdir);die();
 			$data['main']= 'akademik/bahanajar/index';
             $this->load->view('layout/ad_blank',$data);			
