@@ -7,11 +7,6 @@
 	?>
 	<? aktifitasakademik($this->session->userdata['user_authentication']['id_pengguna'],'guru',5);?>
 	
-	<h3 id="guru"> Content Belajar </h3>
-	<div class="hr"></div>
-	<div class="tabs-container">
-		<div class="tabs-frame-content" id="contentbelajar" style="display: block;"></div>
-	</div>
 	
 	<h3 id="guru"> Notifikasi SMS hari ini </h3>
 	<div class="hr"></div>
@@ -106,6 +101,12 @@
 		</div>
 	</div>
 	
+	
+	<h3 id="guru"> Content Belajar </h3>
+	<div class="hr"></div>
+	<div class="tabs-container">
+		<div class="tabs-frame-content" id="contentbelajar" style="display: block;"></div>
+	</div>
 	
 	<h3 id="guru"> Administrasi </h3>
 
