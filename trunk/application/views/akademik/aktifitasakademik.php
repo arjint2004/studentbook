@@ -1,6 +1,7 @@
 <?//pr($materi);?>
 <div class="aktifitasakademik" >
-<h2 class="float-left" class="aktifitasakademik">Aktifitas Akademik</h2>
+<h3 class="float-left" class="aktifitasakademik">Aktifitas Akademik</h3>
+<div class="hr"></div>
 				<br style="clear:both;" />
 					<div class="column one-half last halfsidebar" >
                         <!-- **Toggle Frame Set** -->  
@@ -51,5 +52,4 @@
                     </div>	
 </div>	
                     
-                    <div class="hr"> </div>
                     <div class="clear"> </div>
