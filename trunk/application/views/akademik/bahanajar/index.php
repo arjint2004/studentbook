@@ -107,7 +107,7 @@
 							   foreach($namafile as $namafilex){?>
 								<div>          
 									<h6 style="margin:0;text-transform:capitalize;" class="role"><b>tahun 2011</b></h6>
-									<p> <a href="<?=base_url()?>upload/contentsekolah/<?=$jenjang?>/<?=$kelasdir?>/<?=$kelas?>/<?=$namafilex?>" class="notif"><?=str_replace("_"," ",$namafilex)?></a> </p>
+									<p> <a target="__blank" href="<?=base_url()?>upload/contentsekolah/<?=$jenjang?>/<?=$kelasdir?>/<?=$kelas?>/<?=$namafilex?>" class="notif"><?=str_replace("_"," ",$namafilex)?></a> </p>
 								</div>
 							<? } ?>
 						</div>
