@@ -97,7 +97,7 @@
 				<div class="tabs-vertical-container">
 						<ul class="tabs-vertical-frame tabnilai ">
 							<? foreach($file as $kelas=>$namafile){?>
-								<li  class="first current"><a href="#" class="current"><h5><?=$kelas?></h5><span></span></a></li>
+								<li  class="first current"><a href="#" class="current"><h5 style="text-align:left;"><?=$kelas?></h5><span></span></a></li>
 							<? } ?>
 						</ul>
 						<? foreach($file as $kelas=>$namafile){?>
