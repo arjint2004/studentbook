@@ -147,8 +147,9 @@ class Bahanajar extends CI_Controller
 
 				);
 
-			$arrdir=$this->ak_file->dirToArray('/home/studoid1/public_html/studentbookrepo/upload/contentsekolah/SMP/Kelas 7');
-			pr($arrdir);die();
+			//$arrdir=$this->ak_file->dirToArray('/home/studoid1/public_html/studentbookrepo/upload/contentsekolah/SMP/Kelas 7');
+			$data['kelasdir']="Kelas 7";
+			//pr($arrdir);die();
 			$data['main']= 'akademik/bahanajar/index';
             $this->load->view('layout/ad_blank',$data);			
         }    
