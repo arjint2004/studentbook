@@ -22,7 +22,8 @@ class Ak_file {
 	  
 	   $result = array();
 
-	   $cdir = scandir($dir);
+	   $cdir = @scandir($dir);
+	   if(!empty($cdir)){
 	   foreach ($cdir as $key => $value)
 	   {
 		  if (!in_array($value,array(".","..")))
@@ -36,6 +37,7 @@ class Ak_file {
 				$result[] = $value;
 			 }
 		  }
+	   }
 	   }
 	  
 	   return $result;
