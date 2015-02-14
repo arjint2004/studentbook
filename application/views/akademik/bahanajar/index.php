@@ -93,35 +93,24 @@
 								</script>
 				<!--<h3 style="margin-top:0px;">SMP Kelas 7 </h3>
 				<br />		-->	
+				<? $jenjang="SMP";?>
 				<div class="tabs-vertical-container">
 						<ul class="tabs-vertical-frame tabnilai ">
-							<li  class="first current"><a href="#" class="current"><h5>Bahasa Indonesia</h5><span></span></a></li>
-							<li  class="first current"><a href="#" class="current"><h5>IPA</h5><span></span></a></li>
-							<li  class="first current"><a href="#" class="current"><h5>Matematika</h5><span></span></a></li>
-							<li  class="first current"><a href="#" class="current"><h5>Bahasa jawa</h5><span></span></a></li>
+							<? foreach($file as $kelas=>$namafile){?>
+								<li  class="first current"><a href="#" class="current"><h5><?=$kelas?></h5><span></span></a></li>
+							<? } ?>
 						</ul>
-						
-
+						<? foreach($file as $kelas=>$namafile){?>
 						<div class="tabs-vertical-frame-content vcontnilai" style="display: block;">
-							<div>          
-								<h6 style="margin:0;text-transform:capitalize;" class="role"><b>tahun 2011</b></h6>
-								<p> <a href="http://webdevel/studentbookrepo/akademik/detailpembelajaran/detail/YToyOntzOjI6ImlkIjtzOjQ6IjExOTYiO3M6NToiamVuaXMiO3M6NjoibWF0ZXJpIjt9" class="notif">ABI_Asiknya_Belajar_IPA_Kelas_1_Evi_Susanti_ Sholehuajar_IPA_Kelas_1_Evi_Susanti_Sho lehuajar_IPA_Kelas_1_Evi_Susanti_Sholehudin_2008.pdf</a> </p>
-							</div>
-							<div>          
-								<h6 style="margin:0;text-transform:capitalize;" class="role"><b>tahun 2011</b></h6>
-								<p> <a href="http://webdevel/studentbookrepo/akademik/detailpembelajaran/detail/YToyOntzOjI6ImlkIjtzOjQ6IjExOTYiO3M6NToiamVuaXMiO3M6NjoibWF0ZXJpIjt9" class="notif">ABI_Asiknya_Belajar_ IPA_Kelas_1_Evi_ Susanti_Sholehudin_2008.pdf</a> </p>
-							</div>
-							<div>          
-								<h6 style="margin:0;text-transform:capitalize;" class="role"><b>tahun 2011</b></h6>
-								<p> <a href="http://webdevel/studentbookrepo/akademik/detailpembelajaran/detail/YToyOntzOjI6ImlkIjtzOjQ6IjExOTYiO3M6NToiamVuaXMiO3M6NjoibWF0ZXJpIjt9" class="notif">ABI_Asiknya_Belajar_ IPA_Kelas_1_Evi_Su santi_Sholehudin_2008.pdf</a> </p>
-							</div>
-							<div>          
-								<h6 style="margin:0;text-transform:capitalize;" class="role"><b>tahun 2011</b></h6>
-								<p> <a href="http://webdevel/studentbookrepo/akademik/detailpembelajaran/detail/YToyOntzOjI6ImlkIjtzOjQ6IjExOTYiO3M6NToiamVuaXMiO3M6NjoibWF0ZXJpIjt9" class="notif">ABI_Asiknya_Belajar_I PA_Kelas_1_Evi_Sus anti_Sholehudin_2008.pdf</a> </p>
-							</div>
+							
+							<?
+							   foreach($namafile as $namafilex){?>
+								<div>          
+									<h6 style="margin:0;text-transform:capitalize;" class="role"><b>tahun 2011</b></h6>
+									<p> <a href="<?=base_url()?>upload/contentsekolah/<?=$jenjang?>/<?=$kelas?>/<?=$namafilex?>" class="notif"><?=str_replace("_"," ",$namafilex)?></a> </p>
+								</div>
+							<? } ?>
 						</div>
-						<div class="tabs-vertical-frame-content vcontnilai" style="display: block;"></div>
-						<div class="tabs-vertical-frame-content vcontnilai" style="display: block;"></div>
-						<div class="tabs-vertical-frame-content vcontnilai" style="display: block;"></div>
+						<? } ?>
                 </div>
 						
