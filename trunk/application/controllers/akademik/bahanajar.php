@@ -152,7 +152,7 @@ class Bahanajar extends CI_Controller
 			
 			$data['kelasdir']="Kelas 7";
 			$data['file']=$arrdir;
-			//pr($arrdir);die();
+			pr($arrdir);die();
 			$data['main']= 'akademik/bahanajar/index';
             $this->load->view('layout/ad_blank',$data);			
         }    
