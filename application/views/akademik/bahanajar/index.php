@@ -104,9 +104,13 @@
 						<div class="tabs-vertical-frame-content vcontnilai" style="display: block;">
 							
 							<?
-							   foreach($namafile as $namafilex){?>
+							   foreach($namafile as $namafilex){
+							   $th=explode("_",$namafilex);
+							   $th=substr(end($th),0,-4);
+							   //echo $th;
+							   ?>
 								<div>          
-									<h6 style="margin:0;text-transform:capitalize;" class="role"><b>tahun 2011</b></h6>
+									<h6 style="margin:0;text-transform:capitalize;" class="role"><b>TAHUN <?=$th?></b></h6>
 									<p> <a target="__blank" href="<?=base_url()?>upload/contentsekolah/<?=$jenjang?>/<?=$kelasdir?>/<?=$kelas?>/<?=$namafilex?>" class="notif"><?=str_replace("_"," ",$namafilex)?></a> </p>
 								</div>
 							<? } ?>
