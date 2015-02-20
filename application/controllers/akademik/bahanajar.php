@@ -16,9 +16,8 @@ class Bahanajar extends CI_Controller
             $this->load->library('ak_file');
         }
         
-        public function index(){
-            
-			#$arrdir=$this->ak_file->dirToArray('D:/webdevel/studentbookrepo/upload');
+        public function siswa(){
+
 			/*$data['file']=Array
 				(
 
@@ -146,8 +145,25 @@ class Bahanajar extends CI_Controller
 						)
 
 				);*/
+            //pr($this->session->userdata('ak_setting'));
+		    //pr($this->session->userdata('user_authentication'));
+			#$arrdir=$this->ak_file->dirToArray('D:/webdevel/studentbookrepo/upload/contentsekolah/'.$this->session->userdata('ak_setting')['jenjang'][0]['nama'].'/Kelas '.$this->session->userdata('user_authentication')['kelas'].'');
+			$arrdir=$this->ak_file->dirToArray('/home/studoid1/public_html/studentbookrepo/upload/contentsekolah/'.$this->session->userdata('ak_setting')['jenjang'][0]['nama'].'/'.$this->session->userdata('user_authentication')['kelas'].'');
+			
+			$data['kelasdir']="Kelas 7";
+			$data['file']=$arrdir;
+			//pr($arrdir);die();
+			$data['main']= 'akademik/bahanajar/index';
+            $this->load->view('layout/ad_blank',$data);			
+        }    
 
-			$arrdir=$this->ak_file->dirToArray('/home/studoid1/public_html/studentbookrepo/upload/contentsekolah/SMP/Kelas 7');
+        public function guru(){
+
+            //pr($this->session->userdata('ak_setting'));
+		    //pr($this->session->userdata('user_authentication'));
+			#$arrdir=$this->ak_file->dirToArray('D:/webdevel/studentbookrepo/upload/contentsekolah/'.$this->session->userdata('ak_setting')['jenjang'][0]['nama'].'/Kelas '.$this->session->userdata('user_authentication')['kelas'].'');
+			$arrdir=$this->ak_file->dirToArray('/home/studoid1/public_html/studentbookrepo/upload/contentsekolah/'.$this->session->userdata('ak_setting')['jenjang'][0]['nama'].'/'.$this->session->userdata('user_authentication')['kelas'].'');
+			
 			$data['kelasdir']="Kelas 7";
 			$data['file']=$arrdir;
 			//pr($arrdir);die();
