@@ -148,11 +148,11 @@ class Bahanajar extends CI_Controller
             //pr($this->session->userdata('ak_setting'));
 		    //pr($this->session->userdata('user_authentication'));
 			#$arrdir=$this->ak_file->dirToArray('D:/webdevel/studentbookrepo/upload/contentsekolah/'.$this->session->userdata('ak_setting')['jenjang'][0]['nama'].'/Kelas '.$this->session->userdata('user_authentication')['kelas'].'');
-			$arrdir=$this->ak_file->dirToArray('/home/studoid1/public_html/studentbookrepo/upload/contentsekolah/'.$this->session->userdata('ak_setting')['jenjang'][0]['nama'].'/'.$this->session->userdata('user_authentication')['kelas'].'');
-			echo '/home/studoid1/public_html/studentbookrepo/upload/contentsekolah/'.$this->session->userdata('ak_setting')['jenjang'][0]['nama'].'/'.$this->session->userdata('user_authentication')['kelas'].'';
+			$arrdir=$this->ak_file->dirToArray('/home/studoid1/public_html/studentbookrepo/upload/contentsekolah/'.$this->session->userdata('ak_setting')['jenjang'][0]['nama'].'/Kelas '.$this->session->userdata('user_authentication')['kelas'].'');
+			
 			$data['kelasdir']="Kelas 7";
 			$data['file']=$arrdir;
-			pr($arrdir);die();
+			//pr($arrdir);die();
 			$data['main']= 'akademik/bahanajar/index';
             $this->load->view('layout/ad_blank',$data);			
         }    
@@ -162,7 +162,7 @@ class Bahanajar extends CI_Controller
             //pr($this->session->userdata('ak_setting'));
 		    //pr($this->session->userdata('user_authentication'));
 			#$arrdir=$this->ak_file->dirToArray('D:/webdevel/studentbookrepo/upload/contentsekolah/'.$this->session->userdata('ak_setting')['jenjang'][0]['nama'].'/Kelas '.$this->session->userdata('user_authentication')['kelas'].'');
-			$arrdir=$this->ak_file->dirToArray('/home/studoid1/public_html/studentbookrepo/upload/contentsekolah/'.$this->session->userdata('ak_setting')['jenjang'][0]['nama'].'/'.$this->session->userdata('user_authentication')['kelas'].'');
+			$arrdir=$this->ak_file->dirToArray('/home/studoid1/public_html/studentbookrepo/upload/contentsekolah/'.$this->session->userdata('ak_setting')['jenjang'][0]['nama'].'/Kelas '.$this->session->userdata('user_authentication')['kelas'].'');
 			
 			$data['kelasdir']="Kelas 7";
 			$data['file']=$arrdir;
