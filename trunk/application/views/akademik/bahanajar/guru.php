@@ -3,7 +3,7 @@
 						 * Tabs Shortcodes
 						 */
 						
-						
+						if($('ul.tabs-frame').length > 0) $('ul.tabs-frame').tabs('> .tabs-frame-content');
 						if($('.tabs-vertical-frame').length > 0){
 							$('.tabs-vertical-frame').tabs('> .tabs-vertical-frame-content');
 							
@@ -95,18 +95,21 @@
 				<br />		-->	
 				<? $jenjang="SMP";?>
 		<ul class="tabs-frame">
+			<? foreach($file as $Kelasi=>$mapeli){?>
 			<li>
-				<a>Kelas X</a>
+				<a><?=$Kelasi?></a>
 			</li>
+			<? } ?>
 		</ul>
-		<div class="tabs-frame-content" id="contentbelajar" style="display: block;">
+		<? foreach($file as $Kelas=>$mapel){?>
+		<div class="tabs-frame-content contentbelajar" style="display: block;">
 				<div class="tabs-vertical-container">
 						<ul class="tabs-vertical-frame tabnilai ">
-							<? foreach($file as $kelas=>$namafile){?>
-								<li  class="first current"><a href="#" class="current"><h5 style="text-align:left;"><?=$kelas?></h5><span></span></a></li>
+							<? foreach($mapel as $pelajaran=>$namafile){?>
+								<li  class="first current"><a href="#" class="current"><h5 style="text-align:left;"><?=$pelajaran?></h5><span></span></a></li>
 							<? } ?>
 						</ul>
-						<? foreach($file as $kelas=>$namafile){?>
+						<? foreach($mapel as $pelajaran=>$namafile){?>
 						<div class="tabs-vertical-frame-content vcontnilai" style="display: block;">
 							
 							<?
@@ -117,12 +120,12 @@
 							   ?>
 								<div>          
 									<h6 style="margin:0;text-transform:capitalize;" class="role"><b>TAHUN <?=$th?></b></h6>
-									<p> <a target="__blank" href="<?=base_url()?>upload/contentsekolah/<?=$jenjang?>/<?=$kelasdir?>/<?=$kelas?>/<?=$namafilex?>" class="notif"><?=str_replace("_"," ",$namafilex)?></a> </p>
+									<p> <a target="__blank" href="<?=base_url()?>upload/contentsekolah/<?=$jenjang?>/<?=$kelasdir?>/<?=$pelajaran?>/<?=$namafilex?>" class="notif"><?=str_replace("_"," ",$namafilex)?></a> </p>
 								</div>
 							<? } ?>
 						</div>
 						<? } ?>
                 </div>		
 		</div>
-
+		<? } ?>
 						

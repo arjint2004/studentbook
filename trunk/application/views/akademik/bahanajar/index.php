@@ -96,11 +96,11 @@
 				<? $jenjang="SMP";?>
 				<div class="tabs-vertical-container">
 						<ul class="tabs-vertical-frame tabnilai ">
-							<? foreach($file as $kelas=>$namafile){?>
-								<li  class="first current"><a href="#" class="current"><h5 style="text-align:left;"><?=$kelas?></h5><span></span></a></li>
+							<? foreach($file as $mapel=>$namafile){?>
+								<li  class="first current"><a href="#" class="current"><h5 style="text-align:left;"><?=$mapel?></h5><span></span></a></li>
 							<? } ?>
 						</ul>
-						<? foreach($file as $kelas=>$namafile){?>
+						<? foreach($file as $mapel=>$namafile){?>
 						<div class="tabs-vertical-frame-content vcontnilai" style="display: block;">
 							
 							<?
@@ -111,7 +111,7 @@
 							   ?>
 								<div>          
 									<h6 style="margin:0;text-transform:capitalize;" class="role"><b>TAHUN <?=$th?></b></h6>
-									<p> <a target="__blank" href="<?=base_url()?>upload/contentsekolah/<?=$jenjang?>/<?=$kelasdir?>/<?=$kelas?>/<?=$namafilex?>" class="notif"><?=str_replace("_"," ",$namafilex)?></a> </p>
+									<p> <a target="__blank" href="<?=base_url()?>upload/contentsekolah/<?=$jenjang?>/<?=$kelasdir?>/<?=$mapel?>/<?=$namafilex?>" class="notif"><?=str_replace("_"," ",$namafilex)?></a> </p>
 								</div>
 							<? } ?>
 						</div>
