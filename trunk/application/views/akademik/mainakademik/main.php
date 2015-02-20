@@ -104,8 +104,8 @@
 	
 	<h3 id="guru"> Content Belajar </h3>
 	<div class="hr"></div>
-	<div class="tabs-container">
-		<div class="tabs-frame-content" id="contentbelajar" style="display: block;"></div>
+	<div class="tabs-container" id="contentbelajar">
+
 	</div>
 	
 	<h3 id="guru"> Administrasi </h3>

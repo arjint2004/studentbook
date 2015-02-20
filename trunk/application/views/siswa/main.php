@@ -70,6 +70,11 @@ if($cek['otoritas']=='siswa') {
 	<h3 id="guru"> Content Belajar </h3>
 	<div class="hr"></div>
 	<div class="tabs-container">
+		<ul class="tabs-frame">
+			<li>
+				<a>Kelas <?=$this->session->userdata('user_authentication')['kelas']?></a>
+			</li>
+		</ul>
 		<div class="tabs-frame-content" id="contentbelajar" style="display: block;"></div>
 	</div>
 	
