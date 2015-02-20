@@ -23,6 +23,7 @@ if($cek['otoritas']=='siswa') {
 
 	<script>
 		$(document).ready(function() {
+			$('#contentbelajar').load('<?=base_url('akademik/bahanajar/siswa')?>');
 			$('#penghubungortu').load('<?=base_url('siswa/jurnalwalikelas/penghubungortu')?>');
 		});
 	</script>
@@ -65,6 +66,12 @@ if($cek['otoritas']=='siswa') {
 		</div>
 	</div>
 
+	<div class="clear"></div>
+	<h3 id="guru"> Content Belajar </h3>
+	<div class="hr"></div>
+	<div class="tabs-container">
+		<div class="tabs-frame-content" id="contentbelajar" style="display: block;"></div>
+	</div>
 	
 	<div class="clear"></div>
 	<h3> Raport </h3>

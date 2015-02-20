@@ -21,7 +21,7 @@
 				}
 			}).trigger("scroll");*/
 			
-			$('#contentbelajar').load('<?=base_url('akademik/bahanajar')?>');
+			$('#contentbelajar').load('<?=base_url('akademik/bahanajar/guru')?>');
 			$('#smsnotifikasi').load('<?=base_url('akademik/sms')?>');
 			$('#tababsensi').bind('click', function() {
 				$.ajax({

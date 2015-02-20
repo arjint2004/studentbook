@@ -85,8 +85,11 @@ class Authentication extends CI_Controller {
 		    $siswa=$this->ad_siswa->getSiswaIdDetJenjang($user->id_sekolah,$settingSmTa['ta']['id'],$idsiswa);
 		    $sessiondata['id_siswa_det_jenjang'] = $siswa[0]['id_siswa_det_jenjang'];
 		    $sessiondata['id_kelas_siswa_det_jenjang'] = $siswa[0]['id_kelas_siswa_det_jenjang'];
+		    $sessiondata['kelas'] = $siswa[0]['kelas'];
+		    $sessiondata['nama_kelas'] = $siswa[0]['nama_kelas'];
 		    $sessiondata['id_siswa'] = $idsiswa;
 	    }
+		
         $this->session->set_userdata('user', $sessiondata);
 	    $this->session->set_userdata('user_authentication', $sessiondata); 
 			/* decide what the content should be up here .... */

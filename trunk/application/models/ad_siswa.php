@@ -128,11 +128,13 @@ Class Ad_siswa extends CI_Model
 		return $query->result_array();	
 	}
 	function getSiswaIdDetJenjang($id_sekolah,$ta,$id_siswa){
-		$query=$this->db->query('SELECT s.*, adj.id as id_siswa_det_jenjang, adj.id_kelas as id_kelas_siswa_det_jenjang  FROM
+		$query=$this->db->query('SELECT s.*, adj.id as id_siswa_det_jenjang, adj.id_kelas as id_kelas_siswa_det_jenjang,kls.kelas,kls.nama as nama_kelas  FROM
 									ak_det_jenjang adj JOIN
-									ak_siswa s 
+									ak_siswa s JOIN 
+									ak_kelas kls
 									ON
 									adj.id_siswa=s.id 
+									AND adj.id_kelas=kls.id
 									WHERE
 									adj.id_sekolah=?
 									AND adj.id_ta=?
