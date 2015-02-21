@@ -157,14 +157,15 @@ class Bahanajar extends CI_Controller
             $this->load->view('layout/ad_blank',$data);			
         }    
 
-        public function guru(){
+        public function guru($id=''){
 
             //pr($this->session->userdata('ak_setting'));
 		    //pr($this->session->userdata('user_authentication'));
 			
-			#$arrdir=$this->ak_file->dirToArray('D:/webdevel/studentbookrepo/upload/contentsekolah/'.$this->session->userdata('ak_setting')['jenjang'][0]['nama'].'');
-			$arrdir=$this->ak_file->dirToArray('/home/studoid1/public_html/studentbookrepo/upload/contentsekolah/'.$this->session->userdata('ak_setting')['jenjang'][0]['nama'].'');
+			$arrdir=$this->ak_file->dirToArray('D:/webdevel/studentbookrepo/upload/contentsekolah/'.$this->session->userdata('ak_setting')['jenjang'][0]['nama'].'');
+			#$arrdir=$this->ak_file->dirToArray('/home/studoid1/public_html/studentbookrepo/upload/contentsekolah/'.$this->session->userdata('ak_setting')['jenjang'][0]['nama'].'');
 			
+			$data['id']=$id;
 			$data['kelasdir']="Kelas 7";
 			$data['file']=$arrdir;
 			//pr($arrdir);die('/home/studoid1/public_html/studentbookrepo/upload/contentsekolah/'.$this->session->userdata('ak_setting')['jenjang'][0]['nama'].'');

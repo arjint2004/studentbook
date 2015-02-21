@@ -28,7 +28,7 @@ class Materi extends CI_Controller
 						$name = date('Ymdhis').str_replace(" ","",$_FILES["file"]["name"][$key]);
 						if(!in_array($_FILES["file"]["type"][$key], $this->denied_mime_types)){
 							if(move_uploaded_file( $_FILES["file"]["tmp_name"][$key], $this->upload_dir . $name)){
-								$this->db->insert('ak_materi_file', array('id_materi'=>$id_materi,'file_name'=>''.$name.''));
+								$this->db->insert('ak_materi_file', array('id_materi'=>$id_materi,'file_name'=>''.$name.'','source'=>'upload'));
 							}
 							//$out= 'allowed';
 							
@@ -107,6 +107,14 @@ class Materi extends CI_Controller
 					
 				$this->db->insert('ak_materi_pelajaran',$datainsert);
 				$id_materi=mysql_insert_id();
+					if(isset($_POST['cnrbljr']) && !empty($_POST['cnrbljr'])){
+							foreach($_POST['cnrbljr'] as $datacntbljr){
+								$dtxbn=unserialize(base64_decode($datacntbljr));
+								$this->db->insert('ak_materi_file', array('id_materi'=>$id_materi,'file_name'=>'upload/contentsekolah/'.$dtxbn['jenjang'].'/'.$dtxbn['kelasdir'].'/'.$dtxbn['pelajaran'].'/'.$dtxbn['filename'].'','source'=>'content_belajar'));
+								//$this->db->insert('ak_materi_file', array('id_materi'=>$id_materi,'file_name'=>$dtxbn['filename'],'source'=>'content_belajar'));
+							}
+					}
+					
 				if(isset($_POST['id_kelas'])){
 					$this->load->library('smsprivate');
 					foreach($_POST['id_kelas'] as $id_kelas){
@@ -127,6 +135,8 @@ class Materi extends CI_Controller
 						//end notifikasi
 						
 					}
+					
+
 				}
 				
 				echo $id_materi;
