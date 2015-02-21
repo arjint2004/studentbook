@@ -254,11 +254,20 @@ $(function() {
 				</td>
 			</tr>
 			<tr>
-				<td width="30%" class="title">Lampiran File</td>
+				<td width="30%" class="title">Lampiran file dengan upload</td>
 				<td width="1">:</td>
 				<td colspan="2">
 					<input type="file" name="file" id="fileaddmateri" multiple />
 					<div id="response" style="font-size:11px;">Anda bisa memilih banyak file dengan memencet tombol "Ctrl", kemudian klik file yang dipilih lebih dari satu</div>
+				</td>
+			</tr>
+			<tr>
+				<td width="30%" class="title">Lampiran file dari content belajar</td>
+				<td width="1">:</td>
+				<td colspan="2">
+					<ul class="file" id="addmatericontbljr"></ul>
+					<a class="button small light-grey zoom-icon modal" title="" href="<?=base_url('akademik/bahanajar/guru/908786')?>" style="margin-left:0;"> <span> Pilih materi dari content belajar </span> </a>
+					<!--<div id="response" style="font-size:11px;">Anda bisa memilih banyak file dari daftar "Content Belajar", klik tombol diatas kemudian pilih file</div>-->
 				</td>
 			</tr>
 			<!--<tr>
