@@ -282,7 +282,7 @@ $(function() {
 						<?foreach($files as $file){
 						if($file['source']=='upload'){
 						?>
-							<li><?=str_replace("_"," ",$file['file_name'])?><div id="<?=$file['id']?>" class="actdell"></div></li>
+							<li><?=$file['file_name']?><div id="<?=$file['id']?>" class="actdell"></div></li>
 						<? }} ?>
 					</ul>
 					</form>
