@@ -279,11 +279,29 @@ $(function() {
 					<div id="response" style="font-size:11px;">Anda bisa memilih banyak file dengan memencet tombol "Ctrl", kemudian klik file yang dipilih lebih dari satu</div>
 					<form id="remidialfile" method="post" action="">
 					<ul class="file">
-						<?foreach($files as $file){?>
+						<?foreach($files as $file){
+						if($file['source']=='upload'){
+						?>
 							<li><?=$file['file_name']?><div id="<?=$file['id']?>" class="actdell"></div></li>
-						<? } ?>
+						<? }} ?>
 					</ul>
 					</form>
+				</td>
+			</tr>
+			<tr>
+				<td width="30%" class="title">Lampiran file dari content belajar</td>
+				<td width="1">:</td>
+				<td colspan="2">
+					<ul class="file">
+						<?foreach($files as $file){
+						if($file['source']=='content_belajar'){
+						$nmfcnt=explode("/",$file['file_name']);
+						?>
+							<li><?=$nmfcnt[3]?>|<?=$nmfcnt[4]?>|<?=$nmfcnt[5]?><div id="<?=$file['id']?>" class="actdell"></div></li>
+						<? }} ?>
+					</ul>
+					<ul class="file" id="addmatericontbljr"></ul>
+					<a class="button small light-grey zoom-icon modal" title="" href="<?=base_url('akademik/bahanajar/guru/908786')?>" style="margin-left:0;"> <span> Pilih materi dari content belajar </span> </a>
 				</td>
 			</tr>
 			<!--<tr>
