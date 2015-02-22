@@ -42,7 +42,9 @@
 													
 													$("ul#addmatericontbljr").append('<li class="actdellcnt">'+data.kelasdir+'|'+data.pelajaran+'|'+$(this).attr('filename')+'<input type="hidden" name="cnrbljr[]" value="'+$(this).attr('idcntbljrphp')+'" /><div class="actdell"></div></li>');
 														$("ul.file li div.actdell").click(function(){
-															$(this).parent('li').remove();
+															//if(confirm('File akan di hapus ?')){
+																$(this).parent('li').remove();
+															//}
 														});
 														
 													return false;
