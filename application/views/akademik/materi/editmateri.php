@@ -282,7 +282,7 @@ $(function() {
 						<?foreach($files as $file){
 						if($file['source']=='upload'){
 						?>
-							<li><?=$file['file_name']?><div id="<?=$file['id']?>" class="actdell"></div></li>
+							<li><?=str_replace("_"," ",$file['file_name'])?><div id="<?=$file['id']?>" class="actdell"></div></li>
 						<? }} ?>
 					</ul>
 					</form>
@@ -297,7 +297,7 @@ $(function() {
 						if($file['source']=='content_belajar'){
 						$nmfcnt=explode("/",$file['file_name']);
 						?>
-							<li><?=$nmfcnt[3]?>|<?=$nmfcnt[4]?>|<?=$nmfcnt[5]?><div id="<?=$file['id']?>" class="actdell"></div></li>
+							<li><?=$nmfcnt[3]?>|<?=$nmfcnt[4]?>|<?=str_replace("_"," ",$nmfcnt[5])?><div id="<?=$file['id']?>" class="actdell"></div></li>
 						<? }} ?>
 					</ul>
 					<ul class="file" id="addmatericontbljr"></ul>
