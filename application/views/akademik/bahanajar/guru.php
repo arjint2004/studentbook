@@ -30,13 +30,21 @@
 										if(isset($id) && $id!=''){
 											?>
 												$("a.<?=$id?>").click(function(){
-													//alert($(this).attr('filename'));
+													var ob=$(this);
+													$("#contentbelajarid").append("<div class=\"error-box\" style='width:300px;display: block; top: 50%; position: fixed; left: 46%;'></div>");
+													$(".error-box").delay(500).html('BERHASIL DITAMBAHKAN');
+													
+													$(".error-box").delay(500).fadeOut("slow",function(){
+														$(this).remove();
+													});	
+													
 													var data=JSON.parse($(this).attr('idcntbljr'));
 													
 													$("ul#addmatericontbljr").append('<li class="actdellcnt">'+data.kelasdir+'|'+data.pelajaran+'|'+$(this).attr('filename')+'<input type="hidden" name="cnrbljr[]" value="'+$(this).attr('idcntbljrphp')+'" /><div class="actdell"></div></li>');
-													$("ul.file li div.actdell").click(function(){
-														$(this).parent('li').remove();
-													});	
+														$("ul.file li div.actdell").click(function(){
+															$(this).parent('li').remove();
+														});
+														
 													return false;
 												});											
 											<?											
@@ -56,7 +64,7 @@
 			<? } ?>
 		</ul>
 		<? foreach($file as $Kelas=>$mapel){?>
-		<div class="tabs-frame-content contentbelajar" style="display: block; width:928px; >
+		<div class="tabs-frame-content contentbelajar" id="contentbelajarid" style="display: block; width:928px;" >
 				<div class="tabs-vertical-container">
 						<ul class="tabs-vertical-frame nilai_tab tabnilai tabrencana ">
 							<? foreach($mapel as $pelajaran=>$namafile){?>
