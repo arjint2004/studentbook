@@ -159,6 +159,7 @@ if($cek['otoritas']=='siswa' || $cek['otoritas']=='ortu') {
 <div class="portfolio column-one-half-with-sidebar">
     <div class="hr bottomutsofile"></div>
 	<br />
+	<br />
 	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	<!-- smartphone dan computer -->
 	<ins class="adsbygoogle"
