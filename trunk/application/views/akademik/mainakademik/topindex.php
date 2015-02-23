@@ -158,6 +158,16 @@ if($cek['otoritas']=='siswa' || $cek['otoritas']=='ortu') {
 </div>
 <div class="portfolio column-one-half-with-sidebar">
     <div class="hr bottomutsofile"></div>
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<!-- smartphone dan computer -->
+	<ins class="adsbygoogle"
+		 style="display:block"
+		 data-ad-client="ca-pub-5804160032970255"
+		 data-ad-slot="3223233922"
+		 data-ad-format="auto"></ins>
+	<script>
+	(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
    <!-- <div class="content content-full-width" style="color: white;background: #CDCDCD;padding-top:40px;padding-bottom: 40px;">
         <div class="text_iklan">SPACE IKLAN</div>
          <p>Mengenang Iklan Sepanjang Masa</p>
