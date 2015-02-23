@@ -170,7 +170,6 @@ if($cek['otoritas']=='siswa' || $cek['otoritas']=='ortu') {
 	<script>
 	(adsbygoogle = window.adsbygoogle || []).push({});
 	</script>
-	<br />
    <!-- <div class="content content-full-width" style="color: white;background: #CDCDCD;padding-top:40px;padding-bottom: 40px;">
         <div class="text_iklan">SPACE IKLAN</div>
          <p>Mengenang Iklan Sepanjang Masa</p>
