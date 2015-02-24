@@ -171,7 +171,14 @@ class Materi extends CI_Controller
 				);
 				$this->db->where('id',$_POST['id']);
 				$this->db->update('ak_materi_pelajaran',$datainsert);
-				
+					
+					if(isset($_POST['cnrbljr']) && !empty($_POST['cnrbljr'])){
+							foreach($_POST['cnrbljr'] as $datacntbljr){
+								$dtxbn=unserialize(base64_decode($datacntbljr));
+								$this->db->insert('ak_materi_file', array('id_materi'=>$id_materi,'file_name'=>'upload/contentsekolah/'.$dtxbn['jenjang'].'/'.$dtxbn['kelasdir'].'/'.$dtxbn['pelajaran'].'/'.$dtxbn['filename'].'','source'=>'content_belajar'));
+								//$this->db->insert('ak_materi_file', array('id_materi'=>$id_materi,'file_name'=>$dtxbn['filename'],'source'=>'content_belajar'));
+							}
+					}
 				if(isset($_POST['id_kelas']) AND !empty($_POST['id_kelas'])){
 					foreach($_POST['id_kelas'] as $id_kelas){
 						$insert_detail=array('id_materi'=>$id_materi,
