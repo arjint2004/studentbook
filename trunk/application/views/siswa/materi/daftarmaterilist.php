@@ -48,11 +48,30 @@
 													<h3 >File Lampiran</h3>
 													<div class="hr"></div>
 													<table class="noborder">
-														<? foreach($datamateri['file'] as $file){?>
+														<?
+														if(!empty($datamateri['file'])){
+														foreach($datamateri['file'] as $file){?>
 														<tr>
-															<td class="title"><a href="<?=base_url('siswa/materi/send_download/'.base64_encode($file['file_name']).'');?>" target="_self"><?=$file['file_name']?></a></td>
+															<td class="title">
+
+															<? if($file['source']=='upload'){?>
+															<a title="<?=$file['file_name']?>" href="<?=base_url('homepage/send_download/'.base64_encode('upload/akademik/materi/').'/'.base64_encode($file['file_name']).'');?>" target="_self"><?=substr($file['file_name'],-30)?> Download</a>
+															| <a target="file"  href="<?=base_url()?>akademik/nilai/view_document/null/null/null/null/null/<?=base64_encode(base_url('upload/akademik/materi/'.$file['file_name']).'')?>">Lihat</a>
+															<? } ?>
+															
+															<? 
+															if($file['source']=='content_belajar'){
+															$murnifilename=explode("/",$file['file_name']);
+															$pathcnt=$murnifilename[0].'/'.$murnifilename[1].'/'.$murnifilename[2].'/'.$murnifilename[3].'/'.$murnifilename[4].'/';
+															$murnifilename=end($murnifilename);
+															?>
+															<a title="<?=$murnifilename?>" href="<?=base_url('homepage/send_download/'.base64_encode($pathcnt).'/'.base64_encode($murnifilename).'');?>" target="file"><?=substr($murnifilename,-30)?> Download</a>
+															
+															| <a target="file"  href="<?=base_url()?>akademik/nilai/view_document/null/null/null/null/null/<?=base64_encode(base_url($pathcnt.'/'.$murnifilename).'')?>">Lihat</a>
+															<? } ?>
+															</td>
 														</tr>
-														<? } ?>
+														<? } } ?>
 													</table>
 													</div>
 													<div class="siswa">
