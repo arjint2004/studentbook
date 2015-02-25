@@ -10,7 +10,7 @@
 	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	<!-- text smartphone & computer -->
 	<ins class="adsbygoogle"
-		 style="display:inline-block;width:150px;height:50px"
+		 style="display:inline-block;width:200px;height:80px"
 		 data-ad-client="ca-pub-5804160032970255"
 		 data-ad-slot="3330651926"></ins>
 	<script>
@@ -19,7 +19,7 @@
 	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	<!-- text smartphone & computer -->
 	<ins class="adsbygoogle"
-		 style="display:inline-block;width:150px;height:50px"
+		 style="display:inline-block;width:200px;height:80px"
 		 data-ad-client="ca-pub-5804160032970255"
 		 data-ad-slot="3330651926"></ins>
 	<script>
@@ -28,7 +28,7 @@
 	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	<!-- text smartphone & computer -->
 	<ins class="adsbygoogle"
-		 style="display:inline-block;width:150px;height:50px"
+		 style="display:inline-block;width:200px;height:80px"
 		 data-ad-client="ca-pub-5804160032970255"
 		 data-ad-slot="3330651926"></ins>
 	<script>
@@ -37,7 +37,7 @@
 	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	<!-- text smartphone & computer -->
 	<ins class="adsbygoogle"
-		 style="display:inline-block;width:150px;height:50px"
+		 style="display:inline-block;width:200px;height:80px"
 		 data-ad-client="ca-pub-5804160032970255"
 		 data-ad-slot="3330651926"></ins>
 	<script>
