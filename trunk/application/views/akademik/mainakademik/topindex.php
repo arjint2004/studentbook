@@ -161,7 +161,7 @@ if($cek['otoritas']=='siswa' || $cek['otoritas']=='ortu') {
 	<br />
 	<br />
 	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-	 smartphone dan computer 
+	 <!--smartphone dan computer -->
 	<ins class="adsbygoogle"
 		 style="display:block"
 		 data-ad-client="ca-pub-5804160032970255"
@@ -169,7 +169,7 @@ if($cek['otoritas']=='siswa' || $cek['otoritas']=='ortu') {
 		 data-ad-format="auto"></ins>
 	<script>
 	(adsbygoogle = window.adsbygoogle || []).push({});
-	</script>-->
+	</script>
    <!-- <div class="content content-full-width" style="color: white;background: #CDCDCD;padding-top:40px;padding-bottom: 40px;">
         <div class="text_iklan">SPACE IKLAN</div>
          <p>Mengenang Iklan Sepanjang Masa</p>
