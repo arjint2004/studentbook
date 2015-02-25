@@ -16,6 +16,33 @@
 	<script>
 	(adsbygoogle = window.adsbygoogle || []).push({});
 	</script>
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<!-- text smartphone & computer -->
+	<ins class="adsbygoogle"
+		 style="display:inline-block;width:150px;height:50px"
+		 data-ad-client="ca-pub-5804160032970255"
+		 data-ad-slot="3330651926"></ins>
+	<script>
+	(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<!-- text smartphone & computer -->
+	<ins class="adsbygoogle"
+		 style="display:inline-block;width:150px;height:50px"
+		 data-ad-client="ca-pub-5804160032970255"
+		 data-ad-slot="3330651926"></ins>
+	<script>
+	(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<!-- text smartphone & computer -->
+	<ins class="adsbygoogle"
+		 style="display:inline-block;width:150px;height:50px"
+		 data-ad-client="ca-pub-5804160032970255"
+		 data-ad-slot="3330651926"></ins>
+	<script>
+	(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
 	
 	<h3 id="guru"> Notifikasi SMS hari ini </h3>
 	<div class="hr"></div>
