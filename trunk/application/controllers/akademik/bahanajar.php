@@ -162,10 +162,10 @@ class Bahanajar extends CI_Controller
             //pr($this->session->userdata('ak_setting'));
 		    //pr($this->session->userdata('user_authentication'));
 			
-			$arrdir=$this->ak_file->dirToArray('D:/webdevel/studentbookrepo/upload/contentsekolah/'.$this->session->userdata('ak_setting')['jenjang'][0]['nama'].'');
-			$arrdirk13=$this->ak_file->dirToArray('D:/webdevel/studentbookrepo/upload/contentsekolah/k13/SD');
-			#$arrdir=$this->ak_file->dirToArray('/home/studoid1/public_html/studentbookrepo/upload/contentsekolah/'.$this->session->userdata('ak_setting')['jenjang'][0]['nama'].'');
-			#$arrdirk13=$this->ak_file->dirToArray('/home/studoid1/public_html/studentbookrepo/upload/contentsekolah/k13/'.$this->session->userdata('ak_setting')['jenjang'][0]['nama'].'');
+			#$arrdir=$this->ak_file->dirToArray('D:/webdevel/studentbookrepo/upload/contentsekolah/'.$this->session->userdata('ak_setting')['jenjang'][0]['nama'].'');
+			#$arrdirk13=$this->ak_file->dirToArray('D:/webdevel/studentbookrepo/upload/contentsekolah/k13/SD');
+			$arrdir=$this->ak_file->dirToArray('/home/studoid1/public_html/studentbookrepo/upload/contentsekolah/'.$this->session->userdata('ak_setting')['jenjang'][0]['nama'].'');
+			$arrdirk13=$this->ak_file->dirToArray('/home/studoid1/public_html/studentbookrepo/upload/contentsekolah/k13/'.$this->session->userdata('ak_setting')['jenjang'][0]['nama'].'');
 			
 			$data['id']=$id;
 			$data['kelasdir']="Kelas 7";
