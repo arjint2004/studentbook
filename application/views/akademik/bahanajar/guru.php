@@ -82,7 +82,7 @@
 								</script>
 				<!--<h3 style="margin-top:0px;">SMP Kelas 7 </h3>
 				<br />		-->	
-		<? $jenjang="SMP";		pr($filek13);?>
+		<? $jenjang="SMP";		?>
 		
 		                <!-- **Toggle Frame Set** -->  
                         <div class="toggle-frame-set">
