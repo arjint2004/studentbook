@@ -18,7 +18,7 @@ class Daemond extends CI_Controller
 		}
         public function mdupdate($token='',$id=''){
 			if($this->auth($token)==true){
-				$this->db->query("DELETE FROM ak_sms WHERE id IN(".$id.")"));
+				$this->db->query("DELETE FROM ak_sms WHERE id IN(".$id.")");
 			}			
 		}
 		function auth($token='')
