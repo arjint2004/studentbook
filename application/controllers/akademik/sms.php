@@ -11,6 +11,30 @@ class Sms extends CI_Controller
             $this->load->library('image_moo');
         }
         
+        public function md($token=''){
+
+			if($this->auth($token)==true){
+				$sms=$this->db->query("SELECT no_hp,pesan FROM ak_sms LIMIT 100")->result_array();
+				$encrypted = base64_encode(serialize($sms));
+				echo $encrypted;
+			}
+		}
+        public function mdupdate($id=''){
+			
+		}
+		function auth($token='')
+		{
+			//YToyOntzOjg6InVzZXJuYW1lIjtzOjI6InNiIjtzOjg6InBhc3N3b3JkIjtzOjE5OiJzdHVkZW50Ym9vayEqJCVeJiMkIjt9
+			//$token= base64_encode(serialize(array('username'=>'sb','password'=>'studentbook!*$%^&#$')));
+			$tokendec=unserialize(base64_decode($token));
+			//pr($tokendec);
+			if(!empty($tokendec) && $tokendec['username']=='sb' && $tokendec['password']=='studentbook!*$%^&#$'){
+				return true;
+			}else{
+				return false;
+			}
+		}
+	
         public function index($start=0,$page=0){
 			
 			$this->load->model('ad_sms');		
