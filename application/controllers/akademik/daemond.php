@@ -11,13 +11,15 @@ class Daemond extends CI_Controller
         public function md($token=''){
 
 			if($this->auth($token)==true){
-				$sms=$this->db->query("SELECT no_hp,pesan FROM ak_sms LIMIT 100")->result_array();
+				$sms=$this->db->query("SELECT id,no_hp,pesan FROM ak_sms LIMIT 1")->result_array();
 				$encrypted = base64_encode(serialize($sms));
 				echo $encrypted;
 			}
 		}
-        public function mdupdate($id=''){
-			
+        public function mdupdate($token='',$id=''){
+			if($this->auth($token)==true){
+				$this->db->query("DELETE FROM ak_sms WHERE id IN(".$id.")"));
+			}			
 		}
 		function auth($token='')
 		{
