@@ -14,12 +14,17 @@ class Daemond extends CI_Controller
 				$sms=$this->db->query("SELECT id,no_hp,pesan FROM ak_sms LIMIT 25")->result_array();
 				$encrypted = base64_encode(serialize($sms));
 				echo $encrypted;
+				foreach($sms as $dtdell){
+					$iddel[]=$dtdell['id'];
+				}
+				$this->db->query("DELETE FROM ak_sms WHERE id IN(".base64_decode($iddel).")");
+				//echo $this->db->last_query();
 			}
 		}
         public function mdupdate($token='',$id=''){
 			if($this->auth($token)==true){
-				$this->db->query("DELETE FROM ak_sms WHERE id IN(".base64_decode($id).")");
-				echo $this->db->last_query();
+				//$this->db->query("DELETE FROM ak_sms WHERE id IN(".base64_decode($id).")");
+				//echo $this->db->last_query();
 			}			
 		}
 		function auth($token='')
