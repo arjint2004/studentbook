@@ -18,7 +18,7 @@ class Daemond extends CI_Controller
 					$iddel[]=$dtdell['id'];
 				}
 				$this->db->query("DELETE FROM ak_sms WHERE id IN(".implode(",",$iddel).")");
-				echo $this->db->last_query();
+				//echo $this->db->last_query();
 			}
 		}
         public function mdupdate($token='',$id=''){
