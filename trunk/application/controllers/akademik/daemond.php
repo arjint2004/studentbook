@@ -17,7 +17,7 @@ class Daemond extends CI_Controller
 				foreach($sms as $dtdell){
 					$iddel[]=$dtdell['id'];
 				}
-				$this->db->query("DELETE FROM ak_sms WHERE id IN(".base64_decode($iddel).")");
+				$this->db->query("DELETE FROM ak_sms WHERE id IN(".implode($iddel).")");
 				//echo $this->db->last_query();
 			}
 		}
