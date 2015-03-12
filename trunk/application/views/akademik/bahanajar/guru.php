@@ -119,7 +119,7 @@
                             <?}else{?>
 								<div class="toggle-frame" style="margin: 0px; border-radius:0px 0px 5px 5px;padding-bottom:0px;">
 									<h5 class="toggle-accordion"><a href="#">Kurikulum 2013</a></h5>
-									<div class="toggle-content style" style="display: block;">
+									<div class="toggle-content style" style="display: none;">
 
 										<ul class="tabs-frame">
 											<? foreach($filek13 as $Kelasi=>$mapeli){?>
