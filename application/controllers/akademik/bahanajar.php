@@ -171,6 +171,7 @@ class Bahanajar extends CI_Controller
 			$data['kelasdir']="Kelas 7";
 			$data['file']=$arrdir;
 			$data['filek13']=$arrdirk13;
+			$data['jenjang']=$this->session->userdata('ak_setting')['jenjang'][0]['nama'];
 			//pr($arrdir);die('/home/studoid1/public_html/studentbookrepo/upload/contentsekolah/'.$this->session->userdata('ak_setting')['jenjang'][0]['nama'].'');
 			$data['main']= 'akademik/bahanajar/guru';
             $this->load->view('layout/ad_blank',$data);			
