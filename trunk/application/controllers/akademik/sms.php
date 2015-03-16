@@ -35,6 +35,14 @@ class Sms extends CI_Controller
 			}
 		}
 	
+        public function replacenohp(){
+			$nohperr=$this->db->query("SELECT id,hp FROM ak_pegawai WHERE CHAR_LENGTH(hp)>14")->result_array();
+			pr($nohperr);
+			foreach($nohperr as $datano){
+				$nohpfix=str_replace(" ","",str_replace("'","",str_replace("/","",$datano['hp'])));
+				$this->db->query("UPDATE ak_pegawai SET hp=".$nohpfix." WHERE id=".$datano['id']."");
+			}
+		}
         public function index($start=0,$page=0){
 			
 			$this->load->model('ad_sms');		

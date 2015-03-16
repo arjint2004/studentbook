@@ -14,8 +14,8 @@
 								}
 								$user = DataUser();
 								
-									if(empty($user->foto)) {
-										$user->foto = 'asset/default/images/no_profile.jpg';
+									if(empty(@$user->foto)) {
+										@$user->foto = 'asset/default/images/no_profile.jpg';
 									}
 									
 									if($cek['otoritas']=='siswa') {
