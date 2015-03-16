@@ -14,7 +14,7 @@
 								}
 								$user = DataUser();
 								
-									if(empty(@$user->foto)) {
+									if(empty($user->foto)) {
 										@$user->foto = 'asset/default/images/no_profile.jpg';
 									}
 									
