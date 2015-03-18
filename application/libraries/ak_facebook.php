@@ -21,8 +21,8 @@ class Ak_facebook {
 			return false;
 		}		
 	}
-	function getuser(){
-
+	function getuserid(){
+		return $this->facebook->getUser();
 	}
 }
 
