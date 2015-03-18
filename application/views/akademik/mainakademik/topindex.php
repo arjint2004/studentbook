@@ -8,7 +8,7 @@
   ga('send', 'pageview');
 
 </script>
-
+<? if(cekloginfb()){?>
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -17,7 +17,7 @@
   js.src = "//connect.facebook.net/id_ID/sdk.js#xfbml=1&appId=701889786512635&version=v2.0";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-
+<? } ?>
 <script>
             
 			$(function(){
@@ -90,7 +90,7 @@
 					});
                 });
 
-
+				<? if(cekloginfb()){?>
 				  setTimeout(function () {
 						$("#btnForm").fancybox({
 							'showCloseButton'  : true,
@@ -110,6 +110,7 @@
 						});
 						$("#btnForm").trigger('click');
 				  }, 40000);
+				<? } ?>
 				
             });
             </script>
@@ -139,6 +140,7 @@ if($cek['otoritas']=='siswa' || $cek['otoritas']=='ortu') {
 }
 					
 ?>
+<? if(cekloginfb()){?>
 <div href="#divForm" id="btnForm"></div>
 <div id="divForm" style="width:320px;height:280px; display:none; padding:10px;">
 <h5>Sambungkan Studentbook Ke Facebook</h5>
@@ -146,7 +148,7 @@ if($cek['otoritas']=='siswa' || $cek['otoritas']=='ortu') {
  <p> Pantau aktifitas akademik <b><?=strtoupper($this->session->userdata['ak_setting']['nama_sekolah'])?></b> melalui Facebook kamu. Klik tombol facebook dibawah ini untuk menyambungkan akun kamu ke facebook </p>
 <div class="fb-login-button" data-max-rows="5" data-size="xlarge" data-show-faces="true" data-auto-logout-link="false"></div>
 </div>
-
+<? } ?>
 <div class="one-full">
                     <!-- **Team** -->
                     <div class="team">

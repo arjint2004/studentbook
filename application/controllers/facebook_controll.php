@@ -1,5 +1,5 @@
 <?php
-class Facebook_app extends CI_Controller {
+class Facebook_controll extends CI_Controller {
  
     public function __construct()
     {
@@ -8,7 +8,7 @@ class Facebook_app extends CI_Controller {
         //$this->load->helper('global');
         //$this->auth->user_logged_in();
     }
-    
+
     public function index() {
         require_once 'facebook-php-sdk-master/src/facebook.php';
 
@@ -27,10 +27,6 @@ class Facebook_app extends CI_Controller {
 					'template' => 'test notif',
 				);
 		$facebook->api('/1434750659/notifications', 'post', $params);
-		 
-		
-		
-		
 	}
 }
 ?>

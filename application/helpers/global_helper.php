@@ -7,6 +7,15 @@
  * @return string
  */
 
+ //cek login fb
+if (!function_exists('cekloginfb')) {
+    function cekloginfb() {
+		$CI = get_instance();
+        $CI->load->library('ak_facebook');
+		return $CI->ak_facebook->ceklogin();
+    }
+}
+
  //print iklan
 if (!function_exists('print_iklan')) {
     function print_iklan() {
