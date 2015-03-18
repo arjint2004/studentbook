@@ -39,6 +39,8 @@ class Auth {
     {
         $CI = & get_instance();
         $CI->load->library('session');
+		$CI->load->library('ak_facebook');
+		$CI->ak_facebook->ceklogin();
 		//pr($CI->session->userdata('user'));die();
         if ($CI->session->userdata('user') && $CI->session->userdata('user_authentication')) {
             $session_data = $CI->session->userdata('user');
