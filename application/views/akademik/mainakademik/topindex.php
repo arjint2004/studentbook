@@ -8,7 +8,7 @@
   ga('send', 'pageview');
 
 </script>
-<? if(cekloginfb()){?>
+<? if(!cekloginfb()){?>
 <div id="fb-root"></div>
 <script>
 /*(function(d, s, id) {
@@ -184,7 +184,7 @@
 					});
                 });
 
-				<? if(cekloginfb()){?>
+				<? if(!cekloginfb()){?>
 				  setTimeout(function () {
 						$("#btnForm").fancybox({
 							'showCloseButton'  : true,
@@ -234,7 +234,7 @@ if($cek['otoritas']=='siswa' || $cek['otoritas']=='ortu') {
 }
 					
 ?>
-<? if(cekloginfb()){?>
+<? if(!cekloginfb()){?>
 <div href="#divForm" id="btnForm"></div>
 <div id="divForm" style="width:320px;height:280px; display:none; padding:10px;">
 <h5>Sambungkan Studentbook Ke Facebook</h5>
