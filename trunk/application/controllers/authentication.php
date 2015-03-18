@@ -90,11 +90,17 @@ class Authentication extends CI_Controller {
 		    $sessiondata['id_siswa'] = $idsiswa;
 	    }
 		//cek konek facebook
-		$userfb=$this->load->library('ak_facebook');
-		if ($userfb) {
-			
+		
+		if ($user->fb_id=='') {
+			$this->load->library('ak_facebook');
+			$userfbid=$this->ak_facebook->getuserid();
+			echo $userfbid;die();
+			if ($userfbid) {
+				$this->db->query("UPDATE users SET fb_id='".$userfb."'");
+				$sessiondata['fb_id'] = $userfb;
+			}
 		} else {
-			
+			$sessiondata['fb_id'] = $user->fb_id;
 		}	
 		
         $this->session->set_userdata('user', $sessiondata);
