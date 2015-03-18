@@ -94,7 +94,7 @@ class Authentication extends CI_Controller {
 		if ($user->fb_id=='') {
 			$this->load->library('ak_facebook');
 			$userfbid=$this->ak_facebook->getuserid();
-			echo $userfbid;die();
+			
 			if ($userfbid) {
 				$this->db->query("UPDATE users SET fb_id='".$userfb."'");
 				$sessiondata['fb_id'] = $userfb;
