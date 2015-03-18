@@ -89,6 +89,9 @@ class Authentication extends CI_Controller {
 		    $sessiondata['nama_kelas'] = $siswa[0]['nama_kelas'];
 		    $sessiondata['id_siswa'] = $idsiswa;
 	    }
+		//cek konek facebook
+		$this->load->library('ak_facebook');
+		echo $this->ak_facebook->getuserid();die();
 		
         $this->session->set_userdata('user', $sessiondata);
 	    $this->session->set_userdata('user_authentication', $sessiondata); 
