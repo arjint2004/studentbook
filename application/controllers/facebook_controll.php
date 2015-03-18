@@ -10,16 +10,27 @@ class Facebook_controll extends CI_Controller {
     }
 
     public function saveId() {
-		pr(json_decode($_POST['fbaccount']));
-		/*if ($user->fb_id=='') {
-			$this->load->library('ak_facebook');
-			$userfbid=$this->ak_facebook->getuserid();
-			//echo $userfbid;die();
-			if ($userfbid) {
-				$this->db->query("UPDATE users SET fb_id='".$userfbid."' WHERE id=".$user->id."");
-				$sessiondata['fb_id'] = $userfbid;
-			}
-		}*/
+		$fbakun=json_decode($_POST['fbaccount']);
+		/*
+		stdClass Object
+		(
+			[id] => 10206257977435076
+			[email] => arjint2004@gmail.com
+			[first_name] => Arjint
+			[gender] => male
+			[last_name] => Asbin
+			[link] => https://www.facebook.com/app_scoped_user_id/10206257977435076/
+			[locale] => id_ID
+			[name] => Arjint Asbin
+			[timezone] => 7
+			[updated_time] => 2015-02-28T10:13:52 0000
+			[verified] => 1
+		)*/
+		
+		if (isset($fbakun->id) && $fbakun->id!='') {
+			$this->db->query("UPDATE users SET fb_id='".$fbakun->id."' WHERE id=".$this->session->userdata['user_authentication']['id']."");
+			$this->session->userdata['user_authentication']['fb_id'] = $fbakun->id;
+		}
 	}
     public function xx() {
         require_once 'facebook-php-sdk-master/src/facebook.php';
