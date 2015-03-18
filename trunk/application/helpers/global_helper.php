@@ -10,10 +10,14 @@
  //cek login fb
 if (!function_exists('cekloginfb')) {
     function cekloginfb() {
-		//$CI = get_instance();
+		$CI = get_instance();
         //$CI->load->library('ak_facebook');
-		//return $CI->ak_facebook->ceklogin();
-		return true;
+		if($CI->session->userdata['user_authentication']['fb_id']!=''){
+			return $CI->session->userdata['user_authentication']['fb_id'];
+		}else{
+			return false;
+		}
+		
     }
 }
 
