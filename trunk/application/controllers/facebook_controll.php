@@ -10,7 +10,7 @@ class Facebook_controll extends CI_Controller {
     }
 
     public function saveId() {
-		pr($_POST);
+		pr(json_decode($_POST['fbaccount']));
 		/*if ($user->fb_id=='') {
 			$this->load->library('ak_facebook');
 			$userfbid=$this->ak_facebook->getuserid();
