@@ -6,7 +6,7 @@ class Ak_facebook {
 		require_once 'facebook-php-sdk-master/src/facebook.php';
 		define("FB_APP_ID", "701889786512635");
 		define("FB_APP_SECRET", "969f2165b189358482928e708d70f48c");
-		$facebook = new Facebook(array(
+		$this->facebook = new Facebook(array(
 		  'appId'  => FB_APP_ID,
 		  'secret' => FB_APP_SECRET,
 		  'grant_type' => 'client_credentials'
