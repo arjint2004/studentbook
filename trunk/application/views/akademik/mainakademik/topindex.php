@@ -96,7 +96,18 @@
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + ' ' + response.id + '!';
-		alert(JSON.stringify(response))
+		
+						$.ajax({
+							type: "POST",
+							data: 'fbaccount='+response,
+							url: '<?=base_url()?>facebook_controll/saveId',
+							beforeSend: function() {
+
+							},
+							success: function(msg) {
+
+							}
+						});
     });
   }
 </script>
@@ -187,8 +198,8 @@
 								$('div#divForm').show();
 							},
 							'onClosed'  : function() {
-								$('div#'+$(this).attr('href')).unwrap();
-								$('div'+$(this).attr('href')).hide();
+								$('div#divForm').unwrap();
+								$('div#divForm').hide();
 							}
 						});
 						$("#btnForm").trigger('click');
