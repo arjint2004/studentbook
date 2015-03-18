@@ -4,12 +4,24 @@ class Facebook_controll extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
-        //$this->load->library('auth');
-        //$this->load->helper('global');
-        //$this->auth->user_logged_in();
+        $this->load->library('auth');
+        $this->load->helper('global');
+        $this->auth->user_logged_in();
     }
 
-    public function index() {
+    public function saveId() {
+		pr($_POST);
+		/*if ($user->fb_id=='') {
+			$this->load->library('ak_facebook');
+			$userfbid=$this->ak_facebook->getuserid();
+			//echo $userfbid;die();
+			if ($userfbid) {
+				$this->db->query("UPDATE users SET fb_id='".$userfbid."' WHERE id=".$user->id."");
+				$sessiondata['fb_id'] = $userfbid;
+			}
+		}*/
+	}
+    public function xx() {
         require_once 'facebook-php-sdk-master/src/facebook.php';
 
 		

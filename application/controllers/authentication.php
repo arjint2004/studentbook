@@ -91,7 +91,7 @@ class Authentication extends CI_Controller {
 	    }
 		//cek konek facebook
 		
-		if ($user->fb_id=='') {
+		/*if ($user->fb_id=='') {
 			$this->load->library('ak_facebook');
 			$userfbid=$this->ak_facebook->getuserid();
 			//echo $userfbid;die();
@@ -101,8 +101,8 @@ class Authentication extends CI_Controller {
 			}
 		} else {
 			$sessiondata['fb_id'] = $user->fb_id;
-		}	
-		
+		}*/	
+		$sessiondata['fb_id'] = $user->fb_id;
         $this->session->set_userdata('user', $sessiondata);
 	    $this->session->set_userdata('user_authentication', $sessiondata); 
 			/* decide what the content should be up here .... */
