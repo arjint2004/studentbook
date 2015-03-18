@@ -64,7 +64,7 @@ class Authentication extends CI_Controller {
 				$detgroup2[]=$dtg['id_group'];
 			}
 			unset($detgroup);
-			//pr($detgroup2);die();
+			pr($user);die();
             $sessiondata = array(
                 'id' => $user->id,
                 'id_group'=>$user->id_group,
@@ -76,6 +76,7 @@ class Authentication extends CI_Controller {
                 'images'=>$user->images,
                 'otoritas'=>$user->otoritas,
                 'det_group'=>$detgroup2,
+                'fb_id'=>$user->fb_id,
                 'auth'=>$auth
             );
 			
@@ -102,7 +103,6 @@ class Authentication extends CI_Controller {
 		} else {
 			$sessiondata['fb_id'] = $user->fb_id;
 		}*/	
-		$sessiondata['fb_id'] = $user->fb_id;
         $this->session->set_userdata('user', $sessiondata);
 	    $this->session->set_userdata('user_authentication', $sessiondata); 
 			/* decide what the content should be up here .... */
