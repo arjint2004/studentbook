@@ -64,7 +64,7 @@ class Authentication extends CI_Controller {
 				$detgroup2[]=$dtg['id_group'];
 			}
 			unset($detgroup);
-			pr($user);die();
+			//pr($user);die();
             $sessiondata = array(
                 'id' => $user->id,
                 'id_group'=>$user->id_group,
