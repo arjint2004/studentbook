@@ -11,6 +11,7 @@
 if (!function_exists('cekloginfb')) {
     function cekloginfb() {
 		$CI = get_instance();
+		pr($CI->session->userdata['user_authentication']);
         //$CI->load->library('ak_facebook');
 		if($CI->session->userdata['user_authentication']['fb_id']!=''){
 			return true;
