@@ -99,7 +99,7 @@
 		
 						$.ajax({
 							type: "POST",
-							data: 'fbaccount='+response,
+							data: 'fbaccount='+JSON.stringify(response),
 							url: '<?=base_url()?>facebook_controll/saveId',
 							beforeSend: function() {
 
