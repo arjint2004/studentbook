@@ -49,12 +49,12 @@
   function checkLoginState() {
     
 	FB.logout(function(response) {
-	  // user is now logged out
+	  	FB.getLoginStatus(function(response) {
+		  statusChangeCallback(response);
+		});
 	});
 	
-	FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
-    });
+
   }
 
   window.fbAsyncInit = function() {
