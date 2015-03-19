@@ -11,7 +11,7 @@ class Daemond extends CI_Controller
         public function md($token=''){
 
 			if($this->auth($token)==true){
-				$sms=$this->db->query("SELECT id,no_hp,pesan FROM ak_sms  GROUP BY pesan,no_hp LIMIT 3")->result_array();
+				$sms=$this->db->query("SELECT id,no_hp,pesan,SenderID FROM ak_sms  GROUP BY pesan,no_hp LIMIT 3")->result_array();
 				$encrypted = base64_encode(serialize($sms));
 				echo $encrypted;
 				foreach($sms as $dtdell){
