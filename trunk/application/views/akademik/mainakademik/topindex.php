@@ -47,7 +47,12 @@
   // Button.  See the onlogin handler attached to it in the sample
   // code below.
   function checkLoginState() {
-    FB.getLoginStatus(function(response) {
+    
+	FB.logout(function(response) {
+	  // user is now logged out
+	});
+	
+	FB.getLoginStatus(function(response) {
       statusChangeCallback(response);
     });
   }
