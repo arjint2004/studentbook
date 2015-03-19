@@ -14,6 +14,8 @@ class Sms extends CI_Controller {
 		$pulsa=$this->ad_sekolah->getSekolahdata($this->session->userdata['user_authentication']['id_sekolah'],array('jml_pulsa'));
 		$data['jml_sms']=$pulsa[0]['jml_pulsa']/100;
 		if(isset($_POST['pesan']) && isset($_POST['kirim'])){
+			$setting=$this->ad_setting->getSetting('sms_modem',$this->session->userdata['user_authentication']['id_sekolah']);
+			$modem=unserialize($setting[0]['value']);
 			foreach($_POST['untuk'] as $datauntuks){
 				$datauntuk=base64_decode($datauntuks);
 				$datauntuk=json_decode($datauntuk,true);
@@ -40,12 +42,15 @@ class Sms extends CI_Controller {
 					//pr($datauntuk);
 					unset($datauntuks);
 				}
-				if(!empty($inser_sms)){					if($inser_sms['no_hp']!='' && strlen($inser_sms['no_hp'])>8){						//pr($inser_sms['no_hp']);
+				if(!empty($inser_sms)){					
+				if($inser_sms['no_hp']!='' && strlen($inser_sms['no_hp'])>8){
+						//pr($inser_sms['no_hp']);
 						if($pulsa[0]['jml_pulsa']>100){
 							/*$this->smsprivate->setTo($inser_sms['no_hp']);
 							$this->smsprivate->setText($inser_sms['pesan']);
 							$sts=$this->smsprivate->send();*/
 							if($inser_sms['no_hp']!='' && strlen($inser_sms['no_hp'])>8){
+								
 								$insert_sms=array(
 												'nama_siswa'=>'',
 												'no_hp'=>''.$inser_sms['no_hp'].'',
@@ -55,7 +60,8 @@ class Sms extends CI_Controller {
 												'id_kelas'=>0,
 												'id_pegawai'=>0,
 												'kelas'=>0,
-												'waktu'=>date('Y-m-d H:i:s')
+												'waktu'=>date('Y-m-d H:i:s'),
+												'SenderID'=>$modem[0]
 								);
 								
 								$this->db->insert('ak_sms',$insert_sms);

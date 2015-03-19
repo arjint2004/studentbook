@@ -35,29 +35,60 @@ class Sekolah extends CI_Controller {
 			echo 1;
 		}
 	}
+
 	public function aktifasifitur($id_sekolah=0,$fitur='') {
+	
 		$this->load->model('ad_sekolah');
-		$fiturs=$this->ad_sekolah->getfiturbyname($id_sekolah,$fitur);
-		if(empty($fiturs)){
-			//insert
-			//echo 'insert';
-			$ins=array(
-						'id_sekolah'=>$id_sekolah,
-						'fitur'=>$fitur,
-						'aktif'=>1
-			);
-			$this->db->insert('ak_fitur_sekolah',$ins);
-			echo 1;
+		$this->load->model('ad_setting');
+
+		$setting=$this->ad_setting->getSetting('sms_modem',$id_sekolah);
+		//echo $this->db->last_query();
+		//pr($setting);		
+		if($fitur=="sms_modem"){
+			//setting
+
+			if(empty($setting)){
+				//insert; 
+				$inssetting=array(
+							'id_sekolah'=>$id_sekolah,
+							'key'=>'sms_modem_'.$id_sekolah,
+							'value'=>serialize(array($_POST['sms_modem']))
+				);
+				
+				$this->db->insert('ak_setting',$inssetting);
+				//echo $this->db->last_query();
+				echo $_POST['sms_modem'];
+			}else{
+				//update
+				$this->db->where(array('id_sekolah'=>$id_sekolah,'key'=>'sms_modem_'.$id_sekolah));
+				$this->db->update('ak_setting',array('value'=>serialize(array($_POST['sms_modem']))));
+				//echo $this->db->last_query();
+				echo $_POST['sms_modem'];
+			}
 		}else{
-			//update
-			//echo 'update';
-			if($_POST['aktif']==1){$cnd=0;}else{$cnd=1;}
-			$ins=array(
-						'aktif'=>$cnd
-			);
-			$this->db->where(array('id_sekolah'=>$id_sekolah,'fitur'=>$fitur));
-			$this->db->update('ak_fitur_sekolah',$ins);
-			echo $cnd;
+			//fitur
+			$fiturs=$this->ad_sekolah->getfiturbyname($id_sekolah,$fitur);
+			if(empty($fiturs)){
+				//insert
+				//echo 'insert';
+				$ins=array(
+							'id_sekolah'=>$id_sekolah,
+							'fitur'=>$fitur,
+							'aktif'=>1
+				);
+				$this->db->insert('ak_fitur_sekolah',$ins);
+				echo 1;
+			}else{
+				//update
+				//echo 'update';
+				if($_POST['aktif']==1){$cnd=0;}else{$cnd=1;}
+				$ins=array(
+							'aktif'=>$cnd
+				);
+				$this->db->where(array('id_sekolah'=>$id_sekolah,'fitur'=>$fitur));
+				$this->db->update('ak_fitur_sekolah',$ins);
+				echo $cnd;
+			}
 		}
 	}
 	public function setsms($id_sekolah=0) {
