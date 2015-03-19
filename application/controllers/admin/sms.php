@@ -11,7 +11,7 @@ class Sms extends CI_Controller {
 
     public function index()
     {	$this->load->model('ad_sekolah');
-    {	$this->load->model('ad_setting');
+		$this->load->model('ad_setting');
 		$pulsa=$this->ad_sekolah->getSekolahdata($this->session->userdata['user_authentication']['id_sekolah'],array('jml_pulsa'));
 		$data['jml_sms']=$pulsa[0]['jml_pulsa']/100;
 		if(isset($_POST['pesan']) && isset($_POST['kirim'])){
