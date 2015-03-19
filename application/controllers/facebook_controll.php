@@ -29,8 +29,7 @@ class Facebook_controll extends CI_Controller {
 		
 		if (isset($fbakun->id) && $fbakun->id!='') {
 			
-			$cekexixts=$this->db->query("SELECT COUNT(*) as cnt FROM users WHERE fb_id='".$fbakun->id."'")->result_array();
-			pr($cekexixts);	
+			$cekexixts=$this->db->query("SELECT COUNT(*) as cnt FROM users WHERE fb_id='".$fbakun->id."'")->result_array();	
 			if($cekexixts[0]['cnt']>0){
 				echo "Facebook <b>".$fbakun->first_name." ".$fbakun->last_name."</b> sudah dipakai akun orang lain";die();
 			}else{
