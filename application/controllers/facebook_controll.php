@@ -28,11 +28,18 @@ class Facebook_controll extends CI_Controller {
 		)*/
 		
 		if (isset($fbakun->id) && $fbakun->id!='') {
-			$this->db->query("UPDATE users SET fb_id='".$fbakun->id."' WHERE id=".$this->session->userdata['user_authentication']['id']."");
-			$auth=$this->session->userdata['user_authentication'];
-			$auth['fb_id']=$fbakun->id;
-			$this->session->set_userdata('user', $auth);
-			$this->session->set_userdata('user_authentication', $auth);
+			if($this->session->userdata['user_authentication']['fb_id']==$fbakun->id){
+				echo "Facebook <b>".$fbakun->first_name." ".$fbakun->last_name."</b> sudah dipakai akun orang lain";die();
+			}else{
+				$this->db->query("UPDATE users SET fb_id='".$fbakun->id."' WHERE id=".$this->session->userdata['user_authentication']['id']."");
+				$auth=$this->session->userdata['user_authentication'];
+				$auth['fb_id']=$fbakun->id;
+				$this->session->set_userdata('user', $auth);
+				$this->session->set_userdata('user_authentication', $auth);
+				
+				echo "Sekarang akun Facebook <b>".$fbakun->first_name." ".$fbakun->last_name."</b> sudah terhubung dengan Studentbook. Kamu bisa menerima notifikasi studentbook di facebook kamu";die();
+			}
+
 		}
 	}
     public function xx() {

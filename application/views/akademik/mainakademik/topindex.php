@@ -47,14 +47,9 @@
   // Button.  See the onlogin handler attached to it in the sample
   // code below.
   function checkLoginState() {
-    
-	FB.logout(function(response) {
-	  	FB.getLoginStatus(function(response) {
-		  statusChangeCallback(response);
-		});
-	});
-	
-
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
   }
 
   window.fbAsyncInit = function() {
@@ -99,9 +94,6 @@
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
-      document.getElementById('status').innerHTML =
-        'Terima kasih ' + response.name + ' sudah terhubung dengan Facebook';
-		
 						$.ajax({
 							type: "POST",
 							data: 'fbaccount='+JSON.stringify(response),
@@ -110,7 +102,7 @@
 
 							},
 							success: function(msg) {
-
+								document.getElementById('status').innerHTML =msg;
 							}
 						});
     });
