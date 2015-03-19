@@ -67,8 +67,8 @@ class Sms extends CI_Controller {
 								
 								$this->db->insert('ak_sms',$insert_sms);
 								$stsn[0]='0';
-								echo $this->db->last_query();
-								die();
+								//echo $this->db->last_query();
+								//die();
 							}
 							//$stsn=explode("=",$sts);
 							if($stsn[0]=='0'){
