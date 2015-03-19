@@ -192,6 +192,10 @@ class smsprivate {
 			$maxindex=max(array_keys($no_hp))+1;
 			$no_hp[$maxindex]=array('hp'=>$fitursmsg[0]['hp']);
 			//pr($no_hp);
+			
+			$setting=$this->ad_setting->getSetting('sms_modem',$this->session->userdata['user_authentication']['id_sekolah']);
+			$modem=unserialize($setting[0]['value']);
+			
 			foreach($no_hp as $datanya){
 				if($datanya['hp']!='' && strlen($datanya['hp'])>8){
 					$insert_sms=array(
@@ -203,7 +207,8 @@ class smsprivate {
 									'id_kelas'=>''.$datanya['id_kelas'].'',
 									'id_pegawai'=>''.$CI->session->userdata['user_authentication']['id_pengguna'].'',
 									'kelas'=>''.$datanya['kelas'].$datanya['nama'].'',
-									'waktu'=>date('Y-m-d H:i:s')
+									'waktu'=>date('Y-m-d H:i:s'),
+									'SenderID'=>$modem[0]
 					);
 					
 					$CI->db->insert('ak_sms',$insert_sms);
