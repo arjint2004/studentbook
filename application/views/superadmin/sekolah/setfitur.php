@@ -40,19 +40,12 @@
 					 url: '<?=base_url()?>superadmin/sekolah/aktifasifitur/'+$(this).attr('id_sekolah')+'/'+$(this).attr('fitur'),
 					beforeSend: function() {
 						$(thisobj).after("<img id='wait' style='margin:0;'  src='<?=$this->config->item('images').'loading.png';?>' />");
-						$(thisobj).hide();
+						//$(thisobj).hide();
 					},
 					success: function(msg) {
 						$("#wait").remove();
-						if(msg==1){
-							$(thisobj).prop('checked', true);
-							$(thisobj).val(1);
-						}else{
-							$(thisobj).prop('checked', false);
-							$(thisobj).val(0);
-						}
-												
-						$(thisobj).show();
+							
+						//$(thisobj).show();
 						//applyPagination();
 				  }
 			});
@@ -93,7 +86,7 @@
 					<td class="title">Modem SMS</td>
 					<td>
 						<select id="sms_modem" name="sms_modem" fitur="sms_modem" id_sekolah="<?=$id_sekolah?>" style="margin:0;padding:6px;">
-							<option <? if($modem=="random"){echo "selected";}?> value="random">random</option>
+							<option <? if($modem==""){echo "selected";}?> value="">random</option>
 							<option <? if($modem=="modem_1"){echo "selected";}?> value="modem_1">modem_1</option>
 							<option <? if($modem=="modem_2"){echo "selected";}?> value="modem_2">modem_2</option>
 							<option <? if($modem=="modem_3"){echo "selected";}?> value="modem_3">modem_3</option>

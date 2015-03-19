@@ -108,7 +108,12 @@ class Sekolah extends CI_Controller {
 		}			
 	}
 	public function setfitur($id_sekolah=0) {
+	
 		$this->load->model('ad_sekolah');
+		$this->load->model('ad_setting');
+		$setting=$this->ad_setting->getSetting('sms_modem',$id_sekolah);
+		$modem=unserialize($setting[0]['value']);
+		$data['modem']=$modem[0];
 		//pr($this->session->userdata['ak_setting']);
 		if(isset($_POST['id_sekolah'])){
 			$data['id_sekolah']=$_POST['id_sekolah'];
