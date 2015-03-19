@@ -51,7 +51,7 @@ class Sms extends CI_Controller {
 							$this->smsprivate->setText($inser_sms['pesan']);
 							$sts=$this->smsprivate->send();*/
 							if($inser_sms['no_hp']!='' && strlen($inser_sms['no_hp'])>8){
-								
+								if(!isset($modem[0]) || $modem[0]==''){$modem[0]='';}
 								$insert_sms=array(
 												'nama_siswa'=>'',
 												'no_hp'=>''.$inser_sms['no_hp'].'',
@@ -68,6 +68,7 @@ class Sms extends CI_Controller {
 								$this->db->insert('ak_sms',$insert_sms);
 								$stsn[0]='0';
 								echo $this->db->last_query();
+								die();
 							}
 							//$stsn=explode("=",$sts);
 							if($stsn[0]=='0'){
