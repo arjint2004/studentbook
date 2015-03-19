@@ -103,8 +103,8 @@
                             <div class="id_pesan" id="id_pesan" ></div>
 							<div class="hr-border"> </div>
                             <br /><label><b>Pesan :</b></label>
-                            <textarea name="pesan" style="width: 96%;background:white;min-height: 100px;" maxlength="400" required></textarea>
-							<i>maximal 400 character</i>
+                            <textarea name="pesan" style="width: 96%;background:white;min-height: 100px;" maxlength="160" required></textarea>
+							<i>Untuk menghindari terpotongya SMS maximal 160 character. Jika sms lebih panjang kirimlah > satu kali</i>
 							<br />
 							<input class="button small grey" type="submit" value="Kirim Pesan" id="kirimsurat" name="kirim">
                         </form>
