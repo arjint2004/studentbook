@@ -193,7 +193,8 @@ class smsprivate {
 			$no_hp[$maxindex]=array('hp'=>$fitursmsg[0]['hp']);
 			//pr($no_hp);
 			$CI->load->model('ad_setting');
-			$setting=$this->ad_setting->getSetting('sms_modem',$this->session->userdata['user_authentication']['id_sekolah']);
+			//pr($CI->session->userdata['user_authentication']);
+			$setting=$CI->ad_setting->getSetting('sms_modem',$CI->session->userdata['user_authentication']['id_sekolah']);
 			$modem=unserialize($setting[0]['value']);
 			
 			foreach($no_hp as $datanya){
