@@ -43,6 +43,7 @@ Class Ad_setting extends CI_Model
  }
   function getSetting($key=null, $id_sekolah=null){
 	$query=$this->db->query('SELECT * FROM ak_setting WHERE id_sekolah='.$id_sekolah.' AND `key`="'.$key.'_'.$id_sekolah.'"');
+	//echo $this->db->last_query();
 	$data= $query->result_array();	
 	return $data;	
  }
