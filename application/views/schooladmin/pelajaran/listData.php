@@ -2,7 +2,7 @@
 				$(document).ready(function(){
 					//Submit Start
 					$(".editdata").click(function(e){
-						$('#ajaxside').load('<?=base_url()?>/admin/pelajaran/editData/'+$(this).attr('id'));
+						$('#ajaxside').load('<?=base_url()?>admin/pelajaran/editData/'+$(this).attr('id'));
 						$("#ajaxside").scrollintoview({ speed:'1100'});
 					});
 					$(".addsub").click(function(e){
@@ -38,7 +38,7 @@
 							$.ajax({
 								type: "POST",
 								data: 'ajax=1&id_pelajaran='+$(thisobj).attr('id'),
-								url: '<?=base_url()?>/admin/pelajaran/delete/'+$(thisobj).attr('id'),
+								url: '<?=base_url()?>admin/pelajaran/delete/'+$(thisobj).attr('id'),
 								beforeSend: function() {
 									$(thisobj).append("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
 								},
@@ -107,7 +107,7 @@
 				
 				</script>
 				<div id="contentpage">
-							<form action="<?=base_url()?>/admin/pelajaran/listData" method="post" id="filterpelajaran" >
+							<form action="<?=base_url()?>admin/pelajaran/listData" method="post" id="filterpelajaran" >
 							<table class="tabelfilter">
 								<tr>
 									<td>
