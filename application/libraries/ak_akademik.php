@@ -409,14 +409,16 @@ class Ak_akademik {
 		
 		$pelajaran=$CI->ad_pelajaran->getdataByIdDetJenjang($id_det_jenjang);
 		//pr($pelajaran);die();
-		$nilaiAfektif=$this->nilaiByDetJenjangPelajaran($id_det_jenjang,$pelajaran,'nilai_afektif');
-		$nilaiPraktik=$this->nilaiByDetJenjangPelajaran($id_det_jenjang,$pelajaran,'nilai_psikomotorik');
+		//$nilaiAfektif=$this->nilaiByDetJenjangPelajaran($id_det_jenjang,$pelajaran,'nilai_afektif');
+		//$nilaiPraktik=$this->nilaiByDetJenjangPelajaran($id_det_jenjang,$pelajaran,'nilai_psikomotorik');
 		$nilaiKetercapaian=$this->nilaiByDetJenjangPelajaran($id_det_jenjang,$pelajaran,'nilai_kompetensi');
 		
 		foreach($pelajaran as $datapel){
 
 			$kognitif[$datapel['id']]['pelajaran']=$datapel['nama'];
 			$kognitif[$datapel['id']]['kkm']=$datapel['nilai'];
+			$kognitif[$datapel['id']]['havechild']=$datapel['havechild'];
+			$kognitif[$datapel['id']]['kelompok']=$datapel['kelompok'];
 			
 			//kognitif
 			//Rata2
@@ -430,8 +432,8 @@ class Ak_akademik {
 			$UTS=$nilaiUTS[$id_det_jenjang][0]['nilai'];
 			$UAS=$nilaiUAS[$id_det_jenjang][0]['nilai'];
 			
-			$kognitif[$datapel['id']]['praktik']=round(@$nilaiPraktik[$datapel['id']][0]['nilai'],2);
-			$kognitif[$datapel['id']]['afektif']=@$nilaiAfektif[$datapel['id']][0]['nilai'];
+			//$kognitif[$datapel['id']]['praktik']=round(@$nilaiPraktik[$datapel['id']][0]['nilai'],2);
+			//$kognitif[$datapel['id']]['afektif']=@$nilaiAfektif[$datapel['id']][0]['nilai'];
 			$kognitif[$datapel['id']]['ketercapaian']=@$nilaiKetercapaian[$datapel['id']][0]['nilai'];
 			
 			$rumuskognitif2='$hs='.$rumuskognitif.';';
@@ -444,7 +446,7 @@ class Ak_akademik {
 				
 				}else{
 					$kognitif[$datapel['id']]['kognitif']=$subnilai['kognitif'];
-					$kognitif[$datapel['id']]['praktik']=$subnilai['praktik'];
+					//$kognitif[$datapel['id']]['praktik']=$subnilai['praktik'];
 					$kognitif['submapel'][$datapel['id'].'-'.$datapel['nama']]=$subnilai['datasub'];
 					
 				}
@@ -541,7 +543,7 @@ class Ak_akademik {
 			eval($rumuskognitif2);
 			$kognitif[$datapel['id']]['kognitif']=$hs;
 			
-			$kognitif[$datapel['id']]['praktik']=round(@$nilaiPraktik[$datapel['id']][0]['nilai'],2);
+			//$kognitif[$datapel['id']]['praktik']=round(@$nilaiPraktik[$datapel['id']][0]['nilai'],2);
 			//$kognitif[$datapel['id']]['afektif']=@$nilaiAfektif[$datapel['id']][0]['nilai'];
 			//$kognitif[$datapel['id']]['ketercapaian']=@$nilaiKetercapaian[$datapel['id']][0]['nilai'];
 			
@@ -549,7 +551,7 @@ class Ak_akademik {
 			$jmlprk=$jmlprk+$kognitif[$datapel['id']]['praktik'];
 		}
 		$out['kognitif']=$jmlkg/count($pelajaran);
-		$out['praktik']=$jmlprk/count($pelajaran);
+		//$out['praktik']=$jmlprk/count($pelajaran);
 		$out['datasub']=$kognitif;
 		//pr($out);
 		return $out;

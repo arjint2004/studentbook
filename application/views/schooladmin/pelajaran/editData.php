@@ -143,27 +143,30 @@ $(document).ready(function(){
 					<input type="hidden" name="semester" value="<?=@$pelajaran[0]['semester']?>" />
 				</td>
 			</tr>
-			<? if($this->session->userdata['ak_setting']['jenjang'][0]['nama']=='SD' || $this->session->userdata['ak_setting']['jenjang'][0]['nama']=='SMP'){?>
+			<? //if($this->session->userdata['ak_setting']['jenjang'][0]['nama']=='SD' || $this->session->userdata['ak_setting']['jenjang'][0]['nama']=='SMP'){?>
 				<script>
-				$(document).ready(function(){
+				/*$(document).ready(function(){
 					$('.addaccountclose').after('<input type="hidden" name="kelompok" value="<?=$pelajaran[0]['kelompok']?>">');
-				});
+				});*/
 				</script>
-			<? }else{ ?>
+			<? //}else{ ?>
 			<tr>
 				<td class="title">Kelompok</td>
 				<td>:</td>
 				<td>
-					<select name="kelompok"  class="selectadddata" disabled>
+					<select name="kelompok"  class="selectadddata" >
 						<option value="">Pilih Kelompok</option>
-						<option <? if($pelajaran[0]['kelompok']=='Normatif'){echo 'selected';}?>  value="Normatif">Normatif</option>
-						<option <? if($pelajaran[0]['kelompok']=='Adaptif'){echo 'selected';}?>  value="Adaptif">Adaptif</option>
-						<option <? if($pelajaran[0]['kelompok']=='Produktif'){echo 'selected';}?>  value="Produktif">Produktif</option>
+						<? if($this->session->userdata['ak_setting']['jenjang'][0]['nama']=='SD' || $this->session->userdata['ak_setting']['jenjang'][0]['nama']=='SMP'){?>
+						<option <? if($pelajaran[0]['kelompok']=='Normatif'){echo 'selected';}?>  value="Normatif">Normatif ( Muatan Nasional )</option>
+						<option <? if($pelajaran[0]['kelompok']=='Adaptif'){echo 'selected';}?>  value="Adaptif">Adaptif ( Muatan Lokal )</option>
+						<? }else{ ?>
+						<option <? if($pelajaran[0]['kelompok']=='Produktif'){echo 'selected';}?>  value="Produktif">Produktif ( Muatan Jurusan )</option>
+						<? } ?> 
 					</select>
 					<input type="hidden" name="kelompok" value="<?=@$pelajaran[0]['kelompok']?>" />
 				</td>
 			</tr>
-			<? } ?> 
+			<? //} ?> 
 			<tr>
 				<td class="title" colspan="3"><input type="submit" name="simpan" value="Simpan"/></td>
 			</tr>

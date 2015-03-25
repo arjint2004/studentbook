@@ -2,6 +2,7 @@
 				$(document).ready(function(){
 					//Submit Start
 					$(".editdata").click(function(e){
+						e.stopImmediatePropagation();
 						$('#ajaxside').load('<?=base_url()?>admin/pelajaran/editData/'+$(this).attr('id'));
 						$("#ajaxside").scrollintoview({ speed:'1100'});
 					});

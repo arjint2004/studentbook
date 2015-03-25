@@ -16,19 +16,30 @@ class Raportktsp extends CI_Controller
 			$data['main']= 'akademik/raport2013/index';
             $this->load->view('layout/ad_blank',$data);	
 		}
+		function getdatasiswa($id_det_jenjang){
+			$this->load->model('ad_siswa');
+			return $this->ad_siswa->getsiswaByIdDetJenjang($id_det_jenjang);
+		}		
         public function lihat($param='')
         {
 			$datasiswa=unserialize($this->myencrypt->decode($param));
 			$this->load->library('ak_akademik');
 			$this->load->model('ad_siswa');
 			$this->load->model('ad_sekolah');
-			$this->load->model('ad_extrakurikuler');
 			$this->load->model('ad_kelas');
+			$data['id_det_jenjang']=$datasiswa['id_siswa_det_jenjang'];
 			$data['kelas']=$this->ad_kelas->getWaliByIdKelas($this->session->userdata['user_authentication']['id_sekolah'],$datasiswa['id_kelas']);
-			$data['ekstra']=$this->ad_extrakurikuler->getEkstrakurikulerByIdDetjenjang($datasiswa['id_siswa_det_jenjang']);
-			$data['nilaiekstra']=$this->ad_extrakurikuler->getNilaiByidDetJenjang($datasiswa['id_siswa_det_jenjang']);
+			
+			//kepribadian
+			$this->load->model('ad_kepribadian');
+			$data['kepribadian']=$this->ad_kepribadian->getNilaiByidDetJenjangktsp($datasiswa['id_siswa_det_jenjang']);
+			pr($data['kepribadian']);
+			//pengembangan diri
+			$this->load->model('ad_extrakurikuler');
+			$data['pengembangandiri']=$this->ad_extrakurikuler->getNilaiByidDetJenjang($datasiswa['id_siswa_det_jenjang']);
+			
+			//raport
 			$data['raport']=$this->ak_akademik->nilaiRaportPerSiswa($datasiswa['id_siswa_det_jenjang']);
-			$data['nilai_kompt']=$this->ak_akademik->get_nilaiKompetensiKogn($datasiswa['id_siswa_det_jenjang']);
 			//unset($data['raport']['submapel']);
 			//pr($data['nilai_kompt']);die();
 			$data['siswa']=$this->ad_siswa->getsiswaByIdSiswa($datasiswa['id']);

@@ -53,9 +53,9 @@
 							<table class="tabelfilter">
 								<tr>
 								<td>
-									Pilih Ekstrakurikuler :
+									Pilih Kegiatan :
 										<select class="selectfilter" id="ekstra" name="id_ekstra">
-											<option value="0">Pilih Ekstrakurikuler</option>
+											<option value="0">Pilih Kegiatan</option>
 											<? foreach($ekstra as $dataekstra){?>
 											<option <? if(@$_POST['ekstra']==$dataekstra['id']){echo 'selected';}?> value="<?=$dataekstra['id']?>"><?=$dataekstra['ekstra']?><?=$dataekstra['nama']?></option>
 											<? } ?>

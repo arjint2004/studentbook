@@ -22,6 +22,22 @@ Class Ad_kepribadian extends CI_Model{
 		
 	}
 	
+	 function getNilaiByidDetJenjangktsp($id_det_jenjang){
+		$qcurrentextra=$this->db->query('SELECT ae.nama,ae.id as id_aspek_kepribadian,ank.*,ank.point as nilai_kepribadian
+										FROM ak_aspek_kepribadian ae 
+										JOIN ak_nilai_kepribadian ank
+										ON ank.id_aspek_kepribaian=ae.id
+										WHERE ank.ta='.$this->session->userdata['ak_setting']['ta'].' 
+										AND ank.semester='.$this->session->userdata['ak_setting']['semester'].' 
+										AND ank.id_siswa_det_jenjang="'.$id_det_jenjang.'"');
+		$xx=$qcurrentextra->result_array();
+		$xx2=array();
+		echo $this->db->last_query();
+		foreach($xx as $idx=>$dtx){
+			$xx2[$dtx['id_siswa_det_jenjang']][$dtx['id_aspek_kepribadian']]=$dtx;
+		}
+		return $xx2;
+	 }	
 	 function getNilaiByidDetJenjang($id_det_jenjang){
 		$qcurrentextra=$this->db->query('SELECT ane.*,ae.nama,ank.point as nilai_kepribadian
 										FROM 
@@ -33,7 +49,7 @@ Class Ad_kepribadian extends CI_Model{
 										AND ank.id_aspek_kepribaian=ae.id
 										WHERE ane.ta='.$this->session->userdata['ak_setting']['ta'].' 
 										AND ane.semester='.$this->session->userdata['ak_setting']['semester'].' 
-										AND ane.id_siswa_det_jenjang='.$id_det_jenjang.'');
+										AND ane.id_siswa_det_jenjang="'.$id_det_jenjang.'"');
 		$xx=$qcurrentextra->result_array();
 		$xx2=array();
 		//echo $this->db->last_query();
