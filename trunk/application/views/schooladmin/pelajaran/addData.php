@@ -63,7 +63,7 @@ $(document).ready(function(){
 			$alias = $frm.find('*[name=alias]').val();
 			$id_jurusan = $frm.find('*[name=id_jurusan]').val();
 			$kelompok = $frm.find('*[name=kelompok]').val();
-			if($frm.find('*[name=nama]').is('.valid') <? if($this->session->userdata['ak_setting']['jenjang'][0]['nama']!='SD' && $this->session->userdata['ak_setting']['jenjang'][0]['nama']!='SMP'){?> && $frm.find('*[name=id_jurusan]').is('.valid') && $frm.find('*[name=kelompok]').is('.valid')<? } ?>  && $frm.find('*[name=alias]').is('.valid')) {
+			if($frm.find('*[name=nama]').is('.valid') <? if($this->session->userdata['ak_setting']['jenjang'][0]['nama']!='SD' && $this->session->userdata['ak_setting']['jenjang'][0]['nama']!='SMP'){?> && $frm.find('*[name=id_jurusan]').is('.valid')<? } ?>  && $frm.find('*[name=kelompok]').is('.valid') && $frm.find('*[name=alias]').is('.valid')) {
 				$.ajax({
 					type: "POST",
 					data: $(this).serialize(),
@@ -163,26 +163,29 @@ $(document).ready(function(){
 				</td>
 			</tr>
 			
-			<? if($this->session->userdata['ak_setting']['jenjang'][0]['nama']=='SD' || $this->session->userdata['ak_setting']['jenjang'][0]['nama']=='SMP'){?>
+			<? //if($this->session->userdata['ak_setting']['jenjang'][0]['nama']=='SD' || $this->session->userdata['ak_setting']['jenjang'][0]['nama']=='SMP'){?>
 				<script>
-				$(document).ready(function(){
+				/*$(document).ready(function(){
 					$('.addaccountclose').after('<input type="hidden" name="kelompok" value="Normatif">');
-				});
+				});*/
 				</script>
-			<? }else{ ?>
+			<? //}else{ ?>
 			<tr>
 				<td class="title">Kelompok</td>
 				<td>:</td>
 				<td>
 					<select name="kelompok"  class="selectadddata">
 						<option value="">Pilih Kelompok</option>
-						<option value="Normatif">Normatif</option>
-						<option value="Adaptif">Adaptif</option>
-						<option value="Produktif">Produktif</option>
+						<? if($this->session->userdata['ak_setting']['jenjang'][0]['nama']=='SD' || $this->session->userdata['ak_setting']['jenjang'][0]['nama']=='SMP'){?>
+						<option value="Normatif">Normatif ( Muatan Nasional )</option>
+						<option value="Adaptif">Adaptif ( Muatan Lokal )</option>
+						<? }else{ ?>
+						<option value="Produktif">Produktif ( Muatan Jurusan )</option>
+						<? } ?>
 					</select>
 				</td>
 			</tr>
-			<? } ?>
+			<? //} ?>
 			<tr>
 				<td class="title" colspan="3"><input id="simpanpelajaran" type="submit" name="simpan" value="Simpan"/></td>
 			</tr>

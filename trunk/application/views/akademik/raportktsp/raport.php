@@ -322,45 +322,89 @@
 		  </tr>
 		</table>	
 		<br />
-		<? pr($raport);?>
+		<? //pr($raport);?>
 		<table  style="max-width:1024px;" class="asbin" id="allset"  border="1">
         <thead>
             <tr>
-              <th rowspan="2">No</th>
-              <th rowspan="2">MATA PELAJARAN </th>
-              <th rowspan="2" >KKM</th>
+              <th rowspan="2" style="width:4%;">No</th>
+              <th rowspan="2" style="width:22%;">MATA PELAJARAN </th>
+              <th rowspan="2" style="width:13%;" >KKM</th>
               <th colspan="2" > Nilai Prestasi </th>
               <th rowspan="2" >Deskripsi Kemajuan Belajar </th>
             </tr> 
             <tr>
-              <th >Angka</th>
+              <th style="width:13%;"  >Angka</th>
               <th >Huruf</th>
             </tr>                            
         </thead>
         <tbody>
-                <tr>
-                  <td>A.</td>
-                  <td class="title">Muatan Nasional </td>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                </tr>
+
 			<? $no=1; 
 			if(!empty($raport)){
 				$count=0;
 				$countsub=0;
+				$hrf='A';
 				foreach($raport as $id_pelajaran=>$nilai){
-					$count++;
+					
+					if($nilai['kelompok']=='Normatif'){
+						$countnormatif++;
+						if($countnormatif==1){
+							?>
+							<tr style="border-top:2px solid black;border-bottom:2px solid black;font-weight:bold;">
+							  <td><b><?=$hrf?></b>.</td>
+							  <td class="title">Muatan Nasional</td>
+							  <td>&nbsp;</td>
+							  <td>&nbsp;</td>
+							  <td>&nbsp;</td>
+							  <td>&nbsp;</td>
+							</tr>
+							<?		
+							$hrf++;							
+						}
+					}
+					if($nilai['kelompok']=='Adaptif'){
+						$countadaptif++;
+						if($countadaptif==1){
+							?>
+							<tr style="border-top:2px solid black;border-bottom:2px solid black;font-weight:bold;">
+							  <td><b><?=$hrf?></b>.</td>
+							  <td class="title">Muatan Lokal</td>
+							  <td>&nbsp;</td>
+							  <td>&nbsp;</td>
+							  <td>&nbsp;</td>
+							  <td>&nbsp;</td>
+							</tr>
+							<?		
+							$hrf++;
+						}
+					}
+					if($nilai['kelompok']=='Produktif'){
+						$countproduktif++;
+						if($countproduktif==1){
+							?>
+							<tr style="border-top:2px solid black;border-bottom:2px solid black;font-weight:bold;">
+							  <td><b><?=$hrf?></b>.</td>
+							  <td class="title">Muatan Jurusan</td>
+							  <td>&nbsp;</td>
+							  <td>&nbsp;</td>
+							  <td>&nbsp;</td>
+							  <td>&nbsp;</td>
+							</tr>
+							<?		
+							$hrf++;							
+						}
+					}
+					
 					if($id_pelajaran!='submapel'){
+						$count++;
 						?>
 						<tr>
 							<td ><?=$count?></td>			
 							<td class="title"><?=$nilai['pelajaran']?></td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
+							<td align="center"><?=$nilai['kkm']?></td>
+							<td align="center"><?=round($nilai['kognitif'],2)?></td>
+							<td><i><?=Terbilang(round($nilai['kognitif'],2))?></i></td>
+							<td><?=$nilai['ketercapaian']?></td>
 						</tr>					
 						<?
 					}
@@ -394,6 +438,82 @@
         </tbody>
     </table>
 	<br />
+	    <table  style="max-width:1024px;" class="asbin" id="allset"  border="1">
+          <tr style="border-top:2px solid black;border-bottom:2px solid black;font-weight:bold;">
+            <td align="center" rowspan="3" style="width:26%;">Pengembangan Diri </td>
+            <td style="width:26%;">Jenis</td>
+            <td align="center" style="width:26%;">Nilai Kualitatif </td>
+            <td align="center" style="width:26%;">Keterangan</td>
+          </tr>
+          <tr>
+            <td style="width:25%;">English For Comunication </td>
+            <td style="width:25%;" align="center">B</td>
+            <td style="width:25%;" align="center">Baik</td>
+          </tr>
+          <tr>
+            <td>Pembiasaan/Kepribadian</td>
+            <td align="center">B</td>
+            <td align="center">Baik</td>
+          </tr>
+        </table>
+    <br />		
+<!--<table   style="max-width:1024px;" class="asbin" id="allset"  border="1">
+  <tr style="border-top:2px solid black;border-bottom:2px solid black;">
+    <td>Akhlaq dan Kepribadian </td>
+    <td>Memahami kehidupan pribadi dalam kecakapan dan kesadaran potensi diri </td>
+  </tr>
+</table>-->
+
+<br />
+<table  style="max-width:1024px;" class="asbin" id="allset"  border="1">
+    <tr  style="border-top:2px solid black;border-bottom:2px solid black;font-weight:bold;">
+      <td align="center" style="width:26%;"  rowspan="<?=count($kepribadian[$id_det_jenjang])+1?>">Kepribadian</td>
+      <td style="width:26%;">Aspek</td>
+      <td  align="center" style="width:26%;">Nilai</td>
+      <td align="center">Keterangan</td>
+    </tr>
+	<? 
+	$nokep=1; 
+	if(!empty($kepribadian[$id_det_jenjang])){
+	foreach($kepribadian[$id_det_jenjang] as $nilaikepribadian){
+
+	?>
+  <tr>
+
+    <td style="width:26%;"><?=$nilaikepribadian['nama']?></td>
+    <td style="width:26%;" align="center"><?=$nilaikepribadian['nilai_kepribadian']?></td>
+    <td align="center"><?=$nilaikepribadian['keterangan']?></td>
+  </tr>
+  <? 
+  $nokep++;
+  }} ?>
+</table>
+<br />
+<table  style="max-width:1024px;" class="asbin" id="allset"  border="1">
+  <tr style="border-top:2px solid black;border-bottom:2px solid black;font-weight:bold;">
+    <td rowspan="4"  style="width:26%;" align="center" >Ketidakhadiran</td>
+    <td style="width:26%;">Kondisi</td>
+    <td  align="center"style="width:26%;">Jumlah</td>
+    <td align="center">Satuan</td>
+  </tr>
+  <tr>
+    <td style="width:26%;">Sakit</td>
+    <td  align="center"style="width:26%;">2</td>
+    <td align="center">Hari</td>
+  </tr>
+  <tr>
+    <td style="width:26%;">Izin</td>
+    <td  align="center"style="width:26%;">-</td>
+    <td align="center">Hari</td>
+  </tr>
+  <tr>
+    <td style="width:26%;">Tanpa Keterangan </td>
+    <td  align="center" style="width:26%;">-</td>
+    <td align="center" >Hari</td>
+  </tr>
+</table>
+
+    <br />
 	    <? //pr($raport);?>
 	    <br />
     <table style="max-width:1024px;" class="asbin noborder" id="allset"  border="1" >
@@ -915,19 +1035,7 @@
 			<tr>
 			  <td>&nbsp;</td>
 		  </tr>
-			
-			
-			
-			
-
 		</table>
-
-
-
-
-
-
-
 		<br /><br /><br />
 	</body>
 </html><!-- 0.8326s -->

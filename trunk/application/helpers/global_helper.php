@@ -8,6 +8,36 @@
  */
 
  //cek login fb
+if (!function_exists('Terbilang')) {
+
+	function Terbilang($x) {
+		$exp=explode(".",$x);
+		//echo kekata($exp[0]);
+		if (count($exp)==1){return kekata($exp[0]);}elseif(count($exp)==2){return kekata($exp[0]).' Koma '.kekata($exp[1]);}
+		
+	}
+	function kekata($x) {
+			$abil = array("", "Satu", "Dua", "Tiga", "Empat", "Lima", "Enam", "Tujuh", "Delapan", "Sembilan", "Sepuluh", "Sebelas");
+			if ($x < 12)
+				$rx= " ".$abil[$x];
+			elseif ($x < 20)
+				$rx =  kekata($x - 10) . "Belas";
+			elseif ($x < 100)
+				$rx =  kekata($x / 10) . " Puluh" . kekata($x % 10);
+			elseif ($x < 200)
+				$rx =  " seratus" . kekata($x - 100);
+			elseif ($x < 1000)
+				$rx =  kekata($x / 100) . " Ratus" . kekata($x % 100);
+			elseif ($x < 2000)
+				$rx =  " seribu" . kekata($x - 1000);
+			elseif ($x < 1000000)
+				$rx =  kekata($x / 1000) . " Ribu" . kekata($x % 1000);
+			elseif ($x < 1000000000)
+				$rx =  kekata($x / 1000000) . " Juta" . kekata($x % 1000000);
+		return $rx;
+	}
+}
+ //cek login fb
 if (!function_exists('cekloginfb')) {
     function cekloginfb() {
 		$CI = get_instance();

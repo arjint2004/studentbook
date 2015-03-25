@@ -128,7 +128,7 @@ Class Ad_pelajaran extends CI_Model
 	}
 	function getdataByIdDetJenjang($id_det_jenjang=0){
 		$query=$this->db->query('
-								SELECT ap.id,ap.havechild,ap.nama,ank.nilai
+								SELECT ap.id,ap.havechild,ap.kelompok,ap.nama,ank.nilai
 								FROM `ak_pelajaran` ap
 								JOIN ak_kelas ak
 								JOIN ak_det_jenjang adj 
