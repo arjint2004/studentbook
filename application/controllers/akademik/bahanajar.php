@@ -11,7 +11,7 @@ class Bahanajar extends CI_Controller
             parent::__construct();
             $this->load->helper('global');
             $this->load->library('session');
-            $this->load->library('auth');
+            $this->load->library('auth'); 
             $this->auth->user_logged_in();
             $this->load->library('ak_file');
         }
