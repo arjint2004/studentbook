@@ -225,7 +225,7 @@
 	<? $ekstra=$this->auth->array_searchRecursive( 21, $group, $strict=false, $path=array() );
 		if(!empty($ekstra)){
 	?>
-	<script>
+	<!--<script>
 		$(document).ready(function() {
 			$('#nilaikegiatan').load('<?=base_url('akademik/nilaikegiatansekolah/kesiswaanindex')?>');
 		});
@@ -242,6 +242,36 @@
 		</ul>
 		
 		<div class="tabs-frame-content" style="display: none;" id="nilaikegiatan">
+			
+		</div>
+	</div>-->
+	<? } ?>
+	<!-- iklan batas -->
+	<!-- end iklan batas -->
+	<!-- iklan batas -->
+	<!-- end iklan batas -->
+	
+	<div class="clear"></div>
+	<? $ekstra=$this->auth->array_searchRecursive( 21, $group, $strict=false, $path=array() );
+		if(!empty($ekstra)){
+	?>
+	<script>
+		$(document).ready(function() {
+			$('#nilaikepribadian').load('<?=base_url('akademik/nilaikepribadian/kesiswaanindex')?>');
+		});
+	</script>
+	<h3 id="PembinaKesiswaan"> Penilaian Kepribadian Siswa </h3>
+
+	<div class="hr"></div>
+	<div class="tabs-container">
+
+		<ul class="tabs-frame">
+			<!--<li>
+				<a>Nilai Kegiatan / Pengembangan Diri</a>
+			</li>-->
+		</ul>
+		
+		<div class="tabs-frame-content" style="display: none;" id="nilaikepribadian">
 			
 		</div>
 	</div>
