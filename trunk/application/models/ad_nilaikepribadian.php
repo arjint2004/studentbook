@@ -29,7 +29,7 @@ Class Ad_nilaikepribadian extends CI_Model
 	 function getdata(){
 		$query=$this->db->query('SELECT * FROM ak_aspek_kepribadian WHERE id_sekolah='.$this->session->userdata['user_authentication']['id_sekolah'].'');
 		$xx=$query->result_array();
-		echo $this->db->last_query();
+		//echo $this->db->last_query();
 		$xx2=array();
 		foreach($xx as $idx=>$dtx){
 			$xx2[$dtx['id']]=$dtx;
