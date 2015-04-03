@@ -47,7 +47,14 @@ $(document).ready(function(){
 			
 			return false;
 		});//Submit End
-		
+		function isJson(str) {
+			try {
+				JSON.parse(str);
+			} catch (e) {
+				return false;
+			}
+			return true;
+		}
 		$("select#pelajaran_add").change(function(e){
 			$.ajax({
 				type: "POST",
@@ -58,7 +65,25 @@ $(document).ready(function(){
 				},
 				success: function(msg) {
 					$('#wait').remove();
-					$("#nilai").html(msg);	
+					if(isJson(msg)){
+						var objson=JSON.parse(msg);
+						$.ajax({
+							type: "POST",
+							data: 'id_subject='+objson.id_subject+'&kelas='+objson.id_kelas+'&pelajaran='+objson.id_pelajaran+'&remidial=&subject=',
+							url: '<?=base_url()?>akademik/nilai/editnilai/<?=base64_encode($jenis);?>',
+							beforeSend: function() {
+								$('select#kelas_add').after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
+							},
+							success: function(msg) {
+								$('#wait').remove();
+								$("#subjectnilailist").html(msg);	
+							}
+						});
+						return false;
+					}else{
+						$("#nilai").html(msg);
+					}
+						
 				}
 			});
 			return false;
@@ -85,7 +110,7 @@ $(document).ready(function(){
 <form action="<? echo base_url();?>akademik/nilai/addnilai" id="subjectnilaikompetensi" name="subjectnilaikompetensi" method="post" >
 	<div class="addaccountclose" onclick="$('.addaccount').remove();"></div>
 		
-		<h3>Tambah <?=$jenis?></h3>
+		<h3>Tambah <? if($jenis=='nilai kompetensi'){echo "DESKRIPSI KEMAJUAN BELAJAR";}else{echo $jenis;}?></h3>
 		<div class="hr"></div>
 		<table class="adddata">
 			<tr>
@@ -122,7 +147,7 @@ $(document).ready(function(){
 
 	<input type="hidden" name="jenis" value="<?=$jenis?>"/> 
 	<input type="hidden" name="ajax" value="1"/> 
-	<input type="hidden" name="subject" value="nilai kompetensi"/> 
+	<input type="hidden" name="subject" value="Deskripsi Kemajuan Belajar"/> 
 	<input type="hidden" name="remidial" value=""/> 
 
 	<div class="error-container" style="display:none;"> Semua field harus di isi atau dipilih!  </div>

@@ -33,10 +33,27 @@ class Raportktsp extends CI_Controller
 			//kepribadian
 			$this->load->model('ad_kepribadian');
 			$data['kepribadian']=$this->ad_kepribadian->getNilaiByidDetJenjangktsp($datasiswa['id_siswa_det_jenjang']);
-			pr($data['kepribadian']);
+			
 			//pengembangan diri
 			$this->load->model('ad_extrakurikuler');
 			$data['pengembangandiri']=$this->ad_extrakurikuler->getNilaiByidDetJenjang($datasiswa['id_siswa_det_jenjang']);
+			
+			//absensi
+			$this->load->model('ad_absen');
+			$absensi=$this->ad_absen->getKetidakhadiranByIdDetjenjang($datasiswa['id_siswa_det_jenjang']);
+			$data['absensi']['alpha']=0;$data['absensi']['sakit']=0;$data['absensi']['izin']=0;
+			foreach($absensi as $databsen){
+				if($databsen['absensi']=='alpha'){
+					$data['absensi']['alpha']++;
+				}
+				if($databsen['absensi']=='sakit'){
+					$data['absensi']['sakit']++;
+				}
+				if($databsen['absensi']=='izin'){
+					$data['absensi']['izin']++;
+				}
+			}
+			
 			
 			//raport
 			$data['raport']=$this->ak_akademik->nilaiRaportPerSiswa($datasiswa['id_siswa_det_jenjang']);

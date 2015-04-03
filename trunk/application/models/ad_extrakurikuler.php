@@ -19,6 +19,7 @@ Class Ad_extrakurikuler extends CI_Model
 	 function getNilaiByidDetJenjang($id_det_jenjang){
 		$qcurrentextra=$this->db->query('SELECT ane.*,ae.nama as nama_ekstra FROM ak_nilai_ekstrakurikuler ane JOIN ak_extrakurikuler ae ON ane.id_ekstrakurikuler=ae.id WHERE ane.ta='.$this->session->userdata['ak_setting']['ta'].' AND ane.semester='.$this->session->userdata['ak_setting']['semester'].' AND ane.id_siswa_det_jenjang='.$id_det_jenjang.'');
 		$xx=$qcurrentextra->result_array();
+		//echo $this->db->last_query();
 		$xx2=array();
 		
 		foreach($xx as $idx=>$dtx){
@@ -73,6 +74,12 @@ Class Ad_extrakurikuler extends CI_Model
 	 }
 	 function getEkstrakurikulerById_seri($id_ekstra){
 		$siswakelasq=$this->db->query('SELECT adj.*,siswa.nama,siswa.nis,kel.nama as nama_kelas, kel.kelas ,ase.id_ekstrakurikuler FROM ak_siswa siswa  JOIN ak_det_jenjang adj JOIN ak_siswa_ekstrakurikuler ase JOIN ak_kelas kel ON siswa.id=adj.id_siswa AND ase.id_siswa_det_jenjang=adj.id AND kel.id=adj.id_kelas WHERE ase.id_ekstrakurikuler='.$id_ekstra.'  AND kel.publish=1');
+		//echo $this->db->last_query();
+		$siswakelas=$siswakelasq->result_array();
+		return $siswakelas;
+	 }
+	 function getEkstrakurikulerById_seriIdkelas($id_ekstra,$id_kelas){
+		$siswakelasq=$this->db->query('SELECT adj.*,siswa.nama,siswa.nis,kel.nama as nama_kelas, kel.kelas ,ase.id_ekstrakurikuler FROM ak_siswa siswa  JOIN ak_det_jenjang adj JOIN ak_siswa_ekstrakurikuler ase JOIN ak_kelas kel ON siswa.id=adj.id_siswa AND ase.id_siswa_det_jenjang=adj.id AND kel.id=adj.id_kelas WHERE ase.id_ekstrakurikuler='.$id_ekstra.'  AND adj.id_kelas='.$id_kelas.' AND adj.id_ta='.$this->session->userdata['ak_setting']['ta'].' AND ase.id_semester='.$this->session->userdata['ak_setting']['semester'].'  AND kel.publish=1');
 		//echo $this->db->last_query();
 		$siswakelas=$siswakelasq->result_array();
 		return $siswakelas;

@@ -122,7 +122,7 @@ Class Ad_nilai extends CI_Model{
 		if($id_kelas!=null){
 			$cond .=' AND id_kelas='.$id_kelas.'';
 		}
-		if($id_pelajaran!=null && $id_pelajaran!=0){
+		//if($id_pelajaran!=null && $id_pelajaran!=0){
 		$query=$this->db->query('
 								SELECT `asn`.*, k.nama as nama_kelas, k.kelas, k.id as id_kelas, pl.nama as pelajaran, pl.id as id_pelajaran FROM
 								ak_subject_nilai `asn` JOIN
@@ -135,10 +135,10 @@ Class Ad_nilai extends CI_Model{
 								`asn`.semester='.$this->session->userdata['ak_setting']['semester'].' '.$cond.' 
 								AND asn.id_pegawai='.$this->session->userdata['user_authentication']['id_pengguna'].'
 								AND asn.jenis="'.$jenis.'"
-									AND k.publish=1
+								AND k.publish=1
 								ORDER BY asn.id DESC
 								');		
-		}else{
+		/*}else{
 		$query=$this->db->query('
 								SELECT `asn`.*, k.nama as nama_kelas, k.kelas, k.id as id_kelas FROM
 								ak_subject_nilai `asn` JOIN
@@ -153,9 +153,9 @@ Class Ad_nilai extends CI_Model{
 								ORDER BY asn.id DESC
 								');	
 
-		}
+		}*/
 		$subject=	$query->result_array();		
-		
+		//pr($subject);
 		$table='ak_'.str_replace(" ","_",$jenis);
 		foreach($subject as $ids=>$datasubject){
 			$qlistnilai=$this->db->query('
@@ -176,6 +176,7 @@ Class Ad_nilai extends CI_Model{
 								');
 								//echo $this->db->last_query();
 			$datanilai=$qlistnilai->result_array();
+
 			$subject[$ids]['datanilai']=$datanilai;
 		}
 		

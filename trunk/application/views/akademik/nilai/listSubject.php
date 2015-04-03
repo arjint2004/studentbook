@@ -53,11 +53,11 @@
 					});//Submit End
 				
 				});
-					function deletesubjnilai(obj,idsubject){
+					function deletesubjnilai(obj,idsubject,jenis){
 						if(confirm('Jika subject di hapus maka nilai juga akan terhapus')){
 							$.ajax({
 								type: "POST",
-								data: 'id='+idsubject,
+								data: 'id='+idsubject+'&jenis='+jenis,
 								url: '<?=base_url()?>akademik/nilai/deletesubjectnilai',
 								beforeSend: function() {
 									$(obj).after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -95,7 +95,7 @@
 	
 					}
 				</script>
-				<h3 id="namanilai"><?=$jenis?></h3>
+				<h3 id="namanilai"><? if($jenis=='NILAI KOMPETENSI'){echo "DESKRIPSI KEMAJUAN BELAJAR";}else{echo $jenis;}?></h3>
 				<div class="hr"></div>
 				
 				<div id="contentpage">

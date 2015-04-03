@@ -164,13 +164,29 @@ class Ak_akademik {
 		$CI =& get_instance();
 		$CI->load->model('ad_nilai');
 		$CI->load->model('ad_siswa');
-		$siswa=$CI->ad_siswa->getsiswaByIdKelas($id_kelas);
-		if(!empty($siswa)){
-			foreach($siswa as $datasiswa){
-				$nilai[$datasiswa['id_siswa_det_jenjang']]=$CI->ad_nilai->getNilaiByIddetjenjangIdkelasIdPelajaranRemidi($datasiswa['id_siswa_det_jenjang'],$id_pelajaran ,$jenis);
+		$data=$CI->db->query('  SELECT nilai.nilai,nilai.id_siswa_det_jenjang FROM
+								ak_det_jenjang dj JOIN
+								ak_'.str_replace(' ','_',$jenis).' nilai JOIN
+								ak_pelajaran pl
+								ON
+								dj.id=nilai.id_siswa_det_jenjang AND
+								pl.id=nilai.id_pelajaran
+								WHERE
+								nilai.ta='.$CI->session->userdata['ak_setting']['ta'].' AND
+								nilai.semester='.$CI->session->userdata['ak_setting']['semester'].' AND
+								nilai.id_sekolah='.$CI->session->userdata['user_authentication']['id_sekolah'].' AND
+								dj.id_kelas='.$id_kelas.' AND
+								pl.id="'.$id_pelajaran.'"
+								')->result_array();
+												
+		
+		if(!empty($data)){
+			foreach($data as $datanilai){
+				$nilai[$datanilai['id_siswa_det_jenjang']][0]['nilai']=$datanilai['nilai'];
+				$nilai[$datanilai['id_siswa_det_jenjang']][0]['id_siswa_det_jenjang']=$datanilai['id_siswa_det_jenjang'];
 			}	
 			
-		}    
+		} 
 		return $nilai;		
 	}
 	
@@ -234,19 +250,48 @@ class Ak_akademik {
 		return $bobot2;
 	}
 
+	function hitungKognitif(){
+		
+
+		
+		
+	}
 	//hitung nilai kognitif perkelas
 	function nilaiKognitifPerKelas($id_kelas,$id_pelajaran){
-		$bobotPr_Tugas_UlanganHarian=$this->getAllBobotPerKelas($id_kelas,$id_pelajaran);
-		$bobotUas_Uts=$this->getAllBobotUASUTSPerKelas($id_kelas,$id_pelajaran);
+		$CI =& get_instance();
+		$CI->load->model('ad_setting');
+		$CI->load->model('ad_siswa');
+		$siswa=$CI->ad_siswa->getsiswaByIdKelas($id_kelas,'adj.id as id_siswa_det_jenjang');
+		
+		$rumusraport=$CI->ad_setting->getSetting('rumusraport',$CI->session->userdata['user_authentication']['id_sekolah']);
+		$rumusraport2=unserialize(@$rumusraport[0]['value']);
+		$rumuskognitif=$rumusraport2['rumus_raport'];
+	
 		
 		//hitung nilai kognitif
-		foreach($bobotPr_Tugas_UlanganHarian as $id_siswa_det_jenjang => $nilai){
-			$kognitif[$id_siswa_det_jenjang]['kognitif']=$nilai['nilai_pr']+$nilai['nilai_tugas']+$nilai['nilai_ulangan_harian']+$bobotUas_Uts[$id_siswa_det_jenjang]['nilai_uas']+$bobotUas_Uts[$id_siswa_det_jenjang]['nilai_uts'];
-			$kognitif[$id_siswa_det_jenjang]['nilai_pr']=$nilai['nilai_pr'];
-			$kognitif[$id_siswa_det_jenjang]['nilai_tugas']=$nilai['nilai_tugas'];
-			$kognitif[$id_siswa_det_jenjang]['nilai_ulangan_harian']=$nilai['nilai_ulangan_harian'];
-			$kognitif[$id_siswa_det_jenjang]['nilai_uas']=$bobotUas_Uts[$id_siswa_det_jenjang]['nilai_uas'];
-			$kognitif[$id_siswa_det_jenjang]['nilai_uts']=$bobotUas_Uts[$id_siswa_det_jenjang]['nilai_uts'];
+		foreach($siswa as $id_siswa_det_jenjangx){
+			$id_siswa_det_jenjang=$id_siswa_det_jenjangx['id_siswa_det_jenjang'];
+			//kognitif
+			//Rata2
+			$rata2=$this->getAllRata2_Nilai_perSiswa($id_siswa_det_jenjang, $id_pelajaran);
+			$PR=@$rata2['nilai_pr'][$id_siswa_det_jenjang]['rata'];
+			$TUGAS=@$rata2['nilai_tugas'][$id_siswa_det_jenjang]['rata'];
+			$HARIAN=@$rata2['nilai_ulangan_harian'][$id_siswa_det_jenjang]['rata'];
+				
+			$nilaiUAS=$this->getNilai_PerSiswa($id_siswa_det_jenjang, $id_pelajaran,'nilai uas');
+			$nilaiUTS=$this->getNilai_PerSiswa($id_siswa_det_jenjang, $id_pelajaran,'nilai uts');
+			$UTS=$nilaiUTS[$id_siswa_det_jenjang][0]['nilai'];
+			$UAS=$nilaiUAS[$id_siswa_det_jenjang][0]['nilai'];		
+			
+			$rumuskognitif2='$hs='.$rumuskognitif.';';
+			eval($rumuskognitif2);
+			
+			$kognitif[$id_siswa_det_jenjang]['kognitif']=$hs;	
+			$kognitif[$id_siswa_det_jenjang]['nilai_pr']=$PR;
+			$kognitif[$id_siswa_det_jenjang]['nilai_tugas']=$TUGAS;
+			$kognitif[$id_siswa_det_jenjang]['nilai_ulangan_harian']=$HARIAN;
+			$kognitif[$id_siswa_det_jenjang]['nilai_uas']=$UTS;
+			$kognitif[$id_siswa_det_jenjang]['nilai_uts']=$UAS;
 		}
 		
 		//unset($bobotPr_Tugas_UlanganHarian);$CI->load->model('ad_nilai');
