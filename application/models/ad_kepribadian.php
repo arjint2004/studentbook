@@ -32,7 +32,7 @@ Class Ad_kepribadian extends CI_Model{
 										AND ank.id_siswa_det_jenjang="'.$id_det_jenjang.'"');
 		$xx=$qcurrentextra->result_array();
 		$xx2=array();
-		echo $this->db->last_query();
+		//echo $this->db->last_query();
 		foreach($xx as $idx=>$dtx){
 			$xx2[$dtx['id_siswa_det_jenjang']][$dtx['id_aspek_kepribadian']]=$dtx;
 		}

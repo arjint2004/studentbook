@@ -9,13 +9,17 @@ class Nilaiekstrakurikuler extends CI_Controller {
 	function index(){
 		$this->load->model('ad_extrakurikuler');
 		$data['ekstra'] 	=$this->ad_extrakurikuler->getdataByPegawai($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']);
+		$this->load->model('ad_kelas');
+		$data['kelas'] 	=$this->ad_kelas->getKelasByWali($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']);
+		//pr($data['kelas']);die();
 		$data['main'] 	= 'akademik/nilaiekstrakurikuler/index';
 		$data['page_title'] 	= 'Data Nilai Ekstrakurikuler';
 		$this->load->view('layout/ad_blank',$data);	 
 	}
 	function nilaiekstralist(){
 		$this->load->model('ad_extrakurikuler');
-		$datax=$this->ad_extrakurikuler->getEkstrakurikulerById_seri($_POST['id_ekstra']);
+
+		$datax=$this->ad_extrakurikuler->getEkstrakurikulerById_seriIdkelas($_POST['id_ekstra'],$_POST['id_kelas']);
 		$nilai=$this->ad_extrakurikuler->getNilaiByIdEkstra($_POST['id_ekstra']);
 		if(isset($_POST['nilai'])){
 			//pr($_POST);

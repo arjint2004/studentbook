@@ -36,7 +36,22 @@ $(document).ready(function(){
 					},
 					success: function(msg) {
 						$("#wait").remove();	
-						$('#subjectnilai').load('<? echo base_url();?>akademik/nilai/listSubject/<?=base64_encode($jenis);?>');
+						//$('#subjectnilai').load('<? echo base_url();?>akademik/nilai/listSubject/<?=base64_encode($jenis);?>');
+						
+							$.ajax({
+								type: "POST",
+								data: 'ajax=1&id_kelas='+$('select#kelas_add').val()+'&pelajaran='+$('select#pelajaran_add').val()+'&jenis=<?=$jenis;?>',
+								url: '<?=base_url()?>akademik/nilai/getsubject',
+								beforeSend: function() {
+									//$("#filterpelajaranlistSubject select#pelajaranlistsubject").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
+								},
+								success: function(msg) {
+									$("#wait").remove();
+									$("#subjectnilailist").html(msg);	
+								}
+							});
+							return false;
+						//Submit End
 						//$('#simpanabsensi').before('<div id="berhasil" style="float:left;">Simpan Berhasil</div>');
 						//$('#berhasil').delay(10).fadeIn(500).delay(1000).fadeOut(500);
 						//$('#berhasil').remove();
@@ -94,7 +109,7 @@ $(document).ready(function(){
 <form action="<? echo base_url();?>akademik/nilai/editnilai" id="subjectnilaieditkompetensi" name="subjectnilaieditkompetensi" method="post" >
 	<div class="addaccountclose" onclick="$('.addaccount').remove();"></div>
 		
-		<h3>Tambah <?=$jenis?></h3>
+		<h3>Edit <? if($jenis='NILAI KOMPETENSI'){echo "DESKRIPSI KEMAJUAN BELAJAR";}else{echo $jenis;}?></h3>
 		<div class="hr"></div>
 		<table class="adddata">
 			<tr>

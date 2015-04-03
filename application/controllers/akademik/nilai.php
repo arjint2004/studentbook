@@ -100,47 +100,6 @@ class Nilai extends CI_Controller {
 		$data['page_title'] 	= 'View Document';
 		$this->load->view('layout/ad_fullwidth',$data);
 	}
-	function editnilai($jenis=''){
-	
-		$this->load->model('ad_kelas');
-		$this->load->model('ad_nilai');
-		
-		if(isset($_POST['subject']) && isset($_POST['id_kelas']) && isset($_POST['id_pelajaran'])){
-			$update=array(
-							'id_kelas'=>$_POST['id_kelas'],
-							'id_pelajaran'=>$_POST['id_pelajaran'],
-							'subject'=>$_POST['subject'],
-							'remidial'=>@$_POST['remidial']
-			);
-			
-			$this->db->where('id',$_POST['id_subject']);	
-			$this->db->update('ak_subject_nilai',$update);
-						
-			foreach($_POST['nilai'] as $id_nilai=>$nilai){
-				$updatenilai=array( 	 	 	 	 	 	 	 	 	 
-								
-								'id_pelajaran'=>$_POST['id_pelajaran'],
-								'nilai'=>$nilai
-				);
-				$this->db->where('id',$id_nilai);		
-				$this->db->update('ak_'.str_replace(' ','_',$_POST['jenis']),$updatenilai);
-			}
-			
-		}
-		$data['subject']= $this->ad_nilai->getSubjectNilaiById($_POST['id_subject']);
-		$data['jenis'] 	=base64_decode($jenis);
-		$data['kelas'] 	=$this->ad_kelas->getkelas($this->session->userdata['user_authentication']['id_sekolah']);
-
-		if(base64_decode($jenis)=="nilai kompetensi"){
-			$data['main'] 	= 'akademik/nilai/editnilaikompetensi'; // memilih view
-		}elseif(base64_decode($jenis)=="nilai lain_lain"){
-			$data['main'] 	= 'akademik/nilai/editnilailainlain'; // memilih view
-		}else{
-			$data['main'] 	= 'akademik/nilai/editnilai'; // memilih view
-		}
-		$this->load->view('layout/ad_blank',$data); // memilih layout
-		
-	}
 	function getpsikoafektif($jenis=''){
 			$this->load->model('ad_nilai');
 			
@@ -252,7 +211,7 @@ class Nilai extends CI_Controller {
 	}
 	public function deletesubjectnilai(){ 
 		$this->db->query('DELETE FROM ak_subject_nilai WHERE id='.$_POST['id'].'');
-		$this->db->query('DELETE FROM ak_nilai_pr WHERE id_subject='.$_POST['id'].'');
+		$this->db->query('DELETE FROM ak_'.str_replace(' ','_',$_POST['jenis']).' WHERE id_subject='.$_POST['id'].'');
 	}
 	public function getsubject($jenis=null){ 
 			$this->load->model('ad_nilai');
@@ -319,6 +278,7 @@ class Nilai extends CI_Controller {
 			//area kompetensi
 			if(base64_decode(@$_POST['jenis'])=="nilai kompetensi"){
 				$this->load->library('ak_akademik');
+				$this->load->model('ad_nilai');
 				//$nilairumus=$this->ak_akademik->getRata2_Nilai_perKelas($_POST['id_kelas'],$_POST['id_pelajaran'],'nilai ulangan harian');
 				//$nilairumus=$this->ak_akademik->getAllRata2_Nilai_perKelas($_POST['id_kelas'],$_POST['id_pelajaran']);
 				//$nilairumus=$this->ak_akademik->getAllRata2_Nilai_perSiswa(1,$_POST['id_pelajaran']);
@@ -330,11 +290,16 @@ class Nilai extends CI_Controller {
 				//$nilairumus=$this->ak_akademik->getAllBobotPerKelas($_POST['id_kelas'],$_POST['id_pelajaran']);
 				//ambil bobot nilai per siswa
 				//$nilairumus=$this->ak_akademik->getAllBobotPerSiswa(1,$_POST['id_pelajaran']);
-				
+				$data['subject']= $this->ad_nilai->getSubjectNilaiListNilai($_POST['id_kelas'],$_POST['id_pelajaran'],base64_decode(@$_POST['jenis']));
+				if(!empty($data['subject'])){
+					echo json_encode(array('status'=>'movetoedit','id_subject'=>$data['subject'][0]['datanilai'][0]['id_subject'],'id_pelajaran'=>$data['subject'][0]['id_pelajaran'],'id_kelas'=>$data['subject'][0]['id_kelas']));
+					die();
+				}
+				//pr($data['subject']);
 				$data['nilaikognitif']=$this->ak_akademik->nilaiKognitifPerKelas($_POST['id_kelas'],$_POST['id_pelajaran']);
-				$data['nilaiafektif']=$this->ak_akademik->getNilai_Perkelas($_POST['id_kelas'],$_POST['id_pelajaran'], 'nilai afektif');
-				$data['nilaiapraktik']=$this->ak_akademik->getNilai_Perkelas($_POST['id_kelas'],$_POST['id_pelajaran'], 'nilai praktik');
-				
+				$data['uts']=$this->ak_akademik->getNilai_Perkelas($_POST['id_kelas'],$_POST['id_pelajaran'], 'nilai uts');
+				$data['uas']=$this->ak_akademik->getNilai_Perkelas($_POST['id_kelas'],$_POST['id_pelajaran'], 'nilai uas');
+				//pr($data['nilaikognitif']);
 				$data['main'] = 'akademik/nilai/addkompetensi';
 			}elseif(base64_decode(@$_POST['jenis'])=="nilai afektif" || @$_POST['jenis']=="nilai afektif"){
 				$data['main'] = 'akademik/nilai/addafektif';
@@ -347,6 +312,48 @@ class Nilai extends CI_Controller {
             
             $this->load->view('layout/ad_blank',$data);
         }
+
+	function editnilai($jenis=''){
+	
+		$this->load->model('ad_kelas');
+		$this->load->model('ad_nilai');
+		//pr($_POST);
+		if(isset($_POST['id_subject']) && isset($_POST['id_kelas']) && isset($_POST['id_pelajaran'])){
+			
+			$update=array(
+							'id_kelas'=>$_POST['id_kelas'],
+							'id_pelajaran'=>$_POST['id_pelajaran'],
+							/*'subject'=>$_POST['subject'],*/
+							'remidial'=>@$_POST['remidial']
+			);
+			
+			$this->db->where('id',$_POST['id_subject']);	
+			$this->db->update('ak_subject_nilai',$update);
+						
+			foreach($_POST['nilai'] as $id_nilai=>$nilai){
+				$updatenilai=array( 	 	 	 	 	 	 	 	 	 
+								'nilai'=>$nilai
+				);
+				$this->db->where('id',$id_nilai);		
+				$this->db->update('ak_'.strtolower(str_replace(' ','_',$_POST['jenis'])),$updatenilai);
+				echo $this->db->last_query().'<br />';
+			}
+			
+		}
+		$data['subject']= $this->ad_nilai->getSubjectNilaiById($_POST['id_subject']);
+		$data['jenis'] 	=base64_decode($jenis);
+		$data['kelas'] 	=$this->ad_kelas->getkelas($this->session->userdata['user_authentication']['id_sekolah']);
+
+		if(base64_decode($jenis)=="nilai kompetensi"){
+			$data['main'] 	= 'akademik/nilai/editnilaikompetensi'; // memilih view
+		}elseif(base64_decode($jenis)=="nilai lain_lain"){
+			$data['main'] 	= 'akademik/nilai/editnilailainlain'; // memilih view
+		}else{
+			$data['main'] 	= 'akademik/nilai/editnilai'; // memilih view
+		}
+		$this->load->view('layout/ad_blank',$data); // memilih layout
+		
+	}		
     public function edit()
         {
 			$siswa2=array();
@@ -384,8 +391,8 @@ class Nilai extends CI_Controller {
 				//$nilairumus=$this->ak_akademik->getAllBobotPerSiswa(1,$_POST['id_pelajaran']);
 				
 				$data['nilaikognitif']=$this->ak_akademik->nilaiKognitifPerKelas($_POST['id_kelas'],$_POST['id_pelajaran']);
-				$data['nilaiafektif']=$this->ak_akademik->getNilai_Perkelas($_POST['id_kelas'],$_POST['id_pelajaran'], 'nilai afektif');
-				$data['nilaiapraktik']=$this->ak_akademik->getNilai_Perkelas($_POST['id_kelas'],$_POST['id_pelajaran'], 'nilai praktik');
+				$data['uts']=$this->ak_akademik->getNilai_Perkelas($_POST['id_kelas'],$_POST['id_pelajaran'], 'nilai uts');
+				$data['uas']=$this->ak_akademik->getNilai_Perkelas($_POST['id_kelas'],$_POST['id_pelajaran'], 'nilai uas');
 				
 				$data['main'] = 'akademik/nilai/editkompetensi';
 			}elseif(base64_decode(@$_POST['jenis'])=="nilai afektif" || @$_POST['jenis']=="nilai afektif"){

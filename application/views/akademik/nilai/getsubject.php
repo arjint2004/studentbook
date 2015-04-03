@@ -43,14 +43,14 @@
                     <div class="tabs-vertical-container">
                         <ul class="tabs-vertical-frame nilai_tab tabnilai" >
 							<? foreach($subject as $datasubject){?>
-                            <li id="tab<?=$datasubject['id']?>" ><a href="#"><h5><?=$datasubject['subject']?></h5>
-							<h6><?=@$datasubject['pelajaran']?></h6><span></span><?if(@$datasubject['remidial']=='remidial'){?><h6><?=@$datasubject['remidial']?></h6><span></span><?}?></a></li>
+                            <li id="tab<?=$datasubject['id']?>" ><a href="#"><h5><?=@$datasubject['pelajaran']?></h5>
+							<h6><?=$datasubject['subject']?></h6><span></span><?if(@$datasubject['remidial']=='remidial'){?><h6><?=@$datasubject['remidial']?></h6><span></span><?}?></a></li>
 							<? } ?>
                         </ul>
 						<? foreach($subject as $datasubject){?>
 							<div id="cnttab<?=$datasubject['id']?>" class="tabs-vertical-frame-content vcontnilai">
 							<div class="actedit" title="Edit" onclick="editsubjnilai(this,<?=$datasubject['id']?>,<?=$datasubject['id_kelas']?>,<?=$datasubject['id_pelajaran']?>,'<?=$datasubject['remidial']?>','<?=$datasubject['subject']?>')" ></div> 
-							<div class="actdell" title="Delete" onclick="deletesubjnilai(this,<?=$datasubject['id']?>)"></div>
+							<div class="actdell" title="Delete" onclick="deletesubjnilai(this,<?=$datasubject['id']?>,'<?=$jenis?>')"></div>
 							<div class="actexcell" id_subject="<?=$datasubject['id']?>" title="Export Excell" ></div>
 							   <form id="formexp<?=$datasubject['id']?>" action="" method="post">
 							   <input type="hidden" name="jenis" value="Nilai" />

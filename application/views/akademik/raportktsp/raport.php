@@ -437,24 +437,29 @@
 			?>
         </tbody>
     </table>
+
 	<br />
 	    <table  style="max-width:1024px;" class="asbin" id="allset"  border="1">
           <tr style="border-top:2px solid black;border-bottom:2px solid black;font-weight:bold;">
-            <td align="center" rowspan="3" style="width:26%;">Pengembangan Diri </td>
+            <td align="center" rowspan="<?=count($pengembangandiri[$id_det_jenjang])+1;?>" style="width:26%;">Pengembangan Diri </td>
             <td style="width:26%;">Jenis</td>
-            <td align="center" style="width:26%;">Nilai Kualitatif </td>
+            <td align="center" style="width:26%;">Nilai </td>
             <td align="center" style="width:26%;">Keterangan</td>
           </tr>
-          <tr>
-            <td style="width:25%;">English For Comunication </td>
-            <td style="width:25%;" align="center">B</td>
-            <td style="width:25%;" align="center">Baik</td>
-          </tr>
-          <tr>
-            <td>Pembiasaan/Kepribadian</td>
-            <td align="center">B</td>
-            <td align="center">Baik</td>
-          </tr>
+		    <? 
+			$no=1; 
+			if(!empty($pengembangandiri[$id_det_jenjang])){
+				foreach($pengembangandiri[$id_det_jenjang] as $nilaiekstra){
+			?>
+				  <tr>
+					<td style="width:25%;"><?=$nilaiekstra['nama_ekstra']?></td>
+					<td style="width:25%;" align="center"><?=$nilaiekstra['nilai']?></td>
+					<td style="width:25%;" align="center"><?=$nilaiekstra['keterangan']?></td>
+				  </tr>
+			<? 	
+				} 
+			} 
+			?>
         </table>
     <br />		
 <!--<table   style="max-width:1024px;" class="asbin" id="allset"  border="1">
@@ -481,7 +486,7 @@
   <tr>
 
     <td style="width:26%;"><?=$nilaikepribadian['nama']?></td>
-    <td style="width:26%;" align="center"><?=$nilaikepribadian['nilai_kepribadian']?></td>
+    <td style="width:26%;" align="center"><?=$nilaikepribadian['nilai']?></td>
     <td align="center"><?=$nilaikepribadian['keterangan']?></td>
   </tr>
   <? 
@@ -491,25 +496,21 @@
 <br />
 <table  style="max-width:1024px;" class="asbin" id="allset"  border="1">
   <tr style="border-top:2px solid black;border-bottom:2px solid black;font-weight:bold;">
-    <td rowspan="4"  style="width:26%;" align="center" >Ketidakhadiran</td>
+    <td rowspan="4"  style="width:18%;" align="center" >Ketidakhadiran</td>
     <td style="width:26%;">Kondisi</td>
     <td  align="center"style="width:26%;">Jumlah</td>
-    <td align="center">Satuan</td>
   </tr>
   <tr>
     <td style="width:26%;">Sakit</td>
-    <td  align="center"style="width:26%;">2</td>
-    <td align="center">Hari</td>
+    <td  align="center"style="width:26%;"><?=$absensi['sakit']?> Hari</td>
   </tr>
   <tr>
     <td style="width:26%;">Izin</td>
-    <td  align="center"style="width:26%;">-</td>
-    <td align="center">Hari</td>
+    <td  align="center"style="width:26%;"><?=$absensi['izin']?> Hari</td>
   </tr>
   <tr>
     <td style="width:26%;">Tanpa Keterangan </td>
-    <td  align="center" style="width:26%;">-</td>
-    <td align="center" >Hari</td>
+    <td  align="center" style="width:26%;"><?=$absensi['alpha']?> Hari</td>
   </tr>
 </table>
 
