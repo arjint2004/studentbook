@@ -421,10 +421,10 @@
 								  <td  rowspan="<?=count($data_sub)?>"></td>			
 								  <? } ?>				
 								  <td class="title" style="border-bottom:none;">&nbsp;&nbsp;<?=$nomsub?>. <?=ucfirst(strtolower($last_data_sub['pelajaran']))?></td>
-								  <td></td>
-								  <td>&nbsp;</td>
-								  <td>&nbsp;</td>
-								  <td></td>
+								<td align="center"><?=$nilai['kkm']?></td>
+								<td align="center"><?=round($last_data_sub['kognitif'],2)?></td>
+								<td><i><?=Terbilang(round($last_data_sub['kognitif'],2))?></i></td>
+								<td><?=$last_data_sub['ketercapaian']?></td>
 								</tr>
 								<? 
 								$nomsub++;

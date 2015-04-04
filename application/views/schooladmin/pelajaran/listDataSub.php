@@ -1,7 +1,7 @@
 				<script>
 				$(document).ready(function(){
 					$(".editdata").click(function(e){
-						$('#ajaxside').load('<?=base_url()?>/admin/pelajaran/editData/'+$(this).attr('id'));
+						$('#ajaxside').load('<?=base_url()?>admin/pelajaran/editData/'+$(this).attr('id'));
 						$("#ajaxside").scrollintoview({ duration: "slow", direction: "y", complete: function(){ }}); 
 					});
 					

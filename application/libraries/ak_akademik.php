@@ -490,7 +490,7 @@ class Ak_akademik {
 				if($subnilai=='nosub'){
 				
 				}else{
-					$kognitif[$datapel['id']]['kognitif']=$subnilai['kognitif'];
+					//$kognitif[$datapel['id']]['kognitif']=$subnilai['kognitif'];
 					//$kognitif[$datapel['id']]['praktik']=$subnilai['praktik'];
 					$kognitif['submapel'][$datapel['id'].'-'.$datapel['nama']]=$subnilai['datasub'];
 					
@@ -584,6 +584,8 @@ class Ak_akademik {
 			$UTS=$nilaiUTS[$id_det_jenjang][0]['nilai'];
 			$UAS=$nilaiUAS[$id_det_jenjang][0]['nilai'];
 
+			$kognitif[$datapel['id']]['ketercapaian']=@$nilaiKetercapaian[$datapel['id']][0]['nilai'];
+			
 			$rumuskognitif2='$hs='.$rumuskognitif.';';
 			eval($rumuskognitif2);
 			$kognitif[$datapel['id']]['kognitif']=$hs;
