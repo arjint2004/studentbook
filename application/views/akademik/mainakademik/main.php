@@ -81,7 +81,7 @@
 				<a class="readmore" title="" tab="otentik" href="" id="<?=base64_encode('psikomotorik');?>">Nilai<br /> Psikomotorik</a>
 		</div>
 		<div class="tabs-frame-content" id="tpembelajarannilai" style="display: none;">
-				<a class="readmore" title="" tab="nilai" href="" id="<?=base64_encode('nilai pr');?>">Penilaian<br /> PR </a>
+				<!--<a class="readmore" title="" tab="nilai" href="" id="<?=base64_encode('nilai pr');?>">Penilaian<br /> PR </a>-->
 				<a class="readmore" title="" tab="nilai"  href="" id="<?=base64_encode('nilai tugas');?>">Penilaian<br /> Tugas  </a>
 				<a class="readmore" title="" tab="nilai"  href="" id="<?=base64_encode('nilai ulangan harian');?>">Penilaian<br /> UL harian  </a>
 				<a class="readmore" title="" tab="nilai"  href="" id="<?=base64_encode('nilai uts');?>">Penilaian<br /> UTS </a>

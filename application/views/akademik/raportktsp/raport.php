@@ -404,7 +404,7 @@
 							<td align="center"><?=$nilai['kkm']?></td>
 							<td align="center"><?=round($nilai['kognitif'],2)?></td>
 							<td><i><?=Terbilang(round($nilai['kognitif'],2))?></i></td>
-							<td><?=$nilai['ketercapaian']?></td>
+							<td><?//=$nilai['ketercapaian']?><? if(round($nilai['kognitif'],2)>$nilai['kkm']){echo 'Terlampaui';}else{ echo 'Tidak Terlampaui';}?></td>
 						</tr>					
 						<?
 					}
@@ -424,7 +424,7 @@
 								<td align="center"><?=$nilai['kkm']?></td>
 								<td align="center"><?=round($last_data_sub['kognitif'],2)?></td>
 								<td><i><?=Terbilang(round($last_data_sub['kognitif'],2))?></i></td>
-								<td><?=$last_data_sub['ketercapaian']?></td>
+								<td><?//=$last_data_sub['ketercapaian']?><? if(round($last_data_sub['kognitif'],2)>$last_data_sub['kkm']){echo 'Terlampaui';}else{ echo 'Tidak Terlampaui';}?></td>
 								</tr>
 								<? 
 								$nomsub++;
