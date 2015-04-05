@@ -55,7 +55,7 @@ class Sms extends CI_Controller {
 								$insert_sms=array(
 												'nama_siswa'=>'',
 												'no_hp'=>''.$inser_sms['no_hp'].'',
-												'pesan'=>$inser_sms['pesan']."\n".$CI->session->userdata['ak_setting']['nama_sekolah'],
+												'pesan'=>$inser_sms['pesan'],
 												'jenis'=>$inser_sms['jenis'],
 												'id_jenis'=>0,
 												'id_kelas'=>0,
