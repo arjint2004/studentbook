@@ -202,7 +202,7 @@ class smsprivate {
 					$insert_sms=array(
 									'nama_siswa'=>''.$datanya['nama_siswa'].'',
 									'no_hp'=>''.$datanya['hp'].'',
-									'pesan'=>''.$pesan.'. lihat di https://studentbook.co/u/'.base64_encode($datanya['id_user']).'',
+									'pesan'=>'lihat di https://studentbook.co/u/'.base64_encode($datanya['id_user']).' '.$pesan.'',
 									'jenis'=>''.$jenis.'',
 									'id_jenis'=>''.$id_jenis.'',
 									'id_kelas'=>''.$datanya['id_kelas'].'',
@@ -223,4 +223,4 @@ class smsprivate {
 	}
 	
 }
-?>
+?>."\n".$CI->session->userdata['ak_setting']['nama_sekolah']
