@@ -94,8 +94,8 @@
 				<!--<a class="readmore" title="" tab="nilai"  href="" id="psikomotorik">Penilaian<br /> Psikomotorik telkom </a>
 				<a class="readmore" title="" tab="nilai"  href="" id="afektif">Penilaian<br /> Afektif  telkom</a>
 				
-				<a class="readmore" title="" tab="nilai"  href="" id="<?=base64_encode('nilai praktik');?>">Penilaian<br /> praktik </a>-->
-				<a class="readmore" title="" tab="nilai"  href="" id="<?=base64_encode('nilai kompetensi');?>"> Deskripsi<br /> Kemajuan Belajar </a>
+				<a class="readmore" title="" tab="nilai"  href="" id="<?=base64_encode('nilai praktik');?>">Penilaian<br /> praktik </a>
+				<a class="readmore" title="" tab="nilai"  href="" id="<?=base64_encode('nilai kompetensi');?>"> Deskripsi<br /> Kemajuan Belajar </a>-->
 				<a class="readmore" title="" tab="nilai" id="rekapitulasinilai" href=""> Rekapitulasi<br /> Nilai </a>
 		</div>
 	</div>
