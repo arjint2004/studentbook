@@ -454,7 +454,7 @@
 				  <tr>
 					<td style="width:25%;"><?=$nilaiekstra['nama_ekstra']?></td>
 					<td style="width:25%;" align="center"><?=$nilaiekstra['nilai']?></td>
-					<td style="width:25%;" align="center"><?=$nilaiekstra['keterangan']?></td>
+					<td style="width:25%;" align="center"><?=totext($nilaiekstra['nilai'])?> <?//=$nilaiekstra['keterangan'];?></td>
 				  </tr>
 			<? 	
 				} 
@@ -487,7 +487,7 @@
 
     <td style="width:26%;"><?=$nilaikepribadian['nama']?></td>
     <td style="width:26%;" align="center"><?=$nilaikepribadian['nilai']?></td>
-    <td align="center"><?=$nilaikepribadian['keterangan']?></td>
+    <td align="center"><?=totext($nilaikepribadian['nilai'])?><?//=$nilaikepribadian['keterangan']?></td>
   </tr>
   <? 
   $nokep++;
@@ -515,63 +515,167 @@
 </table>
 
     <br />
-	    <? //pr($raport);?>
-	    <br />
-    <table style="max-width:1024px;" class="asbin noborder" id="allset"  border="1" >
-			<tr>
-				<td style="padding:0;">
+	<? //pr($kelas);?>
+	<br />
+	<? if(isset($kenaikan['statusnaik'])){?>
+		<table style="max-width:1024px;" class="asbin noborder" id="allset"  border="1" >
+				<tr>
+					<td style="padding:0;">
 
-						
-						
-						<table style="width:100%;" class="asbin noborder" id="allset"  border="0">
-								<tr>
-								  <td style="width:25%;">Orang Tua/Wali</td>
-								  <td style="width:40%;">&nbsp;</td>  
-								  <td style="padding:20px 20px 0 20px;width:35%;text-align:left;border-top:1px solid #000;border-left:1px solid #000;border-right:1px solid #000;"><strong>Keputusan</strong><br /> Berdasarkan hasil Yang dicapai Semester 1 dan 2, Peserta didik ditetapkan :</td>
-								</tr>
-								<tr>
-								  <td>&nbsp;</td>
-								  <td>&nbsp;</td>
-								  <td style="padding:0 20px;text-align:left; border-left:1px solid #000;border-right:1px solid #000;">naik ke kelas______(________) </td>
+							
+							
+							<table style="width:100%;" class="asbin noborder" id="allset"  border="0">
+									<tr>
+									  <td style="width:25%;"></td>
+									  <td style="width:40%;">&nbsp;</td>  
+									  <td style="padding:20px 20px 0 20px;width:35%;text-align:left;border-top:1px solid #000;border-left:1px solid #000;border-right:1px solid #000;"><strong>Keputusan</strong><br /> Berdasarkan hasil Yang dicapai Semester 1 dan 2, Peserta didik ditetapkan :</td>
+									</tr>
+								  <tr>
+									  <td>&nbsp;</td>
+									  <td>&nbsp;</td>
+									  <td style="padding:0 20px;text-align:left; border-left:1px solid #000;border-right:1px solid #000;"><b><?=$kenaikan['statusnaik']?></b></td>
+								  </tr>
+								  
+									<tr>
+									  <td>&nbsp;</td>
+									  <td>&nbsp;</td>
+									  <td style="padding:0 20px;text-align:left; border-left:1px solid #000;border-right:1px solid #000;">&nbsp;</td>
 							  </tr>
-								<tr>
-								  <td>&nbsp;</td>
-								  <td>&nbsp;</td>
-								  <td style="padding:0 20px;text-align:left; border-left:1px solid #000;border-right:1px solid #000;">tinggal di kelas______(______)</td>
+									<tr>
+									  <td>&nbsp;</td>
+									  <td>&nbsp;</td>
+									  <td style="padding:0 20px;text-align:left; border-left:1px solid #000;border-right:1px solid #000;">
+										<table border="0" id="allset" class="asbin noborder" style="width:100%;">
+											<tbody>
+												<tr>
+												  <td rowspan="2" style="padding:0px">Yogyakarta,</td>
+												  <td style="padding:0px;"><u>11 desember2015</u></td>
+												</tr>
+												<tr>
+												  <td style="padding:0px">11 desember2015</td>
+												</tr>
+											</tbody>
+										</table>
+									  </td>
 							  </tr>
-								<tr>
-								  <td>&nbsp;</td>
-								  <td>&nbsp;</td>
-								  <td style="padding:0 20px;text-align:left; border-left:1px solid #000;border-right:1px solid #000;">___________,__________20___</td>
-						  </tr>
-								<tr>
-								  <td  style="border-bottom:1px solid #000;">&nbsp;<?=$siswa[0]['nama_wali']?></td>
-								  <td>&nbsp;</td>
-								  <td style="padding:0 20px;text-align:left; border-left:1px solid #000;border-right:1px solid #000;">Kepala Sekolah </td>
-						  </tr>
-								<tr>
-								  <td>&nbsp;</td>
-								  <td>&nbsp;</td>
-								  <td  style=" border-left:1px solid #000;border-right:1px solid #000;">&nbsp;</td>
+									<tr>
+									  <td >Orang Tua/Wali</td>
+									  <td>Wali Kelas </td>
+									  <td style="padding:0 20px;text-align:left; border-left:1px solid #000;border-right:1px solid #000;">Kepala Sekolah 
+								      <?=$sekolah[0]['nama_sekolah']?></td>
 							  </tr>
-								<tr>
-								  <td>&nbsp;</td>
-								  <td>&nbsp;</td>
-								  <td style=" padding:0px 0px 0px 17px;text-align:left;border-left:1px solid #000;border-right:1px solid #000;">&nbsp;<?=$this->session->userdata['ak_setting']['nama_kepsek']?></td>
+									<tr>
+									  <td>&nbsp;</td>
+									  <td>&nbsp;</td>
+									  <td  style=" border-left:1px solid #000;border-right:1px solid #000;">&nbsp;</td>
 							  </tr>
-								<tr>
-								  <td>&nbsp;</td>
-								  <td>&nbsp;</td>
-								  <td style="padding:0px 20px 20 20px;text-align:left; border-left:1px solid #000;border-right:1px solid #000;border-bottom:1px solid #000;">NIP&nbsp;&nbsp;<?=$kepsek[0]['nip']?></td>
+									<tr>
+									  <td>&nbsp;</td>
+									  <td>&nbsp;</td>
+									  <td  style=" border-left:1px solid #000;border-right:1px solid #000;">&nbsp;</td>
 							  </tr>
-						</table>
+									<tr>
+									  <td>&nbsp;</td>
+									  <td>&nbsp;</td>
+									  <td  style=" border-left:1px solid #000;border-right:1px solid #000;">&nbsp;</td>
+								  </tr>
+									<tr>
+									  <td >...................................<?//=$siswa[0]['NmOrtu']?></td>
+									  <td ><u><?=$kelas[0]['nama']?><u/></td>
+									  <td style=" padding:0px 0px 0px 17px;text-align:left;border-left:1px solid #000;border-right:1px solid #000;">&nbsp;<u><?=$this->session->userdata['ak_setting']['nama_kepsek']?></u></td>
+								  </tr>
+									<tr>
+									  <td>&nbsp;</td>
+									  <td>&nbsp;</td>
+									  <td style="padding:0px 20px 20 20px;text-align:left; border-left:1px solid #000;border-right:1px solid #000;border-bottom:1px solid #000;">NIP&nbsp;&nbsp;<?=$kepsek[0]['nip']?></td>
+								  </tr>
+							</table>
 
 
 
 
-				</td>
-			</tr>
-	</table>	
+					</td>
+				</tr>
+		</table>		
+	<?}elseif(isset($kenaikan['statuslulus'])){?>
+		<table style="max-width:1024px;" class="asbin noborder" id="allset"  border="1" >
+				<tr>
+					<td style="padding:0;"><table style="width:100%;" class="asbin noborder" id="allset"  border="0">
+									<tr>
+									  <td style="width:25%;"></td>
+									  <td style="width:40%;">&nbsp;</td>  
+									  <td style="padding:20px 20px 0 20px;width:35%;text-align:left;border-top:1px solid #000;border-left:1px solid #000;border-right:1px solid #000;">&nbsp;</td>
+									</tr>
+									<tr>
+									  <td>&nbsp;</td>
+									  <td>&nbsp;</td>
+									  <td style="padding:0 20px;text-align:left; border-left:1px solid #000;border-right:1px solid #000;">
+										<table border="0" id="allset" class="asbin noborder" style="width:100%;">
+											<tbody>
+												<tr>
+												  <td style="padding:0px">Diberikan Di</td>
+												  <td style="padding:0px;">:</td>
+												  <td style="padding:0px;">Yogyakarta</td>
+											  </tr>
+												<tr>
+												  <td rowspan="2" style="padding:0px">Tanggal</td>
+												  <td rowspan="2" style="padding:0px;">:</td>
+												  <td style="padding:0px;"><u>11 desember2015</u></td>
+												</tr>
+												<tr>
+												  <td style="padding:0px">11 desember2015</td>
+												</tr>
+											</tbody>
+										</table>
+									  </td>
+							  </tr>
+									<tr>
+									  <td >&nbsp;</td>
+									  <td>&nbsp;</td>
+									  <td style="padding:0 20px;text-align:left; border-left:1px solid #000;border-right:1px solid #000;">&nbsp;</td>
+							  </tr>
+					<tr>
+									  <td >Orang Tua/Wali</td>
+									  <td>Wali Kelas </td>
+									  <td style="padding:0 20px;text-align:left; border-left:1px solid #000;border-right:1px solid #000;">Kepala Sekolah 
+				      <?=$sekolah[0]['nama_sekolah']?></td>
+					  </tr>
+									<tr>
+									  <td>&nbsp;</td>
+									  <td>&nbsp;</td>
+									  <td  style=" border-left:1px solid #000;border-right:1px solid #000;">&nbsp;</td>
+							  </tr>
+									<tr>
+									  <td>&nbsp;</td>
+									  <td>&nbsp;</td>
+									  <td  style=" border-left:1px solid #000;border-right:1px solid #000;">&nbsp;</td>
+							  </tr>
+									<tr>
+									  <td>&nbsp;</td>
+									  <td>&nbsp;</td>
+									  <td  style=" border-left:1px solid #000;border-right:1px solid #000;">&nbsp;</td>
+								  </tr>
+									<tr>
+									  <td >...................................<?//=$siswa[0]['NmOrtu']?></td>
+									  <td ><u><?=$kelas[0]['nama']?><u/></td>
+									  <td style=" padding:0px 0px 0px 17px;text-align:left;border-left:1px solid #000;border-right:1px solid #000;">&nbsp;<u><?=$this->session->userdata['ak_setting']['nama_kepsek']?></u></td>
+								  </tr>
+									<tr>
+									  <td>&nbsp;</td>
+									  <td>&nbsp;</td>
+									  <td style="padding:0px 20px 20 20px;text-align:left; border-left:1px solid #000;border-right:1px solid #000;border-bottom:1px solid #000;">NIP&nbsp;&nbsp;<?=$kepsek[0]['nip']?></td>
+								  </tr>
+							</table>
+
+
+
+
+					</td>
+				</tr>
+		</table>		
+			
+	<? } ?>	
+	
 <br /><br />
 		<!-- GANTI HALAMAN -->
 		<DIV style="page-break-after:always;"></DIV>

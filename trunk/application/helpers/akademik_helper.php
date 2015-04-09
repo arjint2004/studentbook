@@ -112,6 +112,23 @@ if (!function_exists('getkelaswali')) {
 		echo $select;
 	}
 }
+if (!function_exists('totext')) {
+    function totext($nilai='') {
+		if($nilai=='A'){
+			echo 'Sangat Baik';
+		}
+		if($nilai=='B'){
+			echo 'Baik';
+		}
+		if($nilai=='C'){
+			echo 'Cukup';
+		}
+		if($nilai=='D'){
+			echo 'Kurang';
+		}
+		
+	}
+}
 if (!function_exists('nilaihuruf')) {
     function nilaihuruf($nilai=0) {
 		if($nilai>4 AND $nilai<=5){
