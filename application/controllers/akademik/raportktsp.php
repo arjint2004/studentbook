@@ -25,6 +25,7 @@ class Raportktsp extends CI_Controller
 			$datasiswa=unserialize($this->myencrypt->decode($param));
 			$this->load->library('ak_akademik');
 			$this->load->model('ad_siswa');
+			$this->load->model('ad_setting');
 			$this->load->model('ad_sekolah');
 			$this->load->model('ad_kelas');
 			$data['id_det_jenjang']=$datasiswa['id_siswa_det_jenjang'];
@@ -53,8 +54,15 @@ class Raportktsp extends CI_Controller
 					$data['absensi']['izin']++;
 				}
 			}
+			//kenaikan
+			$nextTa=$this->ad_setting->getNextTa($this->session->userdata['ak_setting']['ta']);
+			$data['kenaikan']=$this->ad_siswa->naikOrTinggalkelas($datasiswa['id'],$datasiswa['id_kelas'],$nextTa[0]['id']);
 			
+			//tanggal raport
+			$setting_tanggal=$this->ad_setting->getSetting('tanggal_raport',$this->session->userdata['user_authentication']['id_sekolah']);
+			$data['setting_tanggal']=unserialize($setting_tanggal[0]['value']);
 			
+			//pr($kenaikan);die();
 			//raport
 			$data['raport']=$this->ak_akademik->nilaiRaportPerSiswa($datasiswa['id_siswa_det_jenjang']);
 			//unset($data['raport']['submapel']);

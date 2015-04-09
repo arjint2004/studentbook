@@ -250,7 +250,7 @@ class Raport extends CI_Controller
 				$data['kelasuntuknaik']= $kls2;
 				$data['siswasudahnaik']= $siswasudahnaik2;				
 			}
-			
+			//echo $set; die();
 			//kenaikan proses
 			if(isset($_POST['kelasuntuknaik'])){
 				
@@ -269,7 +269,7 @@ class Raport extends CI_Controller
 					}else{
 						$this->db->insert('ak_det_jenjang',$detjenjangInsert);
 					}
-					//echo $this->db->last_query()."<br />";
+					echo $this->db->last_query()."<br />";
 					
 				}
 			//kelulusan proses

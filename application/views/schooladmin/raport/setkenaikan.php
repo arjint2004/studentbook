@@ -71,7 +71,7 @@ div.error { color:red; margin-left: 0px; font-size:10px !important; font-weight:
 				<? if($set=='kenaikan'){?> 
 				Naik ke kelas 
 				<select name="kelasuntuknaik[<?=$id_siswa?>]"style="margin:0;" class="kenaikan required">
-					<option value="">Pilih Kelas</option>
+					<option value="">Belum Naik</option>
 					<? if(!empty($siswasudahnaik)){?>
 						<?if($_POST['id_kelas']==@$siswasudahnaik[$id_siswa]['id_kelas_siswa_det_jenjang']){?>
 							<? foreach($kelasuntuknaik['current'] as $kelas=>$datakelas){?>

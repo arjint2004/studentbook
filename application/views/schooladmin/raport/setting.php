@@ -55,6 +55,7 @@
 					
 				});
 				
+
 			</script>
 			<style>
 				table tr td.bordersetraport{
@@ -69,17 +70,14 @@
 					<div id="ajaxside"></div>
 					<div id="listtahunAjaran">
 						<div id="contentpage">
+							<br />
+							<br />
 							<form action="<?=base_url('admin/raport/setting');?>" name="settingraport" id="settingraport" method="post">
+							<h3>RUMUS NILAI RAPORT</h3>
 							<table class="tabelkelas">
-								<thead>
-									<tr> 
-										<th >RUMUS NILAI RAPORT</th>
-									    
-									</tr>                            
-								</thead>
 								<tbody>
 								  <tr>
-									  <td><input style="width:90%" type="tex" name="rumus_raport" value="<?=$rumus_raport['rumus_raport']?>"></td>
+									  <td><input style="width:90%" type="text" name="rumus_raport" value="<?=$rumus_raport['rumus_raport']?>"></td>
 								  </tr>
 								  <tr>
 									  <td colspan="3"><input type="submit" name="simpanrumus" value="Simpan"></td>
@@ -88,11 +86,44 @@
 								</tbody>
 							</table>
 							</form>
+							<br />
+							<br />
+							<form action="<?=base_url('admin/raport/tanggal');?>" name="settingraport" id="settingraport" method="post">
+							<h3>Tanggal Penerimaan Raport</h3>
+							<? //pr($setting_tanggal);?>
+							<table class="tabelkelas">
+								<tbody>
+								  <tr>
+								    <th>Semester</th>
+								    <th>Penanggalan Nasional</th>
+								    <th>Penanggalan Islam </th>
+							      </tr>
+								  <tr>
+								    <td>Semester 1</td>
+								    <td><input style="width:150px" type="text" id="datepickraport" name="tanggal_raport[<?=$this->session->userdata['ak_setting']['ta']?>][sm1][nasional]" value="<?=$setting_tanggal[0][$this->session->userdata['ak_setting']['ta']]['sm1']['nasional']?>"></td>
+								    <td><input style="width:150px" type="text" id="datepickraport" name="tanggal_raport[<?=$this->session->userdata['ak_setting']['ta']?>][sm1][islam]" value="<?=$setting_tanggal[0][$this->session->userdata['ak_setting']['ta']]['sm1']['islam']?>"></td>
+							      </tr>
+								  <tr>
+								    <td>Semester 2</td>
+									  <td><input style="width:150px" type="text" id="datepickraport" name="tanggal_raport[<?=$this->session->userdata['ak_setting']['ta']?>][sm2][nasional]" value="<?=$setting_tanggal[0][$this->session->userdata['ak_setting']['ta']]['sm2']['nasional']?>"></td>
+									  <td><input style="width:150px" type="text" id="datepickraport" name="tanggal_raport[<?=$this->session->userdata['ak_setting']['ta']?>][sm2][islam]" value="<?=$setting_tanggal[0][$this->session->userdata['ak_setting']['ta']]['sm2']['islam']?>"></td>
+								  </tr>
+								  <tr>
+									  <td colspan="5"><input type="submit" name="simpantglraport" value="Simpan"></td>
+								  </tr>
+									
+								</tbody>
+							</table>
+							</form>
+							<br />
+							<br />
 							<form action="<?=base_url('admin/raport/setting');?>" name="settingraport" id="settingraport" method="post">
+							
+							<h3>Penampilan Elemen raport</h3>
 							<table class="tabelkelas">
 								<thead>
 									<tr> 
-										<th colspan="2">Penampilan Elemen raport</th>
+										<th colspan="2">Element</th>
 									    <th><input type="checkbox" id="select_all" name="select_all" value="<? if(isset($_POST['select_all'])){ echo 0;}else{echo 1;}?>"></th>
 									</tr>                            
 								</thead>

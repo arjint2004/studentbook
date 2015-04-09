@@ -8,6 +8,47 @@ class Raport extends CI_Controller {
 		$this->auth->logged_in();
     }
    
+   function tanggal(){
+		
+		$this->load->model('ad_sekolah');
+		$this->load->model('ad_setting');
+		$id_sekolah=$this->session->userdata['user_authentication']['id_sekolah'];
+		$setting=$this->ad_setting->getSetting('tanggal_raport',$id_sekolah);
+		if(!empty($setting)){
+			$settgl=unserialize($setting[0]['value']);
+		}
+			//echo $this->db->last_query();
+			//pr($settgl);		
+			//pr($_POST);
+			//pr($settgl);
+			
+			//setting
+
+			if(empty($setting)){
+				unset($_POST['simpantglraport']);
+				$settgl[0][$this->session->userdata['ak_setting']['ta']]=$_POST['tanggal_raport'][$this->session->userdata['ak_setting']['ta']];
+				//insert;
+				$inssetting=array(
+							'id_sekolah'=>$id_sekolah,
+							'key'=>'tanggal_raport_'.$id_sekolah,
+							'value'=>serialize($settgl)
+				);
+	
+				$this->db->insert('ak_setting',$inssetting);
+				//echo $this->db->last_query().'<br />';
+				//echo $_POST['tanggal_raport'].'<br />';
+			}else{
+				unset($_POST['simpantglraport']);
+				$settgl[0][$this->session->userdata['ak_setting']['ta']]=$_POST['tanggal_raport'][$this->session->userdata['ak_setting']['ta']];
+				//update
+				$this->db->where(array('id_sekolah'=>$id_sekolah,'key'=>'tanggal_raport_'.$id_sekolah));
+				$this->db->update('ak_setting',array('value'=>serialize($settgl)));
+				//echo $this->db->last_query().'<br />';
+				//echo $_POST['tanggal_raport'].'<br />';
+			}
+			redirect('admin/raport/setting');
+
+   }
    function setting(){
 		$this->load->model('ad_setting');
 		$this->session->unset_userdata('setting_raport');
@@ -114,6 +155,8 @@ class Raport extends CI_Controller {
 		if(!empty($rumusraport2)){
 			$data['rumus_raport']=$rumusraport2[0]['value'];
 		}
+		$setting_tanggal=$this->ad_setting->getSetting('tanggal_raport',$this->session->userdata['user_authentication']['id_sekolah']);
+		$data['setting_tanggal']=unserialize($setting_tanggal[0]['value']);
    	    if ($this->input->post('ajax')) {
 		   $data['main'] 	= 'schooladmin/raport/setting'; // memilih view
 		   $this->load->view('layout/ad_blank',$data); // memilih layout

@@ -178,9 +178,11 @@ Class Ad_siswa extends CI_Model
 		$kenaikan=$query->result_array();	
 		if(!empty($kenaikan)){
 			if($kelascurrent[0]['kelas']==$kenaikan[0]['kelas']){
-				$kenaikannya['statusnaik']='Tinggal di kelas '.$kelascurrent[0]['kelas'].''.$kelascurrent[0]['nama'].'';
+				//$kenaikannya['statusnaik']='Tinggal di kelas '.$kelascurrent[0]['kelas'].''.$kelascurrent[0]['nama'].'';
+				$kenaikannya['statusnaik']='Tinggal di kelas '.romanic_number($kelascurrent[0]['kelas']).' ('.Terbilang($kenaikan[0]['kelas']).' )';
 			}else{
-				$kenaikannya['statusnaik']='Naik ke kelas '.$kenaikan[0]['kelas'].''.$kenaikan[0]['nama_kelas'].'';
+				//$kenaikannya['statusnaik']='Naik ke kelas '.$kenaikan[0]['kelas'].''.$kenaikan[0]['nama_kelas'].'';
+				$kenaikannya['statusnaik']='Naik ke kelas '.romanic_number($kenaikan[0]['kelas']).' ('.Terbilang($kenaikan[0]['kelas']).' )';
 			}
 			$kenaikannya['data']=$kenaikan;
 			return	$kenaikannya;
