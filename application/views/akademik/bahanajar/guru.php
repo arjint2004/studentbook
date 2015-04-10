@@ -83,10 +83,10 @@
 				<!--<h3 style="margin-top:0px;">SMP Kelas 7 </h3>
 				<br />		-->	
 		                <!-- **Toggle Frame Set** -->  
-                        <div class="toggle-frame-set">
-						
+                        <div class="toggle-frame-set" <?=$additional?>>
+						<? //pr();?>
 						<? if($jenjang=='SD'){?>
-                            <div class="toggle-frame" style="margin: 0px; border-radius: 5px 5px 0px 0px;padding-bottom:0px;">
+                            <div  class="toggle-frame" style="margin: 0px; border-radius: 5px 5px 0px 0px;padding-bottom:0px;">
                                 <h5 class="toggle-accordion"><a href="#">Kurikulum 2013</a></h5>
                                 <div class="toggle-content" style="display: none;">
 									<ul class="tabs-frame">
@@ -97,7 +97,7 @@
 										<? } ?>
 									</ul>
 									<? foreach($filek13 as $Kelas=>$mapel){?>
-									<div class="tabs-frame-content contentbelajar" id="contentbelajarid" style="display: block; width:928px;" >
+									<div class="tabs-frame-content contentbelajar" style="display: block; width:928px;" >
 											<div class="tabs-vertical-container">
 													<? foreach($mapel as $pelajaran=>$namafilex){?>
 														
@@ -108,7 +108,7 @@
 														   ?>
 															<div>          
 																<h6 style="margin:0;text-transform:capitalize;" class="role"><b>TAHUN <?=$th?></b></h6>
-																<p> <a filename="<?=$namafilex?>" idcntbljrphp="<?=base64_encode(serialize(array('jenjang'=>$jenjang,'kelasdir'=>$Kelas,'pelajaran'=>$pelajaran,'filename'=>$namafilex)))?>"  idcntbljr='<?=json_encode(array('jenjang'=>$jenjang,'kelasdir'=>$Kelas,'pelajaran'=>$pelajaran,'filename'=>$namafilex))?>'  href="<?=base_url()?>upload/contentsekolah/k13/<?=$jenjang?>/<?=$Kelas?>/<?=$namafilex?>" class="notif <?=$id?>"><?=str_replace("_"," ",$namafilex)?></a> </p>
+																<p> <a filename="<?=$namafilex?>" idcntbljrphp="<?=base64_encode(serialize(array('jenjang'=>$jenjang,'kelasdir'=>$Kelas,'pelajaran'=>$pelajaran,'filename'=>$namafilex)))?>"  idcntbljr='<?=json_encode(array('jenjang'=>$jenjang,'kelasdir'=>$Kelas,'pelajaran'=>$pelajaran,'filename'=>$namafilex))?>'  target="__blank" href="<?=base_url()?>upload/contentsekolah/k13/<?=$jenjang?>/<?=$Kelas?>/<?=$namafilex?>" class="notif <?=$id?>"><?=str_replace("_"," ",$namafilex)?></a> </p>
 															</div>
 
 													<? } ?>
@@ -118,7 +118,7 @@
                                 </div>
                             </div>
                             <?}else{?>
-								<div class="toggle-frame" style="margin: 0px; border-radius:0px 0px 5px 5px;padding-bottom:0px;">
+								<div  class="toggle-frame" style="margin: 0px; border-radius:0px 0px 5px 5px;padding-bottom:0px;">
 									<h5 class="toggle-accordion"><a href="#">Kurikulum 2013</a></h5>
 									<div class="toggle-content style" style="display: none;">
 
@@ -129,8 +129,8 @@
 											</li>
 											<? } ?>
 										</ul>
-										<? foreach($file as $Kelas=>$mapel){?>
-										<div class="tabs-frame-content contentbelajar" id="contentbelajarid" style="display: block; width:928px;padding-bottom:0px;" >
+										<? foreach($filek13 as $Kelas=>$mapel){?>
+										<div class="tabs-frame-content contentbelajar" style="display: block; width:928px;padding-bottom:0px;" >
 												<div class="tabs-vertical-container">
 														<ul class="tabs-vertical-frame nilai_tab tabnilai tabrencana ">
 															<? foreach($mapel as $pelajaran=>$namafile){?>
@@ -148,7 +148,7 @@
 															   ?>
 																<div>          
 																	<h6 style="margin:0;text-transform:capitalize;" class="role"><b>TAHUN <?=$th?></b></h6>
-																	<p> <a filename="<?=$namafilex?>" idcntbljrphp="<?=base64_encode(serialize(array('jenjang'=>$jenjang,'kelasdir'=>$Kelas,'pelajaran'=>$pelajaran,'filename'=>$namafilex)))?>"  idcntbljr='<?=json_encode(array('jenjang'=>$jenjang,'kelasdir'=>$Kelas,'pelajaran'=>$pelajaran,'filename'=>$namafilex))?>'  href="<?=base_url()?>upload/contentsekolah/<?=$jenjang?>/<?=$Kelas?>/<?=$pelajaran?>/<?=$namafilex?>" class="notif <?=$id?>"><?=str_replace("_"," ",$namafilex)?></a> </p>
+																	<p> <a filename="<?=$namafilex?>" idcntbljrphp="<?=base64_encode(serialize(array('jenjang'=>$jenjang,'kelasdir'=>$Kelas,'pelajaran'=>$pelajaran,'filename'=>$namafilex)))?>"  idcntbljr='<?=json_encode(array('jenjang'=>$jenjang,'kelasdir'=>$Kelas,'pelajaran'=>$pelajaran,'filename'=>$namafilex))?>'  target="__blank" href="<?=base_url()?>upload/contentsekolah/k13/<?=$jenjang?>/<?=$Kelas?>/<?=$pelajaran?>/<?=$namafilex?>" class="notif <?=$id?>"><?=str_replace("_"," ",$namafilex)?></a> </p>
 																</div>
 															<? } ?>
 														</div>
@@ -159,7 +159,7 @@
 									</div>
 								</div>
 							<? } ?>
-                            <div class="toggle-frame" style="margin: 0px; border-radius:0px 0px 5px 5px;padding-bottom:0px;">
+                            <div  class="toggle-frame" style="margin: 0px; border-radius:0px 0px 5px 5px;padding-bottom:0px;">
                                 <h5 class="toggle-accordion"><a href="#">Kurikulum KTSP 2006</a></h5>
                                 <div class="toggle-content style" style="display: block;">
 
@@ -171,7 +171,7 @@
 										<? } ?>
 									</ul>
 									<? foreach($file as $Kelas=>$mapel){?>
-									<div class="tabs-frame-content contentbelajar" id="contentbelajarid" style="display: block; width:928px;padding-bottom:0px;" >
+									<div class="tabs-frame-content contentbelajar" style="display: block; width:928px;padding-bottom:0px;" >
 											<div class="tabs-vertical-container">
 													<ul class="tabs-vertical-frame nilai_tab tabnilai tabrencana ">
 														<? foreach($mapel as $pelajaran=>$namafile){?>
@@ -189,7 +189,7 @@
 														   ?>
 															<div>          
 																<h6 style="margin:0;text-transform:capitalize;" class="role"><b>TAHUN <?=$th?></b></h6>
-																<p> <a filename="<?=$namafilex?>" idcntbljrphp="<?=base64_encode(serialize(array('jenjang'=>$jenjang,'kelasdir'=>$Kelas,'pelajaran'=>$pelajaran,'filename'=>$namafilex)))?>"  idcntbljr='<?=json_encode(array('jenjang'=>$jenjang,'kelasdir'=>$Kelas,'pelajaran'=>$pelajaran,'filename'=>$namafilex))?>'  href="<?=base_url()?>upload/contentsekolah/<?=$jenjang?>/<?=$Kelas?>/<?=$pelajaran?>/<?=$namafilex?>" class="notif <?=$id?>"><?=str_replace("_"," ",$namafilex)?></a> </p>
+																<p> <a filename="<?=$namafilex?>" idcntbljrphp="<?=base64_encode(serialize(array('jenjang'=>$jenjang,'kelasdir'=>$Kelas,'pelajaran'=>$pelajaran,'filename'=>$namafilex)))?>"  idcntbljr='<?=json_encode(array('jenjang'=>$jenjang,'kelasdir'=>$Kelas,'pelajaran'=>$pelajaran,'filename'=>$namafilex))?>'  target="__blank" href="<?=base_url()?>upload/contentsekolah/<?=$jenjang?>/<?=$Kelas?>/<?=$pelajaran?>/<?=$namafilex?>" class="notif <?=$id?>"><?=str_replace("_"," ",$namafilex)?></a> </p>
 															</div>
 														<? } ?>
 													</div>

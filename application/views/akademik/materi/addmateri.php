@@ -266,7 +266,7 @@ $(function() {
 				<td width="1">:</td>
 				<td colspan="2">
 					<ul class="file" id="addmatericontbljr"></ul>
-					<a class="button small light-grey zoom-icon modal" title="" href="<?=base_url('akademik/bahanajar/guru/908786')?>" style="margin-left:0;"> <span> Pilih materi dari content belajar </span> </a>
+					<a class="button small light-grey zoom-icon modal" title="" href="<?=base_url('akademik/bahanajar/guru/908786/additional')?>" style="margin-left:0;"> <span> Pilih materi dari content belajar </span> </a>
 					<!--<div id="response" style="font-size:11px;">Anda bisa memilih banyak file dari daftar "Content Belajar", klik tombol diatas kemudian pilih file</div>-->
 				</td>
 			</tr>
