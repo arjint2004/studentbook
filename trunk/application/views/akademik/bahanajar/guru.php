@@ -84,6 +84,7 @@
 				<br />		-->	
 		                <!-- **Toggle Frame Set** -->  
                         <div class="toggle-frame-set">
+						
 						<? if($jenjang=='SD'){?>
                             <div class="toggle-frame" style="margin: 0px; border-radius: 5px 5px 0px 0px;padding-bottom:0px;">
                                 <h5 class="toggle-accordion"><a href="#">Kurikulum 2013</a></h5>
@@ -107,7 +108,7 @@
 														   ?>
 															<div>          
 																<h6 style="margin:0;text-transform:capitalize;" class="role"><b>TAHUN <?=$th?></b></h6>
-																<p> <a filename="<?=$namafilex?>" idcntbljrphp="<?=base64_encode(serialize(array('jenjang'=>$jenjang,'kelasdir'=>$kelasdir,'pelajaran'=>$pelajaran,'filename'=>$namafilex)))?>"  idcntbljr='<?=json_encode(array('jenjang'=>$jenjang,'kelasdir'=>$kelasdir,'pelajaran'=>$pelajaran,'filename'=>$namafilex))?>'  href="<?=base_url()?>upload/contentsekolah/<?=$jenjang?>/<?=$kelasdir?>/<?=$pelajaran?>/<?=$namafilex?>" class="notif <?=$id?>"><?=str_replace("_"," ",$namafilex)?></a> </p>
+																<p> <a filename="<?=$namafilex?>" idcntbljrphp="<?=base64_encode(serialize(array('jenjang'=>$jenjang,'kelasdir'=>$Kelasi,'pelajaran'=>$pelajaran,'filename'=>$namafilex)))?>"  idcntbljr='<?=json_encode(array('jenjang'=>$jenjang,'kelasdir'=>$Kelasi,'pelajaran'=>$pelajaran,'filename'=>$namafilex))?>'  href="<?=base_url()?>upload/contentsekolah/<?=$jenjang?>/<?=$Kelasi?>/<?=$pelajaran?>/<?=$namafilex?>" class="notif <?=$id?>"><?=str_replace("_"," ",$namafilex)?></a> </p>
 															</div>
 
 													<? } ?>
@@ -147,7 +148,7 @@
 															   ?>
 																<div>          
 																	<h6 style="margin:0;text-transform:capitalize;" class="role"><b>TAHUN <?=$th?></b></h6>
-																	<p> <a filename="<?=$namafilex?>" idcntbljrphp="<?=base64_encode(serialize(array('jenjang'=>$jenjang,'kelasdir'=>$kelasdir,'pelajaran'=>$pelajaran,'filename'=>$namafilex)))?>"  idcntbljr='<?=json_encode(array('jenjang'=>$jenjang,'kelasdir'=>$kelasdir,'pelajaran'=>$pelajaran,'filename'=>$namafilex))?>'  href="<?=base_url()?>upload/contentsekolah/<?=$jenjang?>/<?=$kelasdir?>/<?=$pelajaran?>/<?=$namafilex?>" class="notif <?=$id?>"><?=str_replace("_"," ",$namafilex)?></a> </p>
+																	<p> <a filename="<?=$namafilex?>" idcntbljrphp="<?=base64_encode(serialize(array('jenjang'=>$jenjang,'kelasdir'=>$Kelas,'pelajaran'=>$pelajaran,'filename'=>$namafilex)))?>"  idcntbljr='<?=json_encode(array('jenjang'=>$jenjang,'kelasdir'=>$Kelas,'pelajaran'=>$pelajaran,'filename'=>$namafilex))?>'  href="<?=base_url()?>upload/contentsekolah/<?=$jenjang?>/<?=$Kelas?>/<?=$pelajaran?>/<?=$namafilex?>" class="notif <?=$id?>"><?=str_replace("_"," ",$namafilex)?></a> </p>
 																</div>
 															<? } ?>
 														</div>
@@ -188,7 +189,7 @@
 														   ?>
 															<div>          
 																<h6 style="margin:0;text-transform:capitalize;" class="role"><b>TAHUN <?=$th?></b></h6>
-																<p> <a filename="<?=$namafilex?>" idcntbljrphp="<?=base64_encode(serialize(array('jenjang'=>$jenjang,'kelasdir'=>$kelasdir,'pelajaran'=>$pelajaran,'filename'=>$namafilex)))?>"  idcntbljr='<?=json_encode(array('jenjang'=>$jenjang,'kelasdir'=>$kelasdir,'pelajaran'=>$pelajaran,'filename'=>$namafilex))?>'  href="<?=base_url()?>upload/contentsekolah/<?=$jenjang?>/<?=$kelasdir?>/<?=$pelajaran?>/<?=$namafilex?>" class="notif <?=$id?>"><?=str_replace("_"," ",$namafilex)?></a> </p>
+																<p> <a filename="<?=$namafilex?>" idcntbljrphp="<?=base64_encode(serialize(array('jenjang'=>$jenjang,'kelasdir'=>$Kelas,'pelajaran'=>$pelajaran,'filename'=>$namafilex)))?>"  idcntbljr='<?=json_encode(array('jenjang'=>$jenjang,'kelasdir'=>$Kelas,'pelajaran'=>$pelajaran,'filename'=>$namafilex))?>'  href="<?=base_url()?>upload/contentsekolah/<?=$jenjang?>/<?=$Kelas?>/<?=$pelajaran?>/<?=$namafilex?>" class="notif <?=$id?>"><?=str_replace("_"," ",$namafilex)?></a> </p>
 															</div>
 														<? } ?>
 													</div>
