@@ -108,7 +108,7 @@
 														   ?>
 															<div>          
 																<h6 style="margin:0;text-transform:capitalize;" class="role"><b>TAHUN <?=$th?></b></h6>
-																<p> <a filename="<?=$namafilex?>" idcntbljrphp="<?=base64_encode(serialize(array('jenjang'=>$jenjang,'kelasdir'=>$Kelasi,'pelajaran'=>$pelajaran,'filename'=>$namafilex)))?>"  idcntbljr='<?=json_encode(array('jenjang'=>$jenjang,'kelasdir'=>$Kelasi,'pelajaran'=>$pelajaran,'filename'=>$namafilex))?>'  href="<?=base_url()?>upload/contentsekolah/<?=$jenjang?>/<?=$Kelasi?>/<?=$pelajaran?>/<?=$namafilex?>" class="notif <?=$id?>"><?=str_replace("_"," ",$namafilex)?></a> </p>
+																<p> <a filename="<?=$namafilex?>" idcntbljrphp="<?=base64_encode(serialize(array('jenjang'=>$jenjang,'kelasdir'=>$Kelas,'pelajaran'=>$pelajaran,'filename'=>$namafilex)))?>"  idcntbljr='<?=json_encode(array('jenjang'=>$jenjang,'kelasdir'=>$Kelas,'pelajaran'=>$pelajaran,'filename'=>$namafilex))?>'  href="<?=base_url()?>upload/contentsekolah/k13/<?=$jenjang?>/<?=$Kelas?>/<?=$namafilex?>" class="notif <?=$id?>"><?=str_replace("_"," ",$namafilex)?></a> </p>
 															</div>
 
 													<? } ?>
