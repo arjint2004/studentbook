@@ -437,7 +437,6 @@
 			?>
         </tbody>
     </table>
-
 	<br />
 	    <table  style="max-width:1024px;" class="asbin" id="allset"  border="1">
           <tr style="border-top:2px solid black;border-bottom:2px solid black;font-weight:bold;">
@@ -461,16 +460,8 @@
 			} 
 			?>
         </table>
-    <br />		
-<!--<table   style="max-width:1024px;" class="asbin" id="allset"  border="1">
-  <tr style="border-top:2px solid black;border-bottom:2px solid black;">
-    <td>Akhlaq dan Kepribadian </td>
-    <td>Memahami kehidupan pribadi dalam kecakapan dan kesadaran potensi diri </td>
-  </tr>
-</table>-->
-
-<br />
-<table  style="max-width:1024px;" class="asbin" id="allset"  border="1">
+       <br />
+        <table  style="max-width:1024px;" class="asbin" id="allset"  border="1">
     <tr  style="border-top:2px solid black;border-bottom:2px solid black;font-weight:bold;">
       <td align="center" style="width:26%;"  rowspan="<?=count($kepribadian[$id_det_jenjang])+1?>">Kepribadian</td>
       <td style="width:26%;">Aspek</td>
@@ -600,7 +591,7 @@
 	<?}elseif(isset($kenaikan['statuslulus'])){?>
 		<table style="max-width:1024px;" class="asbin noborder" id="allset"  border="1" >
 				<tr>
-					<td style="padding:0;"><table style="width:100%;" class="asbin noborder" id="allset"  border="0">
+<td style="padding:0;"><table style="width:100%;" class="asbin noborder" id="allset"  border="0">
 									<tr>
 									  <td style="width:25%;"></td>
 									  <td style="width:40%;">&nbsp;</td>  
@@ -634,7 +625,7 @@
 									  <td>&nbsp;</td>
 									  <td style="padding:0 20px;text-align:left; border-left:1px solid #000;border-right:1px solid #000;">&nbsp;</td>
 							  </tr>
-					<tr>
+<tr>
 									  <td >Orang Tua/Wali</td>
 									  <td>Wali Kelas </td>
 									  <td style="padding:0 20px;text-align:left; border-left:1px solid #000;border-right:1px solid #000;">Kepala Sekolah 
