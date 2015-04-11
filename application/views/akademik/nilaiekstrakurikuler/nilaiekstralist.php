@@ -1,4 +1,29 @@
 <? //pr($siswaekstra);?>
+			<script>
+				$(document).ready(function(){
+					$("select.nilaiextraselect").change(function(e){
+						var obtextarea=$(this).parent('td').next('td').children('textarea');
+						//alert($(obtextarea).attr('name'));
+						//alert($(this).val());
+						if($(this).val()=='A'){ 
+							$(obtextarea).html('Sangat Baik');
+						}
+						if($(this).val()=='B'){ 
+							$(obtextarea).html('Baik');
+						}
+						if($(this).val()=='C'){ 
+							$(obtextarea).html('Cukup');
+						}
+						if($(this).val()=='D'){ 
+							$(obtextarea).html('Kurang');
+						}
+						if($(this).val()=='E'){ 
+							$(obtextarea).html('Sangat Kurang');
+						}
+					});
+				});//Submit End
+
+				</script>
 	<table class="adddata">
         <thead>
             
@@ -22,6 +47,7 @@
 			//pr($siswaekstra);
 			$no=1; 
 			foreach($siswaekstra as $siswa=>$siswaextra){
+			if(!isset($nilai[$siswaextra['id']][$siswaextra['id_ekstrakurikuler']]['keterangan'])){$nilai[$siswaextra['id']][$siswaextra['id_ekstrakurikuler']]['keterangan']="Baik";}
 			?>
 				<tr> 
 					<td class="nilaiextra"> <?=$no++;?> </td>
@@ -29,9 +55,9 @@
 					<td class="nilaiextra title" > <?=$siswaextra['nama']?> </td>
 					<td class="nilaiextra title" > <?=$siswaextra['kelas'];?><?=$siswaextra['nama_kelas'];?> </td>
 					<td class="nilaiextra title" > 
-					<select name="nilai[<?=$siswaextra['id']?>][<?=$siswaextra['id_ekstrakurikuler']?>]">
+					<select name="nilai[<?=$siswaextra['id']?>][<?=$siswaextra['id_ekstrakurikuler']?>]" class="nilaiextraselect">
 						<option <? if(@$nilai[$siswaextra['id']][$siswaextra['id_ekstrakurikuler']]['nilai']=="A"){echo "selected";}?>>A</option>
-						<option <? if(@$nilai[$siswaextra['id']][$siswaextra['id_ekstrakurikuler']]['nilai']=="B"){echo "selected";}?>>B</option>
+						<option selected <? if(@$nilai[$siswaextra['id']][$siswaextra['id_ekstrakurikuler']]['nilai']=="B"){echo "selected";}?>>B</option>
 						<option <? if(@$nilai[$siswaextra['id']][$siswaextra['id_ekstrakurikuler']]['nilai']=="C"){echo "selected";}?>>C</option>
 						<option <? if(@$nilai[$siswaextra['id']][$siswaextra['id_ekstrakurikuler']]['nilai']=="D"){echo "selected";}?>>D</option>
 						<option <? if(@$nilai[$siswaextra['id']][$siswaextra['id_ekstrakurikuler']]['nilai']=="E"){echo "selected";}?>>E</option>
@@ -39,7 +65,9 @@
 					<!--<input type="text" value="<?=@$nilai[$siswaextra['id']][$siswaextra['id_ekstrakurikuler']]['nilai']?>" name="nilai[<?=$siswaextra['id']?>][<?=$siswaextra['id_ekstrakurikuler']?>]" /> -->
 							
 					</td>
-					<td class="nilaiextra title"  <? if($maxr['id']==$idm){?> class="nilaiextrain"<? } ?>> <textarea style="height:50px; width:200px; margin:0;"  name="keterangan[<?=$siswaextra['id']?>][<?=$siswaextra['id_ekstrakurikuler']?>]"><?=@$nilai[$siswaextra['id']][$siswaextra['id_ekstrakurikuler']]['keterangan']?></textarea> </td>
+					<td class="nilaiextra title"  <? if($maxr['id']==$idm){?> class="nilaiextrain"<? } ?>> 
+					<textarea style="height:50px; width:200px; margin:0;"  name="keterangan[<?=$siswaextra['id']?>][<?=$siswaextra['id_ekstrakurikuler']?>]"><?=@$nilai[$siswaextra['id']][$siswaextra['id_ekstrakurikuler']]['keterangan']?></textarea> 
+					</td>
 				</tr>   
 			<? } ?>
 			<tr>

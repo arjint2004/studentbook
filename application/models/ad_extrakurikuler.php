@@ -73,13 +73,13 @@ Class Ad_extrakurikuler extends CI_Model
 		return $siswa;
 	 }
 	 function getEkstrakurikulerById_seri($id_ekstra){
-		$siswakelasq=$this->db->query('SELECT adj.*,siswa.nama,siswa.nis,kel.nama as nama_kelas, kel.kelas ,ase.id_ekstrakurikuler FROM ak_siswa siswa  JOIN ak_det_jenjang adj JOIN ak_siswa_ekstrakurikuler ase JOIN ak_kelas kel ON siswa.id=adj.id_siswa AND ase.id_siswa_det_jenjang=adj.id AND kel.id=adj.id_kelas WHERE ase.id_ekstrakurikuler='.$id_ekstra.'  AND kel.publish=1');
+		$siswakelasq=$this->db->query('SELECT adj.*,siswa.nama,siswa.nis,kel.nama as nama_kelas, kel.kelas ,ase.id_ekstrakurikuler FROM ak_siswa siswa  JOIN ak_det_jenjang adj JOIN ak_siswa_ekstrakurikuler ase JOIN ak_kelas kel ON siswa.id=adj.id_siswa AND ase.id_siswa_det_jenjang=adj.id AND kel.id=adj.id_kelas WHERE ase.id_ekstrakurikuler='.$id_ekstra.'  AND ase.id_sekolah='.$this->session->userdata['user_authentication']['id_sekolah'].' AND kel.publish=1');
 		//echo $this->db->last_query();
 		$siswakelas=$siswakelasq->result_array();
 		return $siswakelas;
 	 }
 	 function getEkstrakurikulerById_seriIdkelas($id_ekstra,$id_kelas){
-		$siswakelasq=$this->db->query('SELECT adj.*,siswa.nama,siswa.nis,kel.nama as nama_kelas, kel.kelas ,ase.id_ekstrakurikuler FROM ak_siswa siswa  JOIN ak_det_jenjang adj JOIN ak_siswa_ekstrakurikuler ase JOIN ak_kelas kel ON siswa.id=adj.id_siswa AND ase.id_siswa_det_jenjang=adj.id AND kel.id=adj.id_kelas WHERE ase.id_ekstrakurikuler='.$id_ekstra.'  AND adj.id_kelas='.$id_kelas.' AND adj.id_ta='.$this->session->userdata['ak_setting']['ta'].' AND ase.id_semester='.$this->session->userdata['ak_setting']['semester'].'  AND kel.publish=1');
+		$siswakelasq=$this->db->query('SELECT adj.*,siswa.nama,siswa.nis,kel.nama as nama_kelas, kel.kelas ,ase.id_ekstrakurikuler FROM ak_siswa siswa  JOIN ak_det_jenjang adj JOIN ak_siswa_ekstrakurikuler ase JOIN ak_kelas kel ON siswa.id=adj.id_siswa AND ase.id_siswa_det_jenjang=adj.id AND kel.id=adj.id_kelas WHERE ase.id_ekstrakurikuler='.$id_ekstra.'  AND adj.id_kelas='.$id_kelas.' AND adj.id_ta='.$this->session->userdata['ak_setting']['ta'].' AND ase.id_sekolah='.$this->session->userdata['user_authentication']['id_sekolah'].'  AND ase.id_semester='.$this->session->userdata['ak_setting']['semester'].'  AND kel.publish=1');
 		//echo $this->db->last_query();
 		$siswakelas=$siswakelasq->result_array();
 		return $siswakelas;

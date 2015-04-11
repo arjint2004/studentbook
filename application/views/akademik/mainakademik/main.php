@@ -86,7 +86,8 @@
 				<a class="readmore" title="" tab="nilai"  href="" id="<?=base64_encode('nilai ulangan harian');?>">Penilaian<br /> UL harian  </a>
 				<a class="readmore" title="" tab="nilai"  href="" id="<?=base64_encode('nilai uts');?>">Penilaian<br /> UTS </a>
 				<a class="readmore" title="" tab="nilai"  href="" id="<?=base64_encode('nilai uas');?>">Penilaian<br /> UAS </a>
-				<a class="readmore" title="" tab="nilai"  href="" id="<?=base64_encode('nilai uan');?>"> Penilaian<br />UAN </a>
+				<a class="readmore" title="" tab="nilai"  href="" id="<?=base64_encode('nilai uan');?>"> Penilaian<br /> UAN </a>
+				<a class="readmore" title="" tab="nilai"  href="" id="ekstrakurikulerwalikelas"> Pengembangan<br /> Diri </a>
 				<!--<a class="readmore" title="" tab="nilai"  href="" id="<?=base64_encode('nilai praktik');?>">Penilaian<br /> Praktik </a>
 				<a class="readmore" title="" tab="nilai"  href="" id="<?=base64_encode('nilai psikomotorik');?>">Penilaian<br /> Psikomotorik </a>
 				<a class="readmore" title="" tab="nilai"  href="" id="<?=base64_encode('nilai afektif');?>">Penilaian<br /> Afektif </a>-->
@@ -206,14 +207,14 @@
 	?>
 	<script>
 		$(document).ready(function() {
-			$('#nilaiekstra').load('<?=base_url('akademik/nilaiekstrakurikuler/index')?>');
+			$('#nilaiekstrapembina').load('<?=base_url('akademik/nilaiekstrakurikuler/pembinaextra')?>');
 		});
 	</script>
-	<h3 id="PembinaEkstrakurikuler"> Ekstrakurikuler </h3>
+	<h3 id="PembinaEkstrakurikuler"> Pengembangan diri </h3>
 
 	<div class="hr"></div>
 	<div class="tabs-container">
-		<div class="tabs-frame-content"  id="nilaiekstra">
+		<div class="tabs-frame-content"  id="nilaiekstrapembina">
 			
 		</div>
 	</div>
