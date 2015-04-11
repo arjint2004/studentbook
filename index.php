@@ -1,10 +1,13 @@
 <?php
 // Check if accessed via SSL
+
     if($_SERVER['SERVER_NAME'] == 'www.studentbook.co') 
     { 
         // If not, redirect
         $newurl = 'https://'.str_replace("www.","",$_SERVER['SERVER_NAME']).$_SERVER['REQUEST_URI']; 
+        //die($newurl);
         header("location: $newurl"); 
+        die();
     }
     if($_SERVER['HTTPS'] != 'on') 
     { 
