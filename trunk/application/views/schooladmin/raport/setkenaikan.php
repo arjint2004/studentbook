@@ -70,7 +70,7 @@ div.error { color:red; margin-left: 0px; font-size:10px !important; font-weight:
             <td class="naikkelas">
 				<? if($set=='kenaikan'){?> 
 				Naik ke kelas 
-				<select name="kelasuntuknaik[<?=$id_siswa?>]"style="margin:0;" class="kenaikan required">
+				<select name="kelasuntuknaik[<?=$id_siswa?>]"style="margin:0;" <?if(empty($siswasudahnaik)){echo 'disabled';}?> class="kenaikan required">
 					<option value="">Belum Naik</option>
 					<? if(!empty($siswasudahnaik)){?>
 						<?if($_POST['id_kelas']==@$siswasudahnaik[$id_siswa]['id_kelas_siswa_det_jenjang']){?>
