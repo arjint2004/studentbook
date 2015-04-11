@@ -415,6 +415,11 @@
 								return false;
 							break;
 							case 'nilai':
+								if($(this).attr('id')=='ekstrakurikulerwalikelas'){
+									var url='<? echo base_url();?>akademik/nilaiekstrakurikuler/index';
+									ajax(url,thisobj);
+									return false;
+								}
 								if($(this).attr('id')=='rekapitulasinilai'){
 									var url='<? echo base_url();?>akademik/rekapnilai/index';
 									ajax(url,thisobj);

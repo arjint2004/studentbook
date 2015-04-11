@@ -7,6 +7,28 @@ Class Ad_kelas extends CI_Model
 	return $query->result_array();
  }
  
+ function getkelasByPembinaExtra($id_sekolah=null,$id_pegawai=null){
+	if($id_sekolah!=null){
+		$cond='AND k.id_sekolah='.$id_sekolah.'';
+	}
+	$query=$this->db->query('SELECT k.* FROM 
+							ak_kelas k 
+							JOIN ak_extrakurikuler ex
+							JOIN ak_siswa_ekstrakurikuler ase
+							JOIN ak_det_jenjang adj
+							ON 
+							ex.id=ase.id_ekstrakurikuler
+							AND adj.id=ase.id_siswa_det_jenjang
+							AND k.id=adj.id_kelas
+							
+							WHERE 1 '.$cond.' AND ex.id_pegawai= '.$id_pegawai.' AND k.publish=1 
+							GROUP BY k.id
+							ORDER BY k.kelas,k.nama ASC');
+							//echo $this->db->last_query();
+	return $query->result_array();
+	
+ }
+ 
  function getkelas($id_sekolah=null){
 	if($id_sekolah!=null){
 		$cond='AND k.id_sekolah='.$id_sekolah.'';
