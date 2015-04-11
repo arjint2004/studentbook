@@ -30,7 +30,7 @@ class sms{
 	function execute_sms(){
 	
 		//get data sms
-		$q=mysql_query("SELECT * FROM ak_sms");
+		$q=mysql_query("SELECT * FROM ak_sms GROUP BY pesan,no_hp LIMIT 50");
 		$apikey='81f6cf2706d2302a33782a6126b16469';
 		//$nohp  = '+6283867139945';
 		//$pesan = 'cek api';
@@ -39,11 +39,15 @@ class sms{
 		$this->sms->phone = '2rajasms';
 		
 		while($hsl=mysql_fetch_assoc($q)){
-			if(strlen($hsl['no_hp'])>8 && strlen($hsl['hp'])<15 && strlen($hsl['pesan'])>10){
+			if(strlen($hsl['no_hp'])>8 && strlen($hsl['no_hp'])<15 && strlen($hsl['pesan'])>10){
+				//echo"<pre>";
+				//print_r($hsl);
+				//echo"</pre>";
 				$this->sms->setTo($hsl['no_hp']);
 				$this->sms->setText($hsl['pesan']);
 				$sts=$this->sms->send();
-				mysql_query("DELETE FROM `ak_sms` WHERE id=".$hsl['id']."");
+				mysql_query("DELETE FROM `ak_sms` WHERE pesan='".mysql_real_escape_string($hsl['pesan'])."' AND no_hp='".mysql_real_escape_string($hsl['no_hp'])."'");
+				echo "DELETE FROM `ak_sms` WHERE pesan='".mysql_real_escape_string($hsl['pesan'])."' AND no_hp='".mysql_real_escape_string($hsl['no_hp'])."'";
 			}
 		}
 		

@@ -14,6 +14,10 @@ class Sms extends CI_Controller {
 		$this->load->model('ad_setting');
 		$pulsa=$this->ad_sekolah->getSekolahdata($this->session->userdata['user_authentication']['id_sekolah'],array('jml_pulsa'));
 		$data['jml_sms']=$pulsa[0]['jml_pulsa']/100;
+		//if(isset($_POST)){ 
+		//pr($_POST);die();	
+		//}
+ 
 		if(isset($_POST['pesan']) && isset($_POST['kirim'])){
 			$setting=$this->ad_setting->getSetting('sms_modem',$this->session->userdata['user_authentication']['id_sekolah']);
 			$modem=unserialize($setting[0]['value']);
