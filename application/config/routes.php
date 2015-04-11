@@ -42,6 +42,7 @@ $route['login'] = "homepage/login";
 $route['default_controller'] = "homepage/login";
 $route['404_override'] = '';
 $route['ortu'] = 'sos/siswa';
+$route['facebook_app'] = 'akademik/mainakademik';
 $route['contentsekolah/(:any)'] = 'sos/sekolah/content/$1';
 $route['profile/(:any)'] = 'sos/sekolah/detail_sekolah/$1';
 $route['siswa'] = 'sos/siswa';
