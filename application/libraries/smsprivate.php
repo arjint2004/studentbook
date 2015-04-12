@@ -132,7 +132,7 @@ class smsprivate {
 			$pesan=strtoupper($jenis).' '.$pel[0]['nama'].'# '.$pesan;
 		}
 		//sms ke guru
-		$querysmsg=$CI->db->query('SELECT hp FROM ak_pegawai
+		$querysmsg=$CI->db->query('SELECT hp,id as id_user FROM ak_pegawai
 									WHERE id=?
 									',array($CI->session->userdata['user_authentication']['id_pengguna']));
 		$fitursmsg=$querysmsg->result_array();
@@ -190,7 +190,7 @@ class smsprivate {
 			//pr($no_hp);die();
 			//$no_hp=array(0=>array('hp'=>'083867139945'));
 			$maxindex=max(array_keys($no_hp))+1;
-			$no_hp[$maxindex]=array('hp'=>$fitursmsg[0]['hp']);
+			$no_hp[$maxindex]=array('hp'=>$fitursmsg[0]['hp'],'id_user'=>$fitursmsg[0]['id_user']);
 			//pr($no_hp);
 			$CI->load->model('ad_setting');
 			//pr($CI->session->userdata['user_authentication']);
@@ -201,6 +201,7 @@ class smsprivate {
 				if($datanya['hp']!='' && strlen($datanya['hp'])>8){
 					$insert_sms=array(
 									'nama_siswa'=>''.$datanya['nama_siswa'].'',
+									'id_user'=>''.$datanya['id_user'].'',
 									'no_hp'=>''.$datanya['hp'].'',
 									'pesan'=>'lihat di https://studentbook.co/u/'.base64_encode($datanya['id_user']).' '.$pesan.''."\n@".$CI->session->userdata['ak_setting']['nama_sekolah'],
 									'jenis'=>''.$jenis.'',
