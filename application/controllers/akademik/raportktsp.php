@@ -13,7 +13,7 @@ class Raportktsp extends CI_Controller
         {
 			$this->load->model('ad_siswa');
 			$data['siswa']=$this->ad_siswa->getsiswaByIdKelas(@$_POST['id_kelas']);
-			$data['main']= 'akademik/raport2013/index';
+			$data['main']= 'akademik/raportktsp/index';
             $this->load->view('layout/ad_blank',$data);	
 		}
 		function getdatasiswa($id_det_jenjang){
@@ -29,6 +29,7 @@ class Raportktsp extends CI_Controller
 			$this->load->model('ad_sekolah');
 			$this->load->model('ad_kelas');
 			$data['id_det_jenjang']=$datasiswa['id_siswa_det_jenjang'];
+			$data['print']="".$datasiswa['print']."";
 			$data['kelas']=$this->ad_kelas->getWaliByIdKelas($this->session->userdata['user_authentication']['id_sekolah'],$datasiswa['id_kelas']);
 			
 			//kepribadian

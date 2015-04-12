@@ -84,7 +84,7 @@
 				$.ajax({
 					type: "POST",
 					data: 'id_kelas='+$(this).val(),
-					url: '<?=base_url('akademik/raport2013/index')?>',
+					url: '<?=base_url('akademik/raportktsp/index')?>',
 					beforeSend: function() {
 						$('select#kelasraport2013').append("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
 					},
