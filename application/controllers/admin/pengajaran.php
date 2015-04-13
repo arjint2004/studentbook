@@ -6,7 +6,7 @@ class Pengajaran extends CI_Controller {
 		$this->load->library('auth');
 		$this->auth->logged_in();
 		$this->load->model('ad_pengajaran');
-		$this->load->library('csvreader');
+		$this->load->library('CSVReader');
 	 }
 	function index(){
 		$data['main'] 	= 'schooladmin/pengajaran/index';
@@ -151,14 +151,14 @@ class Pengajaran extends CI_Controller {
 	}
 	public function makeIndikator(){
 		$csv_dir='upload/akademik/';
-		$this->load->library('csvreader');
-        //$result =   $this->csvreader->saveindikator($csv_dir.'indikator.csv');
+		$this->load->library('CSVReader');
+        //$result =   $this->CSVReader->saveindikator($csv_dir.'indikator.csv');
 	}
 	private function setIndikator($id_mengajar,$id_pelajaran,$id_pegawai,$semester){
 		$csv_dir='upload/akademik/';
         $this->load->model('ad_pengajaran');
 
-		$result=$this->csvreader->parse_file($csv_dir.'indikator.csv');
+		$result=$this->CSVReader->parse_file($csv_dir.'indikator.csv');
 		
 		foreach($result as $datapenilaian){
 				//$q=$this->db->query('SELECT COUNT(*) as jml FROM ak_rencana_indikator WHERE id_pelajaran=? AND id_mengajar=? AND id_sekolah=? AND penilaian=?',array($id_pelajaran,$id_mengajar,$this->session->userdata['user_authentication']['id_sekolah'],$datapenilaian[0]));
