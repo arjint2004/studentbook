@@ -606,7 +606,7 @@
 										<table border="0" id="allset" class="asbin noborder" style="width:100%;">
 											<tbody>
 												<tr>
-												  <td style="padding:0px">Diberikan Di</td>
+												  <td style="padding:0px;width:90px;">Diberikan di</td>
 												  <td style="padding:0px;">:</td>
 												  <td style="padding:0px;">Yogyakarta</td>
 											  </tr>
@@ -630,9 +630,8 @@
 <tr>
 									  <td >Orang Tua/Wali</td>
 									  <td>Wali Kelas </td>
-									  <td style="padding:0 20px;text-align:left; border-left:1px solid #000;border-right:1px solid #000;">Kepala Sekolah 
-				      <?=$sekolah[0]['nama_sekolah']?></td>
-					  </tr>
+									  <td style="padding:0 20px;text-align:left; border-left:1px solid #000;border-right:1px solid #000;">Kepala Sekolah				      </td>
+	    </tr>
 									<tr>
 									  <td>&nbsp;</td>
 									  <td>&nbsp;</td>
