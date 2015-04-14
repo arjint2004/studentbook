@@ -520,7 +520,7 @@
 							<table style="width:100%;" class="asbin noborder" id="allset"  border="0">
 									<tr>
 									  <td style="width:25%;"></td>
-									  <td style="width:22%;">&nbsp;</td>
+									  <td style="width:28%;">&nbsp;</td>
 									  <td style="padding:20px 20px 0 20px;width:35%;text-align:left;border-top:1px solid #000;border-left:1px solid #000;border-right:1px solid #000;"><strong>Keputusan</strong><br /> Berdasarkan hasil Yang dicapai Semester 1 dan 2, Peserta didik ditetapkan :</td>
 									</tr>
 								  <tr>
