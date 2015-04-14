@@ -606,12 +606,12 @@
 											<tbody>
 												<tr>
 												  <td style="padding:0px;width:90px;">Diberikan di</td>
-												  <td style="padding:0px;"> : </td>
+												  <td style="padding:0px;"> :&nbsp;</td>
 												  <td style="padding:0px;"> Yogyakarta</td>
 											  </tr>
 												<tr>
 												  <td rowspan="2" style="padding:0px">Tanggal</td>
-												  <td rowspan="2" style="padding:0px;">:</td>
+												  <td rowspan="2" style="padding:0px;">:&nbsp;</td>
 												  <td style="padding:0px;"><u>11 desember2015</u></td>
 												</tr>
 												<tr>
