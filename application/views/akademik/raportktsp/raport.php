@@ -520,7 +520,7 @@
 							<table style="width:100%;" class="asbin noborder" id="allset"  border="0">
 									<tr>
 									  <td style="width:25%;"></td>
-									  <td style="width:40%;">&nbsp;</td>  
+									  <td style="width:22%;">&nbsp;</td>
 									  <td style="padding:20px 20px 0 20px;width:35%;text-align:left;border-top:1px solid #000;border-left:1px solid #000;border-right:1px solid #000;"><strong>Keputusan</strong><br /> Berdasarkan hasil Yang dicapai Semester 1 dan 2, Peserta didik ditetapkan :</td>
 									</tr>
 								  <tr>
@@ -541,7 +541,7 @@
 										<table border="0" id="allset" class="asbin noborder" style="width:100%;">
 											<tbody>
 												<tr>
-												  <td rowspan="2" style="padding:0px">Yogyakarta,</td>
+												  <td rowspan="2" style="padding:0px;width:90px;">Yogyakarta,</td>
 												  <td style="padding:0px;"><u>11 desember2015</u></td>
 												</tr>
 												<tr>
@@ -554,8 +554,7 @@
 									<tr>
 									  <td >Orang Tua/Wali</td>
 									  <td>Wali Kelas </td>
-									  <td style="padding:0 20px;text-align:left; border-left:1px solid #000;border-right:1px solid #000;">Kepala Sekolah 
-								      <?=$sekolah[0]['nama_sekolah']?></td>
+									  <td style="padding:0 20px;text-align:left; border-left:1px solid #000;border-right:1px solid #000;">Kepala Sekolah								      </td>
 							  </tr>
 									<tr>
 									  <td>&nbsp;</td>
@@ -596,7 +595,7 @@
 <td style="padding:0;"><table style="width:100%;" class="asbin noborder" id="allset"  border="0">
 									<tr>
 									  <td style="width:25%;"></td>
-									  <td style="width:40%;">&nbsp;</td>  
+									  <td style="width:22%;">&nbsp;</td>  
 									  <td style="padding:20px 20px 0 20px;width:35%;text-align:left;border-top:1px solid #000;border-left:1px solid #000;border-right:1px solid #000;">&nbsp;</td>
 									</tr>
 									<tr>
@@ -607,8 +606,8 @@
 											<tbody>
 												<tr>
 												  <td style="padding:0px;width:90px;">Diberikan di</td>
-												  <td style="padding:0px;">:</td>
-												  <td style="padding:0px;">Yogyakarta</td>
+												  <td style="padding:0px;"> : </td>
+												  <td style="padding:0px;"> Yogyakarta</td>
 											  </tr>
 												<tr>
 												  <td rowspan="2" style="padding:0px">Tanggal</td>
