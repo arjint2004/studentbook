@@ -44,6 +44,15 @@ if($cek['otoritas']=='siswa') {
 			<li>
 				<a >Evaluasi</a>
 			</li>
+			<li>
+				<? 
+							
+				//$url=array('nis'=>$datasiswa['nis'],'nama'=>$datasiswa['nama'],'id_siswa_det_jenjang'=>$datasiswa['id_siswa_det_jenjang'],'id'=>$datasiswa['id'],'id_kelas'=>$datasiswa['id_kelas']);
+				//$urlprint=$url;
+				//$urlprint['print']='allow';
+				?>
+				<a onclick="$('#raportsiswa1').load('<?//=?>');">Raport</a>
+			</li>
 		</ul>
 		<div class="tabs-frame-content" style="display: none;">
 			<a class="readmore" tab="pembelajaran" id="materi_pelajaran" title="" > Materi<br />Pelajaran </a>
@@ -64,6 +73,8 @@ if($cek['otoritas']=='siswa') {
             <a class="readmore" tab="evaluasi" id="catatanguru" title="" href=""> Catatan Guru </a>
             <a class="readmore" tab="evaluasi" id="rekapnilai" title="" href=""> Rekap Nilai Akademik </a>
 		</div>
+		<div class="tabs-frame-content" style="display: none;" id="raportsiswa1">
+		</div>
 	</div>
 
 	<div class="clear"></div>
@@ -79,64 +90,7 @@ if($cek['otoritas']=='siswa') {
 	</div>
 	
 	<div class="clear"></div>
-	<h3> Raport </h3>
-	<div class="hr"></div>
-	<input type="hidden" value="<?=$datasiswa[0]['id_kelas']?>" name="id_kelas" id="kelasraport" class="selectfilter"/>
-	<input type="hidden" value="<?=$datasiswa[0]['id_siswa_det_jenjang']?>" name="id_siswa_det_jenjang" id="siswaraport" class="selectfilter"/>
-	<div class="tabs-container">
-
-		<ul class="tabs-frame">
-			<li>
-				<a style="padding:0 3px;" id="raporttab">Raport</a>
-			</li>
-			<li>
-				<a style="padding:0 3px;"  id="raporekstrattab">Ekstrakurikuler</a>
-			</li>
-			<li>
-				<a style="padding:0 3px;"  id="raportkegiatantab" >Kegiatan</a>
-			</li>
-			<li>
-				<a style="padding:0 3px;" id="raportkepribadiantab">Kepribadian</a>
-			</li>
-			<li>
-				<a style="padding:0 3px;" id="raportprestasitab">Prestasi</a>
-			</li>
-			<li>
-				<a style="padding:0 3px;" id="raportabsensitab">Absensi</a>
-			</li>
-			<!--<li>
-				<a style="padding:0 3px;" id="raportcatatantab">Catatan</a>
-			</li>-->
-			<li>
-				<a style="padding:0 3px;" id="raportkenaikantab">Keterangan</a>
-			</li>
-		</ul>
-		<div class="tabs-frame-content"  id="raport" style="display: block;">
-			
-		</div>
-		<div class="tabs-frame-content"  id="ekstraload"  style="display: none;">
-			
-		</div>
-		<div class="tabs-frame-content"   id="kegiatanload" style="display: none;">
-			
-		</div>
-		<div class="tabs-frame-content"   id="kepribadianload" style="display: none;">
-			
-		</div>
-		<div class="tabs-frame-content"   id="prestasiload" style="display: none;">
-			
-		</div>
-		<div class="tabs-frame-content"  id="absensiload"  style="display: none;">
-			
-		</div>
-		<!--<div class="tabs-frame-content"  id="catatanload"  style="display: none;">
-			
-		</div>-->
-		<div class="tabs-frame-content"  id="kenaikanload"  style="display: none;">
-			
-		</div>
-		
-	</div>
+	
 	<!-- iklan batas -->
 	<!-- end iklan batas -->	
 	<div class="clear"></div>
