@@ -47,11 +47,19 @@ if($cek['otoritas']=='siswa') {
 			<li>
 				<? 
 							
-				//$url=array('nis'=>$datasiswa['nis'],'nama'=>$datasiswa['nama'],'id_siswa_det_jenjang'=>$datasiswa['id_siswa_det_jenjang'],'id'=>$datasiswa['id'],'id_kelas'=>$datasiswa['id_kelas']);
+				$url=array(
+					'nis'=>$this->session->userdata['user_authentication']['nis'],
+					'nama'=>$user->nama,
+					'id_siswa_det_jenjang'=>$this->session->userdata['user_authentication']['id_siswa_det_jenjang'],
+					'id'=>$user->id,
+					'onlyraport'=>true,
+					'id_kelas'=>$this->session->userdata['user_authentication']['id_siswa_det_jenjang']
+				);
+				//pr($url);
 				//$urlprint=$url;
 				//$urlprint['print']='allow';
 				?>
-				<a onclick="$('#raportsiswa1').load('<?//=?>');">Raport</a>
+				<a onclick="$('#raportsiswa1').load('<?=base_url('akademik/raportktsp/lihat/'.$this->myencrypt->encode(serialize($url)).'');?>');">Raport</a>
 			</li>
 		</ul>
 		<div class="tabs-frame-content" style="display: none;">

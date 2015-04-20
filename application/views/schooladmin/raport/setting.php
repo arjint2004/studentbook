@@ -100,13 +100,13 @@
 							      </tr>
 								  <tr>
 								    <td>Semester 1</td>
-								    <td><input style="width:150px" type="text" id="datepickraport" name="tanggal_raport[<?=$this->session->userdata['ak_setting']['ta']?>][sm1][nasional]" value="<?=$setting_tanggal[0][$this->session->userdata['ak_setting']['ta']]['sm1']['nasional']?>"></td>
-								    <td><input style="width:150px" type="text" id="datepickraport" name="tanggal_raport[<?=$this->session->userdata['ak_setting']['ta']?>][sm1][islam]" value="<?=$setting_tanggal[0][$this->session->userdata['ak_setting']['ta']]['sm1']['islam']?>"></td>
+								    <td><input style="width:150px" type="text" id="datepickraport" name="tanggal_raport[<?=$this->session->userdata['ak_setting']['ta']?>][Ganjil][nasional]" value="<?=$setting_tanggal[0][$this->session->userdata['ak_setting']['ta']]['Ganjil']['nasional']?>"></td>
+								    <td><input style="width:150px" type="text" id="datepickraport" name="tanggal_raport[<?=$this->session->userdata['ak_setting']['ta']?>][Ganjil][islam]" value="<?=$setting_tanggal[0][$this->session->userdata['ak_setting']['ta']]['Ganjil']['islam']?>"></td>
 							      </tr>
 								  <tr>
 								    <td>Semester 2</td>
-									  <td><input style="width:150px" type="text" id="datepickraport" name="tanggal_raport[<?=$this->session->userdata['ak_setting']['ta']?>][sm2][nasional]" value="<?=$setting_tanggal[0][$this->session->userdata['ak_setting']['ta']]['sm2']['nasional']?>"></td>
-									  <td><input style="width:150px" type="text" id="datepickraport" name="tanggal_raport[<?=$this->session->userdata['ak_setting']['ta']?>][sm2][islam]" value="<?=$setting_tanggal[0][$this->session->userdata['ak_setting']['ta']]['sm2']['islam']?>"></td>
+									  <td><input style="width:150px" type="text" id="datepickraport" name="tanggal_raport[<?=$this->session->userdata['ak_setting']['ta']?>][Genap][nasional]" value="<?=$setting_tanggal[0][$this->session->userdata['ak_setting']['ta']]['Genap']['nasional']?>"></td>
+									  <td><input style="width:150px" type="text" id="datepickraport" name="tanggal_raport[<?=$this->session->userdata['ak_setting']['ta']?>][Genap][islam]" value="<?=$setting_tanggal[0][$this->session->userdata['ak_setting']['ta']]['Genap']['islam']?>"></td>
 								  </tr>
 								  <tr>
 									  <td colspan="5"><input type="submit" name="simpantglraport" value="Simpan"></td>

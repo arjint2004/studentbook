@@ -1,4 +1,5 @@
-<html>
+<? if($param['onlyraport']!=true){?>
+	<html>
 	<head>
 		<title> Raport </title>
 		<!--<link href="print.css" type="text/css" rel="stylesheet"  media="all"/>
@@ -14,7 +15,7 @@
 	<link id="default-css" href="<?=$this->config->item('css');?>print.css" rel="stylesheet" type="text/css" media="all" />
 	</head>
 	<body onLoad="javascript:varitext()">
-	
+
 		<table  class="noborder" id="allset" border="1">
 			<tbody>
 				<tr>
@@ -293,7 +294,10 @@
 		<br />
 		<br />
 		<br />
-
+	<? }else{ ?>
+	<h3>Raport</h3>
+	<div class="hr"></div>
+	<? } ?>
 		<table style="max-width:1024px;" class="asbin noborder" id="allset"  border="0">
 			<tr>
 			  <td style="text-align:left; width:170px;">Nama Siswa </td>
@@ -538,14 +542,15 @@
 									  <td>&nbsp;</td>
 									  <td>&nbsp;</td>
 									  <td style="padding:0 20px;text-align:left; border-left:1px solid #000;border-right:1px solid #000;">
+									 <? //pr($setting_tanggal);?>
 										<table border="0" id="allset" class="asbin noborder" style="width:100%;">
 											<tbody>
 												<tr>
-												  <td rowspan="2" style="padding:0px;width:90px;">Yogyakarta,</td>
-												  <td style="padding:0px;"><u>11 desember2015</u></td>
+												  <td rowspan="2" style="padding:0px;width:90px;text-align:left;">Yogyakarta,</td>
+												  <td style="padding:0px;text-align:left;"><u><?=$setting_tanggal[0][$this->session->userdata['ak_setting']['ta']][$this->session->userdata['ak_setting']['semester_nama']]['nasional']?></u></td>
 												</tr>
 												<tr>
-												  <td style="padding:0px">11 desember2015</td>
+												  <td style="padding:0px;text-align:left;"><?=$setting_tanggal[0][$this->session->userdata['ak_setting']['ta']][$this->session->userdata['ak_setting']['semester_nama']]['islam']?></td>
 												</tr>
 											</tbody>
 										</table>
@@ -574,12 +579,12 @@
 									<tr>
 									  <td >...................................<?//=$siswa[0]['NmOrtu']?></td>
 									  <td ><u><?=$kelas[0]['nama']?><u/></td>
-									  <td style=" padding:0px 0px 0px 17px;text-align:left;border-left:1px solid #000;border-right:1px solid #000;">&nbsp;<u><?=$this->session->userdata['ak_setting']['nama_kepsek']?></u></td>
+									  <td style=" padding:0px 0px 0px 17px;text-align:left;border-left:1px solid #000;border-right:1px solid #000;"><u><?=$this->session->userdata['ak_setting']['nama_kepsek']?></u><br />NIP&nbsp;&nbsp;<?=$kepsek[0]['nip']?></td>
 								  </tr>
 									<tr>
 									  <td>&nbsp;</td>
 									  <td>&nbsp;</td>
-									  <td style="padding:0px 20px 20 20px;text-align:left; border-left:1px solid #000;border-right:1px solid #000;border-bottom:1px solid #000;">NIP&nbsp;&nbsp;<?=$kepsek[0]['nip']?></td>
+									  <td style="padding:0px 0px 0px 17px;text-align:left; border-left:1px solid #000;border-right:1px solid #000;border-bottom:1px solid #000;"></td>
 								  </tr>
 							</table>
 
@@ -588,7 +593,7 @@
 
 					</td>
 				</tr>
-		</table>		
+		</table>
 	<?}elseif(isset($kenaikan['statuslulus'])){?>
 		<table style="max-width:1024px;" class="asbin noborder" id="allset"  border="1" >
 				<tr>
@@ -649,12 +654,16 @@
 									<tr>
 									  <td >...................................<?//=$siswa[0]['NmOrtu']?></td>
 									  <td ><u><?=$kelas[0]['nama']?><u/></td>
-									  <td style=" padding:0px 0px 0px 17px;text-align:left;border-left:1px solid #000;border-right:1px solid #000;">&nbsp;<u><?=$this->session->userdata['ak_setting']['nama_kepsek']?></u></td>
+									  <td style=" padding:0px 0px 0px 17px;text-align:left;border-left:1px solid #000;border-right:1px solid #000;">&nbsp;<u>
+									    <?=$this->session->userdata['ak_setting']['nama_kepsek']?>
+									  </u><br />
+									  NIP&nbsp;&nbsp;
+									  <?=$kepsek[0]['nip']?></td>
 								  </tr>
 									<tr>
 									  <td>&nbsp;</td>
 									  <td>&nbsp;</td>
-									  <td style="padding:0px 20px 20 20px;text-align:left; border-left:1px solid #000;border-right:1px solid #000;border-bottom:1px solid #000;">NIP&nbsp;&nbsp;<?=$kepsek[0]['nip']?></td>
+									  <td style="padding:0px 20px 20 20px;text-align:left; border-left:1px solid #000;border-right:1px solid #000;border-bottom:1px solid #000;">&nbsp;</td>
 								  </tr>
 							</table>
 
@@ -666,7 +675,7 @@
 		</table>		
 			
 	<? } ?>	
-	
+<? if($param['onlyraport']!=true){?>	
 <br /><br />
 		<!-- GANTI HALAMAN -->
 		<DIV style="page-break-after:always;"></DIV>
@@ -1135,3 +1144,4 @@
 		<br /><br /><br />
 	</body>
 </html><!-- 0.8326s -->
+<? } ?>
