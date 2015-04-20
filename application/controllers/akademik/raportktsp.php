@@ -30,6 +30,8 @@ class Raportktsp extends CI_Controller
 			$this->load->model('ad_kelas');
 			$data['id_det_jenjang']=$datasiswa['id_siswa_det_jenjang'];
 			$data['print']="".$datasiswa['print']."";
+			//pr($datasiswa);die();
+			$data['param']=$datasiswa;
 			$data['kelas']=$this->ad_kelas->getWaliByIdKelas($this->session->userdata['user_authentication']['id_sekolah'],$datasiswa['id_kelas']);
 			
 			//kepribadian

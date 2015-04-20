@@ -87,6 +87,7 @@ class Authentication extends CI_Controller {
 		    $sessiondata['id_siswa_det_jenjang'] = $siswa[0]['id_siswa_det_jenjang'];
 		    $sessiondata['id_kelas_siswa_det_jenjang'] = $siswa[0]['id_kelas_siswa_det_jenjang'];
 		    $sessiondata['kelas'] = $siswa[0]['kelas'];
+		    $sessiondata['nis'] = $siswa[0]['nis'];
 		    $sessiondata['nama_kelas'] = $siswa[0]['nama_kelas'];
 		    $sessiondata['id_siswa'] = $idsiswa;
 	    }
