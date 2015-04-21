@@ -1,4 +1,29 @@
 <? //pr($siswakepribadian);?>
+				<script>
+				$(document).ready(function(){
+					$("select.nilaikepribadianselect").change(function(e){
+						var obtextarea=$(this).parent('td').next('td').children('textarea');
+						//alert($(obtextarea).attr('name'));
+						//alert($(this).val());
+						if($(this).val()=='A'){ 
+							$(obtextarea).html('Sangat Baik');
+						}
+						if($(this).val()=='B'){ 
+							$(obtextarea).html('Baik');
+						}
+						if($(this).val()=='C'){ 
+							$(obtextarea).html('Cukup');
+						}
+						if($(this).val()=='D'){ 
+							$(obtextarea).html('Kurang');
+						}
+						if($(this).val()=='E'){ 
+							$(obtextarea).html('Sangat Kurang');
+						}
+					});
+				});//Submit End
+
+				</script>
 	<table>
         <thead>
             
@@ -34,7 +59,7 @@
 						<tr style="border-bottom:1px solid #000000;"> 
 							<td style="text-align:left;" <? if($maxr['id']==$idm){?> class="nilaiextrain" <? } ?>> <?=$dtex['nama'];?> </td>
 							<td style="text-align:left;"  <? if($maxr['id']==$idm){?> class="nilaiextrain" <? } ?>>
-							<select name="nilai[<?=$siswaextra['id']?>][<?=$dtex['id']?>]" >
+							<select name="nilai[<?=$siswaextra['id']?>][<?=$dtex['id']?>]" class="nilaikepribadianselect">
 								<option <?if($nilai[$siswaextra['id']][$dtex['id']]['nilai']=='A'){echo"selected";}?> value="A">A</option>
 								<option <?if($nilai[$siswaextra['id']][$dtex['id']]['nilai']=='B' || $nilai[$siswaextra['id']][$dtex['id']]['nilai']==''){echo"selected";}?>  value="B" >B</option>
 								<option <?if($nilai[$siswaextra['id']][$dtex['id']]['nilai']=='C'){echo"selected";}?>  value="C">C</option>

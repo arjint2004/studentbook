@@ -13,9 +13,13 @@ class Nilaikepribadian extends CI_Controller {
 		$data['page_title'] 	= 'Data Nilai kepribadian';
 		$this->load->view('layout/ad_blank',$data);	 
 	}
-	function kesiswaanindex(){
+	function kesiswaanindex($param=''){
 		$this->load->model('ad_kelas');
-		$data['kelas'] 	=$this->ad_kelas->getKelasByWali($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']);
+		if($param=='bk'){
+			$data['kelas'] 	=$this->ad_kelas->getKelas($this->session->userdata['user_authentication']['id_sekolah']);
+		}else{
+			$data['kelas'] 	=$this->ad_kelas->getKelasByWali($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']);
+		}
 		$data['main'] 	= 'akademik/nilaikepribadian/index';
 		$data['page_title'] 	= 'Data Nilai kepribadian';
 		$this->load->view('layout/ad_blank',$data);	 

@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class Bk extends CI_Controller
+class Guruekstra extends CI_Controller
     {
         public function __construct()
         {
@@ -14,8 +14,8 @@ class Bk extends CI_Controller
         {
 			$this->load->model('ad_kelas');
 			$data['kelas'] 	=$this->ad_kelas->getkelas($this->session->userdata['user_authentication']['id_sekolah']);
-			echo $this->router->fetch_class();
-            $data['main']           = 'akademik/bk/nilaikepribadian';
+
+            $data['main']           = 'akademik/guruekstra/guruekstra';
             $this->load->view('layout/ak_default',$data);
         }
 
