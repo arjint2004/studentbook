@@ -6,7 +6,7 @@
 				foreach($group as $dtgroup){
 				if($dtgroup['home_url']!=''){
 				?>
-					<a style="width:158px;" class="readmorenoplus" target="__<?=$dtgroup['otoritas']?>"title="" href="<?=base_url().$dtgroup['home_url']?>/menubottom"> <?=$dtgroup['otoritas']?> </a>
+					<a style="width:158px;" class="readmorenoplus" target="__<?=str_replace(" ","",$dtgroup['otoritas'])?>"title="" href="<?=base_url().$dtgroup['home_url']?>/menubottom"> <?=$dtgroup['otoritas']?> </a>
 				<? }else{ ?>
 					<div style="width:158px;" class="readmorenoplus" title="" onclick="$('#<?=str_replace(" ","",$dtgroup['otoritas'])?>').scrollintoview({ speed:'1100'});"> <?=$dtgroup['otoritas']?> </div>
 				<? } } ?>
