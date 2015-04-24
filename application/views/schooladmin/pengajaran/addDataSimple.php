@@ -78,7 +78,7 @@ $(document).ready(function(){
 									$("#listpengajaran").html(msg);			
 								}
 							});	*/	
-							getPelajaranCekbox($('select#id_jurusan'));
+							getPelajaranCekbox($('input#submitpengajatantugas'));
 						}else{
 							alert('Guru ini sudah mengajar di kelas, jurusan, semester, pelajaran yang anda pilih.');
 						}
@@ -146,7 +146,7 @@ $(document).ready(function(){
 			</td>
 		  </tr>
 		  <tr>
-			<td class="title" colspan="3"><input type="submit" name="simpan" value="Simpan"/></td>
+			<td class="title" colspan="3"><input type="submit" name="simpan" id="submitpengajatantugas" value="Simpan"/></td>
 		  </tr>
 		  </tbody>
 		</table>
