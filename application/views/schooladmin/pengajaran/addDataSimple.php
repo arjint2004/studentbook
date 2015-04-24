@@ -18,9 +18,7 @@ $(document).ready(function(){
 
 	
 //Submit Starts	
-	   
-		$("select#id_kelas,select#id_jurusan,select#id_pegawai").change(function(){
-			var obj=$(this);
+	    function getPelajaranCekbox(obj){
 			$.ajax({
 				type: "POST",
 				data: $('#mengajarform').serialize()+'&semester=<?=$semester[0]['id']?>&id_kelas='+$('select#id_kelas').find(":selected").attr('id_kelas'),
@@ -44,7 +42,10 @@ $(document).ready(function(){
 					$('img#wait').remove();
 					$("ul#sm2").html(msg);			
 				}
-			});
+			});		
+		}
+		$("select#id_kelas,select#id_jurusan,select#id_pegawai").change(function(){
+			getPelajaranCekbox($(this));
 		});
 		$(".addaccountclose").click(function(){
 			$(".addaccount").remove();
@@ -77,6 +78,7 @@ $(document).ready(function(){
 									$("#listpengajaran").html(msg);			
 								}
 							});	*/	
+							getPelajaranCekbox($('select#id_jurusan'));
 						}else{
 							alert('Guru ini sudah mengajar di kelas, jurusan, semester, pelajaran yang anda pilih.');
 						}
