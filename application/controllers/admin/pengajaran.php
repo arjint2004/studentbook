@@ -6,7 +6,7 @@ class Pengajaran extends CI_Controller {
 		$this->load->library('auth');
 		$this->auth->logged_in();
 		$this->load->model('ad_pengajaran');
-		$this->load->library('CSVReader');
+		$this->load->library('csvreader');
 	 }
 	function index(){
 		$data['main'] 	= 'schooladmin/pengajaran/index';
@@ -151,15 +151,14 @@ class Pengajaran extends CI_Controller {
 	}
 	public function makeIndikator(){
 		$csv_dir='upload/akademik/';
-		$this->load->library('CSVReader');
-        //$result =   $this->CSVReader->saveindikator($csv_dir.'indikator.csv');
+		$this->load->library('csvreader');
+        //$result =   $this->csvreader->saveindikator($csv_dir.'indikator.csv');
 	}
 	private function setIndikator($id_mengajar,$id_pelajaran,$id_pegawai,$semester){
 		$csv_dir='upload/akademik/';
         $this->load->model('ad_pengajaran');
-
-		$result=$this->CSVReader->parse_file($csv_dir.'indikator.csv');
-		
+		$this->load->library('csvreader');
+		$result=$this->csvreader->parse_file($csv_dir.'indikator.csv');
 		foreach($result as $datapenilaian){
 				//$q=$this->db->query('SELECT COUNT(*) as jml FROM ak_rencana_indikator WHERE id_pelajaran=? AND id_mengajar=? AND id_sekolah=? AND penilaian=?',array($id_pelajaran,$id_mengajar,$this->session->userdata['user_authentication']['id_sekolah'],$datapenilaian[0]));
 				//$cek=$q->result_array();
@@ -233,30 +232,32 @@ class Pengajaran extends CI_Controller {
 			//$this->countsem=0;
 			$param['id_kelas']=$_POST['id_kelas'];
 			$param['id_pegawai']=$_POST['id_pegawai'];		
-			foreach($_POST['id_pelajaran'] as $id_semester=>$idpel){
-				foreach($idpel as $id_pelajaran){
-					$param['id_pelajaran']=$id_pelajaran;
-					$cek=$this->ad_pengajaran->cekcurrentpengajaran($param);
-					if($cek>0){
-						echo 0;die();
-					}else{
-						$datamengajar=array(
-									'id_kelas'=>$_POST['id_kelas'],
-									'id_sekolah'=>$this->session->userdata['user_authentication']['id_sekolah'],
-									'id_pegawai'=>$_POST['id_pegawai'],
-									'id_pelajaran'=>$id_pelajaran
-						);
-					
-						$this->db->insert('ak_mengajar',$datamengajar);
-						//if($this->countsem==0){
-							$id_mengajar=$this->db->insert_id();
-							$this->setIndikator($id_mengajar,$id_pelajaran,$_POST['id_pegawai'],$id_semester);
-							
-						//}
+			if(!empty($_POST['id_pelajaran'])){
+				foreach($_POST['id_pelajaran'] as $id_semester=>$idpel){
+					foreach($idpel as $id_pelajaran){
+						$param['id_pelajaran']=$id_pelajaran;
+						$cek=$this->ad_pengajaran->cekcurrentpengajaran($param);
+						if($cek>0){
+							echo 1;die();
+						}else{
+							$datamengajar=array(
+										'id_kelas'=>$_POST['id_kelas'],
+										'id_sekolah'=>$this->session->userdata['user_authentication']['id_sekolah'],
+										'id_pegawai'=>$_POST['id_pegawai'],
+										'id_pelajaran'=>$id_pelajaran
+							);
 						
-					}		
+							$this->db->insert('ak_mengajar',$datamengajar);
+							//if($this->countsem==0){
+								$id_mengajar=$this->db->insert_id();
+								$this->setIndikator($id_mengajar,$id_pelajaran,$_POST['id_pegawai'],$id_semester);
+								
+							//}
+							
+						}		
+					}
+					//$this->countsem++;
 				}
-				//$this->countsem++;
 			}
 			
 			echo 1;die();
