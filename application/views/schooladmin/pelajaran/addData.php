@@ -180,6 +180,8 @@ $(document).ready(function(){
 						<option value="Normatif">Normatif ( Muatan Nasional )</option>
 						<option value="Adaptif">Adaptif ( Muatan Lokal )</option>
 						<? }else{ ?>
+						<option value="Normatif">Normatif ( Muatan Nasional )</option>
+						<option value="Adaptif">Adaptif ( Muatan Lokal )</option>						
 						<option value="Produktif">Produktif ( Muatan Jurusan )</option>
 						<? } ?>
 					</select>
