@@ -24,7 +24,7 @@ $(document).ready(function(){
 				data: $('#mengajarform').serialize()+'&semester=<?=$semester[0]['id']?>&id_kelas='+$('select#id_kelas').find(":selected").attr('id_kelas'),
 				url: base_url+'admin/pengajaran/getPelajaranCekbox',
 				beforeSend: function() {
-					//$(obj).after("<img id='wait' src='"+config_images+"loading.png' />");
+					$(obj).after("<img id='wait' src='"+config_images+"loading.png' />");
 				},
 				success: function(msg) {
 					$('img#wait').remove();
