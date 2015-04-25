@@ -60,7 +60,10 @@ $(document).ready(function(){
 	});
 });
 </script>
-<?// pr($datajenjang);?>
+<? 
+//pr($datajenjang);
+//pr($this->session->userdata['ak_setting']['jenjang'][0]['nama']);
+?>
 <div class="addaccount">
 <form action="<? echo base_url();?>admin/kelas/adddata" id="kelasform" name="kelasform" method="post" >
 	<div class="addaccountclose" onclick="$('.addaccount').remove();"></div>
@@ -80,10 +83,40 @@ $(document).ready(function(){
 	</div>
 	<? if($this->session->userdata['ak_setting']['jenjang'][0]['nama']=='SD' || $this->session->userdata['ak_setting']['jenjang'][0]['nama']=='SMP' ){?>
 		<ul class="left">
-		<?
+			
+			<?
 			foreach($datajenjang[0]['grade'] as $idky=> $jenjang){?>
 				<li>
-					<div  id="in<?=$jenjang?>" value="<?=$jenjang?>" class="addkelas"><?=$jenjang." ".$datajenjang[0]['bentuk']?></div>
+					<div  id="in<?=$jenjang?>" value="<?=$jenjang?>" class="addkelas">
+						<?
+						if($datajenjang[0]['bentuk']=='TK'){
+
+							switch($jenjang){
+								case 1:
+									echo 'PENGASUHAN A';
+								break;
+								case 2:
+									echo 'PENGASUHAN B';
+								break;
+								case 3:
+									echo 'PLAY GROUP A';
+								break;
+								case 4:
+									echo 'PLAY GROUP B';
+								break;
+								case 5:
+									echo 'TK A';
+								break;
+								case 6:
+									echo 'TK B';
+								break;
+							}
+						}else{
+							echo $jenjang." ".$datajenjang[0]['bentuk'];
+						}
+						
+						?>
+					</div>
 					<ul id="in<?=$jenjang?>">
 						<li id="li<?=$idky?>"><input type="text" size="5" name="nama[<?=$jenjang?>][]"/><div class="remove"></div></li>
 					</ul>

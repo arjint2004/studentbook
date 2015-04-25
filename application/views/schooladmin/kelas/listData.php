@@ -81,12 +81,47 @@
 				}
 				</script>
 				<div id="contentpage">
-							<? //pr($gradeout);?>
+							<? 
+							//pr($gradeout);
+							//pr($datajenjang);
+							?>
 							<?	foreach($gradeout as $idky=> $jenjangtingkat){?>
 							<table class="tabelkelas">
 								<thead>
 									<tr> 
-										<th> KELAS <strong><?=$jenjangtingkat['grade'];?></strong></th>
+										<th style="text-align:left;"> 
+										<?
+										if($datajenjang[0]['bentuk']=='TK'){
+
+											switch($jenjangtingkat['grade']){
+												case 1:
+													echo 'PENGASUHAN A';
+												break;
+												case 2:
+													echo 'PENGASUHAN B';
+												break;
+												case 3:
+													echo 'PLAY GROUP A';
+												break;
+												case 4:
+													echo 'PLAY GROUP B';
+												break;
+												case 5:
+													echo 'TK A';
+												break;
+												case 6:
+													echo 'TK B';
+												break;
+											}
+										}else{
+										?>
+											KELAS <strong><?=$jenjangtingkat['grade'];?></strong>
+										<?
+										}
+										?>
+										
+										
+										</th>
 									</tr>                            
 								</thead>
 								<tbody>

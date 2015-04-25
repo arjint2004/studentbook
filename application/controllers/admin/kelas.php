@@ -39,6 +39,7 @@ class Kelas extends CI_Controller {
 		 //pr($gradeout);
 		 $data['gradeout'] 	=  $gradeout;
 		 $data['jenjang'] 	=  $datajenjang[0]['nama'];
+		 $data['datajenjang'] 	=  $datajenjang;
 		 $data['page_title'] 	= 'Data Kelas';
 		// pr($this->input->post());die();
 		 if ($this->input->post('ajax')) {
