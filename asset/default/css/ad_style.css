@@ -210,11 +210,11 @@ table.adddata  input[type="text"]{
 	padding-left:0;
 }
 .main-content ul.left li div.addkelas{
-background: url("../images/plus-ico.png") no-repeat scroll 61px center transparent;
+background: url("../images/plus-ico.png") no-repeat scroll 115px center transparent;
 cursor: pointer;
 height: 17px;
 opacity: 0.6;
-width: 100px;
+width: 140px;
 }
 .main-content ul.left li ul li{
 border: medium none;
