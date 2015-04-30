@@ -78,13 +78,15 @@ class Nilaiotentik extends CI_Controller {
 			}
 			
 		}
-		$kogn=$this->ak_akademik->nilaiKognByIdDetJenPelOtentik($_POST['id_det_jenjang'],$_POST['pelajaran']);
-		if($_POST['jenis']=='kognitif'){
-			$data['kogn']	=$kogn[$_POST['pelajaran']]['kognitif'];
-		}elseif($_POST['jenis']=='afektif'){
-			$data['kogn']	=$kogn[$_POST['pelajaran']]['afektif'][0]['nilai'];
-		}elseif($_POST['jenis']=='psikomotorik'){
-			$data['kogn']	=$kogn[$_POST['pelajaran']]['Psikomotorik'][0]['nilai'];
+		if($this->session->userdata['ak_setting']['jenjang'][0]['bentuk']!='TK'){
+			$kogn=$this->ak_akademik->nilaiKognByIdDetJenPelOtentik($_POST['id_det_jenjang'],$_POST['pelajaran']);
+			if($_POST['jenis']=='kognitif'){
+				$data['kogn']	=$kogn[$_POST['pelajaran']]['kognitif'];
+			}elseif($_POST['jenis']=='afektif'){
+				$data['kogn']	=$kogn[$_POST['pelajaran']]['afektif'][0]['nilai'];
+			}elseif($_POST['jenis']=='psikomotorik'){
+				$data['kogn']	=$kogn[$_POST['pelajaran']]['Psikomotorik'][0]['nilai'];
+			}
 		}
 		
 		$data['desc_kogn']	=$desc_kogn;

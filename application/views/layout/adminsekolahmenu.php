@@ -6,6 +6,9 @@
                     	<li <? if($this->router->class=='schooladmin' && $this->router->method=='dataakun'){echo 'class="current_page_item"';}?>> <a href="<?=site_url()?>admin/schooladmin/dataakun" title="">Data Akun<span> </span> </a> </li>
                     	<li <? if($this->router->class=='kepsek' && $this->router->method=='index'){echo 'class="current_page_item"';}?>> <a target="__blank" href="<?=site_url()?>akademik/kepsek/index" title=""> Data Monitor Guru<span> </span> </a> </li>
                     	<li <? if($this->router->class=='schooladmin' && $this->router->method=='hp_guru'){echo 'class="current_page_item"';}?>> <a href="<?=site_url()?>admin/schooladmin/hp_guru" title=""> Guru <span> </span> </a> </li>
+						<? if($this->session->userdata['ak_setting']['jenjang'][0]['bentuk']=='TK'){?>
+                    	<li <? if($this->router->class=='penghubungortutk' && $this->router->method=='addcontent'){echo 'class="current_page_item"';}?>> <a href="<?=site_url()?>admin/penghubungortutk/addcontent" title=""> Setting Penghubung Ortu TK<span> </span> </a> </li>
+						<? } ?>
                         <li <? if($this->router->class=='sekolah' && $this->router->method=='editprofil'){echo 'class="current_page_item"';}?>> <a href="<?=site_url()?>admin/sekolah/editprofil" title="" id="ta"> Profil Sekolah <span> </span> </a> </li>
                         <li <? if($this->router->class=='content' && $this->router->method=='index'){echo 'class="current_page_item"';}?>> <a href="<?=site_url()?>admin/content/index" title="" id="ta"> Content Sekolah <span> </span> </a> </li>
 						<? if($fitur[$this->session->userdata['user_authentication']['id_sekolah']]['sms_blasting']['aktif']==1){?>

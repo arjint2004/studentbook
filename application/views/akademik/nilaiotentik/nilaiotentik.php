@@ -43,7 +43,9 @@ $(document).ready(function(){
     <th colspan="<?=count($indikator[0]['point'])?>">NILAI EVALUASI</th>
     <th rowspan="2">RATA</th>
     <th rowspan="2">RATA TOTAL</th>
+	<?if($this->session->userdata['ak_setting']['jenjang'][0]['bentuk']!='TK'){?>
     <th rowspan="2">NILAI <?=strtoupper($_POST['jenis'])?></th>
+	<? } ?>
     <th rowspan="2">DESKRIPSI KOGN</th>
   </tr>
   
@@ -80,7 +82,9 @@ $(document).ready(function(){
 	<td><? echo $rata; $jmlp=0; $jmlrt=$jmlrt+$rata;?></td>
     <? if($kk==0){ ?>
     <td rowspan="<?=count($indikator);?>" style="font-size:20px;" id="tdraratot"></td>
+	<?if($this->session->userdata['ak_setting']['jenjang'][0]['bentuk']!='TK'){?>
     <td rowspan="<?=count($indikator);?>" style="font-size:20px;"><?=$kogn?></td>
+	<? } ?>
     <td rowspan="<?=count($indikator);?>">
 		<textarea name="deskripsi_kogn[<?=$_POST['id_det_jenjang']?>][<?=$_POST['pelajaran']?>]" id="des_kogn"><?=$desc_kogn[0]['nilai']?></textarea>
 		<input type="submit" name="des_kogn" value="Simpan" id="des_kogn"/>
