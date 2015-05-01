@@ -282,7 +282,7 @@ class penghubungortutk extends CI_Controller
 							)
 							
 			);
-			pr($content);			
+			//pr($content);			
 			//pr($_POST);
 			$this->load->model('ad_kelas');
 			
