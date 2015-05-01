@@ -23,7 +23,7 @@ class Mainakademik extends CI_Controller
 			
 			//pr($data['group']);
 		    $session = session_data();
-			echo $jenjang[0]['bentuk'];
+			//echo $jenjang[0]['bentuk'];
 			if($jenjang[0]['bentuk']=='TK'){
 				$data['main']           = 'akademik/mainakademik/maintk';
 			}else{
