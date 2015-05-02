@@ -35,6 +35,7 @@ Class Ad_pengajaran extends CI_Model
 			echo $namatable.'=>'.$c[0]['count'].'<br />';
 			$out=$out+$c[0]['count'];
 		}
+		die();
 		return $out;
 	}
 	function cekcurrentpengajaran($param=array()){
