@@ -22,6 +22,7 @@ class Pelajaran extends CI_Controller {
 		$freepelajaran=$this->ad_pelajaran->getFreePelajaran($id_pelajaran,$this->session->userdata['user_authentication']['id_sekolah']);
 		if($freepelajaran==0){
 			$this->db->query('DELETE FROM ak_pelajaran WHERE id='.$id_pelajaran.'');
+			$this->db->query('DELETE FROM ak_nilai_kkm WHERE id_pelajaran='.$id_pelajaran.'');
 		}
 		echo $freepelajaran;
 	}

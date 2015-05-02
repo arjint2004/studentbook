@@ -32,6 +32,7 @@ Class Ad_pengajaran extends CI_Model
 			//$out[$namatable]=$c;
 			//echo $this->db->last_query();
 			//pr($c);
+			echo $namatable.'=>'.$c[0]['count'].'<br />';
 			$out=$out+$c[0]['count'];
 		}
 		return $out;

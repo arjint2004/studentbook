@@ -98,7 +98,7 @@ Class Ad_pelajaran extends CI_Model
 				'ak_materi_pelajaran',
 				'ak_mengajar',
 				'ak_nilai_afektif', 	
-				'ak_nilai_kkm', 	
+				//'ak_nilai_kkm', 	
 				'ak_nilai_kompetensi', 	
 				'ak_nilai_lain_lain', 	
 				'ak_nilai_pr', 	
@@ -121,9 +121,10 @@ Class Ad_pelajaran extends CI_Model
 			$c=$q->result_array();
 			//$out[$namatable]=$c;
 			//echo $this->db->last_query();
-			//pr($c);
+			echo $namatable.'=>'.$c[0]['count'].'<br />';
 			$out=$out+$c[0]['count'];
 		}
+		die();
 		return $out;
 	}
 	function getdataByIdDetJenjang($id_det_jenjang=0){
