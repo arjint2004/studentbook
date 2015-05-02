@@ -121,10 +121,10 @@ Class Ad_pelajaran extends CI_Model
 			$c=$q->result_array();
 			//$out[$namatable]=$c;
 			//echo $this->db->last_query();
-			echo $namatable.'=>'.$c[0]['count'].'<br />';
+			//echo $namatable.'=>'.$c[0]['count'].'<br />';
 			$out=$out+$c[0]['count'];
 		}
-		die();
+		//die();
 		return $out;
 	}
 	function getdataByIdDetJenjang($id_det_jenjang=0){
