@@ -1,35 +1,47 @@
-<style>
-	table.penghubungortutkh, table.penghubungortutkh tr td{
-		border:none;
-	}
-	table.penghubungortutk{
-		margin-bottom:0px;
-	}
-	table.penghubungortutkh tr td input{
-		width:96%;
-	}
-	table.penghubungortutk tr td{
-		height: 20px;
-		padding: 10px;
-	}
-	table.penghubungortutk tr td input{
-		width:96%;
-	}
-</style>
-
 <script>
 	$(document).ready(function(){
-		$("a.addbaristk").click(function(){
-			var tr=$(this).prev('table').children('tbody').children('tr').last()[0].outerHTML;
-			tr=tr.replace("hapustkx", "hapustk"); 
-			$(this).prev('table').children('tbody').append(tr);
+		
+			var tr2='<tr baris="1" sub_baris="1" class="sub_2 ncls">1<td>&nbsp;</td><td style="width: 1%; border-right: medium none; " >1.1</td><td style="border-right: medium none;"><input type="text" name2 ></td><td><div class="add_sub_2" baris="11"></div></td><td><a class="button small light-grey hapustkx" title="" style="float:none;" baris="11" href="#">Hapus</a></td></tr>';
+			
+			var tr1='<tr baris="1" class="sub_1 ncls"><td>noxx</td><td colspan="2" style="width: 1%; border-right: medium none;"><input type="text" name1 ></td><td style="width:1%;"><div class="add_sub_1" baris="1"></div></td><td><a class="button small light-grey hapustkx" title="" style="float:none;" baris="1" href="#"> Hapus </a></td></tr>'+tr2;
+
+			var tr3='<tr baris="111" class="sub_3 ncls"><td>&nbsp;</td><td style="width: 1%; border-right: medium none; padding: 2px ! important;" ></td><td style="border-right: medium none;"><input type="text" name3 style="margin-left: 20px; width: 91%;"></td><td>&nbsp;</td><td><a class="button small light-grey hapustkx" title="" baris="111" style="float:none;" href="#"> Hapus </a></td></tr>';
+			
+
+		$("a.addbaristk").live('click', function() {
+			tr1=tr1.replace("hapustkx", "hapustk");
+			//jumlah baris sub_1
+			var baris=$("table.penghubungortutk tr.sub_1").length;
+			baris++;
+			tr2=tr2.replace("ncls", "");
+			$("table.penghubungortutk tbody").append(tr1);
+			$("table.penghubungortutk tr.sub_1").last().children('td').first().html(baris);
+			$("table.penghubungortutk tr.sub_1").last().attr('baris',baris);
+			$("table.penghubungortutk tr.sub_2").last().children('td').first().next().html(baris+'.1');
+			$("table.penghubungortutk tr.sub_2").last().attr('baris',baris);
+			$("table.penghubungortutk tr.sub_2").last().attr('sub_baris',1);
+			
+			haps();
+			return false;
+		});			
+		$("table.penghubungortutk tr td div.add_sub_1").live('click', function() {
+			//buat name
+			tr2=tr2.replace('name1', 'name="name1[][]"');
+			tr2=tr2.replace("hapustkx", "hapustk");
+			$(this).parent('td').parent('tr').after(tr2);
 			haps();
 			return false;
 
 		});
+		$("table.penghubungortutk tr td div.add_sub_2").live('click', function() {
+			tr3=tr3.replace("hapustkx", "hapustk");
+			$(this).parent('td').parent('tr').after(tr3);
+			haps();
+			return false;
+		});
 		haps();
 		function haps(){
-			$("table.penghubungortutk tbody tr td a.hapustk").click(function(){
+			$("table.penghubungortutk tbody tr td a.hapustk").live('click', function() {
 				$(this).parent('td').parent('tr').remove();
 				return false;
 			});		
@@ -43,16 +55,7 @@
 		<div id="ajaxside"></div>
 		<div id="listpenghubungortutk">
 			<form action="<? echo base_url();?>admin/penghubungortutk/addcontent" id="penghubungortutkform" name="penghubungortutkform" method="post" >
-
-                    <div class="tabs-container">
-                        <ul class="tabs-frame">
-                            <li><a href="#">Tematik</a></li>
-                            <li><a href="#">Semester Ganjil</a></li>
-                            <li><a href="#">Semester Genap</a></li>
-                            <li><a href="#">Jadwal Menu Harian </a></li>
-                        </ul>
-                        <div class="tabs-frame-content">
-                            <table class="tableprofil penghubungortutkh" border="1">
+                            <!--<table class="tableprofil penghubungortutkh" border="1">
 
 								  <tr>
 									<td>
@@ -60,92 +63,19 @@
 									<td>
 									<input placeholder="SUB TEMA" type="text" name="textfield"></td>
 								  </tr>
-							</table>
+							</table>-->
 							<table class="tableprofil penghubungortutk" border="1">
 								  <tbody>
 								  <tr>
-									<th>Kegiatan</th>
+								    <th style="width:1%;" >No</th>
+									<th colspan="3">PROGRAM PENGEMBANGAN </th>
 									<th>Hapus</th>
 								  </tr>
-								  <tr>
-									<td><input type="text" name="textfield"></td>
-									<td><a class="button small light-grey hapustkx" title="" style="float:none;" href="#"> Hapus </a></td>
-								  </tr>
-								  </tbody>
-							</table>
-							<a class="button small grey addbaristk" title="" href=""> Tambah Baris </a>
-							<a class="button small light-grey" title="" style="float:none;" href=""> Simpan </a>
-                        </div>
-                        <div class="tabs-frame-content">
-                            <table class="tableprofil penghubungortutkh" border="1">
 
-								  <tr>
-									<td>
-									<input placeholder="Judul Kegiatan" type="text" name="textfield"></td>
-								  </tr>
-							</table>
-							<table class="tableprofil penghubungortutk" border="1">
-								  <tbody>
-								  <tr>
-									<th>Kegiatan</th>
-									<th>Hapus</th>
-								  </tr>
-								  <tr>
-									<td><input type="text" name="textfield"></td>
-									<td><a class="button small light-grey hapustkx" title="" style="float:none;" href="#"> Hapus </a></td>
-								  </tr>
 								  </tbody>
 							</table>
-							<a class="button small grey addbaristk" title="" href=""> Tambah Baris </a>
+							<a class="button small grey addbaristk" title="" href=""> Tambah Program </a>
 							<a class="button small light-grey" title="" style="float:none;" href=""> Simpan </a>
-                        </div>
-                        <div class="tabs-frame-content">
-                            <table class="tableprofil penghubungortutkh" border="1">
-
-								  <tr>
-									<td>
-									<input placeholder="Judul Kegiatan" type="text" name="textfield"></td>
-								  </tr>
-							</table>
-							<table class="tableprofil penghubungortutk" border="1">
-								  <tbody>
-								  <tr>
-									<th>Kegiatan</th>
-									<th>Hapus</th>
-								  </tr>
-								  <tr>
-									<td><input type="text" name="textfield"></td>
-									<td><a class="button small light-grey hapustkx" title="" style="float:none;" href="#"> Hapus </a></td>
-								  </tr>
-								  </tbody>
-							</table>
-							<a class="button small grey addbaristk" title="" href=""> Tambah Baris </a>
-							<a class="button small light-grey" title="" style="float:none;" href=""> Simpan </a>
-                        </div>
-                        <div class="tabs-frame-content">
-                            <table class="tableprofil penghubungortutkh" border="1">
-
-								  <tr>
-									<td>
-									<input placeholder="Judul Kegiatan" type="text" name="textfield"></td>
-								  </tr>
-							</table>
-							<table class="tableprofil penghubungortutk" border="1">
-								  <tbody>
-								  <tr>
-									<th>Kegiatan</th>
-									<th>Hapus</th>
-								  </tr>
-								  <tr>
-									<td><input type="text" name="textfield"></td>
-									<td><a class="button small light-grey hapustkx" title="" style="float:none;" href="#"> Hapus </a></td>
-								  </tr>
-								  </tbody>
-							</table>
-							<a class="button small grey addbaristk" title="" href=""> Tambah Baris </a>
-							<a class="button small light-grey" title="" style="float:none;" href=""> Simpan </a>
-                        </div>
-                    </div>					
 
 				<input type="hidden" name="ajax" value="1"/> 
 			</form>					
