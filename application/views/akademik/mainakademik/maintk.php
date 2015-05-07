@@ -13,7 +13,7 @@
 	</div>
 
 	
-	<h3 id="guru"> Pembelajaran </h3>
+	<h3 id="guru"> Absensi </h3>
 
 	<div class="hr"></div>
 	<div class="tabs-container" id="tabpembelajaran">
@@ -42,18 +42,18 @@
 				<a  id="tabarekapbsensi" >Rekap Absensi</a>
 				<!--<a class="modal" href="<?=base_url('akademik/absensi/rekapabsensi')?>" >Rekap Absensi</a>-->
 			</li>
-			<li id="tabpertlist" tab="evaluasi">
+			<!--<li id="tabpertlist" tab="evaluasi">
 				<a >Evaluasi Otentik</a>
 			</li>
 			<li>
 				<a >Penilaian Deskriptif</a>
-			</li>
+			</li>-->
 		</ul>
 
 
 		<div class="tabs-frame-content" id="absensi" style="display: none; "></div>
 		<div class="tabs-frame-content" id="rekapbsensi" style="display: none;"></div>
-		<div class="tabs-frame-content" id="tabpertlistcnt" style="display: none;">
+		<!--<div class="tabs-frame-content" id="tabpertlistcnt" style="display: none;">
 			<h3>Evaluasi Otentik</h3>
 			<div class="hr"></div>
 			<a class="readmore" title="" tab="evaluasi" id="addpertemuan"> Buat <br> Evaluasi </a>
@@ -62,9 +62,9 @@
 		<div class="tabs-frame-content"  style="display: none;">
 				<a class="readmore" title="" tab="otentik" href="" id="<?=base64_encode('kognitif');?>" >Nilai<br /> Kognitif </a>
 				<a class="readmore" title="" tab="otentik" href="" id="<?=base64_encode('afektif');?>" >Nilai<br /> Afektif </a>
-				<!--<a class="readmore" title="" tab="otentik" href="" id="<?=base64_encode('portofolio');?>" >Record<br /> Portofolio </a>-->
+				<a class="readmore" title="" tab="otentik" href="" id="<?=base64_encode('portofolio');?>" >Record<br /> Portofolio </a>
 				<a class="readmore" title="" tab="otentik" href="" id="<?=base64_encode('psikomotorik');?>">Nilai<br /> Psikomotorik</a>
-		</div>
+		</div>-->
 	</div>
 
 	

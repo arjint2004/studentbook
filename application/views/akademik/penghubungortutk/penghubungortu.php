@@ -7,18 +7,25 @@
 						//add_id_ortu();
 					});
 					
-					$('#listlap').click( function() {
-						$('.listlap').show();
-						$(this).children('a').addClass('current');
-						$('#sendlap').children('a').removeClass('current');
-						$('.sendlap').hide();
-					});
-					$('#sendlap').click( function() {
-						$('.listlap').hide();
-						$(this).children('a').addClass('current');
-						$('#listlap').children('a').removeClass('current');
-						$('.sendlap').show();
-					});
+					/**
+					 * Tabs Shortcodes
+					 */
+					if($('ul.tabs-frame').length > 0) $('ul.tabs-frame').tabs('> .tabs-frame-content');
+					
+					if($('.tabs-vertical-frame').length > 0){
+						$('.tabs-vertical-frame').tabs('> .tabs-vertical-frame-content');
+						
+						$('.tabs-vertical-frame').each(function(){
+							$(this).find("li:first").addClass('first').addClass('current');
+							$(this).find("li:last").addClass('last');
+						});
+
+						$('.tabs-vertical-frame li').click(function(){ 
+							$(this).parent().children().removeClass('current');
+							$(this).addClass('current');
+						});
+					}
+					/*Tabs Shortcode Ends*/
 					
 					$('.selall').click( function() {
 						$('#idsiswalaporan option').attr('selected', 'selected');
@@ -135,13 +142,13 @@
 				</script>
 				    <div class="hr"> </div>
                     <div class="clear"> </div>
-					<h2 class="float-left" class="aktifitasakademik"> Buku Penghubung Ortu </h2>
+					<h2 class="float-left aktifitasakademik" > Buku Penghubung Ortu </h2>
                     
                     <div class="tabs-container">
                         <ul class="tabs-frame">
-                            <li id="listlap"><a style="cursor:pointer;" class="current">Daftar Laporan</a></li>
-                            <li id="sendlap"><a style="cursor:pointer;" >Kirim Laporan</a></li>
-                            
+                            <li id="listlap"><a style="cursor:pointer;" class="current">Daftar Kegiatan</a></li>
+                            <li id="sendlap"><a style="cursor:pointer;" >Kirim Kegiatan</a></li>
+                            <li id="pengtk"><a style="cursor:pointer;" >Perkembangan</a></li>
                         </ul>
                         <div class="tabs-frame-content listlap">
 							<form id="penghubunglist" method="post" action="">
@@ -278,4 +285,78 @@
 								
 							</div><!-- **Respond Form - End** --> 
                         </div>
+						<div class="tabs-frame-content pengtk" style="display:none;">
+							<form action="<? echo base_url();?>admin/penghubungortutk/addcontent" id="penghubungortutkform" name="penghubungortutkform" method="post" >
+														<!--<table class="tableprofil penghubungortutkh" border="1">
+
+															  <tr>
+																<td>
+																<input placeholder="TEMA" type="text" name="textfield"></td>
+																<td>
+																<input placeholder="SUB TEMA" type="text" name="textfield"></td>
+															  </tr>
+														</table>-->
+														<table class="tableprofil penghubungortutk" border="1">
+															  <tbody>
+															  <tr>
+																<th style="width:1%;" >No</th>
+																<th colspan="2">PROGRAM PENGEMBANGAN</th>
+																<th colspan="4">Aspek Penilaian </th>
+																</tr>
+															  <tr>
+																<th style="width:1%;" >&nbsp;</th>
+																<th colspan="2">&nbsp;</th>
+																<th>1</th>
+																<th>2</th>
+																<th>3</th>
+																<th>4</th>
+															  </tr>
+
+															  <? if(!empty($content[0]['contarr'])){foreach($content[0]['contarr'] as $baris => $data){?>
+															  
+															  <tr class="sub_1 " baris="<?=$baris?>">
+																  <td style="text-align:center; "><?=$baris?></td>
+																  <td style="width: 1%;text-align:left; " colspan="2"><?=$data['nama']?></td>
+																  <td class="aspekpenilai"><?=$data['aspek'][0]?></td>
+																  <td class="aspekpenilai"><?=$data['aspek'][1]?></td>
+																  <td class="aspekpenilai"><?=$data['aspek'][2]?></td>
+																  <td class="aspekpenilai"><?=$data['aspek'][3]?></td>
+																  </td>
+															  </tr>
+																	<? if(!empty($data['child'])){foreach($data['child'] as $baris_2 => $data_2){
+																		$sub2=explode("_",$baris_2);
+																	?>
+																	  <tr class="sub_2 ncls ncsub2 par_<?=$sub2[0]?> par0_<?=$sub2[0]?>" sub_baris="<?=$sub2[0]?>" baris="<?=$sub2[1]?>">
+																		  <td>&nbsp;</td>
+																		  <td style="width: 1%; border-right: medium none; "><?=$sub2[0]?>.<?=$sub2[1]?></td>
+																		  <td ><?=$data_2['nama']?></td>
+																		  <td></td>
+																		  <td></td>
+																		  <td></td>
+																		  <td></td>
+																	  </tr>
+																			<? if(!empty($data_2['child'])){foreach($data_2['child'] as $baris_3 => $data_3){
+																				$sub3=explode("_",$baris_3);
+																			?> 
+																				<tr class="sub_3 ncsub3 par_<?=$sub3[0]?> par_<?=$sub3[0]?>_<?=$sub3[1]?> ncls" sub_baris="<?=$sub3[0]?>" baris="<?=$sub3[1]?>" baris_sub="<?=$sub3[2]?>">
+																					<td>&nbsp;</td>
+																					<td style="width: 1%; border-right: medium none; padding: 2px ! important;"></td>
+																					<td ><?=$data_3['nama']?></td>
+																					<td></td>
+																					<td></td>
+																					<td></td>
+																					<td></td>
+																				</tr>												
+																			<? }  } ?> 
+																	<? } } ?> 
+															  <? } }?> 
+															  </tbody>
+														</table>
+														<br />
+														<a class="button small grey addbaristk" title="" href=""> Tambah Program </a>
+														<a class="button small light-grey" title="" id="simpanprg" style="float:none;" href=""> Simpan </a>
+
+											<input type="hidden" name="ajax" value="1"/> 
+										</form>							
+						</div>    
                     </div>    

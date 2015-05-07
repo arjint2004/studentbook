@@ -145,13 +145,145 @@ class penghubungortutk extends CI_Controller
 		}
         public function penghubungortu()
         {
-			//content perkembngan
-			$this->load->model('ad_penghubungortutk');
-			$content=$this->ad_penghubungortutk->getdataByIdSekolah($this->session->userdata['user_authentication']['id_sekolah']);
-			$content[0]['contarr']=unserialize($content[0]['content']);
-			$data['content']=$content;			
-			//content perkembngan end
-			
+			$content=array(
+							array(
+								'tema'=>'Nama Tema',
+								'sub tema'=>'Nama Sub Tema',
+								'content'=>array(
+												array(
+													'no'=>1,
+													'cek'=>1,
+													'deskripsi'=>1,
+													'keterangan'=>1,
+												),
+												array(
+													'no'=>1,
+													'cek'=>1,
+													'deskripsi'=>1,
+													'keterangan'=>1,
+												),
+												array(
+													'no'=>1,
+													'cek'=>1,
+													'deskripsi'=>1,
+													'keterangan'=>1,
+												)
+								)
+							),
+							array(
+								  'ganjil'=>array(
+												'judul'=>'Hafalan Doa',
+												'content'=>array(
+																array(
+																	'cek'=>1,
+																	'deskripsi'=>1,
+																	'keterangan'=>1,
+																),
+																array(
+																	'cek'=>1,
+																	'deskripsi'=>1,
+																	'keterangan'=>1,
+																)
+												)
+											),
+											array(
+												'judul'=>'Hafalan hadist',
+												'content'=>array(
+																array(
+																	'cek'=>1,
+																	'deskripsi'=>1,
+																	'keterangan'=>1,
+																),
+																array(
+																	'cek'=>1,
+																	'deskripsi'=>1,
+																	'keterangan'=>1,
+																)
+												)
+											),
+											array(
+												'judul'=>'Hafalan surat',
+												'content'=>array(
+																array(
+																	'cek'=>1,
+																	'deskripsi'=>1,
+																	'keterangan'=>1,
+																),
+																array(
+																	'cek'=>1,
+																	'deskripsi'=>1,
+																	'keterangan'=>1,
+																)
+												)
+											),
+								  'genap'=>array(
+												'judul'=>'Hafalan Doa',
+												'content'=>array(
+																array(
+																	'cek'=>1,
+																	'deskripsi'=>1,
+																	'keterangan'=>1,
+																),
+																array(
+																	'cek'=>1,
+																	'deskripsi'=>1,
+																	'keterangan'=>1,
+																)
+												)
+											),
+											array(
+												'judul'=>'Hafalan hadist',
+												'content'=>array(
+																array(
+																	'cek'=>1,
+																	'deskripsi'=>1,
+																	'keterangan'=>1,
+																),
+																array(
+																	'cek'=>1,
+																	'deskripsi'=>1,
+																	'keterangan'=>1,
+																)
+												)
+											),
+											array(
+												'judul'=>'Hafalan surat',
+												'content'=>array(
+																array(
+																	'cek'=>1,
+																	'deskripsi'=>1,
+																	'keterangan'=>1,
+																),
+																array(
+																	'cek'=>1,
+																	'deskripsi'=>1,
+																	'keterangan'=>1,
+																)
+												)
+											)
+
+							),
+							array(
+								'judul'=>'Menu Harian',
+								'content'=>array(
+												array(
+													'no'=>1,
+													'cek'=>1,
+													'deskripsi'=>1,
+													'keterangan'=>1,
+												),
+												array(
+													'no'=>1,
+													'cek'=>1,
+													'deskripsi'=>1,
+													'keterangan'=>1,
+												)
+								)							
+							)
+							
+			);
+			//pr($content);			
+			//pr($_POST);
 			$this->load->model('ad_kelas');
 			
 			$data1=$this->ad_kelas->getkelasByPengajar($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']);

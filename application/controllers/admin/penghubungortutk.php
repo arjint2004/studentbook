@@ -16,147 +16,25 @@ class penghubungortutk extends CI_Controller
 		
         public function addcontent()
         {
-			$content=array(
-							array(
-								'tema'=>'Nama Tema',
-								'sub tema'=>'Nama Sub Tema',
-								'content'=>array(
-												array(
-													'no'=>1,
-													'cek'=>1,
-													'deskripsi'=>1,
-													'keterangan'=>1,
-												),
-												array(
-													'no'=>1,
-													'cek'=>1,
-													'deskripsi'=>1,
-													'keterangan'=>1,
-												),
-												array(
-													'no'=>1,
-													'cek'=>1,
-													'deskripsi'=>1,
-													'keterangan'=>1,
-												)
-								)
-							),
-							array(
-								  'ganjil'=>array(
-												'judul'=>'Hafalan Doa',
-												'content'=>array(
-																array(
-																	'cek'=>1,
-																	'deskripsi'=>1,
-																	'keterangan'=>1,
-																),
-																array(
-																	'cek'=>1,
-																	'deskripsi'=>1,
-																	'keterangan'=>1,
-																)
-												)
-											),
-											array(
-												'judul'=>'Hafalan hadist',
-												'content'=>array(
-																array(
-																	'cek'=>1,
-																	'deskripsi'=>1,
-																	'keterangan'=>1,
-																),
-																array(
-																	'cek'=>1,
-																	'deskripsi'=>1,
-																	'keterangan'=>1,
-																)
-												)
-											),
-											array(
-												'judul'=>'Hafalan surat',
-												'content'=>array(
-																array(
-																	'cek'=>1,
-																	'deskripsi'=>1,
-																	'keterangan'=>1,
-																),
-																array(
-																	'cek'=>1,
-																	'deskripsi'=>1,
-																	'keterangan'=>1,
-																)
-												)
-											),
-								  'genap'=>array(
-												'judul'=>'Hafalan Doa',
-												'content'=>array(
-																array(
-																	'cek'=>1,
-																	'deskripsi'=>1,
-																	'keterangan'=>1,
-																),
-																array(
-																	'cek'=>1,
-																	'deskripsi'=>1,
-																	'keterangan'=>1,
-																)
-												)
-											),
-											array(
-												'judul'=>'Hafalan hadist',
-												'content'=>array(
-																array(
-																	'cek'=>1,
-																	'deskripsi'=>1,
-																	'keterangan'=>1,
-																),
-																array(
-																	'cek'=>1,
-																	'deskripsi'=>1,
-																	'keterangan'=>1,
-																)
-												)
-											),
-											array(
-												'judul'=>'Hafalan surat',
-												'content'=>array(
-																array(
-																	'cek'=>1,
-																	'deskripsi'=>1,
-																	'keterangan'=>1,
-																),
-																array(
-																	'cek'=>1,
-																	'deskripsi'=>1,
-																	'keterangan'=>1,
-																)
-												)
-											)
-
-							),
-							array(
-								'judul'=>'Menu Harian',
-								'content'=>array(
-												array(
-													'no'=>1,
-													'cek'=>1,
-													'deskripsi'=>1,
-													'keterangan'=>1,
-												),
-												array(
-													'no'=>1,
-													'cek'=>1,
-													'deskripsi'=>1,
-													'keterangan'=>1,
-												)
-								)							
-							)
-							
-			);
-			//pr($content);			
-			
-
-			
+			$this->load->model('ad_penghubungortutk');
+			if(isset($_POST['program'])){
+			$content=$this->ad_penghubungortutk->getdataByIdSekolah($this->session->userdata['user_authentication']['id_sekolah']);
+				if(empty($content)){
+					$datain=array( 'id_sekolah'=>$this->session->userdata['user_authentication']['id_sekolah'],
+								   'content'=>serialize($_POST['program'])
+								);
+					$this->db->insert('ak_penghubung_tk_cont',$datain);
+				}else{
+					$datain=array( 'content'=>serialize($_POST['program']));
+					$this->db->where('id',$content[0]['id']);				
+					$this->db->update('ak_penghubung_tk_cont',$datain);
+				}
+			}
+			//echo $this->db->last_query();
+			$content=$this->ad_penghubungortutk->getdataByIdSekolah($this->session->userdata['user_authentication']['id_sekolah']);
+			$content[0]['contarr']=unserialize($content[0]['content']);
+			//pr($content);
+			$data['content']=$content;
             $data['main']= 'schooladmin/penghubungortutk/addcontent';
             $this->load->view('layout/ad_adminsekolah',$data);
 		}
