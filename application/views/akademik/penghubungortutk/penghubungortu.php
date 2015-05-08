@@ -7,34 +7,41 @@
 						//add_id_ortu();
 					});
 					
-					/**
-					 * Tabs Shortcodes
-					 */
-					if($('ul.tabs-frame').length > 0) $('ul.tabs-frame').tabs('> .tabs-frame-content');
-					
-					if($('.tabs-vertical-frame').length > 0){
-						$('.tabs-vertical-frame').tabs('> .tabs-vertical-frame-content');
-						
-						$('.tabs-vertical-frame').each(function(){
-							$(this).find("li:first").addClass('first').addClass('current');
-							$(this).find("li:last").addClass('last');
-						});
-
-						$('.tabs-vertical-frame li').click(function(){ 
-							$(this).parent().children().removeClass('current');
-							$(this).addClass('current');
-						});
-					}
-					/*Tabs Shortcode Ends*/
+					$('#listlap').click( function() {
+						$('.listlap').show();
+						$(this).children('a').addClass('current');
+						$('#sendlap').children('a').removeClass('current');
+						$('.sendlap').hide();
+						$('.pengtk').hide();
+					});
+					$('#sendlap').click( function() {
+						$('.listlap').hide();
+						$('.pengtk').hide();
+						$(this).children('a').addClass('current');
+						$('#listlap').children('a').removeClass('current');
+						$('#pengtk').children('a').removeClass('current');
+						$('.sendlap').show();
+					});
+					$('#pengtk').click( function() {
+						$('.listlap').hide();
+						$('.sendlap').hide();
+						$(this).children('a').addClass('current');
+						$('#listlap').children('a').removeClass('current');
+						$('#sendlap').children('a').removeClass('current');
+						$('.pengtk').show();
+					});
 					
 					$('.selall').click( function() {
 						$('#idsiswalaporan option').attr('selected', 'selected');
 						//add_id_ortu();
 					});
-					$("select#kelaslaporan,select#idkelasp").change(function(e){
+					$("select#kelaslaporan,select#idkelasp,select#kelasperkemb").change(function(e){
 						if($(this).attr('name')=='idkelasp'){
 							var urll='<?=base_url()?>akademik/jurnalwali/penghubungortulist/0';
 							var append='#listpenghub';
+						}else if($(this).attr('id')=='kelasperkemb'){
+							var urll='<?=base_url()?>akademik/jurnalwali/getOptionSiswaByIdKelas/'+$(this).val();
+							var append='#siswaperkemb';				
 						}else{
 							var urll='<?=base_url()?>akademik/jurnalwali/getOptionSiswaByIdKelas/'+$(this).val();
 							var append='#idsiswalaporan';
@@ -85,6 +92,34 @@
 						}
 					});
 				}
+				
+				$("a.simpanprg").click(function(e){
+					$("form#penghubungortutkform").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+					$(".error-box").html("Menyimpan Data").fadeIn("slow");
+					$.ajax({
+						type: "POST",
+						data: $('form#penghubungortutkform').serialize(),
+						url: $('form#penghubungortutkform').attr('action'),
+						beforeSend: function() {
+							
+						},
+						error	: function(){
+									$(".error-box").delay(1000).html('Menyimpan data gagal');
+									$(".error-box").delay(1000).fadeOut("slow",function(){
+										$(this).remove();
+									});
+														
+						},
+						success: function(msg) {
+									$("#wait").remove();
+									$(".error-box").delay(1000).html('Data berhasil di simpan');
+									$(".error-box").delay(1000).fadeOut("slow",function(){
+										$(this).remove();
+									});	
+						}
+					});
+					return false;					
+				});
 				
 				$("#kirimlaporan").submit(function(e){
 					$frm = $(this);
@@ -286,7 +321,28 @@
 							</div><!-- **Respond Form - End** --> 
                         </div>
 						<div class="tabs-frame-content pengtk" style="display:none;">
-							<form action="<? echo base_url();?>admin/penghubungortutk/addcontent" id="penghubungortutkform" name="penghubungortutkform" method="post" >
+							<? //pr($_POST['program']);?>
+							<table class="tabelfilter">
+								<tr>
+								<td>
+									Kelas :
+										<select class="selectfilter" id="kelasperkemb" name="id_kelas">
+											<option value="">Pilih Kelas</option>
+											<? foreach($kelaslaporan as $datakelas){?>
+											<option <? if(@$_POST['kelas']==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>"><?=$datakelas['kelas']?><?=$datakelas['nama']?></option>
+											<? } ?>
+										</select>
+
+									
+									Siswa :
+										<select class="selectfilter" id="siswaperkemb" name="id_siswa_det_jenjang">
+											<option value="">Pilih Siswa</option>
+										</select>
+									
+									</td>
+								</tr>
+							</table>
+							<form action="<? echo base_url();?>akademik/penghubungortutk/penghubungortu" id="penghubungortutkform" name="penghubungortutkform" method="post" >
 														<!--<table class="tableprofil penghubungortutkh" border="1">
 
 															  <tr>
@@ -296,6 +352,9 @@
 																<input placeholder="SUB TEMA" type="text" name="textfield"></td>
 															  </tr>
 														</table>-->
+														<a class="button small light-grey simpanprg" title="" id="" style="float:right;" href=""> Simpan </a>
+														<br />
+														<br />
 														<table class="tableprofil penghubungortutk" border="1">
 															  <tbody>
 															  <tr>
@@ -303,24 +362,16 @@
 																<th colspan="2">PROGRAM PENGEMBANGAN</th>
 																<th colspan="4">Aspek Penilaian </th>
 																</tr>
-															  <tr>
-																<th style="width:1%;" >&nbsp;</th>
-																<th colspan="2">&nbsp;</th>
-																<th>1</th>
-																<th>2</th>
-																<th>3</th>
-																<th>4</th>
-															  </tr>
 
 															  <? if(!empty($content[0]['contarr'])){foreach($content[0]['contarr'] as $baris => $data){?>
 															  
 															  <tr class="sub_1 " baris="<?=$baris?>">
 																  <td style="text-align:center; "><?=$baris?></td>
-																  <td style="width: 1%;text-align:left; " colspan="2"><?=$data['nama']?></td>
-																  <td class="aspekpenilai"><?=$data['aspek'][0]?></td>
-																  <td class="aspekpenilai"><?=$data['aspek'][1]?></td>
-																  <td class="aspekpenilai"><?=$data['aspek'][2]?></td>
-																  <td class="aspekpenilai"><?=$data['aspek'][3]?></td>
+																  <td style="width: 1%;text-align:left; " colspan="2"><input type="hidden"  value="<?=$data['nama']?>" name="program[<?=$baris?>][nama]"><?=$data['nama']?></td>
+																  <td class="aspekpenilai"><input type="hidden" name="program[<?=$baris?>][aspek][]" value="<?=$data['aspek'][0]?>"><?=$data['aspek'][0]?></td>
+																  <td class="aspekpenilai"><input type="hidden" name="program[<?=$baris?>][aspek][]" value="<?=$data['aspek'][1]?>"><?=$data['aspek'][1]?></td>
+																  <td class="aspekpenilai"><input type="hidden" name="program[<?=$baris?>][aspek][]" value="<?=$data['aspek'][2]?>"><?=$data['aspek'][2]?></td>
+																  <td class="aspekpenilai"><input type="hidden" name="program[<?=$baris?>][aspek][]" value="<?=$data['aspek'][3]?>"><?=$data['aspek'][3]?></td>
 																  </td>
 															  </tr>
 																	<? if(!empty($data['child'])){foreach($data['child'] as $baris_2 => $data_2){
@@ -329,23 +380,23 @@
 																	  <tr class="sub_2 ncls ncsub2 par_<?=$sub2[0]?> par0_<?=$sub2[0]?>" sub_baris="<?=$sub2[0]?>" baris="<?=$sub2[1]?>">
 																		  <td>&nbsp;</td>
 																		  <td style="width: 1%; border-right: medium none; "><?=$sub2[0]?>.<?=$sub2[1]?></td>
-																		  <td ><?=$data_2['nama']?></td>
-																		  <td></td>
-																		  <td></td>
-																		  <td></td>
-																		  <td></td>
+																		  <td ><input type="hidden"  value="<?=$data_2['nama']?>" name="program[<?=$sub2[0]?>][child][<?=$sub2[0]?>_<?=$sub2[1]?>][nama]"><?=$data_2['nama']?></td>
+																		  <td class="nilai"><input type="radio" name="program[<?=$sub2[0]?>][child][<?=$sub2[0]?>_<?=$sub2[1]?>][nilai]" value="<?=$data['aspek'][0]?>" <? if($data_2['nilai']==$data['aspek'][0]){echo 'checked';}?>></td>
+																		  <td class="nilai"><input type="radio" name="program[<?=$sub2[0]?>][child][<?=$sub2[0]?>_<?=$sub2[1]?>][nilai]" value="<?=$data['aspek'][1]?>" <? if($data_2['nilai']==$data['aspek'][1]){echo 'checked';}?>></td>
+																		  <td class="nilai"><input type="radio" name="program[<?=$sub2[0]?>][child][<?=$sub2[0]?>_<?=$sub2[1]?>][nilai]" value="<?=$data['aspek'][2]?>" <? if($data_2['nilai']==$data['aspek'][2]){echo 'checked';}else{echo 'checked';}?> ></td>
+																		  <td class="nilai"><input type="radio" name="program[<?=$sub2[0]?>][child][<?=$sub2[0]?>_<?=$sub2[1]?>][nilai]" value="<?=$data['aspek'][3]?>" <? if($data_2['nilai']==$data['aspek'][3]){echo 'checked';}?>></td>
 																	  </tr>
 																			<? if(!empty($data_2['child'])){foreach($data_2['child'] as $baris_3 => $data_3){
 																				$sub3=explode("_",$baris_3);
 																			?> 
 																				<tr class="sub_3 ncsub3 par_<?=$sub3[0]?> par_<?=$sub3[0]?>_<?=$sub3[1]?> ncls" sub_baris="<?=$sub3[0]?>" baris="<?=$sub3[1]?>" baris_sub="<?=$sub3[2]?>">
-																					<td>&nbsp;</td>
-																					<td style="width: 1%; border-right: medium none; padding: 2px ! important;"></td>
-																					<td ><?=$data_3['nama']?></td>
-																					<td></td>
-																					<td></td>
-																					<td></td>
-																					<td></td>
+																						<td>&nbsp;</td>
+																						<td style="width: 1%; border-right: medium none; padding: 2px ! important;"></td>
+																						<td ><input type="hidden" style="margin-left: 20px; width: 91%;" name3="" value="<?=$data_3['nama']?>" name="program[<?=$sub3[0]?>][child][<?=$sub3[0]?>_<?=$sub3[1]?>][child][<?=$sub3[0]?>_<?=$sub3[1]?>_<?=$sub3[2]?>][nama]"><?=$data_3['nama']?></td>
+																					  <td class="nilai"><input type="radio" name="program[<?=$sub3[0]?>][child][<?=$sub3[0]?>_<?=$sub3[1]?>][child][<?=$sub3[0]?>_<?=$sub3[1]?>_<?=$sub3[2]?>][nilai]" value="<?=$data['aspek'][0]?>"  <? if($data_3['nilai']==$data['aspek'][0]){echo 'checked';}?>></td>
+																					  <td class="nilai"><input type="radio" name="program[<?=$sub3[0]?>][child][<?=$sub3[0]?>_<?=$sub3[1]?>][child][<?=$sub3[0]?>_<?=$sub3[1]?>_<?=$sub3[2]?>][nilai]" value="<?=$data['aspek'][1]?>" <? if($data_3['nilai']==$data['aspek'][1]){echo 'checked';}?>></td>
+																					  <td class="nilai"><input type="radio" name="program[<?=$sub3[0]?>][child][<?=$sub3[0]?>_<?=$sub3[1]?>][child][<?=$sub3[0]?>_<?=$sub3[1]?>_<?=$sub3[2]?>][nilai]" value="<?=$data['aspek'][2]?>" <? if($data_3['nilai']==$data['aspek'][2]){echo 'checked';}else{echo 'checked';}?>></td>
+																					  <td class="nilai"><input type="radio" name="program[<?=$sub3[0]?>][child][<?=$sub3[0]?>_<?=$sub3[1]?>][child][<?=$sub3[0]?>_<?=$sub3[1]?>_<?=$sub3[2]?>][nilai]" value="<?=$data['aspek'][3]?>" <? if($data_3['nilai']==$data['aspek'][3]){echo 'checked';}?>></td>
 																				</tr>												
 																			<? }  } ?> 
 																	<? } } ?> 
@@ -353,10 +404,7 @@
 															  </tbody>
 														</table>
 														<br />
-														<a class="button small grey addbaristk" title="" href=""> Tambah Program </a>
-														<a class="button small light-grey" title="" id="simpanprg" style="float:none;" href=""> Simpan </a>
-
-											<input type="hidden" name="ajax" value="1"/> 
+														<a class="button small light-grey simpanprg" title=""  style="float:right;" href=""> Simpan </a>
 										</form>							
 						</div>    
-                    </div>    
+                    </div>
