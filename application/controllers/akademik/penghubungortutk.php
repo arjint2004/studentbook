@@ -148,7 +148,7 @@ class penghubungortutk extends CI_Controller
 			//content perkembngan
 			$this->load->model('ad_penghubungortutk');
 			if(isset($_POST['program'])){
-				pr($_POST);die();
+				$datasiswa=json_decode(base64_decode($_POST['id_siswa_det_jenjang']),true);die();
 			}
 			$content=$this->ad_penghubungortutk->getdataByIdSekolah($this->session->userdata['user_authentication']['id_sekolah']);
 			//$contentsiswa=$this->ad_penghubungortutk->getdataPengByIdSiswa($_POST['id_siswa']);

@@ -696,3 +696,34 @@ table.hm tr td div.cnt{
 table.hm tr td:hover{
 	background:#dddddd;
 }
+
+/*Penghubung ortu TK*/
+	table.penghubungortutkh, table.penghubungortutkh tr td{
+		border:none;
+	}
+	table.penghubungortutk{
+		margin-bottom:0px;
+	}
+	table.penghubungortutkh tr td input{
+		width:96%;
+	}
+	table.penghubungortutk tr td div.add_sub_1,table.penghubungortutk tr td div.add_sub_2{
+		background: url("../images/plus-ico.png") no-repeat scroll 0 center transparent;
+		cursor: pointer;
+		height: 17px;
+		width: 17px;
+	}
+	table.penghubungortutk tr td{
+		height: 20px;
+		padding: 5px;
+	}
+	table.penghubungortutk tr td input{
+		float:right;
+		width:96%;
+	}
+	table.penghubungortutk tr td.aspekpenilai input{
+		width:81%;
+	}
+	table.penghubungortutk tr td.aspekpenilai{
+		width:10%;
+	}

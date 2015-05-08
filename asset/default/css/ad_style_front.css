@@ -463,3 +463,40 @@ table.left tr td{
 
 form#simpanhportuform table tr td input,form#simpanbiodata table tr td input{margin:0;}
 form#simpanbiodata table tr td input{width:200px;}
+
+
+/*Penghubung ortu TK*/
+	table.penghubungortutkh, table.penghubungortutkh tr td{
+		border:none;
+	}
+	table.penghubungortutk{
+		margin-bottom:0px;
+	}
+	table.penghubungortutkh tr td input{
+		width:96%;
+	}
+	table.penghubungortutk tr td div.add_sub_1,table.penghubungortutk tr td div.add_sub_2{
+		background: url("../images/plus-ico.png") no-repeat scroll 0 center transparent;
+		cursor: pointer;
+		height: 17px;
+		width: 17px;
+	}
+	table.penghubungortutk tr td{
+		height: 20px;
+		padding: 5px;
+		text-align: left;
+	}
+	table.penghubungortutk tr td input{
+		
+	}
+	table.penghubungortutk tr.sub_1 td {
+		Background-color:#cfcfcf;
+		text-align:center;
+		text-transform:uppercase;
+	}
+	table.penghubungortutk tr td.nilai {
+		text-align:center;
+	}
+	table.penghubungortutk tr td.aspekpenilai{
+		width:10%;
+	}

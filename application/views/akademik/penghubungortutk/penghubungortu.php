@@ -172,8 +172,11 @@
 				<script type="text/javascript" src="<?=$this->config->item('js');?>upload.js"></script>
 				<script type="text/javascript">
 				function getadd(obj,date) {
-
+					
 				}
+				$(function() {
+					$('#tanggalpengtk').datepick();
+				});
 				</script>
 				    <div class="hr"> </div>
                     <div class="clear"> </div>
@@ -322,6 +325,7 @@
                         </div>
 						<div class="tabs-frame-content pengtk" style="display:none;">
 							<? //pr($_POST['program']);?>
+							<form action="<? echo base_url();?>akademik/penghubungortutk/penghubungortu" id="penghubungortutkform" name="penghubungortutkform" method="post" >
 							<table class="tabelfilter">
 								<tr>
 								<td>
@@ -338,11 +342,12 @@
 										<select class="selectfilter" id="siswaperkemb" name="id_siswa_det_jenjang">
 											<option value="">Pilih Siswa</option>
 										</select>
+									Tanggal :
+										<input type="text" style="height:28px; width:110px;" id="tanggalpengtk" name="tanggalpengtk" readonly="" placeholder="Pilih Tanggal">
 									
 									</td>
 								</tr>
 							</table>
-							<form action="<? echo base_url();?>akademik/penghubungortutk/penghubungortu" id="penghubungortutkform" name="penghubungortutkform" method="post" >
 														<!--<table class="tableprofil penghubungortutkh" border="1">
 
 															  <tr>

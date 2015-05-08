@@ -42,7 +42,7 @@
 			}
 		});	
 	}
-	
+	getadd('',$('#popupDatepicker').val())
 	$('#jamabsen').bind('change', function() {
 		$('#hiddenjamke').remove();
 		$(this).after('<input type="hidden" name="jamkenya" id="hiddenjamke" value="'+$(this).find(":selected").text()+'"/>');
