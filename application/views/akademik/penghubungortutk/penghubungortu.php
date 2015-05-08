@@ -170,14 +170,7 @@
 				});
 				</script>
 				<script type="text/javascript" src="<?=$this->config->item('js');?>upload.js"></script>
-				<script type="text/javascript">
-				function getadd(obj,date) {
-					
-				}
-				$(function() {
-					$('#tanggalpengtk').datepick();
-				});
-				</script>
+				
 				    <div class="hr"> </div>
                     <div class="clear"> </div>
 					<h2 class="float-left aktifitasakademik" > Buku Penghubung Ortu </h2>
@@ -323,8 +316,41 @@
 								
 							</div><!-- **Respond Form - End** --> 
                         </div>
-						<div class="tabs-frame-content pengtk" style="display:none;">
+						<div class="tabs-frame-content pengtk" style="display:none;"  >
 							<? //pr($_POST['program']);?>
+							<script type="text/javascript">
+								function getadd(obj,date) {
+									$("form#penghubungortutkform").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+									$(".error-box").html("Mengambil Data").fadeIn("slow");
+									$.ajax({
+										type: "POST",
+										data: 'id_kelas='+$('select#kelasperkemb').val()+'&id_det_jenjang='+$('select#siswaperkemb').val()+'&tanggalpengtk='+date+'&onlyview=true',
+										url: '<?=base_url()?>akademik/penghubungortutk/penghubungortu/',
+										beforeSend: function() {
+											
+										},
+										error	: function(){
+													$(".error-box").delay(1000).html('Mengambil data gagal');
+													$(".error-box").delay(1000).fadeOut("slow",function(){
+														$(this).remove();
+													});
+																		
+										},
+										success: function(msg) {
+													$("#wait").remove();
+													$("div#placeperkembangan").html(msg);
+													$(".error-box").delay(1000).html('Data berhasil di ambil');
+													$(".error-box").delay(1000).fadeOut("slow",function(){
+														$(this).remove();
+													});	
+										}
+									});
+									return false;
+								}
+								$(function() {
+									$('#tanggalpengtk').datepick();
+								});
+							</script>
 							<form action="<? echo base_url();?>akademik/penghubungortutk/penghubungortu" id="penghubungortutkform" name="penghubungortutkform" method="post" >
 							<table class="tabelfilter">
 								<tr>
@@ -339,7 +365,7 @@
 
 									
 									Siswa :
-										<select class="selectfilter" id="siswaperkemb" name="id_siswa_det_jenjang">
+										<select class="selectfilter" id="siswaperkemb" name="id_det_jenjang">
 											<option value="">Pilih Siswa</option>
 										</select>
 									Tanggal :
@@ -348,68 +374,23 @@
 									</td>
 								</tr>
 							</table>
-														<!--<table class="tableprofil penghubungortutkh" border="1">
-
-															  <tr>
-																<td>
-																<input placeholder="TEMA" type="text" name="textfield"></td>
-																<td>
-																<input placeholder="SUB TEMA" type="text" name="textfield"></td>
-															  </tr>
-														</table>-->
-														<a class="button small light-grey simpanprg" title="" id="" style="float:right;" href=""> Simpan </a>
-														<br />
-														<br />
-														<table class="tableprofil penghubungortutk" border="1">
-															  <tbody>
-															  <tr>
-																<th style="width:1%;" >No</th>
-																<th colspan="2">PROGRAM PENGEMBANGAN</th>
-																<th colspan="4">Aspek Penilaian </th>
-																</tr>
-
-															  <? if(!empty($content[0]['contarr'])){foreach($content[0]['contarr'] as $baris => $data){?>
-															  
-															  <tr class="sub_1 " baris="<?=$baris?>">
-																  <td style="text-align:center; "><?=$baris?></td>
-																  <td style="width: 1%;text-align:left; " colspan="2"><input type="hidden"  value="<?=$data['nama']?>" name="program[<?=$baris?>][nama]"><?=$data['nama']?></td>
-																  <td class="aspekpenilai"><input type="hidden" name="program[<?=$baris?>][aspek][]" value="<?=$data['aspek'][0]?>"><?=$data['aspek'][0]?></td>
-																  <td class="aspekpenilai"><input type="hidden" name="program[<?=$baris?>][aspek][]" value="<?=$data['aspek'][1]?>"><?=$data['aspek'][1]?></td>
-																  <td class="aspekpenilai"><input type="hidden" name="program[<?=$baris?>][aspek][]" value="<?=$data['aspek'][2]?>"><?=$data['aspek'][2]?></td>
-																  <td class="aspekpenilai"><input type="hidden" name="program[<?=$baris?>][aspek][]" value="<?=$data['aspek'][3]?>"><?=$data['aspek'][3]?></td>
-																  </td>
-															  </tr>
-																	<? if(!empty($data['child'])){foreach($data['child'] as $baris_2 => $data_2){
-																		$sub2=explode("_",$baris_2);
-																	?>
-																	  <tr class="sub_2 ncls ncsub2 par_<?=$sub2[0]?> par0_<?=$sub2[0]?>" sub_baris="<?=$sub2[0]?>" baris="<?=$sub2[1]?>">
-																		  <td>&nbsp;</td>
-																		  <td style="width: 1%; border-right: medium none; "><?=$sub2[0]?>.<?=$sub2[1]?></td>
-																		  <td ><input type="hidden"  value="<?=$data_2['nama']?>" name="program[<?=$sub2[0]?>][child][<?=$sub2[0]?>_<?=$sub2[1]?>][nama]"><?=$data_2['nama']?></td>
-																		  <td class="nilai"><input type="radio" name="program[<?=$sub2[0]?>][child][<?=$sub2[0]?>_<?=$sub2[1]?>][nilai]" value="<?=$data['aspek'][0]?>" <? if($data_2['nilai']==$data['aspek'][0]){echo 'checked';}?>></td>
-																		  <td class="nilai"><input type="radio" name="program[<?=$sub2[0]?>][child][<?=$sub2[0]?>_<?=$sub2[1]?>][nilai]" value="<?=$data['aspek'][1]?>" <? if($data_2['nilai']==$data['aspek'][1]){echo 'checked';}?>></td>
-																		  <td class="nilai"><input type="radio" name="program[<?=$sub2[0]?>][child][<?=$sub2[0]?>_<?=$sub2[1]?>][nilai]" value="<?=$data['aspek'][2]?>" <? if($data_2['nilai']==$data['aspek'][2]){echo 'checked';}else{echo 'checked';}?> ></td>
-																		  <td class="nilai"><input type="radio" name="program[<?=$sub2[0]?>][child][<?=$sub2[0]?>_<?=$sub2[1]?>][nilai]" value="<?=$data['aspek'][3]?>" <? if($data_2['nilai']==$data['aspek'][3]){echo 'checked';}?>></td>
-																	  </tr>
-																			<? if(!empty($data_2['child'])){foreach($data_2['child'] as $baris_3 => $data_3){
-																				$sub3=explode("_",$baris_3);
-																			?> 
-																				<tr class="sub_3 ncsub3 par_<?=$sub3[0]?> par_<?=$sub3[0]?>_<?=$sub3[1]?> ncls" sub_baris="<?=$sub3[0]?>" baris="<?=$sub3[1]?>" baris_sub="<?=$sub3[2]?>">
-																						<td>&nbsp;</td>
-																						<td style="width: 1%; border-right: medium none; padding: 2px ! important;"></td>
-																						<td ><input type="hidden" style="margin-left: 20px; width: 91%;" name3="" value="<?=$data_3['nama']?>" name="program[<?=$sub3[0]?>][child][<?=$sub3[0]?>_<?=$sub3[1]?>][child][<?=$sub3[0]?>_<?=$sub3[1]?>_<?=$sub3[2]?>][nama]"><?=$data_3['nama']?></td>
-																					  <td class="nilai"><input type="radio" name="program[<?=$sub3[0]?>][child][<?=$sub3[0]?>_<?=$sub3[1]?>][child][<?=$sub3[0]?>_<?=$sub3[1]?>_<?=$sub3[2]?>][nilai]" value="<?=$data['aspek'][0]?>"  <? if($data_3['nilai']==$data['aspek'][0]){echo 'checked';}?>></td>
-																					  <td class="nilai"><input type="radio" name="program[<?=$sub3[0]?>][child][<?=$sub3[0]?>_<?=$sub3[1]?>][child][<?=$sub3[0]?>_<?=$sub3[1]?>_<?=$sub3[2]?>][nilai]" value="<?=$data['aspek'][1]?>" <? if($data_3['nilai']==$data['aspek'][1]){echo 'checked';}?>></td>
-																					  <td class="nilai"><input type="radio" name="program[<?=$sub3[0]?>][child][<?=$sub3[0]?>_<?=$sub3[1]?>][child][<?=$sub3[0]?>_<?=$sub3[1]?>_<?=$sub3[2]?>][nilai]" value="<?=$data['aspek'][2]?>" <? if($data_3['nilai']==$data['aspek'][2]){echo 'checked';}else{echo 'checked';}?>></td>
-																					  <td class="nilai"><input type="radio" name="program[<?=$sub3[0]?>][child][<?=$sub3[0]?>_<?=$sub3[1]?>][child][<?=$sub3[0]?>_<?=$sub3[1]?>_<?=$sub3[2]?>][nilai]" value="<?=$data['aspek'][3]?>" <? if($data_3['nilai']==$data['aspek'][3]){echo 'checked';}?>></td>
-																				</tr>												
-																			<? }  } ?> 
-																	<? } } ?> 
-															  <? } }?> 
-															  </tbody>
-														</table>
-														<br />
-														<a class="button small light-grey simpanprg" title=""  style="float:right;" href=""> Simpan </a>
-										</form>							
+							<!--<table class="tableprofil penghubungortutkh" border="1">
+									<tr>
+										<td>
+										<input placeholder="TEMA" type="text" name="textfield"></td>
+										<td>
+										<input placeholder="SUB TEMA" type="text" name="textfield"></td>
+									</tr>
+								</table>-->
+								<a class="button small light-grey simpanprg" title="" id="" style="float:right;" href=""> Simpan </a>
+								<br />
+								<br />
+								<div id="placeperkembangan">
+								<?=$this->load->view('akademik/penghubungortutk/perkembangan')?>
+								</div>
+								<br />
+								<a class="button small light-grey simpanprg" title=""  style="float:right;" href=""> Simpan </a>
+							</form>		
+												
 						</div>    
                     </div>

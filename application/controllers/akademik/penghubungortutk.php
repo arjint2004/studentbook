@@ -147,13 +147,42 @@ class penghubungortutk extends CI_Controller
         {
 			//content perkembngan
 			$this->load->model('ad_penghubungortutk');
-			if(isset($_POST['program'])){
-				$datasiswa=json_decode(base64_decode($_POST['id_siswa_det_jenjang']),true);die();
-			}
 			$content=$this->ad_penghubungortutk->getdataByIdSekolah($this->session->userdata['user_authentication']['id_sekolah']);
-			//$contentsiswa=$this->ad_penghubungortutk->getdataPengByIdSiswa($_POST['id_siswa']);
 			$content[0]['contarr']=unserialize($content[0]['content']);
-			$data['content']=$content;			
+			$data['content']=$content;	
+			$datasiswa=json_decode(base64_decode($_POST['id_det_jenjang']),true);
+			$contentsiswa=$this->ad_penghubungortutk->getdataPengByIdSiswaTgl($datasiswa['id'],$_POST['tanggalpengtk']);
+			
+			if(isset($_POST['program'])){
+				if(empty($contentsiswa)){ 	 	 	 	 	
+					$datain=array( 
+								   'id_ta'=>$this->session->userdata['ak_setting']['ta'],
+								   'semester'=>$this->session->userdata['ak_setting']['semester'],
+								   'id_sekolah'=>$this->session->userdata['user_authentication']['id_sekolah'],
+								   'id_siswa'=>$datasiswa['id'],
+								   'id_siswa_det_jenjang'=>$datasiswa['id_siswa_det_jenjang'],
+								   'contentsiswa'=>serialize($_POST['program']),
+								   'tanggal'=>$_POST['tanggalpengtk']
+								);
+					$this->db->insert('ak_penghubung_tk',$datain);
+				}else{
+					$datain=array( 
+								   'id_ta'=>$this->session->userdata['ak_setting']['ta'],
+								   'semester'=>$this->session->userdata['ak_setting']['semester'],
+								   'id_sekolah'=>$this->session->userdata['user_authentication']['id_sekolah'],
+								   'id_siswa'=>$datasiswa['id'],
+								   'id_siswa_det_jenjang'=>$datasiswa['id_siswa_det_jenjang'],
+								   'contentsiswa'=>serialize($_POST['program']),
+								   'tanggal'=>$_POST['tanggalpengtk']
+								);
+					$this->db->where('id',$contentsiswa[0]['id']);
+					$this->db->update('ak_penghubung_tk',$datain);
+				}
+			}
+			//echo $this->db->last_query();
+			$contentsiswa[0]['contarr']=unserialize($contentsiswa[0]['contentsiswa']);
+			$data['contentsiswa']=$contentsiswa;
+			//pr($contentsiswa);die();
 			//content perkembngan end
 			
 			$this->load->model('ad_kelas');
@@ -161,6 +190,8 @@ class penghubungortutk extends CI_Controller
 			$data1=$this->ad_kelas->getkelasByPengajar($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']);
 			$data2=$this->ad_kelas->getKelasByWali($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']);
 			$data['kelaslaporan']=array_merge($data1,$data2);
+			
+
 			if(isset($_POST['kepada'])){
 					$this->load->library('smsprivate');
 					if(in_array('siswa',$_POST['kepada'])){
@@ -213,8 +244,12 @@ class penghubungortutk extends CI_Controller
 				die();
 			}
 
-			
-            $data['main']= 'akademik/penghubungortutk/penghubungortu';
+			if(isset($_POST['onlyview']) && $_POST['onlyview']=='true'){
+				$data['main']= 'akademik/penghubungortutk/perkembangan';
+			}else{
+				$data['main']= 'akademik/penghubungortutk/penghubungortu';			
+			}
+
             $this->load->view('layout/ad_blank',$data);
 		}
 		
