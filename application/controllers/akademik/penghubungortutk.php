@@ -159,12 +159,7 @@ class penghubungortutk extends CI_Controller
 				$datasiswa=json_decode(base64_decode($_POST['id_det_jenjang']),true);
 				$contentsiswa=$this->ad_penghubungortutk->getdataPengByIdSiswaTglType($datasiswa['id'],$_POST['tanggalpengtk'],"perkembangan_tk");
 				$contentmenusiswa=$this->ad_penghubungortutk->getdataPengByIdSiswaTglType(0,$_POST['tanggalpengtk'],"menu_makan");
-				
-				$contentsiswa[0]['contarr']=unserialize($contentsiswa[0]['contentsiswa']);
-				$data['contentsiswa']=$contentsiswa;
-				$contentmenusiswa[0]['conmenutarr']=unserialize($contentmenusiswa[0]['contentsiswa']);
-				$data['contentmenusiswa']=$contentmenusiswa;
-				pr($contentsiswa);
+				//pr($contentmenusiswa);
 				if(isset($_POST['program'])){
 					if(empty($contentsiswa)){ 	 	 	 	 	
 						$datain=array( 
@@ -221,7 +216,11 @@ class penghubungortutk extends CI_Controller
 						$this->db->update('ak_penghubung_tk',$datain);
 					}
 				}
-				echo $this->db->last_query()."<br />";
+				//echo $this->db->last_query()."<br />";
+				$contentsiswa[0]['contarr']=unserialize($contentsiswa[0]['contentsiswa']);
+				$data['contentsiswa']=$contentsiswa;
+				$contentmenusiswa[0]['conmenutarr']=unserialize($contentmenusiswa[0]['contentsiswa']);
+				$data['contentmenusiswa']=$contentmenusiswa;
 			}
 			
 			//content perkembngan end
