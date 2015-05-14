@@ -221,7 +221,7 @@ class penghubungortutk extends CI_Controller
 						$this->db->update('ak_penghubung_tk',$datain);
 					}
 				}
-				//echo $this->db->last_query()."<br />";
+				echo $this->db->last_query()."<br />";
 			}
 			
 			//content perkembngan end
