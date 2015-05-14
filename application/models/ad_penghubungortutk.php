@@ -33,7 +33,7 @@ Class Ad_penghubungortutk extends CI_Model
 								 AND type=?
 								 '.$cndkls.'
 		',array($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['ak_setting']['ta'],$this->session->userdata['ak_setting']['semester'],$tanggal,$type));
-		//echo $this->db->last_query();
+		echo $this->db->last_query();
 		return $query->result_array();
 	}
 	 
