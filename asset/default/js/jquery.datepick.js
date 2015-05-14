@@ -42,6 +42,8 @@ function Datepicker() {
 		minDate: null, // The minimum selectable date
 		maxDate: null, // The maximum selectable date
 		dateFormat: 'mm/dd/yyyy', // Format for dates
+		inputId: 'datepick', // Format for dates
+		formId: 'datepickform', // Format for dates
 		autoSize: false, // True to size the input field according to the date format
 		rangeSelect: false, // Allows for selecting a date range on one date picker
 		rangeSeparator: ' - ', // Text between two dates in a range
@@ -1851,7 +1853,7 @@ $.extend(Datepicker.prototype, {
 					this._isSelectable(target, drawDate, dateInfo.selectable, minDate, maxDate);
 				days += this._prepare(renderer.day, inst).replace(/\{day\}/g,
 					(selectable ? '<a href="javascript:void(0)"' : '<span') +
-					' onclick="getadd(this,\''+year+'-'+month+'-'+(inst.options.showOtherMonths || (drawDate.getMonth() + 1) == month ?
+					'inputid="'+inst.options.inputId+'" formid="'+inst.options.formId+'" onclick="getadd(this,\''+year+'-'+month+'-'+(inst.options.showOtherMonths || (drawDate.getMonth() + 1) == month ?
 					dateInfo.content || drawDate.getDate() : '&nbsp;')+'\');" class="dp' + ts + ' ' + (dateInfo.dateClass || '') +
 					(selected && (selectOtherMonths || drawDate.getMonth() + 1 == month) ?
 					' ' + renderer.selectedClass : '') +
