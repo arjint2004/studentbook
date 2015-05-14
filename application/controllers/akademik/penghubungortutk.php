@@ -164,7 +164,7 @@ class penghubungortutk extends CI_Controller
 				$data['contentsiswa']=$contentsiswa;
 				$contentmenusiswa[0]['conmenutarr']=unserialize($contentmenusiswa[0]['contentsiswa']);
 				$data['contentmenusiswa']=$contentmenusiswa;
-				//pr($contentmenusiswa);
+				pr($contentsiswa);
 				if(isset($_POST['program'])){
 					if(empty($contentsiswa)){ 	 	 	 	 	
 						$datain=array( 
