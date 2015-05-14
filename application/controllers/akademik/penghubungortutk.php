@@ -145,10 +145,25 @@ class penghubungortutk extends CI_Controller
 		}
         public function penghubungortu()
         {
-
+			$type="perkembangan_tk";
+			if(isset($_POST['id_kelas'])){
+					$this->load->model('ad_kelas');
+					$datakelas=$this->ad_kelas->getkelasById($this->session->userdata['user_authentication']['id_sekolah'],$_POST['id_kelas']);
+					//pr($datakelas);
+					//if($_POST['type']=="tanggalpengtk"){
+						if($datakelas[0]['kelas']==1 || $datakelas[0]['kelas']==2){
+							$type="perkembangan_tpa";
+						}elseif($datakelas[0]['kelas']==3 || $datakelas[0]['kelas']==4){
+							$type="perkembangan_tk";
+						}elseif($datakelas[0]['kelas']==5 || $datakelas[0]['kelas']==6){
+							$type="perkembangan_tk";
+						}
+						
+					//}
+			}
 			//content perkembngan
 			$this->load->model('ad_penghubungortutk');
-			$content=$this->ad_penghubungortutk->getdataByIdSekolah($this->session->userdata['user_authentication']['id_sekolah'],"perkembangan_tk");
+			$content=$this->ad_penghubungortutk->getdataByIdSekolah($this->session->userdata['user_authentication']['id_sekolah'],$type);
 			$contentmenu=$this->ad_penghubungortutk->getdataByIdSekolah($this->session->userdata['user_authentication']['id_sekolah'],"menu_makan");
 			$content[0]['contarr']=unserialize($content[0]['content']);
 			$contentmenu[0]['contmenuarr']=unserialize($contentmenu[0]['content']);
@@ -156,8 +171,9 @@ class penghubungortutk extends CI_Controller
 			$data['contentmenu']=$contentmenu;	
 			
 			if(isset($_POST['save'])){
+
 				$datasiswa=json_decode(base64_decode($_POST['id_det_jenjang']),true);
-				$contentsiswa=$this->ad_penghubungortutk->getdataPengByIdSiswaTglType($datasiswa['id'],$_POST['tanggalpengtk'],"perkembangan_tk");
+				$contentsiswa=$this->ad_penghubungortutk->getdataPengByIdSiswaTglType($datasiswa['id'],$_POST['tanggalpengtk'],$type);
 				$contentmenusiswa=$this->ad_penghubungortutk->getdataPengByIdSiswaTglType(0,$_POST['tanggalpengtk'],"menu_makan");
 				//pr($contentmenusiswa);
 				if(isset($_POST['program'])){
@@ -290,7 +306,6 @@ class penghubungortutk extends CI_Controller
 				}elseif($_POST['type']=="tanggalpengtk"){
 					$data['main']= 'akademik/penghubungortutk/perkembangan';
 				}
-				
 				
 			}else{
 				$data['main']= 'akademik/penghubungortutk/penghubungortu';			
