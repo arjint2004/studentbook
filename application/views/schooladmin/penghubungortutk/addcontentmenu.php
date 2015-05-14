@@ -1,11 +1,11 @@
 <script>
 	$(document).ready(function(){
 		
-			var tr2='<tr baris="1" sub_baris="1" class="sub_2 ncls ncsub2">1<td>&nbsp;</td><td style="width: 1%; border-right: medium none; " >1.1</td><td style="border-right: medium none;"><input type="text" name2 /></td><td><div class="add_sub_2" ></div></td><td></td><td></td><td></td><td></td><td><a class="button small light-grey hapustkx" title="" style="float:none;"  href="#">X</a></td></tr>';
+			var tr2='<tr baris="1" sub_baris="1" class="sub_2 ncls ncsub2">1<td>&nbsp;</td><td style="width: 1%; border-right: medium none; " >1.1</td><td style="border-right: medium none;"><input type="text" name2 /></td><td>&nbsp;</td><td><a class="button small light-grey hapustkx" title="" style="float:none;"  href="#">X</a></td></tr>';
 			
-			var tr1='<tr baris="1" class="sub_1 ncls"><td>noxx</td><td colspan="2" style="width: 1%; border-right: medium none;"><input type="text" name1 /></td><td style="width:1%;"><div class="add_sub_1" ></div></td><td class="aspekpenilai"><input type="text" /></td><td class="aspekpenilai"><input type="text" /></td><td class="aspekpenilai"><input type="text"  /></td><td class="aspekpenilai"><input type="text" /></td><td><a class="button small light-grey hapustkx" title=""  style="float:none;" href="#">X</a></td></tr>'+tr2;
+			var tr1='<tr baris="1" class="sub_1 ncls"><td>noxx</td><td colspan="2" style="width: 1%; border-right: medium none;"><input type="text" name1 /></td><td style="width:1%;"><div class="add_sub_1" ></div></td><td><a class="button small light-grey hapustkx" title=""  style="float:none;" href="#">X</a></td></tr>'+tr2;
 
-			var tr3='<tr baris="111" class="sub_3 ncls"><td>&nbsp;</td><td style="width: 1%; border-right: medium none; padding: 2px ! important;" ></td><td style="border-right: medium none;"><input type="text" name3 style="margin-left: 20px; width: 91%;" /></td><td>&nbsp;</td><td></td><td></td><td></td><td></td><td><a class="button small light-grey hapustkx" title=""  style="float:none;" href="#">X</a></td></tr>';
+			var tr3='<tr baris="111" class="sub_3 ncls"><td>&nbsp;</td><td style="width: 1%; border-right: medium none; padding: 2px ! important;" ></td><td style="border-right: medium none;"><input type="text" name3 style="margin-left: 20px; width: 91%;" /></td><td>&nbsp;</td><td><a class="button small light-grey hapustkx" title=""  style="float:none;" href="#">X</a></td></tr>';
 			
 
 		$("a.addbaristk").live('click', function() {
@@ -127,7 +127,7 @@
 <div class="styled-elements">
 		<div id="ajaxside"></div>
 		<div id="listpenghubungortutk">
-			<form action="<? echo base_url();?>admin/penghubungortutk/addcontent" id="penghubungortutkform" name="penghubungortutkform" method="post" >
+			<form action="<? echo base_url();?>admin/penghubungortutk/addcontentmenu" id="penghubungortutkform" name="penghubungortutkform" method="post" >
                             <!--<table class="tableprofil penghubungortutkh" border="1">
 
 								  <tr>
@@ -141,19 +141,9 @@
 								  <tbody>
 								  <tr>
 								    <th style="width:1%;" >No</th>
-								    <th colspan="3"><?=$titlefield?></th>
-								    <th colspan="4"><?=$titlefield2?></th>
-								    <th style="width:1%;"></th>
+								    <th colspan="3">Menu Makanan</th>
+								    <th style="width:1%;">Hapus</th>
 								    </tr>
-								  <tr>
-								    <th style="width:1%;" >&nbsp;</th>
-									<th colspan="3">&nbsp;</th>
-									<th>1</th>
-									<th>2</th>
-									<th>3</th>
-									<th>4</th>
-									<th>&nbsp;</th>
-								  </tr>
 
 								  <? if(!empty($content[0]['contarr'])){foreach($content[0]['contarr'] as $baris => $data){?>
 								  
@@ -161,10 +151,6 @@
 									  <td><?=$baris?></td>
 									  <td style="width: 1%; border-right: medium none;" colspan="2"><input type="text" name1="" value="<?=$data['nama']?>" name="program[<?=$baris?>][nama]"></td>
 									  <td style="width:1%;"><div  class="add_sub_1"></div></td>
-									  <td class="aspekpenilai"><input type="text" name="program[<?=$baris?>][aspek][]" value="<?=$data['aspek'][0]?>"></td>
-									  <td class="aspekpenilai"><input type="text" name="program[<?=$baris?>][aspek][]" value="<?=$data['aspek'][1]?>"></td>
-									  <td class="aspekpenilai"><input type="text" name="program[<?=$baris?>][aspek][]" value="<?=$data['aspek'][2]?>"></td>
-									  <td class="aspekpenilai"><input type="text" name="program[<?=$baris?>][aspek][]" value="<?=$data['aspek'][3]?>"></td>
 									  <td><a href="#" baris="<?=$baris?>" style="float:none;" title="" class="button small light-grey hapustk">X</a>
 									  </td>
 								  </tr>
@@ -175,10 +161,6 @@
 											  <td>&nbsp;</td>
 											  <td style="width: 1%; border-right: medium none; "><?=$sub2[0]?>.<?=$sub2[1]?></td>
 											  <td style="border-right: medium none;"><input type="text" name2="" value="<?=$data_2['nama']?>" name="program[<?=$sub2[0]?>][child][<?=$sub2[0]?>_<?=$sub2[1]?>][nama]"></td>
-											  <td><div  class="add_sub_2"></div></td>
-											  <td></td>
-											  <td></td>
-											  <td></td>
 											  <td></td>
 											  <td><a href="#"  style="float:none;" title="" class="button small light-grey hapustk">X</a></td>
 										  </tr>
@@ -190,10 +172,6 @@
 														<td style="width: 1%; border-right: medium none; padding: 2px ! important;"></td>
 														<td style="border-right: medium none;"><input type="text" style="margin-left: 20px; width: 91%;" name3="" value="<?=$data_3['nama']?>" name="program[<?=$sub3[0]?>][child][<?=$sub3[0]?>_<?=$sub3[1]?>][child][<?=$sub3[0]?>_<?=$sub3[1]?>_<?=$sub3[2]?>][nama]"></td>
 														<td>&nbsp;</td>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td></td>
 														<td><a href="#" style="float:none;" title="" class="button small light-grey hapustk">X</a></td>
 													</tr>												
 												<? }  } ?> 
@@ -201,9 +179,10 @@
 								  <? } }?> 
 								  </tbody>
 							</table>
-							<a class="button small grey addbaristk" title="" href=""> Tambah Perkembangan </a>
+							<a class="button small grey addbaristk" title="" href=""> Tambah Menu </a>
 							<a class="button small light-grey" title="" id="simpanprg" style="float:none;" href=""> Simpan </a>
-							<input type="hidden" name="type" value="perkembangan_tk"/> 
+
+							<input type="hidden" name="type" value="menu_makan"/> 
 			</form>					
 			<div class="error-container" style="display:none;"> Semua field harus di isi atau dipilih!  </div>
 		</div>

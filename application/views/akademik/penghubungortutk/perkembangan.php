@@ -1,4 +1,5 @@
-														<? //pr($contentsiswa);?>
+														<? //pr($content);?>
+														<input type="hidden"  value="save" name="save">
 														<table class="tableprofil penghubungortutk" border="1">
 															  <tbody>
 															  <tr>

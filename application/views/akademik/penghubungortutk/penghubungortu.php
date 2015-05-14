@@ -13,22 +13,37 @@
 						$('#sendlap').children('a').removeClass('current');
 						$('.sendlap').hide();
 						$('.pengtk').hide();
+						$('.menutk').hide();
 					});
 					$('#sendlap').click( function() {
 						$('.listlap').hide();
 						$('.pengtk').hide();
+						$('.menutk').hide();
 						$(this).children('a').addClass('current');
 						$('#listlap').children('a').removeClass('current');
 						$('#pengtk').children('a').removeClass('current');
+						$('#menutk').children('a').removeClass('current');
 						$('.sendlap').show();
 					});
 					$('#pengtk').click( function() {
 						$('.listlap').hide();
 						$('.sendlap').hide();
+						$('.menutk').hide();
 						$(this).children('a').addClass('current');
 						$('#listlap').children('a').removeClass('current');
 						$('#sendlap').children('a').removeClass('current');
+						$('#menutk').children('a').removeClass('current');
 						$('.pengtk').show();
+					});
+					$('#menutk').click( function() {
+						$('.listlap').hide();
+						$('.sendlap').hide();
+						$('.pengtk').hide();
+						$(this).children('a').addClass('current');
+						$('#listlap').children('a').removeClass('current');
+						$('#sendlap').children('a').removeClass('current');
+						$('#pengtk').children('a').removeClass('current');
+						$('.menutk').show();
 					});
 					
 					$('.selall').click( function() {
@@ -120,6 +135,33 @@
 					});
 					return false;					
 				});
+				$("a.simpanprgmenu").click(function(e){
+					$("form#penghubungortutkformmenu").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+					$(".error-box").html("Menyimpan Data").fadeIn("slow");
+					$.ajax({
+						type: "POST",
+						data: $('form#penghubungortutkformmenu').serialize(),
+						url: $('form#penghubungortutkformmenu').attr('action'),
+						beforeSend: function() {
+							
+						},
+						error	: function(){
+									$(".error-box").delay(1000).html('Menyimpan data gagal');
+									$(".error-box").delay(1000).fadeOut("slow",function(){
+										$(this).remove();
+									});
+														
+						},
+						success: function(msg) {
+									$("#wait").remove();
+									$(".error-box").delay(1000).html('Data berhasil di simpan');
+									$(".error-box").delay(1000).fadeOut("slow",function(){
+										$(this).remove();
+									});	
+						}
+					});
+					return false;					
+				});
 				
 				$("#kirimlaporan").submit(function(e){
 					$frm = $(this);
@@ -180,6 +222,7 @@
                             <li id="listlap"><a style="cursor:pointer;" class="current">Daftar Kegiatan</a></li>
                             <li id="sendlap"><a style="cursor:pointer;" >Kirim Kegiatan</a></li>
                             <li id="pengtk"><a style="cursor:pointer;" >Perkembangan</a></li>
+                            <li id="menutk"><a style="cursor:pointer;" >Menu Makan</a></li>
                         </ul>
                         <div class="tabs-frame-content listlap">
 							<form id="penghubunglist" method="post" action="">
@@ -324,7 +367,7 @@
 									$(".error-box").html("Mengambil Data").fadeIn("slow");
 									$.ajax({
 										type: "POST",
-										data: 'id_kelas='+$('select#kelasperkemb').val()+'&id_det_jenjang='+$('select#siswaperkemb').val()+'&tanggalpengtk='+date+'&onlyview=true',
+										data: 'id_kelas='+$('select#kelasperkemb').val()+'&id_kelasmanu='+$('select#kelasperkembmenu').val()+'&id_det_jenjang='+$('select#siswaperkemb').val()+'&tanggalpengtk='+date+'&type='+$(obj).attr('inputId')+'&onlyview=true&save=save',
 										url: '<?=base_url()?>akademik/penghubungortutk/penghubungortu/',
 										beforeSend: function() {
 											
@@ -338,7 +381,12 @@
 										},
 										success: function(msg) {
 													$("#wait").remove();
-													$("div#placeperkembangan").html(msg);
+													if($(obj).attr('inputId')=='tanggalpengtk'){
+														$("div#placeperkembangan").html(msg);
+													}else if($(obj).attr('inputId')=='tanggalpengtkmenu'){
+														$("div#placeperkembanganmenu").html(msg);
+													}
+													
 													$(".error-box").delay(1000).html('Data berhasil di ambil');
 													$(".error-box").delay(1000).fadeOut("slow",function(){
 														$(this).remove();
@@ -348,7 +396,14 @@
 									return false;
 								}
 								$(function() {
-									$('#tanggalpengtk').datepick();
+									$('#tanggalpengtk').datepick({
+										inputId: 'tanggalpengtk',
+										formId: 'penghubungortutkform',
+									});
+									$('#tanggalpengtkmenu').datepick({
+										inputId: 'tanggalpengtkmenu',
+										formId: 'penghubungortutkformmenu',
+									});
 								});
 							</script>
 							<form action="<? echo base_url();?>akademik/penghubungortutk/penghubungortu" id="penghubungortutkform" name="penghubungortutkform" method="post" >
@@ -392,5 +447,41 @@
 								<a class="button small light-grey simpanprg" title=""  style="float:right;" href=""> Simpan </a>
 							</form>		
 												
-						</div>    
+						</div>
+						<div class="tabs-frame-content menutk" style="display:none;">
+							<form action="<? echo base_url();?>akademik/penghubungortutk/penghubungortu" id="penghubungortutkformmenu" name="penghubungortutkformmenu" method="post" >
+							<table class="tabelfilter">
+								<tr>
+								<td>
+									Kelas :
+										<select class="selectfilter" id="kelasperkembmenu" name="id_kelas">
+											<option value="">Pilih Kelas</option>
+											<? foreach($kelaslaporan as $datakelas){?>
+											<option <? if(@$_POST['kelas']==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>"><?=$datakelas['kelas']?><?=$datakelas['nama']?></option>
+											<? } ?>
+										</select>
+									Tanggal :
+										<input type="text" style="height:28px; width:110px;" id="tanggalpengtkmenu" name="tanggalpengtkmenu" readonly="" placeholder="Pilih Tanggal">
+									
+									</td>
+								</tr>
+							</table>
+							<!--<table class="tableprofil penghubungortutkh" border="1">
+									<tr>
+										<td>
+										<input placeholder="TEMA" type="text" name="textfield"></td>
+										<td>
+										<input placeholder="SUB TEMA" type="text" name="textfield"></td>
+									</tr>
+								</table>-->
+								<a class="button small light-grey simpanprgmenu" title="" id="" style="float:right;" href=""> Simpan </a>
+								<br />
+								<br />
+								<div id="placeperkembanganmenu">
+									<?=$this->load->view('akademik/penghubungortutk/menumakan')?>
+								</div>
+								<br />
+								<a class="button small light-grey simpanprgmenu" title=""  style="float:right;" href=""> Simpan </a>
+							</form>	
+						</div>
                     </div>

@@ -145,44 +145,85 @@ class penghubungortutk extends CI_Controller
 		}
         public function penghubungortu()
         {
+
 			//content perkembngan
 			$this->load->model('ad_penghubungortutk');
-			$content=$this->ad_penghubungortutk->getdataByIdSekolah($this->session->userdata['user_authentication']['id_sekolah']);
+			$content=$this->ad_penghubungortutk->getdataByIdSekolah($this->session->userdata['user_authentication']['id_sekolah'],"perkembangan_tk");
+			$contentmenu=$this->ad_penghubungortutk->getdataByIdSekolah($this->session->userdata['user_authentication']['id_sekolah'],"menu_makan");
 			$content[0]['contarr']=unserialize($content[0]['content']);
+			$contentmenu[0]['contmenuarr']=unserialize($contentmenu[0]['content']);
 			$data['content']=$content;	
-			$datasiswa=json_decode(base64_decode($_POST['id_det_jenjang']),true);
-			$contentsiswa=$this->ad_penghubungortutk->getdataPengByIdSiswaTgl($datasiswa['id'],$_POST['tanggalpengtk']);
+			$data['contentmenu']=$contentmenu;	
 			
-			if(isset($_POST['program'])){
-				if(empty($contentsiswa)){ 	 	 	 	 	
-					$datain=array( 
-								   'id_ta'=>$this->session->userdata['ak_setting']['ta'],
-								   'semester'=>$this->session->userdata['ak_setting']['semester'],
-								   'id_sekolah'=>$this->session->userdata['user_authentication']['id_sekolah'],
-								   'id_siswa'=>$datasiswa['id'],
-								   'id_siswa_det_jenjang'=>$datasiswa['id_siswa_det_jenjang'],
-								   'contentsiswa'=>serialize($_POST['program']),
-								   'tanggal'=>$_POST['tanggalpengtk']
-								);
-					$this->db->insert('ak_penghubung_tk',$datain);
-				}else{
-					$datain=array( 
-								   'id_ta'=>$this->session->userdata['ak_setting']['ta'],
-								   'semester'=>$this->session->userdata['ak_setting']['semester'],
-								   'id_sekolah'=>$this->session->userdata['user_authentication']['id_sekolah'],
-								   'id_siswa'=>$datasiswa['id'],
-								   'id_siswa_det_jenjang'=>$datasiswa['id_siswa_det_jenjang'],
-								   'contentsiswa'=>serialize($_POST['program']),
-								   'tanggal'=>$_POST['tanggalpengtk']
-								);
-					$this->db->where('id',$contentsiswa[0]['id']);
-					$this->db->update('ak_penghubung_tk',$datain);
+			if(isset($_POST['save'])){
+				$datasiswa=json_decode(base64_decode($_POST['id_det_jenjang']),true);
+				$contentsiswa=$this->ad_penghubungortutk->getdataPengByIdSiswaTglType($datasiswa['id'],$_POST['tanggalpengtk'],"perkembangan_tk");
+				$contentmenusiswa=$this->ad_penghubungortutk->getdataPengByIdSiswaTglType(0,$_POST['tanggalpengtk'],"menu_makan");
+				
+				$contentsiswa[0]['contarr']=unserialize($contentsiswa[0]['contentsiswa']);
+				$data['contentsiswa']=$contentsiswa;
+				$contentmenusiswa[0]['conmenutarr']=unserialize($contentmenusiswa[0]['contentsiswa']);
+				$data['contentmenusiswa']=$contentmenusiswa;
+				//pr($contentmenusiswa);
+				if(isset($_POST['program'])){
+					if(empty($contentsiswa)){ 	 	 	 	 	
+						$datain=array( 
+									   'id_ta'=>$this->session->userdata['ak_setting']['ta'],
+									   'semester'=>$this->session->userdata['ak_setting']['semester'],
+									   'id_sekolah'=>$this->session->userdata['user_authentication']['id_sekolah'],
+									   'id_siswa'=>$datasiswa['id'],
+									   'id_siswa_det_jenjang'=>$datasiswa['id_siswa_det_jenjang'],
+									   'contentsiswa'=>serialize($_POST['program']),
+									   'tanggal'=>$_POST['tanggalpengtk']
+									);
+						$this->db->insert('ak_penghubung_tk',$datain);
+					}else{
+						$datain=array( 
+									   'id_ta'=>$this->session->userdata['ak_setting']['ta'],
+									   'semester'=>$this->session->userdata['ak_setting']['semester'],
+									   'id_sekolah'=>$this->session->userdata['user_authentication']['id_sekolah'],
+									   'id_siswa'=>$datasiswa['id'],
+									   'id_siswa_det_jenjang'=>$datasiswa['id_siswa_det_jenjang'],
+									   'contentsiswa'=>serialize($_POST['program']),
+									   'tanggal'=>$_POST['tanggalpengtk']
+									);
+						$this->db->where('id',$contentsiswa[0]['id']);
+						$this->db->update('ak_penghubung_tk',$datain);
+					}
 				}
+				if(isset($_POST['programmenu'])){
+					if(empty($contentmenusiswa)){ 	 	 	 	 	
+						$datain=array( 
+									   'id_ta'=>$this->session->userdata['ak_setting']['ta'],
+									   'semester'=>$this->session->userdata['ak_setting']['semester'],
+									   'id_sekolah'=>$this->session->userdata['user_authentication']['id_sekolah'],
+									   'id_kelas'=>$_POST['id_kelas'],
+									   //'id_siswa'=>$datasiswa['id'],
+									   //'id_siswa_det_jenjang'=>$datasiswa['id_siswa_det_jenjang'],
+									   'contentsiswa'=>serialize($_POST['programmenu']),
+									   'tanggal'=>$_POST['tanggalpengtkmenu'],
+									   'type'=>"menu_makan"
+									);
+						$this->db->insert('ak_penghubung_tk',$datain);
+					}else{
+						$datain=array( 
+									   'id_ta'=>$this->session->userdata['ak_setting']['ta'],
+									   'semester'=>$this->session->userdata['ak_setting']['semester'],
+									   'id_sekolah'=>$this->session->userdata['user_authentication']['id_sekolah'],
+									   'id_kelas'=>$_POST['id_kelas'],
+									   //'id_siswa'=>$datasiswa['id'],
+									   //'id_siswa_det_jenjang'=>$datasiswa['id_siswa_det_jenjang'],
+									   'contentsiswa'=>serialize($_POST['programmenu']),
+									   'tanggal'=>$_POST['tanggalpengtkmenu'],
+									   'type'=>"menu_makan"
+									);
+						$this->db->where('id',$contentmenusiswa[0]['id']);
+						$this->db->update('ak_penghubung_tk',$datain);
+					}
+				}
+				//echo $this->db->last_query()."<br />";
 			}
-			//echo $this->db->last_query();
-			$contentsiswa[0]['contarr']=unserialize($contentsiswa[0]['contentsiswa']);
-			$data['contentsiswa']=$contentsiswa;
-			//pr($contentsiswa);die();
+			
 			//content perkembngan end
 			
 			$this->load->model('ad_kelas');
@@ -245,7 +286,13 @@ class penghubungortutk extends CI_Controller
 			}
 
 			if(isset($_POST['onlyview']) && $_POST['onlyview']=='true'){
-				$data['main']= 'akademik/penghubungortutk/perkembangan';
+				if($_POST['type']=="tanggalpengtkmenu"){
+					$data['main']= 'akademik/penghubungortutk/menumakan';
+				}elseif($_POST['type']=="tanggalpengtk"){
+					$data['main']= 'akademik/penghubungortutk/perkembangan';
+				}
+				
+				
 			}else{
 				$data['main']= 'akademik/penghubungortutk/penghubungortu';			
 			}

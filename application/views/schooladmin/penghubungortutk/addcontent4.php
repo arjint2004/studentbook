@@ -3,14 +3,13 @@
 		
 			var tr2='<tr baris="1" sub_baris="1" class="sub_2 ncls ncsub2">1<td>&nbsp;</td><td style="width: 1%; border-right: medium none; " >1.1</td><td style="border-right: medium none;"><input type="text" name2 /></td><td><div class="add_sub_2" ></div></td><td></td><td></td><td></td><td></td><td><a class="button small light-grey hapustkx" title="" style="float:none;"  href="#">X</a></td></tr>';
 			
-			var tr1='<tr baris="1" class="sub_1 ncls"><td>noxx</td><td colspan="2" style="width: 1%; border-right: medium none;"><input type="text" name1 /></td><td style="width:1%;"><div class="add_sub_1" ></div></td><td class="aspekpenilai"><input type="text" /></td><td class="aspekpenilai"><input type="text" /></td><td class="aspekpenilai"><input type="text"  /></td><td class="aspekpenilai"><input type="text" /></td><td><a class="button small light-grey hapustkx" title=""  style="float:none;" href="#">X</a></td></tr>'+tr2;
+			var tr1='<tr baris="1" class="sub_1 ncls"><td>noxx</td><td colspan="2" style="width: 1%; border-right: medium none;"><input type="text" name1 /></td><td style="width:1%;"><div class="add_sub_1" ></div></td><td class="aspekpenilai"><input type="text" /></td><td class="aspekpenilai"><input type="text" /></td><td class="aspekpenilai"><input type="text"  /></td><td class="aspekpenilai"><input type="text" /></td><td></td></tr>'+tr2;
 
 			var tr3='<tr baris="111" class="sub_3 ncls"><td>&nbsp;</td><td style="width: 1%; border-right: medium none; padding: 2px ! important;" ></td><td style="border-right: medium none;"><input type="text" name3 style="margin-left: 20px; width: 91%;" /></td><td>&nbsp;</td><td></td><td></td><td></td><td></td><td><a class="button small light-grey hapustkx" title=""  style="float:none;" href="#">X</a></td></tr>';
 			
 
 		$("a.addbaristk").live('click', function() {
 			var tr1x=tr1;
-			tr1x=tr1x.replace("hapustkx", "hapustk");
 			tr1x=tr1x.replace("hapustkx", "hapustk");
 			//jumlah baris sub_1
 			var baris=$("table.penghubungortutk tr.sub_1").length;
@@ -141,8 +140,8 @@
 								  <tbody>
 								  <tr>
 								    <th style="width:1%;" >No</th>
-								    <th colspan="3"><?=$titlefield?></th>
-								    <th colspan="4"><?=$titlefield2?></th>
+								    <th colspan="3">PROGRAM PENGEMBANGAN</th>
+								    <th colspan="4">Aspek Penilaian </th>
 								    <th style="width:1%;"></th>
 								    </tr>
 								  <tr>
@@ -201,9 +200,10 @@
 								  <? } }?> 
 								  </tbody>
 							</table>
-							<a class="button small grey addbaristk" title="" href=""> Tambah Perkembangan </a>
+							<a class="button small grey addbaristk" title="" href=""> Tambah Program </a>
 							<a class="button small light-grey" title="" id="simpanprg" style="float:none;" href=""> Simpan </a>
-							<input type="hidden" name="type" value="perkembangan_tk"/> 
+
+				<input type="hidden" name="ajax" value="1"/> 
 			</form>					
 			<div class="error-container" style="display:none;"> Semua field harus di isi atau dipilih!  </div>
 		</div>

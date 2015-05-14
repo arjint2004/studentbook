@@ -127,7 +127,7 @@
 <div class="styled-elements">
 		<div id="ajaxside"></div>
 		<div id="listpenghubungortutk">
-			<form action="<? echo base_url();?>admin/penghubungortutk/addcontent" id="penghubungortutkform" name="penghubungortutkform" method="post" >
+			<form action="<? echo base_url();?>admin/penghubungortutk/addcontenttpa" id="penghubungortutkform" name="penghubungortutkform" method="post" >
                             <!--<table class="tableprofil penghubungortutkh" border="1">
 
 								  <tr>
