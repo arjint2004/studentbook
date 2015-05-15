@@ -4,18 +4,22 @@
 	}
 	div.comment textarea.editreply{
 		width:377px;
+		height:60px;
 	}
 	div.comment textarea.postreply{
 		width:384px;
+		height:60px;
 	}
 	textarea#comment{
-		border: 1px solid #CCCCCC;
-		width: 98%;
-		resize:none;
-		color: #8E8E8E;
+		border: 1px solid #cccccc;
+		border-radius: 0;
+		color: #8e8e8e;
 		font-family: arial;
 		font-size: 11px;
-		margin:20px 0;
+		margin: 10px 0;
+		resize: none;
+		width: 98.7%;
+		height:60px;
 		
 	}
 	textarea#commentreply{
@@ -25,6 +29,7 @@
 		color: #8E8E8E;
 		font-family: arial;
 		font-size: 11px;
+		height:60px;
 	}
 	textarea#commentreplyedit{
 		border: 1px solid #CCCCCC;
@@ -32,6 +37,7 @@
 		font-size: 12px;
 		resize: none;
 		width: 382px;
+		height:60px;
 	}
 	div.post{
 		background: none repeat scroll 0 0 #EEEEEE;
