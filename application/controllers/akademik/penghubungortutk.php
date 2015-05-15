@@ -182,10 +182,12 @@ class penghubungortutk extends CI_Controller
 									   'id_ta'=>$this->session->userdata['ak_setting']['ta'],
 									   'semester'=>$this->session->userdata['ak_setting']['semester'],
 									   'id_sekolah'=>$this->session->userdata['user_authentication']['id_sekolah'],
+									   'id_pegawai'=>$this->session->userdata['user_authentication']['id_pengguna'],
 									   'id_siswa'=>$datasiswa['id'],
 									   'id_siswa_det_jenjang'=>$datasiswa['id_siswa_det_jenjang'],
 									   'contentsiswa'=>serialize($_POST['program']),
-									   'tanggal'=>$_POST['tanggalpengtk']
+									   'tanggal'=>$_POST['tanggalpengtk'],
+									   'type'=>$type
 									);
 						$this->db->insert('ak_penghubung_tk',$datain);
 					}else{
@@ -196,7 +198,8 @@ class penghubungortutk extends CI_Controller
 									   'id_siswa'=>$datasiswa['id'],
 									   'id_siswa_det_jenjang'=>$datasiswa['id_siswa_det_jenjang'],
 									   'contentsiswa'=>serialize($_POST['program']),
-									   'tanggal'=>$_POST['tanggalpengtk']
+									   'tanggal'=>$_POST['tanggalpengtk'],
+									   'type'=>$type
 									);
 						$this->db->where('id',$contentsiswa[0]['id']);
 						$this->db->update('ak_penghubung_tk',$datain);
@@ -208,6 +211,7 @@ class penghubungortutk extends CI_Controller
 									   'id_ta'=>$this->session->userdata['ak_setting']['ta'],
 									   'semester'=>$this->session->userdata['ak_setting']['semester'],
 									   'id_sekolah'=>$this->session->userdata['user_authentication']['id_sekolah'],
+									   'id_pegawai'=>$this->session->userdata['user_authentication']['id_pengguna'],
 									   'id_kelas'=>$_POST['id_kelas'],
 									   //'id_siswa'=>$datasiswa['id'],
 									   //'id_siswa_det_jenjang'=>$datasiswa['id_siswa_det_jenjang'],

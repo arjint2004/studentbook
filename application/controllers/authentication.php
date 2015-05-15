@@ -81,7 +81,7 @@ class Authentication extends CI_Controller {
             );
 			
 	    if($user->otoritas=='siswa' || $user->otoritas=='ortu'){
-			if($user->id_siswa==0){$idsiswa=$user->id_pengguna;}else{$idsiswa=$user->id_siswa;}
+			if($user->otoritas=='siswa'){$idsiswa=$user->id_pengguna;}elseif($user->otoritas=='ortu'){$idsiswa=$user->id_siswa;}
 		    $this->load->model('ad_siswa');
 		    $siswa=$this->ad_siswa->getSiswaIdDetJenjang($user->id_sekolah,$settingSmTa['ta']['id'],$idsiswa);
 		    $sessiondata['id_siswa_det_jenjang'] = $siswa[0]['id_siswa_det_jenjang'];

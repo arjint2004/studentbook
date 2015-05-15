@@ -1,4 +1,4 @@
-														<? //pr($content);?>
+														<? //pr($contentsiswa);?>
 														<input type="hidden"  value="save" name="save">
 														<table class="tableprofil penghubungortutk" border="1">
 															  <tbody>
@@ -50,3 +50,24 @@
 															  <? } }?> 
 															  </tbody>
 														</table>
+														<?if(isset($contentsiswa[0]['id'])){?>
+														<script>
+														$(document).ready(function(){
+															$.ajax({
+																type: "GET",
+																data: '',
+																url: '<?=base_url()?>akademik/comment/index/<?=$contentsiswa[0]['id']?>/first/penghubung_tk',
+																beforeSend: function() {
+																	//$("#filterpelajaranpr select#kelas").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
+																	
+																},
+																success: function(msg) {
+																	//$("#wait").remove();
+																	$('#komentarpenghperkemb<?=$contentsiswa[0]['id']?>').html(msg);	
+																}
+															});
+														});
+														</script>
+														
+														<div id="komentarpenghperkemb<?=$contentsiswa[0]['id']?>"></div>
+														<? } ?>

@@ -31,3 +31,24 @@
 															  <? } }?> 
 															  </tbody>
 														</table>
+														<?if(isset($contentmenusiswa[0]['id'])){?>
+														<script>
+														$(document).ready(function(){
+															$.ajax({
+																type: "GET",
+																data: '',
+																url: '<?=base_url()?>akademik/comment/index/<?=$contentmenusiswa[0]['id']?>/first/penghubung_tk',
+																beforeSend: function() {
+																	//$("#filterpelajaranpr select#kelas").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
+																	
+																},
+																success: function(msg) {
+																	//$("#wait").remove();
+																	$('#komentarmenumakan<?=$contentmenusiswa[0]['id']?>').html(msg);	
+																}
+															});
+														});
+														</script>
+														
+														<div id="komentarmenumakan<?=$contentmenusiswa[0]['id']?>"></div>
+														<? } ?>

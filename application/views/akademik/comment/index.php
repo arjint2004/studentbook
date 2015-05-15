@@ -19,13 +19,13 @@ $(document).ready(function(){
 	<div class="containcomment">
 	<div class="content-box clear"></div>
 		<form id="comment" action="<?php echo base_url() ?>index.php/ticker/commentsend" method="post" >		
-		<textarea id="comment" name="comment" rows="5"  onfocus="if(this.value=='Tulis komentar anda. Kemudian tekan ENTER') this.value='';" onblur="if(this.value=='') this.value='Tulis komentar anda. Kemudian tekan ENTER';" onkeydown="$(this).css('color','#727272');$(this).css('font-size','12px');">Tulis komentar anda. Kemudian tekan ENTER</textarea>
+		<textarea id="comment" name="comment" rows="5"  placeholder="Tulis komentar anda. Kemudian tekan ENTER"  onkeydown="$(this).css('color','#727272');$(this).css('font-size','12px');"></textarea>
 		<input type="hidden" name="jenis" id="jensget" value="<?=$jenis?>" />
 		<input type="hidden" name="id_information" id="id_information" value="<?=$id?>" />
 		</form>
 		<div class="post">
 			<div class="date"><?=date("F j, Y")?></div>
-			<input type="submit" name="submit" id="submitcomment" value="Post" />
+			<!--<input type="submit" name="submit" id="submitcomment" value="Post" />-->
 		</div>
 		<? 
 		//$user = DataUser();
@@ -96,7 +96,7 @@ $(document).ready(function(){
 				<? } ?>
 				<? } ?>
 				<form id="reply<?=$datahis['id']?>" action="<?php echo base_url() ?>index.php/ticker/commentsend" method="post" >
-				<textarea id="commentreply" name="commentreply" rows="5" post="<?=$datahis['id']?>" onfocus="if(this.value=='Tulis komentar anda. Kemudian tekan ENTER') this.value='';" onblur="if(this.value=='') this.value='Tulis komentar anda. Kemudian tekan ENTER';" onkeydown="$(this).css('color','#727272');$(this).css('font-size','12px');">Tulis komentar anda. Kemudian tekan ENTER</textarea>
+				<textarea id="commentreply" name="commentreply" rows="5" post="<?=$datahis['id']?>" placeholder="Tulis komentar anda. Kemudian tekan ENTER" onkeydown="$(this).css('color','#727272');$(this).css('font-size','12px');"></textarea>
 				<input type="hidden" name="jenis" value="<?=$jenis?>" />
 				<input type="hidden" name="id_information" id="id_information" value="<?=$id?>" />
 				</form>

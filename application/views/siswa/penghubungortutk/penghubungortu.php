@@ -239,6 +239,8 @@
 									return false;
 								}
 								$(function() {
+									getadd($('input#tanggalpengtk'),'<?=date('Y-m-d');?>')
+									getadd($('input#tanggalpengtkmenu'),'<?=date('Y-m-d');?>')
 									$('#tanggalpengtk').datepick({
 										inputId: 'tanggalpengtk',
 										formId: 'penghubungortutkform',
@@ -255,7 +257,7 @@
 								<td>
 									
 									Tanggal :
-										<input type="text" style="height:28px; width:110px;" id="tanggalpengtk" name="tanggalpengtk" readonly="" placeholder="Pilih Tanggal">
+										<input type="text" inputId="tanggalpengtk" style="height:28px; width:110px;" id="tanggalpengtk" name="tanggalpengtk" readonly="" value="<?=date('Y-m-d');?>" placeholder="Pilih Tanggal">
 									
 									</td>
 								</tr>
@@ -275,7 +277,7 @@
 								<tr>
 								<td>
 									Tanggal :
-										<input type="text" style="height:28px; width:110px;" id="tanggalpengtkmenu" name="tanggalpengtkmenu" readonly="" placeholder="Pilih Tanggal">
+										<input type="text" inputId="tanggalpengtkmenu" style="height:28px; width:110px;" id="tanggalpengtkmenu" name="tanggalpengtkmenu" readonly="" value="<?=date('Y-m-d');?>"  placeholder="Pilih Tanggal">
 									
 									</td>
 								</tr>

@@ -61,17 +61,40 @@ class Detailpembelajaran extends CI_Controller
 					$data['jenis']="penghubung";
 					//pr($out);
 				break;
+				case "penghubung_tk":
+					$datahubungtk=$this->penghubungortutk($datain['id']);
+					$out['id']=$datain['id'];
+					$data['title']="Laporan Perkembangan Siswa";
+					$data['jenis']=$datain['jenis'];
+					//pr($datahubungtk);
+				break;
 			}
 			
 			$data['out']=$out;
 			if($datain['jenis']=="penghubung"){
 				$data['datapengh']=$datahubung;
 				$data['main'] = 'akademik/detailpenghubungortu';
+			}elseif($datain['jenis']=="penghubung_tk"){
+				$data['content']=$datahubungtk['content'];
+				$data['contentsiswa']=$datahubungtk['contentsiswa'];
+				$data['main'] = 'akademik/detailpenghubungortutk';
 			}else{
-				
 				$data['main'] = 'akademik/detailpembelajaran';
 			}
             $this->load->view('layout/ak_default',$data);
+		}
+        private function penghubungortutk($id=0){
+			//content perkembngan			
+			$this->load->model('ad_penghubungortutk');
+			$contentsiswa=$this->ad_penghubungortutk->getdataPengSiswaById($id);	
+			$contentsiswa[0]['contarr']=unserialize($contentsiswa[0]['contentsiswa']);
+			$data['contentsiswa']=$contentsiswa;
+
+			$content=$this->ad_penghubungortutk->getdataByIdSekolah($this->session->userdata['user_authentication']['id_sekolah'],$contentsiswa[0]['type']);
+			$content[0]['contarr']=unserialize($content[0]['content']);
+			$data['content']=$content;	
+			
+			return $data;
 		}
         private function penghubungortu($id=0){
 			$this->load->model('ad_jurnal');

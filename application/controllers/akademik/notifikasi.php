@@ -18,12 +18,13 @@ class Notifikasi extends CI_Controller
 		}
         public function notif()
         {
-			if(isset($this->session->userdata['user_authentication']['id_siswa'])){
+			if($this->session->userdata['user_authentication']['otoritas']=='siswa'){
 				$id_pengguna=$this->session->userdata['user_authentication']['id_siswa'];
-			}else{
+			}elseif($this->session->userdata['user_authentication']['otoritas']=='ortu'){
 				$id_pengguna=$this->session->userdata['user_authentication']['id_pengguna'];
 			}
 			$data['notif']=$this->ad_notifikasi->get_notifByIdPengguna($id_pengguna);
+			//pr($id_pengguna);
 			$this->ad_notifikasi->setnotifreaded($this->session->userdata['user_authentication']['id_pengguna']);
 			//$data['notifp']=$this->ad_notifikasi->get_notifByIdPengirim($this->session->userdata['user_authentication']['id_pengguna']);
 			

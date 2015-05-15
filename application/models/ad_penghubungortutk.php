@@ -7,6 +7,22 @@ Class Ad_penghubungortutk extends CI_Model
 		//echo $this->db->last_query();
 		return $query->result_array();
 	}
+	function getdataPengSiswaById($id){
+		$query=$this->db->query('SELECT * FROM ak_penghubung_tk 
+								 WHERE
+								 id=?
+		',array($id));
+		//echo $this->db->last_query();
+		return $query->result_array();
+	}
+	function getdataPengContByIdPeng($id){
+		$query=$this->db->query('SELECT * FROM ak_penghubung_tk 
+								 WHERE
+								 id=?
+		',array($id));
+		//echo $this->db->last_query();
+		return $query->result_array();
+	}
 	function getdataPengByIdSiswaTgl($id_siswa=0,$tanggal=''){
 		if($id_siswa==0 || $id_siswa==""){$cndsis="";}else{$cndsis="id_siswa=".$id_siswa." AND";}
 		$query=$this->db->query('SELECT * FROM ak_penghubung_tk 
