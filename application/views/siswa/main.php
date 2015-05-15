@@ -21,13 +21,43 @@ if($cek['otoritas']=='siswa') {
 
 <div class="portfolio column-one-half-with-sidebar">
 
+	<? aktifitasakademik($this->session->userdata['user_authentication']['id_pengguna'],'siswa',5);?>
 	<script>
 		$(document).ready(function() {
 			$('#contentbelajar').load('<?=base_url('akademik/bahanajar/siswa')?>');
-			$('#penghubungortu').load('<?=base_url('siswa/jurnalwalikelas/penghubungortu')?>');
+			<?
+			if($jenjang[0]['bentuk']=='TK'){
+			?>
+				$.ajax({
+				type: "GET",
+				data: '',
+				url: '<?=base_url('siswa/penghubungortutk/penghubungortu')?>',
+				beforeSend: function() {
+					
+				},
+				success: function(msg) {
+					$('#penghubungortu').html(msg);
+					$.ajax({
+						type: "POST",
+						data: 'id_kelas=<?=$this->session->userdata['user_authentication']['id_kelas_siswa_det_jenjang']?>',
+						url: '<?=base_url('siswa/penghubungortutk/penghubungortulist/0')?>',
+						beforeSend: function() {
+						
+						},
+						success: function(msg) {
+							$("#wait").remove();
+							$('#listpenghub').html(msg);
+						}
+					});
+				}
+				});
+			<?
+			}else{
+			?>
+				$('#penghubungortu').load('<?=base_url('siswa/jurnalwalikelas/penghubungortu')?>');
+			<? } ?>
 		});
 	</script>
-	<? aktifitasakademik($this->session->userdata['user_authentication']['id_pengguna'],'siswa',5);?>
 	<div id="penghubungortu"></div>	
 	<div class="clear"></div>
 	<h3 id="<?=$cek['otoritas']?>"> Menu <?=$cek['otoritas']?> </h3>
@@ -53,7 +83,7 @@ if($cek['otoritas']=='siswa') {
 					'id_siswa_det_jenjang'=>$this->session->userdata['user_authentication']['id_siswa_det_jenjang'],
 					'id'=>$user->id,
 					'onlyraport'=>true,
-					'id_kelas'=>$this->session->userdata['user_authentication']['id_siswa_det_jenjang']
+					'id_kelas'=>$this->session->userdata['user_authentication']['id_kelas_siswa_det_jenjang']
 				);
 				//pr($url);
 				//$urlprint=$url;

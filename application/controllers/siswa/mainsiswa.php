@@ -15,8 +15,10 @@ class Mainsiswa extends CI_Controller
         public function index()
         {	
 			$this->load->model('ad_siswa');
+			$this->load->model('ad_kelas');
             $datasiswa=$this->ad_siswa->getsiswaByIdDetJenjang($this->session->userdata['user']['id_siswa_det_jenjang']);
             $data['datasiswa']= $datasiswa;
+			$data['jenjang']=$this->ad_kelas->thisjenjang($this->session->userdata['user_authentication']['id']);
             $data['main']= 'siswa/main';
             $this->load->view('layout/ak_default',$data);
         }

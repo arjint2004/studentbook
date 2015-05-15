@@ -14,6 +14,29 @@
 								$('#listpenghub').html(msg);
 							}
 						});
+						
+					$('#listlap').click( function() {
+						$('.listlap').show();
+						$(this).children('a').addClass('current');
+						$('.pengtk').hide();
+						$('.menutk').hide();
+					});
+					$('#pengtk').click( function() {
+						$('.listlap').hide();
+						$('.menutk').hide();
+						$(this).children('a').addClass('current');
+						$('#listlap').children('a').removeClass('current');
+						$('#menutk').children('a').removeClass('current');
+						$('.pengtk').show();
+					});
+					$('#menutk').click( function() {
+						$('.listlap').hide();
+						$('.pengtk').hide();
+						$(this).children('a').addClass('current');
+						$('#listlap').children('a').removeClass('current');
+						$('#pengtk').children('a').removeClass('current');
+						$('.menutk').show();
+					});
 				});
 				</script>
 				<script type="text/javascript" src="<?=$this->config->item('js');?>upload.js"></script>
@@ -27,7 +50,9 @@
 				    <div class="hr"> </div>
                     <div class="tabs-container">
                         <ul class="tabs-frame">
-                            <li id="listlap"><a style="cursor:pointer;" class="current">Daftar Laporan</a></li>
+                            <li id="listlap"><a style="cursor:pointer;" class="current">Laporan Kegiatan</a></li>
+                           <!-- <li id="pengtk"><a style="cursor:pointer;" class="">Laporan Perkembangan</a></li>
+                            <li id="menutk"><a style="cursor:pointer;" class="">Laporan Menu Makan</a></li>-->
                         </ul>
                         <div class="tabs-frame-content listlap">
 
@@ -50,5 +75,10 @@
 							</table>
 							</div>
                         </div>
-                       
+                       <!--<div class="tabs-frame-content pengtk" style="display:none;">
+					   ggh
+                       </div> 
+                       <div class="tabs-frame-content menutk" style="display:none;">
+					   ghkghk
+                       </div>  -->  
                     </div>    
