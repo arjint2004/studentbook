@@ -20,11 +20,11 @@ class Notifikasi extends CI_Controller
         {
 			if($this->session->userdata['user_authentication']['otoritas']=='siswa'){
 				$id_pengguna=$this->session->userdata['user_authentication']['id_siswa'];
-			}elseif($this->session->userdata['user_authentication']['otoritas']=='ortu'){
+			}else{
 				$id_pengguna=$this->session->userdata['user_authentication']['id_pengguna'];
 			}
 			$data['notif']=$this->ad_notifikasi->get_notifByIdPengguna($id_pengguna);
-			//pr($id_pengguna);
+			//pr($this->session->userdata['user_authentication']['otoritas']);
 			$this->ad_notifikasi->setnotifreaded($this->session->userdata['user_authentication']['id_pengguna']);
 			//$data['notifp']=$this->ad_notifikasi->get_notifByIdPengirim($this->session->userdata['user_authentication']['id_pengguna']);
 			

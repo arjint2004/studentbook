@@ -78,25 +78,25 @@ function editreply(e,object){
 
 }
 
-$("textarea#commentreply").live("keypress",function(event){
+$("textarea.commentreply").live("keypress",function(event){
 	  
 	  if (event.keyCode == 13 && event.shiftKey) {
 
       }else if(event.keyCode == 13)
       {
-          submitreply($(this).attr('post'),$(this).val());
+          submitreply($(this).attr('post'),$(this).val(),$(this));
 		 
 		  $(this).blur();
 		  return false;
       }
 });
-$("textarea#comment").live("keypress",function(event){
+$("textarea.comment").live("keypress",function(event){
 	  
       if (event.keyCode == 13 && event.shiftKey) {
 
       }else if(event.keyCode == 13)
       {
-          submit();
+          submit($(this));
 		  $(this).blur();
 		  return false;
       }
@@ -186,7 +186,7 @@ function submiteditreply(idcommentreply){
 		
 		return false;
 }
-function submitreply(idcommentreply,postreply){
+function submitreply(idcommentreply,postreply,obj){
 		var formData = $("#reply"+idcommentreply).serialize();
 		$(".content-box").append("<div class=\"error-box\"></div>");
 		$(".error-box").html("Sending Data").fadeIn("slow");
@@ -211,7 +211,9 @@ function submitreply(idcommentreply,postreply){
 					//$(".error-box").delay(1000).html(returnData.message);
 						//$('.comment').load('<?=base_url()?>akademik/comment/index/'+$('input#idcommentar').val());	
 					//reset input value
-					$('.comment').load('<?=base_url()?>akademik/comment/index/'+$('input#idcommentar').val()+'/first/'+$('input#jensget').val());
+					//$('.comment').load('<?=base_url()?>akademik/comment/index/'+$('input#idcommentar').val()+'/first/'+$('input#jensget').val());
+					var obload=$(obj).parent('form').parent('div').parent('div').parent('div').parent('div').parent('div');
+					$(obload).load('<?=base_url()?>akademik/comment/index/'+$(obj).next('input').next('input').val()+'/first/'+$(obj).next('input').val());
 				}else{
 					$(".error-box").delay(1000).html(returnData.message);
 					$(".error-box").delay(1000).fadeOut("slow",function(){
@@ -225,14 +227,14 @@ function submitreply(idcommentreply,postreply){
 		
 		return false;
 }
-function submit(){
+function submit(obj){
 		
-		var formData = $("#comment").serialize();
+		var formData = $(obj).parent('form').serialize();
 		$(".content-box").append("<div class=\"error-box\"></div>");
 		$(".error-box").html("Sending Data").fadeIn("slow");
 		//alert("myObject is " + formData.toSource());
 		$.ajax({
-			url		: "<?=base_url()?>akademik/comment/commentsend/"+$('input#idcommentar').val(),
+			url		: "<?=base_url()?>akademik/comment/commentsend/"+$(obj).next('input').next('input').val(),
 			type	: "post",
 			data	: formData,
 			dataType: "json",
@@ -267,9 +269,9 @@ function submit(){
 					});*/
 					
 					$(".error-box").delay(1000).fadeOut("slow",function(){
-						
 						$(this).remove();
-						$('.comment').load('<?=base_url()?>akademik/comment/index/'+$('input#idcommentar').val()+'/first/'+$('input#jensget').val());	
+						var obload=$(obj).parent('form').parent('div').parent('div').parent('div');
+						$(obload).load('<?=base_url()?>akademik/comment/index/'+$(obj).next('input').next('input').val()+'/first/'+$(obj).next('input').val());
 					});
 					
 					//reset input value
