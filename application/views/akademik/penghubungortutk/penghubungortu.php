@@ -444,7 +444,6 @@
 								<?=$this->load->view('akademik/penghubungortutk/perkembangan')?>
 								</div>
 								<br />
-								<a class="button small light-grey simpanprg" title=""  style="float:right;" href=""> Simpan </a>
 							</form>		
 												
 						</div>
@@ -481,7 +480,6 @@
 									<?=$this->load->view('akademik/penghubungortutk/menumakan')?>
 								</div>
 								<br />
-								<a class="button small light-grey simpanprgmenu" title=""  style="float:right;" href=""> Simpan </a>
 							</form>	
 						</div>
                     </div>
