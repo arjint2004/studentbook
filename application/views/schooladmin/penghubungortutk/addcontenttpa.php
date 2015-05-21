@@ -1,12 +1,13 @@
 <script>
 	$(document).ready(function(){
 		
-			var tr2='<tr baris="1" sub_baris="1" class="sub_2 ncls ncsub2">1<td>&nbsp;</td><td style="width: 1%; border-right: medium none; " >1.1</td><td style="border-right: medium none;"><input type="text" name2 /></td><td><div class="add_sub_2" ></div></td><td></td><td></td><td></td><td></td><td><a class="button small light-grey hapustkx" title="" style="float:none;"  href="#">X</a></td></tr>';
+			var tr2='<tr baris="1" sub_baris="1" class="sub_2 ncls ncsub2">1<td>&nbsp;</td><td style="width: 1%; border-right: medium none; " >1.1</td><td style="border-right: medium none;"><input type="text" name2 /></td><td><div class="add_sub_2" ></div></td><td class="aspekpenilai"><input type="text" /></td><td class="aspekpenilai"><input type="text" /></td><td class="aspekpenilai"><input type="text"  /></td><td class="aspekpenilai"><input type="text" /></td><td><a class="button small light-grey hapustkx" title="" style="float:none;"  href="#">X</a></td></tr>';
 			
-			var tr1='<tr baris="1" class="sub_1 ncls"><td>noxx</td><td colspan="2" style="width: 1%; border-right: medium none;"><input type="text" name1 /></td><td style="width:1%;"><div class="add_sub_1" ></div></td><td class="aspekpenilai"><input type="text" /></td><td class="aspekpenilai"><input type="text" /></td><td class="aspekpenilai"><input type="text"  /></td><td class="aspekpenilai"><input type="text" /></td><td><a class="button small light-grey hapustkx" title=""  style="float:none;" href="#">X</a></td></tr>'+tr2;
+			var tr1='<tr baris="1" class="sub_1 ncls"><td>noxx</td><td colspan="2" style="width: 1%; border-right: medium none;"><input type="text" name1 /></td><td style="width:1%;"><div class="add_sub_1" ></div></td><td></td><td></td><td></td><td></td><td><a class="button small light-grey hapustkx" title=""  style="float:none;" href="#">X</a></td></tr>'+tr2;
 
-			var tr3='<tr baris="111" class="sub_3 ncls"><td>&nbsp;</td><td style="width: 1%; border-right: medium none; padding: 2px ! important;" ></td><td style="border-right: medium none;"><input type="text" name3 style="margin-left: 20px; width: 91%;" /></td><td>&nbsp;</td><td></td><td></td><td></td><td></td><td><a class="button small light-grey hapustkx" title=""  style="float:none;" href="#">X</a></td></tr>';
+			var tr3='<tr baris="111" class="sub_3 ncls"><td>&nbsp;</td><td style="width: 1%; border-right: medium none; padding: 2px ! important;" ></td><td style="border-right: medium none;"><input type="text" name3 style="margin-left: 20px; width: 91%;" /></td><td><div class="add_sub_3" ></div></td><td></td><td></td><td></td><td></td><td><a class="button small light-grey hapustkx" title=""  style="float:none;" href="#">X</a></td></tr>';
 			
+			var tr4='<tr baris="1111" class="sub_4 ncls"><td>&nbsp;</td><td style="width: 1%; border-right: medium none; padding: 2px ! important;" ></td><td style="border-right: medium none;"><input type="text" name4 style="margin-left: 40px; width: 87%;" /></td><td>&nbsp;</td><td></td><td></td><td></td><td></td><td><a class="button small light-grey hapustkx" title=""  style="float:none;" href="#">X</a></td></tr>';
 
 		$("a.addbaristk").live('click', function() {
 			var tr1x=tr1;
@@ -30,15 +31,15 @@
 			$(obinput).attr('name','program['+baris+'][nama]');
 			$(obinputsub2).attr('name','program['+baris+'][child]['+baris+'_1][nama]');
 			//naming aspek
-			var obinputaspek1=$("table.penghubungortutk tr.sub_1").last().children('td').first().next('td').next('td').next('td').children('input[type="text"]');
-			var obinputaspek2=$("table.penghubungortutk tr.sub_1").last().children('td').first().next('td').next('td').next('td').next('td').children('input[type="text"]');
-			var obinputaspek3=$("table.penghubungortutk tr.sub_1").last().children('td').first().next('td').next('td').next('td').next('td').next('td').children('input[type="text"]');
-			var obinputaspek4=$("table.penghubungortutk tr.sub_1").last().children('td').first().next('td').next('td').next('td').next('td').next('td').next('td').children('input[type="text"]');
+			var obinputaspek1=$("table.penghubungortutk tr.sub_2").last().children('td').first().next('td').next('td').next('td').next('td').children('input[type="text"]');
+			var obinputaspek2=$("table.penghubungortutk tr.sub_2").last().children('td').first().next('td').next('td').next('td').next('td').next('td').children('input[type="text"]');
+			var obinputaspek3=$("table.penghubungortutk tr.sub_2").last().children('td').first().next('td').next('td').next('td').next('td').next('td').next('td').children('input[type="text"]');
+			var obinputaspek4=$("table.penghubungortutk tr.sub_2").last().children('td').first().next('td').next('td').next('td').next('td').next('td').next('td').next('td').children('input[type="text"]');
 			
-			$(obinputaspek1).attr('name','program['+baris+'][aspek][]');
-			$(obinputaspek2).attr('name','program['+baris+'][aspek][]');
-			$(obinputaspek3).attr('name','program['+baris+'][aspek][]');
-			$(obinputaspek4).attr('name','program['+baris+'][aspek][]');
+			$(obinputaspek1).attr('name','program['+baris+'][child]['+baris+'_1][aspek][]');
+			$(obinputaspek2).attr('name','program['+baris+'][child]['+baris+'_1][aspek][]');
+			$(obinputaspek3).attr('name','program['+baris+'][child]['+baris+'_1][aspek][]');
+			$(obinputaspek4).attr('name','program['+baris+'][child]['+baris+'_1][aspek][]');
 			haps();
 			return false;
 		});			
@@ -63,6 +64,18 @@
 			// naming input
 			var obinputsub2=$("table.penghubungortutk tr."+classbaris).last().children('td').first().next().next().children('input');
 			$(obinputsub2).attr('name','program['+subbaris+'][child]['+subbaris+'_'+baris+'][nama]');
+			
+			//naming aspek
+			var obinputaspek1=$("table.penghubungortutk tr.sub_2").last().children('td').first().next('td').next('td').next('td').next('td').children('input[type="text"]');
+			var obinputaspek2=$("table.penghubungortutk tr.sub_2").last().children('td').first().next('td').next('td').next('td').next('td').next('td').children('input[type="text"]');
+			var obinputaspek3=$("table.penghubungortutk tr.sub_2").last().children('td').first().next('td').next('td').next('td').next('td').next('td').next('td').children('input[type="text"]');
+			var obinputaspek4=$("table.penghubungortutk tr.sub_2").last().children('td').first().next('td').next('td').next('td').next('td').next('td').next('td').next('td').children('input[type="text"]');
+			
+			$(obinputaspek1).attr('name','program['+subbaris+'][child]['+subbaris+'_'+baris+'][aspek][]');
+			$(obinputaspek2).attr('name','program['+subbaris+'][child]['+subbaris+'_'+baris+'][aspek][]');
+			$(obinputaspek3).attr('name','program['+subbaris+'][child]['+subbaris+'_'+baris+'][aspek][]');
+			$(obinputaspek4).attr('name','program['+subbaris+'][child]['+subbaris+'_'+baris+'][aspek][]');
+			
 			haps();
 			return false;
 
@@ -79,12 +92,13 @@
 			
 			//tr3x=tr3x.replace("sub_3", "sub_3 ncsub3 "+classbaris_sub+" "+classbaris);
 			tr3x=tr3x.replace("sub_3", "sub_3 ncsub3 "+classbaris_sub+" "+classbaris);
-			tr3x=tr3x.replace('baris="111"', ' baris_sub="'+barispar+'" baris="1" sub_baris="'+barispar_sub+'"');
+			tr3x=tr3x.replace('baris="111"', ' baris_sub="1" baris="'+barispar+'" sub_baris="'+barispar_sub+'"');
 			if(typeof $("table.penghubungortutk tr."+classbaris).attr('class') === 'undefined'){
 				$(this).parent('td').parent('tr').after(tr3x);
 				// naming input
 				var obinputsub2=$("table.penghubungortutk tr."+classbaris).last().children('td').first().next().next().children('input');
 				$(obinputsub2).attr('name','program['+barispar_sub+'][child]['+barispar_sub+'_'+barispar+'][child]['+barispar_sub+'_'+barispar+'_1][nama]');
+				$(obinputsub2).val(''+barispar_sub+'.'+barispar+'.1');
 				haps();
 				//alert('undf');
 				return false;
@@ -94,14 +108,62 @@
 				var baris		= $("table.penghubungortutk tr."+classbaris).length;
 				baris++;
 				$(lastobj).after(tr3x);
-				$("table.penghubungortutk tr."+classbaris).last().attr('sub_baris',subbaris);1
-				$("table.penghubungortutk tr."+classbaris).last().attr('baris',barispar);2
-				$("table.penghubungortutk tr."+classbaris).last().attr('baris_sub',baris);3
+				$("table.penghubungortutk tr."+classbaris).last().attr('sub_baris',subbaris);
+				$("table.penghubungortutk tr."+classbaris).last().attr('baris',barispar);
+				$("table.penghubungortutk tr."+classbaris).last().attr('baris_sub',baris);
 				// naming input
 				var obinputsub2=$("table.penghubungortutk tr."+classbaris).last().children('td').first().next().next().children('input');
 				$(obinputsub2).attr('name','program['+subbaris+'][child]['+subbaris+'_'+barispar+'][child]['+subbaris+'_'+barispar+'_'+baris+'][nama]');
+				$(obinputsub2).val(''+subbaris+'.'+barispar+'.'+baris+'');
 				haps();	
 				//alert("table.penghubungortutk tr."+classbaris);	
+			}
+
+			
+			return false;
+		});
+		$("table.penghubungortutk tr td div.add_sub_3").live('click', function() {
+			var tr4x=tr4;
+			tr4x=tr4x.replace("hapustkx", "hapustk");
+			
+			var barispar_sub			=$(this).parent('td').parent('tr').attr('sub_baris');
+			var barispar				=$(this).parent('td').parent('tr').attr('baris');
+			var barispar_sub_sub		=$(this).parent('td').parent('tr').attr('baris_sub');
+
+			var classbaris_sub	='par_'+barispar_sub;
+			var classbaris	='par_'+barispar_sub+'_'+barispar;
+			var classbaris_sub_sub	='par_'+barispar_sub+'_'+barispar+'_'+barispar_sub_sub;
+			
+			//tr4x=tr4x.replace("sub_4", "sub_4 ncsub4 "+classbaris_sub+" "+classbaris);
+			tr4x=tr4x.replace("sub_4", "sub_4 ncsub4 "+classbaris_sub+" "+classbaris+" "+classbaris_sub_sub);
+			tr4x=tr4x.replace('baris="1111"', ' baris_sub_sub="1" baris_sub="'+barispar_sub_sub+'" baris="'+barispar+'" sub_baris="'+barispar_sub+'"');
+			if(typeof $("table.penghubungortutk tr."+classbaris_sub_sub).attr('class') === 'undefined'){
+				$(this).parent('td').parent('tr').after(tr4x);
+				// naming input
+				var obinputsub2=$("table.penghubungortutk tr."+classbaris_sub_sub).last().children('td').first().next().next().children('input');
+				$(obinputsub2).attr('name','program['+barispar_sub+'][child]['+barispar_sub+'_'+barispar+'][child]['+barispar_sub+'_'+barispar+'_1][child]['+barispar_sub+'_'+barispar+'_'+barispar_sub_sub+'_1][nama]');
+				$(obinputsub2).val(''+barispar_sub+'.'+barispar+'.'+barispar_sub_sub+'.1');
+				haps();
+				//alert('undf');
+				return false;
+			}else{
+				//alert("table.penghubungortutk tr."+classbaris_sub_sub);
+				var lastobj				= $("table.penghubungortutk tr."+classbaris_sub_sub).last();
+				var subbaris			= $("table.penghubungortutk tr."+classbaris_sub_sub).attr('sub_baris');
+				var baris				= $("table.penghubungortutk tr."+classbaris_sub_sub).attr('baris_sub');
+				var baris_sub_sub		= $("table.penghubungortutk tr."+classbaris_sub_sub).length;
+				baris_sub_sub++;
+				$(lastobj).after(tr4x);
+				$("table.penghubungortutk tr."+classbaris_sub_sub).last().attr('sub_baris',subbaris);
+				$("table.penghubungortutk tr."+classbaris_sub_sub).last().attr('baris',barispar);
+				$("table.penghubungortutk tr."+classbaris_sub_sub).last().attr('baris_sub',baris);
+				$("table.penghubungortutk tr."+classbaris_sub_sub).last().attr('baris_sub_sub',baris_sub_sub);
+				// naming input
+				var obinputsub2=$("table.penghubungortutk tr."+classbaris_sub_sub).last().children('td').first().next().next().children('input');
+				$(obinputsub2).attr('name','program['+subbaris+'][child]['+subbaris+'_'+barispar+'][child]['+subbaris+'_'+barispar+'_'+baris+'][child]['+subbaris+'_'+barispar+'_'+baris+'_'+baris_sub_sub+'][nama]');
+				$(obinputsub2).val(''+subbaris+'.'+barispar+'.'+baris+'.'+baris_sub_sub+'');
+				haps();	
+				//alert("table.penghubungortutk tr."+classbaris_sub_sub);	
 			}
 
 			
@@ -161,10 +223,10 @@
 									  <td><?=$baris?></td>
 									  <td style="width: 1%; border-right: medium none;" colspan="2"><input type="text" name1="" value="<?=$data['nama']?>" name="program[<?=$baris?>][nama]"></td>
 									  <td style="width:1%;"><div  class="add_sub_1"></div></td>
-									  <td class="aspekpenilai"><input type="text" name="program[<?=$baris?>][aspek][]" value="<?=$data['aspek'][0]?>"></td>
-									  <td class="aspekpenilai"><input type="text" name="program[<?=$baris?>][aspek][]" value="<?=$data['aspek'][1]?>"></td>
-									  <td class="aspekpenilai"><input type="text" name="program[<?=$baris?>][aspek][]" value="<?=$data['aspek'][2]?>"></td>
-									  <td class="aspekpenilai"><input type="text" name="program[<?=$baris?>][aspek][]" value="<?=$data['aspek'][3]?>"></td>
+									  <td></td>
+									  <td></td>
+									  <td></td>
+									  <td></td>
 									  <td><a href="#" baris="<?=$baris?>" style="float:none;" title="" class="button small light-grey hapustk">X</a>
 									  </td>
 								  </tr>
@@ -175,11 +237,11 @@
 											  <td>&nbsp;</td>
 											  <td style="width: 1%; border-right: medium none; "><?=$sub2[0]?>.<?=$sub2[1]?></td>
 											  <td style="border-right: medium none;"><input type="text" name2="" value="<?=$data_2['nama']?>" name="program[<?=$sub2[0]?>][child][<?=$sub2[0]?>_<?=$sub2[1]?>][nama]"></td>
-											  <td><div  class="add_sub_2"></div></td>
-											  <td></td>
-											  <td></td>
-											  <td></td>
-											  <td></td>
+											  <td><div  class="add_sub_2"></div><? //pr($data_2);?></td>
+												<td class="aspekpenilai"><input type="text" name="program[<?=$sub2[0]?>][child][<?=$sub2[0]?>_<?=$sub2[1]?>][aspek][]" value="<?=$data_2['aspek'][0]?>"></td>
+												<td class="aspekpenilai"><input type="text" name="program[<?=$sub2[0]?>][child][<?=$sub2[0]?>_<?=$sub2[1]?>][aspek][]" value="<?=$data_2['aspek'][1]?>"></td>
+												<td class="aspekpenilai"><input type="text" name="program[<?=$sub2[0]?>][child][<?=$sub2[0]?>_<?=$sub2[1]?>][aspek][]" value="<?=$data_2['aspek'][2]?>"></td>
+												<td class="aspekpenilai"><input type="text" name="program[<?=$sub2[0]?>][child][<?=$sub2[0]?>_<?=$sub2[1]?>][aspek][]" value="<?=$data_2['aspek'][3]?>"></td>
 											  <td><a href="#"  style="float:none;" title="" class="button small light-grey hapustk">X</a></td>
 										  </tr>
 												<? if(!empty($data_2['child'])){foreach($data_2['child'] as $baris_3 => $data_3){
@@ -189,13 +251,32 @@
 														<td>&nbsp;</td>
 														<td style="width: 1%; border-right: medium none; padding: 2px ! important;"></td>
 														<td style="border-right: medium none;"><input type="text" style="margin-left: 20px; width: 91%;" name3="" value="<?=$data_3['nama']?>" name="program[<?=$sub3[0]?>][child][<?=$sub3[0]?>_<?=$sub3[1]?>][child][<?=$sub3[0]?>_<?=$sub3[1]?>_<?=$sub3[2]?>][nama]"></td>
-														<td>&nbsp;</td>
+														<td><div  class="add_sub_3"></div></td>
 														<td></td>
 														<td></td>
 														<td></td>
 														<td></td>
 														<td><a href="#" style="float:none;" title="" class="button small light-grey hapustk">X</a></td>
-													</tr>												
+													</tr>	
+
+														<? if(!empty($data_3['child'])){foreach($data_3['child'] as $baris_4 => $data_4){
+															$sub4=explode("_",$baris_4);
+														?> 
+															<tr class="sub_4 ncsub4 par_<?=$sub4[0]?> par_<?=$sub4[0]?>_<?=$sub4[1]?> ncls" sub_baris="<?=$sub4[0]?>" baris="<?=$sub4[1]?>" baris_sub="<?=$sub4[2]?>">
+																<td>&nbsp;</td>
+																<td style="width: 1%; border-right: medium none; padding: 2px ! important;"></td>
+																<td style="border-right: medium none;"><input type="text" style="margin-left: 40px; width: 87%;" name4="" value="<?=$data_4['nama']?>" name="program[<?=$sub4[0]?>][child][<?=$sub4[0]?>_<?=$sub4[1]?>][child][<?=$sub4[0]?>_<?=$sub4[1]?>_<?=$sub4[2]?>][nama]"></td>
+																<td></td>
+																<td></td>
+																<td></td>
+																<td></td>
+																<td></td>
+																<td><a href="#" style="float:none;" title="" class="button small light-grey hapustk">X</a></td>
+															</tr>	
+
+																		
+														<? }  } ?> 
+																
 												<? }  } ?> 
 										<? } } ?> 
 								  <? } }?> 
