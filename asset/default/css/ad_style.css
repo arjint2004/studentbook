@@ -707,7 +707,7 @@ table.hm tr td:hover{
 	table.penghubungortutkh tr td input{
 		width:96%;
 	}
-	table.penghubungortutk tr td div.add_sub_1,table.penghubungortutk tr td div.add_sub_2{
+	table.penghubungortutk tr td div.add_sub_1,table.penghubungortutk tr td div.add_sub_2,table.penghubungortutk tr td div.add_sub_3{
 		background: url("../images/plus-ico.png") no-repeat scroll 0 center transparent;
 		cursor: pointer;
 		height: 17px;
