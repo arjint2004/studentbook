@@ -38,6 +38,7 @@ class penghubungortutk extends CI_Controller
 			$content[0]['contarr']=unserialize($content[0]['content']);
 			//pr($content);
 			$data['content']=$content;
+			$data['action']="admin/penghubungortutk/addcontent";
 			$data['titlefield']='PROGRAM PENGEMBANGAN';
 			$data['titlefield2']='Aspek Penilaian';
             $data['main']= 'schooladmin/penghubungortutk/addcontent';
@@ -96,7 +97,8 @@ class penghubungortutk extends CI_Controller
 			$content[0]['contarr']=unserialize($content[0]['content']);
 			//pr($content);
 			$data['content']=$content;
-            $data['main']= 'schooladmin/penghubungortutk/addcontenttpa';
+			$data['action']="admin/penghubungortutk/addcontenttpa";
+            $data['main']= 'schooladmin/penghubungortutk/addcontent';
             $this->load->view('layout/ad_adminsekolah',$data);
 		}
 		

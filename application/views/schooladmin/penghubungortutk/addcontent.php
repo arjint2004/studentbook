@@ -1,9 +1,9 @@
 <script>
 	$(document).ready(function(){
 		
-			var tr2='<tr baris="1" sub_baris="1" class="sub_2 ncls ncsub2">1<td>&nbsp;</td><td style="width: 1%; border-right: medium none; " >1.1</td><td style="border-right: medium none;"><input type="text" name2 /></td><td><div class="add_sub_2" ></div></td><td class="aspekpenilai"><input type="text" /></td><td class="aspekpenilai"><input type="text" /></td><td class="aspekpenilai"><input type="text"  /></td><td class="aspekpenilai"><input type="text" /></td><td><a class="button small light-grey hapustkx" title="" style="float:none;"  href="#">X</a></td></tr>';
+			var tr2='<tr baris="1" sub_baris="1" class="sub_2 ncls ncsub2">1<td>&nbsp;</td><td style="width: 1%; border-right: medium none; " ></td><td style="border-right: medium none;"><input type="text" name2 /></td><td><div class="add_sub_2" ></div></td><td class="aspekpenilai"><input type="text" /></td><td class="aspekpenilai"><input type="text" /></td><td class="aspekpenilai"><input type="text"  /></td><td class="aspekpenilai"><input type="text" /></td><td><a class="button small light-grey hapustkx" title="" style="float:none;"  href="#">X</a></td></tr>';
 			
-			var tr1='<tr baris="1" class="sub_1 ncls"><td>noxx</td><td colspan="2" style="width: 1%; border-right: medium none;"><input type="text" name1 /></td><td style="width:1%;"><div class="add_sub_1" ></div></td><td></td><td></td><td></td><td></td><td><a class="button small light-grey hapustkx" title=""  style="float:none;" href="#">X</a></td></tr>'+tr2;
+			var tr1='<tr baris="1" class="sub_1 ncls"><td>noxx</td><td colspan="2" style="width: 1%; border-right: medium none;"><input type="text" name1 /></td><td style="width:1%;"><div class="add_sub_1" ></div></td><td class="aspekpenilai"><input type="text" /></td><td class="aspekpenilai"><input type="text" /></td><td class="aspekpenilai"><input type="text"  /></td><td class="aspekpenilai"><input type="text" /></td><td><a class="button small light-grey hapustkx" title=""  style="float:none;" href="#">X</a></td></tr>'+tr2;
 
 			var tr3='<tr baris="111" class="sub_3 ncls"><td>&nbsp;</td><td style="width: 1%; border-right: medium none; padding: 2px ! important;" ></td><td style="border-right: medium none;"><input type="text" name3 style="margin-left: 20px; width: 91%;" /></td><td><div class="add_sub_3" ></div></td><td></td><td></td><td></td><td></td><td><a class="button small light-grey hapustkx" title=""  style="float:none;" href="#">X</a></td></tr>';
 			
@@ -32,11 +32,24 @@
 //			$(obinput).val(''+baris+'');
 			$(obinputsub2).attr('name','program['+baris+'][child]['+baris+'_1][nama]');
 //			$(obinputsub2).val(''+baris+'_1');
+			
 			//naming aspek
-			var obinputaspek1=$("table.penghubungortutk tr.sub_2").last().children('td').first().next('td').next('td').next('td').next('td').children('input[type="text"]');
-			var obinputaspek2=$("table.penghubungortutk tr.sub_2").last().children('td').first().next('td').next('td').next('td').next('td').next('td').children('input[type="text"]');
-			var obinputaspek3=$("table.penghubungortutk tr.sub_2").last().children('td').first().next('td').next('td').next('td').next('td').next('td').next('td').children('input[type="text"]');
-			var obinputaspek4=$("table.penghubungortutk tr.sub_2").last().children('td').first().next('td').next('td').next('td').next('td').next('td').next('td').next('td').children('input[type="text"]');
+			var obinputaspek1=$("table.penghubungortutk tr.sub_1").last().children('td').first().next('td').next('td').next('td').children('input[type="text"]');
+			var obinputaspek2=$("table.penghubungortutk tr.sub_1").last().children('td').first().next('td').next('td').next('td').next('td').children('input[type="text"]');
+			var obinputaspek3=$("table.penghubungortutk tr.sub_1").last().children('td').first().next('td').next('td').next('td').next('td').next('td').children('input[type="text"]');
+			var obinputaspek4=$("table.penghubungortutk tr.sub_1").last().children('td').first().next('td').next('td').next('td').next('td').next('td').next('td').children('input[type="text"]');
+			
+			$(obinputaspek1).attr('name','program['+baris+'][aspek][]');
+			$(obinputaspek2).attr('name','program['+baris+'][aspek][]');
+			$(obinputaspek3).attr('name','program['+baris+'][aspek][]');
+			$(obinputaspek4).attr('name','program['+baris+'][aspek][]');
+
+
+			//naming aspek
+			 obinputaspek1=$("table.penghubungortutk tr.sub_2").last().children('td').first().next('td').next('td').next('td').next('td').children('input[type="text"]');
+			 obinputaspek2=$("table.penghubungortutk tr.sub_2").last().children('td').first().next('td').next('td').next('td').next('td').next('td').children('input[type="text"]');
+			 obinputaspek3=$("table.penghubungortutk tr.sub_2").last().children('td').first().next('td').next('td').next('td').next('td').next('td').next('td').children('input[type="text"]');
+			 obinputaspek4=$("table.penghubungortutk tr.sub_2").last().children('td').first().next('td').next('td').next('td').next('td').next('td').next('td').next('td').children('input[type="text"]');
 			
 			$(obinputaspek1).attr('name','program['+baris+'][child]['+baris+'_1][aspek][]');
 			$(obinputaspek2).attr('name','program['+baris+'][child]['+baris+'_1][aspek][]');
@@ -62,7 +75,7 @@
 			$(lastobj).after(tr2x);
 			$("table.penghubungortutk tr."+classbaris).last().attr('sub_baris',subbaris);
 			$("table.penghubungortutk tr."+classbaris).last().attr('baris',baris);
-			$("table.penghubungortutk tr."+classbaris).last().children('td').first().next().html(subbaris+'.'+baris);
+//			$("table.penghubungortutk tr."+classbaris).last().children('td').first().next().html(subbaris+'.'+baris);
 			// naming input
 			var obinputsub2=$("table.penghubungortutk tr."+classbaris).last().children('td').first().next().next().children('input');
 			$(obinputsub2).attr('name','program['+subbaris+'][child]['+subbaris+'_'+baris+'][nama]');
@@ -195,7 +208,7 @@
 <div class="styled-elements">
 		<div id="ajaxside"></div>
 		<div id="listpenghubungortutk">
-			<form action="<? echo base_url();?>admin/penghubungortutk/addcontent" id="penghubungortutkform" name="penghubungortutkform" method="post" >
+			<form action="<? echo base_url();?><?=$action?>" id="penghubungortutkform" name="penghubungortutkform" method="post" >
                             <!--<table class="tableprofil penghubungortutkh" border="1">
 
 								  <tr>
@@ -229,10 +242,10 @@
 									  <td><?=$baris?></td>
 									  <td style="width: 1%; border-right: medium none;" colspan="2"><input type="text" name1="" value="<?=$data['nama']?>" name="program[<?=$baris?>][nama]"></td>
 									  <td style="width:1%;"><div  class="add_sub_1"></div></td>
-									  <td></td>
-									  <td></td>
-									  <td></td>
-									  <td></td>
+									  <td class="aspekpenilai"><input type="text" name="program[<?=$baris?>][aspek][]" value="<?=$data['aspek'][0]?>"></td>
+									  <td class="aspekpenilai"><input type="text" name="program[<?=$baris?>][aspek][]" value="<?=$data['aspek'][1]?>"></td>
+									  <td class="aspekpenilai"><input type="text" name="program[<?=$baris?>][aspek][]" value="<?=$data['aspek'][2]?>"></td>
+									  <td class="aspekpenilai"><input type="text" name="program[<?=$baris?>][aspek][]" value="<?=$data['aspek'][3]?>"></td>
 									  <td><a href="#" baris="<?=$baris?>" style="float:none;" title="" class="button small light-grey hapustk">X</a>
 									  </td>
 								  </tr>
@@ -241,7 +254,7 @@
 										?>
 										  <tr class="sub_2 ncls ncsub2 par_<?=$sub2[0]?> par0_<?=$sub2[0]?>" sub_baris="<?=$sub2[0]?>" baris="<?=$sub2[1]?>">
 											  <td>&nbsp;</td>
-											  <td style="width: 1%; border-right: medium none; "><?=$sub2[0]?>.<?=$sub2[1]?></td>
+											  <td style="width: 1%; border-right: medium none; "><?//=$sub2[0]?><?//=$sub2[1]?></td>
 											  <td style="border-right: medium none;"><input type="text" name2="" value="<?=$data_2['nama']?>" name="program[<?=$sub2[0]?>][child][<?=$sub2[0]?>_<?=$sub2[1]?>][nama]"></td>
 											  <td><div  class="add_sub_2"></div><? //pr($data_2);?></td>
 												<td class="aspekpenilai"><input type="text" name="program[<?=$sub2[0]?>][child][<?=$sub2[0]?>_<?=$sub2[1]?>][aspek][]" value="<?=$data_2['aspek'][0]?>"></td>
