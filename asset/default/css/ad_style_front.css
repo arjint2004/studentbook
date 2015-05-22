@@ -491,8 +491,13 @@ form#simpanbiodata table tr td input{width:200px;}
 	}
 	table.penghubungortutk tr.sub_1 td {
 		Background-color:#cfcfcf;
-		text-align:center;
+		text-align:left;
 		text-transform:uppercase;
+		font-weight:bold;
+	}
+	table.penghubungortutk tr.sub_2 td {
+		Background-color:#e8e8e8;
+		
 	}
 	table.penghubungortutk tr td.nilai {
 		text-align:center;
