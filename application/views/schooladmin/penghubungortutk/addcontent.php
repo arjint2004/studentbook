@@ -126,7 +126,7 @@
 			}
 
 			
-			return false;
+			return false; 
 		});
 		$("table.penghubungortutk tr td div.add_sub_3").live('click', function() {
 			var tr4x=tr4;
