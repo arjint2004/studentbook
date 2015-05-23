@@ -22,7 +22,7 @@
 																		$sub2=explode("_",$baris_2);
 																		$nilai_2=$contentsiswa[0]['contarr'][$baris]['child'][$baris_2]['nilai'];
 																	?>
-																	  <tr class="sub_2 ncls ncsub2 par_<?=$sub2[0]?> par0_<?=$sub2[0]?>" sub_baris="<?=$sub2[0]?>" baris="<?=$sub2[1]?>">
+																	  <tr class="sub_2 ncls aspek ncsub2 par_<?=$sub2[0]?> par0_<?=$sub2[0]?>" sub_baris="<?=$sub2[0]?>" baris="<?=$sub2[1]?>">
 																		  <td><?//=$nilai_2?></td>
 																		  <td style="width: 1%; border-right: medium none; "><?//=$sub2[1]?><?//=$sub2[1]?></td>
 																		  <td ><input type="hidden"  value="<?=$data_2['nama']?>" name="program[<?=$sub2[0]?>][child][<?=$sub2[0]?>_<?=$sub2[1]?>][nama]"><?=$data_2['nama']?></td>
