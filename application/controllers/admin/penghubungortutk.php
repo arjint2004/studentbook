@@ -16,12 +16,19 @@ class penghubungortutk extends CI_Controller
 		
         public function addcontent()
         {
+			if(isset($_POST['semester'])){
+				$semester=$_POST['semester'];
+			}else{
+				$semester=$this->session->userdata['ak_setting']['semester'];
+			}
+			//echo $semester;
 			$this->load->model('ad_penghubungortutk');
 			if(isset($_POST['program'])){
-			$content=$this->ad_penghubungortutk->getdataByIdSekolah($this->session->userdata['user_authentication']['id_sekolah'],'perkembangan_tk');
+			$content=$this->ad_penghubungortutk->getdataByIdSekolah($this->session->userdata['user_authentication']['id_sekolah'],'perkembangan_tk',$semester);
 				if(empty($content)){
 					$datain=array( 'id_sekolah'=>$this->session->userdata['user_authentication']['id_sekolah'],
 								   'content'=>serialize($_POST['program']),
+								   'semester'=>$semester,
 								   'type'=>'perkembangan_tk'
 								);
 					$this->db->insert('ak_penghubung_tk_cont',$datain);
@@ -34,9 +41,12 @@ class penghubungortutk extends CI_Controller
 				}
 			}
 			//echo $this->db->last_query();
-			$content=$this->ad_penghubungortutk->getdataByIdSekolah($this->session->userdata['user_authentication']['id_sekolah'],'perkembangan_tk');
+			$content=$this->ad_penghubungortutk->getdataByIdSekolah($this->session->userdata['user_authentication']['id_sekolah'],'perkembangan_tk',$semester);
 			$content[0]['contarr']=unserialize($content[0]['content']);
 			//pr($content);
+			$data['semester']=$this->db->query("SELECT * FROM ak_semester WHERE id_sekolah=".$this->session->userdata['user_authentication']['id_sekolah']."")->result_array();
+			
+			$data['semester_id']=$semester;
 			$data['content']=$content;
 			$data['action']="admin/penghubungortutk/addcontent";
 			$data['titlefield']='PROGRAM PENGEMBANGAN';
@@ -74,9 +84,14 @@ class penghubungortutk extends CI_Controller
 		}
         public function addcontenttpa()
         {
+			if(isset($_POST['semester'])){
+				$semester=$_POST['semester'];
+			}else{
+				$semester=$this->session->userdata['ak_setting']['semester'];
+			}
 			$this->load->model('ad_penghubungortutk');
 			if(isset($_POST['program'])){
-			$content=$this->ad_penghubungortutk->getdataByIdSekolah($this->session->userdata['user_authentication']['id_sekolah'],'perkembangan_tpa');
+			$content=$this->ad_penghubungortutk->getdataByIdSekolah($this->session->userdata['user_authentication']['id_sekolah'],'perkembangan_tpa',$semester);
 				if(empty($content)){
 					$datain=array( 'id_sekolah'=>$this->session->userdata['user_authentication']['id_sekolah'],
 								   'content'=>serialize($_POST['program']),
@@ -93,7 +108,7 @@ class penghubungortutk extends CI_Controller
 				}
 			}
 			//echo $this->db->last_query();
-			$content=$this->ad_penghubungortutk->getdataByIdSekolah($this->session->userdata['user_authentication']['id_sekolah'],'perkembangan_tpa');
+			$content=$this->ad_penghubungortutk->getdataByIdSekolah($this->session->userdata['user_authentication']['id_sekolah'],'perkembangan_tpa',$semester);
 			$content[0]['contarr']=unserialize($content[0]['content']);
 			//pr($content);
 			$data['content']=$content;

@@ -163,7 +163,7 @@ class penghubungortutk extends CI_Controller
 			}
 			//content perkembngan
 			$this->load->model('ad_penghubungortutk');
-			$content=$this->ad_penghubungortutk->getdataByIdSekolah($this->session->userdata['user_authentication']['id_sekolah'],$type);
+			$content=$this->ad_penghubungortutk->getdataByIdSekolah($this->session->userdata['user_authentication']['id_sekolah'],$type,$this->session->userdata['ak_setting']['semester']);
 			$contentmenu=$this->ad_penghubungortutk->getdataByIdSekolah($this->session->userdata['user_authentication']['id_sekolah'],"menu_makan");
 			$content[0]['contarr']=unserialize($content[0]['content']);
 			$contentmenu[0]['contmenuarr']=unserialize($contentmenu[0]['content']);

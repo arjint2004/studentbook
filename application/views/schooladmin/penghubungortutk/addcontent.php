@@ -199,6 +199,30 @@
 				return false;
 			});		
 		}
+		$("select#semesterselectpengtk").live('change', function() {
+			/*$.ajax({
+				type: 'POST',
+				url: $(this).attr('action'),
+				data: $(this).serialize(),
+				beforeSend: function() {
+					$(this).after("<img id='wait' style='position: relative; top: 21px; left: 28px;' src='<?=$this->config->item('images').'loading.png';?>' />");
+				},
+				success: function(data) {
+					$('#wait').remove();
+				}
+			})			
+			*/
+			$("form#formfilterpengtk").submit();
+			//$("input#semesterpengtkhidden").val($(this).val());
+			return false;
+		});
+		haps();
+		function haps(){
+			$("table.penghubungortutk tbody tr td a.hapustk").live('click', function() {
+				$(this).parent('td').parent('tr').remove();
+				return false;
+			});		
+		}
 
 	});
 </script>
@@ -208,16 +232,24 @@
 <div class="styled-elements">
 		<div id="ajaxside"></div>
 		<div id="listpenghubungortutk">
+			<form action="<? echo base_url();?><?=$action?>" id="formfilterpengtk" method="post" >
+                            <table class="tabelfilter">
+								<tbody>
+									<tr>
+										<td>
+											Semester
+											<select name="semester" id="semesterselectpengtk" class="selectfilter">
+												<option value="">Pilih Semester</option>
+												<option <? if($_POST['semester']==$semester[0]['id']){echo 'selected';}?> value="<?=$semester[0]['id']?>"><?=$semester[0]['nama']?></option>
+												<option <? if($_POST['semester']==$semester[1]['id']){echo 'selected';}?> value="<?=$semester[1]['id']?>"><?=$semester[1]['nama']?></option>
+											</select>
+										</td>
+									</tr>
+								</tbody>
+							</table>		
+			</form>
 			<form action="<? echo base_url();?><?=$action?>" id="penghubungortutkform" name="penghubungortutkform" method="post" >
-                            <!--<table class="tableprofil penghubungortutkh" border="1">
-
-								  <tr>
-									<td>
-									<input placeholder="TEMA" type="text" name="textfield"></td>
-									<td>
-									<input placeholder="SUB TEMA" type="text" name="textfield"></td>
-								  </tr>
-							</table>-->
+							<input type="hidden" id="semesterpengtkhidden" name="semester" value="<?=$semester_id?>" />
 							<table class="tableprofil penghubungortutk" border="1">
 								  <tbody>
 								  <tr>

@@ -2,8 +2,9 @@
 Class Ad_penghubungortutk extends CI_Model
 {
 
-	function getdataByIdSekolah($id_sekolah=0,$type=''){
-		$query=$this->db->query('SELECT * FROM ak_penghubung_tk_cont WHERE id_sekolah=? AND type=?',array($id_sekolah,$type));
+	function getdataByIdSekolah($id_sekolah=0,$type='',$semester=''){
+		if($semester!=''){$cndsm="AND semester=".$semester."";}else{$cndsm="";}
+		$query=$this->db->query('SELECT * FROM ak_penghubung_tk_cont WHERE id_sekolah=? AND type=? '.$cndsm.'',array($id_sekolah,$type));
 		//echo $this->db->last_query();
 		return $query->result_array();
 	}
