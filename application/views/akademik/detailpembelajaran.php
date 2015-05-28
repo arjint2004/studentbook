@@ -2,7 +2,7 @@
 								<div class="clear"></div>
 								<h3><?=$title?></h3>
 								<div class="hr"></div>
-									<?pr($out)?>
+									<? //pr($out)?>
 									<? if(isset($out['id'])){?>
 								<script>
 								$(document).ready(function(){
