@@ -360,7 +360,7 @@ Class Ad_tugas extends CI_Model{
 		return $out;
 	}
 	function getTugasByIdFordetail($id_tugas){
-		$query=$this->db->query('SELECT ak.kelas,ak.nama as nama_kelas,apl.nama as nama_pelajaran, ap.*, ak.id as id_kelas FROM 
+		$query=$this->db->query('SELECT ak.kelas,ak.nama as nama_kelas,apl.nama as nama_pelajaran, ap.*, ak.id as id_kelas,apd.tanggal_kumpul,apd.keterangan FROM 
 								ak_tugas ap 
 								JOIN ak_tugas_det apd
 								JOIN ak_kelas ak JOIN

@@ -360,7 +360,7 @@ Class Ad_uas extends CI_Model{
 		return $out;
 	}
 	function getUasByIdFordetail($id_uas){
-		$query=$this->db->query('SELECT ak.kelas,ak.nama as nama_kelas,apl.nama as nama_pelajaran, ap.*, ak.id as id_kelas FROM 
+		$query=$this->db->query('SELECT ak.kelas,ak.nama as nama_kelas,apl.nama as nama_pelajaran, ap.*, ak.id as id_kelas,apd.tanggal_kumpul,apd.keterangan FROM 
 								ak_uas ap 
 								JOIN ak_uas_det apd
 								JOIN ak_kelas ak JOIN
