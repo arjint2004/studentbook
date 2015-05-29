@@ -111,6 +111,9 @@ class penghubungortutk extends CI_Controller
 			$content=$this->ad_penghubungortutk->getdataByIdSekolah($this->session->userdata['user_authentication']['id_sekolah'],'perkembangan_tpa',$semester);
 			$content[0]['contarr']=unserialize($content[0]['content']);
 			//pr($content);
+			$data['semester']=$this->db->query("SELECT * FROM ak_semester WHERE id_sekolah=".$this->session->userdata['user_authentication']['id_sekolah']."")->result_array();
+			
+			$data['semester_id']=$semester;
 			$data['content']=$content;
 			$data['action']="admin/penghubungortutk/addcontenttpa";
             $data['main']= 'schooladmin/penghubungortutk/addcontent';
