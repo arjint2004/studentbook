@@ -131,7 +131,7 @@
 											<select name="kelas" class="filterkelas" id="filterkelassiswa">
 												<option value="" >Pilih Kelas</option>
 												<? foreach($kelas as $datakelas){?>
-												<option <?if(isset($kelasselected) && $kelasselected==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>" ><?=$datakelas['kelas'].$datakelas['nama']?></option>
+												<option <?if(isset($kelasselected) && $kelasselected==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>" ><?=$datakelas['nama']?></option>
 												<? } ?>
 											</select>
 										</th>
