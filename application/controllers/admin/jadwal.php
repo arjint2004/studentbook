@@ -53,7 +53,7 @@ class Jadwal extends CI_Controller {
 			}else{
 				$slct="";
 			}
-			$select .="<option ".$slct." value='".$datakelas['id']."'>".$datakelas['kelas'].$datakelas['nama']."</option>";
+			$select .="<option ".$slct." value='".$datakelas['id']."'>".$datakelas['nama']."</option>";
 	   }
 	   echo $select;
 	   die();
