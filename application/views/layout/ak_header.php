@@ -46,9 +46,9 @@ jQuery(function($){
 
 <script type="text/javascript" src="<?=$this->config->item('js');?>jquery.validate.min.js"></script>
 <script type="text/javascript" src="<?=$this->config->item('js');?>sendmail.js"></script>
-<script type="text/javascript" src="<?=$this->config->item('fc')?>/jquery.mousewheel-3.0.4.pack.js"></script>
-            <script type="text/javascript" src="<?=$this->config->item('fc')?>/jquery.fancybox-1.3.4.js"></script>
-            <link rel="stylesheet" type="text/css" href="<?=$this->config->item('fc')?>/jquery.fancybox-1.3.4.css" media="screen" />
+<script type="text/javascript" src="<?=$this->config->item('fc')?>jquery.mousewheel-3.0.4.pack.js"></script>
+            <script type="text/javascript" src="<?=$this->config->item('fc')?>jquery.fancybox-1.3.4.js"></script>
+            <link rel="stylesheet" type="text/css" href="<?=$this->config->item('fc')?>jquery.fancybox-1.3.4.css" media="screen" />
             
 <?
 	$this->load->view('akademik/comment/js');

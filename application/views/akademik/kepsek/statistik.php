@@ -1,4 +1,16 @@
 <script>
+$(function(){
+         $(".modal").fancybox({
+                        'showCloseButton'  : true,
+                        'autoScale'  : true,
+                        'height'  : 768,
+                        'onComplete'  : function() {
+						 var offset=$('.modal').offset();
+						 $('#fancybox-wrap').css('top',offset.top+'px !important');
+                        
+                       }
+        });
+});
 				$(document).ready(function(){
 					<? if($jenis==''){?>
 					$.ajax({
