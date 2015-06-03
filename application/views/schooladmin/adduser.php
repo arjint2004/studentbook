@@ -104,7 +104,7 @@
                             		<select name="kelas" id="kelassiswa" class="valid" style="width:210px">
 										<option value="" >Pilih Kelas</option>
 										<? foreach($kelas as $datakelas){?>
-											<option value="<?=$datakelas['id']?>" ><?=$datakelas['nama']?></option>
+											<option value="<?=$datakelas['id']?>" ><?=$datakelas['kelas'].$datakelas['nama']?></option>
 										<? } ?>
 									</select>
                         </p>

@@ -312,7 +312,7 @@ if($cek['otoritas']=='siswa') {
 						<select class="selectfilter" id="kelasraport" name="id_kelas">
 							<option value="">Pilih Kelas</option>
 							<? foreach($kelas as $datakelas){?>
-								<option <? if(@$_POST['kelas']==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>"><?//=$datakelas['kelas']?><?=$datakelas['nama']?></option>
+								<option <? if(@$_POST['kelas']==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>"><?=$datakelas['kelas']?><?=$datakelas['nama']?></option>
 							<? } ?>
 						</select>
 									
@@ -400,7 +400,7 @@ if($cek['otoritas']=='siswa') {
 						<select id="kelaskenaikan" class="selectfilter" name="id_kelaskenaikan">
 							<option value="">Pilih Kelas</option>
 							<? foreach($kelas as $datakelas){?>
-								<option <? if(@$_POST['kelas']==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>"><?//=$datakelas['kelas']?><?=$datakelas['nama']?></option>
+								<option <? if(@$_POST['kelas']==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>"><?=$datakelas['kelas']?><?=$datakelas['nama']?></option>
 							<? } ?>
 						</select>		
 					</td>

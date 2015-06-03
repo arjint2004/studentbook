@@ -41,7 +41,7 @@
 		<select name="kelas" class="importkelas">
 			<option value="" >Pilih Kelas</option>
 			<? foreach($kelas as $datakelas){?>
-			<option value="<?=$datakelas['id']?>" ><?=$datakelas['nama']?></option>
+			<option value="<?=$datakelas['id']?>" ><?=$datakelas['kelas'].$datakelas['nama']?></option>
 			<? } ?>
 		</select>
 		<? } ?>

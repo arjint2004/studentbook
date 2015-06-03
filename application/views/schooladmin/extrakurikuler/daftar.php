@@ -110,7 +110,7 @@
 										<select onchange=" $('#formaddextra').submit(); return false;" name="id_kelas" id="id_kelas" >
 											<option value="" >Pilih Kelas</option>
 											<? foreach($kelas as $datakelas){?>
-											<option <?if(isset($kelasselected) && $kelasselected==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>" ><?=$datakelas['nama']?></option>
+											<option <?if(isset($kelasselected) && $kelasselected==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>" ><?=$datakelas['kelas'].$datakelas['nama']?></option>
 											<? } ?>
 										</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										Pilih Ekstrakurikuler                           		

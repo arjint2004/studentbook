@@ -246,7 +246,7 @@ $(function() {
 								  
 								  <? foreach($kelas as $datakelas){?>
 								  <option id_mengajar="<?=$datakelas['id_mengajar']?>" <? if(isset($kelaspenerima2[$datakelas['id']])){echo 'style="display:none;"';}?> value="<?=$datakelas['id']?>">
-								  <?//=$datakelas['kelas']?>
+								  <?=$datakelas['kelas']?>
 								  <?=$datakelas['nama']?>
 								  </option>
 								  <? } ?>

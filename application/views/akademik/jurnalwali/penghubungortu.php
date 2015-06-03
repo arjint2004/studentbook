@@ -153,7 +153,7 @@
 											<select name="idkelasp" id="idkelasp">
 												<option value="0">Pilih Kelas</option>
 												<? foreach($kelaslaporan as $datakelas){?>
-												<option <? if(@$_POST['kelas']==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>"><?//=$datakelas['kelas']?><?=$datakelas['nama']?></option>
+												<option <? if(@$_POST['kelas']==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>"><?=$datakelas['kelas']?><?=$datakelas['nama']?></option>
 												<? } ?>
 											</select>
 										</td>
@@ -211,7 +211,7 @@
 												<select name="id_kelas" id="kelaslaporan">
 													<option value="">Pilih Kelas</option>
 													<? foreach($kelaslaporan as $datakelas){?>
-													<option <? if(@$_POST['kelas']==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>"><?//=$datakelas['kelas']?><?=$datakelas['nama']?></option>
+													<option <? if(@$_POST['kelas']==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>"><?=$datakelas['kelas']?><?=$datakelas['nama']?></option>
 													<? } ?>
 												</select>
 											</td>

@@ -136,7 +136,7 @@
 					<select class="selectfilter" id="kelas_add" name="id_kelas">
 						<option value="">Pilih Kelas</option>
 						<? foreach($kelas as $datakelas){?>
-						<option <? if(@$administrasi[0]['id_kelas']==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>"><?//=$datakelas['kelas']?><?=$datakelas['nama']?></option>
+						<option <? if(@$administrasi[0]['id_kelas']==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>"><?=$datakelas['kelas']?><?=$datakelas['nama']?></option>
 						<? } ?>
 					</select>
 				</td>

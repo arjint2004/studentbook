@@ -113,7 +113,7 @@ $(function() {
 						<td style="text-align:left;">
 							<select  id="kelasabsenrekap" name="kelas">
 								<? foreach($kelas as $datakelas){?>
-								<option <? if(@$_POST['kelas']==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>"><?//=$datakelas['kelas']?><?=$datakelas['nama']?></option>
+								<option <? if(@$_POST['kelas']==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>"><?=$datakelas['kelas']?><?=$datakelas['nama']?></option>
 								<? } ?>
 							</select>
 						</td>

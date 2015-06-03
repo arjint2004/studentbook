@@ -130,7 +130,7 @@ $(document).ready(function(){
 			<select id="id_kelas" name="kelas"  class="selectadddata">
 				<option value="">Pilih Kelas</option>
 				<? foreach($kelas as $datakelas){?>
-				<option id_kelas="<?=$datakelas['id']?>" value="<?//=$datakelas['kelas']?>"><?//=$datakelas['kelas']?><?=$datakelas['nama']?></option>
+				<option id_kelas="<?=$datakelas['id']?>" value="<?=$datakelas['kelas']?>"><?=$datakelas['kelas']?><?=$datakelas['nama']?></option>
 				<? } ?>
 			</select>
 			</td>

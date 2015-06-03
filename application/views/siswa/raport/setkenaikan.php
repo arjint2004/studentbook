@@ -79,7 +79,7 @@ div.error { color:red; margin-left: 0px; font-size:10px !important; font-weight:
 				<select name="kelasuntuknaik[<?=$id_siswa?>]" class="kenaikan required">
 					<option value="">Pilih Kelas</option>
 					<? foreach($kelasuntuknaik as $kelas=>$datakelas){?>
-						<option <? if($datakelas['id']==@$siswasudahnaik[$id_siswa]['id_kelas_siswa_det_jenjang']){ echo "selected";}?> value="<?=$datakelas['id']?>"><?//=$datakelas['kelas']?><?=$datakelas['nama']?></option>
+						<option <? if($datakelas['id']==@$siswasudahnaik[$id_siswa]['id_kelas_siswa_det_jenjang']){ echo "selected";}?> value="<?=$datakelas['id']?>"><?=$datakelas['kelas']?><?=$datakelas['nama']?></option>
 					<? } ?>
 				</select>
 				<? }else{ ?>

@@ -336,7 +336,7 @@ class Pelajaran extends CI_Controller {
 			}else{
 				$slct="";
 			}
-			$select .="<option ".@$slct." id_mengajar='".$datakelas['id_mengajar']."' value='".$datakelas['id']."'>".$datakelas['nama']."</option>";
+			$select .="<option ".@$slct." id_mengajar='".$datakelas['id_mengajar']."' value='".$datakelas['id']."'>".$datakelas['kelas'].$datakelas['nama']."</option>";
 	   }
 	   echo $select;
 	   die();
