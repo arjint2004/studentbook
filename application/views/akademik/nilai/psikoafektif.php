@@ -102,7 +102,7 @@
 									Kelas :
 										<select class="selectfilter" id="kelasPsikoafektif" name="id_kelas">
 											<? foreach($kelas as $datakelas){?>
-											<option <? if(@$_POST['kelas']==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>" id_jurusan="<?=$datakelas['id_jurusan']?>" nama_kelas="<?=$datakelas['kelas']?>"><?=$datakelas['kelas']?><?=$datakelas['nama']?></option>
+											<option <? if(@$_POST['kelas']==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>" id_jurusan="<?=$datakelas['id_jurusan']?>" nama_kelas="<?//=$datakelas['kelas']?>"><?//=$datakelas['kelas']?><?=$datakelas['nama']?></option>
 											<? } ?>
 										</select>
 										<input type="hidden" name="jenis" value="<?=$jenis?>" />

@@ -275,7 +275,7 @@ $(function() {
 					<select class="selectfilter" disabled id="kelas_adduts" name="id_kelas">
 						<option value="">Pilih Kelas</option>
 						<? foreach($kelas as $datakelas){?>
-						<option <? if(@$uts['uts'][0]['id_kelas']==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>"><?=$datakelas['kelas']?><?=$datakelas['nama']?></option>
+						<option <? if(@$uts['uts'][0]['id_kelas']==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>"><?//=$datakelas['kelas']?><?=$datakelas['nama']?></option>
 						<? } ?>
 					</select>
 					<input type="hidden" name="id_kelas" id="kelas_adduts" value="<?=@$uts['uts'][0]['id_kelas']?>" />

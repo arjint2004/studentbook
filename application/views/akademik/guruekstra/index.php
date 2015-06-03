@@ -167,7 +167,7 @@ div#subjectlistbysiswabk form table#point tr td div span.arrow-s{
 						<select class="selectfilter" id="kelasraport" name="id_kelas">
 							<option value="">Pilih Kelas</option>
 							<? foreach($kelas as $datakelas){?>
-								<option <? if(@$_POST['kelas']==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>"><?=$datakelas['kelas']?><?=$datakelas['nama']?></option>
+								<option <? if(@$_POST['kelas']==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>"><?//=$datakelas['kelas']?><?=$datakelas['nama']?></option>
 							<? } ?>
 						</select>
 									
@@ -255,7 +255,7 @@ div#subjectlistbysiswabk form table#point tr td div span.arrow-s{
 						<select id="kelaskenaikan" class="selectfilter" name="id_kelaskenaikan">
 							<option value="">Pilih Kelas</option>
 							<? foreach($kelas as $datakelas){?>
-								<option <? if(@$_POST['kelas']==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>"><?=$datakelas['kelas']?><?=$datakelas['nama']?></option>
+								<option <? if(@$_POST['kelas']==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>"><?//=$datakelas['kelas']?><?=$datakelas['nama']?></option>
 							<? } ?>
 						</select>		
 					</td>
@@ -293,7 +293,7 @@ div#subjectlistbysiswabk form table#point tr td div span.arrow-s{
 						<select id="id_kelaslain2" class="selectfilter" name="id_kelas">
 							<option value="">Pilih Kelas</option>
 							<? foreach($kelas as $datakelas){?>
-								<option <? if(@$_POST['kelas']==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>"><?=$datakelas['kelas']?><?=$datakelas['nama']?></option>
+								<option <? if(@$_POST['kelas']==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>"><?//=$datakelas['kelas']?><?=$datakelas['nama']?></option>
 							<? } ?>
 						</select>		
 					</td>

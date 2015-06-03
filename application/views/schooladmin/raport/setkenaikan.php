@@ -75,16 +75,16 @@ div.error { color:red; margin-left: 0px; font-size:10px !important; font-weight:
 					<? if(!empty($siswasudahnaik)){?>
 						<?if($_POST['id_kelas']==@$siswasudahnaik[$id_siswa]['id_kelas_siswa_det_jenjang']){?>
 							<? foreach($kelasuntuknaik['current'] as $kelas=>$datakelas){?>
-								<option <? if($datakelas['id']==@$siswasudahnaik[$id_siswa]['id_kelas_siswa_det_jenjang']){ echo "selected";}?> value="<?=$datakelas['id']?>"><?=$datakelas['kelas']?><?=$datakelas['nama']?></option>
+								<option <? if($datakelas['id']==@$siswasudahnaik[$id_siswa]['id_kelas_siswa_det_jenjang']){ echo "selected";}?> value="<?=$datakelas['id']?>"><?//=$datakelas['kelas']?><?=$datakelas['nama']?></option>
 							<? } ?>
 						<? }else{ ?>
 							<? foreach($kelasuntuknaik['next'] as $kelas=>$datakelas){?>
-								<option <? if($datakelas['id']==@$siswasudahnaik[$id_siswa]['id_kelas_siswa_det_jenjang']){ echo "selected";}?> value="<?=$datakelas['id']?>"><?=$datakelas['kelas']?><?=$datakelas['nama']?></option>
+								<option <? if($datakelas['id']==@$siswasudahnaik[$id_siswa]['id_kelas_siswa_det_jenjang']){ echo "selected";}?> value="<?=$datakelas['id']?>"><?//=$datakelas['kelas']?><?=$datakelas['nama']?></option>
 							<? } ?>
 						<? } ?>
 					<? }else{ ?>
 							<? foreach($kelasuntuknaik['next'] as $kelas=>$datakelas){?>
-								<option <? if($datakelas['id']==@$siswasudahnaik[$id_siswa]['id_kelas_siswa_det_jenjang']){ echo "selected";}?> value="<?=$datakelas['id']?>"><?=$datakelas['kelas']?><?=$datakelas['nama']?></option>
+								<option <? if($datakelas['id']==@$siswasudahnaik[$id_siswa]['id_kelas_siswa_det_jenjang']){ echo "selected";}?> value="<?=$datakelas['id']?>"><?//=$datakelas['kelas']?><?=$datakelas['nama']?></option>
 							<? } ?>
 					<? } ?>
 				</select>

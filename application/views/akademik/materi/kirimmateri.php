@@ -191,7 +191,7 @@ $(function() {
 					<select class="selectfilter" id="kelas_add" name="id_kelas[]" multiple>
 						<option value="">Pilih Kelas</option>
 						<? foreach($kelas as $datakelas){?>
-						<option <? //if(@$_POST['kelas']==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>"><?=$datakelas['kelas']?><?=$datakelas['nama']?></option>
+						<option <? //if(@$_POST['kelas']==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>"><?//=$datakelas['kelas']?><?=$datakelas['nama']?></option>
 						<? } ?>
 					</select>
 				</td>

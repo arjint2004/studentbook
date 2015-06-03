@@ -145,7 +145,7 @@ $(document).ready(function(){
 					<select id="id_kelas" name="id_kelas"  class="selectadddata" disabled>
 						<option value="<?=$no_kelas[0]['id']?>">Pilih Kelas</option>
 						<? foreach($kelas as $datakelas){?>
-						<option <?if($pengajaranedit[0]['id_kelas']==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>"><?=$datakelas['kelas']?> <?=$datakelas['nama']?></option>
+						<option <?if($pengajaranedit[0]['id_kelas']==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>"><?//=$datakelas['kelas']?> <?=$datakelas['nama']?></option>
 						<? } ?>
 					</select>
 					<input type="hidden"  name="id_kelas" value="<?=$pengajaranedit[0]['id_kelas']?>" />
