@@ -35,7 +35,7 @@
 						},
 						success: function(datanya) {
 							$("#wait").remove();
-							$('div#tagsinputnotmn').html('<div   style="width: 100%; display: inline-block; vertical-align: middle; float: left;"> <select name="untuk[]" multiple id="kelassurat"  style="width:100%;height:300px;" required>'+datanya+'</select></div>');
+							$('div#tagsinputnotmn').html('<div   style="width: 100%; display: inline-block; vertical-align: middle; float: left;"> <select id="untuk" name="untuk[]" multiple id="kelassurat"  style="width:100%;height:300px;" required>'+datanya+'</select></div>');
 							
 						}
 			});
@@ -79,6 +79,15 @@
 			
 		});
 		
+		$('a#pilihAll').click(function(){ //alert('pilih');
+			$('div#tagsinputnotmn div select#untuk option').prop('selected', true);
+			$('div#kelassuratdivsiswa select#siswasurat option').prop('selected', true);
+		});
+		$('a#hapusAll').click(function(){ //alert('unpilih');
+			$('div#tagsinputnotmn div select#untuk option').prop('selected', false);
+			$('div#kelassuratdivsiswa select#siswasurat option').prop('selected', false);		
+		});
+		
 	});
 	</script>
     <div class="tabs-container">
@@ -100,7 +109,8 @@
                             <input type="radio" class="kepada" name="kepada" value="orangtua" />Orang Tua
                             <!--<input type="radio" class="kepada" name="kepada" value="siswadanorangtua" />Siswa dan Orang Tua<br />--><br />
 							<div class="hr-border"> </div>
-                            <div class="id_pesan" id="id_pesan" ></div>
+                            <div class="id_pesan" id="id_pesan"  ></div>
+							<a style="cursor:pointer;" id="pilihAll">Select All</a> | <a style="cursor:pointer;" id="hapusAll">Clear All</a>
 							<div class="hr-border"> </div>
                             <br /><label><b>Pesan :</b></label>
                             <textarea name="pesan" style="width: 96%;background:white;min-height: 100px;" maxlength="480" required></textarea>
