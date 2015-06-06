@@ -92,19 +92,22 @@ class Sms extends CI_Controller {
 		$this->load->view('layout/ad_adminsekolah',$data);	
 	}
     public function welcome()
-    {
+    { 
 		$this->load->model('ad_siswa');
 		$siswa=$this->ad_siswa->getsiswaByIdSekTa();
-		$tmp='Selamat Bergabung di Sekolah Digital '.strtoupper($this->session->userdata['ak_setting']['nama_sekolah']).'
-		Anda akan menerima notifikasi tentang progress akademik putra/i Anda dari nomor ini';
+		//pr($siswa);
+		//$tmp='Selamat Bergabung di Sekolah Digital '.strtoupper($this->session->userdata['ak_setting']['nama_sekolah']).' Anda akan menerima notifikasi tentang progress akademik putra/i Anda dari nomor ini';
+		$tmp='Akun untuk Ortu/Wali Ananda ';
 
 		foreach($siswa as $datasiswa){
+			$tmpx =$tmp.strtoupper($datasiswa['nama']).'. www.studentbook.co Username: '.$datasiswa['username'].' Password: '.$datasiswa['password'].' @'.strtoupper($this->session->userdata['ak_setting']['nama_sekolah']).'';
+			//echo $tmp.'<br />';
 			$inser_sms=array('no_hp'=>$datasiswa['hp'],
-							 'pesan'=>$tmp,
-							 'jenis'=>'sms_welcome',
+							 'pesan'=>$tmpx,
+							 'jenis'=>'sms_broadcast',
 							 'waktu'=> date('Y-m-d H:i:s')
 						);
-			//pr($inser_sms);			
+			pr($inser_sms);			
 			//$this->db->insert('ak_sms',$inser_sms);
 		}
 		//pr($siswa);

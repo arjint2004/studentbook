@@ -25,22 +25,25 @@ Class Ad_siswa extends CI_Model
 		return $query->result_array();
 	}
 	function getsiswaByIdSekTa(){
-		$query=$this->db->query('SELECT s.nama,ap.hp  FROM
+		$query=$this->db->query('SELECT s.nama,ap.hp,u.username,ap.password  FROM
 									ak_det_jenjang adj JOIN
 									ak_siswa s JOIN
 									ak_pegawai ap JOIN
-									ak_fitur_sekolah af
+									ak_fitur_sekolah af JOIN
+									users u
 									ON
 									adj.id_siswa=s.id 
 									AND s.id=ap.id_siswa
 									AND s.id_sekolah=af.id_sekolah
+									AND u.id_pengguna=ap.id
 									WHERE
 									af.id_sekolah=?
 									AND
 									adj.id_sekolah=?
 									AND adj.id_ta=?
 									AND af.aktif=?
-									',array($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['ak_setting']['ta'],1));
+									GROUP BY s.id
+									',array($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['ak_setting']['ta'],1));//echo $this->db->last_query();
 		return $query->result_array();
 	}
 	function getKelulusanByIdKelasTa($id_kelas){
