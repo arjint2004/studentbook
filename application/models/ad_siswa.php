@@ -30,20 +30,22 @@ Class Ad_siswa extends CI_Model
 									ak_siswa s JOIN
 									ak_pegawai ap JOIN
 									ak_fitur_sekolah af JOIN
-									users u
+									users u JOIN ak_kelas ak
 									ON
 									adj.id_siswa=s.id 
 									AND s.id=ap.id_siswa
 									AND s.id_sekolah=af.id_sekolah
 									AND u.id_pengguna=ap.id
+									AND ak.id=adj.id_kelas
 									WHERE
 									af.id_sekolah=?
 									AND
 									adj.id_sekolah=?
 									AND adj.id_ta=?
 									AND af.aktif=?
+									AND ak.publish=1
 									GROUP BY s.id
-									',array($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['ak_setting']['ta'],1));//echo $this->db->last_query();
+									',array($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['ak_setting']['ta'],1));echo $this->db->last_query();
 		return $query->result_array();
 	}
 	function getKelulusanByIdKelasTa($id_kelas){
