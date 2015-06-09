@@ -33,7 +33,7 @@
 	</div>-->
 	<? } ?>	
 	
-	<div class="column content content-full-width">
+	<div class="notifak column content content-full-width">
         <h2 class="float-left"> NOTIFIKASI AKADEMIK </h2>   
         <div class="toggle-frame">
             <h5 class="toggle-accordion"><a >Pemberitahuan terahir dari sekolah</a></h5>

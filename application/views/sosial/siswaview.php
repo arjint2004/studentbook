@@ -14,6 +14,15 @@
     });
 </script>
 <div class="portfolio column-one-half-with-sidebar">
+	<div class="notifak column content content-full-width">
+        <h2 class="float-left"> NOTIFIKASI AKADEMIK </h2>   
+        <div class="toggle-frame">
+            <h5 class="toggle-accordion"><a >Pemberitahuan terahir dari sekolah</a></h5>
+            <div style="display: block; max-height:400px;" class="toggle-content">
+				<? timelineakademik();?>
+			</div>
+        </div>                  
+    </div>	
     <?//=print_iklan(); ?>
 	<? aktifitasakademik($this->session->userdata['user_authentication']['id_pengguna'],'siswa',5);?>	
     <h2 class="float-left">SURAT</h2>
