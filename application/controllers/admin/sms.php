@@ -94,14 +94,15 @@ class Sms extends CI_Controller {
     public function welcome()
     { 
 		$this->load->model('ad_siswa');
-		$siswa=$this->ad_siswa->getsiswaByIdSekTa();
+		$siswa=$this->ad_siswa->getsiswaByIdSekTa('ap.nama as nama_ortu,s.nama,ap.hp,u.id as id_user');
 		//pr($siswa);
 		//$tmp='Selamat Bergabung di Sekolah Digital '.strtoupper($this->session->userdata['ak_setting']['nama_sekolah']).' Anda akan menerima notifikasi tentang progress akademik putra/i Anda dari nomor ini';
-		$tmp='Akun untuk Ortu/Wali Ananda ';
+		$tmp='Informasi kegiatan akademik Ananda ';
 
 		foreach($siswa as $datasiswa){
-			$tmpx =$tmp.strtoupper($datasiswa['nama']).'. www.studentbook.co Username: '.$datasiswa['username'].' Password: '.$datasiswa['password'].' @'.strtoupper($this->session->userdata['ak_setting']['nama_sekolah']).'';
-			//echo $tmp.'<br />';
+			//$tmpx =$tmp.strtoupper($datasiswa['nama']).'. www.studentbook.co Username: '.$datasiswa['username'].' Password: '.$datasiswa['password'].' @'.strtoupper($this->session->userdata['ak_setting']['nama_sekolah']).'';
+			$tmpx =$tmp.strtoupper($datasiswa['nama']).'. Bisa dilihat di https://studentbook.co/u/'.base64_encode($datasiswa['id_user']).' . Selalu ingatkan kami "Bp/Ibu Guru" untuk memberikan informasi melalui studentbook @'.strtoupper($this->session->userdata['ak_setting']['nama_sekolah']).'';
+			echo $tmpx.'<br />';
 			$inser_sms=array('no_hp'=>$datasiswa['hp'],
 							 'pesan'=>$tmpx,
 							 'jenis'=>'sms_broadcast',

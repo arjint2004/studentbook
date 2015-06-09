@@ -24,8 +24,8 @@ Class Ad_siswa extends CI_Model
 									ORDER BY s.nama ASC',array($kelas,$this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['ak_setting']['ta']));
 		return $query->result_array();
 	}
-	function getsiswaByIdSekTa(){
-		$query=$this->db->query('SELECT s.nama,ap.hp,u.username,ap.password  FROM
+	function getsiswaByIdSekTa($f='s.nama,ap.hp,u.username,ap.password'){
+		$query=$this->db->query('SELECT '.$f.'  FROM
 									ak_det_jenjang adj JOIN
 									ak_siswa s JOIN
 									ak_pegawai ap JOIN
