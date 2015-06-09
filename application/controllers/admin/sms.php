@@ -109,7 +109,7 @@ class Sms extends CI_Controller {
 							 'waktu'=> date('Y-m-d H:i:s')
 						);
 			//pr($inser_sms);			
-			$this->db->insert('ak_sms',$inser_sms);
+			//$this->db->insert('ak_sms',$inser_sms);
 		}
 		//pr($siswa);
 	}
