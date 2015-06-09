@@ -5,16 +5,18 @@
 	<? $guru=$this->auth->array_searchRecursive( 13, $group, $strict=false, $path=array() );
 		if(!empty($guru)){
 	?>
-	<? aktifitasakademik($this->session->userdata['user_authentication']['id_pengguna'],'guru',5);?>
 	<div class="notifak column content content-full-width">
-        <h2 class="float-left"> NOTIFIKASI AKADEMIK </h2>   
+        <h3 class="float-left"> NOTIFIKASI </h3>   
+		<div class="hr"></div>
+		<br style="clear:both;">
         <div class="toggle-frame">
-            <h5 class="toggle-accordion"><a >Pemberitahuan terahir dari sekolah</a></h5>
+            <h5 class="toggle-accordion"><a >Pemberitahuan terahir</a></h5>
             <div style="display: block; max-height:400px;" class="toggle-content">
 				<? timelineakademik();?>
 			</div>
         </div>                  
     </div>	
+	<? aktifitasakademik($this->session->userdata['user_authentication']['id_pengguna'],'guru',5);?>
 	<h3 id="guru"> Notifikasi SMS hari ini </h3>
 	<div class="hr"></div>
 	<div class="tabs-container">

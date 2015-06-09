@@ -21,7 +21,9 @@ if($cek['otoritas']=='siswa') {
 
 <div class="portfolio column-one-half-with-sidebar">
 	<div class="notifak column content content-full-width">
-        <h2 class="float-left"> NOTIFIKASI AKADEMIK </h2>   
+        <h3 class="float-left"> NOTIFIKASI AKADEMIK </h3>   
+		<div class="hr"></div>
+		<br style="clear:both;">
         <div class="toggle-frame">
             <h5 class="toggle-accordion"><a >Pemberitahuan terahir dari sekolah</a></h5>
             <div style="display: block; max-height:400px;" class="toggle-content">
