@@ -113,7 +113,7 @@
 							<a style="cursor:pointer;" id="pilihAll">Select All</a> | <a style="cursor:pointer;" id="hapusAll">Clear All</a>
 							<div class="hr-border"> </div>
                             <br /><label><b>Pesan :</b></label>
-                            <textarea name="pesan" style="width: 96%;background:white;min-height: 100px;" maxlength="480" required></textarea>
+                            <textarea name="pesan" style="width: 96%;background:white;min-height: 100px;" maxlength="320" required></textarea>
 							<i>Untuk menghindari terpotongya SMS maximal 480 character</i>
 							<br />
 							<input class="button small grey" type="submit" value="Kirim Pesan" id="kirimsurat" name="kirim">

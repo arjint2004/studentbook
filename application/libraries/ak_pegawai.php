@@ -31,7 +31,7 @@ class Ak_pegawai {
 		//pr($siswa);
 		$sel='<option value="">Pilih Guru</option>';
 		foreach($guru as $dataguru){
-			$val=json_encode(array('nama'=>$dataguru['nama'],'hp'=>$dataguru['hp']));
+			$val=json_encode(array('nama'=>$dataguru['nama'],'hp'=>$dataguru['hp'],'id_user'=>$dataguru['id']));
 			$sel .="<option id_ortu='".$dataguru['id_ortu']."' value='".base64_encode($val)."'>".$dataguru['nama']."</option>";
 		}
 		return $sel;

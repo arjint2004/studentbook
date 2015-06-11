@@ -14,9 +14,9 @@ class Sms extends CI_Controller {
 		$this->load->model('ad_setting');
 		$pulsa=$this->ad_sekolah->getSekolahdata($this->session->userdata['user_authentication']['id_sekolah'],array('jml_pulsa'));
 		$data['jml_sms']=$pulsa[0]['jml_pulsa']/100;
-		//if(isset($_POST)){ 
-		//pr($_POST);die();	
-		//}
+		/*if(isset($_POST['untuk'])){ 
+		pr(json_decode(base64_decode($_POST['untuk'][0])));
+		}*/
  
 		if(isset($_POST['pesan']) && isset($_POST['kirim'])){
 			$setting=$this->ad_setting->getSetting('sms_modem',$this->session->userdata['user_authentication']['id_sekolah']);
@@ -24,7 +24,9 @@ class Sms extends CI_Controller {
 			foreach($_POST['untuk'] as $datauntuks){
 				$datauntuk=base64_decode($datauntuks);
 				$datauntuk=json_decode($datauntuk,true);
+				
 				if($_POST['kepada']=='orangtua'){
+					$id_user=$datauntuk['id_ortu'];
 					//create IN
 					if(strlen($datauntuk['hp'])>10){
 						$inser_sms=array('nama'=>$datauntuk['nama'],
@@ -36,6 +38,7 @@ class Sms extends CI_Controller {
 					}
 					unset($datauntuk);
 				}elseif($_POST['kepada']=='guru'){
+					$id_user=$datauntuk['id_user'];
 					if(strlen($datauntuks)>10){
 						$inser_sms=array('nama'=>$datauntuk['nama'],
 							 'no_hp'=>$datauntuk['hp'],
@@ -47,6 +50,7 @@ class Sms extends CI_Controller {
 					//pr($datauntuk);
 					unset($datauntuks);
 				}
+				//pr($id_user);die();
 				if(!empty($inser_sms)){					
 				if($inser_sms['no_hp']!='' && strlen($inser_sms['no_hp'])>8){
 						//pr($inser_sms['no_hp']);
@@ -59,7 +63,7 @@ class Sms extends CI_Controller {
 								$insert_sms=array(
 												'nama_siswa'=>'',
 												'no_hp'=>''.$inser_sms['no_hp'].'',
-												'pesan'=>$inser_sms['pesan']."\n@".$this->session->userdata['ak_setting']['nama_sekolah'],
+												'pesan'=>$inser_sms['pesan']." https://studentbook.co/u/".base64_encode($id_user)." \n@".$this->session->userdata['ak_setting']['nama_sekolah'],
 												'jenis'=>$inser_sms['jenis'],
 												'id_jenis'=>0,
 												'id_kelas'=>0,
@@ -68,7 +72,7 @@ class Sms extends CI_Controller {
 												'waktu'=>date('Y-m-d H:i:s'),
 												'SenderID'=>$modem[0]
 								);
-								
+								//pr($insert_sms);die();
 								$this->db->insert('ak_sms',$insert_sms);
 								$stsn[0]='0';
 								//echo $this->db->last_query();
