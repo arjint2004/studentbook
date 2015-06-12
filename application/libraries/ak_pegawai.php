@@ -5,7 +5,7 @@ class Ak_pegawai {
     function createOptionGuruByIdSekolah($id_sekolah) {
         $CI = & get_instance();
         $CI->load->model('pegawaimodel');
-        $guru=$CI->pegawaimodel->getGuruByIdKelas($id_sekolah);
+        $guru=$CI->pegawaimodel->getGuruByIdSekolah($id_sekolah);
 		//pr($siswa);
 		$sel='<option value="">Pilih Guru</option>';
 		foreach($guru as $dataguru){
@@ -16,7 +16,7 @@ class Ak_pegawai {
     function createOptionGuruByIdSekolahHp($id_sekolah) {
         $CI = & get_instance();
         $CI->load->model('pegawaimodel');
-        $guru=$CI->pegawaimodel->getGuruByIdKelas($id_sekolah);
+        $guru=$CI->pegawaimodel->getGuruByIdSekolah($id_sekolah);
 		//pr($siswa);
 		$sel='<option value="">Pilih Guru</option>';
 		foreach($guru as $dataguru){
@@ -27,7 +27,7 @@ class Ak_pegawai {
 	function createOptionGuruByIdSekolahHp2($id_sekolah) {
         $CI = & get_instance();
         $CI->load->model('pegawaimodel');
-        $guru=$CI->pegawaimodel->getGuruByIdKelas($id_sekolah);
+        $guru=$CI->pegawaimodel->getGuruByIdSekolah($id_sekolah);
 		//pr($siswa);
 		$sel='<option value="">Pilih Guru</option>';
 		foreach($guru as $dataguru){

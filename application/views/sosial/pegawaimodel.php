@@ -1424,7 +1424,7 @@
             }
         }
         
-        public function getGuruByIdKelas($id_sekolah)
+        public function getGuruByIdSekolah($id_sekolah)
         {
 			$query=$this->db->query('SELECT ap.nama,ap.id FROM ak_pegawai ap JOIN users u ON ap.id=u.id_pengguna WHERE ap.id_sekolah=?',array($id_sekolah));
 			//echo $this->db->last_query();

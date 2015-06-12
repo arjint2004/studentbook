@@ -1450,9 +1450,9 @@
             }
         }
         
-        public function getGuruByIdKelas($id_sekolah)
+        public function getGuruByIdSekolah($id_sekolah)
         {
-			$query=$this->db->query('SELECT ap.nama,ap.id,ap.hp FROM ak_pegawai ap JOIN users u ON ap.id=u.id_pengguna WHERE ap.id_sekolah=? AND u.id_group=13',array($id_sekolah));
+			$query=$this->db->query('SELECT ap.nama,ap.id,ap.hp,u.username,ap.password FROM ak_pegawai ap JOIN users u ON ap.id=u.id_pengguna WHERE ap.id_sekolah=? AND u.id_group=13',array($id_sekolah));
 			//echo $this->db->last_query();
 			return $query->result_array();
 		}

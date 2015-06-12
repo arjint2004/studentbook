@@ -117,6 +117,26 @@ class Sms extends CI_Controller {
 		}
 		//pr($siswa);
 	}
+    public function sendguru()
+    { 
+		$this->load->model('pegawaimodel');
+        $guru=$this->pegawaimodel->getGuruByIdSekolah($this->session->userdata['user_authentication']['id_sekolah']);
+		$tmp='selalu menggunakan studentbook. Banyak WALI/ORTU SISWA yang menanyakan informasi di studentbook. Buka link';
+			
+		foreach($guru as $dataguru){
+			//$tmpx =$tmp.strtoupper($dataguru['nama']).'. www.studentbook.co Username: '.$dataguru['username'].' Password: '.$dataguru['password'].' @'.strtoupper($this->session->userdata['ak_setting']['nama_sekolah']).'';
+			$tmpx ='Mohon Bp/Ibu '.strtoupper($dataguru['nama']).' '.$tmp.' https://studentbook.co/u/'.base64_encode($dataguru['id']).' Jika gagal login dengan Username: '.$dataguru['username'].' Password: '.$dataguru['password'].'';
+			echo $tmpx.'<br />';
+			$inser_sms=array('no_hp'=>$dataguru['hp'],
+							 'pesan'=>$tmpx,
+							 'jenis'=>'sms_broadcast',
+							 'waktu'=> date('Y-m-d H:i:s')
+						);
+			pr($inser_sms);		
+			$this->db->insert('ak_sms',$inser_sms);
+		}
+		
+	}
 	
     public function getAllGuru()
     {
