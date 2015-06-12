@@ -121,7 +121,7 @@ class Sms extends CI_Controller {
     { 
 		$this->load->model('pegawaimodel');
         $guru=$this->pegawaimodel->getGuruByIdSekolah($this->session->userdata['user_authentication']['id_sekolah']);
-		$tmp='selalu menggunakan studentbook. Banyak WALI/ORTU SISWA yang menanyakan informasi di studentbook. Buka link';
+		$tmp='selalu menggunakan studentbook. Banyak WALI/ORTU SISWA yang menanyakan informasi di STUDENTBOOK. Buka link';
 			
 		foreach($guru as $dataguru){
 			//$tmpx =$tmp.strtoupper($dataguru['nama']).'. www.studentbook.co Username: '.$dataguru['username'].' Password: '.$dataguru['password'].' @'.strtoupper($this->session->userdata['ak_setting']['nama_sekolah']).'';
