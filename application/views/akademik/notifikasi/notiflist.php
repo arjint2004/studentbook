@@ -15,6 +15,7 @@
 							<? $tg=tanggal($tgx1[0]." $tgx1[1]"); echo $tg[2];echo $tgx1[1];?>
 						</h6>
                         <p> <?=$datan['notifikasi']?> </p>
+                        <p> <?=$datan['keterangan']?> </p>
                     </div> <!-- **Team - End** -->  
 					<div class="hr-border" style="margin:5px 0;"> </div>
                    <? } // } ?>              
