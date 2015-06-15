@@ -661,10 +661,10 @@ if (!function_exists('aktifitasakademik')) {
 if (!function_exists('timelineakademik')) {
     function timelineakademik() {
 		$CI = get_instance();
-			if($this->session->userdata['user_authentication']['otoritas']=='siswa'){
-				$id_pengguna=$this->session->userdata['user_authentication']['id_siswa'];
+			if($CI->session->userdata['user_authentication']['otoritas']=='siswa'){
+				$id_pengguna=$CI->session->userdata['user_authentication']['id_siswa'];
 			}else{
-				$id_pengguna=$this->session->userdata['user_authentication']['id_pengguna'];
+				$id_pengguna=$CI->session->userdata['user_authentication']['id_pengguna'];
 			}
 			$data['notif']=$CI->ad_notifikasi->get_notifByIdPengguna($id_pengguna);
 			$CI->ad_notifikasi->setnotifreaded($CI->session->userdata['user_authentication']['id_pengguna']);
