@@ -5,12 +5,12 @@ Class Ad_notifikasi extends CI_Model{
 		$query=$this->db->query('SELECT * FROM 
 									ak_notifikasi an JOIN ak_pegawai ap
 									ON an.id_pengirim =ap.id
-									WHERE an.id_pengguna ="'.$id_pengguna.'" AND date(waktu) > "'.date("Y-m-d", mktime(0, 0, 0,  date("m")  , date("d")-14, date("Y"))).'" ORDER BY an.id DESC');//echo $this->db->last_query();
+									WHERE an.id_pengguna ="'.$id_pengguna.'" AND date(waktu) > "'.date("Y-m-d", mktime(0, 0, 0,  date("m")  , date("d")-14, date("Y"))).'" ORDER BY an.id DESC');echo $this->db->last_query();
 		$datapeg=$query->result_array();//echo $this->db->last_query();
 		$query2=$this->db->query('SELECT * FROM 
 									ak_notifikasi an JOIN ak_siswa ap
 									ON an.id_pengirim =ap.id
-									WHERE an.id_pengguna ="'.$id_pengguna.'" AND date(waktu) > "'.date("Y-m-d", mktime(0, 0, 0,  date("m")  , date("d")-14, date("Y"))).'" ORDER BY an.id DESC');//echo $this->db->last_query();
+									WHERE an.id_pengguna ="'.$id_pengguna.'" AND date(waktu) > "'.date("Y-m-d", mktime(0, 0, 0,  date("m")  , date("d")-14, date("Y"))).'" ORDER BY an.id DESC');echo $this->db->last_query();
 		$datapeg2=$query2->result_array();//echo $this->db->last_query();
 		$mrger = array_merge($datapeg,$datapeg2);
 		usort($mrger, function($a, $b) {
