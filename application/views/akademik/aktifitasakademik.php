@@ -1,4 +1,4 @@
-<?//pr($materi);?>
+<?//pr($pr);?>
 <div class="aktifitasakademik" >
 <h3 class="float-left" class="aktifitasakademik">Aktifitas Akademik</h3>
 <div class="hr"></div>
@@ -11,7 +11,7 @@
                                 <div class="toggle-content" style="display: block;">
 								<? foreach($pr as $datapr){?>
                                     <div class="team">          
-										<h6 class="role" style="margin:0"> <? $tg=tanggal($datapr['tanggal_buat']." 00:00:00"); echo $tg[2];?> | Kelas <?=$datapr['kelas'].$datapr['nama_kelas']?> | <?=$datapr['guru']?></h6>
+										<h6 class="role" style="margin:0"> <? $tg=tanggal($datapr['tanggal_kirim'].""); echo $tg[2];?> | Kelas <?=$datapr['kelas'].$datapr['nama_kelas']?> | <?=$datapr['guru']?></h6>
 										<p> <a class="notif" href="<?=base_url()?>akademik/detailpembelajaran/detail/<?=base64_encode(serialize(array('id'=>$datapr['id'],'jenis'=>'pr')))?>"><b><?=$datapr['nama_pelajaran']?></b> | <?=$datapr['judul']?> </a> </p>
 									</div>
 								<? } ?>

@@ -437,7 +437,7 @@ Class Ad_pr extends CI_Model{
 	function getDataByIdPegawaiGuru($limit=5,$id_user=0,$guruorsiswa=''){
 	
 		if($guruorsiswa=='guru'){
-			$query=$this->db->query('SELECT ap . *,apj.nama as nama_pelajaran,ak.nama as nama_kelas,ak.kelas,peg.nama as guru
+			$query=$this->db->query('SELECT ap . *,apj.nama as nama_pelajaran,ak.nama as nama_kelas,ak.kelas,peg.nama as guru,apd.tanggal as tanggal_kirim
 									FROM ak_pr ap
 									JOIN ak_pr_det apd 
 									JOIN ak_kelas ak
@@ -465,7 +465,7 @@ Class Ad_pr extends CI_Model{
 									',array($this->session->userdata['user_authentication']['id_sekolah'],$id_user));
 			$out=$query->result_array();
 		}elseif($guruorsiswa=='siswa'){
-			$query=$this->db->query('SELECT ap . *,apj.nama as nama_pelajaran,ak.nama as nama_kelas,ak.kelas,peg.nama as guru
+			$query=$this->db->query('SELECT ap . *,apj.nama as nama_pelajaran,ak.nama as nama_kelas,ak.kelas,peg.nama as guru, apd.tanggal as tanggal_kirim
 									FROM ak_pr ap
 									JOIN ak_pr_det apd 
 									JOIN ak_mengajar am
