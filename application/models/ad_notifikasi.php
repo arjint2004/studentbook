@@ -26,7 +26,7 @@ Class Ad_notifikasi extends CI_Model{
 		$datapeg2=$query2->result_array();//echo $this->db->last_query().'<br />';
 		$mrger0 = array_merge($datapeg,$datapeg2);
 		$mrger = array_merge($mrger0,$datapeg0);
-		pr($mrger);
+		//pr($mrger);
 		usort($mrger, function($a, $b) {
 		  $ad = new DateTime($a['waktu']);
 		  $bd = new DateTime($b['waktu']);
