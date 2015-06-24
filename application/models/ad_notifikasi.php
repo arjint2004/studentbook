@@ -14,7 +14,7 @@ Class Ad_notifikasi extends CI_Model{
 		$query0=$this->db->query('SELECT an.*, an.id_pengirim FROM 
 									ak_notifikasi an JOIN ak_pegawai ap
 									ON an.id_pengguna =ap.id
-									WHERE an.id_pengguna ="'.$id_pengguna.'" AND date(waktu) > "'.date("Y-m-d", mktime(0, 0, 0,  date("m")  , date("d")-14, date("Y"))).'" ORDER BY an.id DESC');
+									WHERE an.id_pengguna ="'.$id_pengguna.'" AND date(waktu) > "'.date("Y-m-d", mktime(0, 0, 0,  date("m")  , date("d")-60, date("Y"))).'" ORDER BY an.id DESC LIMIT 5');
 		$datapeg0=$query0->result_array();
 		//echo $this->db->last_query().'<br />';
 		}							
@@ -24,7 +24,7 @@ Class Ad_notifikasi extends CI_Model{
 									JOIN ak_pegawai peg  
 									ON an.id_pengguna =ap.id 
 									AND peg.id_siswa=ap.id 
-									WHERE peg.id ="'.$id_pengguna.'" AND date(waktu) > "'.date("Y-m-d", mktime(0, 0, 0,  date("m")  , date("d")-14, date("Y"))).'" ORDER BY an.id DESC');//echo $this->db->last_query();
+									WHERE peg.id ="'.$id_pengguna.'" AND date(waktu) > "'.date("Y-m-d", mktime(0, 0, 0,  date("m")  , date("d")-60, date("Y"))).'" ORDER BY an.id DESC LIMIT 5');//echo $this->db->last_query();
 		$datapeg=$query->result_array();
 		//echo $this->db->last_query().'<br />';
 		}
@@ -32,7 +32,7 @@ Class Ad_notifikasi extends CI_Model{
 		$query2=$this->db->query('SELECT an.*, an.id_pengirim FROM 
 									ak_notifikasi an JOIN ak_siswa ap
 									ON an.id_pengguna =ap.id 
-									WHERE an.id_pengguna ="'.$id_pengguna.'" AND date(waktu) > "'.date("Y-m-d", mktime(0, 0, 0,  date("m")  , date("d")-14, date("Y"))).'" ORDER BY an.id DESC');//echo $this->db->last_query();
+									WHERE an.id_pengguna ="'.$id_pengguna.'" AND date(waktu) > "'.date("Y-m-d", mktime(0, 0, 0,  date("m")  , date("d")-60, date("Y"))).'" ORDER BY an.id DESC LIMIT 5');//echo $this->db->last_query();
 		$datapeg2=$query2->result_array();
 		//echo $this->db->last_query().'<br />';
 		}
