@@ -38,6 +38,7 @@ Class Ad_notifikasi extends CI_Model{
 		}
 		$mrger0 = array_merge($datapeg,$datapeg2);
 		$mrger = array_merge($mrger0,$datapeg0);
+		$mrgerfoto='0';
 		foreach($mrger as $datantf){
 			$mrgerfoto .=$datantf['id_pengirim'].',';
 		}
