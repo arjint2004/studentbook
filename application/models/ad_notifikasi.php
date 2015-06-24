@@ -2,29 +2,31 @@
 Class Ad_notifikasi extends CI_Model{
 	
 	function get_notifByIdPengguna($id_pengguna=0){
-		$query0=$this->db->query('SELECT * FROM 
+		$query0=$this->db->query('SELECT ap.foto,an.* FROM 
 									ak_notifikasi an JOIN ak_pegawai ap
 									ON an.id_pengguna =ap.id
 									WHERE an.id_pengguna ="'.$id_pengguna.'" AND date(waktu) > "'.date("Y-m-d", mktime(0, 0, 0,  date("m")  , date("d")-14, date("Y"))).'" ORDER BY an.id DESC');
 		$datapeg0=$query0->result_array();
-									//echo $this->db->last_query();
+									//echo $this->db->last_query().'<br />';
 						
-		$query=$this->db->query('SELECT * FROM 
+		$query=$this->db->query('SELECT ap.foto,an.* FROM 
 									ak_notifikasi an JOIN ak_siswa ap 
 									JOIN ak_pegawai peg  
 									ON an.id_pengguna =ap.id 
 									AND peg.id_siswa=ap.id 
 									WHERE peg.id ="'.$id_pengguna.'" AND date(waktu) > "'.date("Y-m-d", mktime(0, 0, 0,  date("m")  , date("d")-14, date("Y"))).'" ORDER BY an.id DESC');//echo $this->db->last_query();
-		$datapeg=$query->result_array();//echo $this->db->last_query();
+		$datapeg=$query->result_array();
+									//echo $this->db->last_query().'<br />';
 		
 		
-		$query2=$this->db->query('SELECT * FROM 
+		$query2=$this->db->query('SELECT ap.foto,an.* FROM 
 									ak_notifikasi an JOIN ak_siswa ap
 									ON an.id_pengguna =ap.id 
 									WHERE an.id_pengguna ="'.$id_pengguna.'" AND date(waktu) > "'.date("Y-m-d", mktime(0, 0, 0,  date("m")  , date("d")-14, date("Y"))).'" ORDER BY an.id DESC');//echo $this->db->last_query();
-		$datapeg2=$query2->result_array();//echo $this->db->last_query();
+		$datapeg2=$query2->result_array();//echo $this->db->last_query().'<br />';
 		$mrger0 = array_merge($datapeg,$datapeg2);
 		$mrger = array_merge($mrger0,$datapeg0);
+		pr($mrger);
 		usort($mrger, function($a, $b) {
 		  $ad = new DateTime($a['waktu']);
 		  $bd = new DateTime($b['waktu']);

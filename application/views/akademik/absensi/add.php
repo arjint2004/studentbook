@@ -17,7 +17,7 @@
         <tr> 
             <td> <?=$i++?> </td>
             <td class="title"> <?=$datasiswa['nis']?> </td>
-            <td class="title"> <?=$datasiswa['nama']?> </td>
+            <td class="title"> <?=$datasiswa['nama']?> <input type="hidden" name="nama[<?=$datasiswa['id_siswa_det_jenjang']?>]" value="<?=$datasiswa['nama']?>" /></td>
             <td> 
 			<input <? if(isset($siswacek)){if($siswacek[$datasiswa['id_siswa_det_jenjang']]['absensi']=='masuk'){echo 'checked';}}else{echo 'checked';}?> type="radio" name="absen[<?=$datasiswa['id_siswa_det_jenjang']?>]" value="masuk"/>  </td>
             <td> <input <? if(isset($siswacek)){if($siswacek[$datasiswa['id_siswa_det_jenjang']]['absensi']=='sakit'){echo 'checked';}}?> type="radio" name="absen[<?=$datasiswa['id_siswa_det_jenjang']?>]" value="sakit"/> </td>

@@ -210,12 +210,12 @@ class jurnalwali extends CI_Controller
 					if($id_siswa!=''){
 						$this->db->insert('ak_penghubung_kirim',array('id_penghubung'=>$id_peng,'id_siswa'=>$id_siswa['id'],'siswaortu'=>$siswaortu));
 						if($siswaortu=='siswa'){
-							$this->ak_notifikasi->set_notifikasi($id_siswa['id'],'penghubung',12,$this->session->userdata['user_authentication']['nama'],$_POST['subject'],$id_information=0,$jenis_information='');
+							$this->ak_notifikasi->set_notifikasi($id_siswa['id'],'penghubung',12,$this->session->userdata['user_authentication']['nama'],$_POST['subject'],$id_information=$id_peng,$jenis_information='penghubung');
 						}elseif($siswaortu=='ortu'){
-							$this->ak_notifikasi->set_notifikasi($id_siswa['id_ortu'],'penghubung',14,$this->session->userdata['user_authentication']['nama'],$_POST['subject'],$id_information=0,$jenis_information='');
+							$this->ak_notifikasi->set_notifikasi($id_siswa['id_ortu'],'penghubung',14,$this->session->userdata['user_authentication']['nama'],$_POST['subject'],$id_information=$id_peng,$jenis_information='penghubung');
 						}elseif($siswaortu=='siswaortu'){
-							$this->ak_notifikasi->set_notifikasi($id_siswa['id'],'penghubung',12,$this->session->userdata['user_authentication']['nama'],$_POST['subject'],$id_information=0,$jenis_information='');
-							$this->ak_notifikasi->set_notifikasi($id_siswa['id_ortu'][$id_siswa['id']],'penghubung',14,$this->session->userdata['user_authentication']['nama'],$_POST['subject'],$id_information=0,$jenis_information='');
+							$this->ak_notifikasi->set_notifikasi($id_siswa['id'],'penghubung',12,$this->session->userdata['user_authentication']['nama'],$_POST['subject'],$id_information=$id_peng,$jenis_information='penghubung');
+							$this->ak_notifikasi->set_notifikasi($id_siswa['id_ortu'][$id_siswa['id']],'penghubung',14,$this->session->userdata['user_authentication']['nama'],$_POST['subject'],$id_information=$id_peng,$jenis_information='penghubung');
 						}
 						
 					}
