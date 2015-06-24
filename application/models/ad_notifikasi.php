@@ -2,30 +2,61 @@
 Class Ad_notifikasi extends CI_Model{
 	
 	function get_notifByIdPengguna($id_pengguna=0){
-		$query0=$this->db->query('SELECT ap.foto,an.* FROM 
+		$datapeg0=array();
+		$datapeg=array();
+		$datapeg2=array();
+		$fotosender=array();
+		//$queryf=$this->db->query('SELECT ap.foto FROM ak_pegawai ap JOIN ak_notifikasi an ON  an.id_pengirim =ap.id WHERE an.id_pengguna ="'.$id_pengguna.'"');
+		//$datapegf=$queryf->result_array();
+		//pr($datapegf);
+		
+		if($this->session->userdata['user_authentication']['otoritas']!='ortu' && $this->session->userdata['user_authentication']['otoritas']!='siswa'){
+		$query0=$this->db->query('SELECT an.*, an.id_pengirim FROM 
 									ak_notifikasi an JOIN ak_pegawai ap
 									ON an.id_pengguna =ap.id
 									WHERE an.id_pengguna ="'.$id_pengguna.'" AND date(waktu) > "'.date("Y-m-d", mktime(0, 0, 0,  date("m")  , date("d")-14, date("Y"))).'" ORDER BY an.id DESC');
 		$datapeg0=$query0->result_array();
-									//echo $this->db->last_query().'<br />';
-						
-		$query=$this->db->query('SELECT ap.foto,an.* FROM 
+		//echo $this->db->last_query().'<br />';
+		}							
+		if($this->session->userdata['user_authentication']['otoritas']=='ortu'){
+		$query=$this->db->query('SELECT an.*, an.id_pengirim FROM 
 									ak_notifikasi an JOIN ak_siswa ap 
 									JOIN ak_pegawai peg  
 									ON an.id_pengguna =ap.id 
 									AND peg.id_siswa=ap.id 
 									WHERE peg.id ="'.$id_pengguna.'" AND date(waktu) > "'.date("Y-m-d", mktime(0, 0, 0,  date("m")  , date("d")-14, date("Y"))).'" ORDER BY an.id DESC');//echo $this->db->last_query();
 		$datapeg=$query->result_array();
-									//echo $this->db->last_query().'<br />';
-		
-		
-		$query2=$this->db->query('SELECT ap.foto,an.* FROM 
+		//echo $this->db->last_query().'<br />';
+		}
+		if($this->session->userdata['user_authentication']['otoritas']=='siswa'){
+		$query2=$this->db->query('SELECT an.*, an.id_pengirim FROM 
 									ak_notifikasi an JOIN ak_siswa ap
 									ON an.id_pengguna =ap.id 
 									WHERE an.id_pengguna ="'.$id_pengguna.'" AND date(waktu) > "'.date("Y-m-d", mktime(0, 0, 0,  date("m")  , date("d")-14, date("Y"))).'" ORDER BY an.id DESC');//echo $this->db->last_query();
-		$datapeg2=$query2->result_array();//echo $this->db->last_query().'<br />';
+		$datapeg2=$query2->result_array();
+		//echo $this->db->last_query().'<br />';
+		}
 		$mrger0 = array_merge($datapeg,$datapeg2);
 		$mrger = array_merge($mrger0,$datapeg0);
+		foreach($mrger as $datantf){
+			$mrgerfoto .=$datantf['id_pengirim'].',';
+		}
+		
+		$queryft=$this->db->query('SELECT foto,id FROM 
+									ak_pegawai WHERE
+									id IN('.substr($mrgerfoto,0,-1).')');
+		$dataft=$queryft->result_array();
+		
+		
+		foreach($dataft as $datantfx){
+			$fty[$datantfx['id']]=$datantfx['foto'];
+		}
+		foreach($mrger as $ic=>$datantf){
+			if(isset($fty[$datantf['id_pengirim']])){
+				$mrger[$ic]['foto']=$fty[$datantf['id_pengirim']];
+			}
+			
+		}
 		//pr($mrger);
 		usort($mrger, function($a, $b) {
 		  $ad = new DateTime($a['waktu']);
