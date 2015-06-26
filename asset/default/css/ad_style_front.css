@@ -227,6 +227,35 @@ input.simpanpr[type="submit"]{
 	margin: 0 !important;
 	width: 40% !important;
 }
+    @media only screen and (min-width: 480px) and (max-width: 767px) {
+		.tabnilai{
+			width: 100% !important;
+		}
+		.vcontnilai {
+		  margin-top: 20px;
+		  width: 95% !important;
+		}
+	}
+	@media only screen and (max-width: 479px) {
+		.tabnilai{
+			width: 100% !important;
+		}	
+		.vcontnilai {
+		  margin-top: 20px;
+		  width: 95% !important;
+		}
+
+	}
+	@media only screen and (max-width:320px) {
+		.tabnilai{
+			width: 100% !important;
+		}	
+		.vcontnilai {
+		  margin-top: 20px;
+		  width: 95% !important;
+		}
+
+	}
 ul.tabnilai li a.current span{
 	right: 2px !important;
 }

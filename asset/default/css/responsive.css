@@ -166,6 +166,12 @@
 		.profile .tabs-container .tabs-frame-content {
 		  overflow-x: scroll;
 		}
+		.vcontnilai {
+		  width: 95%;
+		}
+		.tabnilai {
+		  width: 100% !important;
+		}
 		.tinynav { display: block }
 		#top-menu ul.menu { display: none }
 		#daftar { font-size: 10px; }
@@ -342,6 +348,12 @@
 		}
 		.profile .tabs-container .tabs-frame-content {
 		  overflow-x: scroll;
+		}
+		.vcontnilai {
+		  width: 95%;
+		}
+		.tabnilai {
+		  width: 100% !important;
 		}
 		.tinynav { display: block }
 		#top-menu ul.menu { display: none }
@@ -567,7 +579,13 @@
 		}
 		.profile .tabs-container .tabs-frame-content {
 		  overflow-x: scroll;
-		}		
+		}	
+		.vcontnilai {
+		  width: 95%;
+		}
+		.tabnilai {
+		  width: 100% !important;
+		}
 		div#logo a img{width:220px;}
 		.tinynav { display: block }
 		#top-menu ul.menu { display: none }
