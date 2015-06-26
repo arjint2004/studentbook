@@ -90,16 +90,22 @@
                                 <h5 class="toggle-accordion"><a href="#">Kurikulum 2013</a></h5>
                                 <div class="toggle-content" style="display: none;">
 									<ul class="tabs-frame">
-										<? foreach($filek13 as $Kelasi=>$mapeli){?>
+										<? 
+										if(!empty($filek13)){
+										foreach($filek13 as $Kelasi=>$mapeli){?>
 										<li>
 											<a><?=$Kelasi?></a>
 										</li>
-										<? } ?>
+										<? } } ?>
 									</ul>
-									<? foreach($filek13 as $Kelas=>$mapel){?>
-									<div class="tabs-frame-content contentbelajar" style="display: block; width:928px;" >
+									<? 
+									if(!empty($filek13)){
+									foreach($filek13 as $Kelas=>$mapel){?>
+									<div class="tabs-frame-content contentbelajar" style="display: block;" >
 											<div class="tabs-vertical-container">
-													<? foreach($mapel as $pelajaran=>$namafilex){?>
+													<? 
+													if(!empty($mapel)){
+													foreach($mapel as $pelajaran=>$namafilex){?>
 														
 														<?
 														   $th=explode("_",$namafilex);
@@ -111,10 +117,10 @@
 																<p> <a filename="<?=$namafilex?>" idcntbljrphp="<?=base64_encode(serialize(array('jenjang'=>$jenjang,'kelasdir'=>$Kelas,'pelajaran'=>$pelajaran,'filename'=>$namafilex)))?>"  idcntbljr='<?=json_encode(array('jenjang'=>$jenjang,'kelasdir'=>$Kelas,'pelajaran'=>$pelajaran,'filename'=>$namafilex))?>'  target="__blank" href="<?=base_url()?>upload/contentsekolah/k13/<?=$jenjang?>/<?=$Kelas?>/<?=$namafilex?>" class="notif <?=$id?>"><?=str_replace("_"," ",$namafilex)?></a> </p>
 															</div>
 
-													<? } ?>
+													<? } } ?>
 											</div>		
 									</div>
-									<? } ?>
+									<? } } ?>
                                 </div>
                             </div>
                             <?}else{?>
@@ -123,24 +129,33 @@
 									<div class="toggle-content style" style="display: none;">
 
 										<ul class="tabs-frame">
-											<? foreach($filek13 as $Kelasi=>$mapeli){?>
+											<? 
+											if(!empty($filek13)){
+											foreach($filek13 as $Kelasi=>$mapeli){?>
 											<li>
 												<a><?=$Kelasi?></a>
 											</li>
-											<? } ?>
+											<? } } ?>
 										</ul>
-										<? foreach($filek13 as $Kelas=>$mapel){?>
-										<div class="tabs-frame-content contentbelajar" style="display: block; width:928px;padding-bottom:0px;" >
+										<? 
+										if(!empty($filek13)){
+										foreach($filek13 as $Kelas=>$mapel){?>
+										<div class="tabs-frame-content contentbelajar" style="display: block; padding-bottom:0px;" >
 												<div class="tabs-vertical-container">
 														<ul class="tabs-vertical-frame nilai_tab tabnilai tabrencana ">
-															<? foreach($mapel as $pelajaran=>$namafile){?>
+															<? 
+															if(!empty($mapel)){
+															foreach($mapel as $pelajaran=>$namafile){?>
 																<li  class="first current"><a href="#" class="current"><h5 style="text-align:left;"><?=$pelajaran?></h5><span></span></a></li>
-															<? } ?>
+															<? } } ?>
 														</ul>
-														<? foreach($mapel as $pelajaran=>$namafile){?>
+														<? 
+															if(!empty($mapel)){
+															foreach($mapel as $pelajaran=>$namafile){?>
 														<div class="tabs-vertical-frame-content vcontnilai" style="display: block;">
 															
 															<?
+															   if(!empty($namafile)){
 															   foreach($namafile as $namafilex){
 															   $th=explode("_",$namafilex);
 															   $th=substr(end($th),0,-4);
@@ -150,12 +165,12 @@
 																	<h6 style="margin:0;text-transform:capitalize;" class="role"><b>TAHUN <?=$th?></b></h6>
 																	<p> <a filename="<?=$namafilex?>" idcntbljrphp="<?=base64_encode(serialize(array('jenjang'=>$jenjang,'kelasdir'=>$Kelas,'pelajaran'=>$pelajaran,'filename'=>$namafilex)))?>"  idcntbljr='<?=json_encode(array('jenjang'=>$jenjang,'kelasdir'=>$Kelas,'pelajaran'=>$pelajaran,'filename'=>$namafilex))?>'  target="__blank" href="<?=base_url()?>upload/contentsekolah/k13/<?=$jenjang?>/<?=$Kelas?>/<?=$pelajaran?>/<?=$namafilex?>" class="notif <?=$id?>"><?=str_replace("_"," ",$namafilex)?></a> </p>
 																</div>
-															<? } ?>
+															<? } } ?>
 														</div>
-														<? } ?>
+														<? }  } ?>
 												</div>		
 										</div>
-										<? } ?>									
+										<? }  } ?>									
 									</div>
 								</div>
 							<? } ?>
@@ -164,24 +179,34 @@
                                 <div class="toggle-content style" style="display: block;">
 
 									<ul class="tabs-frame">
-										<? foreach($file as $Kelasi=>$mapeli){?>
+										<? 
+										if(!empty($file)){
+										foreach($file as $Kelasi=>$mapeli){?>
 										<li>
 											<a><?=$Kelasi?></a>
 										</li>
-										<? } ?>
+										<? } } ?>
 									</ul>
-									<? foreach($file as $Kelas=>$mapel){?>
-									<div class="tabs-frame-content contentbelajar" style="display: block; width:928px;padding-bottom:0px;" >
+									<? 
+									
+									if(!empty($file)){
+									foreach($file as $Kelas=>$mapel){?>
+									<div class="tabs-frame-content contentbelajar" style="display: block; padding-bottom:0px;" >
 											<div class="tabs-vertical-container">
 													<ul class="tabs-vertical-frame nilai_tab tabnilai tabrencana ">
-														<? foreach($mapel as $pelajaran=>$namafile){?>
+														<? 
+														if(!empty($mapel)){
+														foreach($mapel as $pelajaran=>$namafile){?>
 															<li  class="first current"><a href="#" class="current"><h5 style="text-align:left;"><?=$pelajaran?></h5><span></span></a></li>
-														<? } ?>
+														<? } } ?>
 													</ul>
-													<? foreach($mapel as $pelajaran=>$namafile){?>
+													<?
+													if(!empty($mapel)){
+													foreach($mapel as $pelajaran=>$namafile){?>
 													<div class="tabs-vertical-frame-content vcontnilai" style="display: block;">
 														
 														<?
+														   if(!empty($namafile)){
 														   foreach($namafile as $namafilex){
 														   $th=explode("_",$namafilex);
 														   $th=substr(end($th),0,-4);
@@ -191,12 +216,12 @@
 																<h6 style="margin:0;text-transform:capitalize;" class="role"><b>TAHUN <?=$th?></b></h6>
 																<p> <a filename="<?=$namafilex?>" idcntbljrphp="<?=base64_encode(serialize(array('jenjang'=>$jenjang,'kelasdir'=>$Kelas,'pelajaran'=>$pelajaran,'filename'=>$namafilex)))?>"  idcntbljr='<?=json_encode(array('jenjang'=>$jenjang,'kelasdir'=>$Kelas,'pelajaran'=>$pelajaran,'filename'=>$namafilex))?>'  target="__blank" href="<?=base_url()?>upload/contentsekolah/<?=$jenjang?>/<?=$Kelas?>/<?=$pelajaran?>/<?=$namafilex?>" class="notif <?=$id?>"><?=str_replace("_"," ",$namafilex)?></a> </p>
 															</div>
-														<? } ?>
+														<? } } ?>
 													</div>
-													<? } ?>
+													<? } } ?>
 											</div>		
 									</div>
-									<? } ?>									
+									<? } } ?>									
                                 </div>
                             </div>
                         </div> <!-- **Toggle Frame Set - End** -->  
