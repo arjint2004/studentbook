@@ -160,7 +160,9 @@
     /* Note: Design for a width of 480px */
 
     @media only screen and (min-width: 480px) and (max-width: 767px) {
-		
+		.fixed div.readmorenoplus, .fixed a.readmorenoplus{
+			display:none;
+		}		
 		.tinynav { display: block }
 		#top-menu ul.menu { display: none }
 		#daftar { font-size: 10px; }
@@ -332,7 +334,9 @@
 
 	/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
 	@media only screen and (max-width: 479px) {
-		
+		.fixed div.readmorenoplus, .fixed a.readmorenoplus{
+			display:none;
+		}
 		.tinynav { display: block }
 		#top-menu ul.menu { display: none }
 		#daftar { font-size: 10px; }
@@ -552,6 +556,9 @@
 
 	/* Crappy Android portrait Size (devices and browsers) */
 	@media only screen and (max-width:320px) {
+		.fixed div.readmorenoplus, .fixed a.readmorenoplus{
+			display:none;
+		}
 		div#logo a img{width:220px;}
 		.tinynav { display: block }
 		#top-menu ul.menu { display: none }

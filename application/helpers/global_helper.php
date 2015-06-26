@@ -642,6 +642,21 @@ if (!function_exists('akademiknotif')) {
 		include('application/views/akademik/notifikasi/notif.php');
     }
 }
+if (!function_exists('akademiknotiftop')) {
+    function akademiknotiftop($menuak=1) {
+		// Get a reference to the controller object
+		$CI = get_instance();
+		$CI->load->model('ad_notifikasi');
+		$CI->load->library('auth');
+		$notif=$CI->ad_notifikasi->get_notifByIdPengguna($CI->session->userdata['user_authentication']['id_pengguna']);
+		//$notifp=$CI->ad_notifikasi->get_notifByIdPengirim($CI->session->userdata['user_authentication']['id_pengguna']);
+		if($menuak==1){
+		$group=$CI->auth->get_det_group($CI->session->userdata['user_authentication']['id']);
+		}
+		//pr($notifp);
+		include('application/views/akademik/notifikasi/notiftop.php');
+    }
+}
 if (!function_exists('aktifitasakademik')) {
     function aktifitasakademik($id_user=0,$guruorsiswa='',$limit=0) {
 		// Get a reference to the controller object
