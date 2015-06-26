@@ -163,6 +163,9 @@
 		.fixed div.readmorenoplus, .fixed a.readmorenoplus{
 			display:none;
 		}		
+		.profile .tabs-container .tabs-frame-content {
+		  overflow-x: scroll;
+		}
 		.tinynav { display: block }
 		#top-menu ul.menu { display: none }
 		#daftar { font-size: 10px; }
@@ -336,6 +339,9 @@
 	@media only screen and (max-width: 479px) {
 		.fixed div.readmorenoplus, .fixed a.readmorenoplus{
 			display:none;
+		}
+		.profile .tabs-container .tabs-frame-content {
+		  overflow-x: scroll;
 		}
 		.tinynav { display: block }
 		#top-menu ul.menu { display: none }
@@ -559,6 +565,9 @@
 		.fixed div.readmorenoplus, .fixed a.readmorenoplus{
 			display:none;
 		}
+		.profile .tabs-container .tabs-frame-content {
+		  overflow-x: scroll;
+		}		
 		div#logo a img{width:220px;}
 		.tinynav { display: block }
 		#top-menu ul.menu { display: none }
