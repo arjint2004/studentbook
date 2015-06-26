@@ -12,42 +12,51 @@ Class Ad_notifikasi extends CI_Model{
 		
 		if($this->session->userdata['user_authentication']['otoritas']!='ortu' && $this->session->userdata['user_authentication']['otoritas']!='siswa'){
 		$query0=$this->db->query('SELECT an.*, an.id_pengirim FROM 
-									ak_notifikasi an JOIN ak_pegawai ap
-									ON an.id_pengguna =ap.id
+									ak_notifikasi an
 									WHERE an.id_pengguna ="'.$id_pengguna.'" AND date(waktu) > "'.date("Y-m-d", mktime(0, 0, 0,  date("m")  , date("d")-60, date("Y"))).'" ORDER BY an.id DESC LIMIT 5');
 		$datapeg0=$query0->result_array();
 		//echo $this->db->last_query().'<br />';
 		}							
 		if($this->session->userdata['user_authentication']['otoritas']=='ortu'){
-		$query=$this->db->query('SELECT an.*, an.id_pengirim FROM 
+		$queryzz=$this->db->query('SELECT an.* FROM 
+									ak_notifikasi an
+									WHERE an.id_pengguna ="'.$id_pengguna.'" AND date(waktu) > "'.date("Y-m-d", mktime(0, 0, 0,  date("m")  , date("d")-60, date("Y"))).'" ORDER BY an.id DESC LIMIT 5');
+		$datapegzz=$queryzz->result_array();
+		//echo $this->db->last_query().'<br />';
+		$query=$this->db->query('SELECT an.* FROM 
+									ak_notifikasi an
+									WHERE an.id_pengguna ="'.$this->session->userdata['user_authentication']['id_siswa'].'" AND date(waktu) > "'.date("Y-m-d", mktime(0, 0, 0,  date("m")  , date("d")-60, date("Y"))).'" ORDER BY an.id DESC LIMIT 5');
+		/*$query=$this->db->query('SELECT an.*, an.id_pengirim FROM 
 									ak_notifikasi an JOIN ak_siswa ap 
 									JOIN ak_pegawai peg  
 									ON an.id_pengguna =ap.id 
 									AND peg.id_siswa=ap.id 
-									WHERE peg.id ="'.$id_pengguna.'" AND date(waktu) > "'.date("Y-m-d", mktime(0, 0, 0,  date("m")  , date("d")-60, date("Y"))).'" ORDER BY an.id DESC LIMIT 5');//echo $this->db->last_query();
-		$datapeg=$query->result_array();
+									WHERE peg.id ="'.$id_pengguna.'" AND date(waktu) > "'.date("Y-m-d", mktime(0, 0, 0,  date("m")  , date("d")-60, date("Y"))).'" ORDER BY an.id DESC LIMIT 5');*/
+		$datapegcc=$query->result_array();
+		//echo $this->db->last_query().'<br />';
+		$datapeg= array_merge($datapegcc,$datapegzz);
+		
 		//echo $this->db->last_query().'<br />';
 		}
 		if($this->session->userdata['user_authentication']['otoritas']=='siswa'){
-		$query2=$this->db->query('SELECT an.*, an.id_pengirim FROM 
-									ak_notifikasi an JOIN ak_siswa ap
-									ON an.id_pengguna =ap.id 
+		$query2=$this->db->query('SELECT an.* FROM 
+									ak_notifikasi an 
 									WHERE an.id_pengguna ="'.$id_pengguna.'" AND date(waktu) > "'.date("Y-m-d", mktime(0, 0, 0,  date("m")  , date("d")-60, date("Y"))).'" ORDER BY an.id DESC LIMIT 5');//echo $this->db->last_query();
 		$datapeg2=$query2->result_array();
 		//echo $this->db->last_query().'<br />';
 		}
 		$mrger0 = array_merge($datapeg,$datapeg2);
 		$mrger = array_merge($mrger0,$datapeg0);
-		$mrgerfoto='0';
+		$mrgerfoto='00';
 		foreach($mrger as $datantf){
 			$mrgerfoto .=$datantf['id_pengirim'].',';
 		}
-		
+		//pr($datapeg);
 		$queryft=$this->db->query('SELECT foto,id FROM 
 									ak_pegawai WHERE
-									id IN("'.substr($mrgerfoto,0,-1).'")');
+									id IN('.substr($mrgerfoto,0,-1).')');
 		$dataft=$queryft->result_array();
-		
+		//echo $this->db->last_query().'<br />';
 		
 		foreach($dataft as $datantfx){
 			$fty[$datantfx['id']]=$datantfx['foto'];
