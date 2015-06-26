@@ -760,9 +760,9 @@
 		.team .image { display:inline-block; float:none; }
 		
 		.team h5, .team h6, .team p { text-align:center; }
-		.team .one-half { width:100%; text-align:center; }
+		.team .one-half { text-align:center; }
 		
-		.team .social { text-align:center; margin:10px 0px 0px; }
+		.team .social { text-align:center; width:auto !important; }
 		
 		/*----*****---- << Testimonials >> ----*****----*/
 		blockquote { text-align:left; }
