@@ -757,7 +757,7 @@
 		.clients-skin-carousel .jcarousel-item { width:200px; }
 	
 		/*----*****---- << Team >> ----*****----*/	
-		.team .image { display:inline-block; float:none; }
+		.team .image { display:inline-block; float:left; }
 		
 		.team h5, .team h6, .team p { text-align:center; }
 		.team .one-half { text-align:center; }
