@@ -146,7 +146,7 @@
 				<a >Preview</a>
 			</li>
 			<li>
-				<a >Program Pengajaran</a>
+				<a >Program</a>
 			</li>
 			<li>
 				<a >Analisis</a>
@@ -303,7 +303,7 @@
 				<a class="current" >Prestasi</a>
 			</li>
 			<li>
-				<a  id="hportutab">Biodata Siswa</a>
+				<a  id="hportutab">Siswa</a>
 			</li>
 			<li>
 				<a  id="jurnaltab">Jurnal</a>
@@ -312,7 +312,7 @@
 				<a  id="tababsensi" >Preview</a>
 			</li>-->
 			<li>
-				<a >Kenaikan Kelas & Kelulusan</a>
+				<a >Kenaikan & Kelulusan</a>
 			</li>
 		</ul>
 		<div class="tabs-frame-content" style="display: none;">
