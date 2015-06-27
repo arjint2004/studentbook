@@ -130,6 +130,8 @@
 									$(".error-box").delay(1000).html('Data berhasil di simpan');
 									$(".error-box").delay(1000).fadeOut("slow",function(){
 										$(this).remove();
+										var obj= {inputId:"tanggalpengtk"};
+										getadd(obj,$('input#tanggalpengtk').val());
 									});	
 						}
 					});

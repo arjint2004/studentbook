@@ -239,7 +239,6 @@
 										<td>
 											Semester
 											<select name="semester" id="semesterselectpengtk" class="selectfilter">
-												<option value="">Pilih Semester</option>
 												<option <? if($_POST['semester']==$semester[0]['id']){echo 'selected';}?> value="<?=$semester[0]['id']?>"><?=$semester[0]['nama']?></option>
 												<option <? if($_POST['semester']==$semester[1]['id']){echo 'selected';}?> value="<?=$semester[1]['id']?>"><?=$semester[1]['nama']?></option>
 											</select>
