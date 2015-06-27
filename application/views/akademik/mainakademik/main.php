@@ -305,14 +305,14 @@
 			<li>
 				<a  id="hportutab">Siswa</a>
 			</li>
-			<li>
+			<!--<li>
 				<a  id="jurnaltab">Jurnal</a>
 			</li>
-			<!--<li>
+			<li>
 				<a  id="tababsensi" >Preview</a>
 			</li>-->
 			<li>
-				<a >Kenaikan Kelas</a>
+				<a >Kenaikan & Kelulusan</a>
 			</li>
 		</ul>
 		<div class="tabs-frame-content" style="display: none;">
@@ -323,10 +323,10 @@
 		<div class="tabs-frame-content" id="hportu" style="display: block;">
            
 		</div>
-		<div class="tabs-frame-content" id="jurnal" style="display: block;">
-            <!--<a class="readmore" tab="wali_jurnal" id="daftar_jurnal" title="" > Daftar <br /> Jurnal </a>
-			<a class="readmore" tab="wali_jurnal" id="buat_jurnal" title="" > Buat <br /> Jurnal </a>-->
-		</div>
+		<!--<div class="tabs-frame-content" id="jurnal" style="display: block;">
+            <a class="readmore" tab="wali_jurnal" id="daftar_jurnal" title="" > Daftar <br /> Jurnal </a>
+			<a class="readmore" tab="wali_jurnal" id="buat_jurnal" title="" > Buat <br /> Jurnal </a>
+		</div>-->
 		<!--<div class="tabs-frame-content" id="absensi" style="display: none;">
 			<a class="readmore" tab="wali_preview" id="ekstrakurikuler" title="" > Ekstrakurikuler <br /> Siswa </a>
 			<a class="readmore" tab="wali_preview" id="kegiatan_sekolah" title="" > Pengembangan <br /> Diri </a>
