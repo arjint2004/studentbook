@@ -312,7 +312,7 @@
 				<a  id="tababsensi" >Preview</a>
 			</li>-->
 			<li>
-				<a >Kenaikan & Kelulusan</a>
+				<a >Kenaikan Kelas</a>
 			</li>
 		</ul>
 		<div class="tabs-frame-content" style="display: none;">
