@@ -19,7 +19,15 @@ class Mainsiswa extends CI_Controller
             $datasiswa=$this->ad_siswa->getsiswaByIdDetJenjang($this->session->userdata['user']['id_siswa_det_jenjang']);
             $data['datasiswa']= $datasiswa;
 			$data['jenjang']=$this->ad_kelas->thisjenjang($this->session->userdata['user_authentication']['id']);
-            $data['main']= 'siswa/main';
+           
+			if($data['jenjang'][0]['bentuk']=='TK'){
+				$data['main']           = 'siswa/maintk';
+			}elseif($data['jenjang'][0]['bentuk']=='PESANTREN'){
+				$data['main']           = 'siswa/mainpesantren';
+			}else{
+				$data['main']= 'siswa/main';
+			}
+   		    
             $this->load->view('layout/ak_default',$data);
         }
         
