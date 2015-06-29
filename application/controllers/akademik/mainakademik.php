@@ -26,6 +26,8 @@ class Mainakademik extends CI_Controller
 			//echo $jenjang[0]['bentuk'];
 			if($jenjang[0]['bentuk']=='TK'){
 				$data['main']           = 'akademik/mainakademik/maintk';
+			}elseif($jenjang[0]['bentuk']=='PESANTREN'){
+				$data['main']           = 'akademik/mainakademik/mainpesantren';
 			}else{
 				$data['main']           = 'akademik/mainakademik/main';
 			}

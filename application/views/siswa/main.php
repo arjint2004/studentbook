@@ -36,7 +36,7 @@ if($cek['otoritas']=='siswa') {
 		$(document).ready(function() {
 			$('#contentbelajar').load('<?=base_url('akademik/bahanajar/siswa')?>');
 			<?
-			if($jenjang[0]['bentuk']=='TK'){
+			if($jenjang[0]['bentuk']=='TK' || $jenjang[0]['bentuk']=='PESANTREN' ){
 			?>
 				$.ajax({
 				type: "GET",
