@@ -6,7 +6,8 @@
                     	<li <? if($this->router->class=='schooladmin' && $this->router->method=='dataakun'){echo 'class="current_page_item"';}?>> <a href="<?=site_url()?>admin/schooladmin/dataakun" title="">Data Akun<span> </span> </a> </li>
                     	<li <? if($this->router->class=='kepsek' && $this->router->method=='index'){echo 'class="current_page_item"';}?>> <a target="__blank" href="<?=site_url()?>akademik/kepsek/index" title=""> Data Monitor Guru<span> </span> </a> </li>
                     	<li <? if($this->router->class=='schooladmin' && $this->router->method=='hp_guru'){echo 'class="current_page_item"';}?>> <a href="<?=site_url()?>admin/schooladmin/hp_guru" title=""> Guru <span> </span> </a> </li>
-						<? if($this->session->userdata['ak_setting']['jenjang'][0]['bentuk']=='PESANTREN'){?>
+						<?
+						if($this->session->userdata['ak_setting']['jenjang'][0]['bentuk']=='PESANTREN'){?>
                     	<li <? if($this->router->class=='penghubungortutk' && $this->router->method=='addcontent'){echo 'class="current_page_item"';}?>> <a href="<?=site_url()?>admin/penghubungortutk/addcontent" title=""> Setting Laporan Kegiatan<span> </span> </a> </li>						
 						<? } ?>
 						<? if($this->session->userdata['ak_setting']['jenjang'][0]['bentuk']=='TK'){?>

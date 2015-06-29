@@ -46,7 +46,7 @@
 																				</tr>	
 																						<? if(!empty($data_3['child'])){foreach($data_3['child'] as $baris_4 => $data_4){
 																							$sub4=explode("_",$baris_4);
-																							$nilai_4=$contentsiswa[0]['contarr'][$baris]['child'][$baris_2]['child'][$baris_3]['nilai'];
+																							$nilai_4=$contentsiswa[0]['contarr'][$baris]['child'][$baris_2]['child'][$baris_3['child'][$baris_4]['nilai'];
 																						?> 
 																							<tr class="sub_4 ncsub4 par_<?=$sub4[0]?> parsub2_<?=$sub4[0]?>_<?=$sub4[1]?> par_<?=$sub4[0]?>_<?=$sub4[1]?> par_<?=$sub4[0]?>_<?=$sub4[1]?>_<?=$sub4[2]?> ncls" sub_baris="<?=$sub4[0]?>" baris="<?=$sub4[1]?>" baris_sub="<?=$sub4[2]?>">
 																								<td><?//=$nilai_4?></td>
