@@ -66,8 +66,8 @@
 		</div>-->
 		<div class="tabs-frame-content" style="display: none;">
 			<a class="readmore" tab="pembelajaran" id="materi_pelajaran" title="" > Materi<br />Pelajaran </a>
-			<a class="readmore" tab="pembelajaran" id="daftar_pr"  title=""> Pekerjaan<br />Rumah</a>
-			<a class="readmore" tab="pembelajaran"   id="daftar_tugas" title=""  > Tugas<br />Sekolah </a>
+			<!--<a class="readmore" tab="pembelajaran" id="daftar_pr"  title=""> Pekerjaan<br />Rumah</a>-->
+			<a class="readmore" tab="pembelajaran"   id="daftar_tugas" title=""  > Tugas </a>
 			<br id="brsubject"  tab="pembelajaran"  class="clear" />
             <div id="subject"></div>
 		</div>
@@ -290,108 +290,6 @@
 		
 	</div>
 	
-	<!-- iklan batas -->
-	<!-- end iklan batas -->	
-	
-	<div class="clear"></div>
-	<h3> Raport </h3>
-	<div class="hr"></div>
-
-	<div id="contentpage">
-		<table class="tabelfilter">
-			<tbody>
-				<tr>
-					<td>
-						Kelas :
-						<select class="selectfilter" id="kelasraport2013" name="id_kelas">
-							<option value="">Pilih Kelas</option>
-							<? foreach($kelaswali as $datakelas){?>
-								<option <? if(@$_POST['kelas']==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>"><?=$datakelas['kelas']?><?=$datakelas['nama']?></option>
-							<? } ?>
-						</select>		
-						<div id="raport2013"></div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>	
-	
-	<!--<div id="contentpage">
-		<table class="tabelfilter">
-			<tbody>
-				<tr>
-					<td>
-						Kelas :
-						<select class="selectfilter" id="kelasraport" name="id_kelas">
-							<option value="">Pilih Kelas</option>
-							<? foreach($kelaswali as $datakelas){?>
-								<option <? if(@$_POST['kelas']==$datakelas['id']){echo 'selected';}?> value="<?=$datakelas['id']?>"><?=$datakelas['kelas']?><?=$datakelas['nama']?></option>
-							<? } ?>
-						</select>
-									
-						Siswa :
-						<select class="selectfilter" id="siswaraport" name="id_siswa_det_jenjang">
-							<option value="">Pilih Siswa</option>
-						</select>					
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	<div class="tabs-container">
-
-		<ul class="tabs-frame">
-			<li>
-				<a style="padding:0 3px;" id="raporttab">Raport</a>
-			</li>
-			<li>
-				<a style="padding:0 3px;"  id="raporekstrattab">Ekstrakurikuler</a>
-			</li>
-			<li>
-				<a style="padding:0 3px;"  id="raportkegiatantab" >Kegiatan</a>
-			</li>
-			<li>
-				<a style="padding:0 3px;" id="raportkepribadiantab">Kepribadian</a>
-			</li>
-			<li>
-				<a style="padding:0 3px;" id="raportprestasitab">Prestasi</a>
-			</li>
-			<li>
-				<a style="padding:0 3px;" id="raportabsensitab">Absensi</a>
-			</li>
-			<li>
-				<a style="padding:0 3px;" id="raportcatatantab">Catatan</a>
-			</li>
-			<li>
-				<a style="padding:0 3px;" id="raportkenaikantab">Keterangan</a>
-			</li>
-		</ul>
-		<div class="tabs-frame-content"  id="raport" style="display: block;">
-			
-		</div>
-		<div class="tabs-frame-content"  id="ekstraload"  style="display: none;">
-			
-		</div>
-		<div class="tabs-frame-content"   id="kegiatanload" style="display: none;">
-			
-		</div>
-		<div class="tabs-frame-content"   id="kepribadianload" style="display: none;">
-			
-		</div>
-		<div class="tabs-frame-content"   id="prestasiload" style="display: none;">
-			
-		</div>
-		<div class="tabs-frame-content"  id="absensiload"  style="display: none;">
-			
-		</div>-->
-		<!--<div class="tabs-frame-content"  id="catatanload"  style="display: none;">
-			
-		</div>
-		<div class="tabs-frame-content"  id="kenaikanload"  style="display: none;">
-			
-		</div>
-		
-	</div>-->
 	<? } ?>
 	<div class="clear"></div>
 
@@ -406,8 +304,6 @@
 	
     <div class="hr "></div>
 
-</div><!-- portfolio column-one-half-with-sidebar -->
-
-
-		<!-- END MAIN FRONT END -->
+</div>
+<!-- END MAIN FRONT END -->
         
