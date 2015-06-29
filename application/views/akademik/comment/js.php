@@ -57,7 +57,7 @@ function editpost(e,object){
 		 
 		}else if(e.keyCode == 13){
 		$(object).blur();
-			submiteditpost(id);
+			submiteditpost(id,object);
 			//$('.replyedit'+id).load("<?=base_url()?>akademik/comment/commenteditreply/"+id+"/"+$(object).val());
 			return false;
 		}
@@ -71,7 +71,7 @@ function editreply(e,object){
 		 
 		}else if(e.keyCode == 13){
 		$(object).blur();
-			submiteditreply(id);
+			submiteditreply(id,object);
 			//$('.replyedit'+id).load("<?=base_url()?>akademik/comment/commenteditreply/"+id+"/"+$(object).val());
 			return false;
 		}
@@ -108,15 +108,16 @@ $(this).attr('disabled','disabled');
 submit();
 return false;
 });
-function submiteditpost(idcommentpost){
-		var formData = $("#editpost"+idcommentpost).serialize();
+function submiteditpost(idcommentpost,obj){
+		//var formData = $("#editpost"+idcommentpost).serialize();
+		var formData = $(obj).val();
 		$(".content-box").append("<div class=\"error-box\"></div>");
 		$(".error-box").html("Sending Data").fadeIn("slow");
 		//alert("myObject is " + formData.toSource());
 		$.ajax({
 			url		: "<?=base_url()?>akademik/comment/commenteditpost/"+idcommentpost,
 			type	: "post",
-			data	: formData,
+			data	: 'commentpost='+formData,
 			dataType: "json",
 			timeout	: 5000,
 			error	: function(){
@@ -147,15 +148,16 @@ function submiteditpost(idcommentpost){
 		
 		return false;
 }
-function submiteditreply(idcommentreply){
-		var formData = $("#editreply"+idcommentreply).serialize();
+function submiteditreply(idcommentreply,obj){
+		//var formData = $("#editreply"+idcommentreply).serialize();
+		var formData = $(obj).val();
 		$(".content-box").append("<div class=\"error-box\"></div>");
 		$(".error-box").html("Sending Data").fadeIn("slow");
 		//alert("myObject is " + formData.toSource());
 		$.ajax({
 			url		: "<?=base_url()?>akademik/comment/commenteditreply/"+idcommentreply,
 			type	: "post",
-			data	: formData,
+			data	: 'commentreply='+formData,
 			dataType: "json",
 			timeout	: 5000,
 			error	: function(){

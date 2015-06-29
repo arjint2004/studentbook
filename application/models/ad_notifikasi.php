@@ -47,17 +47,21 @@ Class Ad_notifikasi extends CI_Model{
 		}
 		$mrger0 = array_merge($datapeg,$datapeg2);
 		$mrger = array_merge($mrger0,$datapeg0);
-		$mrgerfoto='00';
+		$mrgerfoto='00,';
 		foreach($mrger as $datantf){
 			$mrgerfoto .=$datantf['id_pengirim'].',';
 		}
 		//pr($datapeg);
-		$queryft=$this->db->query('SELECT foto,id FROM 
+		$queryftp=$this->db->query('SELECT foto,id FROM 
 									ak_pegawai WHERE
 									id IN('.substr($mrgerfoto,0,-1).')');
-		$dataft=$queryft->result_array();
+		$dataftp=$queryftp->result_array();
+		$queryfts=$this->db->query('SELECT foto,id FROM 
+									ak_siswa WHERE
+									id IN('.substr($mrgerfoto,0,-1).')');
+		$datafts=$queryfts->result_array();
 		//echo $this->db->last_query().'<br />';
-		
+		$dataft=array_merge($dataftp,$datafts);
 		foreach($dataft as $datantfx){
 			$fty[$datantfx['id']]=$datantfx['foto'];
 		}
@@ -67,7 +71,7 @@ Class Ad_notifikasi extends CI_Model{
 			}
 			
 		}
-		//pr($mrger);
+		//pr($datafts);
 		usort($mrger, function($a, $b) {
 		  $ad = new DateTime($a['waktu']);
 		  $bd = new DateTime($b['waktu']);
