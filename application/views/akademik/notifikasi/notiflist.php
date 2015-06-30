@@ -3,7 +3,7 @@
 					//pr($notif);
 					//for($i=10;$i>=0;$i--){
 					foreach($notif as $datan){
-					echo $datan['foto'];
+					//echo $datan['foto'];
 					if(file_exists($datan['foto'])){$ft=$datan['foto'];}else{$ft='asset/default/images/no_profile.jpg';}
 					?>
 					<!-- **Team** -->
