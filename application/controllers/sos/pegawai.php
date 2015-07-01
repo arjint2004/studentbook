@@ -201,6 +201,7 @@ class Pegawai extends CI_Controller
                                                     <textarea name="komentar" class="komentar_teks" placeholder="Komentar anda <?=$stat_item->nama?>" style="height: 70px; width: 100%;background: white;"></textarea>
                                                     <input type="hidden" name="id_pegawai" value="<?=$stat_item->id_user?>"/>
                                                     <input type="hidden" name="id_status" value="<?=$stat_item->id_status?>"/>
+													<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -228,6 +229,7 @@ class Pegawai extends CI_Controller
                                                     <textarea name="komentar" class="komentar_teks" placeholder="Komentar anda <?=$stat_item->nama?>" style="height: 70px; width: 100%;background: white;"></textarea>
                                                     <input type="hidden" name="id_pegawai" value="<?=$stat_item->id_user?>"/>
                                                     <input type="hidden" name="id_status" value="<?=$stat_item->id_status?>"/>
+													<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                                                 </div>
                                             </div>
                                         </div>    
@@ -391,6 +393,7 @@ class Pegawai extends CI_Controller
                                                         <textarea name="komentar" class="komentar_teks" placeholder="Komentar anda '.$result->nama.'" style="height: 50px; width: 100%;background: white;"></textarea>
                                                         <input type="hidden" name="id_pegawai" value="'.$result->id_user.'"/>
                                                         <input type="hidden" name="id_status" value="'.$result->id_status.'"/>
+														<input type="hidden" name="'.$this->security->get_csrf_token_name().'" value="'.$this->security->get_csrf_hash().'">
                                                     </div>
                                                 </div>
                                             </div>    

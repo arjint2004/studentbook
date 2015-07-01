@@ -274,6 +274,7 @@ class Group extends CI_Controller
                                                             <textarea name="komentar" class="komentar_teks" placeholder="Komentar anda '.$result->nama.'" style="height: 50px; width: 100%;background: white;"></textarea>
                                                             <input type="hidden" name="id_group" value="'.$result->id_group.'"/>
                                                             <input type="hidden" name="id_status" value="'.$result->id_stat_group.'"/>
+															<input type="hidden" name="'.$this->security->get_csrf_token_name().'" value="'.$this->security->get_csrf_hash().'">
                                                         </div>
                                                     </div>
                                                 </div>    
