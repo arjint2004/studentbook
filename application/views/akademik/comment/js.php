@@ -37,13 +37,13 @@ function del(jenis,id){
 function edit(jenis,id){
 	if(jenis=="reply"){
 		var vall=$(".replyedit"+id).html();
-		$(".replyedit"+id).html('<form id="editreply'+id+'"><textarea rows="5" onblur="hidetextarea(this,'+id+');" post="'+id+'" onkeypress="return editreply(event,this);" name="commentreply" class="editreply" id="commentreplyedit'+id+'"></textarea></form>');
+		$(".replyedit"+id).html('<form id="editreply'+id+'"><input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>"><textarea rows="5" onblur="hidetextarea(this,'+id+');" post="'+id+'" onkeypress="return editreply(event,this);" name="commentreply" class="editreply" id="commentreplyedit'+id+'"></textarea></form>');
 		//$("#commentreplyedit"+id).focus();
 		$("#commentreplyedit"+id).focus().val(vall);	
 	}
 	if(jenis=="post"){
 		var vall=$(".postedit"+id).html();
-		$(".postedit"+id).html('<form id="editpost'+id+'"><textarea rows="5" onblur="hidetextareapost(this,'+id+');" post="'+id+'" name="commentpost" onkeypress="return editpost(event,this);"  class="postreply" id="commentpostedit'+id+'"></textarea></form>');
+		$(".postedit"+id).html('<form id="editpost'+id+'"><input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>"><textarea rows="5" onblur="hidetextareapost(this,'+id+');" post="'+id+'" name="commentpost" onkeypress="return editpost(event,this);"  class="postreply" id="commentpostedit'+id+'"></textarea></form>');
 		//$("#commentreplyedit"+id).focus();
 		$("#commentpostedit"+id).focus().val(vall);
 	}

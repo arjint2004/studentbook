@@ -8,7 +8,7 @@
 			var thisobj= $(this);
 			$.ajax({
 				  type: "POST",
-					 data: "aktif="+$(thisobj).val()+"&id_sekolah="+$(this).attr('id_sekolah')+"&fitur="+$(this).attr('fitur'),
+					 data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&aktif="+$(thisobj).val()+"&id_sekolah="+$(this).attr('id_sekolah')+"&fitur="+$(this).attr('fitur'),
 					 url: '<?=base_url()?>superadmin/sekolah/aktifasifitur/'+$(this).attr('id_sekolah')+'/'+$(this).attr('fitur'),
 					beforeSend: function() {
 						$(thisobj).after("<img id='wait' style='margin:0;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -36,7 +36,7 @@
 			var thisobj= $(this);
 			$.ajax({
 				  type: "POST",
-					 data: "aktif="+$(thisobj).val()+"&id_sekolah="+$(this).attr('id_sekolah'),
+					 data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&aktif="+$(thisobj).val()+"&id_sekolah="+$(this).attr('id_sekolah'),
 					 url: '<?=base_url()?>superadmin/sekolah/aktifasisendername',
 					beforeSend: function() {
 						$(thisobj).after("<img id='wait' style='margin:0;'  src='<?=$this->config->item('images').'loading.png';?>' />");

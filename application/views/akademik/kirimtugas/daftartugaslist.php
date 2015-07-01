@@ -6,7 +6,7 @@
 											if(confirm('Data dan File akan di hapus secara permanen, untuk menggunakannya kembali anda harus upload ulang..')){
 												$.ajax({
 													type: "POST",
-													data: '',
+													data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 													url: base_url+'akademik/kirimtugas/delete/'+$(this).attr('id_tugas'),
 													beforeSend: function() {
 														$(objdell).after("<img id='waittugas7' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -18,7 +18,7 @@
 															//$(objdell).parent('td').parent('tr').remove();
 															$.ajax({
 																	type: "POST",
-																	data: 'id_kelas='+$('select#kelastugas').val()+'&pelajaran='+$('select#pelajarantugas').val()+'&ajax=1',
+																	data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas='+$('select#kelastugas').val()+'&pelajaran='+$('select#pelajarantugas').val()+'&ajax=1',
 																	url: '<?=base_url()?>akademik/kirimtugas/daftartugaslist',
 																	beforeSend: function() {
 																		$(objdell).after("<img id='waittugas8' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -42,7 +42,7 @@
 											var objdell=$(this);
 											$.ajax({
 													type: "POST",
-													data: '',
+													data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 													url: $(objdell).attr('href'),
 													beforeSend: function() {
 														$(objdell).after("<img id='waittugas9' style='margin:0;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -60,7 +60,7 @@
 										var objdell=$(this);
 										$.ajax({
 											type: "POST",
-											data: 'id_pengguna=<?=@$id_pengguna?>&kepsek=<?=@$kepsek?>',
+											data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_pengguna=<?=@$id_pengguna?>&kepsek=<?=@$kepsek?>',
 											url: $(objdell).attr('href'),
 											beforeSend: function() {
 												$(objdell).after("<img class='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -81,7 +81,7 @@
 									$(obj).next('tr').next('tr').next('tr').hide();
 									$.ajax({
 										type: "GET",
-										data: '',
+										data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 										url: '<?=base_url()?>akademik/comment/index/'+id+'/first/tugas',
 										beforeSend: function() {
 											//$("#filterpelajarantugas select#kelas").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");

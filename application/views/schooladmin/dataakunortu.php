@@ -6,7 +6,7 @@
 									var url = $(this).attr("href");
 									$.ajax({
 									  type: "POST",
-									  data: "ajax=1&id_kelas="+$('select#filterkelasortu').val(),
+									  data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1&id_kelas="+$('select#filterkelasortu').val(),
 									  url: url,
 									  beforeSend: function() {
 										$("#contentpageoo").html("<img src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -24,7 +24,7 @@
 									var thisobj=$(this);
 									$.ajax({
 									type: "POST",
-									data: "ajax=1&id_kelas="+$(this).val(),
+									data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1&id_kelas="+$(this).val(),
 									url: '<?php echo base_url(); ?>admin/schooladmin/dataakun/'+listtype+'/0',
 									beforeSend: function() {
 										$(thisobj).after("<img id='wait' style='margin:0;' src='<?=$this->config->item('images').'loading.png';?>' />");

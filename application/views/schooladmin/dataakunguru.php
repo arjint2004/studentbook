@@ -3,7 +3,7 @@
 								if(listtype=='siswa'){
 									$.ajax({
 										type: "POST",
-										data: "ajax=1&id_kelas="+$('select#filterkelassiswa').val(),
+										data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1&id_kelas="+$('select#filterkelassiswa').val(),
 										url: '<?php echo base_url(); ?>admin/schooladmin/dataakun/'+listtype+'/0',
 										beforeSend: function() {
 											$("#ajax"+listtype+"").html("<img src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -15,7 +15,7 @@
 								}else{
 									$.ajax({
 										type: "POST",
-										data: "ajax=1",
+										data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1",
 										url: '<?php echo base_url(); ?>admin/schooladmin/dataakun/'+listtype+'/0',
 										beforeSend: function() {
 											$("#ajax"+listtype+"").html("<img src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -33,7 +33,7 @@
 										if(confirm('Anda akan menghapus akun "'+$(obj).parent('td').prev().prev().prev().prev().html()+'". Yakin data di hapus?')){
 											$.ajax({
 											  type: "POST",
-											  data: "ajax=1&id_pegawai="+$(obj).attr('id'),
+											  data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1&id_pegawai="+$(obj).attr('id'),
 											  url: $(obj).attr('href'),
 											  beforeSend: function() {
 												$(obj).append("<img id='waitguru' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -53,7 +53,7 @@
 									}else if($(obj).attr('class')=='edit'){
 											$.ajax({
 											  type: "POST",
-											  data: "ajax=1&id_pegawai="+$(obj).attr('id'),
+											  data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1&id_pegawai="+$(obj).attr('id'),
 											  url: $(obj).attr('href'),
 											  beforeSend: function() {
 												$(obj).append("<img id='waitguru' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -68,7 +68,7 @@
 										if(confirm('Apakah anda akan non aktifkan guru ini...')){
 											$.ajax({
 											  type: "POST",
-											  data: "ajax=1",
+											  data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1",
 											  url: $(obj).attr('href'),
 											  beforeSend: function() {
 												$(obj).append("<img id='waitguru' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -92,7 +92,7 @@
 										var obj=$(this);
 										$.ajax({
 										  type: "POST",
-										  data: "ajax=1&otoren="+$(obj).attr('value'),
+										  data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1&otoren="+$(obj).attr('value'),
 										  url: $(obj).attr('href')+$(obj).attr('value'),
 										  beforeSend: function() {
 											$(obj).append("<img id='waitguru' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -115,7 +115,7 @@
 									var thisobj= $(this);
 									$.ajax({
 									  type: "POST",
-									  data: "ajax=1",
+									  data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1",
 									  url: url,
 									  beforeSend: function() {
 										$('#ajax_paging').before("<img id='waitguru' src='<?=$this->config->item('images').'loading.png';?>' />");

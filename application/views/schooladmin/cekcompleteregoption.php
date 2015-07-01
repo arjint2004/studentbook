@@ -36,7 +36,7 @@
 			
 			$.ajax({
 				type: "POST",
-				data: 'ajax=1',
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1',
 				url: url,
 				beforeSend: function() {
 					$(thisobj).attr('class','tooltip-top tooltiphover');

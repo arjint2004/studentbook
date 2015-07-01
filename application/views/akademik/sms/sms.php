@@ -6,7 +6,7 @@
 					var obj=$(this);
 					$.ajax({
 							type: "POST",
-							data: $('form#smsnotif').serialize()+'&kirim='+$(obj).val(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$('form#smsnotif').serialize()+'&kirim='+$(obj).val(),
 							url: $('form#smsnotif').attr('action'),
 							beforeSend: function() {
 								$('.kirimsms').after("<img id='waitsmsnot' style='margin:0;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -33,7 +33,7 @@
 					var obj=$(this);
 					$.ajax({
 							type: "POST",
-							data: '',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 							url: $(obj).attr('href'),
 							beforeSend: function() {
 								$(obj).after("<img id='waitsmsnot' style='margin:0;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -51,6 +51,7 @@
 			});
 			</script>
 			<form action="<?=base_url()?>akademik/sms/index" method="post" id="smsnotif">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 			<table>
 				<tr>
 					<th>No</th>
@@ -92,4 +93,4 @@
 					<input style="margin-left:10px;" type="submit" name="kirimsemua" class="kirimsms" value="Kirim Semua" />--></td>
 				</tr>
 			</table>
-			<form>
+			</form>

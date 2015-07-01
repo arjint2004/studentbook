@@ -13,7 +13,7 @@
 						var judul=$(this).html();
 						$.ajax({
 							type: "GET",
-							data: '',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 							url: '<?=base_url()?>adminsb/admin/flow/'+$(obj).attr('id')+'/'+$(obj).parent('tr').attr('id')+'/'+$(obj).attr('id_artikel'),
 							beforeSend: function() {
 								$(obj).append("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");

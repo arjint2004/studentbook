@@ -23,7 +23,7 @@ if($cek['otoritas']=='siswa') {
 		}else{
 			$.ajax({
 					type: "POST",
-					data: 'kepsek=true&jenis='+jenis+'&idload='+load,
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&kepsek=true&jenis='+jenis+'&idload='+load,
 					url: url,
 					beforeSend: function() {
 						$(self).after("<img id='wait' style='margin: 0px; position: relative; right: 260px; bottom: 21px;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -41,7 +41,7 @@ if($cek['otoritas']=='siswa') {
 			var self=$(this);
 			$.ajax({
 					type: "POST",
-					data: 'kepsek=true&jenis='+$(this).attr('id'),
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&kepsek=true&jenis='+$(this).attr('id'),
 					url: '<?=base_url('akademik/kepsek/statistik')?>',
 					beforeSend: function() {
 						$(self).children('a').append("<img id='wait' style='position: relative; bottom: 0px; margin: 0px 5px;  top: 2px;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -55,7 +55,7 @@ if($cek['otoritas']=='siswa') {
 		if($('ul.tabs-framestatistik').length > 0) $('ul.tabs-framestatistik').tabs('> .tabs-frame-content6');
 		$.ajax({
 					type: "POST",
-					data: 'kepsek=true&jenis=rpp',
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&kepsek=true&jenis=rpp',
 					url: '<?=base_url('akademik/kepsek/statistik')?>',
 					beforeSend: function() {
 						$('ul.tabs-framestatistik li#rpp').children('a').append("<img id='wait' style='position: relative; bottom: 0px; margin: 0px 5px;  top: 2px;'  src='<?=$this->config->item('images').'loading.png';?>' />");

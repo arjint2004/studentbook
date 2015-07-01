@@ -31,7 +31,7 @@
 		function getAllKelas(){
 			$.ajax({
 						type: "POST",
-						data: '',
+						data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 						url: base_url+'sos/pegawai/getAllKelas',
 						beforeSend: function() {
 							$('div#tagsinputnotmn').after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -46,7 +46,7 @@
 		function getAllGuru(){
 			$.ajax({
 						type: "POST",
-						data: '',
+						data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 						url: base_url+'sos/pegawai/getAllGuru',
 						beforeSend: function() {
 							$('div#tagsinputnotmn').after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -110,6 +110,7 @@
                 <div class="span12">
                     <div style="display: none;">
                         <form id="form_dialog" class="span6" method="post" action="<?=site_url('sos/pegawai/pesan_user')?>" enctype="multipart/form-data">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                             <input type="file" name="lampiran" id="lampiran" style="opacity: 0;">
                             <label style="float:left;"><b>Kepada :</b></label><br />
                             
@@ -159,6 +160,7 @@
                                                     </div><br>
                                                     <p>'.$psn->pesan.'</p><br>
                                                     <form method="POST" action="'.site_url('sos/pegawai/balas_pesan').'">
+														<input type="hidden" name="'.$this->security->get_csrf_token_name().'" value="'.$this->security->get_csrf_hash().'">
                                                         <input type="hidden" name="id_balas" value="'.$psn->penulis.'">
                                                         <textarea name="pesan" style="background:white;min-height:100px;width:550px;" placeholder="Balas Pesan Anda" class="span6"></textarea>
                                                         <input type="submit" name="balas_pesan" value="Balas Pesan" class="button small light-grey"> 
@@ -204,6 +206,7 @@
                 <div class="span12">
                     <div style="display: none;">
                         <form id="form_dialog" class="span6" method="post" action="<?=site_url('sos/pegawai/pesan_user')?>">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                             <label>Untuk :</label>
                             <input type="text" name="nama" style="width: 95%" id="tags_3"/>
                             <div class="id_pesan"></div>
@@ -243,6 +246,7 @@
                                                     </div><br>
                                                     <p>'.$psn->pesan.'</p><br>
                                                     <form method="POST" action="'.site_url('sos/pegawai/balas_pesan').'">
+							<input type="hidden" name="'.$this->security->get_csrf_token_name().'" value="'.$this->security->get_csrf_hash().'">
                                                         <input type="hidden" name="id_balas" value="'.$psn->penulis.'">
                                                         <textarea name="pesan" style="background:white;min-height:100px;width:550px;" placeholder="Balas Pesan Anda" class="span6"></textarea>
                                                         <input type="submit" name="balas_pesan" value="Balas Pesan" class="button small light-grey"> 
@@ -357,6 +361,7 @@
                                    </div>
                                </div><br>
                                <form method="POST" action="<?=site_url('sos/siswa/buat_album')?>">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                                     <input type="text" name="nama_album" placeholder="Nama Album" style="background:white;"/>
                                     <textarea name="deskripsi" style="background:white;min-height:100px;width:550px;" placeholder="Deskripsi Album" class="span6"></textarea>
                                     <input type="submit" name="buat_album" value="Buat Album" class="button small lightgrey"> 
@@ -369,10 +374,12 @@
                 <div class="span12" style="margin: 0px;">
                     <div id="dropzone">
                         <form action="<?=site_url('sos/siswa/multiple_upload')?>" class="dropzone" id="demo-upload">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                         </form>
                     </div>
                     
                     <form method="POST" action="<?=site_url('sos/siswa/simpan_multiple_foto')?>" class="right" id="form_upload">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                         <input type="submit" class="lightgrey multi_foto" value="Simpan Foto"/>
                     </form>
                 </div>
@@ -454,6 +461,7 @@
                                         </div>
                                     </div><br>
                                     <form method="POST" action="'.site_url('sos/siswa/berita_simpan').'" enctype="multipart/form-data">
+							<input type="hidden" name="'.$this->security->get_csrf_token_name().'" value="'.$this->security->get_csrf_hash().'">
                                         <label>Sekolah</label>';
                                             if(!empty($sekolah)) {
                                                 echo '<select name="sekolah" style="background:white;">';
@@ -576,6 +584,8 @@
                                         </div>
                                     </div><br>
                                     <form method="POST" action="'.site_url('sos/siswa/kegiatan_simpan').'" enctype="multipart/form-data">
+									
+							<input type="hidden" name="'.$this->security->get_csrf_token_name().'" value="'.$this->security->get_csrf_hash().'">
                                         <label>Sekolah</label>';
                                             if(!empty($sekolah)) {
                                                 echo '<select name="sekolah" style="background:white;">';

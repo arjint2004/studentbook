@@ -30,7 +30,7 @@
 						if($frm.find('*[name=id_kelas]').is('.valid') && $frm.find('*[name=id_siswa_det_jenjang]').is('.valid') && $frm.find('*[name=jurnalwali]').is('.valid') /*&& $frm.find('*[name=file]').is('.valid')*/ && $frm.find('*[name=tanggal]').is('.valid')) {
 							$.ajax({
 								type: "POST",
-								data: $(this).serialize(),
+								data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize(),
 								url: $(this).attr('action'),
 								beforeSend: function() {
 									$("#submitjurnal").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -50,7 +50,7 @@
 					$("#jurnalwaliformcontent select#kelas").change(function(e){
 						$.ajax({
 							type: "POST",
-							data: $("form#jurnalwaliformcontent").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#jurnalwaliformcontent").serialize(),
 							url: '<?=base_url()?>akademik/jurnalwali/getOptionSiswaByIdKelas/'+$(this).val(),
 							beforeSend: function() {
 								$("#jurnalwaliformcontent select#kelas").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -81,6 +81,7 @@
 				<h3>Jurnal Wali Kelas</h3>
 				<div class="hr"></div>
 				<form action="<?=base_url()?>akademik/jurnalwali/addjurnal" method="post" id="jurnalwaliformcontent" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 				<div id="contentpage">
 							<table class="tabelfilter">
 								<tr>

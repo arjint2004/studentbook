@@ -8,7 +8,7 @@
 				function send(){
 						$.ajax({
 							type: "POST",
-							data: $("form#bulan").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#bulan").serialize(),
 							url: '<?=base_url()?>siswa/catatanguru/catatangurulist/'+$('#bulan').val(),
 							beforeSend: function() {
 								$("#catatanguru select#bulan").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -27,6 +27,7 @@
 				
 				<div id="contentpage">
 							<form action="" method="post" id="catatanguru" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<table class="tabelfilter">
 								<tr>
 								<td>

@@ -20,6 +20,7 @@ $(document).ready(function(){
 	<div class="containcomment">
 	<div class="content-box clear"></div>
 		<form id="comment" action="<?php echo base_url() ?>index.php/ticker/commentsend" method="post" >		
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 		<textarea id="comment" class="comment" name="comment" rows="5"  placeholder="Tulis komentar anda. Kemudian tekan ENTER"  onkeydown="$(this).css('color','#727272');$(this).css('font-size','12px');"></textarea>
 		<input type="hidden" name="jenis" id="jensget" value="<?=$jenis?>" />
 		<input type="hidden" name="id_information" id="id_information" value="<?=$id?>" />
@@ -97,6 +98,7 @@ $(document).ready(function(){
 				<? } ?>
 				<? } ?>
 				<form id="reply<?=$datahis['id']?>" action="<?php echo base_url() ?>index.php/ticker/commentsend" method="post" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 				<textarea id="commentreply" class="commentreply" name="commentreply" rows="5" post="<?=$datahis['id']?>" placeholder="Tulis komentar anda. Kemudian tekan ENTER" onkeydown="$(this).css('color','#727272');$(this).css('font-size','12px');"></textarea>
 				<input type="hidden" name="jenis" value="<?=$jenis?>" />
 				<input type="hidden" name="id_information" id="id_information" value="<?=$id?>" />

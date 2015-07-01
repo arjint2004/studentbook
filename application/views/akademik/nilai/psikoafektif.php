@@ -8,7 +8,7 @@
 					$("#filterpelajarandpsikoAfektif select#kelasPsikoafektif").change(function(e){
 						$.ajax({
 							type: "POST",
-							data: $("form#filterpelajarandpsikoAfektif").serialize()+'&nama_kelas='+$('#filterpelajarandpsikoAfektif select#kelasPsikoafektif :selected').attr('nama_kelas')+'&id_jurusan='+$('#filterpelajarandpsikoAfektif select#kelasPsikoafektif :selected').attr('id_jurusan'),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpelajarandpsikoAfektif").serialize()+'&nama_kelas='+$('#filterpelajarandpsikoAfektif select#kelasPsikoafektif :selected').attr('nama_kelas')+'&id_jurusan='+$('#filterpelajarandpsikoAfektif select#kelasPsikoafektif :selected').attr('id_jurusan'),
 							url: '<?=base_url()?>akademik/nilai/getpsikoafektif',
 							beforeSend: function() {
 								$("#filterpelajarandpsikoAfektif select#kelasPsikoafektif").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -22,7 +22,7 @@
 					});//Submit End
 						$.ajax({
 							type: "POST",
-							data: $("form#filterpelajarandpsikoAfektif").serialize()+'&nama_kelas='+$('#filterpelajarandpsikoAfektif select#kelasPsikoafektif :selected').attr('nama_kelas')+'&id_jurusan='+$('#filterpelajarandpsikoAfektif select#kelasPsikoafektif :selected').attr('id_jurusan'),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpelajarandpsikoAfektif").serialize()+'&nama_kelas='+$('#filterpelajarandpsikoAfektif select#kelasPsikoafektif :selected').attr('nama_kelas')+'&id_jurusan='+$('#filterpelajarandpsikoAfektif select#kelasPsikoafektif :selected').attr('id_jurusan'),
 							url: '<?=base_url()?>akademik/nilai/getpsikoafektif',
 							beforeSend: function() {
 								$("#filterpelajarandpsikoAfektif select#kelasPsikoafektif").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -35,7 +35,7 @@
 					$("#masukbuttonPsikoafektif").click(function(){
 						$.ajax({
 							type: "POST",
-							data: '',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 							url: '<?=base_url()?>akademik/nilai/addnilai/<?=base64_encode($jenis);?>',
 							beforeSend: function() {
 								$("#masukbuttonPsikoafektif").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -53,7 +53,7 @@
 						if(confirm('Jika subject di hapus maka nilai juga akan terhapus')){
 							$.ajax({
 								type: "POST",
-								data: 'id='+idsubject,
+								data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id='+idsubject,
 								url: '<?=base_url()?>akademik/nilai/deletesubjectnilai',
 								beforeSend: function() {
 									$(obj).after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -75,7 +75,7 @@
 						
 							$.ajax({
 								type: "POST",
-								data: 'id_subject='+idsubject+'&kelas='+id_kelas+'&pelajaran='+id_pelajaran+'&remidial='+remidial+'&subject='+subject,
+								data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_subject='+idsubject+'&kelas='+id_kelas+'&pelajaran='+id_pelajaran+'&remidial='+remidial+'&subject='+subject,
 								url: '<?=base_url()?>akademik/nilai/editnilai/<?=base64_encode($jenis)?>',
 								beforeSend: function() {
 									$(obj).after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -96,6 +96,7 @@
 				
 				<div id="contentpage">
 							<form action="" method="post" id="filterpelajarandpsikoAfektif" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<table class="tabelfilter">
 								<tr>
 								<td>

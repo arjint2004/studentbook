@@ -8,7 +8,7 @@
 					$("#kepribadianform select#kelas").change(function(e){
 						$.ajax({
 							type: "POST",
-							data: $("form#kepribadianform").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#kepribadianform").serialize(),
 							url: '<?=base_url()?>akademik/kepribadian/getOptionSiswaByIdKelas/'+$(this).val(),
 							beforeSend: function() {
 								$("#kepribadianform select#kelas").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -24,7 +24,7 @@
 					$("#kepribadianform select#siswakepribadian").change(function(e){
 						$.ajax({
 							type: "POST",
-							data: $("form#kepribadianform").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#kepribadianform").serialize(),
 							url: '<?=base_url()?>akademik/kepribadian/kepribadianlist',
 							beforeSend: function() {
 								$("#kepribadianform select#siswakepribadian").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -46,6 +46,7 @@
 				
 				<div id="contentpage">
 							<form action="" method="post" id="kepribadianform" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<table class="tabelfilter">
 								<tr>
 								<td>

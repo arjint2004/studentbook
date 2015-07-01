@@ -319,6 +319,7 @@
             <div class="float-right ">
                 <!-- **Searchform** -->
                 <form action="<?=site_url((($cek['otoritas']=='siswa') ? 'sos/siswa/cari_teman_user/' : 'sos/pegawai/cari_teman_user/'))?>" id="searchform" method="POST">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                     <fieldset>
                         <input name="Search" type="text" onblur="this.value=(this.value=='') ? 'Cari Teman' : this.value;" onfocus="this.value=(this.value=='Cari Teman') ? '' : this.value;" value="Cari Teman" alt="Search our site" class="text_input" />
                         <input name="submit" type="submit" value="" />

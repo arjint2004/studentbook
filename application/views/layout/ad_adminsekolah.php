@@ -22,7 +22,7 @@
 						var thisobj=$(this);
 						$.ajax({
 							type: "POST",
-							data: 'ajax=1',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1',
 							url: $(thisobj).attr('href'),
 							beforeSend: function() {
 								$(thisobj).append("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");

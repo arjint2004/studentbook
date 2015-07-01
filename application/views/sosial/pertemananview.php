@@ -21,6 +21,7 @@
                                 </div>
                                 <div class="block messaging">
                                     <form method="post" id="update_status" action="<?=site_url('sos/siswa/set_status')?>" enctype='multipart/form-data'>
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                                     <input type="hidden" name="id_siswa" value="<?=$siswa->id?>" id="id_siswa"/>
                                     <div class="controls">
                                         <div class="control">
@@ -140,6 +141,7 @@
                                                         <div class="span2"></div>
                                                         <div class="span10">
                                                             <form method="POST" id="komentar" action="<?=site_url('sos/siswa/set_komentar')?>">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                                                                 <div class="itemOut">
                                                                     <div class="controls">
                                                                         <div class="control">
@@ -168,6 +170,7 @@
                                                         </div>
                                                         <div class="span10">
                                                             <form method="POST" id="komentar" action="<?=site_url('sos/siswa/set_komentar')?>">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                                                                 <div class="itemOut">
                                                                     <div class="controls">
                                                                         <div class="control">
@@ -340,6 +343,7 @@
         </div>
         <div class="row-fluid">
                 <form method="POST" id="form_add_all_user" action="<?=site_url('sos/siswa/add_all_friend')?>">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
             <?php
                 if(!empty($orang_dikenal['pegawai_dikenal']) or !empty($orang_dikenal['siswa_dikenal']))
                 {
@@ -453,6 +457,7 @@
         <div class="row-fluid form_group" style="display: none;">
             <div class="span12">
                 <form class="sosial" method="POST" action="<?=site_url('sos/siswa/simpan_group')?>" enctype="multipart/form-data">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                     <div class="row-fluid">
                         <div class="status_style">
                             <div class="workplace">
@@ -707,6 +712,7 @@
         ?>
         <div class="form_acara" style="display: none;">   
             <form class="sosial" method="POST" action="<?=site_url('sos/siswa/simpan_acara')?>">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                 <div class="row-fluid">
                     <div class="status_style">
                         <div class="workplace">
@@ -935,6 +941,7 @@
             </div><br>
             <div class="span12" style="margin: 0px;">
                 <form method="POST" action="#" class="sosial">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                         <label>Judul Catatan</label><input type="text" name="judul" class="text-field"/>
                         <label>Catatan</label><textarea name="catatan" style="min-height: 200px;" class="text-field"></textarea>
                         <input type="submit" class="button small lightblue" value="Simpan Catatan"/>

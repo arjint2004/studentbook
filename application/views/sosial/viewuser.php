@@ -15,6 +15,7 @@
                     </div>
                     <div class="block messaging blok_message">
                         <form method="post" id="update_status" action="<?=site_url('sos/user/set_status')?>" enctype='multipart/form-data'>
+				<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                             <input type="hidden" name="id_user" value="<?=$profile_user->id?>" id="id_user"/>
                             <input type="hidden" name="user" value="<?=$jenis_user?>" id="user"/>
                             <div class="controls">
@@ -121,6 +122,7 @@
                                             <div class="span2"></div>
                                             <div class="span10">
                                                 <form method="POST" id="komentar" action="<?=site_url('sos/user/set_komentar')?>">
+				<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                                                     <div class="itemOut">
                                                         <div class="controls">
                                                             <div class="control">
@@ -150,6 +152,7 @@
                                             </div>
                                             <div class="span10">
                                                 <form method="POST" id="komentar" action="<?=site_url('sos/user/set_komentar')?>">
+				<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                                                     <div class="itemOut">
                                                         <div class="controls">
                                                             <div class="control">
@@ -184,6 +187,7 @@
     <h2 class="float-left">TULIS SURAT</h2>
     <div class="tabs-frame-content" style="display: block;">
         <form method="POST" id="form_kirim_pesan" action="<?=site_url('sos/user/tulis_pesan_pribadi')?>" enctype="multipart/form-data">
+				<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
             <input type="file" name="lampiran" id="lampiran" style="opacity: 0;display: none;">
             <div class="row-fluid">
                 <textarea name="pesan" style="background: white;width: 97%;font-size: small;min-height: 100px;" placeholder="Tulis Pesan Anda Disini"></textarea>

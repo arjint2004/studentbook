@@ -4,7 +4,7 @@
 						var thisobj=$(this);
 						$.ajax({
 							type: "POST",
-							data: $("form#filteraccount").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filteraccount").serialize(),
 							url: $("form#filteraccount").attr('action'),
 							beforeSend: function() {
 								$(thisobj).after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -26,6 +26,7 @@
 				
 				<div id="contentpage">
 							<form action="<?=base_url()?>/superadmin/super/accountlist" method="post" id="filteraccount" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<table class="tabelfilter">
 								<tr>
 									<td>

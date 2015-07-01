@@ -26,7 +26,7 @@
 			$('#tababsensi').bind('click', function() {
 				$.ajax({
 					type: "GET",
-					data: '',
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 					url: '<?=base_url('akademik/absensi')?>',
 					beforeSend: function() {
 						$('#tababsensi').append("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -40,7 +40,7 @@
 			$('#tabarekapbsensi').bind('click', function() {
 				$.ajax({
 					type: "GET",
-					data: '',
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 					url: '<?=base_url('akademik/absensi/rekapabsensi')?>',
 					beforeSend: function() {
 						$('#tabarekapbsensi').append("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -55,7 +55,7 @@
 			$('#jurnaltab').bind('click', function() {
 				$.ajax({
 					type: "GET",
-					data: '',
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 					url: '<?=base_url('akademik/jurnalwali/addjurnal')?>',
 					beforeSend: function() {
 						$('#jurnaltab').append("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -69,7 +69,7 @@
 			$('#hportutab').bind('click', function() {
 				$.ajax({
 					type: "GET",
-					data: '',
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 					url: '<?=base_url('akademik/notifikasi/hportu')?>',
 					beforeSend: function() {
 						$('#hportutab').append("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -83,7 +83,7 @@
 			$('select#kelasraport2013').bind('change', function() {
 				$.ajax({
 					type: "POST",
-					data: 'id_kelas='+$(this).val(),
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas='+$(this).val(),
 					url: '<?=base_url('akademik/raportktsp/index')?>',
 					beforeSend: function() {
 						$('select#kelasraport2013').append("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -106,7 +106,7 @@
 				}else{$('select#siswaraport').css('border','none');}
 				$.ajax({
 					type: "GET",
-					data: '',
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 					url: '<?=base_url('akademik/raport/index')?>/'+$('select#siswaraport').val(),
 					beforeSend: function() {
 						$('#raporttab').append("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -128,7 +128,7 @@
 				}else{$('select#siswaraport').css('border','none');}
 				$.ajax({
 					type: "GET",
-					data: '',
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 					url: '<?=base_url('akademik/raport/ekstrakurikuler')?>/'+$('select#siswaraport').val(),
 					beforeSend: function() {
 						$('#raporekstrattab').append("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -150,7 +150,7 @@
 				}else{$('select#siswaraport').css('border','none');}
 				$.ajax({
 					type: "GET",
-					data: '',
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 					url: '<?=base_url('akademik/raport/kegiatan')?>/'+$('select#siswaraport').val(),
 					beforeSend: function() {
 						$('#raportkegiatantab').append("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -172,7 +172,7 @@
 				}else{$('select#siswaraport').css('border','none');}
 				$.ajax({
 					type: "GET",
-					data: '',
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 					url: '<?=base_url('akademik/raport/kepribadian')?>/'+$('select#siswaraport').val(),
 					beforeSend: function() {
 						$('#raportkepribadiantab').append("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -194,7 +194,7 @@
 				}else{$('select#siswaraport').css('border','none');}
 				$.ajax({
 					type: "GET",
-					data: '',
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 					url: '<?=base_url('akademik/raport/prestasi')?>/'+$('select#siswaraport').val(),
 					beforeSend: function() {
 						$('#raportprestasitab').append("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -216,7 +216,7 @@
 				}else{$('select#siswaraport').css('border','none');}
 				$.ajax({
 					type: "GET",
-					data: '',
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 					url: '<?=base_url('akademik/raport/absensi')?>/'+$('select#siswaraport').val(),
 					beforeSend: function() {
 						$('#raportabsensitab').append("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -238,7 +238,7 @@
 				}else{$('select#siswaraport').css('border','none');}
 				$.ajax({
 					type: "GET",
-					data: '',
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 					url: '<?=base_url('akademik/raport/keterangan')?>/'+$('select#siswaraport').val()+'/'+$('select#kelasraport').val(),
 					beforeSend: function() {
 						$('#raportkenaikantab').append("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -260,7 +260,7 @@
 				}else{$('select#siswaraport').css('border','none');}
 				$.ajax({
 					type: "GET",
-					data: '',
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 					url: '<?=base_url('akademik/raport/catatan')?>/'+$('select#siswaraport').val(),
 					beforeSend: function() {
 						$('#raportcatatantab').append("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -275,7 +275,7 @@
 				var obj=$(this);
 				$.ajax({
 					type: "POST",
-					data: 'id_kelas='+$(obj).val(),
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas='+$(obj).val(),
 					url: '<?=base_url('akademik/raport/setkenaikan')?>/'+$(obj).val(),
 					beforeSend: function() {
 						$('#kelaskenaikan').after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -322,7 +322,7 @@
 						$.ajax({
 									type: 'GET',
 									url: '<? echo base_url();?>akademik/instrumen/pembelajaranlist',
-									data: '',
+									data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 									beforeSend: function() {
 										$(thisobj).append("<img style='float: right; position: relative; right: 19px; top: 2px;' id='wait"+$(thisobj).attr('id')+"' src='<?=$this->config->item('images').'loading.png';?>' />");
 									},
@@ -396,7 +396,7 @@
 								$.ajax({
 										type: 'POST',
 										url: url,
-										data: 'jenis='+$(this).attr('id'),
+										data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&jenis='+$(this).attr('id'),
 										beforeSend: function() {
 											$(thisobj).append("<img style='float: right; position: absolute; top: -5px; right: 3px;' id='wait"+$(thisobj).attr('id')+"' src='<?=$this->config->item('images').'loaderhover.gif';?>' />");
 										},
@@ -433,7 +433,7 @@
 								$.ajax({
 									type: 'GET',
 									url: '<? echo base_url();?>akademik/nilai/listSubject/'+$(this).attr('id'),
-									data: '',
+									data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 									beforeSend: function() {
 										
 										$(thisobj).append("<img style='float: right; position: absolute; top: -5px; right: 3px;' id='wait' src='<?=$this->config->item('images').'loaderhover.gif';?>' />");
@@ -457,7 +457,7 @@
 								$.ajax({
 										type: 'GET',
 										url: '<? echo base_url();?>akademik/nilaiotentik/pranilai/'+$(this).attr('id'),
-										data: '',
+										data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 										beforeSend: function() {
 											$(thisobj).append("<img style='float: right; position: absolute; top: -5px; right: 3px;' id='wait' src='<?=$this->config->item('images').'loaderhover.gif';?>' />");
 										},
@@ -544,7 +544,7 @@
 							$.ajax({
 									type: 'GET',
 									url: url,
-									data: '',
+									data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 									beforeSend: function() {
 										$(thisobj).append("<img style='float: right; position: absolute; top: -5px; right: 3px;' id='wait"+$(thisobj).attr('id')+"' src='<?=$this->config->item('images').'loaderhover.gif';?>' />");
 									},
@@ -569,7 +569,7 @@
 					$("select#kelasraport").change(function(e){
 							$.ajax({
 								type: "POST",
-								data: $("form#jurnalwaliform").serialize(),
+								data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#jurnalwaliform").serialize(),
 								url: '<?=base_url()?>akademik/raport/getOptionSiswaByIdKelas/'+$(this).val(),
 								beforeSend: function() {
 									$("select#kelasraport").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -585,7 +585,7 @@
 					$("select#siswaraport").change(function(e){
 							$.ajax({
 								type: "GET",
-								data: '',
+								data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 								url: '<?=base_url('akademik/raport/index')?>/'+$('select#siswaraport').val(),
 								beforeSend: function() {
 									$('#raporttab').append("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");

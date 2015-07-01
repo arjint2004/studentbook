@@ -38,6 +38,7 @@
 		    </div>-->
 		    <br style="clear:both;"/>
 		    <form name="thumbnail" action="<?php echo $_SERVER["PHP_SELF"];?>" method="post">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 			    <input type="hidden" name="x1" value="" id="x1" />
 			    <input type="hidden" name="y1" value="" id="y1" />
 			    <input type="hidden" name="x2" value="" id="x2" />
@@ -50,6 +51,7 @@
 	    <?php 	else : ?>
 	    <img src="<?=$this->config->item('images')?>profil.jpg" alt="" title="" height="350">
 	    <form name="photo" enctype="multipart/form-data" action="<?php echo $_SERVER["PHP_SELF"];?>" method="post">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 	    <input type="file" name="image" size="30" id="images_file"/>
 	    <input type="submit" name="upload" value="Unggah Foto" />
 	    
@@ -79,6 +81,7 @@
 	    </dl>
 	    <div class="float-right">
 		<form method="POST" action="<?=site_url('sekolah/finish')?>">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 		    <?php if(!empty($img['file_name'])) : ?>
 			<input type="hidden" name="id" value="<?=$id?>" />
 			<input type="hidden" name="file_name" value="<?php echo $img['file_name'] ;?>" />

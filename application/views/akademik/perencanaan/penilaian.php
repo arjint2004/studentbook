@@ -11,7 +11,7 @@
 										$("select#id_indikator").change(function(){
 											$.ajax({
 												type: "POST",
-												data: 'id_indikator='+$(this).val(),
+												data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_indikator='+$(this).val(),
 												url: '<?=base_url("akademik/perencanaan/penilaian/".$param['indikatore']."/".$param['id_pembelajarane']."/".$param['id_pelajarane']."/".$param['id_kelase']."/".$param['nama_kelase']."/".$subject."")?>',
 												beforeSend: function() {
 													$("#simpanpr").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -32,7 +32,7 @@
 											}
 											$.ajax({
 												type: "POST",
-												data: $(this).serialize()+'&simpan=true',
+												data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize()+'&simpan=true',
 												url: $(this).attr('action'),
 												beforeSend: function() {
 													$("#simpancatatan").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -41,7 +41,7 @@
 													$("#wait").remove();	
 													$.ajax({
 															type: "POST",
-															data: 'ajax=1&id_pembelajaran=<?=$id_pembelajaran?>&id_pelajaran=<?=$_POST['id_pelajaran']?>',
+															data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1&id_pembelajaran=<?=$id_pembelajaran?>&id_pelajaran=<?=$_POST['id_pelajaran']?>',
 															url: '<?=base_url('akademik/perencanaan/sukses/PENILAIAN')?>',
 															beforeSend: function() {
 																$("#simpanpr").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -78,6 +78,7 @@
 
 								<?// pr($siswa);?>
 								<form action="<?=base_url()?>akademik/perencanaan/penilaian/<?=$indikatore?>" method="post" id="catatangurudataform" style="width:768px;height:100%;">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 								<table>
 									<tbody>
 										<tr>

@@ -8,7 +8,7 @@
 					$("#jurnalwaliform select#kelas").change(function(e){
 						$.ajax({
 							type: "POST",
-							data: $("form#jurnalwaliform").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#jurnalwaliform").serialize(),
 							url: '<?=base_url()?>akademik/jurnalwali/getOptionSiswaByIdKelas/'+$(this).val(),
 							beforeSend: function() {
 								$("#jurnalwaliform select#kelas").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -24,7 +24,7 @@
 					$("#jurnalwaliform select#siswa").change(function(e){
 						$.ajax({
 							type: "POST",
-							data: $("form#jurnalwaliform").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#jurnalwaliform").serialize(),
 							url: '<?=base_url()?>akademik/jurnalwali/jurnalwalilist',
 							beforeSend: function() {
 								$("#jurnalwaliform select#siswa").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -44,6 +44,7 @@
 				
 				<div id="contentpage">
 							<form action="" method="post" id="jurnalwaliform" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<table class="tabelfilter">
 								<tr>
 								<td>

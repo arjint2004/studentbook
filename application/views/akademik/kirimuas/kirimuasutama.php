@@ -23,7 +23,7 @@
 				var obj=$(this);
 				$.ajax({
 					type: "POST",
-					data: 'id_kelas='+$('select#kelasuas').val()+'&pelajaran='+$('select#pelajaranuas').val()+'&ajax=1',
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas='+$('select#kelasuas').val()+'&pelajaran='+$('select#pelajaranuas').val()+'&ajax=1',
 					url: '<?=base_url('akademik/kirimuas/daftaruaslist')?>',
 					beforeSend: function() {
 						$("table.adddata tr th a.canceluas").after("<img id='waituas24' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -77,7 +77,7 @@
 			if($frm.find('*[name=id_pelajaran]').is('.valid') && $frm.find('*[name=bab]').is('.valid') && $frm.find('*[name=judul]').is('.valid') /*&& $frm.find('*[name=file]').is('.valid') && $frm.find('*[name=keterangan]').is('.valid')*/) {
 				$.ajax({
 					type: "POST",
-					data: $(this).serialize(),
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize(),
 					url: $(this).attr('action'),
 					beforeSend: function() {
 						$("#kirimuasutama").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
@@ -109,7 +109,7 @@
 								if(res=='null'){
 									$.ajax({
 										type: "POST",
-										data: '&ajax=1',
+										data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&&ajax=1',
 										url: '<?=base_url('akademik/kirimuas/daftaruaslist')?>',
 										beforeSend: function() {
 											$("#materi").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
@@ -158,7 +158,7 @@
 		$("select#pelajaran_adduas").change(function(e){
 			$.ajax({
 				type: "POST",
-				data: '',
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 				url: '<?=base_url()?>admin/pelajaran/getKelasByPelajaranAndPegawai/'+$(this).val(),
 				beforeSend: function() {
 					$('select#kelas_adduas').after("<img id='waituas27' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -195,6 +195,7 @@ $(function() {
 </script>	
 <div class="addaccount">
 <form method="post" name="kirimuasutama" enctype="multipart/form-data" id="kirimuasutama" action="<? echo base_url();?>akademik/kirimuas/kirimuasutama">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 	<div onclick="$('.addaccount').remove();" class="addaccountclose"></div>
 		
 		<h3>Tambah UAS</h3>

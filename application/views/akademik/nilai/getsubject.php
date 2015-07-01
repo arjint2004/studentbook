@@ -53,6 +53,7 @@
 							<div class="actdell" title="Delete" onclick="deletesubjnilai(this,<?=$datasubject['id']?>,'<?=$jenis?>')"></div>
 							<div class="actexcell" id_subject="<?=$datasubject['id']?>" title="Export Excell" ></div>
 							   <form id="formexp<?=$datasubject['id']?>" action="" method="post">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							   <input type="hidden" name="jenis" value="Nilai" />
 							   <input type="hidden" name="fileName" value="Nilai" />
 							   <table class="tabelkelas">

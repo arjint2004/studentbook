@@ -13,7 +13,7 @@
 		$.ajax({
 			type: 'POST',
 			url: $('#absensiform').attr('action'),
-			data: $('#absensiform').serialize()+'&id_kelas='+$('#kelasabsen').val()+'&jamabsen='+$('#jamabsen').val()+'&pelajaranabsen='+$('#pelajaranabsen').val()+"&pelajarannyaabsen="+$('#hiddenmapel').val()+'&tanggal='+$('#popupDatepicker').val()+'&nama_kelas='+$('#kelasabsen').find(":selected").text(),
+			data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$('#absensiform').serialize()+'&id_kelas='+$('#kelasabsen').val()+'&jamabsen='+$('#jamabsen').val()+'&pelajaranabsen='+$('#pelajaranabsen').val()+"&pelajarannyaabsen="+$('#hiddenmapel').val()+'&tanggal='+$('#popupDatepicker').val()+'&nama_kelas='+$('#kelasabsen').find(":selected").text(),
 			beforeSend: function() {
 				$('#simpanabsensi').after("<img id='wait' style='position: relative; top: 21px; left: 28px;' src='<?=$this->config->item('images').'loading.png';?>' />");
 			},
@@ -31,7 +31,7 @@
 		if($('#kelasabsen').val()==''){$('#kelasabsen').css('border','1px solid red'); return false;}else{$('#kelasabsen').css('border','1px solid #D8D8D8');}
 		$.ajax({
 			type: "POST",
-			data: "id_kelas="+$('#kelasabsen').val()+"&jamabsen="+$('#jamabsen').val()+"&id_pelajaran="+$('#pelajaranabsen').val()+"&pelajarannyaabsen="+$('#hiddenmapel').val()+"&tanggal="+date,
+			data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas="+$('#kelasabsen').val()+"&jamabsen="+$('#jamabsen').val()+"&id_pelajaran="+$('#pelajaranabsen').val()+"&pelajarannyaabsen="+$('#hiddenmapel').val()+"&tanggal="+date,
 			url: '<?=base_url()?>akademik/absensi/add',
 			beforeSend: function() {
 				$('#popupDatepicker').after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -60,7 +60,7 @@
 		$(this).after('<input type="hidden" name="kelasnyaabsesnsi" id="hiddenkelas" value="'+$(this).find(":selected").text()+'"/>');
 		$.ajax({
 			type: "POST",
-			data: "id_kelas="+$('#kelasabsen').val()+"&jamabsen="+$('#jamabsen').val()+"&tanggal="+$('#popupDatepicker').val(),
+			data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas="+$('#kelasabsen').val()+"&jamabsen="+$('#jamabsen').val()+"&tanggal="+$('#popupDatepicker').val(),
 			url: '<?=base_url()?>akademik/absensi/add',
 			beforeSend: function() {
 				$('#kelasabsen').after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -72,6 +72,7 @@
 		});
 		$.ajax({
 			type: "POST",
+			data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>',
 			url: '<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$(this).val(),
 			beforeSend: function() {
 				$("#pelajaranabsen").after("<img id='waitabsen1' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -105,6 +106,7 @@ $(function() {
 
 </script>
 <form action="" method="post" id="absensi" >
+<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 <table class="adddata">
 	<tbody>
 		<tr>
@@ -164,6 +166,7 @@ $(function() {
 
 <div id="absenarea">
 <form name="absensi" id="absensiform" method="post" action="<?=base_url()?>akademik/absensi/add" >
+<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 <table>
     <thead>
         <tr> 

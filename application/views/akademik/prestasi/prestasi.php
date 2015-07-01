@@ -8,7 +8,7 @@
 					$("#prestasiform select#kelas").change(function(e){
 						$.ajax({
 							type: "POST",
-							data: $("form#prestasiform").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#prestasiform").serialize(),
 							url: '<?=base_url()?>akademik/prestasi/getOptionSiswaByIdKelas/'+$(this).val(),
 							beforeSend: function() {
 								$("#prestasiform select#kelas").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -24,7 +24,7 @@
 					$("#prestasiform select#siswa").change(function(e){
 						$.ajax({
 							type: "POST",
-							data: $("form#prestasiform").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#prestasiform").serialize(),
 							url: '<?=base_url()?>akademik/prestasi/prestasilist',
 							beforeSend: function() {
 								$("#prestasiform select#siswa").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -45,6 +45,7 @@
 				
 				<div id="contentpage">
 							<form action="" method="post" id="prestasiform" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<table class="tabelfilter">
 								<tr>
 								<td>

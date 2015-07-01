@@ -5,7 +5,7 @@
 						var thisobj=$(this);
 						$.ajax({
 							type: "POST",
-							data: "ajax=1",
+							data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1",
 							url: base_url+'admin/pelajaran/adddata',
 							beforeSend: function() {
 								$(thisobj).append("<img id='wait' src='"+config_images+"loaderhover.gif' />");
@@ -20,7 +20,7 @@
 					function loaddatapelajaran(){
 						$.ajax({
 							type: "POST",
-							data: "ajax=1",
+							data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1",
 							url: base_url+'admin/pelajaran/listData',
 							beforeSend: function() {
 								$("#listpelajaranloading").html("<img src='"+config_images+"loading.png' />");

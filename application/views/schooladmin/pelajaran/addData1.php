@@ -26,7 +26,7 @@ $(document).ready(function(){
 	function loaddatamapel(){
 		$.ajax({
 			type: "POST",
-			data: "ajax=1",
+			data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1",
 			url: base_url+'admin/pelajaran/listData',
 			beforeSend: function() {
 				$("#listmapelloading").html("<img src='"+config_images+"loading.png' />");
@@ -57,7 +57,7 @@ $(document).ready(function(){
 			if($frm.find('*[name=nama]').is('.valid') <? if($this->session->userdata['ak_setting']['jenjang'][0]['nama']!='SD' && $this->session->userdata['ak_setting']['jenjang'][0]['nama']!='SMP'){?> && $frm.find('*[name=id_jurusan]').is('.valid') && $frm.find('*[name=kelompok]').is('.valid')<? } ?> && $frm.find('*[name=semester]').is('.valid') && $frm.find('*[name=jenjang]').is('.valid')) {
 				$.ajax({
 					type: "POST",
-					data: $(this).serialize(),
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize(),
 					url: $(this).attr('action'),
 					beforeSend: function() {
 						$("input#simpanpelajaran").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -66,7 +66,7 @@ $(document).ready(function(){
 						$(".addaccount").remove();	
 							$.ajax({
 								type: "POST",
-								data: "ajax=1",
+								data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1",
 								url: '<?php echo base_url(); ?>admin/pelajaran/listData',
 								beforeSend: function() {
 									$("input#simpanpelajaran").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -88,6 +88,7 @@ $(document).ready(function(){
 </script>
 <div class="addaccount">
 <form action="<? echo base_url();?>admin/pelajaran/adddata" id="mapelform" name="mapelform" method="post" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 	<div class="addaccountclose" onclick="$('.addaccount').remove();"></div>
 	<h3> <?=$page_title?> </h3><?// pr($pelajaran);?>
 		<table class="adddata">

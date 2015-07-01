@@ -34,7 +34,7 @@
 											$(".error-box").html("Memproses Data").fadeIn("slow");
 											$.ajax({
 												type: "POST",
-												data: $(this).serialize()+'&'+$('form#nilai').serialize(),
+												data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize()+'&'+$('form#nilai').serialize(),
 												url: $(this).attr('action'),
 												beforeSend: function() {
 													$("#simpanpr").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");

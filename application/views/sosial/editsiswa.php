@@ -31,6 +31,7 @@
     <div class="row-fluid edit_data" style="text-align: left;">
         <div class="span12">
             <form class="sosial" enctype="multipart/form-data" method="post" action="<?=site_url('sos/siswa/ubah_data')?>">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
             <input type="file" name="foto_siswa" onchange="readURL(this)" id="foto_siswa" style="opacity: 0;display: none;">
                 <div class="tabs-container">
                     <ul class="tabs-frame">

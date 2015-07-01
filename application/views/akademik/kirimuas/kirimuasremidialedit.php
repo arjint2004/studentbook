@@ -29,7 +29,7 @@
 		// selected area	
 		$.ajax({
 				type: "POST",
-				data: '',
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 				url: '<?=base_url()?>akademik/kirimuas/getOptionSiswaByIdKelas/'+$(this).val(),
 				beforeSend: function() {
 					$('select#siswa_adduas').after("<img id='waituas15' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -46,7 +46,7 @@
 		
 		$.ajax({
 				type: "POST",
-				data: '',
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 				url: '<?=base_url()?>akademik/kirimuas/getOptionFileUasByIdUas/<?=$uas['uas'][0]['id_parent']?>',
 				beforeSend: function() {
 					$('select#judul_adduas').after("<img id='waituas16' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -64,7 +64,7 @@
 				var obj=$(this);
 				$.ajax({
 					type: "POST",
-					data: 'id_kelas='+$('select#kelasuas').val()+'&pelajaran='+$('select#pelajaranuas').val()+'&ajax=1',
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas='+$('select#kelasuas').val()+'&pelajaran='+$('select#pelajaranuas').val()+'&ajax=1',
 					url: '<?=base_url('akademik/kirimuas/daftaruaslist')?>',
 					beforeSend: function() {
 						$("table.adddata tr th a.canceluasremidi").after("<img id='waituas17' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -96,7 +96,7 @@
 				
 				$.ajax({
 					type: "POST",
-					data: $(this).serialize()+'&judul='+$("select#judul_adduas").attr('title'),
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize()+'&judul='+$("select#judul_adduas").attr('title'),
 					url: $(this).attr('action'),
 					beforeSend: function() {
 						$("#kirimuasremidialedit").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
@@ -132,7 +132,7 @@
 								if(res=='null'){
 									$.ajax({
 										type: "POST",
-										data: 'id_kelas='+$('select#kelas_adduas').val()+'&pelajaran='+$('select#pelajaran_adduas').val()+'&ajax=1',
+										data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas='+$('select#kelas_adduas').val()+'&pelajaran='+$('select#pelajaran_adduas').val()+'&ajax=1',
 										url: '<?=base_url('akademik/kirimuas/daftaruaslist')?>',
 										beforeSend: function() {
 											$("#kirimuasremidial").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
@@ -172,7 +172,7 @@
 				$('ul.file').load();
 				$.ajax({
 					type: "POST",
-					data: '',
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 					url: base_url+'akademik/kirimuas/deletefile/'+$(this).attr('id'),
 					beforeSend: function() {
 						$(objdell).after("<img id='waituas31' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -189,7 +189,7 @@
 			var obj=$(this);
 			$.ajax({
 				type: "POST",
-				data: '',
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 				url: '<?=base_url()?>akademik/kirimuas/getOptionFileUasByIdUas/'+$(this).val(),
 				beforeSend: function() {
 					$('select#judul_adduas').after("<img id='waituas20' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -205,7 +205,7 @@
 		$("select#pelajaran_adduas").change(function(e){
 			$.ajax({
 				type: "POST",
-				data: '',
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 				url: '<?=base_url()?>akademik/kirimuas/createOptionUasByKelasPelajaranIdPegawai/'+$(this).val()+'/'+$('select#kelas_adduas').val(),
 				beforeSend: function() {
 					$('select#judul_adduas').after("<img id='waituas21' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -219,7 +219,7 @@
 		$("select#kelas_adduas").change(function(e){
 			$.ajax({
 				type: "POST",
-				data: '',
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 				url: '<?=base_url()?>akademik/kirimuas/getOptionSiswaRemidiByIdKelas/'+$(this).val()+'/'+<?=$uas['uas'][0]['id']?>,
 				beforeSend: function() {
 					$('select#siswa_adduas').after("<img id='waituas22' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -231,7 +231,7 @@
 			});
 			$.ajax({
 				type: "POST",
-				data: '',
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 				url: '<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$(this).val(),
 				beforeSend: function() {
 					$('select#pelajaran_adduas').after("<img id='waituas23' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -256,6 +256,7 @@ $(function() {
 </script>	
 <div class="addaccount">
 <form method="post" name="kirimuasremidialedit" enctype="multipart/form-data" id="kirimuasremidialedit" action="<? echo base_url();?>akademik/kirimuas/kirimuasremidialedit/<?=@$uas['uas'][0]['id']?>">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 	<div onclick="$('.addaccount').remove();" class="addaccountclose"></div>
 		
 		<h3>Edit UAS Remidial</h3>
@@ -335,6 +336,7 @@ $(function() {
 					<input type="file" name="file" id="fileuasremidial" multiple />
 					<div id="response" style="font-size:11px;">Masukkan file baru jika dibutuhkan. Anda bisa memilih banyak file dengan memencet tombol "Ctrl", kemudian klik file yang dipilih lebih dari satu <br /> Atau pakai file asli di bawah</div>
 					<form id="remidialfile" method="post" action="">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 					<ul class="file" id="filecekuas">
 						<li></li>
 					</ul>

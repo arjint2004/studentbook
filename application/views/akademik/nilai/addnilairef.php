@@ -30,7 +30,7 @@ $(document).ready(function(){
 			if($frm.find('*[name=subject]').is('.valid') && $frm.find('*[name=id_kelas]').is('.valid') && $frm.find('*[name=id_pelajaran]').is('.valid')) {
 				$.ajax({
 					type: "POST",
-					data: $(this).serialize()+'&'+$('form#nilai').serialize()+'&id_referensi='+$('select#subjecton option').filter(":selected").attr('id_ref'),
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize()+'&'+$('form#nilai').serialize()+'&id_referensi='+$('select#subjecton option').filter(":selected").attr('id_ref'),
 					url: $(this).attr('action'),
 					beforeSend: function() {
 						$("#simpanabsensi").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -55,7 +55,7 @@ $(document).ready(function(){
 			}else if($('select#pengumpulan_add').val()=='Online'){
 				$.ajax({
 					type: "POST",
-					data: '',
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 					url: '<?=base_url()?>akademik/nilai/getSubjectDrop/<?=base64_encode(str_replace("nilai ","",$jenis))?>/'+$('select#remidial_add').val(),
 					beforeSend: function() {
 						$('select#pengumpulan_add').after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -70,7 +70,7 @@ $(document).ready(function(){
 		$("select#kelas_add").change(function(e){
 			$.ajax({
 				type: "POST",
-				data: '',
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 				url: '<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$(this).val(),
 				beforeSend: function() {
 					$('select#kelas_add').after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -82,7 +82,7 @@ $(document).ready(function(){
 			});
 			$.ajax({
 				type: "POST",
-				data: $("form#subjectnilaiaddref").serialize()+'&id_kelas='+$(this).val(),
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#subjectnilaiaddref").serialize()+'&id_kelas='+$(this).val(),
 				url: '<?=base_url()?>akademik/nilai/add',
 				beforeSend: function() {
 					$(this).after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -98,6 +98,7 @@ $(document).ready(function(){
 </script>
 <div class="addaccount">
 <form action="<? echo base_url();?>akademik/nilai/addnilai" id="subjectnilaiaddref" name="subjectnilaiaddref" method="post" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 	<div class="addaccountclose" onclick="$('.addaccount').remove();"></div>
 		
 		<h3>Tambah <?=$jenis?></h3>

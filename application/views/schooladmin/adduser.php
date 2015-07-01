@@ -36,7 +36,7 @@
 			if($frm.find('*[name=nama]').is('.valid') && $frm.find('*[name=NmOrtu]').is('.valid') && $frm.find('*[name=nis]').is('.valid') && $frm.find('*[name=kelas]').is('.valid')) {
 				$.ajax({
 					type: "POST",
-					data: $(this).serialize(),
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize(),
 					url: $(this).attr('action'),
 					beforeSend: function() {
 						$("#ajax"+listtype+"").html("<img id='waitaddsiswa' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -45,7 +45,7 @@
 						$("img#waitaddsiswa").remove();	
 							$.ajax({
 								type: "POST",
-								data: "ajax=1&id_kelas="+$('select#kelassiswa').val(),
+								data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1&id_kelas="+$('select#kelassiswa').val(),
 								url: '<?php echo base_url(); ?>admin/schooladmin/dataakun/'+listtype+'/0',
 								beforeSend: function() {
 									$("#ajax"+listtype+"").html("<img src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -63,7 +63,7 @@
 			if($frm.find('*[name=nama]').is('.valid')) {
 				$.ajax({
 					type: "POST",
-					data: $(this).serialize(),
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize(),
 					url: $(this).attr('action'),
 					beforeSend: function() {
 						$("#ajax"+listtype+"").html("<img src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -72,7 +72,7 @@
 						$(".addaccount").remove();	
 							$.ajax({
 								type: "POST",
-								data: "ajax=1",
+								data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1",
 								url: '<?php echo base_url(); ?>admin/schooladmin/dataakun/'+listtype+'/0',
 								beforeSend: function() {
 									$("#ajax"+listtype+"").html("<img src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -96,6 +96,7 @@
                     <h3> Tambah data <?=$otoritas?> </h3>
                      <div class="ajax_message"></div>
                      <form class="adduseraccount" action="<?php echo base_url(); ?>admin/schooladmin/adduser/<?=$otoritas?>" method="post">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                     	<p class="column one-third">
                             <input name="nama" type="text" class="required" onblur="this.value=(this.value=='') ? 'Nama' : this.value;" onfocus="this.value=(this.value=='Nama') ? '' : this.value;"  value="Nama" />
                         </p>

@@ -3,7 +3,7 @@ $(document).ready(function(){
 		$("#kelasform").submit(function(e){
 				$.ajax({
 					type: "POST",
-					data: $(this).serialize(),
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize(),
 					url: $(this).attr('action'),
 					beforeSend: function() {
 						$("#kelasloading").html("<img src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -12,7 +12,7 @@ $(document).ready(function(){
 						$(".addaccount").remove();	
 							$.ajax({
 								type: "POST",
-								data: "ajax=1",
+								data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1",
 								url: '<?php echo base_url(); ?>admin/kelas/listData',
 								beforeSend: function() {
 									$("#kelasloading").html("<img src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -32,6 +32,7 @@ $(document).ready(function(){
 </script>
 <div class="addaccount">
 <form action="<? echo base_url();?>admin/kelas/editdata" id="kelasform" name="kelasform" method="post" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 	<div class="addaccountclose" onclick="$('.addaccount').remove();"></div>
 	<h3> Edit data kelas </h3>
 		<table>

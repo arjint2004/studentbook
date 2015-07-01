@@ -110,6 +110,7 @@
                     <div class="float-right">
                         <!-- **Searchform** -->
                         <form action="#" id="searchform" method="get">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                             <fieldset>
                                 <input name="Search" type="text" onblur="this.value=(this.value=='') ? 'Enter Keyword' : this.value;"
                                 onfocus="this.value=(this.value=='CARI SEKOLAH') ? '' : this.value;" value="CARI SEKOLAH"

@@ -5,7 +5,7 @@
 									var thisobj= $(this);
 									$.ajax({
 									  type: "POST",
-									  data: "ajax=1&id_kategori="+$('select#id_kategori').val(),
+									  data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1&id_kategori="+$('select#id_kategori').val(),
 									  url: url,
 									  beforeSend: function() {
 										$(thisobj).append("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -23,7 +23,7 @@
 							var thisobj=$(this);
 							$.ajax({
 								type: "POST",
-								data: $("form#filterartikel").serialize(),
+								data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterartikel").serialize(),
 								url: $("form#filterartikel").attr('action'),
 								beforeSend: function() {
 									$(thisobj).after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -39,7 +39,7 @@
 						var thisobj=$(this);
 						$.ajax({
 							type: "POST",
-							data: $("form#filterartikel").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterartikel").serialize(),
 							url: $(thisobj).attr('href'),
 							beforeSend: function() {
 								$(thisobj).after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -57,7 +57,7 @@
 							var thisobj=$(this);
 							$.ajax({
 								type: "POST",
-								data: $("form#filterartikel").serialize(),
+								data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterartikel").serialize(),
 								url: '<?=base_url()?>/adminsb/artikel/delete/'+$(thisobj).attr('id'),
 								beforeSend: function() {
 									$(thisobj).after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -87,6 +87,7 @@
 							<br  />
 							<h3>Daftar Artikel</h3>
 							<form action="<?=base_url()?>/adminsb/artikel/artikellist" method="post" id="filterartikel" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<table class="tabelfilter">
 								<tr>
 									<td>

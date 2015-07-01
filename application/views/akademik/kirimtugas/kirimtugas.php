@@ -20,7 +20,7 @@
 				var obj=$(this);
 				$.ajax({
 					type: "POST",
-					data: 'id_kelas='+$('select#kelastugas').val()+'&pelajaran='+$('select#pelajarantugas').val()+'&ajax=1',
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas='+$('select#kelastugas').val()+'&pelajaran='+$('select#pelajarantugas').val()+'&ajax=1',
 					url: '<?=base_url('akademik/kirimtugas/daftartugaslist')?>',
 					beforeSend: function() {
 						$('table.adddata tr th a.canceltugas').after("<img class='waittugas37' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -53,7 +53,7 @@
 			if($frm.find('*[name=id_pelajaran]').is('.valid') && $frm.find('*[name=id_tugas]').is('.valid') && $frm.find('*[name=tanggal_kumpul]').is('.valid')) {
 				$.ajax({
 					type: "POST",
-					data: $(this).serialize()+'&judul='+$("select#tugas_add :selected").text(),
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize()+'&judul='+$("select#tugas_add :selected").text(),
 					url: $(this).attr('action'),
 					beforeSend: function() {
 						$("#simpantugas").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -64,7 +64,7 @@
 					
 						$.ajax({
 							type: "POST",
-							data: 'id_kelas='+$('select#kelas_addtugas').val()+'&pelajaran='+$('select#pelajaran_addtugas').val()+'&ajax=1',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas='+$('select#kelas_addtugas').val()+'&pelajaran='+$('select#pelajaran_addtugas').val()+'&ajax=1',
 							url: '<?=base_url('akademik/kirimtugas/daftartugaslist')?>',
 							beforeSend: function() {
 								$("#simpantugas").after("<img class='waittugas37' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -74,7 +74,7 @@
 								$(".waittugas37").remove();
 								/*$.ajax({
 										type: "POST",
-										data: 'id_kelas='+$('select#kelastugas').val()+'&pelajaran='+$('select#pelajarantugas').val()+'&ajax=1',
+										data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas='+$('select#kelastugas').val()+'&pelajaran='+$('select#pelajarantugas').val()+'&ajax=1',
 										url: '<?=base_url()?>akademik/kirimtugas/daftartugaslist',
 										beforeSend: function() {
 											$("#simpantugas").after("<img class='waittugas37' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -100,7 +100,7 @@
 		/*$("select#kelas_addtugas").change(function(e){
 			$.ajax({
 				type: "POST",
-				data: '',
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 				url: '<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$(this).val(),
 				beforeSend: function() {
 					$('select#kelas_addtugas').after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -124,7 +124,7 @@
 			var obj=$(this);
 			$.ajax({
 				type: "POST",
-				data: '',
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 				url: '<?=base_url()?>admin/pelajaran/getKelasByPelajaranAndPegawai/'+$(this).val(),
 				beforeSend: function() {
 					$('select#kelas_addtugas').after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -134,7 +134,7 @@
 					$("#kelas_addtugas").html(msg);
 					$.ajax({
 						type: "POST",
-						data: '',
+						data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 						url: '<?=base_url()?>akademik/kirimtugas/gettugasStok/'+$(obj).val(),
 						beforeSend: function() {
 							$('select#kelas_addtugas').after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -162,6 +162,7 @@ $(function() {
 </script>	
 <div class="addaccount">
 <form method="post" name="tugas" enctype="multipart/form-data" id="tugas" action="<? echo base_url();?>akademik/kirimtugas/kirimtugasnya">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 	<div onclick="$('.addaccount').remove();" class="addaccountclose"></div>
 		
 		<h3>Kirim tugas</h3>

@@ -12,7 +12,7 @@ $(document).ready(function(){
 		var ob=$(this);
 		$.ajax({
 			type: "POST",
-			data: $("form#filterpelajaranlistOtentik").serialize()+'&nilai='+$('textarea#des_kogn').val(),
+			data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpelajaranlistOtentik").serialize()+'&nilai='+$('textarea#des_kogn').val(),
 			url: '<?=base_url()?>akademik/nilaiotentik/nilai',
 			beforeSend: function() {
 				//$(ob).after("<img id='wait213' style='float:left;' src='<?=$this->config->item('images').'loading.png';?>' />");

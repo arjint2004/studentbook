@@ -8,7 +8,7 @@
 					$("#filterpelajaran select#kelas").change(function(e){
 						$.ajax({
 							type: "POST",
-							data: $("form#filterpelajaran").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpelajaran").serialize(),
 							url: '<?=base_url()?>/admin/pelajaran/getmapelByKelas/'+$(this).val(),
 							beforeSend: function() {
 								$("#ajaxside").html("<img src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -26,6 +26,7 @@
 				</script>
 				<div id="contentpage">
 							<form action="" method="post" id="filterpelajaran" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<table class="tabelfilter">
 								<tr>
 								<td>

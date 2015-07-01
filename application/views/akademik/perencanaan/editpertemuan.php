@@ -32,7 +32,7 @@
 			if($frm.find('*[name=id_kelas]').is('.valid') && $frm.find('*[name=id_pelajaran]').is('.valid') &&   $frm.find('*[name=topik]').is('.valid') && $frm.find('*[name=waktu]').is('.valid') && $frm.find('*[name=pertemuan_ke]').is('.valid')) {
 				$.ajax({
 					type: "POST",
-					data: $(this).serialize()+'&'+$('form#nilai').serialize(),
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize()+'&'+$('form#nilai').serialize(),
 					url: $(this).attr('action'),
 					beforeSend: function() {
 						$("#simpanpr").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -42,7 +42,7 @@
 						$.fancybox.close();
 						$.ajax({
 							type: "POST",
-							data: 'id_kelas='+$('select#kelas_add').val()+'&pelajaran='+$('select#pelajaran_add').val()+'&ajax=1',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas='+$('select#kelas_add').val()+'&pelajaran='+$('select#pelajaran_add').val()+'&ajax=1',
 							url: '<?=base_url('akademik/perencanaan/pertemuanlist')?>',
 							beforeSend: function() {
 								$("#simpanpr").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -66,7 +66,7 @@
 		$("select#kelas_add").change(function(e){
 			$.ajax({
 				type: "POST",
-				data: '',
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 				url: '<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$(this).val(),
 				beforeSend: function() {
 					$('select#kelas_add').after("<img class='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -81,6 +81,7 @@
 </script>
 <div class="addaccount" style="width:800px;">
 <form method="post" name="pembelajaran" enctype="multipart/form-data" id="pembelajaranadd" action="<? echo base_url();?>akademik/perencanaan/editpertemuan">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 		<h3>Edit Pertemuan Pembelajaran</h3>
 		<div class="hr"></div>
 		<table class="adddata adddatapemb">

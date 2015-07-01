@@ -22,7 +22,7 @@
 				var obj=$(this);
 				$.ajax({
 					type: "POST",
-					data: 'id_kelas='+$('select#kelasuts').val()+'&pelajaran='+$('select#pelajaranuts').val()+'&ajax=1',
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas='+$('select#kelasuts').val()+'&pelajaran='+$('select#pelajaranuts').val()+'&ajax=1',
 					url: '<?=base_url('akademik/kirimuts/daftarutslist')?>',
 					beforeSend: function() {
 						$('table.adddata tr th a.cancelutsutama').after("<img class='waituts30' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -45,7 +45,7 @@
 				$('ul.file').load();
 				$.ajax({
 					type: "POST",
-					data: '',
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 					url: base_url+'akademik/kirimuts/deletefile/'+$(this).attr('id'),
 					beforeSend: function() {
 						$(objdell).after("<img id='waituts31' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -90,7 +90,7 @@
 			if(/*$frm.find('*[name=id_kelas]').is('.valid') && $frm.find('*[name=id_pelajaran]').is('.valid') &&*/ $frm.find('*[name=bab]').is('.valid') && $frm.find('*[name=judul]').is('.valid')  /*&& $frm.find('*[name=keterangan]').is('.valid')*/) {
 				$.ajax({
 					type: "POST",
-					data: $(this).serialize(),
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize(),
 					url: $(this).attr('action'),
 					beforeSend: function() {
 						$("#kirimutsutamaedit").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
@@ -125,7 +125,7 @@
 								if(res=='null'){
 									$.ajax({
 										type: "POST",
-										data: '&ajax=1',
+										data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&&ajax=1',
 										url: '<?=base_url('akademik/kirimuts/daftarutslist')?>',
 										beforeSend: function() {
 											$("#materi").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
@@ -194,6 +194,7 @@ $(function() {
 <div class="addaccount">
 <? //uts($uts);?>
 <form method="post" name="kirimutsutamaedit" enctype="multipart/form-data" id="kirimutsutamaedit" action="<? echo base_url();?>akademik/kirimuts/kirimutsutamaedit">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 	<div onclick="$('.addaccount').remove();" class="addaccountclose"></div>
 		
 		<h3>Edit UTS</h3>

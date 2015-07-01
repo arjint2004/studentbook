@@ -7,7 +7,7 @@ $(document).ready(function(){
 			var obj=$(this);
 			$.ajax({
 				type: "POST",
-				data: $('form#mapelform').serialize(),
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$('form#mapelform').serialize(),
 				url: base_url+'admin/setting/addaspek',
 				beforeSend: function() {
 					$(obj).after("<img id='wait1' src='"+config_images+"loading.png' />");
@@ -17,7 +17,7 @@ $(document).ready(function(){
 					$("#wait1").remove();
 					$.ajax({
 						type: "POST",
-						data: "ajax=1",
+						data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1",
 						url: base_url+'admin/setting/aspekkepribadian',
 						beforeSend: function() {
 							$(obj).after("<img id='wait2' src='"+config_images+"loading.png' />");
@@ -35,6 +35,7 @@ $(document).ready(function(){
 </script>
 <div class="addaccount">
 <form action="<? echo base_url();?>admin/setting/addaspek" id="mapelform" name="aspekform" method="post" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 	<div class="addaccountclose" onclick="$('.addaccount').remove();"></div>
 	<h3> Tambah Aspek Kepribadian </h3>
 		<table class="adddata">

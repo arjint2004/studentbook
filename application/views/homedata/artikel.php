@@ -180,6 +180,7 @@
                     <h3> Tinggalkan komentar Anda tentang artikel ini </h3>
                     
                     <form action="#" method="get">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                         <p>
                             <input name="name" type="text" class="textbox" />
                             <label> Your Name <span> * </span> </label>

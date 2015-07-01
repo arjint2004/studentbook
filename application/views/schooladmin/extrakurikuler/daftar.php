@@ -6,7 +6,7 @@
 									var listtype='siswa';
 									$.ajax({
 									type: "POST",
-									data: $(this).serialize(),
+									data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize(),
 									url: '<?php echo base_url(); ?>admin/extrakurikuler/daftar/',
 									beforeSend: function() {
 										$("select#id_kelas").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -56,7 +56,7 @@
 									}
 									$.ajax({
 									type: "POST",
-									data: 'isdel='+isdel+'&simpan=1&id_siswa_det_jenjang='+id_siswa_det_jenjang+"&"+$('#formaddextra').serialize(),
+									data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&isdel='+isdel+'&simpan=1&id_siswa_det_jenjang='+id_siswa_det_jenjang+"&"+$('#formaddextra').serialize(),
 									url: '<?php echo base_url(); ?>admin/extrakurikuler/daftar/',
 									beforeSend: function() {
 										$(obj).parent().html("<img src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -82,7 +82,7 @@
 									}
 									$.ajax({
 									type: "POST",
-									data: 'isdel='+isdel+'&simpan=1&id_siswa_det_jenjang='+id_siswa_det_jenjang+"&"+$('#formaddextra').serialize(),
+									data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&isdel='+isdel+'&simpan=1&id_siswa_det_jenjang='+id_siswa_det_jenjang+"&"+$('#formaddextra').serialize(),
 									url: '<?php echo base_url(); ?>admin/extrakurikuler/daftar/',
 									beforeSend: function() {
 										$(obj).parent().html("<img src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -106,6 +106,7 @@
 								<div id="listkelasloading"></div>
 								<div id="listkelas">
 									<form action="" method="post" id="formaddextra" name="formaddextra" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 										Pilih Kelas                             		
 										<select onchange=" $('#formaddextra').submit(); return false;" name="id_kelas" id="id_kelas" >
 											<option value="" >Pilih Kelas</option>

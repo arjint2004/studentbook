@@ -3,7 +3,7 @@
 					$("#inspertemuanadd").click(function(){
 						$.ajax({
 							type: "POST",
-							data: '',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 							url: '<?=base_url()?>akademik/instrumen/addpertemuan',
 							beforeSend: function() {
 								$("#inspertemuanadd").append("<img style='float: right; position: absolute; top: -5px; right: 3px;' id='waitins4' src='<?=$this->config->item('images').'loaderhover.gif';?>' />");
@@ -23,6 +23,7 @@
 				
 				<div id="contentpage">
 							<form action="" method="post" id="catatanguruform" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<table class="tabelfilter">
 								<tr>
 								<td>

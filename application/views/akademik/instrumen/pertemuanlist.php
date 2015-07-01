@@ -8,7 +8,7 @@
 											if(confirm('File akan di hapus secara permanen, untuk menggunakannya kembali anda harus upload ulang..')){
 												$.ajax({
 													type: "POST",
-													data: '',
+													data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 													url: base_url+'akademik/instrumen/deletefilepemb/'+$(this).attr('id'),
 													beforeSend: function() {
 														$(objdell).after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -27,7 +27,7 @@
 											if(confirm('Data dan File akan di hapus secara permanen, untuk menggunakannya kembali anda harus upload ulang..')){
 												$.ajax({
 													type: "POST",
-													data: '',
+													data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 													url: base_url+'akademik/instrumen/deletepert/'+$(this).attr('id_pemb'),
 													beforeSend: function() {
 														$(objdell).after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");

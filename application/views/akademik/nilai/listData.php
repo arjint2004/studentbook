@@ -7,7 +7,7 @@
 					$(obj).parent().html(value);
 					$.ajax({
 							type: "POST",
-							data: "simpleupdate=1&ajax=1&id_nilai="+id_nilai+"&nilai="+value,
+							data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&simpleupdate=1&ajax=1&id_nilai="+id_nilai+"&nilai="+value,
 							url: base_url+'admin/nilai/listData',
 							beforeSend: function() {
 								

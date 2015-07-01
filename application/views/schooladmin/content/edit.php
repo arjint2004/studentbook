@@ -1,5 +1,6 @@
 
 							<form action="<?=base_url()?>admin/content/edit/<?=$title?>" method="post" id="contentsekolah">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<table class="tabelkelas">
 								<thead>
 									<tr> 
@@ -25,7 +26,7 @@
 										var content=ins.getData();
 										$.ajax({
 											type: "POST",
-											data: $('form#contentsekolah').serialize()+"&ajax=1&simpan=1&content="+content,
+											data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$('form#contentsekolah').serialize()+"&ajax=1&simpan=1&content="+content,
 											url: $(this).attr('action'),
 											beforeSend: function() {
 												$("#listcontentloading").html("<img src='"+config_images+"loading.png' />");

@@ -8,7 +8,7 @@
 									var thisobj= $(this);
 									$.ajax({
 									  type: "POST",
-									  data: "ajax=1&propinsi="+$('select#provinsi').val()+"&kabupaten="+$('select#kabupaten').val()+"&jenjang="+$('select#jenjang').val(),
+									  data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1&propinsi="+$('select#provinsi').val()+"&kabupaten="+$('select#kabupaten').val()+"&jenjang="+$('select#jenjang').val(),
 									  url: url,
 									  beforeSend: function() {
 										$(thisobj).append("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -29,7 +29,7 @@
 									var thisobj= $(this);
 									$.ajax({
 										  type: "POST",
-										  data: "aktif="+$(thisobj).val()+"&id_sekolah="+$(this).attr('id_sekolah'),
+										  data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&aktif="+$(thisobj).val()+"&id_sekolah="+$(this).attr('id_sekolah'),
 										  url: '<?=base_url()?>superadmin/sekolah/aktifasisendername/',
 										  beforeSend: function() {
 											$(thisobj).after("<img id='wait' style='margin:0;'  src='<?=$this->config->item('images').'loading.png';?>' />");

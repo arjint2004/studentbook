@@ -40,7 +40,7 @@ if($cek['otoritas']=='siswa') {
 			?>
 				$.ajax({
 				type: "GET",
-				data: '',
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 				url: '<?=base_url('siswa/penghubungortutk/penghubungortu')?>',
 				beforeSend: function() {
 					
@@ -49,7 +49,7 @@ if($cek['otoritas']=='siswa') {
 					$('#penghubungortu').html(msg);
 					$.ajax({
 						type: "POST",
-						data: 'id_kelas=<?=$this->session->userdata['user_authentication']['id_kelas_siswa_det_jenjang']?>',
+						data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas=<?=$this->session->userdata['user_authentication']['id_kelas_siswa_det_jenjang']?>',
 						url: '<?=base_url('siswa/penghubungortutk/penghubungortulist/0')?>',
 						beforeSend: function() {
 						

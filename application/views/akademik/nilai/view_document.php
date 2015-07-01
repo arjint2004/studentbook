@@ -34,7 +34,7 @@
 			if($frm.find('*[name=nilai]').is('.valid') && $frm.find('*[name=benar]').is('.valid') && $frm.find('*[name=salah]').is('.valid') && $frm.find('*[name=keterangan]').is('.valid')) {
 				$.ajax({
 					type: "POST",
-					data: $(this).serialize(),
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize(),
 					url: $(this).attr('action'),
 					beforeSend: function() {
 						$("#simpankumpul").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -51,6 +51,7 @@
 	});
 </script>
 <form method="post" name="previewkumpul" enctype="multipart/form-data" id="previewkumpul" action="<? echo base_url();?>akademik/nilai/view_document/<?=$id_pengumpulan?>/<?=$id_siswa_det_jenjang?>/<?=$id_kelas?>/<?=$id_sekolah?>/<?=$jenis?>/<?=$id_referensi?>/<?=$id_pelajaran?>/<?=$urlfilepure?>">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 <table style="width:50%;margin:0 auto 30px;">
 	<tr>
 		<th width="10">Nilai</th>

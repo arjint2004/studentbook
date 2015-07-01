@@ -3,7 +3,7 @@
 									function getlist(thisobj){
 										$.ajax({
 										  type: "POST",
-										  data: "ajax=1&propinsi="+$('select#provinsi').val()+"&kabupaten="+$('select#kabupaten').val()+"&jenjang="+$('select#jenjang').val(),
+										  data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1&propinsi="+$('select#provinsi').val()+"&kabupaten="+$('select#kabupaten').val()+"&jenjang="+$('select#jenjang').val(),
 										  url: '<?=$url?>',
 										  beforeSend: function() {
 											$(thisobj).after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");

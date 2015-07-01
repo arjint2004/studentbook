@@ -4,7 +4,7 @@
 							var obj=$(this);
 							$.ajax({
 							type: "POST",
-							data: "ajax=1&id_pegawai="+$(obj).val(),
+							data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1&id_pegawai="+$(obj).val(),
 							url: '<?php echo base_url(); ?>admin/kelas/setwali',
 							beforeSend: function() {
 								$(obj).after("<img class='wait' src='<?=$this->config->item('images').'loading.png';?>' />");

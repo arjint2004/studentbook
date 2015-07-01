@@ -1,4 +1,5 @@
 	<!--<form method="post" id="frmimport" enctype="multipart/form-data" action="<?=base_url()?>admin/schooladmin/importexcell">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 		<input name="akun" class="file" type="hidden" value="<?=$_GET['akun']?>">
 		<input class="button small light-grey" type='submit' name="submit" value="export" />
 		<div id='file_browse_wrapper'>Pilih File
@@ -30,6 +31,7 @@
 	</script>
 	<? } ?>
 	<form method="post" class="frmimports" enctype="multipart/form-data" action="<?=base_url()?>admin/schooladmin/importexcell">
+		<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 		<input name="akun" class="file" type="hidden" value="<?=$_GET['akun']?>">
 		<? if($listtype=='siswa'){?>
 		<input class="button small light-grey" type='button' name="submit" onclick="window.location='<?=base_url('admin/schooladmin/send_download/'.base64_encode("upload/akademik/template/FormDataSiswadanOrangTua.xls").'')?>'"   id="buttondownloadsiswa" value="Download File" />

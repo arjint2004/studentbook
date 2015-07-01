@@ -4,7 +4,7 @@
 					function loaddatakelas(){
 						$.ajax({
 							type: "POST",
-							data: "ajax=1",
+							data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1",
 							url: base_url+'admin/extrakurikuler/listData',
 							beforeSend: function() {
 								$("#listkelasloading").html("<img src='"+config_images+"loading.png' />");
@@ -19,7 +19,7 @@
 					$('#addekdtra').click(function(){
 						$.ajax({
 							type: "GET",
-							data: "ajax=1",
+							data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1",
 							url: base_url+'admin/extrakurikuler/adddata',
 							beforeSend: function() {
 								$("#addekdtra").after("<img id='wait' style='margin: 9px 0px 0px;' src='"+config_images+"loading.png' />");

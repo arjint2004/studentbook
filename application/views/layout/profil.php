@@ -66,6 +66,7 @@
                     <div class="span12">
                         <div class="ajax_message"></div>
                         <form action="<?=site_url('sos/sekolah/kirim_pesan')?>" method="POST">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                            <input type="hidden" name="id_sekolah" value="<?=$data->id?>"/>
                            <input type="hidden" name="email_sekolah" value="<?=$data->email_pendaftar?>"/>
                            <p class="column one-third">

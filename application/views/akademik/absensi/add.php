@@ -1,4 +1,5 @@
 <form name="absensi" id="absensiform" method="post" action="<?=base_url()?>akademik/absensi/add" >
+<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 <table class="absensi">
     <thead>
         <tr> 

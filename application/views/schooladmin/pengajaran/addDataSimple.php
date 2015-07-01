@@ -21,7 +21,7 @@ $(document).ready(function(){
 	    function getPelajaranCekbox(obj){
 			$.ajax({
 				type: "POST",
-				data: $('#mengajarform').serialize()+'&semester=<?=$semester[0]['id']?>&id_kelas='+$('select#id_kelas').find(":selected").attr('id_kelas'),
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$('#mengajarform').serialize()+'&semester=<?=$semester[0]['id']?>&id_kelas='+$('select#id_kelas').find(":selected").attr('id_kelas'),
 				url: base_url+'admin/pengajaran/getPelajaranCekbox',
 				beforeSend: function() {
 					$(obj).after("<img id='wait' src='"+config_images+"loading.png' />");
@@ -33,7 +33,7 @@ $(document).ready(function(){
 			});
 			$.ajax({
 				type: "POST",
-				data: $('#mengajarform').serialize()+'&semester=<?=$semester[1]['id']?>&id_kelas='+$('select#id_kelas').find(":selected").attr('id_kelas'),
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$('#mengajarform').serialize()+'&semester=<?=$semester[1]['id']?>&id_kelas='+$('select#id_kelas').find(":selected").attr('id_kelas'),
 				url: base_url+'admin/pengajaran/getPelajaranCekbox',
 				beforeSend: function() {
 					$(obj).after("<img id='wait' src='"+config_images+"loading.png' />");
@@ -59,7 +59,7 @@ $(document).ready(function(){
 			if($frm.find('*[name=kelas]').is('.valid') && $frm.find('*[name=id_jurusan]').is('.valid') && $frm.find('*[name=id_pegawai]').is('.valid')) {
 				$.ajax({
 					type: "POST",
-					data: $(this).serialize()+'&id_kelas='+$('select#id_kelas').find(":selected").attr('id_kelas'),
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize()+'&id_kelas='+$('select#id_kelas').find(":selected").attr('id_kelas'),
 					url: $(this).attr('action'),
 					beforeSend: function() {
 						$("#adduser").html("<img src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -69,7 +69,7 @@ $(document).ready(function(){
 							/*$(".addaccount").remove();	
 							$.ajax({
 								type: "POST",
-								data: "ajax=1&id_pegawai="+$id_pegawai,
+								data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1&id_pegawai="+$id_pegawai,
 								url: '<?php echo base_url(); ?>admin/pengajaran/listData',
 								beforeSend: function() {
 									$("#listmengajarloading").html("<img src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -94,6 +94,7 @@ $(document).ready(function(){
 </script>
 <div class="addaccount">
 <form action="<? echo base_url();?>admin/pengajaran/adddataSimple" id="mengajarform" name="mengajarform" method="post" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 	<div class="addaccountclose" onclick="$('.addaccount').remove();"></div>
 	<h3> Tambah data Pengajaran </h3>
 		<table  class="adddata">

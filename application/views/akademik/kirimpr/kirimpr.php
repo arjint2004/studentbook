@@ -20,7 +20,7 @@
 				var obj=$(this);
 				$.ajax({
 					type: "POST",
-					data: 'id_kelas='+$('select#kelaspr').val()+'&pelajaran='+$('select#pelajaranpr').val()+'&ajax=1',
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas='+$('select#kelaspr').val()+'&pelajaran='+$('select#pelajaranpr').val()+'&ajax=1',
 					url: '<?=base_url('akademik/kirimpr/daftarprlist')?>',
 					beforeSend: function() {
 						$('table.adddata tr th a.cancelpr').after("<img class='waitpr37' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -53,7 +53,7 @@
 			if($frm.find('*[name=id_pelajaran]').is('.valid') && $frm.find('*[name=id_pr]').is('.valid') && $frm.find('*[name=tanggal_kumpul]').is('.valid')) {
 				$.ajax({
 					type: "POST",
-					data: $(this).serialize()+'&judul='+$("select#pr_add :selected").text(),
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize()+'&judul='+$("select#pr_add :selected").text(),
 					url: $(this).attr('action'),
 					beforeSend: function() {
 						$("#simpanpr").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -64,7 +64,7 @@
 					
 						$.ajax({
 							type: "POST",
-							data: 'id_kelas='+$('select#kelas_addpr').val()+'&pelajaran='+$('select#pelajaran_addpr').val()+'&ajax=1',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas='+$('select#kelas_addpr').val()+'&pelajaran='+$('select#pelajaran_addpr').val()+'&ajax=1',
 							url: '<?=base_url('akademik/kirimpr/daftarprlist')?>',
 							beforeSend: function() {
 								$("#simpanpr").after("<img class='waitpr37' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -74,7 +74,7 @@
 								$(".waitpr37").remove();
 								/*$.ajax({
 										type: "POST",
-										data: 'id_kelas='+$('select#kelaspr').val()+'&pelajaran='+$('select#pelajaranpr').val()+'&ajax=1',
+										data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas='+$('select#kelaspr').val()+'&pelajaran='+$('select#pelajaranpr').val()+'&ajax=1',
 										url: '<?=base_url()?>akademik/kirimpr/daftarprlist',
 										beforeSend: function() {
 											$("#simpanpr").after("<img class='waitpr37' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -100,7 +100,7 @@
 		/*$("select#kelas_addpr").change(function(e){
 			$.ajax({
 				type: "POST",
-				data: '',
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 				url: '<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$(this).val(),
 				beforeSend: function() {
 					$('select#kelas_addpr').after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -124,7 +124,7 @@
 			var obj=$(this);
 			$.ajax({
 				type: "POST",
-				data: '',
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 				url: '<?=base_url()?>admin/pelajaran/getKelasByPelajaranAndPegawai/'+$(this).val(),
 				beforeSend: function() {
 					$('select#kelas_addpr').after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -134,7 +134,7 @@
 					$("#kelas_addpr").html(msg);
 					$.ajax({
 						type: "POST",
-						data: '',
+						data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 						url: '<?=base_url()?>akademik/kirimpr/getprStok/'+$(obj).val(),
 						beforeSend: function() {
 							$('select#kelas_addpr').after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -162,6 +162,7 @@ $(function() {
 </script>	
 <div class="addaccount">
 <form method="post" name="pr" enctype="multipart/form-data" id="pr" action="<? echo base_url();?>akademik/kirimpr/kirimprnya">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 	<div onclick="$('.addaccount').remove();" class="addaccountclose"></div>
 		
 		<h3>Kirim pr</h3>

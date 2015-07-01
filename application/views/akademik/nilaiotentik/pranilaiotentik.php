@@ -3,7 +3,7 @@
 						$("#kelasListotentik option").first().remove();
 						$.ajax({
 							type: "POST",
-							data: $("form#filterpelajaranlistOtentik").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpelajaranlistOtentik").serialize(),
 							url: '<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$('select#kelasListotentik').val()+'/0/1',
 							beforeSend: function() {
 								$("#filterpelajaranlistOtentik select#kelasListotentik").after("<img class='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -16,7 +16,7 @@
 								
 								$.ajax({
 									type: "POST",
-									data: 'id_kelas='+$('select#kelasListotentik').val(),
+									data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas='+$('select#kelasListotentik').val(),
 									url: '<?=base_url()?>akademik/nilaiotentik/getOptionSiswaByIdKelas',
 									beforeSend: function() {
 										$("#filterpelajaranlistOtentik select#id_det_jenjang_otentik").after("<img class='wait' style='float:left;' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -26,7 +26,7 @@
 										$("#id_det_jenjang_otentik").html(msg);	
 										$.ajax({
 											type: "POST",
-											data: $("form#filterpelajaranlistOtentik").serialize(),
+											data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpelajaranlistOtentik").serialize(),
 											url: '<?=base_url()?>akademik/nilaiotentik/nilai',
 											beforeSend: function() {
 												$("#filterpelajaranlistOtentik select#pelajaranlistotentik").after("<img class='wait' style='float:left;' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -53,7 +53,7 @@
 						var ob=$(this);
 						$.ajax({
 							type: "POST",
-							data: $("form#filterpelajaranlistOtentik").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpelajaranlistOtentik").serialize(),
 							url: '<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$(this).val()+'/0/1',
 							beforeSend: function() {
 								$("#filterpelajaranlistOtentik select#kelasListotentik").after("<img class='wait' style='float:left;' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -63,7 +63,7 @@
 								$("#pelajaranlistotentik").html(msg);
 								$.ajax({
 									type: "POST",
-									data: 'id_kelas='+$(ob).val(),
+									data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas='+$(ob).val(),
 									url: '<?=base_url()?>akademik/nilaiotentik/getOptionSiswaByIdKelas',
 									beforeSend: function() {
 										$("#filterpelajaranlistOtentik select#id_det_jenjang_otentik").after("<img class='wait' style='float:left;' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -73,7 +73,7 @@
 										$("#id_det_jenjang_otentik").html(msg);	
 										$.ajax({
 											type: "POST",
-											data: $("form#filterpelajaranlistOtentik").serialize(),
+											data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpelajaranlistOtentik").serialize(),
 											url: '<?=base_url()?>akademik/nilaiotentik/nilai',
 											beforeSend: function() {
 												$("form#filterpelajaranlistOtentik select#id_det_jenjang_otentik").after("<img class='wait' style='float:left;' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -94,7 +94,7 @@
 					$("#filterpelajaranlistOtentik select#pelajaranlistotentik").change(function(e){
 						$.ajax({
 							type: "POST",
-							data: $("form#filterpelajaranlistOtentik").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpelajaranlistOtentik").serialize(),
 							url: '<?=base_url()?>akademik/nilaiotentik/nilai',
 							beforeSend: function() {
 								$("#filterpelajaranlistOtentik select#pelajaranlistotentik").after("<img class='wait' style='float:left;' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -109,7 +109,7 @@
 					$("form#filterpelajaranlistOtentik select#id_det_jenjang_otentik").change(function(e){
 						$.ajax({
 							type: "POST",
-							data: $("form#filterpelajaranlistOtentik").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpelajaranlistOtentik").serialize(),
 							url: '<?=base_url()?>akademik/nilaiotentik/nilai',
 							beforeSend: function() {
 								$("form#filterpelajaranlistOtentik select#id_det_jenjang_otentik").after("<img class='wait' style='float:left;' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -128,6 +128,7 @@
 				
 				<div id="contentpage">
 							<form action="" method="post" id="filterpelajaranlistOtentik" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<table class="tabelfilter">
 								<tr>
 								<td style="text-align:left;">KELAS</td>

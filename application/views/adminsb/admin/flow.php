@@ -5,7 +5,7 @@
 				
 				$.ajax({
 					type: "GET",
-					data: '',
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 					url: $(obj).attr('href'),
 					beforeSend: function() {
 						$(obj).append("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loaderhover.gif';?>' />");

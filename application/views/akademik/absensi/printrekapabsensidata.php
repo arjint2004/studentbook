@@ -71,6 +71,7 @@
 
 		<br>
 		<form name="absensi" id="absensiform" method="post" action="<?=base_url()?>akademik/absensi/add" >
+		<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 		<? //pr($absensi);?>
 		<table width="90%" id="rekapabsensi"class="asbin" id="allset"  border="1">
 		  <tr>

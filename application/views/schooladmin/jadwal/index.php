@@ -6,6 +6,7 @@
 </script>
 <div class="contentjadwal">
 	<form action="" method="post" >
+		<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 		Pilih Kelas <select onchange="return submit()" name="kelas" id="kelas"></select>
 	</form>
 	<?

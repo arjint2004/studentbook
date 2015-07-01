@@ -34,7 +34,7 @@
 			var self = $(this);
 			$.ajax({
 					type: "POST",
-					data: 'username='+$(self).val(),
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&username='+$(self).val(),
 					url: '<?=base_url()?>admin/sekolah/cekusername',
 					beforeSend: function() {
 						$(self).after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -77,7 +77,8 @@ function getadd(){
 					<div id="ajaxside"></div>
 					<div id="listsemester">
 						<div id="contentpage">
-						<form action="" method="post" id="formprofilesek" />
+						<form action="" method="post" id="formprofilesek" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<input type="hidden"  value="1" name="ajax">
 							<table class="tableprofil">
 								<thead>
@@ -371,7 +372,7 @@ function getadd(){
 						var self=$(this);
 						$.ajax({
 							type: "POST",
-							data: '&id_user='+$(self).val()+'&id_det_group=<?=$kepsek[0]['id_det_group']?>',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&&id_user='+$(self).val()+'&id_det_group=<?=$kepsek[0]['id_det_group']?>',
 							url: base_url+'admin/sekolah/setkepsek',
 							beforeSend: function() {
 								$(self).after("<img id='wait' src='"+config_images+"loading.png' />");
@@ -387,7 +388,7 @@ function getadd(){
 						$('span#fotoProfile').html($('input#namaSekolah').val());
 						$.ajax({
 							type: "POST",
-							data: $('form#formprofilesek').serialize()+'&submit=1',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$('form#formprofilesek').serialize()+'&submit=1',
 							url: base_url+'admin/sekolah/editprofil',
 							beforeSend: function() {
 								$(self).after("<img id='wait' src='"+config_images+"loading.png' />");
@@ -396,7 +397,7 @@ function getadd(){
 								$('#wait').remove();
 								$.ajax({
 									type: "POST",
-									data: 'ajax=1',
+									data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1',
 									url: base_url+'admin/sekolah/editprofil',
 									beforeSend: function() {
 										$(self).after("<img id='wait' src='"+config_images+"loading.png' />");

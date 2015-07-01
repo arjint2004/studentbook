@@ -4,7 +4,7 @@
 					$("#filterpelajaranpembelajaran select#filterrpp").change(function(e){
 						$.ajax({
 							type: "POST",
-							data: 'filter='+$(this).val(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&filter='+$(this).val(),
 							url: '<?=base_url()?>akademik/kepsek/filterrpp',
 							beforeSend: function() {
 								$("#filterpelajaranpembelajaran select#filterrpp").after("<img id='waitfrpp' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -21,7 +21,7 @@
 						var obj=$(this);
 						$.ajax({
 							type: "POST",
-							data: $("form#filterpelajaranpembelajaran").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpelajaranpembelajaran").serialize(),
 							url: '<?=$url?>/0/'+$(obj).val(),
 							beforeSend: function() {
 								$("#filterpelajaranpembelajaran select#pelajaran<?=$_POST['idload']?>").after("<img id='wait<?=$_POST['idload']?>' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -52,7 +52,7 @@
 					
 					$.ajax({
 							type: "POST",
-							data: 'ajax=1&kepsek=1',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1&kepsek=1',
 							url: '<?=$url?>',
 							beforeSend: function() {
 								$("#filterpelajaranpembelajaran select#pelajaran<?=$_POST['idload']?>").after("<img id='wait<?=$_POST['idload']?>' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -96,6 +96,7 @@
 						</div>
 						<div class="tabs-frame-content tabs-frame-content2 ">
 							<form action="" method="post" id="filterpelajaranpembelajaran" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<table class="tabelfilter">
 								<tr>
 								<td>

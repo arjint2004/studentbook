@@ -5,7 +5,7 @@
 						$(this).after('<input type="hidden" name="kelasnya" value="'+$(this).find(":selected").text()+'"/>');
 						$.ajax({
 							type: "POST",
-							data: $("form#filterpelajaranpr").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpelajaranpr").serialize(),
 							url: '<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$(this).val(),
 							beforeSend: function() {
 								$("#filterpelajaranpr select#kelaspr").after("<img id='waitpr1' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -22,7 +22,7 @@
 						$(this).after('<input type="hidden" name="pelajarannya" value="'+$(this).find(":selected").text()+'"/>');
 						$.ajax({
 							type: "POST",
-							data: $("form#filterpelajaranpr").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpelajaranpr").serialize(),
 							url: '<?=base_url()?>akademik/kirimpr/daftarprlist',
 							beforeSend: function() {
 								$("#filterpelajaranpr select#pelajaranpr").after("<img id='waitpr2' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -37,7 +37,7 @@
 					$("#kirimpradd").click(function(){
 						$.ajax({
 							type: "POST",
-							data: '',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 							url: '<?=base_url()?>akademik/kirimpr/kirimprutama',
 							beforeSend: function() {
 								$("#kirimpradd").append("<img style='float: right; position: absolute; top: -5px; right: 3px;' id='waitpr3' src='<?=$this->config->item('images').'loaderhover.gif';?>' />");
@@ -52,7 +52,7 @@
 					$("#kirimprremidiadd").click(function(){
 						$.ajax({
 							type: "POST",
-							data: '',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 							url: '<?=base_url()?>akademik/kirimpr/kirimprremidial',
 							beforeSend: function() {
 								$("#kirimprremidiadd").append("<img style='float: right; position: absolute; top: -5px; right: 3px;' id='waitpr4' src='<?=$this->config->item('images').'loaderhover.gif';?>' />");
@@ -67,7 +67,7 @@
 					$("#kirimpr").click(function(){
 						$.ajax({
 							type: "POST",
-							data: '',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 							url: '<?=base_url()?>akademik/kirimpr/kirimprnya',
 							beforeSend: function() {
 								$("#kirimpr").append("<img style='float: right; position: absolute; top: -5px; right: 3px;' id='waitpr5' src='<?=$this->config->item('images').'loaderhover.gif';?>' />");
@@ -81,7 +81,7 @@
 					});//Submit End
 					$.ajax({
 							type: "POST",
-							data: 'ajax=1',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1',
 							url: '<?=base_url()?>akademik/kirimpr/daftarprlist',
 							beforeSend: function() {
 								$("#daftar_pr").append("<img style='float: right; position: absolute; top: -5px; right: 3px;' id='waitpr6' src='<?=$this->config->item('images').'loaderhover.gif';?>' />");
@@ -104,6 +104,7 @@
 				
 				<div id="contentpage">
 							<form action="" method="post" id="filterpelajaranpr" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<table class="tabelfilter">
 								<tr>
 								<td>

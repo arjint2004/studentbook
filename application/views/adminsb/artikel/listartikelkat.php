@@ -5,7 +5,7 @@
 									var thisobj= $(this);
 									$.ajax({
 									  type: "POST",
-									  data: 'ajax=1',
+									  data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1',
 									  url: url,
 									  beforeSend: function() {
 										$(thisobj).append("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -23,7 +23,7 @@
 							var thisobj=$(this);
 							$.ajax({
 								type: "POST",
-								data: $("form#filterartikel").serialize(),
+								data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterartikel").serialize(),
 								url: $("form#filterartikel").attr('action'),
 								beforeSend: function() {
 									$(thisobj).after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -40,7 +40,7 @@
 						var thisobj=$(this);
 							$.ajax({
 								type: "POST",
-								data: 'id_kategori='+$(thisobj).attr('id'),
+								data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kategori='+$(thisobj).attr('id'),
 								url: '<? echo base_url();?>adminsb/artikel/deletekat',
 								beforeSend: function() {
 									$(thisobj).after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -57,7 +57,7 @@
 						var thisobj=$(this);
 						$.ajax({
 							type: "POST",
-							data: $("form#filterartikel").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterartikel").serialize(),
 							url: $(thisobj).attr('href'),
 							beforeSend: function() {
 								$(thisobj).after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -80,7 +80,7 @@
 							}
 							$.ajax({
 								type: "POST",
-								data: 'id_kategori='+$(thisobj).attr('id')+'&cek='+cek,
+								data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kategori='+$(thisobj).attr('id')+'&cek='+cek,
 								url: '<? echo base_url();?>adminsb/artikel/updateslide/'+cek,
 								beforeSend: function() {
 									$(thisobj).hide();
@@ -102,7 +102,7 @@
 					$(obj).parent().html(value);
 					$.ajax({
 							type: "POST",
-							data: "simpleupdate=1&ajax=1&id_kategori="+id_kategori+"&"+field+"="+value,
+							data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&simpleupdate=1&ajax=1&id_kategori="+id_kategori+"&"+field+"="+value,
 							url: '<?=base_url()?>/adminsb/artikel/editartikelkat',
 							beforeSend: function() {
 								

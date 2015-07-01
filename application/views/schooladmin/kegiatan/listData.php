@@ -5,7 +5,7 @@
 						if(confirm('Yakin anda menghapus data.?')){
 							$.ajax({
 							type: "POST",
-							data: "ajax=1&id="+$(thisobj).attr('id'),
+							data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1&id="+$(thisobj).attr('id'),
 							url: base_url+'admin/kegiatan/delete',
 							beforeSend: function() {
 								$(thisobj).append("<img id='wait' src='"+config_images+"loaderhover.gif' />");
@@ -14,7 +14,7 @@
 								$("#wait").remove();			
 								$.ajax({
 									type: "POST",
-									data: "ajax=1",
+									data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1",
 									url: base_url+'admin/kegiatan/listData',
 									beforeSend: function() {
 										$("#listkelasloading").html("<img src='"+config_images+"loading.png' />");
@@ -45,7 +45,7 @@
 
 					$.ajax({
 							type: "POST",
-							data: "simpleupdate=1&ajax=1&id_kegiatan="+idjur+"&"+field+"="+value,
+							data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&simpleupdate=1&ajax=1&id_kegiatan="+idjur+"&"+field+"="+value,
 							url: base_url+'admin/kegiatan/listData',
 							beforeSend: function() {
 								$("#listkelasloading").html("<img src='"+config_images+"loading.png' />");

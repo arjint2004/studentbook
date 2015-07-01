@@ -22,7 +22,7 @@
 				var obj=$(this);
 				$.ajax({
 					type: "POST",
-					data: 'id_kelas='+$('select#kelas').val()+'&pelajaran='+$('select#pelajaran').val()+'&ajax=1',
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas='+$('select#kelas').val()+'&pelajaran='+$('select#pelajaran').val()+'&ajax=1',
 					url: '<?=base_url('akademik/perencanaan/pembelajaranlist')?>',
 					beforeSend: function() {
 						$(obj).after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -54,7 +54,7 @@
 			if($frm.find('*[name=id_kelas]').is('.valid') && $frm.find('*[name=id_pelajaran]').is('.valid') &&   $frm.find('*[name=pendahuluan]').is('.valid') && $frm.find('*[name=inti]').is('.valid') && $frm.find('*[name=penutup]').is('.valid') && $frm.find('*[name=media_sumber]').is('.valid')) {
 				$.ajax({
 					type: "POST",
-					data: $(this).serialize()+'&'+$('form#nilai').serialize(),
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize()+'&'+$('form#nilai').serialize(),
 					url: $(this).attr('action'),
 					beforeSend: function() {
 						$("#simpanpr").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -64,7 +64,7 @@
 						ajaxupload("<? echo base_url();?>akademik/perencanaan/uploadpembelajaran/"+msg,"response","image-list","file");
 						$.ajax({
 							type: "POST",
-							data: 'id_kelas='+$('select#kelas_add').val()+'&pelajaran='+$('select#pelajaran_add').val()+'&ajax=1',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas='+$('select#kelas_add').val()+'&pelajaran='+$('select#pelajaran_add').val()+'&ajax=1',
 							url: '<?=base_url('akademik/perencanaan/pembelajaranlist')?>',
 							beforeSend: function() {
 								$("#simpanpr").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -90,7 +90,7 @@
 			if(confirm('File akan di hapus secara permanen, untuk menggunakannya kembali anda harus upload ulang..')){
 				$.ajax({
 					type: "POST",
-					data: '',
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 					url: base_url+'akademik/perencanaan/deletefilepemb/'+$(this).attr('id'),
 					beforeSend: function() {
 						$(objdell).after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -106,7 +106,7 @@
 		$("select#kelas_add").change(function(e){
 			$.ajax({
 				type: "POST",
-				data: '',
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 				url: '<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$(this).val(),
 				beforeSend: function() {
 					$('select#kelas_add').after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -124,6 +124,7 @@
 	
 <div class="addaccount">
 <form method="post" name="pembelajaran" enctype="multipart/form-data" id="pembelajaranadd" action="<? echo base_url();?>akademik/perencanaan/editpembelajaran/<?=@$pembelajaran[0]['id']?>">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 	<div onclick="$('.addaccount').remove();" class="addaccountclose"></div>
 		
 		<h3>Edit Perencanaan Pembelajaran</h3>
@@ -168,6 +169,7 @@
 					<input type="file" name="file" id="file" multiple />
 					<div id="response" style="font-size:11px;">Anda bisa memilih banyak file dengan memencet tombol "Ctrl", kemudian klik file yang dipilih lebih dari satu</div>
 					<form id="remidialfile" method="post" action="">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 					<ul class="file">
 						<?foreach($files as $file){?>
 							<li><?=$file['file_name']?><div id="<?=$file['id']?>" class="actdell"></div></li>

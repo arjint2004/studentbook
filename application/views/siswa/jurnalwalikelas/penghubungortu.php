@@ -3,7 +3,7 @@
 				$(document).ready(function(){
 						$.ajax({
 							type: "POST",
-							data: 'id_kelas=<?=$id_kelas?>',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas=<?=$id_kelas?>',
 							url: '<?=base_url()?>siswa/jurnalwalikelas/penghubungortulist/0',
 							beforeSend: function() {
 								$('ul.tabs-frame li#listlap a').append("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");

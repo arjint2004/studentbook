@@ -26,6 +26,7 @@
     <div class="row-fluid edit_data" style="text-align: left;">
         <div class="span12">
             <form class="sosial" id="sosialeditp" enctype="multipart/form-data" method="post" action="<?=site_url('sos/pegawai/ubah_data')?>">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
             <input type="file" name="foto_pegawai" onchange="readURL(this)" id="foto_pegawai" style="opacity: 0;display: none;">
                 <div class="tabs-container">
                     <ul class="tabs-frame">

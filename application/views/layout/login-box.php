@@ -1,6 +1,7 @@
 <div id="login-box" class="login-popup">
         <a href="#" class="close"><img src="<?=$this->config->item('images').'close_pop.png';?>" class="btn_close" title="Close Window" alt="Close" /></a>
 		  <form accept-charset="utf-8" method="post" class="signin" action="<?=site_url('authentication/auth')?>">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                 <fieldset class="textbox">
             	<label class="username">
                 <span>Username or email</span>

@@ -28,7 +28,7 @@
 				var obj=$(this);
 				$.ajax({
 					type: "POST",
-					data: 'id_kelas='+$('select#kelas').val()+'&pelajaran='+$('select#pelajaran').val()+'&ajax=1',
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas='+$('select#kelas').val()+'&pelajaran='+$('select#pelajaran').val()+'&ajax=1',
 					url: '<?=base_url('akademik/instrumen/pembelajaranlist')?>',
 					beforeSend: function() {
 						$(obj).after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -76,7 +76,7 @@
 			if(  $frm.find('*[name=judul]').is('.valid') /*&&  $frm.find('*[name=kompetensi_inti]').is('.valid') && $frm.find('*[name=kompetensi_dasar]').is('.valid') && $frm.find('*[name=indikator_ketercapaian]').is('.valid') && $frm.find('*[name=tujuan_pemb]').is('.valid') && $frm.find('*[name=materi]').is('.valid') && $frm.find('*[name=model_pembelajaran]').is('.valid') && $frm.find('*[name=pendahuluan]').is('.valid') && $frm.find('*[name=inti]').is('.valid') && $frm.find('*[name=penutup]').is('.valid') && $frm.find('*[name=media_sumber]').is('.valid')*/) {
 				$.ajax({
 					type: "POST",
-					data: $(this).serialize()+'&'+$('form#nilai').serialize(),
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize()+'&'+$('form#nilai').serialize(),
 					url: $(this).attr('action'),
 					beforeSend: function() {
 						$("#simpanpr").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -86,7 +86,7 @@
 						//ajaxupload("<? echo base_url();?>akademik/instrumen/uploadpembelajaran/"+msg,"response","image-list","filepemb");
 						$.ajax({
 							type: "POST",
-							data: 'ajax=1&id_pembelajaran='+msg+'&id_pelajarans=<?=$_POST['id_pelajaran']?>',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1&id_pembelajaran='+msg+'&id_pelajarans=<?=$_POST['id_pelajaran']?>',
 							url: '<?=base_url('akademik/instrumen/materi/')?>',
 							beforeSend: function() {
 								$("#simpanpr").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -95,7 +95,7 @@
 								$("#wait").remove();
 								$.ajax({
 									type: "POST",
-									data: 'ajax=1',
+									data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1',
 									url: '<?=base_url()?>akademik/instrumen/pembelajaranlist',
 									beforeSend: function() {
 										$("#filterpelajaranpembelajaran select#pertemuanselect").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -127,6 +127,7 @@
 	
 <div class="addaccount" style="width:700px;">
 <form method="post" name="pembelajaran" enctype="multipart/form-data" id="pembelajaranadd" action="<? echo base_url();?>akademik/instrumen/addpembelajaran">
+	<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 	<div onclick="$('.addaccount').remove();" class="addaccountclose"></div>
 		
 		<h3>Tambah instrumen Pembelajaran</h3>

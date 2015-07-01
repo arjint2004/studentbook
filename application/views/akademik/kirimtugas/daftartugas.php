@@ -5,7 +5,7 @@
 						$(this).after('<input type="hidden" name="kelasnya" value="'+$(this).find(":selected").text()+'"/>');
 						$.ajax({
 							type: "POST",
-							data: $("form#filterpelajarantugas").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpelajarantugas").serialize(),
 							url: '<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$(this).val(),
 							beforeSend: function() {
 								$("#filterpelajarantugas select#kelastugas").after("<img id='waittugas1' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -22,7 +22,7 @@
 						$(this).after('<input type="hidden" name="pelajarannya" value="'+$(this).find(":selected").text()+'"/>');
 						$.ajax({
 							type: "POST",
-							data: $("form#filterpelajarantugas").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpelajarantugas").serialize(),
 							url: '<?=base_url()?>akademik/kirimtugas/daftartugaslist',
 							beforeSend: function() {
 								$("#filterpelajarantugas select#pelajarantugas").after("<img id='waittugas2' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -37,7 +37,7 @@
 					$("#kirimtugasadd").click(function(){
 						$.ajax({
 							type: "POST",
-							data: '',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 							url: '<?=base_url()?>akademik/kirimtugas/kirimtugasutama',
 							beforeSend: function() {
 								$("#kirimtugasadd").append("<img style='float: right; position: absolute; top: -5px; right: 3px;' id='waittugas3' src='<?=$this->config->item('images').'loaderhover.gif';?>' />");
@@ -52,7 +52,7 @@
 					$("#kirimtugasremidiadd").click(function(){
 						$.ajax({
 							type: "POST",
-							data: '',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 							url: '<?=base_url()?>akademik/kirimtugas/kirimtugasremidial',
 							beforeSend: function() {
 								$("#kirimtugasremidiadd").append("<img style='float: right; position: absolute; top: -5px; right: 3px;' id='waittugas4' src='<?=$this->config->item('images').'loaderhover.gif';?>' />");
@@ -67,7 +67,7 @@
 					$("#kirimtugas").click(function(){
 						$.ajax({
 							type: "POST",
-							data: '',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 							url: '<?=base_url()?>akademik/kirimtugas/kirimtugasnya',
 							beforeSend: function() {
 								$("#kirimtugas").append("<img style='float: right; position: absolute; top: -5px; right: 3px;' id='waittugas5' src='<?=$this->config->item('images').'loaderhover.gif';?>' />");
@@ -81,7 +81,7 @@
 					});//Submit End
 					$.ajax({
 							type: "POST",
-							data: 'ajax=1',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1',
 							url: '<?=base_url()?>akademik/kirimtugas/daftartugaslist',
 							beforeSend: function() {
 								$("#daftar_tugas").append("<img style='float: right; position: absolute; top: -5px; right: 3px;' id='waittugas6' src='<?=$this->config->item('images').'loaderhover.gif';?>' />");
@@ -104,6 +104,7 @@
 				
 				<div id="contentpage">
 							<form action="" method="post" id="filterpelajarantugas" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<table class="tabelfilter">
 								<tr>
 								<td>

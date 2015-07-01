@@ -29,7 +29,7 @@
 		// selected area	
 		$.ajax({
 				type: "POST",
-				data: '',
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 				url: '<?=base_url()?>akademik/kirimharian/getOptionSiswaByIdKelas/'+$(this).val(),
 				beforeSend: function() {
 					$('select#siswa_addharian').after("<img id='waitharian15' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -46,7 +46,7 @@
 		
 		$.ajax({
 				type: "POST",
-				data: '',
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 				url: '<?=base_url()?>akademik/kirimharian/getOptionFileHarianByIdHarian/<?=$harian['harian'][0]['id_parent']?>',
 				beforeSend: function() {
 					$('select#judul_addharian').after("<img id='waitharian16' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -64,7 +64,7 @@
 				var obj=$(this);
 				$.ajax({
 					type: "POST",
-					data: 'id_kelas='+$('select#kelasharian').val()+'&pelajaran='+$('select#pelajaranharian').val()+'&ajax=1',
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas='+$('select#kelasharian').val()+'&pelajaran='+$('select#pelajaranharian').val()+'&ajax=1',
 					url: '<?=base_url('akademik/kirimharian/daftarharianlist')?>',
 					beforeSend: function() {
 						$("table.adddata tr th a.cancelharianremidi").after("<img id='waitharian17' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -96,7 +96,7 @@
 				
 				$.ajax({
 					type: "POST",
-					data: $(this).serialize()+'&judul='+$("select#judul_addharian").attr('title'),
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize()+'&judul='+$("select#judul_addharian").attr('title'),
 					url: $(this).attr('action'),
 					beforeSend: function() {
 						$("#kirimharianremidialedit").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
@@ -132,7 +132,7 @@
 								if(res=='null'){
 									$.ajax({
 										type: "POST",
-										data: 'id_kelas='+$('select#kelas_addharian').val()+'&pelajaran='+$('select#pelajaran_addharian').val()+'&ajax=1',
+										data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas='+$('select#kelas_addharian').val()+'&pelajaran='+$('select#pelajaran_addharian').val()+'&ajax=1',
 										url: '<?=base_url('akademik/kirimharian/daftarharianlist')?>',
 										beforeSend: function() {
 											$("#kirimharianremidial").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
@@ -172,7 +172,7 @@
 				$('ul.file').load();
 				$.ajax({
 					type: "POST",
-					data: '',
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 					url: base_url+'akademik/kirimharian/deletefile/'+$(this).attr('id'),
 					beforeSend: function() {
 						$(objdell).after("<img id='waitharian31' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -189,7 +189,7 @@
 			var obj=$(this);
 			$.ajax({
 				type: "POST",
-				data: '',
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 				url: '<?=base_url()?>akademik/kirimharian/getOptionFileHarianByIdHarian/'+$(this).val(),
 				beforeSend: function() {
 					$('select#judul_addharian').after("<img id='waitharian20' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -205,7 +205,7 @@
 		$("select#pelajaran_addharian").change(function(e){
 			$.ajax({
 				type: "POST",
-				data: '',
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 				url: '<?=base_url()?>akademik/kirimharian/createOptionHarianByKelasPelajaranIdPegawai/'+$(this).val()+'/'+$('select#kelas_addharian').val(),
 				beforeSend: function() {
 					$('select#judul_addharian').after("<img id='waitharian21' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -219,7 +219,7 @@
 		$("select#kelas_addharian").change(function(e){
 			$.ajax({
 				type: "POST",
-				data: '',
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 				url: '<?=base_url()?>akademik/kirimharian/getOptionSiswaRemidiByIdKelas/'+$(this).val()+'/'+<?=$harian['harian'][0]['id']?>,
 				beforeSend: function() {
 					$('select#siswa_addharian').after("<img id='waitharian22' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -231,7 +231,7 @@
 			});
 			$.ajax({
 				type: "POST",
-				data: '',
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 				url: '<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$(this).val(),
 				beforeSend: function() {
 					$('select#pelajaran_addharian').after("<img id='waitharian23' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -256,6 +256,7 @@ $(function() {
 </script>	
 <div class="addaccount">
 <form method="post" name="kirimharianremidialedit" enctype="multipart/form-data" id="kirimharianremidialedit" action="<? echo base_url();?>akademik/kirimharian/kirimharianremidialedit/<?=@$harian['harian'][0]['id']?>">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 	<div onclick="$('.addaccount').remove();" class="addaccountclose"></div>
 		
 		<h3>Edit HARIAN Remidial</h3>
@@ -335,6 +336,7 @@ $(function() {
 					<input type="file" name="file" id="fileharianremidial" multiple />
 					<div id="response" style="font-size:11px;">Masukkan file baru jika dibutuhkan. Anda bisa memilih banyak file dengan memencet tombol "Ctrl", kemudian klik file yang dipilih lebih dari satu <br /> Atau pakai file asli di bawah</div>
 					<form id="remidialfile" method="post" action="">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 					<ul class="file" id="filecekharian">
 						<li></li>
 					</ul>

@@ -300,6 +300,7 @@
             title="Close Window" alt="Close" />
         </a>
         <form accept-charset="utf-8" method="post" class="signin" action="<?php echo base_url(); ?>index.php/verifylogin">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
             <fieldset class="textbox">
                 <label class="username"> <span>Username or email</span>
 
@@ -338,6 +339,7 @@
             <div class="float-right ">
                 <!-- **Searchform** -->
                 <form action="#" id="searchform" method="get">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                     <fieldset>
                         <input name="Search" type="text" onblur="this.value=(this.value=='') ? 'Cari Sekolah' : this.value;"
                         onfocus="this.value=(this.value=='Cari Sekolah') ? '' : this.value;" value="Cari Sekolah"

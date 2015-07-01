@@ -28,7 +28,7 @@ $(document).ready(function(){
 			if($frm.find('*[name=subject]').is('.valid') && $frm.find('*[name=id_kelas]').is('.valid')) {
 				$.ajax({
 					type: "POST",
-					data: $(this).serialize()+'&'+$('form#nilai').serialize(),
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize()+'&'+$('form#nilai').serialize(),
 					url: $(this).attr('action'),
 					beforeSend: function() {
 						$("#simpanabsensi").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -52,7 +52,7 @@ $(document).ready(function(){
 			
 			$.ajax({
 				type: "POST",
-				data: $("form#subjectnilailainlain").serialize()+'&id_kelas='+$(this).val(),
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#subjectnilailainlain").serialize()+'&id_kelas='+$(this).val(),
 				url: '<?=base_url()?>akademik/nilai/add',
 				beforeSend: function() {
 					$(this).after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -68,6 +68,7 @@ $(document).ready(function(){
 </script>
 <div class="addaccount">
 <form action="<? echo base_url();?>akademik/nilai/addnilai" id="subjectnilailainlain" name="subjectnilailainlain" method="post" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 	<div class="addaccountclose" onclick="$('.addaccount').remove();"></div>
 		
 		<h3>Tambah <?=$jenis?></h3>

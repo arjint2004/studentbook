@@ -23,7 +23,7 @@ if($cek['otoritas']=='siswa') {
 		}else{
 			$.ajax({
 					type: "POST",
-					data: 'bk=true&jenis='+jenis+'&idload='+load,
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&bk=true&jenis='+jenis+'&idload='+load,
 					url: url,
 					beforeSend: function() {
 						$(self).after("<img id='wait' style='margin: 0px; position: relative; right: 324px; bottom: 21px;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -40,7 +40,7 @@ if($cek['otoritas']=='siswa') {
 		$("select#id_kelaslain2").change(function(e){
 						$.ajax({
 							type: "POST",
-							data: 'id_kelas='+$(this).val()+'&jenis=nilai+lain_lain&ajax=1&pelajaran=0',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas='+$(this).val()+'&jenis=nilai+lain_lain&ajax=1&pelajaran=0',
 							url: '<?=base_url()?>akademik/nilai/getsubject/'+$(this).val(),
 							beforeSend: function() {
 								$("#filterpelajaran select#kelas").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");

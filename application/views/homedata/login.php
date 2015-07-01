@@ -1,4 +1,5 @@
 <form method="get" action="#">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                         <p>
                             <input type="text" class="textbox" name="name">
                             <label> Your Name <span> * </span> </label>

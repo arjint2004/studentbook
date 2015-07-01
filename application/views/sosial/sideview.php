@@ -6,6 +6,7 @@
             <div class="content content-full-width">
                 <h2>Kegiatan Siswa</h2>
                 <form class="sosial" method="POST" action="<?=site_url('sos/sekolah/simpan_kegiatan')?>" enctype="multipart/form-data">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                     <label>Sekolah</label>
                     <?php
                         if(!empty($sekolah)) {

@@ -25,7 +25,7 @@
 				var obj=$(this);
 				$.ajax({
 					type: "POST",
-					data: 'id_kelas='+$('select#kelasuts').val()+'&pelajaran='+$('select#pelajaranuts').val()+'&ajax=1',
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas='+$('select#kelasuts').val()+'&pelajaran='+$('select#pelajaranuts').val()+'&ajax=1',
 					url: '<?=base_url('akademik/kirimuts/daftarutslist')?>',
 					beforeSend: function() {
 						$("table.adddata tr th a#cancelutsremidi").after("<img id='waituts9' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -62,7 +62,7 @@
 				
 				$.ajax({
 					type: "POST",
-					data: $(this).serialize()+'&judul='+$("select#judul_adduts").attr('title'),
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize()+'&judul='+$("select#judul_adduts").attr('title'),
 					url: $(this).attr('action'),
 					beforeSend: function() {
 						$("#kirimutsremidial").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
@@ -95,7 +95,7 @@
 								if(res=='null'){
 									$.ajax({
 										type: "POST",
-										data: 'id_kelas='+$('select#kelas_adduts').val()+'&pelajaran='+$('select#pelajaran_adduts').val()+'&ajax=1',
+										data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas='+$('select#kelas_adduts').val()+'&pelajaran='+$('select#pelajaran_adduts').val()+'&ajax=1',
 										url: '<?=base_url('akademik/kirimuts/daftarutslist')?>',
 										beforeSend: function() {
 											$("#kirimutsremidial").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
@@ -128,7 +128,7 @@
 			var obj=$(this);
 			$.ajax({
 				type: "POST",
-				data: '',
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 				url: '<?=base_url()?>akademik/kirimuts/getOptionFileUtsByIdUts/'+$(this).val(),
 				beforeSend: function() {
 					$('select#judul_adduts').after("<img id='waituts11' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -144,7 +144,7 @@
 		$("select#pelajaran_adduts").change(function(e){
 			$.ajax({
 				type: "POST",
-				data: '',
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 				url: '<?=base_url()?>akademik/kirimuts/createOptionUtsByKelasPelajaranIdPegawai/'+$(this).val()+'/'+$('select#kelas_adduts').val(),
 				beforeSend: function() {
 					$('select#judul_adduts').after("<img id='waituts12' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -158,7 +158,7 @@
 		$("select#kelas_adduts").change(function(e){
 			$.ajax({
 				type: "POST",
-				data: '',
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 				url: '<?=base_url()?>akademik/kirimuts/getOptionSiswaByIdKelas/'+$(this).val(),
 				beforeSend: function() {
 					$('select#siswa_adduts').after("<img id='waituts13' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -170,7 +170,7 @@
 			});
 			$.ajax({
 				type: "POST",
-				data: '',
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 				url: '<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$(this).val(),
 				beforeSend: function() {
 					$('select#pelajaran_adduts').after("<img id='waituts14' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -195,6 +195,7 @@ $(function() {
 </script>	
 <div class="addaccount">
 <form method="post" name="kirimutsremidial" enctype="multipart/form-data" id="kirimutsremidial" action="<? echo base_url();?>akademik/kirimuts/kirimutsremidial">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 	<div onclick="$('.addaccount').remove();" class="addaccountclose"></div>
 		
 		<h3>Tambah UTS Remidial</h3>
@@ -266,6 +267,7 @@ $(function() {
 					<input type="file" name="file" id="fileaddutsremidi" multiple />
 					<div id="response" style="font-size:11px;">Masukkan file baru jika dibutuhkan. Anda bisa memilih banyak file dengan memencet tombol "Ctrl", kemudian klik file yang dipilih lebih dari satu <br /> Atau pakai file asli di bawah</div>
 					<form id="remidialfile" method="post" action="">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 					<ul class="file" id="filecekuts">
 						<li></li>
 					</ul>

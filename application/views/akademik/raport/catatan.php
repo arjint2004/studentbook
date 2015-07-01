@@ -3,7 +3,7 @@
 		$("#catatanraportform").submit(function(e){
 			$.ajax({
 				type: "POST",
-				data: $(this).serialize(),
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize(),
 				url: '<?=base_url()?>akademik/raport/catatan/'+$('select#siswaraport').val(),
 				beforeSend: function() {
 					$("#simpancatatanraport").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -12,7 +12,7 @@
 					$("#wait").remove();	
 					$.ajax({
 						type: "GET",
-						data: '',
+						data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 						url: '<?=base_url()?>akademik/raport/catatan/'+$('select#siswaraport').val(),
 						beforeSend: function() {
 							$("#simpancatatanraport").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -33,6 +33,7 @@
 	<?=$this->load->view('akademik/raport/header')?>
 	
 	<form action="<? echo base_url();?>" id="catatanraportform" name="catatanraportform" method="post" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 	<table>
 		<thead>
 			<tr>

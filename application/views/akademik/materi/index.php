@@ -9,7 +9,7 @@
 						$(this).after('<input type="hidden" name="kelasnya" value="'+$(this).find(":selected").text()+'"/>');
 						$.ajax({
 							type: "POST",
-							data: $("form#filterpelajaranmateri").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpelajaranmateri").serialize(),
 							url: '<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$(this).val(),
 							beforeSend: function() {
 								$("#filterpelajaranmateri select#kelas").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -27,7 +27,7 @@
 					$(this).after('<input type="hidden" name="pelajarannya" value="'+$(this).find(":selected").text()+'"/>');
 						$.ajax({
 							type: "POST",
-							data: $("form#filterpelajaranmateri").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpelajaranmateri").serialize(),
 							url: '<?=base_url()?>akademik/materi/daftarmaterilist',
 							beforeSend: function() {
 								$("#filterpelajaranmateri select#pelajaran").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -42,7 +42,7 @@
 					$("#materiadd").click(function(){
 						$.ajax({
 							type: "POST",
-							data: '',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 							url: '<?=base_url()?>akademik/materi/addmateri',
 							beforeSend: function() {
 								$("#materiadd").append("<img style='float: right; position: absolute; top: -5px; right: 3px;' id='wait' src='<?=$this->config->item('images').'loaderhover.gif';?>' />");
@@ -57,7 +57,7 @@
 					$("#kirimmateri").click(function(){
 						$.ajax({
 							type: "POST",
-							data: '',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 							url: '<?=base_url()?>akademik/materi/kirimmateri',
 							beforeSend: function() {
 								$("#kirimmateri").append("<img style='float: right; position: absolute; top: -5px; right: 3px;' id='wait' src='<?=$this->config->item('images').'loaderhover.gif';?>' />");
@@ -72,7 +72,7 @@
 					
 					$.ajax({
 							type: "POST",
-							data: 'ajax=1',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1',
 							url: '<?=base_url()?>akademik/materi/daftarmaterilist',
 							beforeSend: function() {
 								$("#materi_pelajaran").append("<img id='wait' style='float: right; position: absolute; top: -5px; right: 3px;' id='wait' src='<?=$this->config->item('images').'loaderhover.gif';?>' />");
@@ -95,6 +95,7 @@
 				
 				<div id="contentpage" style="min-width:768px;">
 							<form action="" method="post" id="filterpelajaranmateri" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<table class="tabelfilter">
 								<tr>
 								<td>

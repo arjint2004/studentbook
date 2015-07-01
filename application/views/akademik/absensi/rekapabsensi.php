@@ -7,7 +7,7 @@
 		if($('#kelasabsenrekap').val()==''){$('#kelasabsenrekap').css('border','1px solid red'); return false;}else{$('#kelasabsenrekap').css('border','1px solid #D8D8D8');}
 		$.ajax({
 			type: "POST",
-			data: "id_kelas="+$('#kelasabsenrekap').val()+"&id_pelajaran="+$('#pelajaranabsenrekap').val()+"&month="+date,
+			data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas="+$('#kelasabsenrekap').val()+"&id_pelajaran="+$('#pelajaranabsenrekap').val()+"&month="+date,
 			url: '<?=base_url()?>akademik/absensi/rekapabsensidata',
 			beforeSend: function() {
 				$(".error-box").delay(1000).html('Loading Data');
@@ -47,6 +47,7 @@
 		
 		$.ajax({
 			type: "POST",
+			data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>",
 			url: '<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$(this).val()+'/0/1/<?=$id_peg?>',
 			beforeSend: function() {
 				$("#pelajaranabsenrekap").after("<img id='waitabsen1' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -68,6 +69,7 @@
 	
 		$.ajax({
 			type: "POST",
+			data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>",
 			url: '<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$('select#kelasabsenrekap').val()+'/0/1/<?=$id_peg?>',
 			beforeSend: function() {
 				$("#pelajaranabsenrekap").after("<img id='waitabsen1' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -107,6 +109,7 @@ $(function() {
 <div id="widthabsensi">
 <? //pr($kelas);?>
 <form action="" method="post" id="rekapabsensiform" >
+<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 				<table class="adddata">
 					<tr>
 						<td style="text-align:left;">Kelas</td>
@@ -148,6 +151,7 @@ $(function() {
 				</form>
 <div id="absenarearekap">
 <form name="absensi" id="absensiform" method="post" action="<?=base_url()?>akademik/absensi/rekapabsensidata" >
+<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 <table width="100%">
   <tr>
     <th>No</th>

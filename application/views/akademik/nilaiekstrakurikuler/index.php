@@ -3,7 +3,7 @@
 					$("#nilaiextraform select#kelas").change(function(e){
 						$.ajax({
 							type: "POST",
-							data: 'id_ekstra='+$('select#ekstra').val()+'&id_kelas='+$(this).val(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_ekstra='+$('select#ekstra').val()+'&id_kelas='+$(this).val(),
 							url: '<?=base_url()?>akademik/nilaiekstrakurikuler/nilaiekstralist/'+$('select#ekstra').val()+'/'+$(this).val(),
 							beforeSend: function() {
 								$("#nilaiextraform select#kelas").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -20,7 +20,7 @@
 					$("#nilaiextraform").submit(function(e){
 						$.ajax({
 								type: "POST",
-								data: $(this).serialize(),
+								data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize(),
 								url: $(this).attr('action'),
 								beforeSend: function() {
 									$("#simpannilaiekstra").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -29,7 +29,7 @@
 									$("#wait").remove();	
 									$.ajax({
 										type: "POST",
-										data: 'id_ekstra='+$('select#ekstra').val()+'&id_kelas='+$('select#kelas').val(),
+										data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_ekstra='+$('select#ekstra').val()+'&id_kelas='+$('select#kelas').val(),
 										url: '<?=base_url()?>akademik/nilaiekstrakurikuler/nilaiekstralist/'+$('select#ekstra').val()+'/'+$('select#kelas').val(),
 										beforeSend: function() {
 											$("#nilaiextraform select#ekstra").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -52,6 +52,7 @@
 				<div class="hr"></div>
 				<div id="contentpage">
 							<form  method="post" action="<?=base_url()?>akademik/nilaiekstrakurikuler/nilaiekstralist" id="nilaiextraform" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<table class="tabelfilter">
 								<tr>
 								<td>

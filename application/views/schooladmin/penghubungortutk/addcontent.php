@@ -203,7 +203,7 @@
 			/*$.ajax({
 				type: 'POST',
 				url: $(this).attr('action'),
-				data: $(this).serialize(),
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize(),
 				beforeSend: function() {
 					$(this).after("<img id='wait' style='position: relative; top: 21px; left: 28px;' src='<?=$this->config->item('images').'loading.png';?>' />");
 				},
@@ -233,6 +233,7 @@
 		<div id="ajaxside"></div>
 		<div id="listpenghubungortutk">
 			<form action="<? echo base_url();?><?=$action?>" id="formfilterpengtk" method="post" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                             <table class="tabelfilter">
 								<tbody>
 									<tr>
@@ -248,6 +249,7 @@
 							</table>		
 			</form>
 			<form action="<? echo base_url();?><?=$action?>" id="penghubungortutkform" name="penghubungortutkform" method="post" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<input type="hidden" id="semesterpengtkhidden" name="semester" value="<?=$semester_id?>" />
 							<table class="tableprofil penghubungortutk" border="1">
 								  <tbody>

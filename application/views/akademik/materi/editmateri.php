@@ -22,7 +22,7 @@
 				var obj=$(this);
 				$.ajax({
 					type: "POST",
-					data: 'ajax=1',
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1',
 					url: '<?=base_url('akademik/materi/daftarmaterilist')?>',
 					beforeSend: function() {
 						$(obj).after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -54,7 +54,7 @@
 			if(/*$frm.find('*[name=id_kelas]').is('.valid') && $frm.find('*[name=id_pelajaran]').is('.valid') && */$frm.find('*[name=bab]').is('.valid') && $frm.find('*[name=pokok_bahasan]').is('.valid')  /*&&  $frm.find('*[name=keterangan]').is('.valid')*/) {
 				$.ajax({
 					type: "POST",
-					data: $(this).serialize()+'&'+$('form#nilai').serialize(),
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize()+'&'+$('form#nilai').serialize(),
 					url: $(this).attr('action'),
 					beforeSend: function() {
 						$("#materi").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
@@ -89,7 +89,7 @@
 								if(res=='null'){
 									$.ajax({
 										type: "POST",
-										data: '&ajax=1',
+										data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&&ajax=1',
 										url: '<?=base_url('akademik/materi/daftarmaterilist')?>',
 										beforeSend: function() {
 											$("#materi").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
@@ -126,7 +126,7 @@
 		
 		/*$.ajax({
 				type: "POST",
-				data: '',
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 				url: '<?=base_url()?>akademik/materi/getOptionFileMateriByIdMateri/<?=$materi[0]['id']?>',
 				beforeSend: function() {
 					$('select#judul_add').after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -141,7 +141,7 @@
 			if(confirm('File akan di hapus secara permanen, untuk menggunakannya kembali anda harus upload ulang..')){
 				$.ajax({
 					type: "POST",
-					data: '',
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 					url: base_url+'akademik/materi/deletefile/'+$(this).attr('id'),
 					beforeSend: function() {
 						$(objdell).after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -157,7 +157,7 @@
 		/*$("select#kelas_addeditmateri").change(function(e){
 			$.ajax({
 				type: "POST",
-				data: '',
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 				url: '<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$(this).val(),
 				beforeSend: function() {
 					$('select#kelas_addeditmateri').after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -193,6 +193,7 @@ $(function() {
 <div class="addaccount">
 <? //pr($materi);?>
 <form method="post" name="materi" enctype="multipart/form-data" id="materi" action="<? echo base_url();?>akademik/materi/editmateri/<?=@$materi[0]['id']?>">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 	<div onclick="$('.addaccount').remove();" class="addaccountclose"></div>
 		
 		<h3>Edit Materi</h3>
@@ -278,6 +279,7 @@ $(function() {
 					<input type="file" name="file" id="fileaddmateri" multiple />
 					<div id="response" style="font-size:11px;">Anda bisa memilih banyak file dengan memencet tombol "Ctrl", kemudian klik file yang dipilih lebih dari satu</div>
 					<form id="remidialfile" method="post" action="">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 					<ul class="file">
 						<?foreach($files as $file){
 						if($file['source']=='upload'){

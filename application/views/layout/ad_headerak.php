@@ -130,6 +130,7 @@ jQuery(function($){
                 
                 <!-- **Searchform** -->
                 <form action="#" id="searchform" method="get">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                     <fieldset>
                         <input name="Search" type="text" onblur="this.value=(this.value=='') ? 'Cari Sekolah' : this.value;" onfocus="this.value=(this.value=='Cari Sekolah') ? '' : this.value;" value="Cari Sekolah" alt="Search our site" class="text_input" />
                         <input name="submit" type="submit" value="" />

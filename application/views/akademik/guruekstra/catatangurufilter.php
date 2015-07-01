@@ -8,7 +8,7 @@
 					$("#catatanguruform select#kelas").change(function(e){
 						$.ajax({
 							type: "POST",
-							data: $("form#catatanguruform").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#catatanguruform").serialize(),
 							url: '<?=base_url()?>akademik/catatanguru/getOptionSiswaByIdKelas/'+$(this).val(),
 							beforeSend: function() {
 								$("#catatanguruform select#kelas").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -24,7 +24,7 @@
 					$("#catatanguruform select#siswa").change(function(e){
 						$.ajax({
 							type: "POST",
-							data: $("form#catatanguruform").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#catatanguruform").serialize(),
 							url: '<?=base_url()?>akademik/catatanguru/catatangurulist',
 							beforeSend: function() {
 								$("#catatanguruform select#siswa").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -49,7 +49,7 @@
 					function getadd(obj,date) {
 						$.ajax({
 							type: "POST",
-							data: $("form#catatanguruform").serialize()+"&tanggal="+date,
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#catatanguruform").serialize()+"&tanggal="+date,
 							url: '<?=base_url()?>akademik/catatanguru/catatangurulist',
 							beforeSend: function() {
 								$("#catatanguruform select#siswa").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -71,6 +71,7 @@
 				
 				<div id="contentpage">
 							<form action="" method="post" id="catatanguruform" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<table class="tabelfilter">
 								<tr>
 								<td>

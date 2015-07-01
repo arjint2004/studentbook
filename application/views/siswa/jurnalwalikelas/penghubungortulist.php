@@ -6,7 +6,7 @@
 									var thisobj= $(this);
 									$.ajax({
 									  type: "POST",
-									  data: "ajax=1&id_kelas="+$('select#idkelasp').val(),
+									  data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1&id_kelas="+$('select#idkelasp').val(),
 									  url: url,
 									  beforeSend: function() {
 										$(thisobj).append("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -32,7 +32,7 @@
 									$(obj).next('tr').next('tr').next('tr').hide();
 									$.ajax({
 										type: "GET",
-										data: '',
+										data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 										url: '<?=base_url()?>akademik/comment/index/'+id+'/first/penghubung',
 										beforeSend: function() {
 											//$("#filterpelajaranpr select#kelas").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");

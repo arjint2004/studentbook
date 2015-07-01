@@ -6,7 +6,7 @@
 				function loaddatatahunAjaran(){
 					$.ajax({
 						type: "POST",
-						data: "ajax=1",
+						data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1",
 						url: base_url+'admin/setting/tahunAjaran',
 						beforeSend: function() {
 							$("#ajaxside").html("<img src='"+config_images+"loading.png' />");
@@ -21,7 +21,7 @@
 						if($(obj).html()==' AKTIF '){return false;}
 						$.ajax({
 							type: "POST",
-							data: "ajax=1&id="+id+"&aktif="+aktif,
+							data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1&id="+id+"&aktif="+aktif,
 							url: base_url+'admin/setting/aktifasitahunAjaran',
 							beforeSend: function() {
 								$(obj).append("<img id='wait'style='margin: 0px; float: right; position: absolute;right:35px;' src='"+config_images+"loading.png' />");
@@ -30,7 +30,7 @@
 								$("#wait").remove();
 								$.ajax({
 									type: "POST",
-									data: "ajax=1",
+									data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1",
 									url: base_url+'admin/setting/tahunAjaran',
 									beforeSend: function() {
 										$(obj).append("<img id='wait'style='margin: 0px; float: right; position: absolute;right:35px;' src='"+config_images+"loading.png' />");

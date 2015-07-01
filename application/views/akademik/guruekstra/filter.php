@@ -4,7 +4,7 @@
 					$("#filterpelajaranpembelajaran select#kelas<?=$_POST['idload']?>").change(function(e){
 						$.ajax({
 							type: "POST",
-							data: $("form#filterpelajaranpembelajaran").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpelajaranpembelajaran").serialize(),
 							url: '<?=base_url()?>admin/pelajaran/getMapelByKelas/'+$(this).val(),
 							beforeSend: function() {
 								$("#filterpelajaranpembelajaran select#kelas<?=$_POST['idload']?>").after("<img id='wait<?=$_POST['idload']?>' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -20,7 +20,7 @@
 					$("#filterpelajaranpembelajaran select#pelajaran<?=$_POST['idload']?>").change(function(e){
 						$.ajax({
 							type: "POST",
-							data: $("form#filterpelajaranpembelajaran").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpelajaranpembelajaran").serialize(),
 							url: '<?=$url?>',
 							beforeSend: function() {
 								$("#filterpelajaranpembelajaran select#pelajaran<?=$_POST['idload']?>").after("<img id='wait<?=$_POST['idload']?>' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -50,6 +50,7 @@
 
 				<div id="contentpage">
 							<form action="" method="post" id="filterpelajaranpembelajaran" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<table class="tabelfilter">
 								<tr>
 								<td>

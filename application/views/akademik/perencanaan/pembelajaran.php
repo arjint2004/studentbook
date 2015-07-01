@@ -9,7 +9,7 @@
 						$(this).after('<input type="hidden" name="kelasnya" value="'+$(this).find(":selected").text()+'"/>');
 						$.ajax({
 							type: "POST",
-							data: $("form#filterpelajaranpembelajaran").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpelajaranpembelajaran").serialize(),
 							url: '<?=base_url()?>akademik/perencanaan/getPertemuanByKelas/'+$(this).val(),
 							beforeSend: function() {
 								$("#filterpelajaranpembelajaran select#kelas").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -26,7 +26,7 @@
 						$(this).after('<input type="hidden" name="pertemuannya" value="'+$(this).find(":selected").text()+'"/>');
 						$.ajax({
 							type: "POST",
-							data: $("form#filterpelajaranpembelajaran").serialize()+'&id_pelajaran='+$('#filterpelajaranpembelajaran select#pertemuanselect :selected').attr('id_pelajaran'),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpelajaranpembelajaran").serialize()+'&id_pelajaran='+$('#filterpelajaranpembelajaran select#pertemuanselect :selected').attr('id_pelajaran'),
 							url: '<?=base_url()?>akademik/perencanaan/pembelajaranlist/'+$(this).val(),
 							beforeSend: function() {
 								$("#filterpelajaranpembelajaran select#pertemuanselect").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -41,7 +41,7 @@
 					$("#pembelajaranaddtmbh").click(function(){
 						$.ajax({
 							type: "POST",
-							data: '',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 							url: '<?=base_url()?>akademik/perencanaan/addpembelajaran',
 							beforeSend: function() {
 								$("#pembelajaranaddtmbh").append("<img id='wait' src='<?=$this->config->item('images').'loaderhover.gif';?>' />");
@@ -56,7 +56,7 @@
 					
 						$.ajax({
 							type: "POST",
-							data: 'ajax=1',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1',
 							url: '<?=base_url()?>akademik/perencanaan/pembelajaranlist',
 							beforeSend: function() {
 								$("#filterpelajaranpembelajaran select#pertemuanselect").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -80,6 +80,7 @@
 				
 				<div id="contentpage">
 							<form action="" method="post" id="filterpelajaranpembelajaran" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<table class="tabelfilter">
 								<tr>
 								<td>

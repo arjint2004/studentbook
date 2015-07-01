@@ -6,7 +6,7 @@
 					});
 						$.ajax({
 							type: "POST",
-							data: $("form#filterpelajarantugas").serialize()+'&id_kelas=<?=$siswa[0]['id_kelas_siswa_det_jenjang']?>',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpelajarantugas").serialize()+'&id_kelas=<?=$siswa[0]['id_kelas_siswa_det_jenjang']?>',
 							url: '<?=base_url()?>admin/pelajaran/getmapelByKelas/<?=$siswa[0]['id_kelas_siswa_det_jenjang']?>',
 							beforeSend: function() {
 								$("#filterpelajarantugas select#pelajaran").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -20,7 +20,7 @@
 					$("#filterpelajarantugas select#pelajaran").change(function(e){
 						$.ajax({
 							type: "POST",
-							data: $("form#filterpelajarantugas").serialize()+'&id_kelas=<?=$siswa[0]['id_kelas_siswa_det_jenjang']?>',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpelajarantugas").serialize()+'&id_kelas=<?=$siswa[0]['id_kelas_siswa_det_jenjang']?>',
 							url: '<?=base_url()?>siswa/kirimtugas/daftartugaslist',
 							beforeSend: function() {
 								$("#filterpelajarantugas select#pelajaran").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -35,7 +35,7 @@
 					
 						$.ajax({
 							type: "POST",
-							data: $("form#filterpelajarantugas").serialize()+'&id_kelas=<?=$siswa[0]['id_kelas_siswa_det_jenjang']?>',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpelajarantugas").serialize()+'&id_kelas=<?=$siswa[0]['id_kelas_siswa_det_jenjang']?>',
 							url: '<?=base_url()?>siswa/kirimtugas/daftartugaslist',
 							beforeSend: function() {
 								$("#filterpelajarantugas select#pelajaran").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -54,6 +54,7 @@
 				
 				<div id="contentpage">
 							<form action="" method="post" id="filterpelajarantugas" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<table class="tabelfilter">
 								<tr>
 								<td>

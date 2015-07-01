@@ -53,7 +53,7 @@
 						$(this).focus();
 						$.ajax({
 							type: "POST",
-							data: $('form#formulasiform').serialize()+'&ajax=1',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$('form#formulasiform').serialize()+'&ajax=1',
 							url: base_url+'admin/schooladmin/formulasinilaiakhir',
 							beforeSend: function() {
 								$('img#wait').remove();
@@ -72,7 +72,9 @@
 			</script>	  	 	 		
 
 				<div id="contentpage">
-				<form id="formulasiform"><div id="rumus"></div>
+				<form id="formulasiform">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+							<div id="rumus"></div>
 							<table class="tabelkelas" id="formulasi">
 								<thead>
 									<tr> 

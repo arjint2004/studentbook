@@ -2,7 +2,7 @@
 	$(document).ready(function(){
 			$.ajax({
 				type: "POST",
-				data: 'id_kategori=<?=$id_kat?>',
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kategori=<?=$id_kat?>',
 				url: '<? echo base_url();?>adminsb/admin/getselectartikelbykat',
 				beforeSend: function() {
 					$('select#id_kategoriaddother').after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -17,7 +17,7 @@
 			var obj=$(this);
 			$.ajax({
 				type: "POST",
-				data: 'id_kategori='+$('select#id_kategoriaddother').val(),
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kategori='+$('select#id_kategoriaddother').val(),
 				url: '<? echo base_url();?>adminsb/admin/getselectartikelbykat',
 				beforeSend: function() {
 					$(obj).after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -33,6 +33,7 @@
 	});
 </script>
 <form action="<? echo base_url();?>adminsb/admin/addslideother" enctype="multipart/form-data" id="mapelform" name="mapelform" method="post" >
+<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 <table class="adddata">
 			<tr>
 				<td width="30%" colspan="3" class='title'>Rubrik</td>

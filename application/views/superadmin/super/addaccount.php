@@ -7,7 +7,7 @@ $(document).ready(function(){
 			var self = $(this);
 			$.ajax({
 					type: "POST",
-					data: 'username='+$(self).val(),
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&username='+$(self).val(),
 					url: '<?=base_url()?>homepage/cekusername',
 					beforeSend: function() {
 						$(self).after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -74,7 +74,7 @@ $(document).ready(function(){
 			if($frm.find('*[name=username]').is('.valid')  && $frm.find('*[name=email]').is('.valid') && $frm.find('*[name=password]').is('.valid') && $frm.find('*[name=passwordk]').is('.valid')  && $frm.find('*[name=id_group]').is('.valid') ) {
 				$.ajax({
 					type: "POST",
-					data: $(this).serialize(),
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize(),
 					url: $(this).attr('action'),
 					beforeSend: function() {
 						$("input#simpanaccount").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -83,7 +83,7 @@ $(document).ready(function(){
 						$(".addaccount").remove();	
 							$.ajax({
 								type: "POST",
-								data: "ajax=1&id_group="+id_group,
+								data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1&id_group="+id_group,
 								url: '<?php echo base_url(); ?>superadmin/super/accountlist',
 								beforeSend: function() {
 									$("input#simpanaccount").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -105,6 +105,7 @@ $(document).ready(function(){
 </script>
 <div class="addaccount">
 <form action="<? echo base_url();?>superadmin/super/addaccount" id="accountform" name="accountform" method="post" >
+				<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 	<div class="addaccountclose" onclick="$('.addaccount').remove();"></div>
 	<h3> <?=$page_title?> </h3><?// pr($pelajaran);?>
 		<table class="adddata">

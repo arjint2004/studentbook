@@ -5,7 +5,7 @@
 							var obj=$(this);
 							$.ajax({
 								type: "POST",
-								data: "ajax=1&delete=1&id_ekstrakurikuler="+$(this).attr('id'),
+								data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1&delete=1&id_ekstrakurikuler="+$(this).attr('id'),
 								url: base_url+'admin/extrakurikuler/delete/'+$(this).attr('id'),
 								beforeSend: function() {
 									$(obj).after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -18,7 +18,7 @@
 									}else{
 										$.ajax({
 												type: "POST",
-												data: "ajax=1",
+												data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1",
 												url: base_url+'admin/extrakurikuler/listData',
 												beforeSend: function() {
 													$(obj).after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -49,7 +49,7 @@
 
 					$.ajax({
 							type: "POST",
-							data: "simpleupdate=1&ajax=1&id_extrakurikuler="+idjur+"&"+field+"="+value,
+							data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&simpleupdate=1&ajax=1&id_extrakurikuler="+idjur+"&"+field+"="+value,
 							url: base_url+'admin/extrakurikuler/listData',
 							beforeSend: function() {
 								$("#listkelasloading").html("<img src='"+config_images+"loading.png' />");
@@ -78,7 +78,7 @@
 					if($(obj).children().is("select")){}else{
 						$.ajax({
 									type: "POST",
-									data: "ajax=1",
+									data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1",
 									url: base_url+"admin/extrakurikuler/getpegawaiSelect/"+id_pegawai+"/"+id_extrakurikuler,
 									beforeSend: function() {
 										$("#listkelasloading").html("<img src='"+config_images+"loading.png' />");
@@ -95,7 +95,7 @@
 				function aktifasi(obj,id,aktif){
 						$.ajax({
 							type: "POST",
-							data: "ajax=1&id="+id+"&aktif="+aktif,
+							data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1&id="+id+"&aktif="+aktif,
 							url: base_url+'admin/extrakurikuler/aktifasiExtrakurikuler',
 							beforeSend: function() {
 								$(obj).html("<img src='"+config_images+"loading.png' />");
@@ -104,7 +104,7 @@
 								$("#listkelasloading").html("");
 								$.ajax({
 									type: "POST",
-									data: "ajax=1",
+									data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1",
 									url: base_url+'admin/extrakurikuler/listData',
 									beforeSend: function() {
 										$("#listkelasloading").html("<img src='"+config_images+"loading.png' />");

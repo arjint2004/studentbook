@@ -6,7 +6,7 @@
 							var obj=$(this);
 							$.ajax({
 								type: "POST",
-								data: "ajax=1&delete=1&id-aspek="+$(this).attr('id'),
+								data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1&delete=1&id-aspek="+$(this).attr('id'),
 								url: base_url+'admin/setting/deleteaspek/'+$(this).attr('id'),
 								beforeSend: function() {
 									$(obj).after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -28,7 +28,7 @@
 						var obj=$(this);
 						$.ajax({
 							type: "POST",
-							data: "ajax=1",
+							data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1",
 							url: '<?=base_url()?>admin/setting/addaspek',
 							beforeSend: function() {
 								$(obj).after("<img id='wait' src='"+config_images+"loading.png' />");
@@ -44,7 +44,7 @@
 				function loaddataaspekkepribadian(){
 					$.ajax({
 						type: "POST",
-						data: "ajax=1",
+						data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1",
 						url: base_url+'admin/setting/aspekkepribadian',
 						beforeSend: function() {
 							$("#ajaxside").html("<img src='"+config_images+"loading.png' />");
@@ -61,7 +61,7 @@
 					$(obj).parent().html(value);
 					$.ajax({
 							type: "POST",
-							data: "simpleupdate=1&ajax=1&id_aspek="+idaspek+"&"+field+"="+value,
+							data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&simpleupdate=1&ajax=1&id_aspek="+idaspek+"&"+field+"="+value,
 							url: base_url+'admin/setting/aspekkepribadian',
 							beforeSend: function() {
 								$(obj).after("<img id='wait' src='"+config_images+"loading.png' />");

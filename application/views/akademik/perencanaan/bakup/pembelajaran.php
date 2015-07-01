@@ -8,7 +8,7 @@
 					$("#filterpelajaranpembelajaran select#kelas").change(function(e){
 						$.ajax({
 							type: "POST",
-							data: $("form#filterpelajaranpembelajaran").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpelajaranpembelajaran").serialize(),
 							url: '<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$(this).val(),
 							beforeSend: function() {
 								$("#filterpelajaranpembelajaran select#kelas").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -24,7 +24,7 @@
 					$("#filterpelajaranpembelajaran select#pelajaran").change(function(e){
 						$.ajax({
 							type: "POST",
-							data: $("form#filterpelajaranpembelajaran").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpelajaranpembelajaran").serialize(),
 							url: '<?=base_url()?>akademik/perencanaan/pembelajaranlist',
 							beforeSend: function() {
 								$("#filterpelajaranpembelajaran select#pelajaran").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -39,7 +39,7 @@
 					$("#pembelajaranaddtmbh").click(function(){
 						$.ajax({
 							type: "POST",
-							data: '',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 							url: '<?=base_url()?>akademik/perencanaan/addpembelajaran',
 							beforeSend: function() {
 								$("#pembelajaranaddtmbh").append("<img id='wait' src='<?=$this->config->item('images').'loaderhover.gif';?>' />");
@@ -54,7 +54,7 @@
 					
 						$.ajax({
 							type: "POST",
-							data: 'ajax=1',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1',
 							url: '<?=base_url()?>akademik/perencanaan/pembelajaranlist',
 							beforeSend: function() {
 								$("#filterpelajaranpembelajaran select#pelajaran").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -72,6 +72,7 @@
 				
 				<div id="contentpage">
 							<form action="" method="post" id="filterpelajaranpembelajaran" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<table class="tabelfilter">
 								<tr>
 								<td>

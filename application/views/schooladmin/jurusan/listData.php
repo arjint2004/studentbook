@@ -8,7 +8,7 @@
 					$(obj).parent().html(value);
 					$.ajax({
 							type: "POST",
-							data: "simpleupdate=1&ajax=1&id_jurusan="+idjur+"&"+field+"="+value,
+							data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&simpleupdate=1&ajax=1&id_jurusan="+idjur+"&"+field+"="+value,
 							url: base_url+'admin/jurusan/listData',
 							beforeSend: function() {
 								

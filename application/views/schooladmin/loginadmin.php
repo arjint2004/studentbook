@@ -36,6 +36,7 @@
     <div class="user-icon"></div>
     <div class="pass-icon"></div>
     <form name="login-form" class="login-form" action="<?=site_url('authentication/auth')?>" method="post">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
         <div class="header">
             <h1>Selamat Datang Di Studentbook</h1>
             <span>Silahkan Masukan Username dan Password</span>

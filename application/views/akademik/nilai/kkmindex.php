@@ -8,7 +8,7 @@
 					$("#filterpelajaran select.selectfilter").change(function(e){
 						$.ajax({
 							type: "POST",
-							data: $("form#filterpelajaran").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpelajaran").serialize(),
 							url: $("form#filterpelajaran").attr('action'),
 							beforeSend: function() {
 								$("#ajaxside").html("<img src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -26,6 +26,7 @@
 				</script>
 				<div id="contentpage">
 							<form action="<?=base_url()?>/admin/pelajaran/listData" method="post" id="filterpelajaran" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<table class="tabelfilter">
 								<tr>
 									<td>

@@ -5,7 +5,7 @@
 							var obj=$(this);
 							$.ajax({
 								type: "POST",
-								data: "ajax=1&delete=1&id_kelas="+$(this).attr('id'),
+								data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1&delete=1&id_kelas="+$(this).attr('id'),
 								url: base_url+'admin/kelas/delete/'+$(this).attr('id'),
 								beforeSend: function() {
 									$(obj).after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -18,7 +18,7 @@
 									}else{
 										$.ajax({
 												type: "POST",
-												data: "ajax=1",
+												data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1",
 												url: base_url+'admin/kelas/index',
 												beforeSend: function() {
 													$(obj).after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -42,7 +42,7 @@
 					$(obj).parent().html(value);
 					$.ajax({
 							type: "POST",
-							data: "simpleupdate=1&ajax=1&id_kelas="+id_kelas+"&kelas="+value,
+							data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&simpleupdate=1&ajax=1&id_kelas="+id_kelas+"&kelas="+value,
 							url: base_url+'admin/kelas/listData',
 							beforeSend: function() {
 								$(obj).after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -66,7 +66,7 @@
 					//$('#ajaxside').load(base_url+'admin/kelas/editdata/'+id_kelas+'/'+jurusan+'/'+value+'')
 					$.ajax({
 							type: "POST",
-							data: "value="+value,
+							data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&value="+value,
 							url: base_url+'admin/kelas/editdata/'+id_kelas+'/'+jurusan+'/'+value+'',
 							beforeSend: function() {
 								$(obj).append("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");

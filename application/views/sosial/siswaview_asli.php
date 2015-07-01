@@ -169,6 +169,7 @@
             </div>
             <div class="buttons" style="float: right;">
                 <form method="POST" action="<?=site_url('siswa/edit_siswa')?>">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                     <input type="hidden" name="id_siswa" value="<?=$siswa->id?>"/>
                     <input type="submit" value="Edit" name="submit" class="readmore"/>
                 </form>
@@ -221,6 +222,7 @@
                     </div>
                     <div class="span10">
                         <form method="post" action="<?=site_url('siswa/set_status')?>">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                             <input type="hidden" name="id_siswa" value="<?=$siswa->id?>"/>
                             <textarea style="width: 94%;height: 70px;" placeholder="Aktifitas Terbaru Anda .." name="status_text"></textarea>
                             <div class="float-right">

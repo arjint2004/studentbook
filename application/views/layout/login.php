@@ -52,6 +52,7 @@
             </div>
 			<div class="column one-third last loginright">
                 <form id="formlg" method="post" action="<?=base_url()?>authentication/auth">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                     <h3>Login Studentbook</h3>
                     <input type="text" placeholder="Username" class="textbox" name="username">
                     <input type="password" placeholder="Password" class="textbox" name="password">

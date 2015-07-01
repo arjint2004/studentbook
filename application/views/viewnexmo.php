@@ -165,6 +165,7 @@ input:-moz-placeholder {
 <div class="container">
 
     <form id="signup" action="<?=site_url('example')?>" method="POST">
+				<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
         <div class="header">
             <h3>Kirim SMS</h3> 
         </div>

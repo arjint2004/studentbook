@@ -5,6 +5,7 @@
 </script>
 <? //pr($nilai);?>
 <form action="<? echo base_url();?>admin/nilaiulharian/addSubjectUlHarian" id="nilai" name="nilai" method="post" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 <table  class="adddata">
     <thead>
         <tr> 

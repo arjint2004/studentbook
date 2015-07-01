@@ -39,6 +39,7 @@
 			</script>
 <div class="containersms">
     <form id="signup" class="sendername" action="<?=site_url('admin/sms/sendername')?>" method="POST">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
         <div class="header">
             <h3>Nama Pengirim</h3> 
         </div>

@@ -7,7 +7,7 @@
 						function loadAdd(listtype){
 							$.ajax({
 							type: "POST",
-							data: "ajax=1",
+							data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1",
 							url: '<?php echo base_url(); ?>admin/schooladmin/adduser/'+listtype+'',
 							beforeSend: function() {
 								$("#adduser"+listtype+"").html("<img src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -20,7 +20,7 @@
 						function loaddata(listtype){
 							$.ajax({
 							type: "POST",
-							data: "ajax=1",
+							data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1",
 							url: '<?php echo base_url(); ?>admin/schooladmin/dataakun/'+listtype+'/0',
 							beforeSend: function() {
 								$("#ajax"+listtype+"").html("<img src='<?=$this->config->item('images').'loading.png';?>' />");

@@ -9,7 +9,7 @@
 									$(obj).next('tr').next('tr').next('tr').hide();
 									$.ajax({
 										type: "GET",
-										data: '',
+										data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 										url: '<?=base_url()?>akademik/comment/index/'+id+'/first/tugas',
 										beforeSend: function() {
 											//$("#filterpelajaranharian select#kelas").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");

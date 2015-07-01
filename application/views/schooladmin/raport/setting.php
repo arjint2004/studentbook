@@ -16,7 +16,7 @@
 					function sendcek(obj){
 						$.ajax({
 							type: "POST",
-							data: $('form#settingraport').serialize()+"&ajax=1&show_all=1",
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$('form#settingraport').serialize()+"&ajax=1&show_all=1",
 							url: $('form#settingraport').attr('action'),
 							beforeSend: function() {
 								$(obj).hide();
@@ -39,7 +39,7 @@
 						var obj=$(this);
 						$.ajax({
 							type: "POST",
-							data: "&ajax=1&val="+$(obj).val()+'&name='+$(obj).attr('name'),
+							data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&&ajax=1&val="+$(obj).val()+'&name='+$(obj).attr('name'),
 							url: $('form#settingraport').attr('action'),
 							beforeSend: function() {
 								$(obj).hide();
@@ -73,6 +73,7 @@
 							<br />
 							<br />
 							<form action="<?=base_url('admin/raport/setting');?>" name="settingraport" id="settingraport" method="post">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<h3>RUMUS NILAI RAPORT</h3>
 							<table class="tabelkelas">
 								<tbody>
@@ -89,6 +90,7 @@
 							<br />
 							<br />
 							<form action="<?=base_url('admin/raport/tanggal');?>" name="settingraport" id="settingraport" method="post">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<h3>Tanggal Penerimaan Raport</h3>
 							<? //pr($setting_tanggal);?>
 							<table class="tabelkelas">
@@ -118,6 +120,7 @@
 							<br />
 							<br />
 							<form action="<?=base_url('admin/raport/setting');?>" name="settingraport" id="settingraport" method="post">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							
 							<h3>Penampilan Elemen raport</h3>
 							<table class="tabelkelas">

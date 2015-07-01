@@ -9,7 +9,7 @@
 		$.ajax({
 			type: 'POST',
 			url: $('#absensiform').attr('action'),
-			data: $('#absensiform').serialize()+'&id_kelas='+$('#kelasabsen').val()+'&tanggal='+$('#popupDatepicker').val(),
+			data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$('#absensiform').serialize()+'&id_kelas='+$('#kelasabsen').val()+'&tanggal='+$('#popupDatepicker').val(),
 			beforeSend: function() {
 				$('#simpanabsensi').after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
 			},
@@ -28,7 +28,7 @@
 		if($('#kelasabsen').val()==''){$('#kelasabsen').css('border','1px solid red'); return false;}else{$('#kelasabsen').css('border','1px solid #D8D8D8');}
 		$.ajax({
 			type: "POST",
-			data: "id_kelas="+$('#kelasabsen').val()+"&tanggal="+date,
+			data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas="+$('#kelasabsen').val()+"&tanggal="+date,
 			url: '<?=base_url()?>akademik/absensi/add',
 			beforeSend: function() {
 				$('#popupDatepicker').after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -44,7 +44,7 @@
 	$('#kelasabsen').bind('change', function() {
 		$.ajax({
 			type: "POST",
-			data: "id_kelas="+$(this).val(),
+			data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas="+$(this).val(),
 			url: '<?=base_url()?>akademik/absensi/add',
 			beforeSend: function() {
 				$('#kelasabsen').after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -88,6 +88,7 @@ $(function() {
 </table>
 <div id="absenarea">
 <form name="absensi" id="absensiform" method="post" action="<?=base_url()?>akademik/absensi/add" >
+<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 <table>
     <thead>
         <tr> 

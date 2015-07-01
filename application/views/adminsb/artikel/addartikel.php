@@ -1,6 +1,7 @@
 <div class="addaccount">
 <? if(isset($data)){$action="edit";}else{$action="addartikel";}?>
 <form action="<? echo base_url();?>adminsb/artikel/<?=$action?>" enctype="multipart/form-data" id="mapelform" name="mapelform" method="post" >
+<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 	<div class="addaccountclose" onclick="$('.addaccount').remove();"></div>
 	<h3> <?=$page_title?> </h3><?// pr($pelajaran);?>
 		<table class="adddata">
@@ -92,7 +93,7 @@ $(document).ready(function(){
 		//e.stopImmediatePropagation();
 		$.ajax({
 			type: "POST",
-			data: $(obj).serialize()+"&ajax=1",
+			data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(obj).serialize()+"&ajax=1",
 			url: $(obj).attr('action'),
 			beforeSend: function() {
 				$('#simpanpelajaran').append("<img id='wait' src='"+config_images+"loaderhover.gif' />");
@@ -116,7 +117,7 @@ $(document).ready(function(){
 										var content=ins.getData();
 										$.ajax({
 											type: "POST",
-											data: $('form#contentsekolah').serialize()+"&ajax=1&simpan=1&content="+content,
+											data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$('form#contentsekolah').serialize()+"&ajax=1&simpan=1&content="+content,
 											url: $(this).attr('action'),
 											beforeSend: function() {
 												$("#listcontentloading").html("<img src='"+config_images+"loading.png' />");

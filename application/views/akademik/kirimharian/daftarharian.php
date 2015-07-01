@@ -5,7 +5,7 @@
 						$(this).after('<input type="hidden" name="kelasnya" value="'+$(this).find(":selected").text()+'"/>');
 						$.ajax({
 							type: "POST",
-							data: $("form#filterpelajaranharian").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpelajaranharian").serialize(),
 							url: '<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$(this).val(),
 							beforeSend: function() {
 								$("#filterpelajaranharian select#kelasharian").after("<img id='waitharian1' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -22,7 +22,7 @@
 						$(this).after('<input type="hidden" name="pelajarannya" value="'+$(this).find(":selected").text()+'"/>');
 						$.ajax({
 							type: "POST",
-							data: $("form#filterpelajaranharian").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpelajaranharian").serialize(),
 							url: '<?=base_url()?>akademik/kirimharian/daftarharianlist',
 							beforeSend: function() {
 								$("#filterpelajaranharian select#pelajaranharian").after("<img id='waitharian2' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -37,7 +37,7 @@
 					$("#kirimharianadd").click(function(){
 						$.ajax({
 							type: "POST",
-							data: '',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 							url: '<?=base_url()?>akademik/kirimharian/kirimharianutama',
 							beforeSend: function() {
 								$("#kirimharianadd").append("<img style='float: right; position: absolute; top: -5px; right: 3px;' id='waitharian3' src='<?=$this->config->item('images').'loaderhover.gif';?>' />");
@@ -52,7 +52,7 @@
 					$("#kirimharianremidiadd").click(function(){
 						$.ajax({
 							type: "POST",
-							data: '',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 							url: '<?=base_url()?>akademik/kirimharian/kirimharianremidial',
 							beforeSend: function() {
 								$("#kirimharianremidiadd").append("<img style='float: right; position: absolute; top: -5px; right: 3px;' id='waitharian4' src='<?=$this->config->item('images').'loaderhover.gif';?>' />");
@@ -67,7 +67,7 @@
 					$("#kirimharian").click(function(){
 						$.ajax({
 							type: "POST",
-							data: '',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 							url: '<?=base_url()?>akademik/kirimharian/kirimhariannya',
 							beforeSend: function() {
 								$("#kirimharian").append("<img style='float: right; position: absolute; top: -5px; right: 3px;' id='waitharian5' src='<?=$this->config->item('images').'loaderhover.gif';?>' />");
@@ -81,7 +81,7 @@
 					});//Submit End
 					$.ajax({
 							type: "POST",
-							data: 'ajax=1',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1',
 							url: '<?=base_url()?>akademik/kirimharian/daftarharianlist',
 							beforeSend: function() {
 								$("#daftar_harian").append("<img style='float: right; position: absolute; top: -5px; right: 3px;' id='waitharian6' src='<?=$this->config->item('images').'loaderhover.gif';?>' />");
@@ -104,6 +104,7 @@
 				
 				<div id="contentpage">
 							<form action="" method="post" id="filterpelajaranharian" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<table class="tabelfilter">
 								<tr>
 								<td>

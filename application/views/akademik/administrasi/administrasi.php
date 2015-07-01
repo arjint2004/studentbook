@@ -8,7 +8,7 @@
 					$("#filterpelajaranadministrasi select#kelas").change(function(e){
 						$.ajax({
 							type: "POST",
-							data: $("form#filterpelajaranadministrasi").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpelajaranadministrasi").serialize(),
 							url: '<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$(this).val(),
 							beforeSend: function() {
 								$("#filterpelajaranadministrasi select#kelas").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -24,7 +24,7 @@
 					$("#filterpelajaranadministrasi select#pelajaran").change(function(e){
 						$.ajax({
 							type: "POST",
-							data: $("form#filterpelajaranadministrasi").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpelajaranadministrasi").serialize(),
 							url: '<?=base_url()?>akademik/administrasi/administrasilist',
 							beforeSend: function() {
 								$("#filterpelajaranadministrasi select#pelajaran").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -39,7 +39,7 @@
 					$("#administrasiaddtmbh").click(function(){
 						$.ajax({
 							type: "POST",
-							data: $('form#filterpelajaranadministrasi').serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$('form#filterpelajaranadministrasi').serialize(),
 							url: '<?=base_url()?>akademik/administrasi/addadministrasi',
 							beforeSend: function() {
 								$("#administrasiaddtmbh").append("<img id='wait' src='<?=$this->config->item('images').'loaderhover.gif';?>' />");
@@ -54,7 +54,7 @@
 					
 				$.ajax({
 					type: "POST",
-					data: $("form#filterpelajaranadministrasi").serialize(),
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpelajaranadministrasi").serialize(),
 					url: '<?=base_url()?>akademik/administrasi/administrasilist',
 					beforeSend: function() {
 						$("#filterpelajaranadministrasi select#pelajaran").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -72,6 +72,7 @@
 				
 				<div id="contentpage">
 							<form action="" method="post" id="filterpelajaranadministrasi" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<table class="tabelfilter">
 								<tr>
 								<td>

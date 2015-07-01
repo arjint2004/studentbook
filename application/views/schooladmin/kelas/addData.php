@@ -17,7 +17,7 @@ $(document).ready(function(){
 	function loaddatakelas(){
 		$.ajax({
 			type: "POST",
-			data: "ajax=1",
+			data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1",
 			url: base_url+'admin/kelas/listData',
 			beforeSend: function() {
 				$("#listkelasloading").html("<img src='"+config_images+"loading.png' />");
@@ -48,7 +48,7 @@ $(document).ready(function(){
 		$.ajax({
 			type: 'POST',
 			url: $(this).attr('action'),
-			data: $(this).serialize(),
+			data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize(),
 			success: function(data) {
 				$('#ajaxside').html('');
 				loaddatakelas();
@@ -66,6 +66,7 @@ $(document).ready(function(){
 ?>
 <div class="addaccount">
 <form action="<? echo base_url();?>admin/kelas/adddata" id="kelasform" name="kelasform" method="post" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 	<div class="addaccountclose" onclick="$('.addaccount').remove();"></div>
 	<div class="headadd"><h3> Tambah data kelas </h3>
 		<? if($this->session->userdata['ak_setting']['jenjang'][0]['nama']=='SD' || $this->session->userdata['ak_setting']['jenjang'][0]['nama']=='SMP'){?>

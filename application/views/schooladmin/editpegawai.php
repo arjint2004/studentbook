@@ -39,7 +39,7 @@
 			if($frm.find('*[name=nama]').is('.valid') && $frm.find('*[name=username]').is('.valid') && $frm.find('*[name=password]').is('.valid') ) {
 				$.ajax({
 					type: "POST",
-					data: $(this).serialize(),
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize(),
 					url: $(this).attr('action'),
 					beforeSend: function() {
 						$("#ajax").html("<img src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -48,7 +48,7 @@
 						$(".addaccount").remove();	
 							$.ajax({
 								type: "POST",
-								data: "ajax=1",
+								data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1",
 								url: '<?php echo base_url(); ?>admin/schooladmin/dataakun/guru/0',
 								beforeSend: function() {
 									$("#ajax").html("<img src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -71,6 +71,7 @@
                     <h3> Edit data  </h3>
                      <div class="ajax_message"></div>
                      <form class="edituseraccount" action="<?php echo base_url(); ?>admin/schooladmin/editpegawai" method="post">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                     	<p class="column one-third">
                             Nama :<input name="nama" type="text" class="required" placeholder="Nama"  value="<?=$dataedit[0]['nama']?>" />
                         </p>

@@ -19,7 +19,7 @@
 										$("#kepribadiandataform").submit(function(e){
 											$.ajax({
 												type: "POST",
-												data: $(this).serialize()+'&simpan=true'+'&'+$('form#kepribadianform').serialize(),
+												data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize()+'&simpan=true'+'&'+$('form#kepribadianform').serialize(),
 												url: $(this).attr('action'),
 												beforeSend: function() {
 													$("#simpancatatan").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -35,7 +35,7 @@
 										if(confirm('Data akan dihapus. klik "OK" untuk menghapus. Klik "Cancel" untuk batal. ')){
 											$.ajax({
 													type: "POST",
-													data: '',
+													data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 													url: base_url+'akademik/catatanguru/delete/'+id,
 													beforeSend: function() {
 														$(thisobj).after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -50,6 +50,7 @@
 									}
 								</script>
 								<form action="<?=base_url()?>akademik/kepribadian/kepribadianlist" method="post" id="kepribadiandataform" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 								
 								<table id="data">
 										<thead>

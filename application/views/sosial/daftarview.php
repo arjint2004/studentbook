@@ -35,7 +35,7 @@
 			var self = $(this);
 			$.ajax({
 					type: "POST",
-					data: 'username='+$(self).val(),
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&username='+$(self).val(),
 					url: '<?=base_url()?>homepage/cekusername',
 					beforeSend: function() {
 						$(self).after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -104,6 +104,7 @@
 				<!--<h2 style="margin-top:20px;margin-bottom:0;">LANGKAH 1</h2>-->
                 <div class="hr"></div>
                 <form method="POST" action="<?=site_url('sekolah/daftar_sekolah')?>">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                     <div class="row-fluid">
                         <div class="span3" id="sp3">
                             Jenjang Sekolah

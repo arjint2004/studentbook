@@ -36,7 +36,7 @@
 			if(<? if(isset($_POST['id_pelajarans']) || $id_pelajaran!=0){}else{?>$frm.find('*[name=id_pelajaran]').is('.valid') && <?}?> $frm.find('*[name=bab]').is('.valid') && $frm.find('*[name=pokok_bahasan]').is('.valid') && $frm.find('*[name=keterangan]').is('.valid')) {
 				$.ajax({
 					type: "POST",
-					data: $(this).serialize()+'&'+$('form#nilai').serialize(),
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize()+'&'+$('form#nilai').serialize(),
 					url: $(this).attr('action'),
 					beforeSend: function() {
 						$("#simpanpr").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -79,6 +79,7 @@
 <script type="text/javascript" src="<?=$this->config->item('js');?>upload.js"></script>	
 <div class="addaccount">
 <form method="post" name="materi" enctype="multipart/form-data" id="materirpp"  style="width:700px;" action="<? echo base_url();?>akademik/instrumen/materi">
+	<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 	<div onclick="$('.addaccount').remove();" class="addaccountclose"></div>
 		
 		<table>

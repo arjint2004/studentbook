@@ -20,7 +20,7 @@
 						}
 						$.ajax({
 								type: "POST",
-								data: "ajax=1&id_pelajaran="+$(thisobj).attr('id')+"&jenjang="+$('select#jenjangselect').val()+"&jurusan="+$('input#id_jurusan').val()+"&semester="+$('select#semesterselect').val(),
+								data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1&id_pelajaran="+$(thisobj).attr('id')+"&jenjang="+$('select#jenjangselect').val()+"&jurusan="+$('input#id_jurusan').val()+"&semester="+$('select#semesterselect').val(),
 								url: base_url+'admin/pelajaran/adddatasub',
 								beforeSend: function() {
 									$(thisobj).append("<img id='wait' src='"+config_images+"loaderhover.gif' />");
@@ -38,7 +38,7 @@
 						if(confirm('Data akan di hapus!')){
 							$.ajax({
 								type: "POST",
-								data: 'ajax=1&id_pelajaran='+$(thisobj).attr('id'),
+								data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1&id_pelajaran='+$(thisobj).attr('id'),
 								url: '<?=base_url()?>admin/pelajaran/delete/'+$(thisobj).attr('id'),
 								beforeSend: function() {
 									$(thisobj).append("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -51,7 +51,7 @@
 									}else{
 										$.ajax({
 											type: "POST",
-											data: "ajax=1",
+											data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1",
 											url: base_url+'admin/pelajaran/listData',
 											beforeSend: function() {
 												$("#listpelajaranloading").html("<img src='"+config_images+"loading.png' />");
@@ -73,7 +73,7 @@
 						var thisobj=$(this);
 						$.ajax({
 							type: "POST",
-							data: $("form#filterpelajaran").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpelajaran").serialize(),
 							url: $("form#filterpelajaran").attr('action'),
 							beforeSend: function() {
 								$(thisobj).after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -92,7 +92,7 @@
 					$('#sub'+id).toggle('fade');
 					$.ajax({
 						type: "POST",
-						data: 'ajax=1',
+						data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1',
 						url: '<?=base_url()?>admin/pelajaran/listDataSub/'+id+'',
 						beforeSend: function() {
 							//$("#filterpelajaranharian select#kelas").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -109,6 +109,7 @@
 				</script>
 				<div id="contentpage">
 							<form action="<?=base_url()?>admin/pelajaran/listData" method="post" id="filterpelajaran" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<table class="tabelfilter">
 								<tr>
 									<td>

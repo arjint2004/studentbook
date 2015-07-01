@@ -24,7 +24,7 @@
 				var obj=$(this);
 				$.ajax({
 					type: "POST",
-					data: 'id_kelas='+$('select#kelas').val()+'&pelajaran='+$('select#pelajaran').val()+'&ajax=1',
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas='+$('select#kelas').val()+'&pelajaran='+$('select#pelajaran').val()+'&ajax=1',
 					url: '<?=base_url('akademik/kirimpr/daftarprlist')?>',
 					beforeSend: function() {
 						$(obj).after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -60,7 +60,7 @@
 			if(<? if(isset($_POST['id_pelajaran'])){}else{?>$frm.find('*[name=id_pelajaran]').is('.valid') && <? } ?> $frm.find('*[name=bab]').is('.valid') && $frm.find('*[name=judul]').is('.valid') && $frm.find('*[name=tanggal_kumpul]').is('.valid') && $frm.find('*[name=keterangan]').is('.valid')) {
 				$.ajax({
 					type: "POST",
-					data: $(this).serialize()+'&'+$('form#nilai').serialize(),
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize()+'&'+$('form#nilai').serialize(),
 					url: $(this).attr('action'),
 					beforeSend: function() {
 						$("#simpanpr").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -72,7 +72,7 @@
 						
 						$.ajax({
 							type: "POST",
-							data: 'id_pelajaran='+$('select#pelajaran_add').val()+'&ajax=1&id_pembelajaran=<?=$id_pembelajaran?>',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_pelajaran='+$('select#pelajaran_add').val()+'&ajax=1&id_pembelajaran=<?=$id_pembelajaran?>',
 							<? if($id_pelajaran==0){?>
 							url: '<?=base_url('akademik/perencanaan/afektif')?>',
 							<? }else{ ?>
@@ -109,6 +109,7 @@ $(function() {
 </script>	
 <div class="addaccount">
 <form method="post" name="kirimpr" enctype="multipart/form-data" id="kirimpr"  style="width:700px;" action="<? echo base_url();?>akademik/perencanaan/kognitif/0/<?=$id_pelajaran?>">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 	<div onclick="$('.addaccount').remove();" class="addaccountclose"></div>
 		
 		<table>

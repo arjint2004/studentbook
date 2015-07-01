@@ -5,7 +5,7 @@ $(document).ready(function(){
 			var obj=$(this);
 			$.ajax({
 				type: "POST",
-				data: $(this).serialize(),
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize(),
 				url: $(this).attr('action'),
 				beforeSend: function() {
 					$(".error-box").delay(1000).html('Menyimpan Data');

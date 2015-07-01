@@ -34,7 +34,7 @@
 			if($frm.find('*[name=nominal]').is('.valid') &&  $frm.find('*[name=keterangan]').is('.valid')) {
 				$.ajax({
 					type: "POST",
-					data: $(this).serialize(),
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize(),
 					url: $(this).attr('action'),
 					beforeSend: function() {
 						//$(this).after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -68,6 +68,7 @@
 				
 	<div class="full file" style="margin:0;min-height:50px;overflow:auto;border:none;">
 		<form method="post" name="topup" enctype="multipart/form-data" id="topup" action="<? echo base_url();?>superadmin/sekolah/topupsms/<?=$id_sekolah?>">
+				<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 		<table class="noborder" id="topupsms<?=$id_sekolah?>">
 			<tbody>
 				<tr>

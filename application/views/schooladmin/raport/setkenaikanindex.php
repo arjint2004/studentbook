@@ -5,7 +5,7 @@
 					var obj=$(this);
 					$.ajax({
 						type: "POST",
-						data: 'id_kelas='+$(obj).val(),
+						data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas='+$(obj).val(),
 						url: '<?=base_url('admin/raport/setkenaikan')?>/'+$(obj).val(),
 						beforeSend: function() {
 							$('#kelaskenaikanadmin').after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");

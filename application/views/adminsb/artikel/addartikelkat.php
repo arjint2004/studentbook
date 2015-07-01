@@ -5,7 +5,7 @@
 						var thisobj=$(this);
 						$.ajax({
 							type: "POST",
-							data: $("form#artikelkatform").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#artikelkatform").serialize(),
 							url: $(thisobj).attr('action'),
 							beforeSend: function() {
 								$(thisobj).after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -28,6 +28,7 @@
 <div class="addaccount">
 <? if(isset($data)){$action="editkat";}else{$action="addartikelkat";}?>
 <form action="<? echo base_url();?>adminsb/artikel/<?=$action?>" enctype="multipart/form-data" id="artikelkatform" name="artikelkatform" method="post" >
+<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 	<div class="addaccountclose" onclick="$('.addaccount').remove();"></div>
 	<h3> <?=$page_title?> </h3><?// pr($pelajaran);?>
 		<table class="adddata">

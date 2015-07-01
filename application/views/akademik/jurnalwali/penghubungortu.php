@@ -35,7 +35,7 @@
 						var obj=$(this);
 						$.ajax({
 							type: "POST",
-							data: 'id_kelas='+$(this).val(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas='+$(this).val(),
 							url: urll,
 							beforeSend: function() {
 								$(obj).after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -88,7 +88,7 @@
 					if($frm.find('*[name=id_kelas]').is('.valid') && $frm.find('*[name=keterangan]').is('.valid') && $frm.find('*[name=subject]').is('.valid')) {
 						$.ajax({
 							type: "POST",
-							data: $(this).serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize(),
 							url: $(this).attr('action'),
 							beforeSend: function() {
 								$(".simpanlaporan").after("<img id='wait' class='waitpenghub' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -100,7 +100,7 @@
 								
 								$.ajax({
 									type: "POST",
-									data: 'id_kelas='+$('select#kelaslaporan').val(),
+									data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas='+$('select#kelaslaporan').val(),
 									url: '<?=base_url('akademik/jurnalwali/penghubungortulist/0')?>',
 									beforeSend: function() {
 										$(".simpanlaporan").after("<img id='wait' class='waitpenghub' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -145,6 +145,7 @@
                         </ul>
                         <div class="tabs-frame-content listlap">
 							<form id="penghubunglist" method="post" action="">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<table class="tabelfilter">
 								<tbody>
 									<tr>
@@ -183,6 +184,7 @@
 							</div>
                         </div>
                         <div class="tabs-frame-content sendlap" style="display:none;">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                             <!-- **Respond Form** -->                      
 							<div class="respond">
 								<form method="post" name="kirimlaporan" enctype="multipart/form-data" id="kirimlaporan" action="<? echo base_url();?>akademik/jurnalwali/penghubungortu">

@@ -21,7 +21,7 @@
 					if($frm.find('*[name=nama]').is('.valid')) {
 						$.ajax({
 							type: "POST",
-							data: $(this).serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize(),
 							url: $(this).attr('action'),
 							beforeSend: function() {
 								
@@ -30,7 +30,7 @@
 								$(".addaccount").remove();
 									$.ajax({
 										type: "POST",
-										data: "ajax=1",
+										data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1",
 										url: '<?php echo base_url(); ?>admin/jurusan/listData',
 										beforeSend: function() {
 											$("#listkelas").html("<img src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -50,6 +50,7 @@
 				</script>
 <div class="addaccount">
 <form action="<? echo base_url();?>admin/jurusan/adddata" id="jurusanform" name="jurusanform" method="post" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 	<div class="addaccountclose" onclick="$('.addaccount').remove();"></div>
 	<h3> Tambah data Jurusan </h3>
 		<table class="adddata">

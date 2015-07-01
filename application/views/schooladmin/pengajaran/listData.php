@@ -2,7 +2,7 @@
 					function deletedata(obj){
 						$.ajax({
 							type: "POST",
-							data: '',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 							url: $(obj).attr('url'),
 							beforeSend: function() {
 								$("#ajaxside").html("<img src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -13,7 +13,7 @@
 								}else{
 									$.ajax({
 										type: "POST",
-										data: $("form#filterpengajaran").serialize(),
+										data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpengajaran").serialize(),
 										url: $("form#filterpengajaran").attr('action'),
 										beforeSend: function() {
 											$("#ajaxside").html("<img src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -41,7 +41,7 @@
 					$("#filterpengajaran select.selectfilter").change(function(e){
 						$.ajax({
 							type: "POST",
-							data: $("form#filterpengajaran").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpengajaran").serialize(),
 							url: $("form#filterpengajaran").attr('action'),
 							beforeSend: function() {
 								$("#ajaxside").html("<img src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -56,7 +56,7 @@
 					$("a#operpengajar").click(function(e){
 						$.ajax({
 							type: "POST",
-							data: 'ajax=1&id_pengajar='+$(this).attr('id_pengajar')+'&id_pegawai='+$(this).attr('id_pegawai'),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1&id_pengajar='+$(this).attr('id_pengajar')+'&id_pegawai='+$(this).attr('id_pegawai'),
 							url: $(this).attr('url'),
 							beforeSend: function() {
 								$(this).after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -75,6 +75,7 @@
 				<?//pr($pengajaran);?>
 				<div id="contentpage">
 							<form action="<?=base_url()?>admin/pengajaran/listData" method="post" id="filterpengajaran" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<table class="tabelfilter">
 								<tr>
 									<td>Filter Guru

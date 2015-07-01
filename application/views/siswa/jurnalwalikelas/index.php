@@ -3,7 +3,7 @@
 					
 						$.ajax({
 							type: "POST",
-							data: '&id_kelas=<?=$siswa[0]['id_kelas_siswa_det_jenjang']?>',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&&id_kelas=<?=$siswa[0]['id_kelas_siswa_det_jenjang']?>',
 							url: '<?=base_url()?>siswa/jurnalwalikelas/jurnalwalikelaslist',
 							beforeSend: function() {
 								$("a#jurnalwalikelas").append("<img style='float: right; position: absolute; top: -5px; right: 3px;' id='wait' src='<?=$this->config->item('images').'loaderhover.gif';?>' />");

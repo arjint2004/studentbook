@@ -28,7 +28,7 @@
 					
 					$.ajax({
 							type: "POST",
-							data: $('form#formraportmanual').serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$('form#formraportmanual').serialize(),
 							url: $('form#formraportmanual').attr('action'),
 							beforeSend: function() {
 								

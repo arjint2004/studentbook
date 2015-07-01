@@ -9,7 +9,7 @@
 					<? if($simpan=='simpan'){?>
 						$.ajax({
 							type: "POST",
-							data: "ajax=1",
+							data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1",
 							url: '<?=base_url()?>admin/content/edit/<?=$title?>',
 							beforeSend: function() {
 								$("#listcontentloading").html("<img src='"+config_images+"loading.png' />");
@@ -25,7 +25,7 @@
 						var obj=$(this);
 						$.ajax({
 							type: "POST",
-							data: "ajax=1",
+							data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1",
 							url: $(this).attr('href'),
 							beforeSend: function() {
 								$("#listcontentloading").html("<img src='"+config_images+"loading.png' />");

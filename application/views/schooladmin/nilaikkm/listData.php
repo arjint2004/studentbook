@@ -8,6 +8,7 @@
 				<div id="contentpage">
 							
 							<form action="<?=base_url()?>admin/nilaikkm/listData" method="post" id="filterpelajaranadd" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<table class="tabelkelas">
 								<thead>
 									<tr> 

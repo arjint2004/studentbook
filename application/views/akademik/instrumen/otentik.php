@@ -56,7 +56,7 @@
 											$(".error-box").html("Memproses Data").fadeIn("slow");
 											$.ajax({
 												type: "POST",
-												data: $(this).serialize()+'&simpan=true&id_pembelajaran=<?=$id_pembelajaran?>',
+												data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize()+'&simpan=true&id_pembelajaran=<?=$id_pembelajaran?>',
 												url: $(this).attr('action'),
 												beforeSend: function() {
 													$(".simpancatatan").after("<img class='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -79,7 +79,7 @@
 														$("table tr td#rataotentik").html($ratascor);
 														$.ajax({
 																	type: "POST",
-																	data: 'id_det_jenjang='+$('select#otentiksiswa').val()+'&nama_siswa='+$('select#otentiksiswa').find(":selected").text(),
+																	data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_det_jenjang='+$('select#otentiksiswa').val()+'&nama_siswa='+$('select#otentiksiswa').find(":selected").text(),
 																	url: '<?=site_url('akademik/instrumen/otentik/'.$param.'')?>',
 																	beforeSend: function() {
 																	$("select#otentiksiswa").after("<img id='wait' style='margin: 0px; float: right; position: relative; top: 24px;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -106,7 +106,7 @@
 										if(confirm('Data indikator otentik akan dihapus. klik "OK" untuk menghapus. Klik cancel untuk batal. ')){
 											$.ajax({
 													type: "POST",
-													data: '',
+													data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 													url: base_url+'akademik/instrumen/hapusindikator/'+id,
 													beforeSend: function() {
 														$(thisobj).after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");

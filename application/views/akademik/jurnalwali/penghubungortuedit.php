@@ -2,6 +2,7 @@
  <!-- **Respond Form** -->                      
 							<div class="respond">
 								<form method="post" name="kirimlaporan" enctype="multipart/form-data" id="kirimlaporan" action="<? echo base_url();?>akademik/jurnalwali/penghubungortu">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 									<table class="adddata lap">
 										<tbody>
 										<tr>

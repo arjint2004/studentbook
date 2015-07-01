@@ -15,7 +15,7 @@ $(function(){
 					<? if($jenis==''){?>
 					$.ajax({
 							type: "POST",
-							data: 'filter=1&jenis=<?=$_POST['jenis']?>',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&filter=1&jenis=<?=$_POST['jenis']?>',
 							url: '<?=base_url()?>akademik/kepsek/statistik/<?=$_POST['jenis']?>',
 							beforeSend: function() {
 								$("select#filterrppstat").after("<img id='waitfilterrppstat<?=$_POST['jenis']?>' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -30,7 +30,7 @@ $(function(){
 						if($(this).val()!=''){
 							$.ajax({
 								type: "POST",
-								data: 'filter='+$(this).val()+'&jenis=<?=$_POST['jenis']?>',
+								data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&filter='+$(this).val()+'&jenis=<?=$_POST['jenis']?>',
 								url: '<?=base_url()?>akademik/kepsek/statistik/<?=$_POST['jenis']?>',
 								beforeSend: function() {
 									$("select#filterrppstat").after("<img id='waitfilterrppstat<?=$_POST['jenis']?>' src='<?=$this->config->item('images').'loading.png';?>' />");

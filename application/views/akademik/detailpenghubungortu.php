@@ -6,7 +6,7 @@
 								$(document).ready(function(){
 									$.ajax({
 										type: "GET",
-										data: '',
+										data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 										url: '<?=base_url()?>akademik/comment/index/<?=$out['id']?>/first/penghubung',
 										beforeSend: function() {
 											//$("#filterpelajaranpr select#kelas").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");

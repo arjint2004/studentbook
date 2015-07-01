@@ -30,7 +30,7 @@ $(document).ready(function(){
 			if($frm.find('*[name=subject]').is('.valid') && $frm.find('*[name=id_kelas]').is('.valid') && $frm.find('*[name=id_pelajaran]').is('.valid')) {
 				$.ajax({
 					type: "POST",
-					data: $(this).serialize(),
+					data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize(),
 					url: $(this).attr('action'),
 					beforeSend: function() {
 						$("#simpan").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -40,7 +40,7 @@ $(document).ready(function(){
 						$(".addaccount").remove();
 							$.ajax({
 								type: "POST",
-								data: "ajax=1",
+								data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1",
 								url: '<?php echo base_url(); ?>admin/nilaiulharian/listSubjectUlanganHarian',
 								beforeSend: function() {
 									$("#listpelajaran").html("<img src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -60,7 +60,7 @@ $(document).ready(function(){
 		$("select#kelas_add").change(function(e){
 			$.ajax({
 				type: "POST",
-				data: $("form#filterpelajaran").serialize(),
+				data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpelajaran").serialize(),
 				url: '<?=base_url()?>/admin/pelajaran/getmapelByKelas/'+$(this).val(),
 				beforeSend: function() {
 					$('select#kelas_add').after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -76,6 +76,7 @@ $(document).ready(function(){
 </script>
 <div class="addaccount">
 <form action="<? echo base_url();?>akademik/nilai/addSubjectUlHarian" id="subjectnilai" name="subjectnilai" method="post" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 	<div class="addaccountclose" onclick="$('.addaccount').remove();"></div>
 	<h3> Tambah data Pelajaran </h3>
 		<table class="adddata">

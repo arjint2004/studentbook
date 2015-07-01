@@ -8,7 +8,7 @@
 					$("#filterpelajaranlistSubject select#kelasListdubject").change(function(e){
 						$.ajax({
 							type: "POST",
-							data: $("form#filterpelajaranlistSubject").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpelajaranlistSubject").serialize(),
 							url: '<?=base_url()?>admin/pelajaran/getMapelByKelasAndPegawai/'+$(this).val(),
 							beforeSend: function() {
 								$("#filterpelajaranlistSubject select#kelasListdubject").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -24,7 +24,7 @@
 					$("#filterpelajaranlistSubject select#pelajaranlistsubject").change(function(e){
 						$.ajax({
 							type: "POST",
-							data: $("form#filterpelajaranlistSubject").serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpelajaranlistSubject").serialize(),
 							url: '<?=base_url()?>akademik/nilai/getsubject',
 							beforeSend: function() {
 								$("#filterpelajaranlistSubject select#pelajaranlistsubject").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -39,7 +39,7 @@
 					$("#masukbuttonlistSubject").click(function(){
 						$.ajax({
 							type: "POST",
-							data: '',
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 							url: '<?=base_url()?>akademik/nilai/addnilai/<?=base64_encode($jenis);?>',
 							beforeSend: function() {
 								$("#masukbuttonlistSubject").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -57,7 +57,7 @@
 						if(confirm('Jika subject di hapus maka nilai juga akan terhapus')){
 							$.ajax({
 								type: "POST",
-								data: 'id='+idsubject+'&jenis='+jenis,
+								data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id='+idsubject+'&jenis='+jenis,
 								url: '<?=base_url()?>akademik/nilai/deletesubjectnilai',
 								beforeSend: function() {
 									$(obj).after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -79,7 +79,7 @@
 						
 							$.ajax({
 								type: "POST",
-								data: 'id_subject='+idsubject+'&kelas='+id_kelas+'&pelajaran='+id_pelajaran+'&remidial='+remidial+'&subject='+subject,
+								data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_subject='+idsubject+'&kelas='+id_kelas+'&pelajaran='+id_pelajaran+'&remidial='+remidial+'&subject='+subject,
 								url: '<?=base_url()?>akademik/nilai/editnilai/<?=base64_encode($jenis)?>',
 								beforeSend: function() {
 									$(obj).after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -100,6 +100,7 @@
 				
 				<div id="contentpage">
 							<form action="" method="post" id="filterpelajaranlistSubject" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<table class="tabelfilter">
 								<tr>
 								<td>

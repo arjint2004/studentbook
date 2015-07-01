@@ -40,6 +40,7 @@
         </div>
         <br style="clear:both;"/>
         <form name="thumbnail" action="<?php echo $_SERVER["PHP_SELF"];?>" method="post">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                 <input type="hidden" name="x1" value="" id="x1" />
                 <input type="hidden" name="y1" value="" id="y1" />
                 <input type="hidden" name="x2" value="" id="x2" />
@@ -54,6 +55,7 @@
 
 <h2>Upload Photo</h2>
 <form name="photo" enctype="multipart/form-data" action="<?php echo $_SERVER["PHP_SELF"];?>" method="post">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 Photo <input type="file" name="image" size="30" /> <input type="submit" name="upload" value="Upload" />
 </form>
 <?php 	endif ?>

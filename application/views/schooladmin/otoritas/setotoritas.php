@@ -24,7 +24,8 @@
                 <h3> Set otoritas Akun </h3>
 				<div class="column fullotoritas">
                     <!-- **Team** -->
-			<form action="<?=base_url()?>admin/otoritas/setotoritas/<?=$dataId?>" method="post" id="formotoritas">                    
+			<form action="<?=base_url()?>admin/otoritas/setotoritas/<?=$dataId?>" method="post" id="formotoritas">        
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">            
 						<div class="team">          
                         <div class="image"> 
 						

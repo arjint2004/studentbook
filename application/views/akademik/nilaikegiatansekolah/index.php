@@ -3,7 +3,7 @@
 					$("#nilaikegiatanform select#kelas").change(function(e){
 						$.ajax({
 							type: "POST",
-							data: 'id_kelas='+$(this).val(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas='+$(this).val(),
 							url: '<?=base_url()?>akademik/nilaikegiatansekolah/nilaiekstralist/'+$(this).val(),
 							beforeSend: function() {
 								$("#nilaikegiatanform select#kelas").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -20,7 +20,7 @@
 					$("#nilaikegiatanform").submit(function(e){
 						$.ajax({
 								type: "POST",
-								data: $(this).serialize(),
+								data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize(),
 								url: $(this).attr('action'),
 								beforeSend: function() {
 									$("#simpannilaiekstra").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -31,7 +31,7 @@
 									$("#wait2").remove();	
 									$.ajax({
 										type: "POST",
-										data: 'id_kelas='+$('select#kelas').val(),
+										data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas='+$('select#kelas').val(),
 										url: '<?=base_url()?>akademik/nilaikegiatansekolah/nilaiekstralist/'+$('select#kelas').val(),
 										beforeSend: function() {
 											$("#nilaikegiatanform select#kelas").after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -53,6 +53,7 @@
 
 				<div id="contentpage">
 							<form  method="post" action="<?=base_url()?>akademik/nilaikegiatansekolah/nilaiekstralist" id="nilaikegiatanform" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<table class="tabelfilter">
 								<tr>
 								<td>

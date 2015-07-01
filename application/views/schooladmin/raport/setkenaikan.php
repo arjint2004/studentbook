@@ -10,7 +10,7 @@ div.error { color:red; margin-left: 0px; font-size:10px !important; font-weight:
 				submitHandler: function(form) {
 					$.ajax({
 							type: "POST",
-							data: $('#setkenaikan').serialize()+'&id_kelas='+$('#kelaskenaikanadmin').val(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$('#setkenaikan').serialize()+'&id_kelas='+$('#kelaskenaikanadmin').val(),
 							url: $('#setkenaikan').attr('action'),
 							beforeSend: function() {
 								$("#simpankenaikan").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -41,6 +41,7 @@ div.error { color:red; margin-left: 0px; font-size:10px !important; font-weight:
 	});
 </script>
 <form action="<? echo base_url();?>akademik/raport/setkenaikan" id="setkenaikan" name="nilai" method="post" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 <?
 //pr($siswasudahnaik);
 //pr($kelasuntuknaik);

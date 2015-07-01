@@ -20,6 +20,7 @@
                     <h3> Send us an Email </h3>
                         <div class="ajax_message"></div>
                         <form class="sendmail" action="php/sendmail.php" method="get">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                             <p>
                                 <label> Your Name <span class="required"> * </span> </label>
                                 <input name="name" type="text" />

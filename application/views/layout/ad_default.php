@@ -55,7 +55,9 @@
 		<div class="sixteen columns">
 
 			<form method="POST" id="searchform" action="<?=base_url?>sos/sekolah/pencari_sekolah">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 					<input type="text" class="text_input" alt="Search our site" value="Cari Sekolah" onfocus="this.value=(this.value=='Cari Sekolah') ? '' : this.value;" onblur="this.value=(this.value=='') ? 'Cari Sekolah' : this.value;" name="pencarian">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 					<input type="submit" value="Cari" name="submit">
 			</form>
 			<div id="logo">
@@ -141,6 +143,7 @@
 			<? } ?>
 			<li class='log searchz'>
 				<form  method="POST" action="<?=base_url()?>sos/sekolah/pencari_sekolah" id="loginhomez">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 						<input type="text"  value="Cari Sekolah" onfocus="this.value=(this.value=='Cari Sekolah') ? '' : this.value;" onblur="this.value=(this.value=='') ? 'Cari Sekolah' : this.value;"  class="login_user" name="pencarian">
 						<input type="submit" value="Cari" id="" name="submit">
 				</form>

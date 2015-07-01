@@ -13,7 +13,7 @@
 		function getAllKelas(){
 			$.ajax({
 						type: "POST",
-						data: '',
+						data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 						url: base_url+'sos/pegawai/getAllKelas',
 						beforeSend: function() {
 							$('div#tagsinputnotmn').after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -28,7 +28,7 @@
 		function getAllGuru(){
 			$.ajax({
 						type: "POST",
-						data: '',
+						data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 						url: base_url+'admin/sms/getAllGuru',
 						beforeSend: function() {
 							$('div#tagsinputnotmn').after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -101,6 +101,7 @@
 							</ul>
 						<div class="clear"></div>
                         <form id="form_dialog" class="span6" method="post" action="" enctype="multipart/form-data">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                             <input type="file" name="lampiran" id="lampiran" style="opacity: 0;">
                             <label style="float:left;"><b>Kepada :</b></label><br />
                             

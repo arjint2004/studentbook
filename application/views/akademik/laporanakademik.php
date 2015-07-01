@@ -9,7 +9,7 @@
 					$("select#kelaslaporan").change(function(e){
 						$.ajax({
 							type: "POST",
-							data: $("form#jurnalwaliformcontent").serialize(),
+							data: '<?php echo $CI->security->get_csrf_token_name();?>=<?php echo $CI->security->get_csrf_hash(); ?>&'+$("form#jurnalwaliformcontent").serialize(),
 							url: '<?=base_url()?>akademik/jurnalwali/getOptionSiswaByIdKelas/'+$(this).val(),
 							beforeSend: function() {
 								$("select#kelaslaporan").after("<img id='wait' src='<?=$CI->config->item('images').'loading.png';?>' />");
@@ -45,7 +45,7 @@
 						var obj=$(this);
 						$.ajax({
 							type: "POST",
-							data: 'id_kelas='+$('select#kelas').val()+'&pelajaran='+$('select#pelajaran').val()+'&ajax=1',
+							data: '<?php echo $CI->security->get_csrf_token_name();?>=<?php echo $CI->security->get_csrf_hash(); ?>&id_kelas='+$('select#kelas').val()+'&pelajaran='+$('select#pelajaran').val()+'&ajax=1',
 							url: '<?=base_url('akademik/kirimlaporan/daftarlaporanlist')?>',
 							beforeSend: function() {
 								$(obj).after("<img id='wait' style='margin:0;float:right;'  src='<?=$CI->config->item('images').'loading.png';?>' />");
@@ -71,7 +71,7 @@
 					if($frm.find('*[name=id_kelas]').is('.valid') && $frm.find('*[name=id_siswa]').is('.valid') && $frm.find('*[name=kepada]').is('.valid') && $frm.find('*[name=keterangan]').is('.valid')) {
 						$.ajax({
 							type: "POST",
-							data: $(this).serialize()+'&'+$('form#nilai').serialize(),
+							data: '<?php echo $CI->security->get_csrf_token_name();?>=<?php echo $CI->security->get_csrf_hash(); ?>&'+$(this).serialize()+'&'+$('form#nilai').serialize(),
 							url: $(this).attr('action'),
 							beforeSend: function() {
 								$("#simpanlaporan").after("<img id='wait' style='margin:0;float:right;'  src='<?=$CI->config->item('images').'loading.png';?>' />");
@@ -83,7 +83,7 @@
 								
 								$.ajax({
 									type: "POST",
-									data: 'id_kelas='+$('select#kelas_add').val()+'&pelajaran='+$('select#pelajaran_add').val()+'&ajax=1',
+									data: '<?php echo $CI->security->get_csrf_token_name();?>=<?php echo $CI->security->get_csrf_hash(); ?>&id_kelas='+$('select#kelas_add').val()+'&pelajaran='+$('select#pelajaran_add').val()+'&ajax=1',
 									url: '<?=base_url('akademik/kirimlaporan/daftarlaporanlist')?>',
 									beforeSend: function() {
 										$("#simpanlaporan").after("<img id='wait' style='margin:0;float:right;'  src='<?=$CI->config->item('images').'loading.png';?>' />");
@@ -120,6 +120,7 @@
                             <!-- **Respond Form** -->                      
 							<div class="respond">
 								<form method="post" name="kirimlaporan" enctype="multipart/form-data" id="kirimlaporan" action="<? echo base_url();?>akademik/kirimlaporan/kirimlaporanutama">
+							<input type="hidden" name="<?php echo $CI->security->get_csrf_token_name(); ?>" value="<?php echo $CI->security->get_csrf_hash(); ?>">
 									<table class="adddata lap">
 										<tbody>
 										<tr>
@@ -202,6 +203,7 @@
                             <!-- **Respond Form** -->                      
 							<div class="respond">
 								<form action="#" method="get">
+							<input type="hidden" name="<?php echo $CI->security->get_csrf_token_name(); ?>" value="<?php echo $CI->security->get_csrf_hash(); ?>">
 									
 									<label> Kepada <span> * </span> </label>
 									<p>

@@ -6,7 +6,7 @@
 				$("form#selectklsjadwal").submit();
 				/*$.ajax({
 					type: "POST",
-					data: 'id_kelas='+$(this).val(),
+					data: '<?php echo $CI->security->get_csrf_token_name();?>=<?php echo $CI->security->get_csrf_hash(); ?>&id_kelas='+$(this).val(),
 					url: '<?=base_url()?>akademik/jadwal/index',
 					beforeSend: function() {
 						$('select#kelas_addjadwal').after("<img id='wait' src='<?=$CI->config->item('images').'loading.png';?>' />");
@@ -29,6 +29,7 @@
 		<? //pr($CI->session->userdata['user_authentication']);?>
 	<div id="contentpage">
 		<form id="selectklsjadwal" action="<?=base_url()?>akademik/mainakademik/index" method="post">
+		<input type="hidden" name="<?php echo $CI->security->get_csrf_token_name(); ?>" value="<?php echo $CI->security->get_csrf_hash(); ?>">
 		<table class="tabelfilter">
 			<tbody><tr>
 				<td><?

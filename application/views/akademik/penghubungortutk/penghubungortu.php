@@ -64,7 +64,7 @@
 						var obj=$(this);
 						$.ajax({
 							type: "POST",
-							data: 'id_kelas='+$(this).val(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas='+$(this).val(),
 							url: urll,
 							beforeSend: function() {
 								$(obj).after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -113,7 +113,7 @@
 					$(".error-box").html("Menyimpan Data").fadeIn("slow");
 					$.ajax({
 						type: "POST",
-						data: $('form#penghubungortutkform').serialize(),
+						data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$('form#penghubungortutkform').serialize(),
 						url: $('form#penghubungortutkform').attr('action'),
 						beforeSend: function() {
 							
@@ -142,7 +142,7 @@
 					$(".error-box").html("Menyimpan Data").fadeIn("slow");
 					$.ajax({
 						type: "POST",
-						data: $('form#penghubungortutkformmenu').serialize(),
+						data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$('form#penghubungortutkformmenu').serialize(),
 						url: $('form#penghubungortutkformmenu').attr('action'),
 						beforeSend: function() {
 							
@@ -174,7 +174,7 @@
 					if($frm.find('*[name=id_kelas]').is('.valid') && $frm.find('*[name=keterangan]').is('.valid') && $frm.find('*[name=subject]').is('.valid')) {
 						$.ajax({
 							type: "POST",
-							data: $(this).serialize(),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize(),
 							url: $(this).attr('action'),
 							beforeSend: function() {
 								$(".simpanlaporan").after("<img id='wait' class='waitpenghub' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -186,7 +186,7 @@
 								
 								$.ajax({
 									type: "POST",
-									data: 'id_kelas='+$('select#kelaslaporan').val(),
+									data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas='+$('select#kelaslaporan').val(),
 									url: '<?=base_url('akademik/jurnalwali/penghubungortulist/0')?>',
 									beforeSend: function() {
 										$(".simpanlaporan").after("<img id='wait' class='waitpenghub' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -228,6 +228,7 @@
                         </ul>
                         <div class="tabs-frame-content listlap">
 							<form id="penghubunglist" method="post" action="">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<table class="tabelfilter">
 								<tbody>
 									<tr>
@@ -269,6 +270,7 @@
                             <!-- **Respond Form** -->                      
 							<div class="respond">
 								<form method="post" name="kirimlaporan" enctype="multipart/form-data" id="kirimlaporan" action="<? echo base_url();?>akademik/jurnalwali/penghubungortu">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 									<table class="adddata lap">
 										<tbody>
 										<tr>
@@ -369,7 +371,7 @@
 									$(".error-box").html("Mengambil Data").fadeIn("slow");
 									$.ajax({
 										type: "POST",
-										data: 'id_kelas='+$('select#kelasperkemb').val()+'&id_kelasmanu='+$('select#kelasperkembmenu').val()+'&id_det_jenjang='+$('select#siswaperkemb').val()+'&tanggalpengtk='+date+'&type='+$(obj).attr('inputId')+'&onlyview=true&save=save',
+										data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas='+$('select#kelasperkemb').val()+'&id_kelasmanu='+$('select#kelasperkembmenu').val()+'&id_det_jenjang='+$('select#siswaperkemb').val()+'&tanggalpengtk='+date+'&type='+$(obj).attr('inputId')+'&onlyview=true&save=save',
 										url: '<?=base_url()?>akademik/penghubungortutk/penghubungortu/',
 										beforeSend: function() {
 											
@@ -409,6 +411,7 @@
 								});
 							</script>
 							<form action="<? echo base_url();?>akademik/penghubungortutk/penghubungortu" id="penghubungortutkform" name="penghubungortutkform" method="post" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<table class="tabelfilter">
 								<tr>
 								<td>
@@ -451,6 +454,7 @@
 						</div>
 						<div class="tabs-frame-content menutk" style="display:none;">
 							<form action="<? echo base_url();?>akademik/penghubungortutk/penghubungortu" id="penghubungortutkformmenu" name="penghubungortutkformmenu" method="post" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<table class="tabelfilter">
 								<tr>
 								<td>

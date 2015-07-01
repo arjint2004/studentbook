@@ -10,7 +10,7 @@
 						if(confirm('Data akan di hapus!')){
 							$.ajax({
 								type: "POST",
-								data: 'ajax=1&id_pelajaran='+$(thisobj).attr('id'),
+								data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1&id_pelajaran='+$(thisobj).attr('id'),
 								url: '<?=base_url()?>/admin/pelajaran/delete/'+$(thisobj).attr('id'),
 								beforeSend: function() {
 									$(thisobj).append("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -23,7 +23,7 @@
 									}else{
 										$.ajax({
 											type: "POST",
-											data: "ajax=1",
+											data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1",
 											url: base_url+'admin/pelajaran/listData',
 											beforeSend: function() {
 												$("#listpelajaranloading").html("<img src='"+config_images+"loading.png' />");

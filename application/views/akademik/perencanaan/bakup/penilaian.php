@@ -12,7 +12,7 @@
 										$("#catatangurudataform").submit(function(e){
 											$.ajax({
 												type: "POST",
-												data: $(this).serialize()+'&simpan=true'+'&'+$('form#catatanguruform').serialize()+'&tanggal='+$('input#datekirimcatatanguru').val(),
+												data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize()+'&simpan=true'+'&'+$('form#catatanguruform').serialize()+'&tanggal='+$('input#datekirimcatatanguru').val(),
 												url: $(this).attr('action'),
 												beforeSend: function() {
 													$("#simpancatatan").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -49,7 +49,7 @@
 										if(confirm('Data catatan guru akan dihapus. klik "OK" untuk menghapus. Klik cancel untuk batal. ')){
 											$.ajax({
 													type: "POST",
-													data: '',
+													data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 													url: base_url+'akademik/catatanguru/delete/'+id,
 													beforeSend: function() {
 														$(thisobj).after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -88,6 +88,7 @@
 								</table>
 								
 								<form action="<?=base_url()?>akademik/perencanaan/penilaian" method="post" id="catatangurudataform" style="width:768px;height:100%;">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 								<table>
 									<tbody>
 										<tr>

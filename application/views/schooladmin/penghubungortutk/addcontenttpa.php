@@ -190,6 +190,7 @@
 		<div id="ajaxside"></div>
 		<div id="listpenghubungortutk">
 			<form action="<? echo base_url();?>admin/penghubungortutk/addcontenttpa" id="penghubungortutkform" name="penghubungortutkform" method="post" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                             <!--<table class="tableprofil penghubungortutkh" border="1">
 
 								  <tr>

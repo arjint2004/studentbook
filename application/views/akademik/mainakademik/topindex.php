@@ -97,7 +97,7 @@
       console.log('Login Berhasil untuk: ' + response.name);
 						$.ajax({
 							type: "POST",
-							data: 'fbaccount='+JSON.stringify(response),
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&fbaccount='+JSON.stringify(response),
 							url: '<?=base_url()?>facebook_controll/saveId',
 							beforeSend: function() {
 

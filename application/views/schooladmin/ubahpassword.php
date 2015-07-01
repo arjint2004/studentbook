@@ -7,6 +7,7 @@
 					<div id="listsemester">
 						<div id="contentpage">
 						<form action="" method="post" id="ubahpassword" />
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<input type="hidden"  value="1" name="ajax">
 							<table class="tableprofil">
 								<thead>

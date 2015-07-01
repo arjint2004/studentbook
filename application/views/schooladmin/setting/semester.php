@@ -6,7 +6,7 @@
 				function loaddatasemester(){
 					$.ajax({
 						type: "POST",
-						data: "ajax=1",
+						data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1",
 						url: base_url+'admin/setting/semester',
 						beforeSend: function() {
 							$("#ajaxside").html("<img src='"+config_images+"loading.png' />");
@@ -19,7 +19,7 @@
 				function aktifasi(obj,id,aktif){
 						$.ajax({
 							type: "POST",
-							data: "ajax=1&id="+id+"&aktif="+aktif,
+							data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1&id="+id+"&aktif="+aktif,
 							url: base_url+'admin/setting/aktifasiSemester',
 							beforeSend: function() {
 								$(obj).append("<img id='wait'style='margin: 0px; float: right; position: absolute;right:35px;' src='"+config_images+"loading.png' />");
@@ -28,7 +28,7 @@
 								$("#ajaxside").html("");
 								$.ajax({
 									type: "POST",
-									data: "ajax=1",
+									data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1",
 									url: base_url+'admin/setting/semester',
 									beforeSend: function() {
 										$("#ajaxside").html("<img src='"+config_images+"loading.png' />");

@@ -7,7 +7,7 @@
 						<? } ?>
 						$.ajax({
 							type: "POST",
-							data: $("form#filterpelajaranpembelajaran").serialize()<?if($_POST['idload']=='lainlain'){?>+untuknilai<?}?>,
+							data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$("form#filterpelajaranpembelajaran").serialize()<?if($_POST['idload']=='lainlain'){?>+untuknilai<?}?>,
 							url: '<?=$url?>',
 							beforeSend: function() {
 								$("#filterpelajaranpembelajaran select#kelas<?=$_POST['idload']?>").after("<img id='wait<?=$_POST['idload']?>' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -28,6 +28,7 @@
 
 				<div id="contentpage">
 							<form action="" method="post" id="filterpelajaranpembelajaran" >
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<table class="tabelfilter">
 								<tr>
 								<td>

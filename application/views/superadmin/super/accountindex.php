@@ -6,7 +6,7 @@
 					});
 					/*$.ajax({
 						type: "POST",
-						data: "ajax=1&id_Account="+$(thisobj).attr('id')+"&jenjang="+$('select#jenjangselect').val()+"&jurusan="+$('select#jurusanselect').val()+"&semester="+$('select#semesterselect').val(),
+						data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1&id_Account="+$(thisobj).attr('id')+"&jenjang="+$('select#jenjangselect').val()+"&jurusan="+$('select#jurusanselect').val()+"&semester="+$('select#semesterselect').val(),
 						url: base_url+'admin/Account/adddata',
 						beforeSend: function() {
 							$(thisobj).append("<img id='wait' src='"+config_images+"loaderhover.gif' />");

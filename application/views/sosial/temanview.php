@@ -12,11 +12,11 @@
 <h2 class="float-left">JEJARING SOSIAL</h2>
 <div class="tabs-container">
     <ul class="tabs-frame-asbin">
-        <li><a onclick="$('form#statusa').submit();" onclick="#" class="<?if($statusload=='block'){echo'current';}elseif(!isset($_POST['pertload'])){echo'current';}?>">Status</a><form action="" id="statusa" method="post"><input type="hidden" name="pertload" value="statusload" /></form></li>
-        <li><a class="<?if($temanload=='block'){echo'current';}?>" onclick="$('form#temana').submit();">Teman</a><form action="" id="temana" method="post"><input type="hidden" name="pertload" value="temanload" /></form></li>
-        <li><a class="<?if($groupload=='block'){echo'current';}?>" onclick="$('form#groupa').submit();" href="#">Group</a><form action="" id="groupa" method="post"><input type="hidden" name="pertload" value="groupload" /></form></li>
-        <li><a class="<?if($acaraload=='block'){echo'current';}?>" onclick="$('form#acaraa').submit();" href="#">Acara</a><form action="" id="acaraa" method="post"><input type="hidden" name="pertload" value="acaraload" /></form></li>
-        <li><a class="<?if($catatanload=='block'){echo'current';}?>" onclick="$('form#catatana').submit();" href="#">Catatan</a><form action="" id="catatana" method="post"><input type="hidden" name="pertload" value="catatanload" /></form></li>
+        <li><a onclick="$('form#statusa').submit();" onclick="#" class="<?if($statusload=='block'){echo'current';}elseif(!isset($_POST['pertload'])){echo'current';}?>">Status</a><form action="" id="statusa" method="post"><input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>"><input type="hidden" name="pertload" value="statusload" /></form></li>
+        <li><a class="<?if($temanload=='block'){echo'current';}?>" onclick="$('form#temana').submit();">Teman</a><form action="" id="temana" method="post"><input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>"><input type="hidden" name="pertload" value="temanload" /></form></li>
+        <li><a class="<?if($groupload=='block'){echo'current';}?>" onclick="$('form#groupa').submit();" href="#">Group</a><form action="" id="groupa" method="post"><input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>"><input type="hidden" name="pertload" value="groupload" /></form></li>
+        <li><a class="<?if($acaraload=='block'){echo'current';}?>" onclick="$('form#acaraa').submit();" href="#">Acara</a><form action="" id="acaraa" method="post"><input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>"><input type="hidden" name="pertload" value="acaraload" /></form></li>
+        <li><a class="<?if($catatanload=='block'){echo'current';}?>" onclick="$('form#catatana').submit();" href="#">Catatan</a><form action="" id="catatana" method="post"><input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>"><input type="hidden" name="pertload" value="catatanload" /></form></li>
     </ul>
     <div class="tabs-frame-content" style="display: <?=$statusload?>;background: #f2f2f2;">
                 <div class="status_style">
@@ -149,6 +149,7 @@
                                                         <div class="span2"></div>
                                                         <div class="span10">
                                                             <form method="POST" id="komentar" action="<?=site_url('sos/pegawai/set_komentar')?>">
+																<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                                                                 <div class="itemOut">
                                                                     <div class="controls">
                                                                         <div class="control">
@@ -177,6 +178,7 @@
                                                         </div>
                                                         <div class="span10">
                                                             <form method="POST" id="komentar" action="<?=site_url('sos/pegawai/set_komentar')?>">
+																<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                                                                 <div class="itemOut">
                                                                     <div class="controls">
                                                                         <div class="control">
@@ -342,6 +344,7 @@
         </div>
         <div class="row-fluid">
             <form method="POST" id="form_add_all_user" action="<?=site_url('sos/pegawai/add_all_friend')?>">
+				<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
             <?php
                 if(!empty($orang_dikenal['pegawai_dikenal']) or !empty($orang_dikenal['siswa_dikenal']))
                 {
@@ -369,7 +372,7 @@
 												var obj=$(this);
 												$.ajax({
 													type: "POST",
-													data: '',
+													data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&',
 													url: base_url+'sos/pegawai/temanlainsekolah',
 													beforeSend: function() {
 														$(obj).append("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -493,6 +496,7 @@
         <div class="row-fluid form_group" style="display: none;">
             <div class="span12">
                 <form class="sosial" method="POST" action="<?=site_url('sos/pegawai/simpan_group')?>" enctype="multipart/form-data">
+				<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                     <div class="row-fluid">
                         <div class="status_style">
                             <div class="workplace">
@@ -750,6 +754,7 @@
         ?>
         <div class="form_acara" style="display: none;">   
             <form class="sosial" method="POST" action="<?=site_url('sos/pegawai/simpan_acara')?>">
+				<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                 <div class="row-fluid">
                     <div class="status_style">
                         <div class="workplace">
@@ -981,6 +986,7 @@
             </div>
             <div class="span12 block messaging" style="margin: 0px;">
                 <form method="POST" action="#" class="sosial">
+				<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                         <label>Judul Catatan</label><input type="text" name="judul" class="text-field"/>
                         <label>Catatan</label><textarea name="catatan" style="min-height: 200px;" class="text-field"></textarea>
                         <input type="submit" class="button small lightblue" value="Simpan Catatan"/>

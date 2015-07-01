@@ -109,6 +109,7 @@ var config_images='<?=$this->config->item('images');?>';
             <div class="float-right">
                 <!-- **Searchform** -->
                 <form action="<?=site_url('sos/sekolah/pencari_sekolah')?>" id="searchform" method="POST">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                     <fieldset>
                         <input name="pencarian" type="text" onblur="this.value=(this.value=='') ? 'Cari Sekolah' : this.value;" onfocus="this.value=(this.value=='Cari Sekolah') ? '' : this.value;" value="Cari Sekolah" alt="Search our site" class="text_input" />
                         <input name="submit" type="submit" value="" />
