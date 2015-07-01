@@ -37,10 +37,9 @@
 | in the URL cannot be matched to a valid route.
 |
 */
-
+$route['404_override'] = 'error404/index';
 $route['login'] = "homepage/login";
 $route['default_controller'] = "homepage/login";
-$route['404_override'] = '';
 $route['ortu'] = 'sos/siswa';
 $route['facebook_app'] = 'akademik/mainakademik';
 $route['contentsekolah/(:any)'] = 'sos/sekolah/content/$1';
