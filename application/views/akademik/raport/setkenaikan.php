@@ -85,10 +85,14 @@ div.error { color:red; margin-left: 0px; font-size:10px !important; font-weight:
 					<? } ?>
 				</select>
 				<? }else{ ?>
-				<select name="kelulusan[<?=$id_siswa?>]">
+				<!--<select name="kelulusan[<?=$id_siswa?>]">
 						<option <? if($datakelulusan[$id_siswa]['kelulusan']==1){ echo "selected";}?> value="1">Lulus</option>
 						<option <? if($datakelulusan[$id_siswa]['kelulusan']==0){ echo "selected";}?> value="2">Tidak Lulus</option>
 						<option <? if($datakelulusan[$id_siswa]['kelulusan']==2){ echo "selected";}?> value="2">Belum Lulus</option>
+				</select>-->
+				<select name="kelulusan[<?=$id_siswa?>]">
+						<option  value="1">Lulus</option>
+						<option  value="0">Tidak Lulus</option>
 				</select>				
 				<? } ?>
 			</td>
