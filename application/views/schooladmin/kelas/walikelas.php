@@ -27,6 +27,7 @@
 										<th style="width:20px;">No</th>
 										<th>Kelas</th>
 										<th>Wali</th>
+										<th>LOGIN</th>
 									</tr>                            
 								</thead>
 								<tbody>
@@ -43,6 +44,9 @@
 												<option value='<?=$val?>'  <? if($datawali['id']==$datawalikelas['id_pegawai']){ echo 'selected';}?>><?=$datawali['nama']?></option>
 												<? } ?>
 											</select>
+										</td>
+										<td>
+											<a target="_login" href="<?=base_url('u/'.base64_encode($datawali['id']).'')?>">LOGIN</a>
 										</td>
 									</tr>
 									<? } ?>
