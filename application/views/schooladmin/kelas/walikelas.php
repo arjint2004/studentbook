@@ -46,7 +46,7 @@
 											</select>
 										</td>
 										<td> 
-											<a target="_login" href="<?=base_url('u/'.base64_encode($datawali['id_pegawai']).'')?>">LOGIN</a>
+											<a target="_login" href="<?=base_url('u/'.base64_encode($datawalikelas['id_pegawai']).'')?>">LOGIN</a>
 										</td>
 									</tr>
 									<? } ?>
