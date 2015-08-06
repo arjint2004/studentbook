@@ -42,6 +42,26 @@ Class Ad_kelas extends CI_Model
 	return $query->result_array();
 	
  }
+ function getnextkelaname($id_sekolah,$id_kelas){
+	$kelascurrent=$this->getkelasById($id_sekolah,$id_kelas);
+	//$kelascurrent[0]['status']='Tinggal Kelas';
+	//pr($kelascurrent);
+	$kelasnext=$kelascurrent[0]['kelas']+1;
+	$query=$this->db->query('SELECT k.* FROM ak_kelas k WHERE k.id_sekolah='.$id_sekolah.' AND k.kelas='.$kelasnext.' AND k.nama= "'.$kelascurrent[0]['nama'].'" AND k.publish=1  ORDER BY k.kelas ASC');//echo $this->db->last_query();
+	$kelasnext=$query->result_array();
+	$kelasnext2=array();
+	foreach($kelasnext as $ky=>$dtc){
+		if($ky==0){
+			$kelasnext2[$ky]=$dtc;
+			//$kelasnext2[$ky]['status']='Naik Kelas';
+		}
+
+	}
+	$out['current']=$kelascurrent[0];
+	$out['nextdefault']=$kelasnext2[0];
+	
+	return $out;
+ }
  function getnextkelaswali($id_sekolah,$id_kelas){
 	$kelascurrent=$this->getkelasById($id_sekolah,$id_kelas);
 	$kelascurrent[0]['status']='Tinggal Kelas';

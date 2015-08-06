@@ -180,6 +180,7 @@ class Raport extends CI_Controller {
 			
 
 
+			$data['getnextkelasnamedefault']=$this->ad_kelas->getnextkelaname($this->session->userdata['user_authentication']['id_sekolah'],$id_kelas);//pr($data['getnextkelasnamedefault']);
 			$jenjangbykelas=$this->ad_kelas->getJenjangByIdKelas(@$_POST['id_kelas']);
 			$siswa=$this->ad_siswa->getsiswaByIdKelas(@$_POST['id_kelas']);
 			foreach($siswa as $siswadata){
