@@ -108,7 +108,7 @@ class Absensi extends CI_Controller
 									'id_ta'=>$this->session->userdata['ak_setting']['ta'],
 									'keterangan'=>$_POST['keterangan'][$id_siswa_det_jenjang]
 						);
-						//$this->db->insert('ak_absensi',$datainsert);
+						$this->db->insert('ak_absensi',$datainsert);
 						
 						//notifikasi
 						$this->ak_notifikasi->set_notifikasi($datasisfornotif2[$id_siswa_det_jenjang]['id_siswa'],'absensi',12,$this->session->userdata['user_authentication']['nama'],'ke kelas '.$_POST['nama_kelas'].' Ananda <b>'.strtoupper($_POST['nama'][$id_siswa_det_jenjang]).'</b> Absensi <b>'.$databsen.'</b> Keterangan : '.$_POST['keterangan'][$id_siswa_det_jenjang].' ',$id_information=0,$jenis_information='');
