@@ -419,8 +419,9 @@ class Instrumen extends CI_Controller
 					unset($_POST['id_kelas']);
 					unset($_POST['id_mengajar']);
 					unset($_POST['type']);
-
-					$this->db->insert('ak_'.$type.'',$_POST);
+					$save=$_POST;
+					unset($save[$this->config->item('csrf_token_name')]);
+					$this->db->insert('ak_'.$type.'',$save);
 					
 					$id_insert[$type]=mysql_insert_id();
 				}

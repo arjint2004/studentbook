@@ -208,8 +208,9 @@ class Kirimuas extends CI_Controller
 				unset($_POST['simpanarsipuas']);
 				unset($_POST['tanggal_kumpul']);
 				unset($_POST['keterangan']);
-
-				$this->db->insert('ak_uas',$_POST);
+				$save=$_POST;
+				unset($save[$this->config->item('csrf_token_name')]);			
+				$this->db->insert('ak_uas',$save);
 				
 				$id_uas=mysql_insert_id();
 				
@@ -271,8 +272,9 @@ class Kirimuas extends CI_Controller
 				unset($_POST['ajax']);
 				//unset($_POST['id_kelas']);
 				//unset($_POST['tanggal_kumpul']);
-				
-				$this->db->insert('ak_uas',$_POST);
+				$save=$_POST;
+				unset($save[$this->config->item('csrf_token_name')]);					
+				$this->db->insert('ak_uas',$save);
 				
 				$id_uas=mysql_insert_id();
 				if(!empty($filenamecurrent)){
@@ -341,9 +343,10 @@ class Kirimuas extends CI_Controller
 				unset($_POST['ajax']);
 				unset($_POST['id_kelas']);
 				//unset($_POST['tanggal_kumpul']);
-				
+				$save=$_POST;
+				unset($save[$this->config->item('csrf_token_name')]);					
 				$this->db->where('id',$_POST['id']);
-				$this->db->update('ak_uas',$_POST);
+				$this->db->update('ak_uas',$save);
 				$this->db->query('DELETE FROM ak_uas_det_remidial WHERE id_uas='.$id_uas.'');
 				
 				if(!empty($filenamecurrent)){
@@ -429,8 +432,10 @@ class Kirimuas extends CI_Controller
 				unset($_POST['ajax']);
 				unset($_POST['id_kelas']);
 				unset($_POST['tanggal_kumpul']);
+				$save=$_POST;
+				unset($save[$this->config->item('csrf_token_name')]);							
 				$this->db->where('id',$_POST['id']);
-				$this->db->update('ak_uas',$_POST);
+				$this->db->update('ak_uas',$save);
 				
 				$id_uas=$_POST['id'];
 				/*

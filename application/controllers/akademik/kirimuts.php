@@ -208,8 +208,9 @@ class Kirimuts extends CI_Controller
 				unset($_POST['simpanarsiputs']);
 				unset($_POST['tanggal_kumpul']);
 				unset($_POST['keterangan']);
-
-				$this->db->insert('ak_uts',$_POST);
+				$save=$_POST;
+				unset($save[$this->config->item('csrf_token_name')]);	
+				$this->db->insert('ak_uts',$save);
 				
 				$id_uts=mysql_insert_id();
 				
@@ -271,8 +272,9 @@ class Kirimuts extends CI_Controller
 				unset($_POST['ajax']);
 				//unset($_POST['id_kelas']);
 				//unset($_POST['tanggal_kumpul']);
-				
-				$this->db->insert('ak_uts',$_POST);
+				$save=$_POST;
+				unset($save[$this->config->item('csrf_token_name')]);					
+				$this->db->insert('ak_uts',$save);
 				
 				$id_uts=mysql_insert_id();
 				if(!empty($filenamecurrent)){
@@ -341,9 +343,11 @@ class Kirimuts extends CI_Controller
 				unset($_POST['ajax']);
 				unset($_POST['id_kelas']);
 				//unset($_POST['tanggal_kumpul']);
+				$save=$_POST;
+				unset($save[$this->config->item('csrf_token_name')]);				
 				
 				$this->db->where('id',$_POST['id']);
-				$this->db->update('ak_uts',$_POST);
+				$this->db->update('ak_uts',$save);
 				$this->db->query('DELETE FROM ak_uts_det_remidial WHERE id_uts='.$id_uts.'');
 				
 				if(!empty($filenamecurrent)){
@@ -429,8 +433,10 @@ class Kirimuts extends CI_Controller
 				unset($_POST['ajax']);
 				unset($_POST['id_kelas']);
 				unset($_POST['tanggal_kumpul']);
+				$save=$_POST;
+				unset($save[$this->config->item('csrf_token_name')]);					
 				$this->db->where('id',$_POST['id']);
-				$this->db->update('ak_uts',$_POST);
+				$this->db->update('ak_uts',$save);
 				
 				$id_uts=$_POST['id'];
 				/*

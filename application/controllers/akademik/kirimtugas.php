@@ -208,8 +208,9 @@ class Kirimtugas extends CI_Controller
 				unset($_POST['simpanarsiptugas']);
 				unset($_POST['tanggal_kumpul']);
 				unset($_POST['keterangan']);
-
-				$this->db->insert('ak_tugas',$_POST);
+				$save=$_POST;
+				unset($save[$this->config->item('csrf_token_name')]);
+				$this->db->insert('ak_tugas',$save);
 				
 				$id_tugas=mysql_insert_id();
 				
@@ -271,8 +272,9 @@ class Kirimtugas extends CI_Controller
 				unset($_POST['ajax']);
 				//unset($_POST['id_kelas']);
 				//unset($_POST['tanggal_kumpul']);
-				
-				$this->db->insert('ak_tugas',$_POST);
+				$save=$_POST;
+				unset($save[$this->config->item('csrf_token_name')]);				
+				$this->db->insert('ak_tugas',$save);
 				
 				$id_tugas=mysql_insert_id();
 				if(!empty($filenamecurrent)){
@@ -341,9 +343,10 @@ class Kirimtugas extends CI_Controller
 				unset($_POST['ajax']);
 				unset($_POST['id_kelas']);
 				//unset($_POST['tanggal_kumpul']);
-				
+				$save=$_POST;
+				unset($save[$this->config->item('csrf_token_name')]);					
 				$this->db->where('id',$_POST['id']);
-				$this->db->update('ak_tugas',$_POST);
+				$this->db->update('ak_tugas',$save);
 				$this->db->query('DELETE FROM ak_tugas_det_remidial WHERE id_tugas='.$id_tugas.'');
 				
 				if(!empty($filenamecurrent)){
@@ -429,8 +432,10 @@ class Kirimtugas extends CI_Controller
 				unset($_POST['ajax']);
 				unset($_POST['id_kelas']);
 				unset($_POST['tanggal_kumpul']);
+				$save=$_POST;
+				unset($save[$this->config->item('csrf_token_name')]);				
 				$this->db->where('id',$_POST['id']);
-				$this->db->update('ak_tugas',$_POST);
+				$this->db->update('ak_tugas',$save);
 				
 				$id_tugas=$_POST['id'];
 				/*
