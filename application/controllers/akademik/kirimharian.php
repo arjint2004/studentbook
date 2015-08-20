@@ -209,7 +209,7 @@ class Kirimharian extends CI_Controller
 				unset($_POST['tanggal_kumpul']);
 				unset($_POST['keterangan']);
 				$save=$_POST;
-				unset($save[$this->config->item('csrf_token_name')]);
+				unset($save[$this->config->item('csrf_token_name')]);unset($save[$this->security->get_csrf_token_name()]);
 				$this->db->insert('ak_harian',$save);
 				
 				$id_harian=mysql_insert_id();
@@ -273,7 +273,7 @@ class Kirimharian extends CI_Controller
 				//unset($_POST['id_kelas']);
 				//unset($_POST['tanggal_kumpul']);
 				$save=$_POST;
-				unset($save[$this->config->item('csrf_token_name')]);
+				unset($save[$this->config->item('csrf_token_name')]);unset($save[$this->security->get_csrf_token_name()]);
 				$this->db->insert('ak_harian',$save);
 				
 				$id_harian=mysql_insert_id();
@@ -344,7 +344,7 @@ class Kirimharian extends CI_Controller
 				unset($_POST['id_kelas']);
 				//unset($_POST['tanggal_kumpul']);
 				$save=$_POST;
-				unset($save[$this->config->item('csrf_token_name')]);
+				unset($save[$this->config->item('csrf_token_name')]);unset($save[$this->security->get_csrf_token_name()]);
 				$this->db->where('id',$_POST['id']);
 				$this->db->update('ak_harian',$save);
 				$this->db->query('DELETE FROM ak_harian_det_remidial WHERE id_harian='.$id_harian.'');
@@ -434,7 +434,7 @@ class Kirimharian extends CI_Controller
 				unset($_POST['tanggal_kumpul']);
 				
 				$save=$_POST;
-				unset($save[$this->config->item('csrf_token_name')]);
+				unset($save[$this->config->item('csrf_token_name')]);unset($save[$this->security->get_csrf_token_name()]);
 				$this->db->where('id',$_POST['id']);
 				$this->db->update('ak_harian',$save);
 				

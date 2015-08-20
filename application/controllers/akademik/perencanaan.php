@@ -565,7 +565,7 @@ class Perencanaan extends CI_Controller
 					unset($_POST['id_mengajar']);
 					unset($_POST['type']);
 					$save=$_POST;
-					unset($save[$this->config->item('csrf_token_name')]);	
+					unset($save[$this->config->item('csrf_token_name')]);unset($save[$this->security->get_csrf_token_name()]);	
 					$this->db->insert('ak_'.$type.'',$save);
 					
 					$id_insert[$type]=mysql_insert_id();

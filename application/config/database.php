@@ -50,9 +50,9 @@ $active_record = TRUE;
  
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'studoid1_develop';
-$db['default']['password'] = 'develop123';
-$db['default']['database'] = 'studoid1_develop';
+$db['default']['username'] = 'root';
+$db['default']['password'] = '';
+$db['default']['database'] = 'studentbook';
 
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
