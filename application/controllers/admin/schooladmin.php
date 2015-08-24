@@ -247,6 +247,7 @@ class Schooladmin extends CI_Controller {
 										   'nis' => "".$nama[1]."",
 										   'nama' => "".$nama[2]."",
 										   'NmOrtu' => "".$nama[3]."",
+										   'hp' => "".$nama[5]."",
 										   'password' => "".$pass.""
 										);
 										$this->db->insert('ak_siswa', $datasiswa); 
