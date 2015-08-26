@@ -1,7 +1,7 @@
 								<script>
 							  $(function() {
-								applyPagination();
-								function applyPagination() {
+								applyPaginationor();
+								function applyPaginationor() {
 								  $("#ajax_pagingoo a").click(function() {
 									var url = $(this).attr("href");
 									$.ajax({
@@ -13,12 +13,29 @@
 									  },
 									  success: function(msg) {
 										$("#contentpageoo").html(msg);
-										//applyPagination();
+										//applyPaginationor();
 									  }
 									});
 									return false;
 								  });
 								}
+								
+								$("div#contentpageoo table tr td a.edit").click(function() {
+											var obj=$(this);
+											$.ajax({
+											  type: "POST",
+											  data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1&id_pegawai="+$(obj).attr('id'),
+											  url: $(obj).attr('href'),
+											  beforeSend: function() {
+												$(obj).append("<img id='waitguru' src='<?=$this->config->item('images').'loading.png';?>' />");
+											  },
+											  success: function(msg) {
+												$("#waitguru").remove();
+												$("#adduserortu").html(msg);
+											  }
+											});	
+										return false;
+								});
 								$("select#filterkelasortu").change(function() {
 									var listtype='ortu';
 									var thisobj=$(this);
@@ -37,6 +54,7 @@
 								});
 							  });
 							  </script>
+							  <div id="adduserortu"></div>
 							<div id="contentpageoo">
 							<? //pr($kelas);?>
 							<table>
@@ -91,7 +109,8 @@
 										<a href="<?=base_url()?>admin/otoritas/disableakun/<?=$otoren?>" onclick="return confirm('Apakah anda akan non aktifkan orang tua wali untuk siswa ini...')">Non Aktifkan</a> 
 										<? }else{?>
 										<a href="<?=base_url()?>admin/otoritas/enableakun/<?=$otoren?>" onclick="return confirm('Apakah anda akan non aktifkan orang tua wali untuk siswa ini')">Aktifkan</a> 
-										<? } ?>
+										<? } ?>|
+										<a href="<?=base_url()?>admin/schooladmin/editpegawai" id="<?=$guru['id']?>" class="edit">Edit</a> 
 										</td>
 									</tr> 
 								<? } } ?>
