@@ -102,16 +102,18 @@ Class Ad_siswa extends CI_Model
 		return $query->result_array();	
 	}
 	function getsiswaByIdSiswaTa($id_siswa=null){
-		$query=$this->db->query('SELECT s.*, adj.id as id_siswa_det_jenjang, ak.id as id_kelas,ak.nama as nama_kelas, ak.kelas as kelas, aj.nama as nama_jurusan,ap.hp as hportu FROM
+		$query=$this->db->query('SELECT s.*,u.username, adj.id as id_siswa_det_jenjang, ak.id as id_kelas,ak.nama as nama_kelas, ak.kelas as kelas, aj.nama as nama_jurusan,ap.hp as hportu FROM
 									 ak_det_jenjang adj 
 									 JOIN ak_siswa s 
 									 JOIN ak_kelas ak 
 									 JOIN ak_jurusan aj 
 									 JOIN ak_pegawai ap 
+									 JOIN users u  
 									 ON adj.id_siswa=s.id
 									 AND adj.id_kelas=ak.id 
 									 AND ak.id_jurusan=aj.id 
 									 AND ap.id_siswa=s.id 
+									 AND u.id_pengguna=s.id 
 									 WHERE s.id=? 
 									 AND adj.id_ta=?
 									AND ak.publish=1

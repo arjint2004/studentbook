@@ -406,12 +406,22 @@ class Schooladmin extends CI_Controller {
 			$dataupdate=array(
 								'nama'=>$_POST['nama'],
 								'nis'=>$_POST['nis'],
+								'password'=>$_POST['password'],
 								'NmOrtu'=>$_POST['NmOrtu'],
 								'IDkel'=>$_POST['kelas']
 			);
 			
 			$this->db->where('id',$_POST['id_siswa']);
 			$this->db->update('ak_siswa',$dataupdate);
+			
+			$updateusers=array(
+								'username'=>$_POST['username'],
+								'password'=>md5($_POST['password'])
+			);
+			echo $this->db->last_query();
+			$this->db->where('id_pengguna',$_POST['id_siswa']);
+			$this->db->update('users',$updateusers);
+			echo $this->db->last_query();
 			
 			$dataupdatejenjang=array(
 								'id_kelas'=>$_POST['kelas']

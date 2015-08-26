@@ -114,11 +114,17 @@
                         <p class="column one-third">Nama Orang Tua
                             <input name="NmOrtu" type="text" value="<?=$siswa[0]['NmOrtu']?>" />
                         </p>
+                        <p class="column one-third">Username
+                            <input name="username" type="text" value="<?=$siswa[0]['username']?>" />
+                        </p>
                         <p class="column one-third ">No HP Orang Tua
 						<? if($siswa[0]['hportu']==''){$hportu='+62';}else{$hportu=$siswa[0]['hportu'];};?>
                             <input name="hp" type="text" value="<?=$hportu?>" />
                         </p>
 						<? } ?>
+                        <p class="column one-third">Password
+                            <input name="password" type="text" value="<?=$siswa[0]['password']?>" />
+                        </p>
                         <p >
                             <input name="save" type="hidden" value="Simpan"/>
                             <input name="id_siswa" type="hidden" value="<?=$siswa[0]['id']?>"/>
