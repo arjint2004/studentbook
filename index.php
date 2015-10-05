@@ -1,5 +1,5 @@
 <?php
-//echo "Mohon maaf sedang maintenence database"; die();
+echo "Mohon maaf sedang maintenence database"; die(); 
 // Check if accessed via SSL
 
     if($_SERVER['SERVER_NAME'] == 'www.studentbook.co') 

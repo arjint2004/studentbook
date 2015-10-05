@@ -594,7 +594,7 @@ class Schooladmin extends CI_Controller {
 		if($listtype=='siswa'){
 			if(isset($_POST['id_kelas'])){
 				$cond="AND ak_det_jenjang.id_kelas=".$_POST['id_kelas']."";
-				$config['per_page']=25;
+				$config['per_page']=60;
 				$data['kelasselected']=$_POST['id_kelas'];
 			}else{
 				$cond="";
@@ -606,6 +606,14 @@ class Schooladmin extends CI_Controller {
 			$config['total_rows'] = $this->ad_akun->getsiswacountall(12,$_POST['id_kelas']);
 			
 			$data['kelas']=$this->ad_kelas->getkelas($this->session->userdata['user_authentication']['id_sekolah']);
+		/*$sstt=0;
+		foreach($data['kelas'] as $ss){
+			$cond="AND ak_det_jenjang.id_kelas=".$ss['id']."";
+			$ssw=$this->ad_akun->getdataSiswaOrtu(''.$start.','.$config['per_page'].'',12,$cond);
+			$sstt=count($ssw)+$sstt;
+			//pr(count($ssw));
+		}*/			
+		//pr($sstt);
 		}elseif($listtype=='karyawan'){
 			$data['dataguru']=$this->ad_akun->getdata(''.$start.','.$config['per_page'].'',15);
 			$config['total_rows'] = $this->ad_akun->getgurucountall(15);			
@@ -630,7 +638,7 @@ class Schooladmin extends CI_Controller {
 			$config['total_rows'] = $this->ad_akun->getgurucountall(13);			
 		}
 		
-		//pr($config);
+		//pr(count($data['dataguru']));
 		$this->pagination->initialize($config);
 		$data['pagination'] = $this->pagination->create_links();
 

@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://webdevel/studentbookgit/';
+$config['base_url']	= 'https://studentbook.co/';
 //$config['base_url']	= 'https://'.$_SERVER['SERVER_NAME'].'/';
  
 /*
