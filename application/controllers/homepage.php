@@ -75,6 +75,30 @@ class Homepage extends MY_Controller {
         $this->load->view('layout/login',$data);
 		}
     }
+	public function loginunires()
+    {
+		$session = session_data();
+        $group = $session['otoritas'];
+        if(!empty($group)) {
+            if($group=='siswa') {
+                redirect('siswa');
+            }elseif($group=='ortu') {
+                redirect('ortu');
+            }elseif($group=='admin sekolah'){
+                redirect('admin/schooladmin');
+            }elseif($group=='superadmin'){
+                redirect('superadmin/super');
+            }elseif($group=='admin'){
+                redirect('adminsb/admin');
+            }else{
+                redirect('sos/pegawai');
+            }
+        }else{
+		
+		$data['main']= 'homedata/login';
+        $this->load->view('layout/loginunires',$data);
+		}
+    }
 	public function logindcs()
     {
 		$data['main']= 'homedata/logindcs';
