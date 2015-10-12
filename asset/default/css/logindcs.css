@@ -1,13 +1,19 @@
 body{
 	background-image:url("../images/dcs3.jpg");
+	background-color:white;
 	background-repeat:no-repeat;
 	background-attachment:fixed;
 	background-position:center; 
 }
-.loginfront{
-	margin: 15% 0 0 !important;
-	padding: 30px 0 !important;
+.loginfront {
+  background: green none repeat scroll 0 0 !important;
+  border-radius: 10px;
+  color: white;
+  margin: 15% 0 0 !important;
+  padding: 30px 0 !important;
+  opacity:0.9;
 }
+
 .loginright form input[type="text"],.loginright form input[type="password"]{
 	height:20px;
 	margin:10px 0;
@@ -26,9 +32,9 @@ body{
 	cursor:pointer;
 }
 .loginright div.daftarsekolah{
-	background: none repeat scroll 0 0 #777777;
+	background: none repeat scroll 0 0 yellow;
 	border-radius: 5px;
-	color: #FFFFFF;
+	color: #000000;
 	float: right;
 	height: 29px;
 	margin: 20px 0 0;
@@ -37,13 +43,23 @@ body{
 	vertical-align: middle;
 	width: 92%;
 	cursor:pointer;
+	opacity:0.7;
 }
-.loginright form   input[type="submit"]{
-	background: none repeat scroll 0 0 #777777;
-	border: 1px solid rgba(0, 0, 0, 0);
-	color: #FFFFFF;
-	float: right;
-	text-shadow: none;
+.loginright form input[type="submit"] {
+  background: yellow none repeat scroll 0 0;
+  border: 1px solid rgba(0, 0, 0, 0);
+  bottom: 0;
+  color: #000000;
+  font-weight: bold;
+  height: 58px;
+  margin-top: 63px;
+  opacity: 0.7;
+  text-shadow: none;
+  text-transform: uppercase;
+  width: 100%;
+}
+.loginright form   input[type="submit"]:hover,.loginright div.daftarsekolah:hover{
+	opacity:1;
 }
 .loginright form{
 	padding:20px;
@@ -52,7 +68,7 @@ body{
 text-align:right;
 text-shadow:none;
 }
-h1,h2,h3,h4,h5,h6,p,a,.loginright div.forgot{text-shadow:none;color:#222222;}
+h1,h2,h3,h4,h5,h6,p,a,.loginright div.forgot{text-shadow:none;color:#ffffff;}
 .loginfront  h1 img{
 	position: relative;
 top: 2px;
@@ -66,20 +82,22 @@ text-align:right;
 }
 .loginfront  p{
 text-align:right;
-color:#222222;
+color:#ffffff;
 }
 .loginright{
-	background: url("../images/60fff.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+	background-color: green;
 	border-radius: 3px;
-	box-shadow: 0 40px 25px #666666;
+	box-shadow: 0 0 100px white;
 	height: 300px;
+}
+.two-third {
+  width: 62.8% !important;
 }
 #expand-toggle .expand {
   font-size: 12px;
   
 }
 #expand-toggle  img{
-	height:90px;
 	float:right;
 }
 #expand-toggle  {
