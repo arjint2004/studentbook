@@ -7,7 +7,7 @@ Class Ad_absen extends CI_Model{
 		}else{
 			$query=$this->db->query('SELECT * FROM ak_absensi WHERE tanggal=? AND id_kelas=? AND jam_ke=?',array($tanggal,$_POST['id_kelas'],$jam_ke));
 		}
-		echo $this->db->last_query();
+		//echo $this->db->last_query();
 		return $query->result_array();
 	}
 	function getCurrentAbsensiExport(){
@@ -16,8 +16,8 @@ Class Ad_absen extends CI_Model{
 								JOIN ak_siswa s
 								ON ab.id_siswa_det_jenjang=adj.id
 								AND s.id=adj.id_siswa
-		WHERE id_kelas=? AND ab.tanggal=? AND ab.jam_ke=? AND ab.id_sekolah=?',array($_POST['id_kelas'],$_POST['tanggalnyaabsensi'],$_POST['jamabsen'],$this->session->userdata['user_authentication']['id_sekolah']));
-		echo $this->db->last_query();die();
+		WHERE ab.id_kelas=? AND ab.tanggal=? AND ab.jam_ke=? AND ab.id_sekolah=?',array($_POST['id_kelas'],$_POST['tanggalnyaabsensi'],$_POST['jamabsen'],$this->session->userdata['user_authentication']['id_sekolah']));
+		//echo $this->db->last_query();die();
 		return $query->result_array();
 	}
 	function getAbsensiByMonth($month){
