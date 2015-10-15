@@ -31,7 +31,7 @@
 		if($('#kelasabsen').val()==''){$('#kelasabsen').css('border','1px solid red'); return false;}else{$('#kelasabsen').css('border','1px solid #D8D8D8');}
 		$.ajax({
 			type: "POST",
-			data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas="+$('#kelasabsen').val()+"&jamabsen="+$('#jamabsen').val()+"&id_pelajaran="+$('#pelajaranabsen').val()+"&pelajarannyaabsen="+$('#hiddenmapel').val()+"&tanggal="+date,
+			data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas="+$('#kelasabsen').val()+"&jamabsen="+$('#jamabsen').val()+"&id_pelajaran="+$('#pelajaranabsen').val()+"&pelajarannyaabsen="+$('#hiddenmapel').val()+"&tanggal="+date+"&aktifitas="+$('input[type="radio"]#aktivitas').val()+"&kegiatan="+$('select#kegiatan').val(),
 			url: '<?=base_url()?>akademik/absensi/add',
 			beforeSend: function() {
 				$('#popupDatepicker').after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
@@ -107,8 +107,41 @@ $(function() {
 </script>
 <form action="" method="post" id="absensi" >
 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+<? //pr($this->session->userdata['ak_setting']);?>
 <table class="adddata">
 	<tbody>
+		<? if($this->session->userdata['ak_setting']['jenjang'][0]['bentuk']=='PESANTREN'){?>
+		<tr>
+			<td>Aktifitas</td>
+			<td>
+			<script>
+				var klaskikal='<select id="kegiatan" name="klasikal"><?foreach($program['KLASIKAL'] as $kls){?><option value="<?=$kls?>"><?=$kls?></option><?}?></select>';
+				var pembiasaan='<select id="kegiatan" name="pembiasaan"><?foreach($program['PEMBIASAAN'] as $klsp){?><option value="<?=$klsp?>"><?=$klsp?></option><?}?></select>';
+				
+				$(document).ready(function() {
+					$('table tr td#kgtp').html(pembiasaan);
+					$('input[type="radio"].radp').bind('click', function() {
+						if($(this).val()=='Klasikal'){
+							$('table tr td#kgtp').html(klaskikal);
+						}
+						if($(this).val()=='Pembiasaan'){
+							$('table tr td#kgtp').html(pembiasaan);
+						}
+					});
+				});
+				
+			</script>
+				<input type="radio" class="radp" id="aktivitas" name="aktivitas" value="Pembiasaan" checked />&nbsp;Pembiasaan&nbsp;&nbsp;&nbsp;
+				<input type="radio" class="radp" id="aktivitas" name="aktivitas" value="Klasikal" />&nbsp;Klasikal
+			</td>
+		</tr>	
+		<tr>
+			<td>Kegiatan</td>
+			<td id="kgtp">
+				
+			</td>
+		</tr>		
+		<? } ?>
 		<tr>
 			<td>Kelas</td>
 			<td>

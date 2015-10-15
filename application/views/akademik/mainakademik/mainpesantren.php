@@ -37,7 +37,7 @@
 				<a >Pembelajaran</a>
 			</li>
 			<li>
-				<a  id="tababsensi" >Absensi</a>
+				<a  id="tababsensi" >Presensi</a>
 			</li>
 			<li>
 				<a  id="tabarekapbsensi" >Rekap Absensi</a>

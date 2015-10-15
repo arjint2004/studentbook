@@ -11,10 +11,27 @@ class Absensi extends CI_Controller
             $this->load->library('image_moo');
         }
         
-        public function index(){
+        public function index(){//phpinfo();die();
 			$this->load->model('ad_kelas');
             $data['kelas'] 	=$this->ad_kelas->getkelasByPengajar($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']);
-           
+            
+			if($this->session->userdata['ak_setting']['jenjang'][0]['bentuk']=="PESANTREN"){
+				$this->load->model('ad_penghubungortutk');
+				$contentprogram=$this->ad_penghubungortutk->getdataByIdSekolah($this->session->userdata['user_authentication']['id_sekolah'],'perkembangan_tk',$this->session->userdata['ak_setting']['semester']);
+				$contentprograms[0]['contarr']=unserialize($contentprogram[0]['content']);
+				foreach($contentprograms[0]['contarr'] as $ftlr){
+					if($ftlr['nama']=='KLASIKAL' || $ftlr['nama']=='PEMBIASAAN'){
+						$datause[$ftlr['nama']]=$ftlr['child'];
+						foreach($datause[$ftlr['nama']] as $idd=>$vbg){
+							unset($datause[$ftlr['nama']][$idd]);
+							$datause[$ftlr['nama']][]=$vbg['nama'];
+						}
+					}
+				}
+				$data['program']=$datause;
+			}
+			
+			
             $data['main']= 'akademik/absensi/index';
             $this->load->view('layout/ad_blank',$data);
         }
