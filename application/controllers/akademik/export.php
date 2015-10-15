@@ -81,7 +81,10 @@ class Export extends CI_Controller
 							array('Tanggal',$tgl[2]),
 							array('Tahun Ajaran',$this->session->userdata['ak_setting']['ta_nama']),
 							array('Semester',$this->session->userdata['ak_setting']['semester_nama']),
+							array('Aktifitas',$_POST['aktivitas']),
+							array('Kegiatan',$_POST['pembiasaan'])
 					);
+					
 					$_POST['id_kelas']=$_POST['kelas'];
 					$this->load->model('ad_absen');
 					$currentabsen=$this->ad_absen->getCurrentAbsensiExport($_POST['tanggalnyaabsensi'],$_POST['jamabsen']);
@@ -90,7 +93,15 @@ class Export extends CI_Controller
 						unset($header[3]);
 						unset($header[4]);
 					}
-					//pr($_POST);
+					if($this->session->userdata['ak_setting']['jenjang'][0]['bentuk']=="PESANTREN"){
+						unset($header[3]);
+						unset($header[4]);						
+						unset($header[7]); 
+					}else{
+						unset($header[8]);
+						unset($header[9]);					
+					}
+					//pr($header);die();
 					//pr($currentabsen);
 					foreach($currentabsen as $id=>$data){
 						if($this->session->userdata['ak_setting']['jenjang'][0]['nama']=='SD'){
@@ -99,6 +110,7 @@ class Export extends CI_Controller
 						unset($data['id']);
 						unset($data['id_siswa_det_jenjang']);
 						unset($data['id_sekolah']);
+						unset($data['id_pegawai']);
 						unset($data['id_semester']);
 						unset($data['id_pelajaran']);
 						unset($data['id_semester']);
@@ -106,9 +118,14 @@ class Export extends CI_Controller
 						unset($data['id_ta']);
 						unset($data['jam']);
 						unset($data['tanggal']);
+						if($this->session->userdata['ak_setting']['jenjang'][0]['bentuk']=="PESANTREN"){
+							unset($data['nis']);
+							unset($data['aktifitas']);
+							unset($data['kegiatan']);
+						}
 						$array[]=$data;
 					}
-					
+					//pr($data);die();
 					unset($arrayfirst);
 				break;
 				case "Materi":
