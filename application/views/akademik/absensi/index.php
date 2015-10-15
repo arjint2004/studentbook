@@ -60,7 +60,7 @@
 		$(this).after('<input type="hidden" name="kelasnyaabsesnsi" id="hiddenkelas" value="'+$(this).find(":selected").text()+'"/>');
 		$.ajax({
 			type: "POST",
-			data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas="+$('#kelasabsen').val()+"&jamabsen="+$('#jamabsen').val()+"&tanggal="+$('#popupDatepicker').val(),
+			data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas="+$('#kelasabsen').val()+"&jamabsen="+$('#jamabsen').val()+"&tanggal="+$('#popupDatepicker').val()+"&aktifitas="+$('input[type="radio"]#aktivitas').val()+"&kegiatan="+$('select#kegiatan').val(),
 			url: '<?=base_url()?>akademik/absensi/add',
 			beforeSend: function() {
 				$('#kelasabsen').after("<img id='wait' src='<?=$this->config->item('images').'loading.png';?>' />");
