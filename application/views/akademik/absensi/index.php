@@ -13,7 +13,7 @@
 		$.ajax({
 			type: 'POST',
 			url: $('#absensiform').attr('action'),
-			data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$('#absensiform').serialize()+'&id_kelas='+$('#kelasabsen').val()+'&jamabsen='+$('#jamabsen').val()+'&pelajaranabsen='+$('#pelajaranabsen').val()+"&pelajarannyaabsen="+$('#hiddenmapel').val()+'&tanggal='+$('#popupDatepicker').val()+'&nama_kelas='+$('#kelasabsen').find(":selected").text(),
+			data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$('#absensiform').serialize()+'&id_kelas='+$('#kelasabsen').val()+'&jamabsen='+$('#jamabsen').val()+'&pelajaranabsen='+$('#pelajaranabsen').val()+"&pelajarannyaabsen="+$('#hiddenmapel').val()+'&tanggal='+$('#popupDatepicker').val()+'&nama_kelas='+$('#kelasabsen').find(":selected").text()+"&aktifitas="+$('input[type="radio"]#aktivitas').val()+"&kegiatan="+$('select#kegiatan').val(),
 			beforeSend: function() {
 				$('#simpanabsensi').after("<img id='wait' style='position: relative; top: 21px; left: 28px;' src='<?=$this->config->item('images').'loading.png';?>' />");
 			},

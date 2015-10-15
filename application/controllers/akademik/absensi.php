@@ -123,7 +123,9 @@ class Absensi extends CI_Controller
 									'jam_ke'=>$_POST['jamabsen'],
 									'tanggal'=>$_POST['tanggal'],
 									'id_ta'=>$this->session->userdata['ak_setting']['ta'],
-									'keterangan'=>$_POST['keterangan'][$id_siswa_det_jenjang]
+									'keterangan'=>$_POST['keterangan'][$id_siswa_det_jenjang],
+									'aktifitas'=>$_POST['aktifitas'],
+									'kegiatan'=>$_POST['kegiatan']
 						);
 						$this->db->insert('ak_absensi',$datainsert);
 						
