@@ -118,10 +118,10 @@ class Export extends CI_Controller
 						unset($data['id_ta']);
 						unset($data['jam']);
 						unset($data['tanggal']);
+						unset($data['aktifitas']);
+						unset($data['kegiatan']);
 						if($this->session->userdata['ak_setting']['jenjang'][0]['bentuk']=="PESANTREN"){
 							unset($data['nis']);
-							unset($data['aktifitas']);
-							unset($data['kegiatan']);
 						}
 						$array[]=$data;
 					}
