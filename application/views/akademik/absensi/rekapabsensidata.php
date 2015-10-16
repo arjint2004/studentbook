@@ -15,7 +15,7 @@
     <th rowspan="2" style="width:10px;vertical-align: middle;">No</th>
     <th rowspan="2" style="vertical-align: middle;">Nama</th>
     <th colspan="<?=count($absensi)?>" >Tanggal Pertemuan </th>
-    <th colspan="4">Jumlah</th>
+    <th colspan="5">Jumlah</th>
   </tr>
   <tr>
 	<? if(!empty($absensi)){foreach($absensi as $colaps){?>
@@ -25,6 +25,7 @@
     <th>Izin</th>
     <th>Sakit</th>
     <th>Alpha</th>
+    <th>Keterangan</th>
   </tr>
   <? $no=1;foreach($siswa as $datasiswa){ ?>
   <tr>
@@ -68,6 +69,7 @@
     <td><?=$izin[$datasiswa['id_siswa_det_jenjang']]?></td>
     <td><?=$sakit[$datasiswa['id_siswa_det_jenjang']]?></td>
     <td><?=$alpha[$datasiswa['id_siswa_det_jenjang']]?></td>
+    <td><?=$datajamnya['data'][$datasiswa['id_siswa_det_jenjang']]['keterangan'];?></td>
   </tr>
   <?}?>
 </table>

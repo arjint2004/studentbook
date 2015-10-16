@@ -33,7 +33,7 @@ Class Ad_absen extends CI_Model{
 		if($month==0){$month=date('m');}
 		if($_POST['id_pelajaran']==''){$_POST['id_pelajaran']=0;}
 		//get jam
-		$queryj=$this->db->query('SELECT id,jam_ke,day(tanggal) as tanggal 
+		$queryj=$this->db->query('SELECT id,jam_ke,day(tanggal) as tanggal ,keterangan
 										FROM `ak_absensi`
 										WHERE month( `tanggal` ) =?
 										AND id_kelas=?
@@ -48,7 +48,7 @@ Class Ad_absen extends CI_Model{
 		
 		$jam_ke=$queryj->result_array();
 		
-		$query=$this->db->query('SELECT id,id_siswa_det_jenjang,jam_ke,absensi,day(tanggal) as tanggal 
+		$query=$this->db->query('SELECT id,id_siswa_det_jenjang,jam_ke,absensi,day(tanggal) as tanggal ,keterangan
 								FROM `ak_absensi`
 								WHERE month( `tanggal` ) =?
 								AND id_kelas=?
