@@ -40,7 +40,7 @@
 				<a  id="tababsensi" >Presensi</a>
 			</li>
 			<li>
-				<a  id="tabarekapbsensi" >Rekap Absensi</a>
+				<a  id="tabarekapbsensi" >Rekap Presensi</a>
 				<!--<a class="modal" href="<?=base_url('akademik/absensi/rekapabsensi')?>" >Rekap Absensi</a>-->
 			</li>
 			<li>
