@@ -29,6 +29,55 @@ Class Ad_absen extends CI_Model{
 		//echo $this->db->last_query();
 		return $query->result_array();
 	}
+	function getAbsensiPesantrenByMonthByKelasPel($month=0,$id_kelas=0){
+		if($month==0){$month=date('m');}
+		if($_POST['id_pelajaran']==''){$_POST['id_pelajaran']=0;}
+		//get jam
+		$queryj=$this->db->query('SELECT id,jam_ke,day(tanggal) as tanggal 
+										FROM `ak_absensi`
+										WHERE month( `tanggal` ) =?
+										AND id_kelas=?
+										AND id_semester=?
+										AND id_ta=?
+										AND id_sekolah=?
+										AND id_pelajaran=?
+										AND aktifitas=?
+										AND kegiatan=?
+										GROUP BY jam_ke,tanggal
+										',array($month,$id_kelas,$this->session->userdata['ak_setting']['semester'],$this->session->userdata['ak_setting']['ta'],$this->session->userdata['user_authentication']['id_sekolah'],$_POST['id_pelajaran'],$_POST['aktifitas'],$_POST['kegiatan']));
+		
+		$jam_ke=$queryj->result_array();
+		
+		$query=$this->db->query('SELECT id,id_siswa_det_jenjang,jam_ke,absensi,day(tanggal) as tanggal 
+								FROM `ak_absensi`
+								WHERE month( `tanggal` ) =?
+								AND id_kelas=?
+								AND id_semester=?
+								AND id_ta=?
+								AND id_sekolah=?
+								AND id_pelajaran=?
+								AND aktifitas=?
+								AND kegiatan=?
+								',array($month,$id_kelas,$this->session->userdata['ak_setting']['semester'],$this->session->userdata['ak_setting']['ta'],$this->session->userdata['user_authentication']['id_sekolah'],$_POST['id_pelajaran'],$_POST['aktifitas'],$_POST['kegiatan']));
+		$absennya=$query->result_array();						
+		//echo $this->db->last_query();
+		foreach($jam_ke as $jamkenya){
+			foreach($absennya as $jamkenyaabsen){
+					$array1[$jamkenya['jam_ke'].$jamkenya['tanggal']]['tanggal']=$jamkenya['tanggal'];
+					$array1[$jamkenya['jam_ke'].$jamkenya['tanggal']]['jam_ke']=$jamkenya['jam_ke'];
+				if($jamkenya['jam_ke']==$jamkenyaabsen['jam_ke'] && $jamkenya['tanggal']==$jamkenyaabsen['tanggal']){
+					$array1[$jamkenya['jam_ke'].$jamkenya['tanggal']]['data'][$jamkenyaabsen['id_siswa_det_jenjang']]=$jamkenyaabsen;
+				}
+				
+			}
+		}
+		//pr($jam_ke);
+		//pr($absennya);
+		//pr($array1);
+		//echo $this->db->last_query();
+		
+		return $array1;
+	}
 	function getAbsensiByMonthByKelasPel($month=0,$id_kelas=0){
 		if($month==0){$month=date('m');}
 		if($_POST['id_pelajaran']==''){$_POST['id_pelajaran']=0;}

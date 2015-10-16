@@ -7,7 +7,7 @@
 		if($('#kelasabsenrekap').val()==''){$('#kelasabsenrekap').css('border','1px solid red'); return false;}else{$('#kelasabsenrekap').css('border','1px solid #D8D8D8');}
 		$.ajax({
 			type: "POST",
-			data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas="+$('#kelasabsenrekap').val()+"&id_pelajaran="+$('#pelajaranabsenrekap').val()+"&month="+date,
+			data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_kelas="+$('#kelasabsenrekap').val()+"&id_pelajaran="+$('#pelajaranabsenrekap').val()+"&month="+date+"&aktifitas="+$('input[type="radio"]#aktivitasrekap').val()+"&kegiatan="+$('select#kegiatanrekap').val(),
 			url: '<?=base_url()?>akademik/absensi/rekapabsensidata',
 			beforeSend: function() {
 				$(".error-box").delay(1000).html('Loading Data');
@@ -41,7 +41,7 @@
 		$(this).after('<input type="hidden" name="pelajarannyaabsen" id="hiddenmapel" value="'+alias+'"/>');
 		getaddrekap($(this),$('#bulanrekapabsen').val());
 	});
-	$('#kelasabsenrekap').bind('change', function() {
+	$('select#kelasabsenrekap').bind('change', function() {
 		$('#hiddenkelas').remove();
 		$(this).after('<input type="hidden" name="kelasnyaabsesnsi" id="hiddenkelas" value="'+$(this).find(":selected").text()+'"/>');
 		
@@ -111,6 +111,55 @@ $(function() {
 <form action="" method="post" id="rekapabsensiform" >
 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 				<table class="adddata">
+
+				<? if($this->session->userdata['ak_setting']['jenjang'][0]['bentuk']=='PESANTREN'){?>
+				<tr>
+					<td>Aktifitas</td>
+					<td>
+					<script>
+						var klaskikal='<select id="kegiatanrekap"  class="sklasik" name="klasikal"><?foreach($program['KLASIKAL'] as $kls){?><option value="<?=$kls?>"><?=$kls?></option><?}?></select>';
+						var pembiasaan='<select id="kegiatanrekap" class="spembiasaan" name="pembiasaan"><?foreach($program['PEMBIASAAN'] as $klsp){?><option value="<?=$klsp?>"><?=$klsp?></option><?}?></select>';
+						
+						$(document).ready(function() {
+							$('table tr td#kgtp').html(pembiasaan);
+							$('input[type="radio"].radp').bind('click', function() {
+								if($(this).val()=='Klasikal'){
+									$('table tr td#kgtp').html(klaskikal);
+								}
+								if($(this).val()=='Pembiasaan'){
+									$('table tr td#kgtp').html(pembiasaan);
+								}							
+								$('select.sklasik,select.spembiasaan').change( function() {
+									$('select#kegiatanrekap').val($(this).val());
+									getaddrekap($('#bulanrekapabsen'),$('#bulanrekapabsen').val());
+									//return false;
+								});								
+								
+							});
+							$('input[type="radio"].radp').bind('click', function() {
+								getaddrekap($('#bulanrekapabsen'),$('#bulanrekapabsen').val());
+									//return false;
+							});
+
+							$('select.sklasik,select.spembiasaan').change( function() {
+								$('select#kegiatanrekap').val($(this).val());
+								getaddrekap($('#bulanrekapabsen'),$('#bulanrekapabsen').val());
+								//return false;
+							});
+						});
+						
+					</script>
+						<input type="radio" class="radp" id="aktivitasrekap" name="aktifitas" value="Pembiasaan" checked />&nbsp;Pembiasaan&nbsp;&nbsp;&nbsp;
+						<input type="radio" class="radp" id="aktivitasrekap" name="aktifitas" value="Klasikal" />&nbsp;Klasikal
+					</td>
+				</tr>	
+				<tr>
+					<td>Kegiatan</td>
+					<td id="kgtp">
+						
+					</td>
+				</tr>		
+				<? } ?>				
 					<tr>
 						<td style="text-align:left;">Kelas</td>
 						<td style="text-align:left;">

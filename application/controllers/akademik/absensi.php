@@ -10,12 +10,7 @@ class Absensi extends CI_Controller
             $this->auth->user_logged_in();
             $this->load->library('image_moo');
         }
-        
-        public function index(){//phpinfo();die();
-			$this->load->model('ad_kelas');
-            $data['kelas'] 	=$this->ad_kelas->getkelasByPengajar($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']);
-            
-			if($this->session->userdata['ak_setting']['jenjang'][0]['bentuk']=="PESANTREN"){
+		private function get_data_program_peasantren(){
 				$this->load->model('ad_penghubungortutk');
 				$contentprogram=$this->ad_penghubungortutk->getdataByIdSekolah($this->session->userdata['user_authentication']['id_sekolah'],'perkembangan_tk',$this->session->userdata['ak_setting']['semester']);
 				$contentprograms[0]['contarr']=unserialize($contentprogram[0]['content']);
@@ -28,7 +23,14 @@ class Absensi extends CI_Controller
 						}
 					}
 				}
-				$data['program']=$datause;
+				return $datause;
+		}
+        public function index(){//phpinfo();die();
+			$this->load->model('ad_kelas');
+            $data['kelas'] 	=$this->ad_kelas->getkelasByPengajar($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']);
+            
+			if($this->session->userdata['ak_setting']['jenjang'][0]['bentuk']=="PESANTREN"){
+				$data['program']=$this->get_data_program_peasantren();
 			}
 			
 			
@@ -43,15 +45,26 @@ class Absensi extends CI_Controller
 			
 			$this->load->model('ad_kelas');
             $data['kelas'] 	=$this->ad_kelas->getkelasByPengajar($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']);
-           
+           	
+			//khusus pesanteren
+			if($this->session->userdata['ak_setting']['jenjang'][0]['bentuk']=="PESANTREN"){
+				$data['program']=$this->get_data_program_peasantren();
+			}
+			
             $data['main']= 'akademik/absensi/rekapabsensi';
             $this->load->view('layout/ad_blank',$data);
         }
         public function rekapabsensidata(){
 			$this->load->model('ad_siswa');
 			$this->load->model('ad_absen');	
-            
-			$data['absensi']=$this->ad_absen->getAbsensiByMonthByKelasPel($_POST['month'],$_POST['id_kelas']);
+			
+			//khusus pesanteren
+ 			if($this->session->userdata['ak_setting']['jenjang'][0]['bentuk']=="PESANTREN"){
+				$data['absensi']=$this->ad_absen->getAbsensiPesantrenByMonthByKelasPel($_POST['month'],$_POST['id_kelas']);
+			}else{
+				$data['absensi']=$this->ad_absen->getAbsensiByMonthByKelasPel($_POST['month'],$_POST['id_kelas']);
+			}     
+			
             $data['siswa']= $this->ad_siswa->getsiswaByIdKelas($_POST['id_kelas']);
             $data['main']= 'akademik/absensi/rekapabsensidata';
             $this->load->view('layout/ad_blank',$data);
