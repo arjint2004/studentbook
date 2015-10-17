@@ -48,7 +48,7 @@
 						<td><?=$_POST['kegiatan']?></td>
 					</tr>
 					<tr align="left">
-						<td>Absensi Bulan</td>
+						<td>Bulan</td>
 						<td>:</td>
 						<td><? 
 								$monthNum = sprintf("%02s", $_POST['month']);
