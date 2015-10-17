@@ -117,8 +117,8 @@ $(function() {
 					<td>Aktifitas</td>
 					<td>
 					<script>
-						var klaskikal='<select id="kegiatanrekap"  class="sklasik" name="klasikal"><?foreach($program['KLASIKAL'] as $kls){?><option value="<?=$kls?>"><?=$kls?></option><?}?></select>';
-						var pembiasaan='<select id="kegiatanrekap" class="spembiasaan" name="pembiasaan"><?foreach($program['PEMBIASAAN'] as $klsp){?><option value="<?=$klsp?>"><?=$klsp?></option><?}?></select>';
+						var klaskikal='<select id="kegiatanrekap"  class="sklasik" name="kegiatan"><?foreach($program['KLASIKAL'] as $kls){?><option value="<?=$kls?>"><?=$kls?></option><?}?></select>';
+						var pembiasaan='<select id="kegiatanrekap" class="spembiasaan" name="kegiatan"><?foreach($program['PEMBIASAAN'] as $klsp){?><option value="<?=$klsp?>"><?=$klsp?></option><?}?></select>';
 						
 						$(document).ready(function() {
 							$('table tr td#kgtp').html(pembiasaan);

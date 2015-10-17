@@ -18,7 +18,7 @@
 				<tr>
 					<td align="center">
 						<p style="text-align: center;">
-							<img alt="" src="<?=base_url('upload/akademik/sekolah/').'/'.$this->session->userdata['ak_setting']['logo_sekolah']?>" style="width: 100px; height: 100px;" /></p>
+							<img alt="" src="<?=base_url('upload/akademik/sekolah/').'/'.$this->session->userdata['ak_setting']['logo_sekolah']?>"  /></p>
 						<p style="text-align: center;">
 							<span style="font-family: arial,helvetica,sans-serif;"><span style="font-size: 16px;"><strong>DEPARTEMEN PENDIDIKAN NASIONAL REPUBLIK INDONESIA</strong></span></span></p>
 						<p style="text-align: center;">
@@ -28,8 +28,51 @@
 				</tr>
 			</tbody>
 		</table>
-		<br />
-		<?// pr($_POST);?>
+		<? if($this->session->userdata['ak_setting']['jenjang'][0]['bentuk']=="PESANTREN"){?>
+		<table  class="noborder" id="allset" border="1">
+			<tbody>
+					<tr align="left">
+						<td colspan="3" align="center" class="title"  height="30" style="border-bottom:2px solid #000;"><font size="3"><strong>LEMBAR ABSENSI SISWA</strong></font><br /><br /></td>						
+					</tr>
+					<tr align="left">
+						<td colspan="3" align="center" class="title"  height="30" ></td>
+					</tr>
+					<tr align="left">
+						<td>Aktitas</td>
+						<td>:</td>
+						<td><?=$_POST['aktifitas']?></td>
+					</tr>
+					<tr align="left">
+						<td>Kegiatan</td>
+						<td>:</td>
+						<td><?=$_POST['kegiatan']?></td>
+					</tr>
+					<tr align="left">
+						<td>Absensi Bulan</td>
+						<td>:</td>
+						<td><? 
+								$monthNum = sprintf("%02s", $_POST['month']);
+								echo date("F", mktime(null, null, null, $monthNum));
+						?></td>
+					</tr>
+					<tr align="left">
+						<td width="100px">Kelas</td>
+						<td width="4px">:</td>
+						<td><?=$kelas[0]['nama']?></td>									
+					</tr>
+					<tr align="left">
+						<td>Semester</td>
+						<td>:</td>
+						<td><?=strtoupper($this->session->userdata['ak_setting']['semester_nama'])?></td>
+					</tr>
+					<tr align="left">
+						<td>Tahun Pelajaran</td>
+						<td>:</td>
+						<td ><?=strtoupper($this->session->userdata['ak_setting']['ta_nama'])?></td>
+					</tr>
+			</tbody>
+		</table>
+		<? }else{?>
 		<table  class="noborder" id="allset" border="1">
 			<tbody>
 					<tr align="left">
@@ -68,7 +111,7 @@
 					</tr>
 			</tbody>
 		</table>
-
+		<? } ?>
 		<br>
 		<form name="absensi" id="absensiform" method="post" action="<?=base_url()?>akademik/absensi/add" >
 		<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">

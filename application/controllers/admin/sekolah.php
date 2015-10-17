@@ -59,6 +59,7 @@ class Sekolah extends CI_Controller {
 			unset($insert['submit']);
 			unset($insert['id_jenjang']);
 			unset($insert['ajax']);
+			unset($insert['ci_csrf_token']);
 			$arrayaksetting=$this->session->userdata['ak_setting'];
 			$arrayaksetting['nama_sekolah']=$_POST['nama_sekolah'];
 			$this->session->set_userdata('ak_setting', $arrayaksetting);
@@ -67,7 +68,7 @@ class Sekolah extends CI_Controller {
 			//pr($cond);
 			$this->db->where($cond);
 			$this->db->update('ak_sekolah',$insert);
-			//echo $this->db->last_query();
+			echo $this->db->last_query();
 		}
 		$sekolah=$this->ad_sekolah->getSekolahdata($this->session->userdata['user_authentication']['id_sekolah']);
 		//kepsek

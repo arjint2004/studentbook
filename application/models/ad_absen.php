@@ -47,7 +47,6 @@ Class Ad_absen extends CI_Model{
 										',array($month,$id_kelas,$this->session->userdata['ak_setting']['semester'],$this->session->userdata['ak_setting']['ta'],$this->session->userdata['user_authentication']['id_sekolah'],$_POST['id_pelajaran'],$_POST['aktifitas'],$_POST['kegiatan']));
 		
 		$jam_ke=$queryj->result_array();
-		
 		$query=$this->db->query('SELECT id,id_siswa_det_jenjang,jam_ke,absensi,day(tanggal) as tanggal ,keterangan
 								FROM `ak_absensi`
 								WHERE month( `tanggal` ) =?

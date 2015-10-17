@@ -76,7 +76,11 @@ class Absensi extends CI_Controller
            // pr($_POST);
 			$data['walikelas']=$this->ad_kelas->getWaliKelasByIdKelas($_POST['kelas']);
 			$data['kelas']=$this->ad_kelas->getkelasById($this->session->userdata['user_authentication']['id_sekolah'],$_POST['kelas']);
-			$data['absensi']=$this->ad_absen->getAbsensiByMonthByKelasPel($_POST['month'],$_POST['kelas']);
+			if($this->session->userdata['ak_setting']['jenjang'][0]['bentuk']=="PESANTREN"){
+				$data['absensi']=$this->ad_absen->getAbsensiPesantrenByMonthByKelasPel($_POST['month'],$_POST['kelas']);
+			}else{
+				$data['absensi']=$this->ad_absen->getAbsensiByMonthByKelasPel($_POST['month'],$_POST['kelas']);
+			}   
             $data['siswa']= $this->ad_siswa->getsiswaByIdKelas($_POST['kelas']);
 			//pr($_POST);
 			//pr($data['absensi']);
