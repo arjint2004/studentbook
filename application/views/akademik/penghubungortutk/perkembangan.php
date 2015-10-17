@@ -8,7 +8,10 @@
 																<th colspan="4">Aspek Penilaian </th>
 																</tr>
 
-															  <? if(!empty($content[0]['contarr'])){foreach($content[0]['contarr'] as $baris => $data){?>
+															  <? 
+															  unset($content[0]['contarr'][2]);
+															  unset($content[0]['contarr'][3]);
+															  if(!empty($content[0]['contarr'])){foreach($content[0]['contarr'] as $baris => $data){?>
 															  
 															  <tr class="sub_1 " baris="<?=$baris?>">
 																  <td colspan="3" style="text-align:left; "><?//=$baris?><input type="hidden"  value="<?=$data['nama']?>" name="program[<?=$baris?>][nama]"><?=$data['nama']?></td>

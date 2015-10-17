@@ -224,7 +224,7 @@
                             <li id="listlap"><a style="cursor:pointer;" class="current">Daftar Kegiatan</a></li>
                             <li id="sendlap"><a style="cursor:pointer;" >Kirim Kegiatan</a></li>
                             <li id="pengtk"><a style="cursor:pointer;" >Perkembangan</a></li>
-                            <li id="menutk"><a style="cursor:pointer;" >Menu Makan</a></li>
+                            <!--<li id="menutk"><a style="cursor:pointer;" >Menu Makan</a></li>-->
                         </ul>
                         <div class="tabs-frame-content listlap">
 							<form id="penghubunglist" method="post" action="">
@@ -452,7 +452,7 @@
 							</form>		
 												
 						</div>
-						<div class="tabs-frame-content menutk" style="display:none;">
+						<!--<div class="tabs-frame-content menutk" style="display:none;">
 							<form action="<? echo base_url();?>akademik/penghubungortutk/penghubungortu" id="penghubungortutkformmenu" name="penghubungortutkformmenu" method="post" >
 							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<table class="tabelfilter">
@@ -470,7 +470,7 @@
 									
 									</td>
 								</tr>
-							</table>
+							</table>-->
 							<!--<table class="tableprofil penghubungortutkh" border="1">
 									<tr>
 										<td>
@@ -479,13 +479,13 @@
 										<input placeholder="SUB TEMA" type="text" name="textfield"></td>
 									</tr>
 								</table>-->
-								<a class="button small light-grey simpanprgmenu" title="" id="" style="float:right;" href=""> Simpan </a>
+								<!--<a class="button small light-grey simpanprgmenu" title="" id="" style="float:right;" href=""> Simpan </a>
 								<br />
 								<br />
 								<div id="placeperkembanganmenu">
-									<?=$this->load->view('akademik/penghubungortutk/menumakan')?>
+									<?//=$this->load->view('akademik/penghubungortutk/menumakan')?>
 								</div>
 								<br />
 							</form>	
-						</div>
+						</div>-->
                     </div>

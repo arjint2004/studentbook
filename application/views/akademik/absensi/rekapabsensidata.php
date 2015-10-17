@@ -25,7 +25,7 @@
     <th>Izin</th>
     <th>Sakit</th>
     <th>Alpha</th>
-    <th>Keterangan</th>
+    <!--<th>Keterangan</th>-->
   </tr>
   <? $no=1;foreach($siswa as $datasiswa){ ?>
   <tr>
@@ -69,7 +69,7 @@
     <td><?=$izin[$datasiswa['id_siswa_det_jenjang']]?></td>
     <td><?=$sakit[$datasiswa['id_siswa_det_jenjang']]?></td>
     <td><?=$alpha[$datasiswa['id_siswa_det_jenjang']]?></td>
-    <td><?=$datajamnya['data'][$datasiswa['id_siswa_det_jenjang']]['keterangan'];?></td>
+    <!--<td><?//=$datajamnya['data'][$datasiswa['id_siswa_det_jenjang']]['keterangan'];?></td>-->
   </tr>
   <?}?>
 </table>

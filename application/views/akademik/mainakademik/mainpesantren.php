@@ -46,12 +46,6 @@
 			<li>
 				<a  id="pembtabtitleujian">Ujian</a>
 			</li>
-			<li id="tabpertlist" tab="evaluasi">
-				<a >Evaluasi Otentik</a>
-			</li>
-			<li>
-				<a >Penilaian Deskriptif</a>
-			</li>
 			<li>
 				<a id="pembtabtitlenilai">Nilai</a>
 			</li>
@@ -65,7 +59,7 @@
             <a class="readmore" title="" tab="perencanaan" id="timelinepembelajaran" href=""> Timeline Pembelajaran </a>
 		</div>-->
 		<div class="tabs-frame-content" style="display: none;">
-			<a class="readmore" tab="pembelajaran" id="materi_pelajaran" title="" > Materi<br />Pelajaran </a>
+			<a class="readmore" tab="pembelajaran" id="materi_pelajaran" title="" > Materi </a>
 			<!--<a class="readmore" tab="pembelajaran" id="daftar_pr"  title=""> Pekerjaan<br />Rumah</a>-->
 			<a class="readmore" tab="pembelajaran"   id="daftar_tugas" title=""  > Tugas </a>
 			<br id="brsubject"  tab="pembelajaran"  class="clear" />
@@ -74,21 +68,9 @@
 		<div class="tabs-frame-content" id="absensi" style="display: none; "></div>
 		<div class="tabs-frame-content" id="rekapbsensi" style="display: none;"></div>
 		<div class="tabs-frame-content" id="tpembelajaranujian" style="display:">
-			<a class="readmore" title="" href="" tab="ujian" id="daftar_harian"> Ulangan<br /> Harian </a>
+			<a class="readmore" title="" href="" tab="ujian" id="daftar_harian"> Ujian<br /> Harian </a>
             <a class="readmore" title="" href="" tab="ujian" id="daftar_uts"> Ujian<br /> Tengah Semester </a>
             <a class="readmore" title="" href="" tab="ujian" id="daftar_uas"> Ujian<br /> Akhir Semester </a>
-		</div>
-		<div class="tabs-frame-content" id="tabpertlistcnt" style="display: none;">
-			<h3>Evaluasi Otentik</h3>
-			<div class="hr"></div>
-			<a class="readmore" title="" tab="evaluasi" id="addpertemuan"> Buat <br> Evaluasi </a>
-			<a class="readmore" title="" tab="evaluasi" id="datapertemuan"> Scoring <br> Evaluasi </a>
-		</div>
-		<div class="tabs-frame-content"  style="display: none;">
-				<a class="readmore" title="" tab="otentik" href="" id="<?=base64_encode('kognitif');?>" >Nilai<br /> Kognitif </a>
-				<a class="readmore" title="" tab="otentik" href="" id="<?=base64_encode('afektif');?>" >Nilai<br /> Afektif </a>
-				<!--<a class="readmore" title="" tab="otentik" href="" id="<?=base64_encode('portofolio');?>" >Record<br /> Portofolio </a>-->
-				<a class="readmore" title="" tab="otentik" href="" id="<?=base64_encode('psikomotorik');?>">Nilai<br /> Psikomotorik</a>
 		</div>
 		<div class="tabs-frame-content" id="tpembelajarannilai" style="display: none;">
 				<!--<a class="readmore" title="" tab="nilai" href="" id="<?=base64_encode('nilai pr');?>">Penilaian<br /> PR </a>-->
@@ -165,72 +147,11 @@
 		</div>
 	</div>
 	<? } ?>
-	<!-- iklan batas -->
-	<!-- end iklan batas -->
-	
-	<div class="clear"></div>
-	<? $ekstra=$this->auth->array_searchRecursive( 21, $group, $strict=false, $path=array() );
-		if(!empty($ekstra)){
-	?>
-	<!--<script>
-		$(document).ready(function() {
-			$('#nilaikegiatan').load('<?=base_url('akademik/nilaikegiatansekolah/kesiswaanindex')?>');
-		});
-	</script>
-	<h3 id="PembinaKesiswaan"> Pembinaan Kesiswaan </h3>
-
-	<div class="hr"></div>
-	<div class="tabs-container">
-
-		<ul class="tabs-frame">
-			<li>
-				<a>Nilai Kegiatan / Pengembangan Diri</a>
-			</li>
-		</ul>
-		
-		<div class="tabs-frame-content" style="display: none;" id="nilaikegiatan">
-			
-		</div>
-	</div>-->
-	<? } ?>
-	<!-- iklan batas -->
-	<!-- end iklan batas -->
-	<!-- iklan batas -->
-	<!-- end iklan batas -->
-	
-	<div class="clear"></div>
-	<? $ekstra=$this->auth->array_searchRecursive( 21, $group, $strict=false, $path=array() );
-		if(!empty($ekstra)){
-	?>
-	<script>
-		$(document).ready(function() {
-			$('#nilaikepribadian').load('<?=base_url('akademik/nilaikepribadian/kesiswaanindex')?>');
-		});
-	</script>
-	<h3 id="PembinaKesiswaan"> Penilaian Kepribadian Siswa </h3>
-
-	<div class="hr"></div>
-	<div class="tabs-container">
-
-		<ul class="tabs-frame">
-			<!--<li>
-				<a>Nilai Kegiatan / Pengembangan Diri</a>
-			</li>-->
-		</ul>
-		
-		<div class="tabs-frame-content" style="display: none;" id="nilaikepribadian">
-			
-		</div>
-	</div>
-	<? } ?>
-	<!-- iklan batas -->
-	<!-- end iklan batas -->	
-	<?// pr($kelaswali);?>
 
 	<div class="clear"></div>
 	<? if(!empty($kelaswali)){?>
 	<? //laporanakademik($this->session->userdata['user_authentication']['id_pengguna'],'guru',5);?>
-	<h3 id="WaliKelas"> WALI KELAS </h3>
+	<h3 id="WaliKelas"> Prestasi </h3>
 	<div class="hr"></div>
 	<div class="tabs-container">
 
@@ -239,17 +160,17 @@
 				<a class="current" >Prestasi</a>
 			</li>
 			<li>
-				<a  id="hportutab">Siswa</a>
+				<a  id="hportutab">Daftar Resident</a>
 			</li>
 			<!--<li>
 				<a  id="jurnaltab">Jurnal</a>
 			</li>
 			<li>
 				<a  id="tababsensi" >Preview</a>
-			</li>-->
+			</li>
 			<li>
 				<a >Kenaikan & Kelulusan</a>
-			</li>
+			</li>-->
 		</ul>
 		<div class="tabs-frame-content" style="display: none;">
 			<!--<a class="readmore" tab="wali_input" id="kepribadian" title="" > Kepribadian </a>-->
@@ -300,7 +221,7 @@
 	<!-- iklan batas -->
 	<!-- end iklan batas -->	
 	<div class="clear"></div>
-	<?=jadwal();?>
+	<?//=jadwal();?>
 	
     <div class="hr "></div>
 
