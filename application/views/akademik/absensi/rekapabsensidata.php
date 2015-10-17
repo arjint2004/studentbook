@@ -19,7 +19,7 @@
   </tr>
   <tr>
 	<? if(!empty($absensi)){foreach($absensi as $colaps){?>
-    <th>Tgl <?=$colaps['tanggal']?><br />Jm ke <?=$colaps['jam_ke']?></th>
+    <th>Tgl <?=$colaps['tanggal']?><? if($this->session->userdata['ak_setting']['jenjang'][0]['bentuk']!="SD" AND $this->session->userdata['ak_setting']['jenjang'][0]['bentuk']!="PESANTREN"){ echo "<br />Jm ke ".$colaps['jam_ke'];}?></th>
 	<? }  } ?>
     <th>Hadir</th>
     <th>Izin</th>
