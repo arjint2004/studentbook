@@ -1,7 +1,12 @@
 <?php
-echo "Mohon maaf sedang maintenence database"; die(); 
+//echo "Mohon maaf sedang maintenence database"; die(); 
 // Check if accessed via SSL
-
+	//echo $_SERVER['SERVER_NAME'];
+	
+    if($_SERVER['SERVER_NAME'] == 'www.unirescorner.com' || $_SERVER['SERVER_NAME'] == 'unirescorner.com') 
+    {
+		
+	}
     if($_SERVER['SERVER_NAME'] == 'www.studentbook.co') 
     { 
         // If not, redirect
@@ -13,8 +18,8 @@ echo "Mohon maaf sedang maintenence database"; die();
     if($_SERVER['HTTPS'] != 'on') 
     { 
         // If not, redirect
-        $newurl = 'https://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']; 
-        header("location: $newurl"); 
+        //$newurl = 'https://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']; 
+       // header("location: $newurl"); 
     }
 	
 	/*echo "<pre>";

@@ -14,7 +14,13 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'https://studentbook.co/';
+	if($_SERVER['SERVER_NAME'] == 'www.unirescorner.com' || $_SERVER['SERVER_NAME'] == 'unirescorner.com') 
+    {
+		$basec='http://www.unirescorner.com/';	
+	}elseif($_SERVER['SERVER_NAME'] == 'www.studentbook.co' || $_SERVER['SERVER_NAME'] == 'studentbook.co'){
+		$basec== 'https://studentbook.co/';
+	}
+$config['base_url']	= $basec;
 //$config['base_url']	= 'https://'.$_SERVER['SERVER_NAME'].'/';
  
 /*
