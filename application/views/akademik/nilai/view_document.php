@@ -80,7 +80,7 @@
 <?
 
 $dirup=str_replace(base_url(),"",base64_decode($urlfilepure));
-if(is_image('/home/studoid1/public_html/studentbook/trunk'.$dirup)){
+if(is_image('/home/studoid1/public_html/studentbook/trunk/'.$dirup)){
 ?>
 <div style="text-align:center;">
 <img src="<?=base64_decode($urlfilepure)?>" />
