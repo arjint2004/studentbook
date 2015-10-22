@@ -124,7 +124,7 @@ class Sms extends CI_Controller {
 		$tmp='selalu menggunakan studentbook. Banyak WALI/ORTU SISWA yang menanyakan informasi di STUDENTBOOK. Buka link';
 			
 		foreach($guru as $dataguru){
-			//$tmpx =$tmp.strtoupper($dataguru['nama']).'. www.studentbook.co Username: '.$dataguru['username'].' Password: '.$dataguru['password'].' @'.strtoupper($this->session->userdata['ak_setting']['nama_sekolah']).'';
+			//$tmpx =$tmp.strtoupper($dataguru['nama']).'. '.base_url().' Username: '.$dataguru['username'].' Password: '.$dataguru['password'].' @'.strtoupper($this->session->userdata['ak_setting']['nama_sekolah']).'';
 			$tmpx ='Mohon Bp/Ibu '.strtoupper($dataguru['nama']).' '.$tmp.' '.base_url().'u/'.base64_encode($dataguru['id']).' Jika gagal login dengan Username: '.$dataguru['username'].' Password: '.$dataguru['password'].'';
 			echo $tmpx.'<br />';
 			$inser_sms=array('no_hp'=>$dataguru['hp'],
