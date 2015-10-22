@@ -63,7 +63,7 @@ class Sms extends CI_Controller {
 								$insert_sms=array(
 												'nama_siswa'=>'',
 												'no_hp'=>''.$inser_sms['no_hp'].'',
-												'pesan'=>$inser_sms['pesan']." https://studentbook.co/u/".base64_encode($id_user)." \n@".$this->session->userdata['ak_setting']['nama_sekolah'],
+												'pesan'=>$inser_sms['pesan']." ".base_url()."u/".base64_encode($id_user)." \n@".$this->session->userdata['ak_setting']['nama_sekolah'],
 												'jenis'=>$inser_sms['jenis'],
 												'id_jenis'=>0,
 												'id_kelas'=>0,
@@ -104,8 +104,8 @@ class Sms extends CI_Controller {
 		$tmp='Informasi Akademik Ananda ';
 
 		foreach($siswa as $datasiswa){
-			//$tmpx =$tmp.strtoupper($datasiswa['nama']).'. www.studentbook.co Username: '.$datasiswa['username'].' Password: '.$datasiswa['password'].' @'.strtoupper($this->session->userdata['ak_setting']['nama_sekolah']).'';
-			$tmpx =$tmp.strtoupper($datasiswa['nama']).'. Bisa Dilihat di https://studentbook.co/u/'.base64_encode($datasiswa['id_user']).' atau login dengan akun yang sudah diinformasikan. Ingatkan kami "Bp/Ibu Guru" untuk selalu memberikan informasi melalui STUDENTBOOK @'.strtoupper($this->session->userdata['ak_setting']['nama_sekolah']).'';
+			//$tmpx =$tmp.strtoupper($datasiswa['nama']).'. '.base_url().' Username: '.$datasiswa['username'].' Password: '.$datasiswa['password'].' @'.strtoupper($this->session->userdata['ak_setting']['nama_sekolah']).'';
+			$tmpx =$tmp.strtoupper($datasiswa['nama']).'. Bisa Dilihat di '.base_url().'u/'.base64_encode($datasiswa['id_user']).' atau login dengan akun yang sudah diinformasikan. Ingatkan kami "Bp/Ibu Guru" untuk selalu memberikan informasi melalui STUDENTBOOK @'.strtoupper($this->session->userdata['ak_setting']['nama_sekolah']).'';
 			echo $tmpx.'<br />';
 			$inser_sms=array('no_hp'=>$datasiswa['hp'],
 							 'pesan'=>$tmpx,
@@ -125,7 +125,7 @@ class Sms extends CI_Controller {
 			
 		foreach($guru as $dataguru){
 			//$tmpx =$tmp.strtoupper($dataguru['nama']).'. www.studentbook.co Username: '.$dataguru['username'].' Password: '.$dataguru['password'].' @'.strtoupper($this->session->userdata['ak_setting']['nama_sekolah']).'';
-			$tmpx ='Mohon Bp/Ibu '.strtoupper($dataguru['nama']).' '.$tmp.' https://studentbook.co/u/'.base64_encode($dataguru['id']).' Jika gagal login dengan Username: '.$dataguru['username'].' Password: '.$dataguru['password'].'';
+			$tmpx ='Mohon Bp/Ibu '.strtoupper($dataguru['nama']).' '.$tmp.' '.base_url().'u/'.base64_encode($dataguru['id']).' Jika gagal login dengan Username: '.$dataguru['username'].' Password: '.$dataguru['password'].'';
 			echo $tmpx.'<br />';
 			$inser_sms=array('no_hp'=>$dataguru['hp'],
 							 'pesan'=>$tmpx,

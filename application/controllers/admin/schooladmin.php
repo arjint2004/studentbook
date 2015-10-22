@@ -734,7 +734,7 @@ class Schooladmin extends CI_Controller {
 		//pr($data);
 		foreach($data as $datane){
 			if(strlen($datane['hp'])>8 AND strlen($datane['hp'])<13){
-				$pesan="Assalamualaikum, Bp/Ibu ".$datane['nama'].". info login studentbook anda adalah username: ".$datane['username']." Password: ".$datane['oripass']."  Untuk login ke http://studentbook.co ,Sukses selalu dan tetap semangat. Terima kasih. Wassalamualaikum. (Asbin Arjinto S.Kom)";
+				$pesan="Assalamualaikum, Bp/Ibu ".$datane['nama'].". info login studentbook anda adalah username: ".$datane['username']." Password: ".$datane['oripass']."  Untuk login ke ".base_url()." ,Sukses selalu dan tetap semangat. Terima kasih. Wassalamualaikum. (Asbin Arjinto S.Kom)";
 				pr($datane['hp']);
 				pr($pesan);
 				//$this->smsprivate->setTo($datane['hp']);

@@ -44,7 +44,7 @@
             <div class="content content-full-width">
             
                 <h1 class="with-subtitle">  404 Not Found </h1>
-                <h6 class="subtitle">  www.studentbook.co </h6>
+                <h6 class="subtitle">  <?=base_url()?> </h6>
                 
                 <div class="errorpage-info">
                     <h2> 404 </h2>

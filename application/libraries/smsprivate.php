@@ -203,7 +203,7 @@ class smsprivate {
 									'nama_siswa'=>''.$datanya['nama_siswa'].'',
 									'id_user'=>''.$datanya['id_user'].'',
 									'no_hp'=>''.$datanya['hp'].'',
-									'pesan'=>'lihat di https://studentbook.co/u/'.base64_encode($datanya['id_user']).' '.$pesan.''."\n@".$CI->session->userdata['ak_setting']['nama_sekolah'],
+									'pesan'=>'lihat di '.base_url().'u/'.base64_encode($datanya['id_user']).' '.$pesan.''."\n@".$CI->session->userdata['ak_setting']['nama_sekolah'],
 									'jenis'=>''.$jenis.'',
 									'id_jenis'=>''.$id_jenis.'',
 									'id_kelas'=>''.$datanya['id_kelas'].'',
