@@ -1,6 +1,6 @@
 <?
 
-$dirup=str_replace(base_url(),"",base64_decode($uploadeddir));
+$dirup=str_replace("https://studentbook.co","",base64_decode($uploadeddir));
 if(is_image('/home/studoid1/public_html/studentbook/trunk'.$dirup)){
 
 ?>

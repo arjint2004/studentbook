@@ -23,7 +23,7 @@ class Facebook_app extends CI_Controller {
 		$accessToken = $app_id . '|' . $app_secret;
 		$params = array(
 					'access_token' => $accessToken,
-					'href' => base_url(),
+					'href' => 'studentbook.co',
 					'template' => 'test notif',
 				);
 		$facebook->api('/1434750659/notifications', 'post', $params);*/

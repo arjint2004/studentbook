@@ -79,7 +79,7 @@
 
 <?
 
-$dirup=str_replace(base_url(),"",base64_decode($urlfilepure));
+$dirup=str_replace("https://studentbook.co","",base64_decode($urlfilepure));
 if(is_image('/home/studoid1/public_html/studentbook/trunk'.$dirup)){
 ?>
 <div style="text-align:center;">
