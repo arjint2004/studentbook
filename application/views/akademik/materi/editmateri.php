@@ -43,8 +43,9 @@
 		$(".addaccountclose").click(function(){
 			$(".addaccount").remove();
 		});
-		filesize('fileaddmateri',15000000,50);
+		filesize('fileaddmateri',15000000,10);
 		$("#materi").submit(function(e){
+			e.preventDefault();
 			$frm = $(this);
 			//$id_kelas = $frm.find('*[name=id_kelas]').val();
 			$id_pelajaran = $frm.find('*[name=id_pelajaran]').val();
@@ -72,6 +73,7 @@
 							data: upload,
 							processData: false,
 							contentType: false,
+							cache: false,
 							beforeSend: function() {
 								$("#materi").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
 								$(".error-box").delay(1000).html('Proses Upload File');

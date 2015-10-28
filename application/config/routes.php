@@ -39,7 +39,13 @@
 */
 $route['404_override'] = 'error404/index';
 $route['login'] = "homepage/login";
-$route['default_controller'] = "homepage/login";
+    if($_SERVER['SERVER_NAME'] == 'www.unirescorner.com' || $_SERVER['SERVER_NAME'] == 'unirescorner.com') 
+    {
+		$route['default_controller'] = "homepage/loginunires";
+	}else{
+		$route['default_controller'] = "homepage/login";
+	}
+
 $route['ortu'] = 'sos/siswa';
 $route['facebook_app'] = 'akademik/mainakademik';
 $route['contentsekolah/(:any)'] = 'sos/sekolah/content/$1';
