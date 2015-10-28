@@ -1,3 +1,4 @@
+		<script src="<?=$this->config->item('bigupload').'js/bigUpload.js';?>"></script>		
 <script>
 	$(document).ready(function(){
 		$("#materi").each(function(){
@@ -65,58 +66,69 @@
 						$(".error-box").delay(1000).fadeOut("slow",function(){
 							$(this).remove();
 						});	
-						var upload=ajaxuploadnew("<? echo base_url();?>akademik/materi/upload/"+msg,"response","image-list","fileaddmateri");
-						
-						$.ajax({
-							url: "<? echo base_url();?>akademik/materi/upload/"+msg,
-							type: "POST",
-							data: upload,
-							processData: false,
-							contentType: false,
-							cache: false,
-							beforeSend: function() {
-								$("#materi").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
-								$(".error-box").delay(1000).html('Proses Upload File');
-							},
-							error	: function(){
-								alert('Materi anda sudah tersimpan. Tetapi lampiran file anda gagal di Upload. Klik OK untuk melengkapi lampiran');
-								$('#fileaddmateri').val("");
-								return false;
-								//$('#subjectlistmateri').load('<?=base_url('akademik/materi/editmateri')?>/'+msg);						
-							},
-							success: function (res) {
-								$(".error-box").delay(1000).fadeOut("slow",function(){
-									$(this).remove();
-								});	
-								if(res=='null'){
+						var settings = {
+							'inputField': 'bigUploadFile',
+							'formId': 'bigUploadForm',
+							'progressBarField': 'bigUploadProgressBarFilled',
+							'timeRemainingField': 'bigUploadTimeRemaining',
+							'responseField': 'bigUploadResponse',
+							'submitButton': 'bigUploadSubmit',
+							'progressBarColor': '#5bb75b',
+							'progressBarColorError': '#da4f49',
+							'scriptPath': '<?=base_url()?>asset/default/ajaxbigupload/inc/bigUpload.php?dr=<?=$upload_dir?>',
+							//'scriptPath': '<?=base_url()?>akademik/materi/upload',
+							'scriptPathParams': '',
+							'chunkSize': 1000000,
+							'maxFileSize': 2147483648
+						}
+						bigUpload = new bigUpload(settings);						
+						bigUpload.success = function(response) {
+								if(response.errorStatus==0){
 									$.ajax({
 										type: "POST",
-										data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&&ajax=1',
-										url: '<?=base_url('akademik/materi/daftarmaterilist')?>',
+										data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_materi=<?=@$materi[0]['id']?>&fileName='+response.fileName,
+										url: '<?=base_url('akademik/materi/upload/'.@$materi[0]['id'].'')?>',
 										beforeSend: function() {
 											$("#materi").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
-											$(".error-box").delay(1000).html('Load data');
+											$(".error-box").delay(1000).html('Menyimpan Ke database');
 											$(".error-box").delay(1000).fadeOut("slow",function(){
 												$(this).remove();
 											});
 										},
-										success: function(msg2) {
-											$("#wait").remove();
-											//$('select#kelas').val($('select#kelas_add').val());
-											$('select#pelajaran').html($('select#pelajaran_add').html());
-											$('select#pelajaran').val($('select#pelajaran_add').val());
-											$('#subjectlistmateri').html(msg2);
-											$('#subject').scrollintoview({ speed:'1100'});
+										success: function(msg) {
+											$.ajax({
+												type: "POST",
+												data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&ajax=1',
+												url: '<?=base_url('akademik/materi/daftarmaterilist')?>',
+												beforeSend: function() {
+													$("#materi").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+													$(".error-box").delay(1000).html('Load data');
+													$(".error-box").delay(1000).fadeOut("slow",function(){
+														$(this).remove();
+													});
+												},
+												success: function(msg2) {
+													$("#wait").remove();
+													//$('select#kelas').val($('select#kelas_add').val());
+													$('select#pelajaran').html($('select#pelajaran_add').html());
+													$('select#pelajaran').val($('select#pelajaran_add').val());
+													$('#subjectlistmateri').html(msg2);
+													$('#subject').scrollintoview({ speed:'1100'});
+												}
+											});
 										}
 									});
+									
+
 								}else{
-									alert(res+'');
+									alert('error');
 									//$('#subjectlistmateri').load('<?=base_url('akademik/materi/editmateri')?>/'+msg);
 									$('#fileaddmateri').val("");
 									return false;
 								}
-							}
-						});
+						};
+						bigUpload.fire();
+						
 					}
 				});
 				return false;
@@ -278,8 +290,19 @@ $(function() {
 				<td width="30%" class="title">Lampiran File</td>
 				<td width="1">:</td>
 				<td>
-					<input type="file" name="file" id="fileaddmateri" multiple />
-					<div id="response" style="font-size:11px;">Anda bisa memilih banyak file dengan memencet tombol "Ctrl", kemudian klik file yang dipilih lebih dari satu</div>
+				
+					<input type="file" id="bigUploadFile" name="bigUploadFile" />
+					<input type="button" class="bigUploadButton" value="Start Upload" id="bigUploadSubmit"  style="display:none" />
+					<input type="button" class="bigUploadButton bigUploadAbort" value="Cancel"  style="display:none" />
+					<div id="bigUploadProgressBarContainer">
+						<div id="bigUploadProgressBarFilled">
+						</div>
+					</div>
+					<div id="bigUploadTimeRemaining"></div>
+					<div id="bigUploadResponse"></div>
+					
+					
+					<!--<div id="response" style="font-size:11px;">Anda bisa memilih banyak file dengan memencet tombol "Ctrl", kemudian klik file yang dipilih lebih dari satu</div>-->
 					<form id="remidialfile" method="post" action="">
 							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 					<ul class="file">
