@@ -20,8 +20,12 @@ class Materi extends CI_Controller
         }
 		public function upload($id_materi=0)
         {
-			if(isset($_POST['id_materi']) && isset($_POST['id_materi'])){
-				$this->db->insert('ak_materi_file', array('id_materi'=>$_POST['id_materi'],'file_name'=>''.$_POST['fileName'].'','source'=>'upload'));
+			if(isset($_POST['id_materi']) && isset($_POST['fileName'])){
+				if($this->db->insert('ak_materi_file', array('id_materi'=>$_POST['id_materi'],'file_name'=>''.$_POST['fileName'].'','source'=>'upload'))){
+					echo 'null';
+				}else{
+					echo 'Gagal menyimpan data';
+				}
 			}
 		}
 		/*public function upload($id_materi)
@@ -154,6 +158,7 @@ class Materi extends CI_Controller
 			//$data['kelas'] 	=$this->ad_kelas->getkelasByPengajar($this->session->userdata['user_authentication']['id_sekolah'],$this->session->userdata['user_authentication']['id_pengguna']);
 			$data['pelajaran'] 	=$this->ad_pelajaran->getdatabySemesterJenjangJurusanPegawaimengajar();
 			//pr($data['pelajaran']);
+			$data['upload_dir'] 	=base64_encode('../../../../upload/akademik/materi/');
 			$data['main']= 'akademik/materi/addmateri';
             $this->load->view('layout/ad_blank',$data);				
 		}

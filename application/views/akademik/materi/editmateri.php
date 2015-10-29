@@ -83,7 +83,7 @@
 						}
 						bigUpload = new bigUpload(settings);
 						$("#materi").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
-											$(".error-box").delay(1000).html('Sedang proses UPLOAD');
+						$(".error-box").delay(1000).html('Sedang proses UPLOAD');
 											
 						bigUpload.success = function(response) {
 								if(response.errorStatus==0){
