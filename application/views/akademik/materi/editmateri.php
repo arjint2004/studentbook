@@ -81,7 +81,10 @@
 							'chunkSize': 1000000,
 							'maxFileSize': 2147483648
 						}
-						bigUpload = new bigUpload(settings);						
+						bigUpload = new bigUpload(settings);
+						$("#materi").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+											$(".error-box").delay(1000).html('Sedang proses UPLOAD');
+											
 						bigUpload.success = function(response) {
 								if(response.errorStatus==0){
 									$.ajax({
@@ -93,6 +96,7 @@
 											$(".error-box").delay(1000).html('Menyimpan Ke database');
 											$(".error-box").delay(1000).fadeOut("slow",function(){
 												$(this).remove();
+												$(".error-box").remove();
 											});
 										},
 										success: function(msg) {
