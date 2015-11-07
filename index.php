@@ -18,8 +18,10 @@
     if($_SERVER['HTTPS'] != 'on') 
     { 
         // If not, redirect
-        //$newurl = 'https://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']; 
-       // header("location: $newurl"); 
+        if($_SERVER['SERVER_NAME'] == 'studentbook.co'){
+		$newurl = 'https://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']; 
+        header("location: $newurl"); 
+		}
     }
 	
 	/*echo "<pre>";

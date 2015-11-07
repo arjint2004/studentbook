@@ -68,6 +68,13 @@ class Schooladmin extends CI_Controller {
 		$this->load->view('layout/ad_detail',$data);
 	 }
 	 
+	 function updatehp()
+	 {
+		// $hp=$this->db->query('SELECT * FROM `ak_pegawai` WHERE `id_sekolah`=471 AND id_siswa!=0')->result_array();
+		// foreach($hp as $dthp){
+			// echo 'UPDATE `ak_pegawai` set hp="0'.$dthp['hp'].'" WHERE id='.$dthp['id'].';<br />';
+		// }
+	 }
 	 function deletepegawai($id_pegawai=null)
 	 {
 		if($id_pegawai==null){

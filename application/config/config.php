@@ -369,6 +369,7 @@ $config['proxy_ips'] = '';
 /* End of file config.php */
 /* Location: ./application/config/config.php */
 
+$config['bigupload']      = $config['base_url'].'asset/default/ajaxbigupload/';
 $config['css']      = $config['base_url'].'asset/default/css/';
 $config['images']   = $config['base_url'].'asset/default/images/';
 $config['skin']     = $config['base_url'].'asset/default/skins/';

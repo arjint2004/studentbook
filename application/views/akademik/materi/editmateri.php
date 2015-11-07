@@ -44,7 +44,7 @@
 		$(".addaccountclose").click(function(){
 			$(".addaccount").remove();
 		});
-		filesize('fileaddmateri',15000000,10);
+		//filesize('fileaddmateri',15000000,10);
 		$("#materi").submit(function(e){
 			e.preventDefault();
 			$frm = $(this);
@@ -79,7 +79,7 @@
 							//'scriptPath': '<?=base_url()?>akademik/materi/upload',
 							'scriptPathParams': '',
 							'chunkSize': 1000000,
-							'maxFileSize': 2147483648
+							'maxFileSize': 25000000
 						}
 						bigUpload = new bigUpload(settings);
 						$("#materi").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");

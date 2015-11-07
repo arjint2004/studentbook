@@ -4,6 +4,7 @@
         public function get_user($username,$password)
         {
             if(!empty($username) AND $password) {
+				$username=str_replace("%20"," ",$username);
                 $this->db->select('a.*,b.otoritas,b.auth, s.nama_sekolah, s.alamat_sekolah, s.logo,ap.nama as nama_peg,ap.id_siswa,asis.nama as nama_siswa');
                 $this->db->from('users a');
                 $this->db->join('group b','a.id_group=b.id','left');
@@ -14,7 +15,8 @@
                 $this->db->where('a.password',md5($password));
                 $this->db->where('a.aktif',1);
                 $sql = $this->db->get();
-				//echo $this->db->last_query();
+				//echo $username;
+				//echo $this->db->last_query();die();
                 if($sql->num_rows()>0) {
                     $sql = $sql->row();
                     return $sql;
