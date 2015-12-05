@@ -86,5 +86,9 @@ class Sms extends CI_Controller
             $data['main']= 'akademik/sms/sms';
             $this->load->view('layout/ad_blank',$data);
         }
+		
+		public function notifguru(){
+			pr($_SERVER);
+		}
     }
 ?>
