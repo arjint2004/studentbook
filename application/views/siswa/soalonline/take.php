@@ -2,7 +2,7 @@
 
 $dirup=str_replace(base_url(),"",$params['file']);
 // pr($dirup);die();
-if(is_image('D:/webdevel/studentbookgit/'.$dirup)){
+if(is_image('/home/studoid1/public_html/studentbook/trunk/'.$dirup)){
 ?>
 <div style="text-align:center;">
 <img src="<?=base64_decode($uploadeddir)?>" />
