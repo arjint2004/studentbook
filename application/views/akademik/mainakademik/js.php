@@ -484,6 +484,8 @@
 									url='<? echo base_url();?>akademik/kirimpr/daftarpr';
 								}else if($(this).attr('id')=='daftar_tugas'){
 									url='<? echo base_url();?>akademik/kirimtugas/daftartugas';
+								}else if($(this).attr('id')=='soal_online'){
+									url='<? echo base_url();?>akademik/soalonline';
 								}
 								ajax(url,thisobj);
 								return false;

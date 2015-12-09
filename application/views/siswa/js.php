@@ -79,6 +79,8 @@ $(document).ready(function() {
 									url='<? echo base_url();?>siswa/kirimpr/daftarpr';
 								}else if($(this).attr('id')=='daftar_tugas'){
 									url='<? echo base_url();?>siswa/kirimtugas/daftartugas';
+								}else if($(this).attr('id')=='soalonline'){
+									url='<? echo base_url();?>siswa/soalonline';
 								}
 								ajax(url,thisobj);
 								return false;

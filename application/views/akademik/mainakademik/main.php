@@ -65,6 +65,7 @@
             <a class="readmore" title="" tab="perencanaan" id="timelinepembelajaran" href=""> Timeline Pembelajaran </a>
 		</div>-->
 		<div class="tabs-frame-content" style="display: none;">
+			<a class="readmore" tab="pembelajaran" id="soal_online" title="" > Soal<br />Online </a>
 			<a class="readmore" tab="pembelajaran" id="materi_pelajaran" title="" > Materi<br />Pelajaran </a>
 			<a class="readmore" tab="pembelajaran" id="daftar_pr"  title=""> Pekerjaan<br />Rumah</a>
 			<a class="readmore" tab="pembelajaran"   id="daftar_tugas" title=""  > Tugas<br />Sekolah </a>

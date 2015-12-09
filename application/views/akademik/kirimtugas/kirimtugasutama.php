@@ -259,11 +259,19 @@ $(function() {
 				</td>
 			</tr>
 			<tr>
-				<td width="30%" class="title">Lampiran Soal</td>
+				<td width="30%" class="title">Lampiran File</td>
 				<td width="1">:</td>
 				<td colspan="2">
-					<input type="file" name="file" id="fileaddtugas" multiple />
-					<div id="response" style="font-size:11px;">Anda bisa memilih banyak file dengan memencet tombol "Ctrl", kemudian klik file yang dipilih lebih dari satu</div>
+					<input type="file" id="bigUploadFiletugas" name="bigUploadFiletugas" />
+					<input type="button" class="bigUploadButton" value="Start Upload" id="bigUploadSubmit"  style="display:none" />
+					<input type="button" class="bigUploadButton bigUploadAbort" value="Cancel"  style="display:none" />
+					<div id="bigUploadProgressBarContainertugas">
+						<div id="bigUploadProgressBarFilledtugas">
+						</div>
+					</div>
+					<div id="bigUploadTimeRemainingtugas"></div>
+					<div id="bigUploadResponsetugas"></div>
+					<!--<div id="response" style="font-size:11px;">Anda bisa memilih banyak file dengan memencet tombol "Ctrl", kemudian klik file yang dipilih lebih dari satu</div>-->
 				</td>
 			</tr>
 			<tr id="keterangantugas">
@@ -273,13 +281,13 @@ $(function() {
 					<textarea name="keterangan"  maxlength="200" placeholder="Keterangan akan dikirim ke Orang Tua / Wali Siswa melalui SMS" id="keteranganaddtugas"></textarea>
 				</td>
 			</tr>
-			<tr>
+			<!--<tr>
 				<td width="30%" class="title">Berbagi</td>
 				<td width="1">:</td>
 				<td colspan="2">
 					<input type="checkbox" name="share" value="1" checked />
 				</td>
-			</tr>
+			</tr>-->
 			<tr>
 				<th style="text-align:right;" colspan="4">
 				<a onclick="$('#kirimtugasutama').submit();" id="simpantugasbottom" class="button small light-grey absenbutton" title=""> Simpan </a>

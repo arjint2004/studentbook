@@ -325,13 +325,13 @@ $(function() {
 					<textarea name="keterangan" id="keteranganaddmateri"></textarea>
 				</td>
 			</tr>
-			<tr>
+			<!--<tr>
 				<td width="30%" class="title">Berbagi</td>
 				<td width="1">:</td>
 				<td colspan="2">
 					<input type="checkbox" checked name="share" value="1" />
 				</td>
-			</tr>
+			</tr>-->
 			
 			<tr>
 				<th style="text-align:right;" colspan="4">

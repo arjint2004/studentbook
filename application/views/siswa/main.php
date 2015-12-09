@@ -103,6 +103,7 @@ if($cek['otoritas']=='siswa') {
 			</li>
 		</ul>
 		<div class="tabs-frame-content" style="display: none;">
+			<a class="readmore" tab="pembelajaran" id="soalonline" title="" > Soal<br />Online </a>
 			<a class="readmore" tab="pembelajaran" id="materi_pelajaran" title="" > Materi<br />Pelajaran </a>
 			<a class="readmore" tab="pembelajaran" id="daftar_pr"  title=""> Daftar<br />PR</a>
 			<a class="readmore" tab="pembelajaran"   id="daftar_tugas" title=""  > Daftar<br />Tugas </a>
