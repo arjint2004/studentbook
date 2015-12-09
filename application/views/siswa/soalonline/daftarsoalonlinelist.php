@@ -60,7 +60,8 @@
 															<?
 																$urlembed=str_replace(":","%3A",str_replace("/","%2F",base_url('upload/akademik/soalonline/'.$file['file_name']).'&amp;embedded=true'));
 																$params=base64_encode(serialize(array(
-																		'file'=>$urlembed,
+																		'file'=>$file['file_name'],
+																		'url'=>$urlembed,
 																		'id'=>$datasoalonline['id']
 																)));
 																
