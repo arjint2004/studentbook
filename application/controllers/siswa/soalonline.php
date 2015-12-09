@@ -15,7 +15,7 @@ class Soalonline extends CI_Controller
 			$data['params']=unserialize(base64_decode($param));
 			$data['main'] 	= 'siswa/soalonline/take';
 			$data['page_title'] 	= 'Kerjakan Soal';
-			$this->load->view('layout/ad_fullwidth',$data);
+			$this->load->view('layout/ad_blank',$data);
 		}
         public function index(){
 			$this->load->model('ad_siswa');
