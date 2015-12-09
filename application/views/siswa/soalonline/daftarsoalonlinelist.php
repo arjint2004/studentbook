@@ -58,8 +58,9 @@
 															<a title="<?=$file['file_name']?>" href="<?=base_url('homepage/send_download/'.base64_encode('upload/akademik/soalonline/').'/'.base64_encode($file['file_name']).'');?>" target="_self"><?=substr($file['file_name'],-30)?> Download</a>
 															| 
 															<?
+																$urlembed=str_replace(":","%3A",str_replace("/","%2F",base_url('upload/akademik/soalonline/'.$file['file_name']).'&amp;embedded=true'));
 																$params=base64_encode(serialize(array(
-																		'file'=>base_url('upload/akademik/soalonline/'.$file['file_name']),
+																		'file'=>$urlembed,
 																		'id'=>$datasoalonline['id']
 																)));
 																
