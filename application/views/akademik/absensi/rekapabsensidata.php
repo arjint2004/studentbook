@@ -1,6 +1,44 @@
+<script type="text/javascript">
+$(function() {
+	$("table#rekapabsensi tr th a.hapusabsensi").click(function(){
+		if(confirm("Data Absensi akan di hapus.")){
+			$("#absensiform").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+			$(".error-box").html("Loading Data").fadeIn("slow");			
+			$.ajax({
+				type: "POST",
+				data: "<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&params="+$(this).attr('paramsabsrekap')+"",
+				url: '<?=base_url()?>akademik/absensi/hapusabsensi',
+				beforeSend: function() {
+					$(".error-box").delay(1000).html('Menghapus Data');
+					$(".error-box").delay(1000).fadeOut("slow",function(){
+						$(this).remove();
+					});
+				},			
+				error	: function(){
+					$(".error-box").delay(1000).html('Penghapusan Data Gagal');
+					$(".error-box").delay(1000).fadeOut("slow",function(){
+						$(this).remove();
+					});
+													
+				},
+				success: function(msg) {
+					if(msg=1){
+						getaddrekap('',$('select#bulanrekapabsen').val());
+					}else{
+						alert('Penghapusan Data Gagal'); return false;
+					}
+					
+				}
+			});
+		}
+		return false;
+	});
+});
+
+</script>
 <form name="absensi" id="absensiform" method="post" action="<?=base_url()?>akademik/absensi/add" >
 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
-<? pr($absensi);?>
+<? //pr($absensi);?>
 <style>
 	table#rekapabsensi tr th{
 		background-color:#eee;
@@ -19,7 +57,11 @@
   </tr>
   <tr>
 	<? if(!empty($absensi)){foreach($absensi as $colaps){?>
-    <th>Tgl <?=$colaps['tanggal']?><? if($this->session->userdata['ak_setting']['jenjang'][0]['bentuk']!="SD" AND $this->session->userdata['ak_setting']['jenjang'][0]['bentuk']!="PESANTREN"){ echo "<br />Jm ke ".$colaps['jam_ke'];}?></th>
+    <th>Tgl <?=$colaps['tanggal']?><? if($this->session->userdata['ak_setting']['jenjang'][0]['bentuk']!="SD" AND $this->session->userdata['ak_setting']['jenjang'][0]['bentuk']!="PESANTREN"){ echo "<br />Jm ke ".$colaps['jam_ke'];}
+	$paramsabs=base64_encode(serialize(array('tglabs'=>$colaps['tgl'],'klsabs'=>$id_kelas,'jamkeabs'=>$colaps['jam_ke'])));
+	?>
+	<br>
+	<a style="float: none; padding: 2px; margin: 0px; font-size: 10px;" href="" class="readmore hapusabsensi" paramsabsrekap="<?=$paramsabs?>" >Hapus</a></th>
 	<? }  } ?>
     <th>Hadir</th>
     <th>Izin</th>

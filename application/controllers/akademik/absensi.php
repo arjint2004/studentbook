@@ -54,6 +54,15 @@ class Absensi extends CI_Controller
             $data['main']= 'akademik/absensi/rekapabsensi';
             $this->load->view('layout/ad_blank',$data);
         }
+        public function hapusabsensi(){
+			$par=unserialize(base64_decode($_POST['params']));
+			if($this->db->query("DELETE FROM ak_absensi WHERE tanggal='".$par['tglabs']."' AND id_kelas=".$par['klsabs']." AND jam_ke=".$par['jamkeabs']."")){
+				echo 1;
+			}else{
+				echo 0;
+			}
+			
+		}
         public function rekapabsensidata(){
 			$this->load->model('ad_siswa');
 			$this->load->model('ad_absen');	
@@ -64,7 +73,7 @@ class Absensi extends CI_Controller
 			}else{
 				$data['absensi']=$this->ad_absen->getAbsensiByMonthByKelasPel($_POST['month'],$_POST['id_kelas']);
 			}     
-			
+			$data['id_kelas']=$_POST['id_kelas'];
             $data['siswa']= $this->ad_siswa->getsiswaByIdKelas($_POST['id_kelas']);
             $data['main']= 'akademik/absensi/rekapabsensidata';
             $this->load->view('layout/ad_blank',$data);

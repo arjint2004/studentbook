@@ -33,7 +33,7 @@ Class Ad_absen extends CI_Model{
 		if($month==0){$month=date('m');}
 		if($_POST['id_pelajaran']==''){$_POST['id_pelajaran']=0;}
 		//get jam
-		$queryj=$this->db->query('SELECT id,jam_ke,day(tanggal) as tanggal ,keterangan
+		$queryj=$this->db->query('SELECT id,jam_ke,day(tanggal) as tanggal ,tanggal as tgl,keterangan
 										FROM `ak_absensi`
 										WHERE month( `tanggal` ) =?
 										AND id_kelas=?
@@ -47,7 +47,7 @@ Class Ad_absen extends CI_Model{
 										',array($month,$id_kelas,$this->session->userdata['ak_setting']['semester'],$this->session->userdata['ak_setting']['ta'],$this->session->userdata['user_authentication']['id_sekolah'],$_POST['id_pelajaran'],$_POST['aktifitas'],$_POST['kegiatan']));
 		
 		$jam_ke=$queryj->result_array();
-		$query=$this->db->query('SELECT id,id_siswa_det_jenjang,jam_ke,absensi,day(tanggal) as tanggal ,keterangan
+		$query=$this->db->query('SELECT id,id_siswa_det_jenjang,jam_ke,absensi,day(tanggal) as tanggal,tanggal as tgl,keterangan
 								FROM `ak_absensi`
 								WHERE month( `tanggal` ) =?
 								AND id_kelas=?
@@ -64,6 +64,7 @@ Class Ad_absen extends CI_Model{
 			foreach($absennya as $jamkenyaabsen){
 					$array1[$jamkenya['jam_ke'].$jamkenya['tanggal']]['tanggal']=$jamkenya['tanggal'];
 					$array1[$jamkenya['jam_ke'].$jamkenya['tanggal']]['jam_ke']=$jamkenya['jam_ke'];
+					$array1[$jamkenya['jam_ke'].$jamkenya['tanggal']]['tgl']=$jamkenya['tgl'];
 				if($jamkenya['jam_ke']==$jamkenyaabsen['jam_ke'] && $jamkenya['tanggal']==$jamkenyaabsen['tanggal']){
 					$array1[$jamkenya['jam_ke'].$jamkenya['tanggal']]['data'][$jamkenyaabsen['id_siswa_det_jenjang']]=$jamkenyaabsen;
 				}
@@ -81,7 +82,7 @@ Class Ad_absen extends CI_Model{
 		if($month==0){$month=date('m');}
 		if($_POST['id_pelajaran']==''){$_POST['id_pelajaran']=0;}
 		//get jam
-		$queryj=$this->db->query('SELECT id,jam_ke,day(tanggal) as tanggal
+		$queryj=$this->db->query('SELECT id,jam_ke,day(tanggal) as tanggal,tanggal as tgl
 								FROM `ak_absensi`
 								WHERE month( `tanggal` ) =?
 								AND id_kelas=?
@@ -94,7 +95,7 @@ Class Ad_absen extends CI_Model{
 		
 		$jam_ke=$queryj->result_array();
 		
-		$query=$this->db->query('SELECT id,id_siswa_det_jenjang,jam_ke,absensi,day(tanggal) as tanggal
+		$query=$this->db->query('SELECT id,id_siswa_det_jenjang,jam_ke,absensi,day(tanggal) as tanggal,tanggal as tgl
 								FROM `ak_absensi`
 								WHERE month( `tanggal` ) =?
 								AND id_kelas=?
@@ -109,6 +110,7 @@ Class Ad_absen extends CI_Model{
 			foreach($absennya as $jamkenyaabsen){
 					$array1[$jamkenya['jam_ke'].$jamkenya['tanggal']]['tanggal']=$jamkenya['tanggal'];
 					$array1[$jamkenya['jam_ke'].$jamkenya['tanggal']]['jam_ke']=$jamkenya['jam_ke'];
+					$array1[$jamkenya['jam_ke'].$jamkenya['tanggal']]['tgl']=$jamkenya['tgl'];
 				if($jamkenya['jam_ke']==$jamkenyaabsen['jam_ke'] && $jamkenya['tanggal']==$jamkenyaabsen['tanggal']){
 					$array1[$jamkenya['jam_ke'].$jamkenya['tanggal']]['data'][$jamkenyaabsen['id_siswa_det_jenjang']]=$jamkenyaabsen;
 				}
