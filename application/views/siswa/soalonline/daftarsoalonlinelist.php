@@ -66,7 +66,7 @@
 																)));
 																
 															?>
-															<a target="file"  href="<?=base_url()?>siswa/soalonline/take/<?=$params?>">Lihat</a>
+															<a target="file"  href="<?=base_url()?>siswa/soalonline/take/<?=$params?>">Kerjakan Soal</a>
 															<? //} ?>
 															</td>
 														</tr>

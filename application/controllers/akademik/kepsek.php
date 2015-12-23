@@ -236,7 +236,21 @@ class Kepsek extends CI_Controller
 		
 		
 		//LIHAT DETAIL
-		
+		private function get_data_program_peasantren(){
+				$this->load->model('ad_penghubungortutk');
+				$contentprogram=$this->ad_penghubungortutk->getdataByIdSekolah($this->session->userdata['user_authentication']['id_sekolah'],'perkembangan_tk',$this->session->userdata['ak_setting']['semester']);
+				$contentprograms[0]['contarr']=unserialize($contentprogram[0]['content']);
+				foreach($contentprograms[0]['contarr'] as $ftlr){
+					if($ftlr['nama']=='KLASIKAL' || $ftlr['nama']=='PEMBIASAAN'){
+						$datause[$ftlr['nama']]=$ftlr['child'];
+						foreach($datause[$ftlr['nama']] as $idd=>$vbg){
+							unset($datause[$ftlr['nama']][$idd]);
+							$datause[$ftlr['nama']][]=$vbg['nama'];
+						}
+					}
+				}
+				return $datause;
+		}		
 		function lihat($jenis='',$params=''){
 			$params=unserialize($this->myencrypt->decode($params));
 			//pr($params);
@@ -249,6 +263,10 @@ class Kepsek extends CI_Controller
 				break;
 				
 				case "absen":
+					//khusus pesanteren
+					if($this->session->userdata['ak_setting']['jenjang'][0]['bentuk']=="PESANTREN"){
+						$data['program']=$this->get_data_program_peasantren();
+					}
 					$this->load->model('ad_kelas');
 					$data['kelas'] 	=$this->ad_kelas->getkelasByPengajar($this->session->userdata['user_authentication']['id_sekolah'],$params['id_peg']);
 					$data['id_pegawai']=$params['id_peg'];

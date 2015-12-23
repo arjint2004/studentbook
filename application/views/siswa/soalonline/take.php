@@ -180,7 +180,7 @@ height: 100%;
                    <a href="#">
                          <i class="fa fa-power-off fa-2x"></i>
                         <span class="nav-text">
-                            Logout
+                            Selesai
                         </span>
                     </a>
                 </li>  
