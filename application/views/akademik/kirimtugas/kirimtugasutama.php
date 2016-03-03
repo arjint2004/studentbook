@@ -1,3 +1,4 @@
+<script src="<?=$this->config->item('bigupload').'js/bigUpload.js';?>"></script>
 <script>
 	$(document).ready(function(){
 		$("#kirimtugasutama").each(function(){
@@ -81,55 +82,80 @@
 					url: $(this).attr('action'),
 					beforeSend: function() {
 						$("#kirimtugasutama").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
-						$(".error-box").delay(1000).html('Inserting Data');
+						$(".error-box").delay(1000).html('Memasukkan Data');
 					},
 					success: function(msg) {
 						$(".error-box").delay(1000).fadeOut("slow",function(){
 							$(this).remove();
-						});
-						var upload=ajaxuploadnew("<? echo base_url();?>akademik/kirimtugas/uploadfiletugas/"+msg,"response","image-list","fileaddtugas");
-						$.ajax({
-							url: "<? echo base_url();?>akademik/kirimtugas/uploadfiletugas/"+msg,
-							type: "POST",
-							data: upload,
-							processData: false,
-							contentType: false,
-							beforeSend: function() {
-								$("#kirimtugasutama").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
-								$(".error-box").delay(1000).html('Proses Upload File');
-							},
-							error	: function(){
-								alert('TUGAS anda sudah tersimpan. Tetapi lampiran file anda gagal di Upload. Klik OK untuk melengkapi lampiran');
-								$('#subjectlisttugas').load('<?=base_url('akademik/kirimtugas/kirimtugasutamaedit')?>/'+msg);						
-							},
-							success: function (res) {
-								$(".error-box").delay(1000).fadeOut("slow",function(){
-									$(this).remove();
-								});	
-								if(res=='null'){
-									$.ajax({
-										type: "POST",
-										data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&&ajax=1',
-										url: '<?=base_url('akademik/kirimtugas/daftartugaslist')?>',
-										beforeSend: function() {
-											$("#materi").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
-											$(".error-box").delay(1000).html('Load data');
-											$(".error-box").delay(1000).fadeOut("slow",function(){
-												$(this).remove();
+						});		
+						
+						var settings = {
+							'inputField': 'bigUploadFiletugas',
+							'formId': 'bigUploadFormtugas',
+							'progressBarField': 'bigUploadProgressBarFilledtugas',
+							'timeRemainingField': 'bigUploadTimeRemainingtugas',
+							'responseField': 'bigUploadResponsetugas',
+							'submitButton': 'bigUploadSubmittugas',
+							'progressBarColor': '#5bb75b',
+							'progressBarColorError': '#da4f49',
+							'scriptPath': '<?=base_url()?>asset/default/ajaxbigupload/inc/bigUpload.php?dr=<?=$upload_dir?>',
+							//'scriptPath': '<?=base_url()?>akademik/kirimtugas/upload',
+							'scriptPathParams': '',
+							'chunkSize': 1000000,
+							'maxFileSize': 25000000
+						}
+						bigUpload = new bigUpload(settings);
+						$("#kirimtugasutama").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+						$(".error-box").delay(1000).html('Sedang proses UPLOAD');
+						
+						bigUpload.success = function(response) {
+							if(response.errorStatus==0){
+								$.ajax({
+									url: "<? echo base_url();?>akademik/kirimtugas/upload/"+msg,
+									type: "POST",
+									data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&id_tugas='+msg+'&fileName='+response.fileName,
+									beforeSend: function() {
+										$("#kirimtugasutama").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+										$(".error-box").delay(1000).html('Menyimpan data');
+									},
+									error	: function(){
+										alert('Gagal menyimpan data');						
+									},
+									success: function (res) {
+										$(".error-box").delay(1000).fadeOut("slow",function(){
+											$(this).remove();
+										});	
+										if(res=='null'){
+											$.ajax({
+												type: "POST",
+												data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&&ajax=1',
+												url: '<?=base_url('akademik/kirimtugas/daftartugaslist')?>',
+												beforeSend: function() {
+													$("#kirimtugasutama").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+													$(".error-box").delay(1000).html('Load data');
+													$(".error-box").delay(1000).fadeOut("slow",function(){
+														$(this).remove();
+													});
+												},
+												success: function(msg2) {
+													$("#wait").remove();
+													$('select#kelas').val($('select#kelas_add').val());
+													$('select#pelajaran').html($('select#pelajaran_add').html());
+													$('select#pelajaran').val($('select#pelajaran_add').val());
+													$('#subjectlisttugas').html(msg2);
+													$('#subject').scrollintoview({ speed:'1100'});
+												}
 											});
-										},
-										success: function(msg) {
-											$('#subjectlisttugas').html(msg);
-											$('#subjectpembelajaran').scrollintoview({ speed:'1100'});
+										}else{
+											alert(res+'');
+											$('#subjectlisttugas').load('<?=base_url('akademik/kirimtugas/kirimtugasutamaedit')?>/'+msg);
 										}
-									});
-								}else{
-									alert(res+'');
-									$('#subjectlisttugas').load('<?=base_url('akademik/kirimtugas/kirimtugasutamaedit')?>/'+msg);
-								}
+									}
+								});								
 							}
-						});
-	
+						};
+						bigUpload.fire();
+						$("#wait").remove();
 					}
 				});
 				return false;
@@ -263,7 +289,7 @@ $(function() {
 				<td width="1">:</td>
 				<td colspan="2">
 					<input type="file" id="bigUploadFiletugas" name="bigUploadFiletugas" />
-					<input type="button" class="bigUploadButton" value="Start Upload" id="bigUploadSubmit"  style="display:none" />
+					<input type="button" class="bigUploadButton" value="Start Upload" id="bigUploadSubmittugas"  style="display:none" />
 					<input type="button" class="bigUploadButton bigUploadAbort" value="Cancel"  style="display:none" />
 					<div id="bigUploadProgressBarContainertugas">
 						<div id="bigUploadProgressBarFilledtugas">

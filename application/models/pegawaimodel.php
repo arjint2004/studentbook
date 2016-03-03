@@ -471,7 +471,7 @@
             if(!empty($_FILES['foto_pegawai']['tmp_name']))
             {
                 $config['upload_path']      = $path_large = "upload/images/larger/";
-                $config['allowed_types']    = 'gif|jpg|png';
+                $config['allowed_types']    = 'gif|jpg|png|JPG|JPEG|jpeg';
                 $config['max_size']	    = '7000';
                 $config['max_width']        = '4000';
                 $config['max_height']       = '4000';

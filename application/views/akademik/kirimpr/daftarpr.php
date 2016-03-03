@@ -125,7 +125,7 @@
 											<? } ?>
 										</select>
 										<a id="kirimpradd" title="" class="readmore"> Tambah <br /> PR </a>
-										<a id="kirimprremidiadd" title="" class="readmore"> Tambah PR <br /> Remidi</a>
+										<!--<a id="kirimprremidiadd" title="" class="readmore"> Tambah PR <br /> Remidi</a>-->
 										<a id="kirimpr" title="" class="readmore"> Kirim <br /> PR </a>
 										<a  style="padding:5px;" class="readmore exportexcellpr"><img height="30" src="<?=$this->config->item('images')?>/Excel-icon.png" style="margin:0;" /> Export</a>
 										<input type="hidden" name="jenis" value="PR" />

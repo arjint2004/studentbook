@@ -125,7 +125,7 @@
 											<? } ?>
 										</select>
 										<a id="kirimtugasadd" title="" class="readmore"> Tambah <br /> TUGAS </a>
-										<a id="kirimtugasremidiadd" title="" class="readmore"> Tambah TUGAS <br /> Remidi</a>
+										<!--<a id="kirimtugasremidiadd" title="" class="readmore"> Tambah TUGAS <br /> Remidi</a>-->
 										<a id="kirimtugas" title="" class="readmore"> Kirim <br /> TUGAS </a>
 										<a  style="padding:5px;" class="readmore exportexcelltugas"><img height="30" src="<?=$this->config->item('images')?>/Excel-icon.png" style="margin:0;" /> Export</a>
 										<input type="hidden" name="jenis" value="TUGAS" />

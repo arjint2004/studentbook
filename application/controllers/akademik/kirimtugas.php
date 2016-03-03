@@ -81,6 +81,16 @@ class Kirimtugas extends CI_Controller
 				echo 0;
 			}
 		}
+		public function upload($id_tugas=0)
+        {
+			if(isset($_POST['id_tugas']) && isset($_POST['fileName'])){
+				if($this->db->insert('ak_tugas_file', array('id_tugas'=>$_POST['id_tugas'],'file_name'=>''.$_POST['fileName'].''))){
+					echo 'null';
+				}else{
+					echo 'Gagal menyimpan data';
+				}
+			}
+		}
         public function uploadfiletugas($id_tugas)
         {
 			
@@ -240,6 +250,7 @@ class Kirimtugas extends CI_Controller
 			}
 			
 			$this->load->model('ad_pelajaran');
+			$data['upload_dir'] 	=base64_encode('../../../../upload/akademik/tugas/');
 			$data['pelajaran'] 	=$this->ad_pelajaran->getdatabySemesterJenjangJurusanPegawaimengajar();
             $data['main']           = 'akademik/kirimtugas/kirimtugasutama';
             $this->load->view('layout/ad_blank',$data);
