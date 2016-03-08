@@ -111,7 +111,10 @@ class Soalonline extends CI_Controller
 					'pokok_bahasan'=>$_POST['pokok_bahasan'],
 					'bab'=>$_POST['bab'],
 					'keterangan'=>$_POST['keterangan'],
+					'jmlsoal'=>$_POST['jmlsoal'],
 					'tanggal_buat'=>date("Y-m-d H:i:s"),
+					'tanggal_mulai'=>$_POST['tanggal_mulai'],
+					'tanggal_selesai'=>$_POST['tanggal_selesai'],
 					'share'=>"".@$_POST['share']."",
 				);
 					
@@ -169,16 +172,18 @@ class Soalonline extends CI_Controller
 				
 				$id_soalonline=$_POST['id']; 	 	 	 	 	 	 	 	 	 	 	 	 	 
 				$datainsert=array(
-									'id_sekolah'=>$this->session->userdata['user_authentication']['id_sekolah'],
-									'id_pegawai'=>$this->session->userdata['user_authentication']['id_pengguna'],
-									'semester'=>$this->session->userdata['ak_setting']['semester'],
-									//'id_pelajaran'=>$_POST['id_pelajaran'],
-									'pokok_bahasan'=>$_POST['pokok_bahasan'],
-									'bab'=>$_POST['bab'],
-									'keterangan'=>$_POST['keterangan'],
-									'tanggal_diberikan'=>$_POST['tanggal_diberikan'],
-									'tanggal_buat'=>date("Y-m-d H:i:s"),
-									'share'=>$_POST['share'],
+					//'id_sekolah'=>$this->session->userdata['user_authentication']['id_sekolah'],
+					//'id_pegawai'=>$this->session->userdata['user_authentication']['id_pengguna'],
+					//'semester'=>$this->session->userdata['ak_setting']['semester'],
+					//'id_pelajaran'=>$_POST['id_pelajaran'],
+					'pokok_bahasan'=>$_POST['pokok_bahasan'],
+					'bab'=>$_POST['bab'],
+					'keterangan'=>$_POST['keterangan'],
+					'jmlsoal'=>$_POST['jmlsoal'],
+					'tanggal_buat'=>date("Y-m-d H:i:s"),
+					'tanggal_mulai'=>$_POST['tanggal_mulai'],
+					'tanggal_selesai'=>$_POST['tanggal_selesai'],
+					'share'=>"".@$_POST['share']."",
 				);
 				$this->db->where('id',$_POST['id']);
 				$this->db->update('ak_soalonline_pelajaran',$datainsert);
@@ -363,5 +368,14 @@ class Soalonline extends CI_Controller
 	   echo $select;
 	   die();
     }
-    }
+	
+	    
+    public function kuncijawaban($id=0)
+    {
+		$soal=$this->db->query("Select jmlsoal from ak_soalonline_pelajaran WHERE id=".$id." ")->result_array();
+		$data['jmlsoal']=$soal[0]['jmlsoal'];
+		$data['main']= 'akademik/soalonline/kuncijawaban';
+        $this->load->view('layout/ad_blank',$data);	
+	}
+}
 ?>

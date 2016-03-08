@@ -1,5 +1,6 @@
 								<script>
-										function getdetail(id,obj,all){
+										function getdetail(id,objk,all){
+											var obj=$(objk).parent('tr');
 											if(all=='all'){
 												$('#detailsoalonlineall'+id).toggle('fade');
 											}else{
@@ -144,11 +145,12 @@
 										<thead>
 											<tr> 
 												<th>No</th>      
-												<th>Pokok Bahasan</th>
+												<th>Judul</th>
 												<th>Pelajaran</th>
 												<th>Dikirim Ke</th>
 												<th>Tgl Upload</th>
 												<th style="width:37px;">Detail</th>
+												<th style="width:37px;">Kunci Jawaban</th>
 												<? if($kepsek!='kepsek'){?>
 												<th style="width:75px;">Ubah|Hapus</th>
 												<? } ?>
@@ -159,7 +161,7 @@
 											if(@$cur_page==0){@$cur_page=1;}
 											$no=(@$cur_page*@$per_page)-@$per_page+1;
 											foreach($soalonline as $kt=>$datasoalonline){?>
-											<tr style="cursor:pointer;" title="klik untuk menampilkan / menyembunyikan detail"  onclick="getdetail(<?=$datasoalonline['id']?>,this,'all');">
+											<tr style="cursor:pointer;" title="klik untuk menampilkan / menyembunyikan detail">
 												<td><?=$no++;?></td>
 												<td class="title" ><?=$datasoalonline['pokok_bahasan']?></td>
 												<td class="title" ><?=$datasoalonline['pelajaran']?></td>
@@ -171,7 +173,10 @@
 													}
 													?></td>
 												<td ><? $tg=tanggal($datasoalonline['tanggal_buat']." 00:00:00"); echo $tg[2];?></td>
-												<td ><a style="cursor:pointer;">Lihat</a></td>
+												<td  onclick="getdetail(<?=$datasoalonline['id']?>,this,'all');" ><a style="cursor:pointer;">Lihat</a></td>
+												<td >
+												<a title="" href="<?=base_url('akademik/soalonline/kuncijawaban/'.$datasoalonline['id'].'')?>" class="readmore modal" id="buat_kunci_<?=$datasoalonline['id']?>">Kunci</a>
+												</td>
 												<? if($kepsek!='kepsek'){?>
 												<td >
 													<div class="actedit acteditsoalonline" id_soalonline="<?=$datasoalonline['id']?>"></div> 
@@ -182,7 +187,7 @@
 											</tr>
 											
 											<tr id="detailsoalonlineall<?=$datasoalonline['id']?>" style="display:none;">
-												<td colspan="7" class="innercolspan">
+												<td colspan="8" class="innercolspan">
 													<div class="">
 													<div class="full file">
 													<h3 >Detail MATERI</h3>
