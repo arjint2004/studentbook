@@ -2,16 +2,19 @@
 <script>
 $(document).ready(function(){
 	$("form#kuncijawaban").submit(function(e){
+					$("form#kuncijawaban").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
+					$(".error-box").html("Proses Kunci Jawaban").fadeIn("slow");
 					$.ajax({
 						type: "POST",
-						data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$(this).serialize(),
+						data: '<?php echo $this->security->get_csrf_token_name();?>=<?php echo $this->security->get_csrf_hash(); ?>&'+$('form#kuncijawaban').serialize(),
 						url: $(this).attr('action'),
 						beforeSend: function() {
 							$("#soalonline").append("<div class=\"error-box\" style='display: block; top: 50%; position: fixed; left: 46%;'></div>");
-							$(".error-box").delay(1000).html('Memasukkan Data');
-							//$("#simpanpr").after("<img id='wait' style='margin:0;float:right;'  src='<?=$this->config->item('images').'loading.png';?>' />");
+							$(".error-box").delay(1000).html('Memasukkan Kunci jawaban');
 						},
 						success: function(msg) {
+							$(".error-box").delay(1000).html('Berhasil Memasukkan Kunci jawaban');
+							$.fancybox.close();
 							$(".error-box").delay(1000).fadeOut("slow",function(){
 								$(this).remove();
 							});		
@@ -23,6 +26,9 @@ $(document).ready(function(){
 });
 </script>
 <h3>Kunci Jawaban</h3>
+<br>
+<a id="simpansoalonline" class="button small light-grey absenbutton" title="" onclick="$('form#kuncijawaban').submit();"> Simpan </a>
+<br><br>
 <div class="hr"></div>
 <br />
 <style>
@@ -45,8 +51,12 @@ ul.kuncilist li{
 	width: 100%;
 }
 </style>
+<?
+// pr($kunci);
+?>
 <form style="width:700px;" method="post" name="kuncijawaban" enctype="multipart/form-data" id="kuncijawaban" action="<? echo base_url();?>akademik/soalonline/kuncijawaban">
 	<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+		<input type="hidden" name="id" value="<?php echo $id; ?>"/>
 		<ul class="kuncilistf" style="display:none;">
 		<?php 
 		$no=1;
@@ -57,15 +67,12 @@ ul.kuncilist li{
 		<?php }?>
 			<li>
 				<div><?php echo $no;?></div>
-				A<input type="radio" name="kunci[]" value="A"/>
-				B<input type="radio" name="kunci[]" value="B"/>
-				C<input type="radio" name="kunci[]" value="C"/>
-				D<input type="radio" name="kunci[]" value="D"/>
+				<input type="hidden" name="kunci[<?php echo $no;?>]" value=""/>
+				A<input type="radio" name="kunci[<?php echo $no;?>]" <? if($kunci[$no]=="A"){echo "checked";}?> value="A"/>
+				B<input type="radio" name="kunci[<?php echo $no;?>]" <? if($kunci[$no]=="B"){echo "checked";}?> value="B"/>
+				C<input type="radio" name="kunci[<?php echo $no;?>]" <? if($kunci[$no]=="C"){echo "checked";}?> value="C"/>
+				D<input type="radio" name="kunci[<?php echo $no;?>]" <? if($kunci[$no]=="D"){echo "checked";}?> value="D"/>
 			</li>
 		<?php $no++;} ?>
 		</ul>
-		<!--<li style="list-style:none;">
-		<a id="simpansoalonline" class="button small light-grey absenbutton" title="" onclick="$('form#kuncijawaban').submit();"> Simpan </a>
-		</li>-->
-	
 </form>

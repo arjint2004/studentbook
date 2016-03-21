@@ -372,8 +372,17 @@ class Soalonline extends CI_Controller
 	    
     public function kuncijawaban($id=0)
     {
-		$soal=$this->db->query("Select jmlsoal from ak_soalonline_pelajaran WHERE id=".$id." ")->result_array();
+		//pr($_POST);
+		if(isset($_POST['id'])){
+			$updatekunci=array('kunci_jawaban'=>serialize($_POST['kunci']));
+			$this->db->where('id',$_POST['id']);
+			$this->db->update('ak_soalonline_pelajaran',$updatekunci);
+			echo '1';die;
+		}
+		$soal=$this->db->query("Select jmlsoal,kunci_jawaban from ak_soalonline_pelajaran WHERE id=".$id." ")->result_array();
 		$data['jmlsoal']=$soal[0]['jmlsoal'];
+		$data['kunci']=unserialize($soal[0]['kunci_jawaban']);
+		$data['id']=$id;
 		$data['main']= 'akademik/soalonline/kuncijawaban';
         $this->load->view('layout/ad_blank',$data);	
 	}
