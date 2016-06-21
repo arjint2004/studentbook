@@ -587,7 +587,7 @@ class CI_Upload {
 		{
 			return TRUE;
 		}
-
+		
 		if (count($this->allowed_types) == 0 OR ! is_array($this->allowed_types))
 		{
 			$this->set_error('upload_no_file_types');
@@ -598,6 +598,7 @@ class CI_Upload {
 
 		if ( ! in_array($ext, $this->allowed_types))
 		{
+
 			return FALSE;
 		}
 
@@ -619,6 +620,11 @@ class CI_Upload {
 
 		$mime = $this->mimes_types($ext);
 
+		// pr($this->file_type);
+		// pr($ext);
+		// pr($mime);
+		// pr($this->allowed_types);
+		// die();
 		if (is_array($mime))
 		{
 			if (in_array($this->file_type, $mime, TRUE))
@@ -1021,7 +1027,7 @@ class CI_Upload {
 	 * @return	void
 	 */
 	protected function _file_mime_type($file)
-	{
+	{ 
 		// We'll need this to validate the MIME info string (e.g. text/plain; charset=us-ascii)
 		$regexp = '/^([a-z\-]+\/[a-z0-9\-\.\+]+)(;\s.+)?$/';
 
@@ -1065,7 +1071,12 @@ class CI_Upload {
 		{
 			
 			$output = array();
-			@exec('file --brief --mime-type ' . escapeshellarg($file['tmp_path']), $output, $return_code);
+				// pr($this->file_type);
+				// echo 'file --brief --mime-type ' . escapeshellarg($file['tmp_path']);
+				// pr($_FILES);
+				// die();
+			// @exec('file --brief --mime-type ' . escapeshellarg($file['tmp_path']), $output, $return_code);
+			@exec('file --brief --mime-type ' . escapeshellarg($file['tmp_name']), $output, $return_code);
 			if ($return_code === 0 && strlen($output[0]) > 0)
 			{
 				$this->file_type = rtrim($output[0]);

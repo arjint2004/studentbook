@@ -14,13 +14,15 @@
 | path to your installation.
 |
 */ 
-	if($_SERVER['SERVER_NAME'] == 'www.unirescorner.com' || $_SERVER['SERVER_NAME'] == 'unirescorner.com') 
+	/*if($_SERVER['SERVER_NAME'] == 'www.unirescorner.com' || $_SERVER['SERVER_NAME'] == 'unirescorner.com') 
     {
 		$basec='http://www.unirescorner.com/';	
 	}elseif($_SERVER['SERVER_NAME'] == 'www.studentbook.co' || $_SERVER['SERVER_NAME'] == 'studentbook.co'){
-		$basec= 'https://studentbook.co/';
-	}
-$config['base_url']	= $basec;
+		$basec= 'http://studentbook.co/';
+	}*/
+$config['base_url'] = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != "off") ? "https" : "http");
+$config['base_url'] .= "://".$_SERVER['HTTP_HOST'];
+$config['base_url'] .= str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']);
 
 //$config['base_url']	= 'https://'.$_SERVER['SERVER_NAME'].'/';
  

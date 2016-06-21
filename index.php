@@ -7,19 +7,19 @@
     {
 		
 	}
-    if($_SERVER['SERVER_NAME'] == 'www.studentbook.co') 
+   /* if($_SERVER['SERVER_NAME'] == 'www.studentbook.co') 
     { 
         // If not, redirect
         $newurl = 'https://'.str_replace("www.","",$_SERVER['SERVER_NAME']).$_SERVER['REQUEST_URI']; 
         //die($newurl);
         header("location: $newurl"); 
         die();
-    }
-    if($_SERVER['HTTPS'] != 'on') 
+    }*/
+    if($_SERVER['HTTPS'] == 'on') 
     { 
         // If not, redirect
         if($_SERVER['SERVER_NAME'] == 'studentbook.co'){
-		$newurl = 'https://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']; 
+		$newurl = 'http://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']; 
         header("location: $newurl"); 
 		}
     }
